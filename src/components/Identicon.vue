@@ -4,33 +4,34 @@
     </div>
 </template>
 
-<script>
-import ValidationUtils from '../../../../libraries/secure-utils/validation-utils/validation-utils.js'
-import Iqons from '../../../../libraries/iqons/src/js/iqons.js'
-if (!location.host.includes('localhost')) Iqons.svgPath = '/iqons.min.svg'
-
-export default {
-    name: 'Identicon',
-    props: ['address'],
-    asyncComputed: {
-        dataUrl: {
-            get() {
-                if (ValidationUtils.isValidAddress(this.address)) {
-                    const address = this.address.replace(/ /g, '').replace(/.{4}/g, '$& ').trim()
-                    return Iqons.toDataUrl(address)
-                } else {
-                    return Iqons.placeholderToDataUrl()
-                }
+<script lang="ts">
+    import {Component, Prop, Vue} from 'vue-property-decorator';
+    import Iqons from '@nimiq/iqons/dist/iqons.min.js';
+    import IqonsSvg from '@nimiq/iqons/dist/iqons.min.svg';
+    Iqons.svgPath = IqonsSvg.substring(1, IqonsSvg.length - 1);
+    
+    @Component({
+        asyncComputed: {
+            dataUrl: {
+                get() {
+                    if (this.address) {
+                        return Iqons.toDataUrl(this.address.toUserFriendlyAddress());
+                    } else {
+                        return Iqons.placeholderToDataUrl();
+                    }
+                },
+                default() {
+                    return Iqons.placeholderToDataUrl();
+                },
             },
-            default() {
-                return Iqons.placeholderToDataUrl()
-            }
-        }
+        },
+    })
+    export default class Identicon extends Vue {
+        @Prop(Nimiq.Address) private address!: Nimiq.Address;
     }
-}
 </script>
 
-<style>
+<style scoped>
     .identicon {
         width: 80px;
         min-width: 40px;

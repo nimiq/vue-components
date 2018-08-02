@@ -19,51 +19,51 @@
 </template>
 
 <script>
-import Identicon from './Identicon.vue'
-import Address from './Address.vue'
+    import Identicon from './Identicon.vue';
+    import Address from './Address.vue';
 
-import ValidationUtils from '../../../../libraries/secure-utils/validation-utils/validation-utils.js'
+    import ValidationUtils from '@nimiq/secure-utils/validation-utils/validation-utils.js';
 
-export default {
-    name: 'NewContact',
-    props: ['setContactAction', 'abortAction'],
-    data: function() {
-        return {
-            // Local state
-            workingLabel: '',
-            workingAddress: ''
-        }
-    },
-    computed: {
-        isInputValid() {
-            return this.workingLabel && ValidationUtils.isValidAddress(this.workingAddress)
-        }
-    },
-    methods: {
-        edit() {
-            this.workingLabel = ''
-            this.workingAddress = ''
-            this.$refs.labelInput.focus()
+    export default {
+        name: 'NewContact',
+        props: ['setContactAction', 'abortAction'],
+        data() {
+            return {
+                // Local state
+                workingLabel: '',
+                workingAddress: '',
+            };
         },
-        save() {
-            const address = this.workingAddress.replace(/ /g, '').replace(/.{4}/g, '$& ').trim().toUpperCase()
-
-            // Update or set contact info
-            this.setContactAction(this.workingLabel, address)
-
-            this.$toast.success('Contact saved.')
-
-            this.edit()
+        computed: {
+            isInputValid() {
+                return this.workingLabel && ValidationUtils.isValidAddress(this.workingAddress);
+            },
         },
-        abort() {
-            this.abortAction()
-        }
-    },
-    components: {
-        Identicon,
-        Address
-    }
-}
+        methods: {
+            edit() {
+                this.workingLabel = '';
+                this.workingAddress = '';
+                this.$refs.labelInput.focus();
+            },
+            save() {
+                const address = this.workingAddress.replace(/ /g, '').replace(/.{4}/g, '$& ').trim().toUpperCase();
+
+                // Update or set contact info
+                this.setContactAction(this.workingLabel, address);
+
+                this.$toast.success('Contact saved.');
+
+                this.edit();
+            },
+            abort() {
+                this.abortAction();
+            },
+        },
+        components: {
+            Identicon,
+            Address,
+        },
+    };
 </script>
 
 <style>

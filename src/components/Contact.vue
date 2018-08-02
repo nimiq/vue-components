@@ -1,10 +1,10 @@
 <template>
     <div class="contact" @click="select">
-        <Identicon :address="isEditing ? workingAddress : contact.address"/>
+        <Identicon :address="isEditing ? workingAddress : address"/>
 
         <div class="info" v-if="!isEditing">
-            <span class="label">{{ contact.label }}</span>
-            <Address :address="contact.address"/>
+            <span class="label">{{ label }}</span>
+            <Address :address="address"/>
 
             <div class="bottom" v-if="showOptions">
                 <button class="small secondary" @click.stop="edit" title="Edit contact">
@@ -34,75 +34,61 @@
 
 <script>
 /* global Vue */
-import Identicon from './Identicon.vue'
-import Address from './Address.vue'
+import Identicon from './Identicon.vue';
+import Address from './Address.vue';
 
-import ValidationUtils from '../../../../libraries/secure-utils/validation-utils/validation-utils.js'
+import ValidationUtils from '@nimiq/secure-utils/validation-utils/validation-utils.js';
 
 export default {
     name: 'Contact',
-    props: ['contact', 'showOptions', 'setContactAction', 'removeContactAction'],
-    data: function() {
+    props: ['address', 'label', 'showOptions'],
+    data() {
         return {
             // Local state
             isEditing: false,
             workingLabel: '',
-            workingAddress: ''
-        }
-    },
-    created() {
-        this.$eventBus.$on('contact-list-closed', this.abort)
+            workingAddress: '',
+        };
     },
     computed: {
         isInputValid() {
-            return this.workingLabel && ValidationUtils.isValidAddress(this.workingAddress)
-        }
+            return this.workingLabel && ValidationUtils.isValidAddress(this.workingAddress);
+        },
     },
     methods: {
         select() {
-            if (this.isEditing) return
-            this.$eventBus.$emit('contact-selected', this.contact.address)
+            if (this.isEditing) return;
+            this.$emit('select', this.address);
         },
         edit() {
-            this.workingLabel = this.contact.label
-            this.workingAddress = this.contact.address
-            this.isEditing = true
+            this.workingLabel = this.label;
+            this.workingAddress = this.address;
+            this.isEditing = true;
 
             // Wait for DOM to update
-            Vue.nextTick(() => this.$refs.labelInput.select() && this.$refs.labelInput.focus())
+            Vue.nextTick(() => this.$refs.labelInput.select() && this.$refs.labelInput.focus());
         },
         save() {
-            const address = this.workingAddress.replace(/ /g, '').replace(/.{4}/g, '$& ').trim()
-
-            // Update or set contact info
-            this.setContactAction(this.workingLabel, address)
-
-            if (address !== this.contact.address) {
-                // If address was changed, remove the old entry from the store
-                this.removeContactAction(this.contact.address)
-
-                // The removal from the store triggers the removal of this component,
-                // thus nothing more can be done here and this is an implicit return.
+            const address = this.workingAddress.replace(/ /g, '').replace(/.{4}/g, '$& ').trim();
+            const label = this.workingLabel.trim();
+            if (this.address !== address || this.label !== label) {
+                this.$emit('change', {label: this.label, address: this.address}, {label, address});
             }
-
-            this.$toast.success('Contact saved.')
-
-            this.abort()
+            this.abort();
         },
         abort() {
-            this.isEditing = false
+            this.isEditing = false;
         },
         remove() {
-            const confirmRemove = confirm(`Delete this contact: ${this.contact.label} (${this.contact.address})?`)
-            confirmRemove && this.removeContactAction(this.contact.address)
-            this.$toast.show('Contact removed.')
-        }
+            const confirmRemove = confirm(`Delete this contact: ${this.label} (${this.address})?`);
+            if (confirmRemove) this.$emit('delete', this.address);
+        },
     },
     components: {
         Identicon,
-        Address
-    }
-}
+        Address,
+    },
+};
 </script>
 
 <style>
@@ -177,6 +163,9 @@ export default {
         margin-left: 4px;
         background: white;
         opacity: 0.75;
+        border-radius: 28px;
+        color: #3b3b3b;
+        border: 1px solid #3b3b3b;
     }
 
     .contact .bottom button:hover {
@@ -191,6 +180,7 @@ export default {
     }
 
     .contact .bottom button.remove {
+        color: var(--error-color);
         border-color: var(--error-color);
     }
 

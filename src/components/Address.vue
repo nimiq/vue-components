@@ -1,36 +1,37 @@
 <template>
     <div class="address" @click="copy">
-        <span>{{ address }}</span>
+        <span>{{ address ? address.toUserFriendlyAddress() : 'Invalid address' }}</span>
         <div class="copied-cover">Copied!</div>
     </div>
 </template>
 
-<script>
-export default {
-    name: 'Address',
-    props: ['address'],
-    methods: {
-        copy() {
-            const selection = window.getSelection()
-            const range = document.createRange()
-            range.selectNodeContents(this.$el.querySelector('span'))
-            selection.removeAllRanges()
-            selection.addRange(range)
+<script lang="ts">
+    import {Component, Prop, Vue} from 'vue-property-decorator';
+
+    @Component
+    export default class Address extends Vue {
+        @Prop(Nimiq.Address) private address!: Nimiq.Address;
+
+        private copy() {
+            const selection = window.getSelection();
+            const range = document.createRange();
+            range.selectNodeContents(this.$el.querySelector('span'));
+            selection.removeAllRanges();
+            selection.addRange(range);
 
             try {
-                document.execCommand('copy')
-                selection.removeAllRanges()
-                this.$el.classList.add('copied')
-                setTimeout(() => this.$el.classList.remove('copied'), 400)
-            } catch(e) {
-                console.error(e) // eslint-disable-line no-console
+                document.execCommand('copy');
+                selection.removeAllRanges();
+                this.$el.classList.add('copied');
+                setTimeout(() => this.$el.classList.remove('copied'), 400);
+            } catch (e) {
+                console.error(e); // eslint-disable-line no-console
             }
         }
     }
-}
 </script>
 
-<style>
+<style scoped>
     .address {
         position: relative;
         width: 100%;
@@ -42,6 +43,7 @@ export default {
         white-space: nowrap;
         cursor: pointer;
         border-radius: 3px;
+        font-family: "Source Code Pro", "Menlo", "Roboto Mono", "Droid Sans Mono", monospace;
     }
 
     .address:hover {
