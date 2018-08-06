@@ -122,6 +122,10 @@ storiesOf('Components', module)
                     ]
                 };
             },
+            methods: {
+                accountSelected: action('account-selected'),
+                switchLogin: action('switch-login'),
+            },
             template: `<AccountSelector @account-selected="accountSelected" @switch-login="switchLogin" :accounts="accounts"/>`
         };
     })
@@ -306,10 +310,8 @@ storiesOf('Pages/Payment', module)
         return {
             components: {CheckoutFlow},
             methods: {
-                loginSelected: action('login-selected'),
                 addLogin: action('add-login'),
                 accountSelected: action('account-selected'),
-                switchLogin: action('switch-login')
             },
             data() {
                 return {
@@ -352,6 +354,6 @@ storiesOf('Pages/Payment', module)
                     }
                 };
             },
-            template: `<CheckoutFlow :logins="logins" :accounts="accounts"/>`
+            template: `<CheckoutFlow :logins="logins" :accounts="accounts" @account-selected="accountSelected" @add-login="addLogin"/>`
         };
     });
