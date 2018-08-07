@@ -2,6 +2,9 @@
   "name": "@nimiq/vue-components",
   "version": "0.1.0",
   "private": true,
+  "main": "dist/vue-components.common.js",
+  "module": "dist/vue-components.umd.js",
+  "types": "types/index.d.ts",
   "scripts": {
     "build": "vue-cli-service build --target lib --name vue-components src/main.ts; vue-cli-service bundle-dts --name vue-components",
     "lint": "vue-cli-service lint",
