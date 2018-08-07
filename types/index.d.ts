@@ -1,2 +1,1 @@
-import './Nimiq';
-import '../dist/vue-components';
+export * from '../dist/src/main';
