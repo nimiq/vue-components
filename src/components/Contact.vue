@@ -1,6 +1,6 @@
 <template>
     <div class="contact" @click="select">
-        <Identicon :address="isEditing ? workingAddress : address"/>
+        <Identicon :address="isEditing ? workingNimiqAddress() : address"/>
 
         <div class="info" v-if="!isEditing">
             <span class="label">{{ label }}</span>
@@ -21,7 +21,8 @@
             <input type="text" class="address-input" placeholder="Address" v-model="workingAddress">
 
             <div class="bottom">
-                <button class="small secondary save" @click.stop="save" :disabled="!isInputValid" title="Save changes">
+                <button class="small secondary save" @click.stop="save" :disabled="!isInputValid()"
+                        title="Save changes">
                     <i class="material-icons">check</i>
                 </button>
                 <button class="small secondary" @click.stop="abort" title="Abort">
@@ -32,63 +33,71 @@
     </div>
 </template>
 
-<script>
-/* global Vue */
-import Identicon from './Identicon.vue';
-import Address from './Address.vue';
+<script lang="ts">
+    import {Component, Prop, Vue} from 'vue-property-decorator';
+    import Identicon from './Identicon.vue';
+    import Address from './Address.vue';
 
-import ValidationUtils from '@nimiq/secure-utils/validation-utils/validation-utils.js';
+    import ValidationUtils from '@nimiq/secure-utils/validation-utils/validation-utils.js';
 
-export default {
-    name: 'Contact',
-    props: ['address', 'label', 'showOptions'],
-    data() {
-        return {
-            // Local state
-            isEditing: false,
-            workingLabel: '',
-            workingAddress: '',
-        };
-    },
-    computed: {
-        isInputValid() {
+    @Component({components: {Identicon, Address}})
+    export default class Contact extends Vue {
+        @Prop(Nimiq.Address) public address!: Nimiq.Address;
+        @Prop(String) public label!: string;
+        @Prop(Boolean) public showOptions!: boolean;
+
+        private isEditing: boolean = false;
+        private workingLabel: string = '';
+        private workingAddress: string = '';
+
+        private isInputValid() {
             return this.workingLabel && ValidationUtils.isValidAddress(this.workingAddress);
-        },
-    },
-    methods: {
-        select() {
+        }
+
+        private workingNimiqAddress() {
+            try {
+                return Nimiq.Address.fromUserFriendlyAddress(this.workingAddress);
+            } catch (e) {
+                return null;
+            }
+        }
+
+        private select() {
             if (this.isEditing) return;
             this.$emit('select', this.address);
-        },
-        edit() {
+        }
+
+        private edit() {
             this.workingLabel = this.label;
-            this.workingAddress = this.address;
+            this.workingAddress = this.address.toUserFriendlyAddress();
             this.isEditing = true;
 
             // Wait for DOM to update
-            Vue.nextTick(() => this.$refs.labelInput.select() && this.$refs.labelInput.focus());
-        },
-        save() {
-            const address = this.workingAddress.replace(/ /g, '').replace(/.{4}/g, '$& ').trim();
+            Vue.nextTick(() => {
+                const labelInput: HTMLInputElement = this.$refs.labelInput as HTMLInputElement;
+                labelInput.select();
+                labelInput.focus();
+            });
+        }
+
+        private save() {
+            const address = Nimiq.Address.fromUserFriendlyAddress(this.workingAddress);
             const label = this.workingLabel.trim();
-            if (this.address !== address || this.label !== label) {
+            if (!this.address.equals(address) || this.label !== label) {
                 this.$emit('change', {label: this.label, address: this.address}, {label, address});
             }
             this.abort();
-        },
-        abort() {
+        }
+
+        private abort() {
             this.isEditing = false;
-        },
-        remove() {
+        }
+
+        private remove() {
             const confirmRemove = confirm(`Delete this contact: ${this.label} (${this.address})?`);
             if (confirmRemove) this.$emit('delete', this.address);
-        },
-    },
-    components: {
-        Identicon,
-        Address,
-    },
-};
+        }
+    }
 </script>
 
 <style>

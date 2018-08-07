@@ -14,6 +14,3 @@ export { default as LoginSelector } from './components/LoginSelector.vue';
 export { default as NewContact } from './components/NewContact.vue';
 export { default as PaymentInfoLine } from './components/PaymentInfoLine.vue';
 export { default as SmallPage } from './components/SmallPage.vue';
-
-// Utils
-export { default as ReduxProvider } from './vuejs-redux';

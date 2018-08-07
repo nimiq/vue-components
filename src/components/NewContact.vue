@@ -18,52 +18,54 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
+    import {Component, Emit, Vue} from 'vue-property-decorator';
     import Identicon from './Identicon.vue';
     import Address from './Address.vue';
 
     import ValidationUtils from '@nimiq/secure-utils/validation-utils/validation-utils.js';
 
-    export default {
-        name: 'NewContact',
-        props: ['setContactAction', 'abortAction'],
-        data() {
-            return {
-                // Local state
-                workingLabel: '',
-                workingAddress: '',
-            };
-        },
-        computed: {
-            isInputValid() {
-                return this.workingLabel && ValidationUtils.isValidAddress(this.workingAddress);
-            },
-        },
-        methods: {
-            edit() {
-                this.workingLabel = '';
-                this.workingAddress = '';
-                this.$refs.labelInput.focus();
-            },
-            save() {
-                const address = this.workingAddress.replace(/ /g, '').replace(/.{4}/g, '$& ').trim().toUpperCase();
+    @Component({components: {Identicon, Address}})
+    export default class NewContact extends Vue {
+        private workingLabel: string = '';
+        private workingAddress: string = '';
 
-                // Update or set contact info
-                this.setContactAction(this.workingLabel, address);
+        public edit() {
+            this.workingLabel = '';
+            this.workingAddress = '';
+            const labelInput: HTMLInputElement = this.$refs.labelInput as HTMLInputElement;
+            labelInput.focus();
+        }
 
-                this.$toast.success('Contact saved.');
+        @Emit()
+        // tslint:disable-next-line
+        private setContactAction(label: string, address: Nimiq.Address) {
+        }
 
-                this.edit();
-            },
-            abort() {
-                this.abortAction();
-            },
-        },
-        components: {
-            Identicon,
-            Address,
-        },
-    };
+        @Emit()
+        // tslint:disable-next-line
+        private abortAction() {
+        }
+
+        private isInputValid() {
+            return this.workingLabel && ValidationUtils.isValidAddress(this.workingAddress);
+        }
+
+        private save() {
+            const address = Nimiq.Address.fromUserFriendlyAddress(this.workingAddress);
+
+            // Update or set contact info
+            this.setContactAction(this.workingLabel, address);
+
+            // TODO: this.$toast.success('Contact saved.');
+
+            this.edit();
+        }
+
+        private abort() {
+            this.abortAction();
+        }
+    }
 </script>
 
 <style>

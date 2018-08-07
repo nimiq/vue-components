@@ -15,7 +15,7 @@
 
     @Component({components: {Account}})
     export default class AccountList extends Vue {
-        @Prop(Array) private accounts!: Array<{ label: string, address: Nimiq.Address, balance?: number }>;
+        @Prop(Array) public accounts!: Array<{ label: string, address: Nimiq.Address, balance?: number }>;
 
         @Emit()
         // tslint:disable-next-line

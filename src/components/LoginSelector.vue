@@ -18,9 +18,9 @@
 
     @Component({components: {LoginList}})
     export default class LoginSelector extends Vue {
-        @Prop(Array) private logins!: Array<{ label: string, userFriendlyId: string, id: string }>;
-        @Prop({type: String, default: 'Log In'}) private title!: string;
-        @Prop({type: Boolean, default: true}) private showAddLogin!: boolean;
+        @Prop(Array) public logins!: Array<{ label: string, userFriendlyId: string, id: string }>;
+        @Prop({type: String, default: 'Log In'}) public title!: string;
+        @Prop({type: Boolean, default: true}) public showAddLogin!: boolean;
 
         @Emit()
         // tslint:disable-next-line

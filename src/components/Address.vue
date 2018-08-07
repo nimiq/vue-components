@@ -10,7 +10,7 @@
 
     @Component
     export default class Address extends Vue {
-        @Prop(Nimiq.Address) private address!: Nimiq.Address;
+        @Prop(Nimiq.Address) public address!: Nimiq.Address;
 
         private copy() {
             const selection = window.getSelection();

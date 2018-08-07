@@ -19,9 +19,9 @@
 
     @Component({components: {Amount, Identicon}})
     export default class Account extends Vue {
-        @Prop(Nimiq.Address) private address!: Nimiq.Address;
-        @Prop(String) private label!: string;
-        @Prop(Number) private balance!: number;
+        @Prop(Nimiq.Address) public address!: Nimiq.Address;
+        @Prop(String) public label!: string;
+        @Prop(Number) public balance!: number;
     }
 </script>
 

@@ -28,15 +28,15 @@
     
     @Component({components: {Amount}})
     export default class AmountWithDetails extends Vue {
-        @Prop(Number) private amount!: number;
-        @Prop(Number) private networkFee!: number;
-        @Prop({type: Boolean, default: false}) private networkFeeEditable!: boolean;
-        @Prop({type: Number, default: 2, validator(value) { return value >= 0 && value <= 5; }}) private decimals!: number;
+        @Prop(Number) public amount!: number;
+        @Prop(Number) public networkFee!: number;
+        @Prop({type: Boolean, default: false}) public networkFeeEditable!: boolean;
+        @Prop({type: Number, default: 2, validator(value) { return value >= 0 && value <= 5; }}) public decimals!: number;
 
         private showDetails = false;
         private isEditing = false;
 
-        private toggleDetails() {
+        public toggleDetails() {
             this.showDetails = !this.showDetails;
         }
     }

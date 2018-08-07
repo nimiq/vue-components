@@ -7,9 +7,9 @@
 
     @Component
     export default class Amount extends Vue {
-        @Prop(Number) private amount!: number;
-        @Prop({type: Number, default: 2, validator(value) { return value >= 0 && value <= 5; }}) private decimals!: number;
-        @Prop({type: Boolean, default: false}) private showApprox!: boolean;
+        @Prop(Number) public amount!: number;
+        @Prop({type: Number, default: 2, validator(value) { return value >= 0 && value <= 5; }}) public decimals!: number;
+        @Prop({type: Boolean, default: false}) public showApprox!: boolean;
 
         private amountToString() {
             const roundingFactor = Math.pow(10, this.decimals);

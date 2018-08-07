@@ -18,9 +18,9 @@
 
     @Component({components: {AccountList}})
     export default class AccountSelector extends Vue {
-        @Prop(Array) private accounts!: Array<{ label: string, address: Nimiq.Address, balance?: number }>;
-        @Prop({type: String, default: 'Choose an account'}) private title!: string;
-        @Prop({type: Boolean, default: true}) private showSwitchLogin!: boolean;
+        @Prop(Array) public accounts!: Array<{ label: string, address: Nimiq.Address, balance?: number }>;
+        @Prop({type: String, default: 'Choose an account'}) public title!: string;
+        @Prop({type: Boolean, default: true}) public showSwitchLogin!: boolean;
 
         @Emit()
         // tslint:disable-next-line

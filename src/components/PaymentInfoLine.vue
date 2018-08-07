@@ -18,11 +18,11 @@
 
     @Component({components: {AmountWithDetails}})
     export default class PaymentInfoLine extends Vue {
-        @Prop(Number) private amount!: number;
-        @Prop(Number) private networkFee!: number;
-        @Prop(Boolean) private networkFeeEditable!: boolean;
-        @Prop({type: Number, default: 2, validator(value) { return value >= 0 && value <= 5; }}) private decimals!: number;
-        @Prop(String) private origin!: string;
+        @Prop(Number) public amount!: number;
+        @Prop(Number) public networkFee!: number;
+        @Prop(Boolean) public networkFeeEditable!: boolean;
+        @Prop({type: Number, default: 2, validator(value) { return value >= 0 && value <= 5; }}) public decimals!: number;
+        @Prop(String) public origin!: string;
     }
 </script>
 

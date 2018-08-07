@@ -16,9 +16,9 @@
     
     @Component
     export default class Account extends Vue {
-        @Prop(String) private label?: string;
-        @Prop(String) private userFriendlyId!: string;
-        @Prop(String) private id!: string;
+        @Prop(String) public label?: string;
+        @Prop(String) public userFriendlyId!: string;
+        @Prop(String) public id!: string;
 
         get color() {
             switch (this.id[0]) {

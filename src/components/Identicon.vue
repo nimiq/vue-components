@@ -27,7 +27,7 @@
         },
     })
     export default class Identicon extends Vue {
-        @Prop(Nimiq.Address) private address!: Nimiq.Address;
+        @Prop(Nimiq.Address) public address!: Nimiq.Address;
     }
 </script>
 
