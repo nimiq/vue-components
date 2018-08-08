@@ -52,6 +52,11 @@
         @Emit()
         // tslint:disable-next-line
         private addLogin() {
+            this.logins.push({
+                label: 'Test Login',
+                userFriendlyId: 'test test',
+                id: '101',
+            });
         }
 
         @Emit()

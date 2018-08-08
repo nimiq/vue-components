@@ -15,31 +15,33 @@
     import { Component, Prop, Vue } from 'vue-property-decorator';
     
     @Component
-    export default class Account extends Vue {
+    export default class Login extends Vue {
         @Prop(String) public label?: string;
         @Prop(String) public userFriendlyId!: string;
         @Prop(String) public id!: string;
 
         get color() {
-            switch (this.id[0]) {
-                case '0': return '#e57373';
-                case '1': return '#f06292';
-                case '2': return '#ba68c8';
-                case '3': return '#9575cd';
-                case '4': return '#7986cb';
-                case '5': return '#64b5f6';
-                case '6': return '#4fc3f7';
-                case '7': return '#4dd0e1';
-                case '8': return '#4db6ac';
-                case '9': return '#81c784';
-                case 'a': return '#aed581';
-                case 'b': return '#dce775';
-                case 'c': return '#fff176';
-                case 'd': return '#ffd54f';
-                case 'e': return '#ffb74d';
-                case 'f': return '#ff8a65';
-                default: return '#eeeeee';
+            if (this.id && this.id[0]) {
+                switch (this.id[0]) {
+                    case '0': return '#e57373';
+                    case '1': return '#f06292';
+                    case '2': return '#ba68c8';
+                    case '3': return '#9575cd';
+                    case '4': return '#7986cb';
+                    case '5': return '#64b5f6';
+                    case '6': return '#4fc3f7';
+                    case '7': return '#4dd0e1';
+                    case '8': return '#4db6ac';
+                    case '9': return '#81c784';
+                    case 'a': return '#aed581';
+                    case 'b': return '#dce775';
+                    case 'c': return '#fff176';
+                    case 'd': return '#ffd54f';
+                    case 'e': return '#ffb74d';
+                    case 'f': return '#ff8a65';
+                }
             }
+            return '#eeeeee';
         }
     }
 </script>

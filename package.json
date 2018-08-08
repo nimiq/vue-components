@@ -5,6 +5,7 @@
   "main": "dist/vue-components.common.js",
   "module": "dist/vue-components.umd.js",
   "types": "types/index.d.ts",
+  "files": ["dist/**/*","types/**/*"],
   "scripts": {
     "build": "vue-cli-service build --target lib --name vue-components src/main.ts; vue-cli-service bundle-dts --name vue-components",
     "lint": "vue-cli-service lint",
@@ -13,8 +14,8 @@
   "dependencies": {
     "@nimiq/iqons": "https://github.com/nimiq/iqons.git#a3302e06b0a53b6daeb745d13dbfd930b304c791",
     "@nimiq/secure-utils": "https://github.com/nimiq/secure-utils.git#3937c23c2703d5359eebe2c3bf7b3c9290b26100",
-    "vue": "^2.5.16",
-    "vue-async-computed": "^3.3.1",
+    "vue": "^2.5.17",
+    "vue-async-computed": "^3.4.1",
     "vue-property-decorator": "^7.0.0"
   },
   "devDependencies": {
@@ -31,7 +32,7 @@
     "ts-loader": "^4.4.2",
     "typescript": "^3.0.1",
     "vue-cli-plugin-ts-bundler": "^0.0.3",
-    "vue-template-compiler": "^2.5.16"
+    "vue-template-compiler": "^2.5.17"
   },
   "eslintConfig": {
     "root": true,
