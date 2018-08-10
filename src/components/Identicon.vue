@@ -8,7 +8,11 @@
     import {Component, Prop, Vue} from 'vue-property-decorator';
     import Iqons from '@nimiq/iqons/dist/iqons.min.js';
     import IqonsSvg from '@nimiq/iqons/dist/iqons.min.svg';
-    Iqons.svgPath = IqonsSvg.substring(1, IqonsSvg.length - 1);
+    if (IqonsSvg[0] === '"') {
+        Iqons.svgPath = IqonsSvg.substring(1, IqonsSvg.length - 1);
+    } else {
+        Iqons.svgPath = IqonsSvg;
+    }
     
     @Component({
         asyncComputed: {
