@@ -1,10 +1,9 @@
 <template>
     <div class="account-list">
-        <div class="account-entry" v-for="account in accounts" @click="accountSelected(account.address)">
+        <div class="account-entry" v-for="account in accounts" @click="accountSelected(account.address)" :key="account.userFriendlyAddress">
             <Account :address="account.address"
                      :label="account.label"
-                     :balance="account.balance"
-                     :key="account.address && account.address.toUserFriendlyAddress ? account.address.toUserFriendlyAddress() : 'Invalid'"/>
+                     :balance="account.balance"/>
         </div>
     </div>
 </template>
@@ -32,7 +31,7 @@
         cursor: pointer;
         transition: background .2s;
     }
-    
+
     .account-list .account {
         margin: 0 auto;
     }

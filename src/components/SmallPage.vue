@@ -1,34 +1,25 @@
 <template>
-    <div class="margin">
-        <div class="small-page">
-            <slot></slot>
-        </div>
+    <div class="small-page">
+        <slot></slot>
     </div>
 </template>
 
 <script lang="ts">
-    import {Component, Prop, Vue} from 'vue-property-decorator';
+    import {Component, Vue} from 'vue-property-decorator';
 
     @Component
-    export default class SmallPage extends Vue {
-    }
+    export default class SmallPage extends Vue {}
 </script>
 
 <style scoped>
     .small-page {
-        background-color: #fefefe;
-        box-shadow: 0px 1px 5px rgba(0,0,0,0.2);
-        min-height: 25rem;
-        min-width: 320px;
-        margin: 0 auto;
+        background-color: #fafafa;
+        box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.11);
+        width: 450px;
+        max-width: 100%;
+        height: 500px;
         display: flex;
         flex-direction: column;
-    }
-
-    @media (min-width: 490px) {
-        .small-page {
-            max-width: 28rem;
-            border-radius: 0.5rem;
-        }
+        border-radius: 8px;
     }
 </style>

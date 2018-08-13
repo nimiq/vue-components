@@ -1,16 +1,18 @@
 <template>
-    <div style="background: linear-gradient(110deg, #b453fe, #536DFE); padding-top: 2rem; padding-bottom: 3rem">
+    <div>
         <PaymentInfoLine style="color: white" :amount="199000" :networkFee="1000" :networkFeeEditable="false"
-                         origin="shop.nimiq.com"/>
+                         origin="https://shop.nimiq.com"/>
         <small-page>
             <div class="visible-area">
-                <div class="multi-pages" :style="'left: -'+((page-1)*100)+'%'">
+                <div class="multi-pages" :style="`transform: translate3d(-${(page - 1) * 450}px, 0, 0)`">
                     <LoginSelector @login-selected="loginSelected"
                                    @add-login="addLogin"
+                                   @back="back"
                                    :logins="logins"/>
                     <AccountSelector
-                            @account-selected="(address) => accountSelected(selectedLogin || preselectedLogin, address)"
+                            @account-selected="(address) => accountSelected(selectedLoginId || preselectedLoginId, address)"
                             @switch-login="switchLogin"
+                            @back="page--"
                             :accounts="currentAccounts()"/>
                 </div>
             </div>
@@ -27,20 +29,23 @@
 
     @Component({components: {PaymentInfoLine, SmallPage, AccountSelector, LoginSelector}})
     export default class CheckoutFlow extends Vue {
-        @Prop(Array) private logins!: Array<{ label: string, userFriendlyId: string, id: string }>;
+        @Prop(Array) private logins!: { id: string, label: string, addresses: object[], contracts: object[], type: number }[];
         @Prop(Object) private accounts!: object;
-        @Prop(String) private preselectedLogin!: string;
+        @Prop(String) private preselectedLoginId!: string;
 
         private page: number = 1;
-        private selectedLogin?: string;
+        private selectedLoginId?: string;
 
         private currentAccounts() {
-            return this.accounts[this.selectedLogin || this.preselectedLogin] || [];
+            return this.accounts[this.selectedLoginId || this.preselectedLoginId] || [];
         }
 
         @Emit()
+        private back() {}
+
+        @Emit()
         private loginSelected(login: string) {
-            this.selectedLogin = login;
+            this.selectedLoginId = login;
             this.page = 2;
         }
 
@@ -50,24 +55,24 @@
         }
 
         @Emit()
-        // tslint:disable-next-line
         private addLogin() {
             this.logins.push({
-                label: 'Test Login',
-                userFriendlyId: 'test test',
-                id: '101',
+                id: '123456',
+                label: 'New Wallet',
+                addresses: [{}, {}],
+                contracts: [],
+                type: 1, // BIP39
+                // userFriendlyId: 'black panther',
             });
         }
 
         @Emit()
-        // tslint:disable-next-line
         private accountSelected(login: string, address: Nimiq.Address) {
         }
     }
 </script>
 
 <style scoped>
-
     .visible-area {
         overflow: hidden;
         flex: 1;
@@ -79,12 +84,13 @@
         flex: 1;
         display: grid;
         grid-template-columns: 100vw 100vw;
-        transition: all .5s ease-in-out;
+        will-change: transform;
+        transition: all 400ms ease-in-out;
     }
 
-    @media (min-width: 490px) {
+    @media (min-width: 450px) {
         .multi-pages {
-            grid-template-columns: 28em 28em;
+            grid-template-columns: 450px 450px;
         }
     }
 </style>

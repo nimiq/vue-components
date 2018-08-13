@@ -7,7 +7,7 @@
                 <div class="balance" v-if="balance || balance === 0"><Amount :amount="balance" :decimals="2" showApprox/></div>
                 <div class="balance balance-loading" v-if="!balance && balance !== 0"></div>
             </div>
-            <div class="address">{{ address ? address.toUserFriendlyAddress() : 'Invalid address' }}</div>
+            <div class="address">{{ address.toUserFriendlyAddress() }}</div>
         </div>
     </div>
 </template>

@@ -30,6 +30,14 @@ function tryAddressFromString(addr) {
     }
 }
 
+function windowTemplate(slot) {
+    return `
+        <div style="background-image: linear-gradient(55deg, #2462dc, #a83df6); padding: 128px; display: flex; flex-direction: column; justify-content: center; align-items: center; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 18px;">
+            ${slot}
+        </div>
+    `;
+}
+
 storiesOf('Basic', module)
     .addDecorator(withKnobs)
     .add('Amount', () => {
@@ -172,7 +180,20 @@ storiesOf('Components', module)
         const id = text('id', 'abc');
         return {
             components: {Login},
-            template: `<Login label="${label}" user-friendly-id="${userFriendlyId}" id="${id}"></Login>`
+            data() {
+                return {
+                    id: 'abcdef',
+                    label: 'Keyguard Wallet',
+                    addresses: [{}, {}, {}, {}, {}],
+                    contracts: [],
+                    type: 1, // BIP39
+                    // userFriendlyId: 'funny giraffe',
+                };
+            },
+            template: `<Login :id="id"
+                              :label="label"
+                              :numberAccounts="addresses.length + contracts.length"
+                              :type="type"/>`
         };
     })
     .add('LoginList', () => {
@@ -185,13 +206,19 @@ storiesOf('Components', module)
                 return {
                     logins: [
                         {
-                            label: 'Main Login',
-                            userFriendlyId: 'funny giraffe',
-                            id: 'abc'
+                            id: 'abcdef',
+                            label: 'Keyguard Wallet',
+                            addresses: [{}, {}, {}, {}, {}],
+                            contracts: [],
+                            type: 1, // BIP39
+                            // userFriendlyId: 'funny giraffe',
                         }, {
-                            label: 'Secondary login',
-                            userFriendlyId: 'black panther',
-                            id: 'def'
+                            id: 'vwxyz',
+                            label: 'Ledger Wallet',
+                            addresses: [{}, {}, {}],
+                            contracts: [],
+                            type: 2, // LEDGER
+                            // userFriendlyId: 'black panther',
                         }
                     ]
                 };
@@ -204,28 +231,35 @@ storiesOf('Components', module)
             components: {LoginSelector},
             methods: {
                 loginSelected: action('login-selected'),
-                addLogin: action('add-login')
+                addLogin: action('add-login'),
+                back: action('back'),
             },
             data() {
                 return {
                     logins: [
                         {
-                            label: 'Main Login',
-                            userFriendlyId: 'funny giraffe',
-                            id: 'abc'
+                            id: 'abcdef',
+                            label: 'Keyguard Wallet',
+                            addresses: [{}, {}, {}, {}, {}],
+                            contracts: [],
+                            type: 1, // BIP39
+                            // userFriendlyId: 'funny giraffe',
                         }, {
-                            label: 'Secondary login',
-                            userFriendlyId: 'black panther',
-                            id: 'def'
+                            id: 'vwxyz',
+                            label: 'Ledger Wallet',
+                            addresses: [{}, {}, {}],
+                            contracts: [],
+                            type: 2, // LEDGER
+                            // userFriendlyId: 'black panther',
                         }
                     ]
                 };
             },
-            template: `<LoginSelector @login-selected="loginSelected" @add-login="addLogin" :logins="logins"/>`
+            template: `<LoginSelector @login-selected="loginSelected" @add-login="addLogin" @back="back" :logins="logins"/>`
         };
     })
     .add('PaymentInfoLine', () => {
-        const origin = text('origin', 'shop.nimiq.com');
+        const origin = text('origin', 'https://shop.nimiq.com');
         const amount = number('amount', 199862);
         const networkFee = number('networkFee', 138);
         const networkFeeEditable = boolean('networkFeeEditable', false);
@@ -237,7 +271,11 @@ storiesOf('Components', module)
     .add('SmallPage', () => {
         return {
             components: {SmallPage},
-            template: `<div style="background: linear-gradient(110deg, #b453fe, #536DFE); padding-top: 2rem; padding-bottom: 3rem"><small-page><div style="height: 5rem; padding: 2rem">Some text on a page</div></small-page></div>`
+            template: windowTemplate(`
+<small-page>
+    <div style="height: 20rem; padding: 2rem">Some text on a page</div>
+</small-page>
+`),
         };
     });
 
@@ -255,24 +293,25 @@ storiesOf('Pages/Payment', module)
                     accounts: [
                         {
                             address: tryAddressFromString('NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM'),
-                            label: 'Primary account',
+                            userFriendlyAddress: 'NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM',
+                            label: 'Standard Account',
                             balance: 12023110
                         },
                         {
                             address: tryAddressFromString('NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1'),
-                            label: 'HODL account',
+                            userFriendlyAddress: 'NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1',
+                            label: 'Savings',
                             balance: 2712415141213
                         }
                     ]
                 };
             },
-            template: `
-<div style="background: linear-gradient(110deg, #b453fe, #536DFE); padding-top: 2rem; padding-bottom: 3rem">
-    <PaymentInfoLine style="color: white" :amount="199000" :networkFee="1000" :networkFeeEditable="false" origin="shop.nimiq.com"/>
-    <small-page>
-        <AccountSelector @account-selected="accountSelected" @switch-login="switchLogin" :accounts="accounts"/>
-    </small-page>
-</div>`
+            template: windowTemplate(`
+<PaymentInfoLine style="color: white" :amount="199000" :networkFee="1000" :networkFeeEditable="false" origin="https://shop.nimiq.com"/>
+<small-page>
+    <AccountSelector @account-selected="accountSelected" @switch-login="switchLogin" :accounts="accounts"/>
+</small-page>
+`),
         };
     })
     .add('LoginSelector', () => {
@@ -280,30 +319,36 @@ storiesOf('Pages/Payment', module)
             components: {LoginSelector, PaymentInfoLine, SmallPage},
             methods: {
                 loginSelected: action('login-selected'),
-                addLogin: action('add-login')
+                addLogin: action('add-login'),
+                back: action('back'),
             },
             data() {
                 return {
                     logins: [
                         {
-                            label: 'Main Login',
-                            userFriendlyId: 'funny giraffe',
-                            id: 'abc'
+                            id: 'abcdef',
+                            label: 'Keyguard Wallet',
+                            addresses: [{}, {}, {}, {}, {}],
+                            contracts: [],
+                            type: 1, // BIP39
+                            // userFriendlyId: 'funny giraffe',
                         }, {
-                            label: 'Secondary login',
-                            userFriendlyId: 'black panther',
-                            id: 'def'
+                            id: 'vwxyz',
+                            label: 'Ledger Wallet',
+                            addresses: [{}, {}, {}],
+                            contracts: [],
+                            type: 2, // LEDGER
+                            // userFriendlyId: 'black panther',
                         }
-                    ]
+                    ],
                 };
             },
-            template: `
-<div style="background: linear-gradient(110deg, #b453fe, #536DFE); padding-top: 2rem; padding-bottom: 3rem">
-    <PaymentInfoLine style="color: white" :amount="199000" :networkFee="1000" :networkFeeEditable="false" origin="shop.nimiq.com"/>
-    <small-page>
-        <LoginSelector @login-selected="loginSelected" @add-login="addLogin" :logins="logins"/>
-    </small-page>
-</div>`
+            template: windowTemplate(`
+<PaymentInfoLine style="color: white" :amount="199000" :networkFee="1000" :networkFeeEditable="false" origin="https://shop.nimiq.com"/>
+<small-page>
+    <LoginSelector @login-selected="loginSelected" @add-login="addLogin" @back="back" :logins="logins"/>
+</small-page>
+`),
         };
     })
     .add('Flow', () => {
@@ -312,48 +357,61 @@ storiesOf('Pages/Payment', module)
             methods: {
                 addLogin: action('add-login'),
                 accountSelected: action('account-selected'),
+                back: action('back'),
             },
             data() {
                 return {
                     logins: [
                         {
-                            label: 'Main Login',
-                            userFriendlyId: 'funny giraffe',
-                            id: 'abc'
+                            id: 'abcdef',
+                            label: 'Keyguard Wallet',
+                            addresses: [{}, {}, {}, {}, {}],
+                            contracts: [],
+                            type: 1, // BIP39
+                            // userFriendlyId: 'funny giraffe',
                         }, {
-                            label: 'Secondary login',
-                            userFriendlyId: 'black panther',
-                            id: 'def'
+                            id: 'vwxyz',
+                            label: 'Ledger Wallet',
+                            addresses: [{}, {}, {}],
+                            contracts: [],
+                            type: 2, // LEDGER
+                            // userFriendlyId: 'black panther',
                         }
                     ],
                     accounts: {
-                        'abc': [
+                        'abcdef': [
                             {
                                 address: tryAddressFromString('NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM'),
-                                label: 'Primary account',
+                                userFriendlyAddress: 'NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM',
+                                label: 'Standard Account',
                                 balance: 12023110
                             },
                             {
                                 address: tryAddressFromString('NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1'),
-                                label: 'HODL account',
+                                userFriendlyAddress: 'NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1',
+                                label: 'Savings',
                                 balance: 2712415141213
                             }
                         ],
-                        'def': [
+                        'vwxyz': [
                             {
                                 address: tryAddressFromString('NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM'),
-                                label: 'Primary account',
+                                userFriendlyAddress: 'NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM',
+                                label: 'Standard Account',
                                 balance: 12023110
                             },
                             {
                                 address: tryAddressFromString('NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1'),
-                                label: 'Empty account',
-                                balance: 0
+                                userFriendlyAddress: 'NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1',
+                                label: 'Savings',
+                                balance: 2712415141213
                             }
                         ]
                     }
                 };
             },
-            template: `<CheckoutFlow :logins="logins" :accounts="accounts" @account-selected="accountSelected" @add-login="addLogin"/>`
+            template: windowTemplate(`
+<CheckoutFlow :logins="logins" :accounts="accounts" @account-selected="accountSelected" @add-login="addLogin" @back="back"/>
+`),
         };
     });
