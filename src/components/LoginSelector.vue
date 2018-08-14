@@ -14,26 +14,27 @@
 </template>
 
 <script lang="ts">
-    import {Component, Emit, Prop, Vue} from 'vue-property-decorator';
-    import LoginList from './LoginList.vue';
-    import PageHeader from './PageHeader.vue';
-    import PageFooter from './PageFooter.vue';
+import {Component, Emit, Prop, Vue} from 'vue-property-decorator';
+import LoginList from './LoginList.vue';
+import PageHeader from './PageHeader.vue';
+import PageFooter from './PageFooter.vue';
 
-    @Component({components: {LoginList, PageHeader, PageFooter}})
-    export default class LoginSelector extends Vue {
-        @Prop(Array) public logins!: { id: string, label: string, addresses: object[], contracts: object[], type: number }[];
-        @Prop({type: String, default: 'Select Wallet'}) public title!: string;
-        @Prop({type: Boolean, default: true}) public showAddLogin!: boolean;
+@Component({components: {LoginList, PageHeader, PageFooter}})
+export default class LoginSelector extends Vue {
+    @Prop(Array) public logins!:
+        Array<{ id: string, label: string, addresses: object[], contracts: object[], type: number }>;
+    @Prop({type: String, default: 'Select Wallet'}) public title!: string;
+    @Prop({type: Boolean, default: true}) public showAddLogin!: boolean;
 
-        @Emit()
-        private loginSelected(address: string) {
-        }
+    @Emit()
+    // tslint:disable-next-line no-empty
+    private loginSelected(address: string) {}
 
-        @Emit()
-        private addLogin() {
-            console.log("adding-login, login-selector");
-        }
+    @Emit()
+    private addLogin() {
+        console.log('adding-login, login-selector');
     }
+}
 </script>
 
 <style scoped>

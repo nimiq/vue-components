@@ -24,63 +24,65 @@
 </template>
 
 <script lang="ts">
-    import {Component, Emit, Prop, Vue} from 'vue-property-decorator';
-    import LoginSelector from '../components/LoginSelector.vue';
-    import AccountSelector from '../components/AccountSelector.vue';
-    import SmallPage from '../components/SmallPage.vue';
-    import PaymentInfoLine from '../components/PaymentInfoLine.vue';
+import {Component, Emit, Prop, Vue} from 'vue-property-decorator';
+import LoginSelector from '../components/LoginSelector.vue';
+import AccountSelector from '../components/AccountSelector.vue';
+import SmallPage from '../components/SmallPage.vue';
+import PaymentInfoLine from '../components/PaymentInfoLine.vue';
 
-    @Component({components: {PaymentInfoLine, SmallPage, AccountSelector, LoginSelector}})
-    export default class CheckoutFlow extends Vue {
-        @Prop(Array) private logins!: { id: string, label: string, addresses: object[], contracts: object[], type: number }[];
-        @Prop(String) private preselectedLoginId!: string;
+@Component({components: {PaymentInfoLine, SmallPage, AccountSelector, LoginSelector}})
+export default class CheckoutFlow extends Vue {
+    @Prop(Array) private logins!:
+        Array<{ id: string, label: string, addresses: object[], contracts: object[], type: number }>;
+    @Prop(String) private preselectedLoginId!: string;
 
-        private page: number = 1;
-        private selectedLoginId: string|null = null; // undefined is not reactive
+    private page: number = 1;
+    private selectedLoginId: string|null = null; // undefined is not reactive
 
-        private get currentLogin() {
-            const loginId = this.selectedLoginId || this.preselectedLoginId || false;
-            if (!loginId) return undefined;
+    private get currentLogin() {
+        const loginId = this.selectedLoginId || this.preselectedLoginId || false;
+        if (!loginId) return undefined;
 
-            return this.logins.find(l => l.id === this.selectedLoginId);
-        }
-
-        private get currentAccounts() {
-            const login = this.currentLogin;
-            if (!login) return [];
-            return login.addresses;
-        }
-
-        @Emit()
-        private back() {}
-
-        @Emit()
-        private loginSelected(loginId: string) {
-            this.selectedLoginId = loginId;
-            this.page = 2;
-        }
-
-        @Emit()
-        private switchLogin() {
-            this.page = 1;
-        }
-
-        @Emit()
-        private addLogin() {
-            this.logins.push({
-                id: '123456',
-                label: 'New Wallet',
-                addresses: [{}, {}],
-                contracts: [],
-                type: 1, // BIP39
-                // userFriendlyId: 'black panther',
-            });
-        }
-
-        @Emit()
-        private accountSelected(login: string, address: Nimiq.Address) {
-        }
+        return this.logins.find((l) => l.id === this.selectedLoginId);
     }
+
+    private get currentAccounts() {
+        const login = this.currentLogin;
+        if (!login) return [];
+        return login.addresses;
+    }
+
+    @Emit()
+    // tslint:disable-next-line no-empty
+    private back() {}
+
+    @Emit()
+    private loginSelected(loginId: string) {
+        this.selectedLoginId = loginId;
+        this.page = 2;
+    }
+
+    @Emit()
+    private switchLogin() {
+        this.page = 1;
+    }
+
+    @Emit()
+    private addLogin() {
+        this.logins.push({
+            id: '123456',
+            label: 'New Wallet',
+            addresses: [{}, {}],
+            contracts: [],
+            type: 1, // BIP39
+            // userFriendlyId: 'black panther',
+        });
+    }
+
+    @Emit()
+    // tslint:disable-next-line no-empty
+    private accountSelected(login: string, address: Nimiq.Address) {}
+}
 </script>
 
 <style scoped>
