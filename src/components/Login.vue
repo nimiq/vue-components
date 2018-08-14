@@ -36,7 +36,7 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        padding: 20px 32.5px;
+        padding: 20px 32px;
         box-sizing: border-box;
     }
 
@@ -59,23 +59,23 @@
         background-size: 37px;
     }
 
-    .login .label {
+    .label {
         font-weight: 500;
         font-size: 18px;
         line-height: 20px;
         margin-bottom: 3px;
     }
 
-    .login .login-description {
+    .login-description {
         flex-grow: 1;
     }
 
-    .login .number-accounts {
+    .number-accounts {
         font-size: 14px;
         line-height: 20px;
     }
 
-    .login .icon-chevron-right {
+    .icon-chevron-right {
         width: 11.4px;
         height: 20.44px;
         flex-shrink: 0;

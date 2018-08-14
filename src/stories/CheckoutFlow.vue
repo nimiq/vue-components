@@ -13,7 +13,10 @@
                             @account-selected="(address) => accountSelected(selectedLoginId || preselectedLoginId, address)"
                             @switch-login="switchLogin"
                             @back="page--"
-                            :accounts="currentAccounts()"/>
+                            :accounts="currentAccounts"
+                            :loginLabel="currentLogin ? currentLogin.label : ''"
+                            :loginType="currentLogin ? currentLogin.type : 0"
+                            :show-switch-login="true"/>
                 </div>
             </div>
         </small-page>
@@ -30,22 +33,30 @@
     @Component({components: {PaymentInfoLine, SmallPage, AccountSelector, LoginSelector}})
     export default class CheckoutFlow extends Vue {
         @Prop(Array) private logins!: { id: string, label: string, addresses: object[], contracts: object[], type: number }[];
-        @Prop(Object) private accounts!: object;
         @Prop(String) private preselectedLoginId!: string;
 
         private page: number = 1;
-        private selectedLoginId?: string;
+        private selectedLoginId: string|null = null; // undefined is not reactive
 
-        private currentAccounts() {
-            return this.accounts[this.selectedLoginId || this.preselectedLoginId] || [];
+        private get currentLogin() {
+            const loginId = this.selectedLoginId || this.preselectedLoginId || false;
+            if (!loginId) return undefined;
+
+            return this.logins.find(l => l.id === this.selectedLoginId);
+        }
+
+        private get currentAccounts() {
+            const login = this.currentLogin;
+            if (!login) return [];
+            return login.addresses;
         }
 
         @Emit()
         private back() {}
 
         @Emit()
-        private loginSelected(login: string) {
-            this.selectedLoginId = login;
+        private loginSelected(loginId: string) {
+            this.selectedLoginId = loginId;
             this.page = 2;
         }
 

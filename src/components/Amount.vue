@@ -1,5 +1,8 @@
 <template>
-    <span :class="showApprox && isApprox(amount) ? 'amount approx' : 'amount'">{{ amountToString() }} <span class="nim">NIM</span></span>
+    <span :class="showApprox && isApprox(amount) ? 'amount approx' : 'amount'">
+        {{ amountToString() }}
+        <span class="nim">NIM</span>
+    </span>
 </template>
 
 <script lang="ts">
@@ -25,6 +28,21 @@
             const roundedNum = Number.parseFloat((this.amount / 100000).toFixed(this.decimals));
             return roundedNum.toFixed(5) !== (this.amount / 100000).toFixed(5);
         }
+
+        // private formatNumber(value: number, maxDecimals: number = 5, minDecimals: number = 2): string {
+        //     const roundingFactor = 10 ** maxDecimals;
+        //     value = Math.floor(value * roundingFactor) / roundingFactor;
+
+        //     const result = parseFloat(value.toFixed(minDecimals)) === value
+        //         ? value.toFixed(minDecimals)
+        //         : value.toString();
+
+        //     if (Math.abs(value) < 10000) return result;
+
+        //     // Add thin spaces (U+202F) every 3 digits. Stop at the decimal separator if there is one.
+        //     const regexp = minDecimals > 0 ? /(\d)(?=(\d{3})+\.)/g : /(\d)(?=(\d{3})+$)/g;
+        //     return result.replace(regexp, '$1\u202F');
+        // }
     }
 </script>
 
@@ -32,11 +50,9 @@
     .amount {
         white-space: nowrap;
     }
-    .amount.approx:before {
+
+    .amount.approx::before {
         content: '~ ';
         opacity: 0.5;
-    }
-    .amount .nim {
-        font-size: 60%;
     }
 </style>

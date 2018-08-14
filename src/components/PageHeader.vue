@@ -45,7 +45,7 @@
         cursor: pointer;
     }
 
-    .page-header h1 {
+    h1 {
         font-size: 15px;
         text-transform: uppercase;
         letter-spacing: 1.9px;

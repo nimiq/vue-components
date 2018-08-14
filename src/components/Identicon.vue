@@ -13,7 +13,7 @@
     } else {
         Iqons.svgPath = IqonsSvg;
     }
-    
+
     @Component({
         asyncComputed: {
             dataUrl: {
@@ -41,7 +41,7 @@
         min-width: 40px;
     }
 
-    .identicon img {
+    img {
         width: 100%;
         height: 100%;
     }

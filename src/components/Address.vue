@@ -50,7 +50,7 @@
         background: rgba(0, 0, 0, 0.2);
     }
 
-    .address .copied-cover {
+    .copied-cover {
         position: absolute;
         left: 0;
         top: 0;

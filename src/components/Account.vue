@@ -1,10 +1,10 @@
 <template>
     <div class="account">
-        <Identicon class="account-identicon" :address="address"/>
+        <Identicon :address="address"/>
         <div class="account-description">
             <div class="label-and-balance">
                 <div class="label">{{ label }}</div>
-                <div class="balance" v-if="balance || balance === 0"><Amount :amount="balance" :decimals="2" showApprox/></div>
+                <div class="balance" v-if="balance || balance === 0"><Amount :amount="balance" :decimals="2"/></div>
                 <div class="balance balance-loading" v-if="!balance && balance !== 0"></div>
             </div>
             <div class="address">{{ address.toUserFriendlyAddress() }}</div>
@@ -27,52 +27,52 @@
 
 <style scoped>
     .account {
-        display: grid;
-        grid-template-columns: 3.5rem 14.75rem;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
         align-items: center;
-        max-width: 18.25rem;
-        padding-right: 0.5rem;
+        padding: 13px 32px;
+        box-sizing: border-box;
     }
-    .account-identicon {
-        width: 3rem;
-        margin-bottom: -8%;
+
+    .identicon {
+        width: 64px;
+        height: 64px;
+        flex-shrink: 0;
+        margin-right: 16px;
     }
-    .label {
-        font-weight: bold;
-        white-space: nowrap;
-        -ms-text-overflow: ellipsis;
-        text-overflow: ellipsis;
-        overflow: hidden;
+
+    .account-description {
+        flex-grow: 1;
     }
+
     .label-and-balance {
-        display: grid;
-        grid-template-columns: auto auto;
-        font-size: 90%;
-        overflow: hidden;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 20px;
     }
+
+    .label {
+        margin-bottom: 3px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
     .balance {
-        text-align: right;
+        color: #24bdb6;
     }
+
     .address {
-        padding-top: 0.1rem;
-        font-weight: 300;
-        font-size: 55.5%;
-        font-family: "Source Code Pro", "Menlo", "Roboto Mono", "Droid Sans Mono", monospace;
-    }
-    @media (min-width: 430px) {
-        .account {
-            grid-template-columns: 4.5rem 19.5rem;
-            max-width: 24rem;
-        }
-        .address {
-            padding-top: 0.2rem;
-            font-size: 73.5%;
-        }
-        .label-and-balance {
-            font-size: 100%;
-        }
-        .account-identicon {
-            width: 4rem;
-        }
+        font-size: 14px;
+        line-height: 20px;
+        font-family: "Andale Mono", monospace;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow-x: hidden;
+        word-spacing: -0.2em;
+        max-width: 307px;
     }
 </style>

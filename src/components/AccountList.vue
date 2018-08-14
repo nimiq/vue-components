@@ -24,19 +24,17 @@
 </script>
 
 <style scoped>
+    .account-list {
+        flex-grow: 1;
+        overflow-y: auto;
+    }
 
-    .account-list .account-entry {
-        padding: 0.3rem;
-        border: 2px dashed transparent;
+    .account-entry {
         cursor: pointer;
-        transition: background .2s;
+        transition: background 300ms;
     }
 
-    .account-list .account {
-        margin: 0 auto;
-    }
-
-    .account-list .account-entry:hover {
+    .account-entry:hover {
         background-color: rgba(128, 128, 128, 0.1);
     }
 </style>

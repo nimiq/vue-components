@@ -116,6 +116,8 @@ storiesOf('Components', module)
             components: {AccountSelector},
             data() {
                 return {
+                    loginLabel: 'Keyguard Wallet',
+                    loginType: 1,
                     accounts: [
                         {
                             address: tryAddressFromString('NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM'),
@@ -134,7 +136,8 @@ storiesOf('Components', module)
                 accountSelected: action('account-selected'),
                 switchLogin: action('switch-login'),
             },
-            template: `<AccountSelector @account-selected="accountSelected" @switch-login="switchLogin" :accounts="accounts"/>`
+            template: `<AccountSelector @account-selected="accountSelected" @switch-login="switchLogin" :accounts="accounts" :loginLabel
+            ="loginLabel" :loginType="loginType"/>`
         };
     })
     .add('Address', () => {
@@ -290,6 +293,8 @@ storiesOf('Pages/Payment', module)
             },
             data() {
                 return {
+                    loginLabel: 'Keyguard Wallet',
+                    loginType: 1,
                     accounts: [
                         {
                             address: tryAddressFromString('NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM'),
@@ -309,7 +314,7 @@ storiesOf('Pages/Payment', module)
             template: windowTemplate(`
 <PaymentInfoLine style="color: white" :amount="199000" :networkFee="1000" :networkFeeEditable="false" origin="https://shop.nimiq.com"/>
 <small-page>
-    <AccountSelector @account-selected="accountSelected" @switch-login="switchLogin" :accounts="accounts"/>
+    <AccountSelector @account-selected="accountSelected" @switch-login="switchLogin" :accounts="accounts" :loginLabel="loginLabel" :loginType="loginType"/>
 </small-page>
 `),
         };
@@ -365,53 +370,45 @@ storiesOf('Pages/Payment', module)
                         {
                             id: 'abcdef',
                             label: 'Keyguard Wallet',
-                            addresses: [{}, {}, {}, {}, {}],
+                            addresses: [{
+                                address: tryAddressFromString('NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM'),
+                                userFriendlyAddress: 'NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM',
+                                label: 'Standard Account',
+                                balance: 12023110
+                            },
+                            {
+                                address: tryAddressFromString('NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1'),
+                                userFriendlyAddress: 'NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1',
+                                label: 'Savings',
+                                balance: 2712415141213
+                            }],
                             contracts: [],
                             type: 1, // BIP39
                             // userFriendlyId: 'funny giraffe',
                         }, {
                             id: 'vwxyz',
                             label: 'Ledger Wallet',
-                            addresses: [{}, {}, {}],
+                            addresses: [{
+                                address: tryAddressFromString('NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM'),
+                                userFriendlyAddress: 'NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM',
+                                label: 'Standard Account',
+                                balance: 12023110
+                            },
+                            {
+                                address: tryAddressFromString('NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1'),
+                                userFriendlyAddress: 'NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1',
+                                label: 'Savings',
+                                balance: 2712415141213
+                            }],
                             contracts: [],
                             type: 2, // LEDGER
                             // userFriendlyId: 'black panther',
                         }
                     ],
-                    accounts: {
-                        'abcdef': [
-                            {
-                                address: tryAddressFromString('NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM'),
-                                userFriendlyAddress: 'NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM',
-                                label: 'Standard Account',
-                                balance: 12023110
-                            },
-                            {
-                                address: tryAddressFromString('NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1'),
-                                userFriendlyAddress: 'NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1',
-                                label: 'Savings',
-                                balance: 2712415141213
-                            }
-                        ],
-                        'vwxyz': [
-                            {
-                                address: tryAddressFromString('NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM'),
-                                userFriendlyAddress: 'NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM',
-                                label: 'Standard Account',
-                                balance: 12023110
-                            },
-                            {
-                                address: tryAddressFromString('NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1'),
-                                userFriendlyAddress: 'NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1',
-                                label: 'Savings',
-                                balance: 2712415141213
-                            }
-                        ]
-                    }
                 };
             },
             template: windowTemplate(`
-<CheckoutFlow :logins="logins" :accounts="accounts" @account-selected="accountSelected" @add-login="addLogin" @back="back"/>
+<CheckoutFlow :logins="logins" @account-selected="accountSelected" @add-login="addLogin" @back="back"/>
 `),
         };
     });
