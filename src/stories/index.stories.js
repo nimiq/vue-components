@@ -187,7 +187,7 @@ storiesOf('Components', module)
                 return {
                     id: 'abcdef',
                     label: 'Keyguard Wallet',
-                    addresses: [{}, {}, {}, {}, {}],
+                    addresses: new Map([['path1', {}], ['path2', {}], ['path3', {}], ['path4', {}], ['path5', {}]]),
                     contracts: [],
                     type: 1, // BIP39
                     // userFriendlyId: 'funny giraffe',
@@ -195,7 +195,7 @@ storiesOf('Components', module)
             },
             template: `<Login :id="id"
                               :label="label"
-                              :numberAccounts="addresses.length + contracts.length"
+                              :numberAccounts="addresses.size + contracts.length"
                               :type="type"/>`
         };
     })
@@ -211,14 +211,14 @@ storiesOf('Components', module)
                         {
                             id: 'abcdef',
                             label: 'Keyguard Wallet',
-                            addresses: [{}, {}, {}, {}, {}],
+                            addresses: new Map([['path1', {}], ['path2', {}], ['path3', {}], ['path4', {}], ['path5', {}]]),
                             contracts: [],
                             type: 1, // BIP39
                             // userFriendlyId: 'funny giraffe',
                         }, {
                             id: 'vwxyz',
                             label: 'Ledger Wallet',
-                            addresses: [{}, {}, {}],
+                            addresses: new Map([['path1', {}], ['path2', {}], ['path3', {}]]),
                             contracts: [],
                             type: 2, // LEDGER
                             // userFriendlyId: 'black panther',
@@ -243,14 +243,14 @@ storiesOf('Components', module)
                         {
                             id: 'abcdef',
                             label: 'Keyguard Wallet',
-                            addresses: [{}, {}, {}, {}, {}],
+                            addresses: new Map([['path1', {}], ['path2', {}], ['path3', {}], ['path4', {}], ['path5', {}]]),
                             contracts: [],
                             type: 1, // BIP39
                             // userFriendlyId: 'funny giraffe',
                         }, {
                             id: 'vwxyz',
                             label: 'Ledger Wallet',
-                            addresses: [{}, {}, {}],
+                            addresses: new Map([['path1', {}], ['path2', {}], ['path3', {}]]),
                             contracts: [],
                             type: 2, // LEDGER
                             // userFriendlyId: 'black panther',
@@ -333,14 +333,14 @@ storiesOf('Pages/Payment', module)
                         {
                             id: 'abcdef',
                             label: 'Keyguard Wallet',
-                            addresses: [{}, {}, {}, {}, {}],
+                            addresses: new Map([['path1', {}], ['path2', {}], ['path3', {}], ['path4', {}], ['path5', {}]]),
                             contracts: [],
                             type: 1, // BIP39
                             // userFriendlyId: 'funny giraffe',
                         }, {
                             id: 'vwxyz',
                             label: 'Ledger Wallet',
-                            addresses: [{}, {}, {}],
+                            addresses: new Map([['path1', {}], ['path2', {}], ['path3', {}]]),
                             contracts: [],
                             type: 2, // LEDGER
                             // userFriendlyId: 'black panther',
@@ -370,36 +370,36 @@ storiesOf('Pages/Payment', module)
                         {
                             id: 'abcdef',
                             label: 'Keyguard Wallet',
-                            addresses: [{
+                            addresses: new Map([['path1', {
                                 address: tryAddressFromString('NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM'),
                                 userFriendlyAddress: 'NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM',
                                 label: 'Standard Account',
                                 balance: 12023110
-                            },
-                            {
+                            }],
+                            ['path2', {
                                 address: tryAddressFromString('NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1'),
                                 userFriendlyAddress: 'NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1',
                                 label: 'Savings',
                                 balance: 2712415141213
-                            }],
+                            }]]),
                             contracts: [],
                             type: 1, // BIP39
                             // userFriendlyId: 'funny giraffe',
                         }, {
                             id: 'vwxyz',
                             label: 'Ledger Wallet',
-                            addresses: [{
+                            addresses: new Map([['path1', {
                                 address: tryAddressFromString('NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM'),
                                 userFriendlyAddress: 'NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM',
                                 label: 'Standard Account',
                                 balance: 12023110
-                            },
-                            {
+                            }],
+                            ['path2', {
                                 address: tryAddressFromString('NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1'),
                                 userFriendlyAddress: 'NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1',
                                 label: 'Savings',
                                 balance: 2712415141213
-                            }],
+                            }]]),
                             contracts: [],
                             type: 2, // LEDGER
                             // userFriendlyId: 'black panther',

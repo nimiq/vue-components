@@ -12,7 +12,7 @@
                     <AccountSelector
                             @account-selected="(address) => accountSelected(selectedLoginId || preselectedLoginId, address)"
                             @switch-login="switchLogin"
-                            @back="page--"
+                            @back="switchLogin"
                             :accounts="currentAccounts"
                             :loginLabel="currentLogin ? currentLogin.label : ''"
                             :loginType="currentLogin ? currentLogin.type : 0"
@@ -43,13 +43,13 @@ export default class CheckoutFlow extends Vue {
         const loginId = this.selectedLoginId || this.preselectedLoginId || false;
         if (!loginId) return undefined;
 
-        return this.logins.find((l) => l.id === this.selectedLoginId);
+        return this.logins.find((l) => l.id === loginId);
     }
 
     private get currentAccounts() {
         const login = this.currentLogin;
         if (!login) return [];
-        return login.addresses;
+        return Array.from(login.addresses.values());
     }
 
     @Emit()
