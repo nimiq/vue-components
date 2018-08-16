@@ -1,6 +1,6 @@
 <template>
     <div class="account-selector">
-        <PageHeader back-arrow @back="$emit('back')">
+        <PageHeader :back-arrow="!showSwitchLogin" @back="$emit('back')">
             {{ title }}
         </PageHeader>
 
