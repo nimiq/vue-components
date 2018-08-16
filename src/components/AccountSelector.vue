@@ -6,7 +6,7 @@
 
         <div class="login-label"><div class="login-icon" :class="loginIconClass"></div> {{ loginLabel }}</div>
 
-        <AccountList class="account-list" :accounts="accounts" @account-selected="accountSelected"/>
+        <AccountList :accounts="accounts" @account-selected="accountSelected"/>
 
         <PageFooter v-if="showSwitchLogin" @click.native="switchLogin">
             <div class="icon-plus-circle"></div>
@@ -66,6 +66,7 @@
         line-height: 20px;
         font-weight: 500;
         padding: 24px 24px 16px 24px;
+        background: #fafafa;
     }
 
     .login-icon {
@@ -85,6 +86,10 @@
     .login-icon.ledger {
         background-image: url('data:image/svg+xml,<?xml version="1.0" encoding="utf-8"?><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 25 25" style="enable-background:new 0 0 25 25;" xml:space="preserve"><path fill="%23333745" d="M21.05,0H9.5V15.1H25l0-11.17C25,1.81,23.22,0,21.05,0"/><path fill="%23333745" d="M6.04,0H4.08C1.88,0,0,1.75,0,3.98v1.91h6.04V0z"/><rect fill="%23333745" y="9.21" width="6.08" height="5.92"/><path fill="%23333745" d="M18.92,25h1.97C23.11,25,25,23.24,25,21v-1.92h-6.08V25z"/><rect fill="%23333745" x="9.46" y="19.08" width="6.08" height="5.92"/><path fill="%23333745" d="M0,19.08V21c0,2.16,1.8,4,4.11,4h1.97v-5.92H0z"/></svg>');
         background-size: 20px;
+    }
+
+    .account-list {
+        background: #fafafa;
     }
 
     .icon-plus-circle {

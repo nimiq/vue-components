@@ -4,7 +4,7 @@
             {{ title }}
         </PageHeader>
 
-        <LoginList class="login-list" :logins="logins" @login-selected="loginSelected" show-arrows/>
+        <LoginList :logins="logins" @login-selected="loginSelected" show-arrows/>
 
         <PageFooter v-if="showAddLogin" @click.native="addLogin">
             <div class="icon-plus-circle"></div>
@@ -43,6 +43,10 @@ export default class LoginSelector extends Vue {
         flex-direction: column;
         flex-grow: 1;
         overflow: auto;
+    }
+
+    .login-list {
+        background: #fafafa;
     }
 
     .icon-plus-circle {
