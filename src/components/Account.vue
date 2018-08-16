@@ -66,7 +66,7 @@
     }
 
     .address {
-        font-size: 14px;
+        font-size: 12px;
         line-height: 20px;
         font-family: "Andale Mono", monospace;
         white-space: nowrap;
