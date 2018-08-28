@@ -1,9 +1,6 @@
 .DS_Store
 node_modules
-/dist/*
-!/dist/NimiqComponents.umd.min.js
-!/dist/NimiqComponents.umd.min.js.map
-!/dist/NimiqComponents.css
+dist
 
 # local env files
 .env.local
