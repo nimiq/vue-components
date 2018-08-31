@@ -12,6 +12,6 @@ export { default as Login } from './components/Login.vue';
 export { default as LoginList } from './components/LoginList.vue';
 export { default as LoginSelector } from './components/LoginSelector.vue';
 export { default as NewContact } from './components/NewContact.vue';
+export { default as PageHeader } from './components/PageHeader.vue';
 export { default as PaymentInfoLine } from './components/PaymentInfoLine.vue';
 export { default as SmallPage } from './components/SmallPage.vue';
-export { default as PageHeader } from './components/PageHeader.vue';
