@@ -98,17 +98,17 @@ storiesOf('Components', module)
                         {
                             address: tryAddressFromString('NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM'),
                             label: 'Primary account',
-                            balance: 12023110
+                            balance: 12023110,
                         },
                         {
                             address: tryAddressFromString('NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1'),
                             label: 'HODL account',
-                            balance: 2712415141213
+                            balance: 2712415141213,
                         }
                     ]
                 };
             },
-            template: `<AccountList @account-selected="accountSelected" :accounts="accounts"/>`
+            template: `<AccountList @account-selected="accountSelected" :accounts="accounts" loginId="helloworld1"/>`
         };
     })
     .add('AccountSelector', () => {
@@ -116,6 +116,7 @@ storiesOf('Components', module)
             components: {AccountSelector},
             data() {
                 return {
+                    loginId: 'helloworld2',
                     loginLabel: 'Keyguard Wallet',
                     loginType: 1,
                     accounts: [
@@ -136,7 +137,7 @@ storiesOf('Components', module)
                 accountSelected: action('account-selected'),
                 switchLogin: action('switch-login'),
             },
-            template: `<AccountSelector @account-selected="accountSelected" @switch-login="switchLogin" :accounts="accounts" :loginLabel
+            template: `<AccountSelector @account-selected="accountSelected" @switch-login="switchLogin" :accounts="accounts" :loginId="loginId" :loginLabel
             ="loginLabel" :loginType="loginType"/>`
         };
     })
@@ -293,6 +294,7 @@ storiesOf('Pages/Payment', module)
             },
             data() {
                 return {
+                    loginId: 'helloworld3',
                     loginLabel: 'Keyguard Wallet',
                     loginType: 1,
                     accounts: [
@@ -314,7 +316,7 @@ storiesOf('Pages/Payment', module)
             template: windowTemplate(`
 <PaymentInfoLine style="color: white" :amount="199000" :networkFee="1000" :networkFeeEditable="false" origin="https://shop.nimiq.com"/>
 <small-page>
-    <AccountSelector @account-selected="accountSelected" @switch-login="switchLogin" :accounts="accounts" :loginLabel="loginLabel" :loginType="loginType"/>
+    <AccountSelector @account-selected="accountSelected" @switch-login="switchLogin" :accounts="accounts" :loginId="loginId" :loginLabel="loginLabel" :loginType="loginType"/>
 </small-page>
 `),
         };
@@ -368,38 +370,57 @@ storiesOf('Pages/Payment', module)
                 return {
                     logins: [
                         {
+                            id: 'legacy-01',
+                            label: 'Keyguard Wallet',
+                            addresses: new Map([
+                                ['NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM', {
+                                    address: tryAddressFromString('NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM'),
+                                    userFriendlyAddress: 'NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM',
+                                    label: 'Standard Account',
+                                    balance: 2023110
+                                }]
+                            ]),
+                            contracts: [],
+                            type: 0, // LEGACY
+                            // userFriendlyId: 'funny giraffe',
+                        },
+                        {
                             id: 'abcdef',
                             label: 'Keyguard Wallet',
-                            addresses: new Map([['path1', {
-                                address: tryAddressFromString('NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM'),
-                                userFriendlyAddress: 'NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM',
-                                label: 'Standard Account',
-                                balance: 12023110
-                            }],
-                            ['path2', {
-                                address: tryAddressFromString('NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1'),
-                                userFriendlyAddress: 'NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1',
-                                label: 'Savings',
-                                balance: 2712415141213
-                            }]]),
+                            addresses: new Map([
+                                ['NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM', {
+                                    address: tryAddressFromString('NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM'),
+                                    userFriendlyAddress: 'NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM',
+                                    label: 'Standard Account',
+                                    balance: 12023110
+                                }],
+                                ['NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1', {
+                                    address: tryAddressFromString('NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1'),
+                                    userFriendlyAddress: 'NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1',
+                                    label: 'Savings',
+                                    balance: 2712415141213
+                                }]
+                            ]),
                             contracts: [],
                             type: 1, // BIP39
                             // userFriendlyId: 'funny giraffe',
                         }, {
                             id: 'vwxyz',
                             label: 'Ledger Wallet',
-                            addresses: new Map([['path1', {
-                                address: tryAddressFromString('NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM'),
-                                userFriendlyAddress: 'NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM',
-                                label: 'Standard Account',
-                                balance: 12023110
-                            }],
-                            ['path2', {
-                                address: tryAddressFromString('NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1'),
-                                userFriendlyAddress: 'NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1',
-                                label: 'Savings',
-                                balance: 2712415141213
-                            }]]),
+                            addresses: new Map([
+                                ['NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM', {
+                                    address: tryAddressFromString('NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM'),
+                                    userFriendlyAddress: 'NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM',
+                                    label: 'Standard Account',
+                                    balance: 12023110
+                                }],
+                                ['NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1', {
+                                    address: tryAddressFromString('NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1'),
+                                    userFriendlyAddress: 'NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1',
+                                    label: 'Savings',
+                                    balance: 2712415141213
+                                }]
+                            ]),
                             contracts: [],
                             type: 2, // LEDGER
                             // userFriendlyId: 'black panther',
