@@ -16,6 +16,8 @@ declare module 'vue-components' {
     export { default as LoginList } from 'vue-components/src/components/LoginList.vue';
     export { default as LoginSelector } from 'vue-components/src/components/LoginSelector.vue';
     export { default as NewContact } from 'vue-components/src/components/NewContact.vue';
+    export { default as PageHeader } from 'vue-components/src/components/PageHeader.vue';
+    export { default as PageFooter } from 'vue-components/src/components/PageFooter.vue';
     export { default as PaymentInfoLine } from 'vue-components/src/components/PaymentInfoLine.vue';
     export { default as SmallPage } from 'vue-components/src/components/SmallPage.vue';
 }
@@ -130,6 +132,19 @@ declare module 'vue-components/src/components/NewContact.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class NewContact extends Vue {
         edit(): void;
+    }
+}
+
+declare module 'vue-components/src/components/PageHeader.vue' {
+    import { Vue } from 'vue-property-decorator';
+    export default class PageHeader extends Vue {
+        readonly progressSteps: any[];
+    }
+}
+
+declare module 'vue-components/src/components/PageFooter.vue' {
+    import { Vue } from 'vue-property-decorator';
+    export default class PageFooter extends Vue {
     }
 }
 
