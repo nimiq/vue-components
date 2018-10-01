@@ -7,7 +7,7 @@
         <div class="page-body">
             <LoginList :logins="walletLogins" @login-selected="loginSelected" show-arrows/>
 
-            <AccountList :accounts="legacyAccounts" @account-selected="accountSelected"/>
+            <AccountList v-if="legacyAccounts.length > 0" :accounts="legacyAccounts" @account-selected="accountSelected"/>
         </div>
 
         <PageFooter v-if="showAddLogin" @click.native="addLogin">
@@ -69,6 +69,7 @@ export default class LoginSelector extends Vue {
     .page-body {
         flex-grow: 1;
         background: #fafafa;
+        overflow-y: auto;
     }
 
     .login-selector >>> .account {
@@ -77,6 +78,10 @@ export default class LoginSelector extends Vue {
 
     .login-selector >>> .account .identicon {
         margin-right: 8px;
+    }
+
+    .account-list {
+        border-top: solid 1px #f2f2f2;
     }
 
     .icon-plus-circle {

@@ -92,6 +92,7 @@
     .page-body {
         flex-grow: 1;
         background: #fafafa;
+        overflow-y: auto;
     }
 
     .icon-plus-circle {
