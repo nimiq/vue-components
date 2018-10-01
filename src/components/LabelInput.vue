@@ -35,6 +35,7 @@
         background: none;
         border: none;
         outline: none;
+        font-family: inherit;
         font-size: inherit;
         color: inherit;
         font-weight: inherit;
