@@ -17,9 +17,8 @@
         @Prop(Array) public accounts!: Array<{ label: string, address: Nimiq.Address, balance?: number }>;
 
         @Emit()
-        // tslint:disable-next-line
-        private accountSelected(address: Nimiq.Address) {
-        }
+        // tslint:disable-next-line no-empty
+        private accountSelected(address: Nimiq.Address) {}
     }
 </script>
 

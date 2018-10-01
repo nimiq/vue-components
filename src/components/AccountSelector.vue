@@ -30,14 +30,12 @@
         @Prop({type: Boolean, default: false}) private showSwitchLogin!: boolean;
 
         @Emit()
-        // tslint:disable-next-line
-        private accountSelected(address: Nimiq.Address) {
-        }
+        // tslint:disable-next-line no-empty
+        private accountSelected(address: Nimiq.Address) {}
 
         @Emit()
-        // tslint:disable-next-line
-        private switchLogin() {
-        }
+        // tslint:disable-next-line no-empty
+        private switchLogin() {}
 
         private get loginIconClass() {
             switch (this.loginType) {

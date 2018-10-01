@@ -22,7 +22,7 @@
 
         private get loginIconClass() {
             switch (this.type) {
-                case 0: return 'keyguard';
+                case 0: return 'keyguard'; // Legacy
                 case 1: return 'keyguard';
                 case 2: return 'ledger';
             }
