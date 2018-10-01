@@ -12,6 +12,7 @@ declare module 'vue-components' {
     export { default as Contact } from 'vue-components/src/components/Contact.vue';
     export { default as ContactList } from 'vue-components/src/components/ContactList.vue';
     export { default as Identicon } from 'vue-components/src/components/Identicon.vue';
+    export { default as LabelInput } from 'vue-components/src/components/LabelInput.vue';
     export { default as Login } from 'vue-components/src/components/Login.vue';
     export { default as LoginList } from 'vue-components/src/components/LoginList.vue';
     export { default as LoginSelector } from 'vue-components/src/components/LoginSelector.vue';
@@ -98,6 +99,12 @@ declare module 'vue-components/src/components/Identicon.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class Identicon extends Vue {
         address: Nimiq.Address;
+    }
+}
+
+declare module 'vue-components/src/components/LabelInput.vue' {
+    import { Vue } from 'vue-property-decorator';
+    export default class LabelInput extends Vue {
     }
 }
 
