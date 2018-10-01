@@ -12,6 +12,7 @@ import Amount from '../components/Amount.vue';
 import AmountWithDetails from '../components/AmountWithDetails.vue';
 import Contact from '../components/Contact.vue';
 import Identicon from '../components/Identicon.vue';
+import LabelInput from '../components/LabelInput.vue';
 import Login from '../components/Login.vue';
 import LoginList from '../components/LoginList.vue';
 import LoginSelector from '../components/LoginSelector.vue';
@@ -68,6 +69,20 @@ storiesOf('Basic', module)
                 return {address: tryAddressFromString(address)}
             },
             template: `<Identicon :address="address"/>`,
+        };
+    })
+    .add('LabelInput', () => {
+        return {
+            components: {LabelInput},
+            methods: {
+                changed: action('changed'),
+            },
+            data() {
+                return {
+                    value: "Standard Account"
+                };
+            },
+            template: `<LabelInput :value="value" @changed="changed"/>`,
         };
     });
 
