@@ -1,5 +1,8 @@
 <template>
-    <div class="page-header">
+    <div class="page-header" :class="progressIndicator ? 'has-progress-indicator' : ''">
+        <div v-if="progressIndicator" class="progress-indicator">
+            <div v-for="thisStep in progressSteps" class="indicator" :class="thisStep <= step ? 'active' : ''" :key="thisStep"></div>
+        </div>
         <a v-if="backArrow" class="page-header-back-button icon-back-arrow" @click="$emit('back')"></a>
         <h1><slot></slot></h1>
     </div>
@@ -11,6 +14,15 @@
     @Component
     export default class PageHeader extends Vue {
         @Prop({type: Boolean, default: false}) private backArrow!: boolean;
+        @Prop({type: Boolean, default: false}) private progressIndicator!: boolean;
+        @Prop({type: Number, default: 6}) private numberSteps!: number;
+        @Prop({type: Number, default: 1}) private step!: number;
+
+        get progressSteps() {
+            const list = [];
+            for (let i = 1; i <= this.numberSteps; i++) list.push(i);
+            return list;
+        }
     }
 </script>
 
@@ -23,13 +35,16 @@
         align-items: center;
         justify-content: space-evenly;
         position: relative;
-        height: 88px;
         box-sizing: border-box;
         padding: 34px;
         background: white;
         border-bottom: solid 1px #f2f2f2;
         border-top-left-radius: 8px;
         border-top-right-radius: 8px;
+    }
+
+    .page-header.has-progress-indicator {
+        padding-top: 46px;
     }
 
     .page-header-back-button {
@@ -45,11 +60,39 @@
         cursor: pointer;
     }
 
+    .page-header.has-progress-indicator .page-header-back-button {
+        top: 44px;
+    }
+
     h1 {
         font-size: 15px;
         text-transform: uppercase;
         letter-spacing: 1.9px;
         line-height: 20px;
         font-weight: bold;
+        margin: 0;
+    }
+
+    .progress-indicator {
+        width: 100%;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        padding: 4px;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    .progress-indicator .indicator {
+        flex-grow: 1;
+        height: 4px;
+        border-radius: 2px;
+        background: #e5e5e5;
+        margin: 4px;
+    }
+
+    .progress-indicator .indicator.active {
+        background: #24bdb6;
     }
 </style>
