@@ -4,9 +4,11 @@
             {{ title }}
         </PageHeader>
 
-        <div class="login-label"><div class="login-icon" :class="loginIconClass"></div> {{ loginLabel }}</div>
+        <div class="page-body">
+            <div class="login-label"><div class="login-icon" :class="loginIconClass"></div> {{ loginLabel }}</div>
 
-        <AccountList :accounts="accounts" @account-selected="accountSelected"/>
+            <AccountList :accounts="accounts" :loginId="loginId" @account-selected="accountSelected"/>
+        </div>
 
         <PageFooter v-if="showSwitchLogin" @click.native="switchLogin">
             <div class="icon-plus-circle"></div>
@@ -24,20 +26,19 @@
     @Component({components: {AccountList, PageHeader, PageFooter}})
     export default class AccountSelector extends Vue {
         @Prop({type: String, default: 'Select Account'}) private title!: string;
+        @Prop(String) private loginId!: string;
         @Prop(String) private loginLabel!: string;
         @Prop(Number) private loginType!: number;
         @Prop(Array) private accounts!: Array<{ label: string, address: Nimiq.Address, balance?: number }>;
         @Prop({type: Boolean, default: false}) private showSwitchLogin!: boolean;
 
         @Emit()
-        // tslint:disable-next-line
-        private accountSelected(address: Nimiq.Address) {
-        }
+        // tslint:disable-next-line no-empty
+        private accountSelected(loginId: string, address: Nimiq.Address) {}
 
         @Emit()
-        // tslint:disable-next-line
-        private switchLogin() {
-        }
+        // tslint:disable-next-line no-empty
+        private switchLogin() {}
 
         private get loginIconClass() {
             switch (this.loginType) {
@@ -88,7 +89,8 @@
         background-size: 20px;
     }
 
-    .account-list {
+    .page-body {
+        flex-grow: 1;
         background: #fafafa;
     }
 

@@ -31,7 +31,7 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        padding: 13px 32px;
+        padding: 12px 32px;
         box-sizing: border-box;
     }
 

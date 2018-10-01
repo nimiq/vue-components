@@ -6,17 +6,19 @@
             <div class="visible-area">
                 <div class="multi-pages" :style="`transform: translate3d(-${(page - 1) * 450}px, 0, 0)`">
                     <LoginSelector @login-selected="loginSelected"
+                                   @account-selected="accountSelected"
                                    @add-login="addLogin"
                                    @back="back"
                                    :logins="logins"/>
                     <AccountSelector
-                            @account-selected="(address) => accountSelected(selectedLoginId || preselectedLoginId, address)"
+                            @account-selected="accountSelected"
                             @switch-login="switchLogin"
                             @back="switchLogin"
                             :accounts="currentAccounts"
+                            :loginId="currentLogin ? currentLogin.id : ''"
                             :loginLabel="currentLogin ? currentLogin.label : ''"
                             :loginType="currentLogin ? currentLogin.type : 0"
-                            :show-switch-login="true"/>
+                            :show-switch-login="false"/>
                 </div>
             </div>
         </small-page>
@@ -81,7 +83,7 @@ export default class CheckoutFlow extends Vue {
 
     @Emit()
     // tslint:disable-next-line no-empty
-    private accountSelected(login: string, address: Nimiq.Address) {}
+    private accountSelected(loginId: string, address: Nimiq.Address) {}
 }
 </script>
 
