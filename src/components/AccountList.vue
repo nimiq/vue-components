@@ -24,10 +24,6 @@
 </script>
 
 <style scoped>
-    .account-list {
-        overflow-y: auto;
-    }
-
     .account-entry {
         cursor: pointer;
         transition: background 300ms;
