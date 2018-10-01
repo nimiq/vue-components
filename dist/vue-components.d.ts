@@ -119,7 +119,7 @@ declare module 'vue-components/src/components/LoginSelector.vue' {
         logins: Array<{
             id: string;
             label: string;
-            addresses: object[];
+            addresses: Map<string, any>;
             contracts: object[];
             type: number;
         }>;
