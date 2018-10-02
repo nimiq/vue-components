@@ -28,6 +28,7 @@
         @Prop(Boolean) private editable?: boolean;
 
         @Emit()
+        // tslint:disable-next-line no-empty
         private changed(label: string) {}
     }
 </script>
