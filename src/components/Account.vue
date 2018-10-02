@@ -3,7 +3,9 @@
         <Identicon :address="address"/>
         <div class="account-description">
             <div class="label-and-balance">
-                <div class="label">{{ label }}</div>
+                <div v-if="!editable" class="label">{{ label }}</div>
+                <div v-else class="label"><LabelInput :value="label" @changed="changed"/></div>
+
                 <div class="balance" v-if="balance || balance === 0"><Amount :amount="balance" :decimals="2"/></div>
                 <div class="balance balance-loading" v-if="!balance && balance !== 0"></div>
             </div>
@@ -13,15 +15,20 @@
 </template>
 
 <script lang="ts">
-    import { Component, Prop, Vue } from 'vue-property-decorator';
+    import { Component, Prop, Emit, Vue } from 'vue-property-decorator';
     import Identicon from './Identicon.vue';
     import Amount from './Amount.vue';
+    import LabelInput from './LabelInput.vue';
 
-    @Component({components: {Amount, Identicon}})
+    @Component({components: {Amount, Identicon, LabelInput}})
     export default class Account extends Vue {
         @Prop(Nimiq.Address) public address!: Nimiq.Address;
         @Prop(String) public label!: string;
         @Prop(Number) public balance!: number;
+        @Prop(Boolean) private editable?: boolean;
+
+        @Emit()
+        private changed(label: string) {}
     }
 </script>
 

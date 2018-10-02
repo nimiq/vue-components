@@ -101,6 +101,22 @@ storiesOf('Components', module)
             template: `<Account :address="address" label="${label}" :balance="${balance}"></Account>`,
         };
     })
+    .add('Account (editable)', () => {
+        const label = text('label', 'My account');
+        const address = text('address', 'NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM');
+        const balance = number('balance', 12023110);
+
+        return {
+            components: {Account},
+            methods: {
+                changed: action('changed'),
+            },
+            data() {
+                return {address: tryAddressFromString(address)};
+            },
+            template: `<Account :address="address" label="${label}" :balance="${balance}" :editable="true" @changed="changed"></Account>`,
+        };
+    })
     .add('AccountList', () => {
         return {
             components: {AccountList},
