@@ -31,12 +31,12 @@
         flex-direction: row;
         justify-content: space-between;
         box-sizing: border-box;
-        padding: 12px 10px;
+        padding: calc(1.5 * var(--nimiq-size, 8px)) calc(1.25 * var(--nimiq-size, 8px));
         width: 450px;
         max-width: 100%;
-        font-size: 12px;
+        font-size: calc(1.5 * var(--nimiq-size, 8px));
         line-height: 1;
-        letter-spacing: 1.2px;
+        letter-spacing: 0.1em;
         text-transform: uppercase;
     }
 

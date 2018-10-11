@@ -42,13 +42,13 @@
         margin: 0;
         padding: 0;
         line-height: 1.11;
-        height: 1.11em;
+        height: calc(1.11 * var(--nimiq-size, 8px));
     }
 
     .icon-pen {
         display: inline-block;
-        height: 1.11em;
-        width: 1.11em;
+        height: calc(1.11 * var(--nimiq-size, 8px));
+        width: calc(1.11 * var(--nimiq-size, 8px));
         flex-shrink: 0;
         background-repeat: no-repeat;
         background-position: center;

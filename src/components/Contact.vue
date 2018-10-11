@@ -105,31 +105,32 @@
 
     .contact {
         display: flex;
-        max-width: 490px;
-        padding: 8px 16px;
+        max-width: calc(61.25 * var(--nimiq-size, 8px));
+        padding: calc(1 * var(--nimiq-size, 8px)) calc(2 * var(--nimiq-size, 8px));
         /* border-bottom: 1px solid rgba(0, 0, 0, 0.1); */
         cursor: pointer;
         position: relative;
-        border-radius: 4px;
+        border-radius: calc(0.5 * var(--nimiq-size, 8px));
     }
 
     .contact .identicon {
-        width: 80px;
-        min-width: 50px;
-        height: 71px;
+        width: calc(10 * var(--nimiq-size, 8px));
+        min-width: calc(6.25 * var(--nimiq-size, 8px));
+        height: calc(8.875 * var(--nimiq-size, 8px));
     }
 
     .contact .info {
         text-align: left;
         width: 100%;
-        padding-left: 16px;
-        max-width: calc(100% - 88px);
+        padding-left: calc(2 * var(--nimiq-size, 8px));
+        --width-subtraction: calc(11 * var(--nimiq-size, 8px));
+        max-width: calc(100% - var(--width-subtraction));
     }
 
     .contact .label {
         display: block;
         font-weight: bold;
-        margin-bottom: 2px;
+        margin-bottom: calc(0.25 * var(--nimiq-size, 8px));
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -155,24 +156,24 @@
     }
 
     .contact input.address-input {
-        font-size: 14px;
+        font-size: calc(1.75 * var(--nimiq-size, 8px));
     }
 
     .contact .bottom {
         text-align: right;
-        margin-top: 4px;
+        margin-top: calc(1.75 * var(--nimiq-size, 8px));
     }
 
     .contact .bottom button {
-        padding: 0 7px;
+        padding: 0 calc(0.875 * var(--nimiq-size, 8px));
         min-height: 0;
-        height: 29px;
-        width: 29px;
+        height: calc(3.625 * var(--nimiq-size, 8px));
+        width: calc(3.625 * var(--nimiq-size, 8px));
         margin-bottom: 0;
-        margin-left: 4px;
+        margin-left: calc(0.5 * var(--nimiq-size, 8px));
         background: white;
         opacity: 0.75;
-        border-radius: 28px;
+        border-radius: calc(3.5 * var(--nimiq-size, 8px));
         color: #3b3b3b;
         border: 1px solid #3b3b3b;
     }
@@ -182,10 +183,10 @@
     }
 
     .contact .bottom button .material-icons {
-        font-size: 21px;
+        font-size: calc(2.625 * var(--nimiq-size, 8px));
         position: relative;
-        left: -4px;
-        top: -6px;
+        left: calc(-0.5 * var(--nimiq-size, 8px));
+        top: calc(-0.75 * var(--nimiq-size, 8px));
     }
 
     .contact .bottom button.remove {
@@ -199,7 +200,7 @@
 
     @media (max-width: 480px) {
         .contact {
-            padding: 8px 0;
+            padding: calc(1 * var(--nimiq-size, 8px)) 0;
         }
     }
 </style>

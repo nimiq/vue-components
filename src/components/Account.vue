@@ -39,15 +39,15 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        padding: 12px 32px;
+        padding: calc(1.5 * var(--nimiq-size, 8px)) calc(4 * var(--nimiq-size, 8px));
         box-sizing: border-box;
     }
 
     .identicon {
-        width: 64px;
-        height: 64px;
+        width: calc(8 * var(--nimiq-size, 8px));
+        height: calc(8 * var(--nimiq-size, 8px));
         flex-shrink: 0;
-        margin-right: 16px;
+        margin-right: calc(2 * var(--nimiq-size, 8px));
     }
 
     .account-description {
@@ -59,12 +59,12 @@
         flex-direction: row;
         justify-content: space-between;
         font-weight: 500;
-        font-size: 18px;
-        line-height: 20px;
+        font-size: calc(2.25 * var(--nimiq-size, 8px));
+        line-height: calc(2.5 * var(--nimiq-size, 8px));
     }
 
     .label {
-        margin-bottom: 3px;
+        margin-bottom: 0.375em;
         white-space: nowrap;
         text-overflow: ellipsis;
     }
@@ -74,13 +74,13 @@
     }
 
     .address {
-        font-size: 12px;
-        line-height: 20px;
+        font-size: calc(1.5 * var(--nimiq-size, 8px));
+        line-height: calc(2.5 * var(--nimiq-size, 8px));
         font-family: "Andale Mono", monospace;
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow-x: hidden;
         word-spacing: -0.2em;
-        max-width: 307px;
+        max-width: calc(38.5 * var(--nimiq-size, 8px));
     }
 </style>

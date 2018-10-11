@@ -19,15 +19,15 @@
         flex-shrink: 0;
         align-items: center;
         justify-content: flex-start;
-        height: 98px;
+        height: calc(12.25 * var(--nimiq-size, 8px));
         box-sizing: border-box;
-        padding: 32px;
+        padding: calc(4 * var(--nimiq-size, 8px));
         background: white;
         border-top: solid 1px #f2f2f2;
-        border-bottom-left-radius: 8px;
-        border-bottom-right-radius: 8px;
-        font-size: 18px;
-        line-height: 20px;
+        border-bottom-left-radius: calc(1 * var(--nimiq-size, 8px));
+        border-bottom-right-radius: calc(1 * var(--nimiq-size, 8px));
+        font-size: calc(2.25 * var(--nimiq-size, 8px));
+        line-height: calc(2.5 * var(--nimiq-size, 8px));
         font-weight: 500;
     }
 </style>
