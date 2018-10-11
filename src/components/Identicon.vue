@@ -37,8 +37,8 @@
 
 <style scoped>
     .identicon {
-        width: 80px;
-        min-width: 40px;
+        width: calc(10 * var(--nimiq-size, 8px));
+        min-width: calc(5 * var(--nimiq-size, 8px));
     }
 
     img {

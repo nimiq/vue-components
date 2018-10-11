@@ -35,14 +35,14 @@
     .address {
         position: relative;
         width: 100%;
-        min-width: 320px;
-        max-width: 400px;
-        padding: 8px 16px;
-        font-size: 14px;
+        min-width: calc(40 * var(--nimiq-size, 8px));
+        max-width: calc(50 * var(--nimiq-size, 8px));
+        padding: calc(1 * var(--nimiq-size, 8px)) calc(2 * var(--nimiq-size, 8px));
+        font-size: calc(1.75 * var(--nimiq-size, 8px));
         font-weight: 600;
         white-space: nowrap;
         cursor: pointer;
-        border-radius: 3px;
+        border-radius: calc(0.375 * var(--nimiq-size, 8px));
         font-family: "Source Code Pro", "Menlo", "Roboto Mono", "Droid Sans Mono", monospace;
     }
 
@@ -57,11 +57,11 @@
         width: 100%;
         height: 100%;
         box-sizing: border-box;
-        padding: 8px 16px;
+        padding: calc(1 * var(--nimiq-size, 8px)) calc(2 * var(--nimiq-size, 8px));
         background: rgba(0, 0, 0, 0.8);
         color: white;
         text-align: center;
-        border-radius: 3px;
+        border-radius: calc(0.375 * var(--nimiq-size, 8px));
         opacity: 0;
         pointer-events: none;
         transition: opacity 0.2s;

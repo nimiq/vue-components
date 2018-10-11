@@ -73,11 +73,11 @@ export default class LoginSelector extends Vue {
     }
 
     .login-selector >>> .account {
-        padding-left: 24px;
+        padding-left: calc(3 * var(--nimiq-size, 8px));
     }
 
     .login-selector >>> .account .identicon {
-        margin-right: 8px;
+        margin-right: calc(1 * var(--nimiq-size, 8px));
     }
 
     .account-list {
@@ -85,10 +85,10 @@ export default class LoginSelector extends Vue {
     }
 
     .icon-plus-circle {
-        height: 34px;
-        width: 34px;
+        height: calc(4.25 * var(--nimiq-size, 8px));
+        width: calc(4.25 * var(--nimiq-size, 8px));
         flex-shrink: 0;
-        margin-right: 20px;
+        margin-right: 2.5rem;
         background: lightgray;
         border-radius: 50%;
     }

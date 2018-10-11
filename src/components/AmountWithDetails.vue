@@ -25,7 +25,7 @@
 <script lang="ts">
     import { Component, Prop, Vue } from 'vue-property-decorator';
     import Amount from './Amount.vue';
-    
+
     @Component({components: {Amount}})
     export default class AmountWithDetails extends Vue {
         @Prop(Number) public amount!: number;
@@ -51,12 +51,12 @@
     .amount-with-details .drop-link {
         display: inline-block;
         border-bottom: 1px solid transparent;
-        padding-left: 0.2rem;
-        margin: 0.1rem;
+        padding-left: calc(0.2 * var(--nimiq-size, 8px));
+        margin: calc(0.1 * var(--nimiq-size, 8px));
         cursor: pointer;
         opacity: 0.95;
     }
-    
+
     .amount-with-details .drop-link:focus, .amount-with-details .drop-link:active {
         border-color: black;
     }
@@ -65,40 +65,45 @@
         border-color: #666;
         opacity: 0.8;
     }
-    
+
     .amount-with-details .info-box {
         position: absolute;
         background: #fefefe;
-        box-shadow: 0px 1px 5px rgba(0,0,0,0.5);
-        border-radius: 0.5rem;
-        padding: 0.5rem;
+        box-shadow: 0 calc(0.125 * var(--nimiq-size, 8px)) calc(0.625 * var(--nimiq-size, 8px)) rgba(0, 0, 0, 0.5);
+        border-radius: calc(0.5 * var(--nimiq-size, 8px));
+        padding: calc(0.5 * var(--nimiq-size, 8px));
         right: 0;
         white-space: nowrap;
-        margin-top: 0.2rem;
+        margin-top: calc(0.2 * var(--nimiq-size, 8px));
         color: #111;
         z-index: 100;
     }
 
     .amount-with-details .info-box .info-rows {
         display: grid;
-        grid-template-columns: 9rem auto 12px;
+        grid-template-columns: calc(9 * var(--nimiq-size, 8px)) auto calc(1.5 * var(--nimiq-size, 8px));
     }
-    
+
     .amount-with-details .info-box .item-value {
         text-align: right;
-        padding-left: 1rem;
-        padding-bottom: 0.5rem;
+        padding-left: calc(1 * var(--nimiq-size, 8px));
+        padding-bottom: calc(0.5 * var(--nimiq-size, 8px));
     }
-    
+
     .amount-with-details .info-box .fee {
         font-style: italic;
     }
-    
+
     .amount-with-details .info-box .total-sum {
         background: #eee;
-        margin: 0 -0.5rem -0.5rem -0.5rem;
-        padding: 0.5rem;
-        border-radius: 0 0 0.5rem 0.5rem;
+        margin: 0
+            calc(-0.5 * var(--nimiq-size, 8px))
+            calc(-0.5 * var(--nimiq-size, 8px))
+            calc(-0.5 * var(--nimiq-size, 8px));
+        padding: calc(0.5 * var(--nimiq-size, 8px));
+        border-radius: 0 0
+            calc(0.5 * var(--nimiq-size, 8px))
+            calc(0.5 * var(--nimiq-size, 8px));
         font-weight: bold;
     }
 

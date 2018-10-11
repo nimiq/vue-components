@@ -191,9 +191,9 @@
     .contact-list .search-field {
         width: 100%;
         border: none !important;
-        padding: 12px 40px;
+        padding: calc(1.5 * var(--nimiq-size, 8px)) calc(5 * var(--nimiq-size, 8px));
         background: rgba(0, 0, 0, 0.05);
-        border-radius: 4px;
+        border-radius: calc(0.5 * var(--nimiq-size, 8px));
         text-align: left;
     }
 
@@ -207,8 +207,8 @@
 
     .contact-list .search-icon {
         position: absolute;
-        left: 8px;
-        top: 12px;
+        left: calc(1 * var(--nimiq-size, 8px));
+        top: calc(1.5 * var(--nimiq-size, 8px));
         opacity: 0.4;
     }
 
@@ -218,10 +218,10 @@
 
     .contact-list .search-clear {
         position: absolute;
-        right: 4px;
-        top: 8px;
+        right: calc(0.5 * var(--nimiq-size, 8px));
+        top: calc(1 * var(--nimiq-size, 8px));
         opacity: 0.4;
-        padding: 4px;
+        padding: calc(0.5 * var(--nimiq-size, 8px));
         border-radius: 50%;
         cursor: pointer;
     }
@@ -233,11 +233,11 @@
     }
 
     .contact-list .list {
-        margin-top: 16px;
+        margin-top: calc(2 * var(--nimiq-size, 8px));
     }
 
     .contact-list .contact {
-        padding: 8px;
+        padding: calc(1 * var(--nimiq-size, 8px));
     }
 
     .contact-list .contact:hover {
@@ -251,8 +251,8 @@
 
     .contact-list .no-contacts .material-icons {
         display: block;
-        font-size: 120px;
-        margin: 0.1em;
+        font-size: calc(15 * var(--nimiq-size, 8px));
+        margin: calc(0.1 * var(--nimiq-size, 8px));
         opacity: 0.3;
     }
 
