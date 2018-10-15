@@ -26,9 +26,7 @@
 
         @Emit()
         // tslint:disable-next-line no-empty
-        private accountChanged(address: Nimiq.Address, label: string) {
-            console.log('changed@AccountList', address, label);
-        }
+        private accountChanged(address: Nimiq.Address, label: string) {}
     }
 </script>
 

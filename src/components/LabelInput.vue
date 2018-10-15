@@ -19,7 +19,6 @@
 
         private changed() {
             if (this.liveValue === this.lastValue) return;
-            console.log('changed@LabelInput', this.liveValue);
             this.$emit('changed', this.liveValue);
             this.lastValue = this.liveValue;
             (this.$refs.input as HTMLInputElement).blur();
