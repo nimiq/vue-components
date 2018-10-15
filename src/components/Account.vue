@@ -29,7 +29,9 @@
 
         @Emit()
         // tslint:disable-next-line no-empty
-        private changed(label: string) {}
+        private changed(label: string) {
+            console.log('changed@Account', label);
+        }
     }
 </script>
 
