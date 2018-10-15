@@ -16,7 +16,7 @@
 
         private amountToString() {
             const roundingFactor = Math.pow(10, this.decimals);
-            const value = Math.floor((this.amount / 100000) * roundingFactor) / roundingFactor;
+            const value = Math.floor((this.amount / 1e5) * roundingFactor) / roundingFactor;
             const result = value.toFixed(this.decimals);
             if (Math.abs(value) < 10000) return result;
             // add thin spaces (U+202F) every 3 digits. Stop at the decimal separator if there is one
@@ -25,8 +25,8 @@
         }
 
         private isApprox() {
-            const roundedNum = Number.parseFloat((this.amount / 100000).toFixed(this.decimals));
-            return roundedNum.toFixed(5) !== (this.amount / 100000).toFixed(5);
+            const roundedNum = Number.parseFloat((this.amount / 1e5).toFixed(this.decimals));
+            return roundedNum.toFixed(5) !== (this.amount / 1e5).toFixed(5);
         }
 
         // private formatNumber(value: number, maxDecimals: number = 5, minDecimals: number = 2): string {
