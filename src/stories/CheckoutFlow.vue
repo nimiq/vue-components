@@ -83,7 +83,7 @@ export default class CheckoutFlow extends Vue {
 
     @Emit()
     // tslint:disable-next-line no-empty
-    private accountSelected(loginId: string, address: Nimiq.Address) {}
+    private accountSelected(loginId: string, address: string) {}
 }
 </script>
 

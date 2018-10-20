@@ -29,12 +29,12 @@
         @Prop(String) private loginId!: string;
         @Prop(String) private loginLabel!: string;
         @Prop(Number) private loginType!: number;
-        @Prop(Array) private accounts!: Array<{ label: string, address: Nimiq.Address, balance?: number }>;
+        @Prop(Array) private accounts!: Array<{ label: string, userFriendlyAddress: string, balance?: number }>;
         @Prop({type: Boolean, default: false}) private showSwitchLogin!: boolean;
 
         @Emit()
         // tslint:disable-next-line no-empty
-        private accountSelected(loginId: string, address: Nimiq.Address) {}
+        private accountSelected(loginId: string, address: string) {}
 
         @Emit()
         // tslint:disable-next-line no-empty

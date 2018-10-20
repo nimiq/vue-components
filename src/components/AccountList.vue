@@ -1,11 +1,11 @@
 <template>
     <div class="account-list">
-        <div class="account-entry" v-for="account in accounts" @click="accountSelected(account.loginId || loginId, account.address)" :key="account.userFriendlyAddress">
-            <Account :address="account.address"
+        <div class="account-entry" v-for="account in accounts" @click="accountSelected(account.loginId || loginId, account.userFriendlyAddress)" :key="account.userFriendlyAddress">
+            <Account :address="account.userFriendlyAddress"
                      :label="account.label"
                      :balance="account.balance"
                      :editable="editable"
-                     @changed="accountChanged(account.address, $event)"/>
+                     @changed="accountChanged(account.userFriendlyAddress, $event)"/>
         </div>
     </div>
 </template>
@@ -16,17 +16,17 @@
 
     @Component({components: {Account}})
     export default class AccountList extends Vue {
-        @Prop(Array) public accounts!: Array<{ label: string, address: Nimiq.Address, balance?: number }>;
+        @Prop(Array) public accounts!: Array<{ label: string, userFriendlyAddress: string, balance?: number }>;
         @Prop(String) private loginId?: string;
         @Prop(Boolean) private editable?: boolean;
 
         @Emit()
         // tslint:disable-next-line no-empty
-        private accountSelected(loginId: string, address: Nimiq.Address) {}
+        private accountSelected(loginId: string, address: string) {}
 
         @Emit()
         // tslint:disable-next-line no-empty
-        private accountChanged(address: Nimiq.Address, label: string) {}
+        private accountChanged(address: string, label: string) {}
     }
 </script>
 

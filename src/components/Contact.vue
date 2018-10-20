@@ -1,6 +1,6 @@
 <template>
     <div class="contact" @click="select">
-        <Identicon :address="isEditing ? workingNimiqAddress() : address"/>
+        <Identicon :address="isEditing ? workingAddress : address"/>
 
         <div class="info" v-if="!isEditing">
             <span class="label">{{ label }}</span>
@@ -42,7 +42,7 @@
 
     @Component({components: {Identicon, Address}})
     export default class Contact extends Vue {
-        @Prop(Nimiq.Address) public address!: Nimiq.Address;
+        @Prop(String) public address!: string;
         @Prop(String) public label!: string;
         @Prop(Boolean) public showOptions!: boolean;
 
@@ -54,14 +54,6 @@
             return this.workingLabel && ValidationUtils.isValidAddress(this.workingAddress);
         }
 
-        private workingNimiqAddress() {
-            try {
-                return Nimiq.Address.fromUserFriendlyAddress(this.workingAddress);
-            } catch (e) {
-                return null;
-            }
-        }
-
         private select() {
             if (this.isEditing) return;
             this.$emit('select', this.address);
@@ -69,7 +61,7 @@
 
         private edit() {
             this.workingLabel = this.label;
-            this.workingAddress = this.address.toUserFriendlyAddress();
+            this.workingAddress = this.address;
             this.isEditing = true;
 
             // Wait for DOM to update
@@ -81,10 +73,9 @@
         }
 
         private save() {
-            const address = Nimiq.Address.fromUserFriendlyAddress(this.workingAddress);
             const label = this.workingLabel.trim();
-            if (!this.address.equals(address) || this.label !== label) {
-                this.$emit('change', {label: this.label, address: this.address}, {label, address});
+            if (this.address !== this.workingAddress || this.label !== label) {
+                this.$emit('change', {label: this.label, address: this.address}, {label, address: this.workingAddress});
             }
             this.abort();
         }
