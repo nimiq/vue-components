@@ -11,7 +11,6 @@ const configureWebpack = {
 if (process.argv.includes('build')) {
   configureWebpack.externals = {
     'vue': 'vue',
-    'vue-async-computed': 'vue-async-computed',
     'vue-class-component': 'vue-class-component',
     'vue-property-decorator': 'vue-property-decorator',
   };

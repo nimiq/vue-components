@@ -44,7 +44,7 @@
 
     @Component({components: {Contact, NewContact}})
     export default class ContactList extends Vue {
-        @Prop(Array) public contacts!: Array<{ address: Nimiq.Address, label: string }>;
+        @Prop(Array) public contacts!: Array<{ address: string, label: string }>;
 
         private searchTerm: string = '';
         private isManaging: boolean = false;
@@ -52,12 +52,12 @@
 
         @Emit()
         // tslint:disable-next-line
-        private setContact(label: string, address: Nimiq.Address) {
+        private setContact(label: string, address: string) {
         }
 
         @Emit()
         // tslint:disable-next-line
-        private removeContact(address: Nimiq.Address) {
+        private removeContact(address: string) {
         }
 
         private filteredContacts() {
@@ -80,12 +80,12 @@
             this.clearSearch();
         }
 
-        private changeContact(old, nue) {
+        private changeContact(old: any, nue: any) {
             this.setContact(nue.label, nue.address);
             if (old.address !== nue.address) this.removeContact(old.address);
         }
 
-        private deleteContact(oldAddress) {
+        private deleteContact(oldAddress: string) {
             this.removeContact(oldAddress);
         }
 
@@ -130,7 +130,7 @@
             // TODO this.$refs.importLabel.click();
         }
 
-        private loadFile(event) {
+        private loadFile(event: Event) {
             /* TODO
             const file = event.target.files[0];
             if (!file) return;
@@ -141,7 +141,7 @@
             */
         }
 
-        private readFile(data) {
+        private readFile(data: any) {
             /* TODO
             // Reset file input
             this.$refs.importInput.value = '';
