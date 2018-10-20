@@ -49,7 +49,7 @@ export default class LoginSelector extends Vue {
 
     @Emit()
     // tslint:disable-next-line no-empty
-    private accountSelected(address: Nimiq.Address) {}
+    private accountSelected(address: string) {}
 
     @Emit()
     private addLogin() {

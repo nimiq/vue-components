@@ -39,7 +39,7 @@
 
         @Emit()
         // tslint:disable-next-line
-        private setContactAction(label: string, address: Nimiq.Address) {
+        private setContactAction(label: string, address: string) {
         }
 
         @Emit()
@@ -52,10 +52,8 @@
         }
 
         private save() {
-            const address = Nimiq.Address.fromUserFriendlyAddress(this.workingAddress);
-
             // Update or set contact info
-            this.setContactAction(this.workingLabel, address);
+            this.setContactAction(this.workingLabel, this.workingAddress);
 
             // TODO: this.$toast.success('Contact saved.');
 

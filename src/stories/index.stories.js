@@ -1,5 +1,4 @@
 import Vue from 'vue';
-import AsyncComputed from 'vue-async-computed';
 import {storiesOf} from '@storybook/vue';
 import {action} from '@storybook/addon-actions';
 import {boolean, number, text, withKnobs} from '@storybook/addon-knobs';
@@ -20,16 +19,6 @@ import PaymentInfoLine from '../components/PaymentInfoLine.vue';
 import SmallPage from '../components/SmallPage.vue';
 
 import CheckoutFlow from './CheckoutFlow.vue';
-
-Vue.use(AsyncComputed);
-
-function tryAddressFromString(addr) {
-    try {
-        return Nimiq.Address.fromString(addr);
-    } catch (e) {
-        return null;
-    }
-}
 
 function windowTemplate(slot) {
     return `
@@ -62,11 +51,11 @@ storiesOf('Basic', module)
         };
     })
     .add('Identicon', () => {
-        const address = text('address', 'NQ07 0000 0000 0000 0000 0000 0000 0000 0000');
+        const address = text('address', 'NQ07 0000 00000000 0000 0000 0000 0000 0000');
         return {
             components: {Identicon},
             data() {
-                return {address: tryAddressFromString(address)}
+                return { address };
             },
             template: `<Identicon :address="address"/>`,
         };
@@ -90,20 +79,20 @@ storiesOf('Components', module)
     .addDecorator(withKnobs)
     .add('Account', () => {
         const label = text('label', 'My account');
-        const address = text('address', 'NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM');
+        const address = text('address', 'NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM');
         const balance = number('balance', 12023110);
 
         return {
             components: {Account},
             data() {
-                return {address: tryAddressFromString(address)};
+                return { address };
             },
             template: `<Account :address="address" label="${label}" :balance="${balance}"></Account>`,
         };
     })
     .add('Account (editable)', () => {
         const label = text('label', 'My account');
-        const address = text('address', 'NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM');
+        const address = text('address', 'NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM');
         const balance = number('balance', 12023110);
 
         return {
@@ -112,7 +101,7 @@ storiesOf('Components', module)
                 changed: action('changed'),
             },
             data() {
-                return {address: tryAddressFromString(address)};
+                return { address };
             },
             template: `<Account :address="address" label="${label}" :balance="${balance}" :editable="true" @changed="changed"></Account>`,
         };
@@ -127,12 +116,12 @@ storiesOf('Components', module)
                 return {
                     accounts: [
                         {
-                            address: tryAddressFromString('NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM'),
+                            userFriendlyAddress: 'NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM',
                             label: 'Primary account',
                             balance: 12023110,
                         },
                         {
-                            address: tryAddressFromString('NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1'),
+                            userFriendlyAddress: 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1',
                             label: 'HODL account',
                             balance: 2712415141213,
                         }
@@ -152,12 +141,12 @@ storiesOf('Components', module)
                     loginType: 1,
                     accounts: [
                         {
-                            address: tryAddressFromString('NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM'),
+                            userFriendlyAddress: 'NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM',
                             label: 'Primary account',
                             balance: 12023110
                         },
                         {
-                            address: tryAddressFromString('NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1'),
+                            userFriendlyAddress: 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1',
                             label: 'HODL account',
                             balance: 2712415141213
                         }
@@ -173,11 +162,11 @@ storiesOf('Components', module)
         };
     })
     .add('Address', () => {
-        const address = text('address', 'NQ07 0000 0000 0000 0000 0000 0000 0000 0000');
+        const address = text('address', 'NQ07 0000 00000000 0000 0000 0000 0000 0000');
         return {
             components: {Address},
             data() {
-                return {address: tryAddressFromString(address)};
+                return { address };
             },
             template: `<Address :address="address"/>`,
         };
@@ -194,7 +183,7 @@ storiesOf('Components', module)
     })
     .add('Contact', () => {
         const label = text('label', 'Burn address');
-        const address = text('address', 'NQ07 0000 0000 0000 0000 0000 0000 0000 0000');
+        const address = text('address', 'NQ07 0000 00000000 0000 0000 0000 0000 0000');
         const showOptions = boolean('showOptions', false);
         return {
             components: {Contact},
@@ -204,7 +193,7 @@ storiesOf('Components', module)
                 onDelete: action('delete'),
             },
             data() {
-                return {address: tryAddressFromString(address)};
+                return { address };
             },
             template: `<Contact label="${label}" :address="address" :show-options="${showOptions}" @select="onSelect" @change="onChange" @delete="onDelete"/>`,
         };
@@ -330,14 +319,12 @@ storiesOf('Pages/Payment', module)
                     loginType: 1,
                     accounts: [
                         {
-                            address: tryAddressFromString('NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM'),
-                            userFriendlyAddress: 'NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM',
+                            userFriendlyAddress: 'NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM',
                             label: 'Standard Account',
                             balance: 12023110
                         },
                         {
-                            address: tryAddressFromString('NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1'),
-                            userFriendlyAddress: 'NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1',
+                            userFriendlyAddress: 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1',
                             label: 'Savings',
                             balance: 2712415141213
                         }
@@ -404,8 +391,7 @@ storiesOf('Pages/Payment', module)
                             id: 'legacy-01',
                             label: 'Keyguard Wallet',
                             addresses: new Map([
-                                ['NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM', {
-                                    address: tryAddressFromString('NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM'),
+                                ['NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM', {
                                     userFriendlyAddress: 'NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM',
                                     label: 'Standard Account',
                                     balance: 2023110
@@ -419,14 +405,12 @@ storiesOf('Pages/Payment', module)
                             id: 'abcdef',
                             label: 'Keyguard Wallet',
                             addresses: new Map([
-                                ['NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM', {
-                                    address: tryAddressFromString('NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM'),
+                                ['NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM', {
                                     userFriendlyAddress: 'NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM',
                                     label: 'Standard Account',
                                     balance: 12023110
                                 }],
-                                ['NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1', {
-                                    address: tryAddressFromString('NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1'),
+                                ['NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1', {
                                     userFriendlyAddress: 'NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1',
                                     label: 'Savings',
                                     balance: 2712415141213
@@ -439,14 +423,12 @@ storiesOf('Pages/Payment', module)
                             id: 'vwxyz',
                             label: 'Ledger Wallet',
                             addresses: new Map([
-                                ['NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM', {
-                                    address: tryAddressFromString('NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM'),
+                                ['NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM', {
                                     userFriendlyAddress: 'NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM',
                                     label: 'Standard Account',
                                     balance: 12023110
                                 }],
-                                ['NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1', {
-                                    address: tryAddressFromString('NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1'),
+                                ['NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1', {
                                     userFriendlyAddress: 'NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1',
                                     label: 'Savings',
                                     balance: 2712415141213

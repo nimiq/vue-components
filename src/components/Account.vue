@@ -9,7 +9,7 @@
                 <div class="balance" v-if="balance || balance === 0"><Amount :amount="balance" :decimals="2"/></div>
                 <div class="balance balance-loading" v-if="!balance && balance !== 0"></div>
             </div>
-            <div class="address">{{ address.toUserFriendlyAddress() }}</div>
+            <div class="address">{{ userFriendlyAddress }}</div>
         </div>
     </div>
 </template>
@@ -22,7 +22,7 @@
 
     @Component({components: {Amount, Identicon, LabelInput}})
     export default class Account extends Vue {
-        @Prop(Nimiq.Address) public address!: Nimiq.Address;
+        @Prop(String) public address!: string;
         @Prop(String) public label!: string;
         @Prop(Number) public balance!: number;
         @Prop(Boolean) private editable?: boolean;
@@ -30,6 +30,10 @@
         @Emit()
         // tslint:disable-next-line no-empty
         private changed(label: string) {}
+
+        private get userFriendlyAddress() {
+            return Identicon.formatAddress(this.address);
+        }
     }
 </script>
 
@@ -52,6 +56,8 @@
 
     .account-description {
         flex-grow: 1;
+        --lost-width: calc(10 * var(--nimiq-size, 8px));
+        width: calc(100% - var(--lost-width));
     }
 
     .label-and-balance {

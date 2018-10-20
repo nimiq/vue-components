@@ -1,21 +1,22 @@
 <template>
     <div class="address" @click="copy">
-        <span>{{ address ? address.toUserFriendlyAddress() : 'Invalid address' }}</span>
+        <span>{{ address ? userFriendlyAddress : 'Invalid address' }}</span>
         <div class="copied-cover">Copied!</div>
     </div>
 </template>
 
 <script lang="ts">
     import {Component, Prop, Vue} from 'vue-property-decorator';
+    import Identicon from './Identicon.vue';
 
     @Component
     export default class Address extends Vue {
-        @Prop(Nimiq.Address) public address!: Nimiq.Address;
+        @Prop(String) public address!: string;
 
         private copy() {
             const selection = window.getSelection();
             const range = document.createRange();
-            range.selectNodeContents(this.$el.querySelector('span'));
+            range.selectNodeContents(this.$el.querySelector('span') as HTMLSpanElement);
             selection.removeAllRanges();
             selection.addRange(range);
 
@@ -27,6 +28,10 @@
             } catch (e) {
                 console.error(e); // eslint-disable-line no-console
             }
+        }
+
+        private get userFriendlyAddress() {
+            return Identicon.formatAddress(this.address);
         }
     }
 </script>

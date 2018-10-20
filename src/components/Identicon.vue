@@ -5,34 +5,43 @@
 </template>
 
 <script lang="ts">
-    import {Component, Prop, Vue} from 'vue-property-decorator';
-    import Iqons from '@nimiq/iqons/dist/iqons.min.js';
-    import IqonsSvg from '@nimiq/iqons/dist/iqons.min.svg';
-    if (IqonsSvg[0] === '"') {
-        Iqons.svgPath = IqonsSvg.substring(1, IqonsSvg.length - 1);
-    } else {
-        Iqons.svgPath = IqonsSvg;
+import {Component, Prop, Watch, Vue} from 'vue-property-decorator';
+import ValidationUtils from '@nimiq/secure-utils/validation-utils/validation-utils.js';
+import Iqons from '@nimiq/iqons/dist/iqons.min.js';
+import IqonsSvg from '@nimiq/iqons/dist/iqons.min.svg';
+if (IqonsSvg[0] === '"') {
+    Iqons.svgPath = IqonsSvg.substring(1, IqonsSvg.length - 1);
+} else {
+    Iqons.svgPath = IqonsSvg;
+}
+
+@Component
+export default class Identicon extends Vue {
+    public static formatAddress(str: string) {
+        return str.replace(/[\+ ]/g, '').match(/.{4}/g)!.join(' ');
     }
 
-    @Component({
-        asyncComputed: {
-            dataUrl: {
-                get() {
-                    if (this.address) {
-                        return Iqons.toDataUrl(this.address.toUserFriendlyAddress());
-                    } else {
-                        return Iqons.placeholderToDataUrl();
-                    }
-                },
-                default() {
-                    return Iqons.placeholderToDataUrl();
-                },
-            },
-        },
-    })
-    export default class Identicon extends Vue {
-        @Prop(Nimiq.Address) public address!: Nimiq.Address;
+    public static isUserFriendlyAddress(str: string) {
+        console.log(str, ValidationUtils.isValidAddress(str));
+        return ValidationUtils.isValidAddress(str);
     }
+
+    @Prop(String) public address!: string;
+
+    private dataUrl: string = Iqons.placeholderToDataUrl();
+
+    @Watch('address', { immediate: true })
+    private computeDataUrl(address: string, oldAddress?: string) {
+        if (this.address && Identicon.isUserFriendlyAddress(this.address)) {
+            Iqons.toDataUrl(Identicon.formatAddress(this.address)).then((dataUrl: string) => {
+                this.dataUrl = dataUrl;
+            });
+        } else {
+            this.dataUrl = Iqons.placeholderToDataUrl();
+        }
+        return true;
+    }
+}
 </script>
 
 <style scoped>
