@@ -26,7 +26,7 @@ declare module 'vue-components' {
 declare module 'vue-components/src/components/Account.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class Account extends Vue {
-        address: Nimiq.Address;
+        address: string;
         label: string;
         balance: number;
     }
@@ -37,7 +37,7 @@ declare module 'vue-components/src/components/AccountList.vue' {
     export default class AccountList extends Vue {
         accounts: Array<{
             label: string;
-            address: Nimiq.Address;
+            userFriendlyAddress: string;
             balance?: number;
         }>;
     }
@@ -52,7 +52,7 @@ declare module 'vue-components/src/components/AccountSelector.vue' {
 declare module 'vue-components/src/components/Address.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class Address extends Vue {
-        address: Nimiq.Address;
+        address: string;
     }
 }
 
@@ -79,7 +79,7 @@ declare module 'vue-components/src/components/AmountWithDetails.vue' {
 declare module 'vue-components/src/components/Contact.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class Contact extends Vue {
-        address: Nimiq.Address;
+        address: string;
         label: string;
         showOptions: boolean;
     }
@@ -89,7 +89,7 @@ declare module 'vue-components/src/components/ContactList.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class ContactList extends Vue {
         contacts: Array<{
-            address: Nimiq.Address;
+            address: string;
             label: string;
         }>;
     }
@@ -98,7 +98,9 @@ declare module 'vue-components/src/components/ContactList.vue' {
 declare module 'vue-components/src/components/Identicon.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class Identicon extends Vue {
-        address: Nimiq.Address;
+        static formatAddress(str: string): string;
+        static isUserFriendlyAddress(str: string): any;
+        address: string;
     }
 }
 
