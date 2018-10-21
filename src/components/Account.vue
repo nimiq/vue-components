@@ -72,6 +72,7 @@
     .label {
         margin-bottom: 0.375em;
         white-space: nowrap;
+        overflow: hidden;
         text-overflow: ellipsis;
     }
 
