@@ -723,17 +723,6 @@ module.exports = function (Constructor, NAME, next) {
 
 /***/ }),
 
-/***/ "4290":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_lib_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Account_vue_vue_type_style_index_0_id_46ee3628_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("9251");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_lib_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Account_vue_vue_type_style_index_0_id_46ee3628_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_lib_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Account_vue_vue_type_style_index_0_id_46ee3628_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
- /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_lib_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Account_vue_vue_type_style_index_0_id_46ee3628_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
 /***/ "4443":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1594,13 +1583,6 @@ exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
 
 /***/ }),
 
-/***/ "9251":
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-
 /***/ "925e":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2062,6 +2044,17 @@ module.exports = function (it) {
 
 /***/ }),
 
+/***/ "cbde":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_lib_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Account_vue_vue_type_style_index_0_id_782fee4b_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("e5e9");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_lib_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Account_vue_vue_type_style_index_0_id_782fee4b_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_lib_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Account_vue_vue_type_style_index_0_id_782fee4b_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+ /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_lib_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Account_vue_vue_type_style_index_0_id_782fee4b_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
 /***/ "ce10":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2202,6 +2195,13 @@ module.exports = (
 
 /***/ }),
 
+/***/ "e5e9":
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
 /***/ "ed20":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2249,12 +2249,12 @@ __webpack_require__.r(__webpack_exports__);
 // EXTERNAL MODULE: ./node_modules/@vue/cli-service/lib/commands/build/setPublicPath.js
 var setPublicPath = __webpack_require__("1eb2");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"/home/soeren/nimiq/vue-components/node_modules/.cache/vue-loader","cacheIdentifier":"8bed1970-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Account.vue?vue&type=template&id=46ee3628&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"/home/soeren/nimiq/vue-components/node_modules/.cache/vue-loader","cacheIdentifier":"8bed1970-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Account.vue?vue&type=template&id=782fee4b&scoped=true&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"account"},[_c('Identicon',{attrs:{"address":_vm.address}}),_c('div',{staticClass:"account-description"},[_c('div',{staticClass:"label-and-balance"},[(!_vm.editable)?_c('div',{staticClass:"label"},[_vm._v(_vm._s(_vm.label))]):_c('div',{staticClass:"label"},[_c('LabelInput',{attrs:{"value":_vm.label},on:{"changed":_vm.changed}})],1),(_vm.balance || _vm.balance === 0)?_c('div',{staticClass:"balance"},[_c('Amount',{attrs:{"amount":_vm.balance,"decimals":2}})],1):_vm._e(),(!_vm.balance && _vm.balance !== 0)?_c('div',{staticClass:"balance balance-loading"}):_vm._e()]),_c('div',{staticClass:"address"},[_vm._v(_vm._s(_vm.userFriendlyAddress))])])],1)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Account.vue?vue&type=template&id=46ee3628&scoped=true&
+// CONCATENATED MODULE: ./src/components/Account.vue?vue&type=template&id=782fee4b&scoped=true&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.number.constructor.js
 var es6_number_constructor = __webpack_require__("c5f6");
@@ -3035,8 +3035,8 @@ Accountvue_type_script_lang_ts_Account = __decorate([Object(external_vue_propert
 /* harmony default export */ var Accountvue_type_script_lang_ts_ = (Accountvue_type_script_lang_ts_Account);
 // CONCATENATED MODULE: ./src/components/Account.vue?vue&type=script&lang=ts&
  /* harmony default export */ var components_Accountvue_type_script_lang_ts_ = (Accountvue_type_script_lang_ts_); 
-// EXTERNAL MODULE: ./src/components/Account.vue?vue&type=style&index=0&id=46ee3628&scoped=true&lang=css&
-var Accountvue_type_style_index_0_id_46ee3628_scoped_true_lang_css_ = __webpack_require__("4290");
+// EXTERNAL MODULE: ./src/components/Account.vue?vue&type=style&index=0&id=782fee4b&scoped=true&lang=css&
+var Accountvue_type_style_index_0_id_782fee4b_scoped_true_lang_css_ = __webpack_require__("cbde");
 
 // CONCATENATED MODULE: ./src/components/Account.vue
 
@@ -3053,7 +3053,7 @@ var Account_component = normalizeComponent(
   staticRenderFns,
   false,
   null,
-  "46ee3628",
+  "782fee4b",
   null
   
 )
