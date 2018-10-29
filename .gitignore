@@ -1,6 +1,8 @@
 .DS_Store
 node_modules
-dist
+dist/*
+!dist/NimiqVueComponents*
+!dist/img
 
 # local env files
 .env.local
