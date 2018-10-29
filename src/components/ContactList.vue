@@ -70,7 +70,7 @@ import NewContact from './NewContact.vue';
         // tslint:disable-next-line no-empty
         private notification(msg: string, type?: string) {}
 
-        private filteredContacts() {
+        private get filteredContacts() {
             const searchTerm = this.searchTerm.trim().toLowerCase();
 
             if (!searchTerm) return this.contacts;
