@@ -9,7 +9,8 @@
             <span v-if="isAddingNewContact">New contact:</span>
             <NewContact
                     v-if="isAddingNewContact"
-                    :abort-action="abortNewContact"
+                    @abort="abortNewContact"
+                    @set="setContact"
                     ref="newContact"
             />
             <Contact
@@ -17,6 +18,7 @@
                     :address="contact.address"
                     :label="contact.label"
                     :show-options="isManaging"
+                    :abort-trigger="abortTrigger"
                     @change="changeContact"
                     @delete="deleteContact"
                     :key="contact.address"
@@ -49,16 +51,19 @@
         private searchTerm: string = '';
         private isManaging: boolean = false;
         private isAddingNewContact: boolean = false;
+        private abortTrigger: number = 0;
 
         @Emit()
-        // tslint:disable-next-line
-        private setContact(label: string, address: string) {
-        }
+        // tslint:disable-next-line no-empty
+        private setContact(label: string, address: string) {}
 
         @Emit()
-        // tslint:disable-next-line
-        private removeContact(address: string) {
-        }
+        // tslint:disable-next-line no-empty
+        private removeContact(address: string) {}
+
+        @Emit()
+        // tslint:disable-next-line no-empty
+        private notification(msg: string, type?: string) {}
 
         private filteredContacts() {
             const searchTerm = this.searchTerm.trim().toLowerCase();
@@ -77,6 +82,7 @@
         private reset() {
             this.isManaging = false;
             this.isAddingNewContact = false;
+            this.abortTrigger += 1;
             this.clearSearch();
         }
 
@@ -112,8 +118,7 @@
         }
 
         private export() {
-            /* TODO
-            const text = JSON.stringify(Object.values(this.contacts));
+            const text = JSON.stringify(this.contacts);
 
             // From https://stackoverflow.com/a/18197341/4204380
             const element = document.createElement('a');
@@ -123,40 +128,38 @@
             document.body.appendChild(element);
             element.click();
             document.body.removeChild(element);
-            */
         }
 
         private import() {
-            // TODO this.$refs.importLabel.click();
+            (this.$refs.importLabel as HTMLLabelElement).click();
         }
 
         private loadFile(event: Event) {
-            /* TODO
-            const file = event.target.files[0];
+            const fileList = (event.target as HTMLInputElement).files;
+            if (!fileList) return;
+            const file = fileList[0];
             if (!file) return;
 
             const reader = new FileReader();
-            reader.onload = (e) => this.readFile(e.target.result);
+            reader.onload = (e) => this.readFile(e.target!.result);
             reader.readAsText(file);
-            */
         }
 
         private readFile(data: any) {
-            /* TODO
             // Reset file input
-            this.$refs.importInput.value = '';
+            (this.$refs.importInput as HTMLInputElement).value = '';
 
             let importedContacts = [];
             try {
                 importedContacts = JSON.parse(data);
             } catch (e) {
-                this.$toast.error('Cannot import file, wrong format.');
+                this.notification('Cannot import file, wrong format.', 'error');
                 return;
             }
 
             // Make sure the input is a non-empty array
             if (!importedContacts.length) {
-                this.$toast.error('Cannot import file, wrong format.');
+                this.notification('Cannot import file, wrong format.', 'error');
                 return;
             }
 
@@ -174,11 +177,10 @@
                     }
                 }
 
-                this.actions.setContact(newContact.label, newContact.address);
+                this.setContact(newContact.label, newContact.address);
             }
 
-            this.$toast.success('Contact import finished.');
-            */
+            this.notification('Contact import finished.', 'success');
         }
     }
 </script>
