@@ -19,6 +19,7 @@
                     :label="contact.label"
                     :show-options="isManaging"
                     :abort-trigger="abortTrigger"
+                    @select="selectContact"
                     @change="changeContact"
                     @delete="deleteContact"
                     :key="contact.address"
@@ -40,11 +41,11 @@
 </template>
 
 <script lang="ts">
-    import {Component, Emit, Prop, Vue} from 'vue-property-decorator';
-    import Contact from './Contact.vue';
-    import NewContact from './NewContact.vue';
+import {Component, Emit, Prop, Vue} from 'vue-property-decorator';
+import Contact from './Contact.vue';
+import NewContact from './NewContact.vue';
 
-    @Component({components: {Contact, NewContact}})
+@Component({components: {Contact, NewContact}})
     export default class ContactList extends Vue {
         @Prop(Array) public contacts!: Array<{ address: string, label: string }>;
 
@@ -52,6 +53,10 @@
         private isManaging: boolean = false;
         private isAddingNewContact: boolean = false;
         private abortTrigger: number = 0;
+
+        @Emit()
+        // tslint:disable-next-line no-empty
+        private selectContact(address: string) {}
 
         @Emit()
         // tslint:disable-next-line no-empty
