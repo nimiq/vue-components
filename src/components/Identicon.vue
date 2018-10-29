@@ -22,7 +22,6 @@ export default class Identicon extends Vue {
     }
 
     public static isUserFriendlyAddress(str: string) {
-        console.log(str, ValidationUtils.isValidAddress(str));
         return ValidationUtils.isValidAddress(str);
     }
 
