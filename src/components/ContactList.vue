@@ -141,7 +141,7 @@
             if (!file) return;
 
             const reader = new FileReader();
-            reader.onload = (e) => this.readFile(e.target!.result);
+            reader.onload = (e) => this.readFile((e.target as FileReader).result);
             reader.readAsText(file);
         }
 
