@@ -38,14 +38,12 @@
         }
 
         @Emit()
-        // tslint:disable-next-line
-        private setContactAction(label: string, address: string) {
-        }
+        // tslint:disable-next-line no-empty
+        private set(label: string, address: string) {}
 
         @Emit()
-        // tslint:disable-next-line
-        private abortAction() {
-        }
+        // tslint:disable-next-line no-empty
+        private abort() {}
 
         private isInputValid() {
             return this.workingLabel && ValidationUtils.isValidAddress(this.workingAddress);
@@ -53,15 +51,11 @@
 
         private save() {
             // Update or set contact info
-            this.setContactAction(this.workingLabel, this.workingAddress);
+            this.set(this.workingLabel, this.workingAddress);
 
             // TODO: this.$toast.success('Contact saved.');
 
             this.edit();
-        }
-
-        private abort() {
-            this.abortAction();
         }
     }
 </script>

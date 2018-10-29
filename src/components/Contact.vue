@@ -34,7 +34,7 @@
 </template>
 
 <script lang="ts">
-    import {Component, Prop, Vue} from 'vue-property-decorator';
+    import {Component, Prop, Watch, Vue} from 'vue-property-decorator';
     import Identicon from './Identicon.vue';
     import Address from './Address.vue';
 
@@ -44,7 +44,8 @@
     export default class Contact extends Vue {
         @Prop(String) public address!: string;
         @Prop(String) public label!: string;
-        @Prop(Boolean) public showOptions!: boolean;
+        @Prop(Boolean) public showOptions?: boolean;
+        @Prop(Number) public abortTrigger?: number;
 
         private isEditing: boolean = false;
         private workingLabel: string = '';
@@ -80,6 +81,7 @@
             this.abort();
         }
 
+        @Watch('abortTrigger')
         private abort() {
             this.isEditing = false;
         }
@@ -152,7 +154,7 @@
 
     .contact .bottom {
         text-align: right;
-        margin-top: calc(1.75 * var(--nimiq-size, 8px));
+        margin-top: calc(0.5 * var(--nimiq-size, 8px));
     }
 
     .contact .bottom button {
