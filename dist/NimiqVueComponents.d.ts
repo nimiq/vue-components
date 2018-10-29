@@ -2,28 +2,28 @@
 // Dependencies for this module:
 //   ../vue-property-decorator
 
-declare module 'vue-components' {
-    export { default as Account } from 'vue-components/src/components/Account.vue';
-    export { default as AccountList } from 'vue-components/src/components/AccountList.vue';
-    export { default as AccountSelector } from 'vue-components/src/components/AccountSelector.vue';
-    export { default as Address } from 'vue-components/src/components/Address.vue';
-    export { default as Amount } from 'vue-components/src/components/Amount.vue';
-    export { default as AmountWithDetails } from 'vue-components/src/components/AmountWithDetails.vue';
-    export { default as Contact } from 'vue-components/src/components/Contact.vue';
-    export { default as ContactList } from 'vue-components/src/components/ContactList.vue';
-    export { default as Identicon } from 'vue-components/src/components/Identicon.vue';
-    export { default as LabelInput } from 'vue-components/src/components/LabelInput.vue';
-    export { default as Login } from 'vue-components/src/components/Login.vue';
-    export { default as LoginList } from 'vue-components/src/components/LoginList.vue';
-    export { default as LoginSelector } from 'vue-components/src/components/LoginSelector.vue';
-    export { default as NewContact } from 'vue-components/src/components/NewContact.vue';
-    export { default as PageHeader } from 'vue-components/src/components/PageHeader.vue';
-    export { default as PageFooter } from 'vue-components/src/components/PageFooter.vue';
-    export { default as PaymentInfoLine } from 'vue-components/src/components/PaymentInfoLine.vue';
-    export { default as SmallPage } from 'vue-components/src/components/SmallPage.vue';
+declare module 'NimiqVueComponents' {
+    export { default as Account } from 'NimiqVueComponents/src/components/Account.vue';
+    export { default as AccountList } from 'NimiqVueComponents/src/components/AccountList.vue';
+    export { default as AccountSelector } from 'NimiqVueComponents/src/components/AccountSelector.vue';
+    export { default as Address } from 'NimiqVueComponents/src/components/Address.vue';
+    export { default as Amount } from 'NimiqVueComponents/src/components/Amount.vue';
+    export { default as AmountWithDetails } from 'NimiqVueComponents/src/components/AmountWithDetails.vue';
+    export { default as Contact } from 'NimiqVueComponents/src/components/Contact.vue';
+    export { default as ContactList } from 'NimiqVueComponents/src/components/ContactList.vue';
+    export { default as Identicon } from 'NimiqVueComponents/src/components/Identicon.vue';
+    export { default as LabelInput } from 'NimiqVueComponents/src/components/LabelInput.vue';
+    export { default as Login } from 'NimiqVueComponents/src/components/Login.vue';
+    export { default as LoginList } from 'NimiqVueComponents/src/components/LoginList.vue';
+    export { default as LoginSelector } from 'NimiqVueComponents/src/components/LoginSelector.vue';
+    export { default as NewContact } from 'NimiqVueComponents/src/components/NewContact.vue';
+    export { default as PageHeader } from 'NimiqVueComponents/src/components/PageHeader.vue';
+    export { default as PageFooter } from 'NimiqVueComponents/src/components/PageFooter.vue';
+    export { default as PaymentInfoLine } from 'NimiqVueComponents/src/components/PaymentInfoLine.vue';
+    export { default as SmallPage } from 'NimiqVueComponents/src/components/SmallPage.vue';
 }
 
-declare module 'vue-components/src/components/Account.vue' {
+declare module 'NimiqVueComponents/src/components/Account.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class Account extends Vue {
         address: string;
@@ -32,7 +32,7 @@ declare module 'vue-components/src/components/Account.vue' {
     }
 }
 
-declare module 'vue-components/src/components/AccountList.vue' {
+declare module 'NimiqVueComponents/src/components/AccountList.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class AccountList extends Vue {
         accounts: Array<{
@@ -43,20 +43,20 @@ declare module 'vue-components/src/components/AccountList.vue' {
     }
 }
 
-declare module 'vue-components/src/components/AccountSelector.vue' {
+declare module 'NimiqVueComponents/src/components/AccountSelector.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class AccountSelector extends Vue {
     }
 }
 
-declare module 'vue-components/src/components/Address.vue' {
+declare module 'NimiqVueComponents/src/components/Address.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class Address extends Vue {
         address: string;
     }
 }
 
-declare module 'vue-components/src/components/Amount.vue' {
+declare module 'NimiqVueComponents/src/components/Amount.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class Amount extends Vue {
         amount: number;
@@ -65,7 +65,7 @@ declare module 'vue-components/src/components/Amount.vue' {
     }
 }
 
-declare module 'vue-components/src/components/AmountWithDetails.vue' {
+declare module 'NimiqVueComponents/src/components/AmountWithDetails.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class AmountWithDetails extends Vue {
         amount: number;
@@ -76,16 +76,17 @@ declare module 'vue-components/src/components/AmountWithDetails.vue' {
     }
 }
 
-declare module 'vue-components/src/components/Contact.vue' {
+declare module 'NimiqVueComponents/src/components/Contact.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class Contact extends Vue {
         address: string;
         label: string;
-        showOptions: boolean;
+        showOptions?: boolean;
+        abortTrigger?: number;
     }
 }
 
-declare module 'vue-components/src/components/ContactList.vue' {
+declare module 'NimiqVueComponents/src/components/ContactList.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class ContactList extends Vue {
         contacts: Array<{
@@ -95,7 +96,7 @@ declare module 'vue-components/src/components/ContactList.vue' {
     }
 }
 
-declare module 'vue-components/src/components/Identicon.vue' {
+declare module 'NimiqVueComponents/src/components/Identicon.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class Identicon extends Vue {
         static formatAddress(str: string): string;
@@ -104,25 +105,25 @@ declare module 'vue-components/src/components/Identicon.vue' {
     }
 }
 
-declare module 'vue-components/src/components/LabelInput.vue' {
+declare module 'NimiqVueComponents/src/components/LabelInput.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class LabelInput extends Vue {
     }
 }
 
-declare module 'vue-components/src/components/Login.vue' {
+declare module 'NimiqVueComponents/src/components/Login.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class Login extends Vue {
     }
 }
 
-declare module 'vue-components/src/components/LoginList.vue' {
+declare module 'NimiqVueComponents/src/components/LoginList.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class LoginList extends Vue {
     }
 }
 
-declare module 'vue-components/src/components/LoginSelector.vue' {
+declare module 'NimiqVueComponents/src/components/LoginSelector.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class LoginSelector extends Vue {
         logins: Array<{
@@ -137,27 +138,27 @@ declare module 'vue-components/src/components/LoginSelector.vue' {
     }
 }
 
-declare module 'vue-components/src/components/NewContact.vue' {
+declare module 'NimiqVueComponents/src/components/NewContact.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class NewContact extends Vue {
         edit(): void;
     }
 }
 
-declare module 'vue-components/src/components/PageHeader.vue' {
+declare module 'NimiqVueComponents/src/components/PageHeader.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class PageHeader extends Vue {
         readonly progressSteps: any[];
     }
 }
 
-declare module 'vue-components/src/components/PageFooter.vue' {
+declare module 'NimiqVueComponents/src/components/PageFooter.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class PageFooter extends Vue {
     }
 }
 
-declare module 'vue-components/src/components/PaymentInfoLine.vue' {
+declare module 'NimiqVueComponents/src/components/PaymentInfoLine.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class PaymentInfoLine extends Vue {
         amount: number;
@@ -168,7 +169,7 @@ declare module 'vue-components/src/components/PaymentInfoLine.vue' {
     }
 }
 
-declare module 'vue-components/src/components/SmallPage.vue' {
+declare module 'NimiqVueComponents/src/components/SmallPage.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class SmallPage extends Vue {
     }
