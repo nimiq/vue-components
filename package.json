@@ -5,9 +5,12 @@
   "main": "dist/vue-components.common.js",
   "module": "dist/vue-components.umd.js",
   "types": "types/index.d.ts",
-  "files": ["dist/**/*","types/**/*"],
+  "files": [
+    "dist/**/*",
+    "types/**/*"
+  ],
   "scripts": {
-    "build": "vue-cli-service build --target lib --name vue-components src/main.ts; vue-cli-service bundle-dts --name vue-components",
+    "build": "vue-cli-service build --target lib --name NimiqVueComponents src/main.ts; vue-cli-service bundle-dts --name NimiqVueComponents",
     "lint": "vue-cli-service lint",
     "storybook": "start-storybook -p 6006 -c .storybook -s ."
   },
