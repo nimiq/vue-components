@@ -154,7 +154,7 @@
 
     .contact .bottom {
         text-align: right;
-        margin-top: calc(1.75 * var(--nimiq-size, 8px));
+        margin-top: calc(0.5 * var(--nimiq-size, 8px));
     }
 
     .contact .bottom button {
