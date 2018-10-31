@@ -9,7 +9,7 @@
                 <div class="balance" v-if="balance || balance === 0"><Amount :amount="balance" :decimals="2"/></div>
                 <div class="balance balance-loading" v-if="!balance && balance !== 0"></div>
             </div>
-            <div class="address">{{ userFriendlyAddress }}</div>
+            <div class="address">{{ formattedAddress }}</div>
         </div>
     </div>
 </template>
@@ -31,7 +31,7 @@
         // tslint:disable-next-line no-empty
         private changed(label: string) {}
 
-        private get userFriendlyAddress() {
+        private get formattedAddress() {
             return Identicon.formatAddress(this.address);
         }
     }
