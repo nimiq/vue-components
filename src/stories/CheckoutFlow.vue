@@ -1,7 +1,6 @@
 <template>
     <div>
-        <PaymentInfoLine style="color: white" :amount="199000" :networkFee="1000" :networkFeeEditable="false"
-                         origin="https://shop.nimiq.com"/>
+        <PaymentInfoLine :amount="199000" :networkFee="1000" :networkFeeEditable="false" origin="https://shop.nimiq.com"/>
         <small-page>
             <div class="visible-area">
                 <div class="multi-pages" :style="`transform: translate3d(-${(page - 1) * 100}%, 0, 0)`">

@@ -22,7 +22,7 @@ import CheckoutFlow from './CheckoutFlow.vue';
 
 function windowTemplate(slot) {
     return `
-        <div style="background-image: linear-gradient(55deg, #2462dc, #a83df6); padding: 128px; display: flex; flex-direction: column; justify-content: center; align-items: center; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 18px;">
+        <div style="background: #F4F4F5; padding: 128px; display: flex; flex-direction: column; justify-content: center; align-items: center; font-size: 18px;">
             ${slot}
         </div>
     `;
@@ -332,7 +332,7 @@ storiesOf('Pages/Payment', module)
                 };
             },
             template: windowTemplate(`
-<PaymentInfoLine style="color: white" :amount="199000" :networkFee="1000" :networkFeeEditable="false" origin="https://shop.nimiq.com"/>
+<PaymentInfoLine :amount="199000" :networkFee="1000" :networkFeeEditable="false" origin="https://shop.nimiq.com"/>
 <small-page>
     <AccountSelector @account-selected="accountSelected" @switch-login="switchLogin" :accounts="accounts" :loginId="loginId" :loginLabel="loginLabel" :loginType="loginType"/>
 </small-page>
@@ -369,7 +369,7 @@ storiesOf('Pages/Payment', module)
                 };
             },
             template: windowTemplate(`
-<PaymentInfoLine style="color: white" :amount="199000" :networkFee="1000" :networkFeeEditable="false" origin="https://shop.nimiq.com"/>
+<PaymentInfoLine :amount="199000" :networkFee="1000" :networkFeeEditable="false" origin="https://shop.nimiq.com"/>
 <small-page>
     <LoginSelector @login-selected="loginSelected" @add-login="addLogin" @back="back" :logins="logins"/>
 </small-page>
