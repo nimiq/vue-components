@@ -14,6 +14,7 @@ import Identicon from '../components/Identicon.vue';
 import LabelInput from '../components/LabelInput.vue';
 import Login from '../components/Login.vue';
 import LoginList from '../components/LoginList.vue';
+import LoginMenu from '../components/LoginMenu.vue';
 import LoginSelector from '../components/LoginSelector.vue';
 import PaymentInfoLine from '../components/PaymentInfoLine.vue';
 import SmallPage from '../components/SmallPage.vue';
@@ -248,6 +249,61 @@ storiesOf('Components', module)
                 };
             },
             template: `<LoginList @login-selected="loginSelected" :logins="logins"/>`
+        };
+    })
+    .add('LoginMenu', () => {
+        return {
+            components: {LoginMenu},
+            methods: {
+                loginSelected: action('login-selected'),
+                renameLogin: action('rename-login'),
+                exportLogin: action('export-login'),
+                logoutLogin: action('logout-login'),
+                create: action('create'),
+                login: action('login'),
+            },
+            data() {
+                return {
+                    activeLoginId: 'abcdef',
+                    logins: [
+                        {
+                            id: 'abcdef',
+                            label: 'Keyguard Wallet',
+                            addresses: new Map([['path1', {}], ['path2', {}], ['path3', {}], ['path4', {}], ['path5', {}]]),
+                            contracts: [],
+                            type: 1, // BIP39
+                        }, {
+                            id: 'vwxyz',
+                            label: 'Ledger Wallet',
+                            addresses: new Map([['path1', {}], ['path2', {}], ['path3', {}]]),
+                            contracts: [],
+                            type: 2, // LEDGER
+                        }, {
+                            id: 'legacy-01',
+                            label: 'Keyguard Wallet',
+                            addresses: new Map([['path1', {}]]),
+                            contracts: [],
+                            type: 0, // LEGACY
+                        }, {
+                            id: 'legacy-02',
+                            label: 'Keyguard Wallet',
+                            addresses: new Map([['path1', {}]]),
+                            contracts: [],
+                            type: 0, // LEGACY
+                        }
+                    ]
+                };
+            },
+            template: windowTemplate(`<LoginMenu
+                :logins="logins"
+                :active-login-id="activeLoginId"
+                @login-selected="loginSelected"
+                @rename-login="renameLogin"
+                @export-login="exportLogin"
+                @logout-login="logoutLogin"
+                @create="create"
+                @login="login"
+            />`)
         };
     })
     .add('LoginSelector', () => {
