@@ -1,3 +1,3 @@
-/// <reference path="../dist/vue-components.d.ts" />
-export * from 'vue-components';
+/// <reference path="../dist/NimiqVueComponents.d.ts" />
+export * from 'NimiqVueComponents';
 

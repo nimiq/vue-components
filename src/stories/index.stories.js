@@ -14,6 +14,7 @@ import Identicon from '../components/Identicon.vue';
 import LabelInput from '../components/LabelInput.vue';
 import Login from '../components/Login.vue';
 import LoginList from '../components/LoginList.vue';
+import LoginMenu from '../components/LoginMenu.vue';
 import LoginSelector from '../components/LoginSelector.vue';
 import PaymentInfoLine from '../components/PaymentInfoLine.vue';
 import SmallPage from '../components/SmallPage.vue';
@@ -22,7 +23,7 @@ import CheckoutFlow from './CheckoutFlow.vue';
 
 function windowTemplate(slot) {
     return `
-        <div style="background-image: linear-gradient(55deg, #2462dc, #a83df6); padding: 128px; display: flex; flex-direction: column; justify-content: center; align-items: center; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 18px;">
+        <div style="background: #F4F4F5; padding: 128px; display: flex; flex-direction: column; justify-content: center; align-items: center; font-size: 18px;">
             ${slot}
         </div>
     `;
@@ -250,6 +251,61 @@ storiesOf('Components', module)
             template: `<LoginList @login-selected="loginSelected" :logins="logins"/>`
         };
     })
+    .add('LoginMenu', () => {
+        return {
+            components: {LoginMenu},
+            methods: {
+                loginSelected: action('login-selected'),
+                renameLogin: action('rename-login'),
+                exportLogin: action('export-login'),
+                logoutLogin: action('logout-login'),
+                create: action('create'),
+                login: action('login'),
+            },
+            data() {
+                return {
+                    activeLoginId: 'abcdef',
+                    logins: [
+                        {
+                            id: 'abcdef',
+                            label: 'Keyguard Wallet',
+                            addresses: new Map([['path1', {}], ['path2', {}], ['path3', {}], ['path4', {}], ['path5', {}]]),
+                            contracts: [],
+                            type: 1, // BIP39
+                        }, {
+                            id: 'vwxyz',
+                            label: 'Ledger Wallet',
+                            addresses: new Map([['path1', {}], ['path2', {}], ['path3', {}]]),
+                            contracts: [],
+                            type: 2, // LEDGER
+                        }, {
+                            id: 'legacy-01',
+                            label: 'Keyguard Wallet',
+                            addresses: new Map([['path1', {}]]),
+                            contracts: [],
+                            type: 0, // LEGACY
+                        }, {
+                            id: 'legacy-02',
+                            label: 'Keyguard Wallet',
+                            addresses: new Map([['path1', {}]]),
+                            contracts: [],
+                            type: 0, // LEGACY
+                        }
+                    ]
+                };
+            },
+            template: windowTemplate(`<LoginMenu
+                :logins="logins"
+                :active-login-id="activeLoginId"
+                @login-selected="loginSelected"
+                @rename-login="renameLogin"
+                @export-login="exportLogin"
+                @logout-login="logoutLogin"
+                @create="create"
+                @login="login"
+            />`)
+        };
+    })
     .add('LoginSelector', () => {
         return {
             components: {LoginSelector},
@@ -332,7 +388,7 @@ storiesOf('Pages/Payment', module)
                 };
             },
             template: windowTemplate(`
-<PaymentInfoLine style="color: white" :amount="199000" :networkFee="1000" :networkFeeEditable="false" origin="https://shop.nimiq.com"/>
+<PaymentInfoLine :amount="199000" :networkFee="1000" :networkFeeEditable="false" origin="https://shop.nimiq.com"/>
 <small-page>
     <AccountSelector @account-selected="accountSelected" @switch-login="switchLogin" :accounts="accounts" :loginId="loginId" :loginLabel="loginLabel" :loginType="loginType"/>
 </small-page>
@@ -369,7 +425,7 @@ storiesOf('Pages/Payment', module)
                 };
             },
             template: windowTemplate(`
-<PaymentInfoLine style="color: white" :amount="199000" :networkFee="1000" :networkFeeEditable="false" origin="https://shop.nimiq.com"/>
+<PaymentInfoLine :amount="199000" :networkFee="1000" :networkFeeEditable="false" origin="https://shop.nimiq.com"/>
 <small-page>
     <LoginSelector @login-selected="loginSelected" @add-login="addLogin" @back="back" :logins="logins"/>
 </small-page>

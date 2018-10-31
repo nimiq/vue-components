@@ -37,19 +37,24 @@ export default class LoginSelector extends Vue {
 
     private get legacyAccounts() {
         const legacyLogins = this.logins.filter((login) => login.type === 0); // Filter legacy wallets
-        return legacyLogins.map((login) => ({
-            ...login.addresses.values().next().value,
-            loginId: login.id,
-        }));
+        return legacyLogins.map((login) => {
+            const addressInfo = login.addresses.values().next().value;
+            return {
+                label: addressInfo.label,
+                userFriendlyAddress: addressInfo.userFriendlyAddress,
+                balance: addressInfo.balance,
+                loginId: login.id,
+            };
+        });
     }
 
     @Emit()
     // tslint:disable-next-line no-empty
-    private loginSelected(address: string) {}
+    private loginSelected(loginId: string) {}
 
     @Emit()
     // tslint:disable-next-line no-empty
-    private accountSelected(address: string) {}
+    private accountSelected(loginId: string, address: string) {}
 
     @Emit()
     private addLogin() {
