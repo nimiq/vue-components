@@ -4,6 +4,7 @@
 
 declare module 'NimiqVueComponents' {
     export { default as ContactList } from 'NimiqVueComponents/src/components/ContactList.vue';
+    export { default as LoginMenu } from 'NimiqVueComponents/src/components/LoginMenu.vue';
 }
 
 declare module 'NimiqVueComponents/src/components/ContactList.vue' {
@@ -13,6 +14,12 @@ declare module 'NimiqVueComponents/src/components/ContactList.vue' {
             address: string;
             label: string;
         }>;
+    }
+}
+
+declare module 'NimiqVueComponents/src/components/LoginMenu.vue' {
+    import { Vue } from 'vue-property-decorator';
+    export default class LoginMenu extends Vue {
     }
 }
 
