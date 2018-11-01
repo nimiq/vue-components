@@ -15,6 +15,7 @@ declare module 'NimiqVueComponents' {
     export { default as LabelInput } from 'NimiqVueComponents/src/components/LabelInput.vue';
     export { default as Login } from 'NimiqVueComponents/src/components/Login.vue';
     export { default as LoginList } from 'NimiqVueComponents/src/components/LoginList.vue';
+    export { default as LoginMenu } from 'NimiqVueComponents/src/components/LoginMenu.vue';
     export { default as LoginSelector } from 'NimiqVueComponents/src/components/LoginSelector.vue';
     export { default as NewContact } from 'NimiqVueComponents/src/components/NewContact.vue';
     export { default as PageHeader } from 'NimiqVueComponents/src/components/PageHeader.vue';
@@ -120,6 +121,12 @@ declare module 'NimiqVueComponents/src/components/Login.vue' {
 declare module 'NimiqVueComponents/src/components/LoginList.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class LoginList extends Vue {
+    }
+}
+
+declare module 'NimiqVueComponents/src/components/LoginMenu.vue' {
+    import { Vue } from 'vue-property-decorator';
+    export default class LoginMenu extends Vue {
     }
 }
 
