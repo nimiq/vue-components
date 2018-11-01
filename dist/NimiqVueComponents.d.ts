@@ -13,6 +13,7 @@ declare module 'NimiqVueComponents' {
     export { default as ContactList } from 'NimiqVueComponents/src/components/ContactList.vue';
     export { default as Identicon } from 'NimiqVueComponents/src/components/Identicon.vue';
     export { default as LabelInput } from 'NimiqVueComponents/src/components/LabelInput.vue';
+    export { default as LoadingSpinner } from 'NimiqVueComponents/src/components/LoadingSpinner.vue';
     export { default as Login } from 'NimiqVueComponents/src/components/Login.vue';
     export { default as LoginList } from 'NimiqVueComponents/src/components/LoginList.vue';
     export { default as LoginMenu } from 'NimiqVueComponents/src/components/LoginMenu.vue';
@@ -109,6 +110,12 @@ declare module 'NimiqVueComponents/src/components/Identicon.vue' {
 declare module 'NimiqVueComponents/src/components/LabelInput.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class LabelInput extends Vue {
+    }
+}
+
+declare module 'NimiqVueComponents/src/components/LoadingSpinner.vue' {
+    import { Vue } from 'vue-property-decorator';
+    export default class LoadingSpinner extends Vue {
     }
 }
 
