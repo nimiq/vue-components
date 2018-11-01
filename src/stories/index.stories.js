@@ -18,6 +18,7 @@ import LoginMenu from '../components/LoginMenu.vue';
 import LoginSelector from '../components/LoginSelector.vue';
 import PaymentInfoLine from '../components/PaymentInfoLine.vue';
 import SmallPage from '../components/SmallPage.vue';
+import LoadingSpinner from '../components/LoadingSpinner.vue';
 
 import CheckoutFlow from './CheckoutFlow.vue';
 
@@ -74,7 +75,13 @@ storiesOf('Basic', module)
             },
             template: `<LabelInput :value="value" @changed="changed"/>`,
         };
-    });
+    })
+    .add('LoadingSpinner', () => {
+        return {
+            components: {LoadingSpinner},
+            template: `<LoadingSpinner />`,
+        };
+    });;
 
 storiesOf('Components', module)
     .addDecorator(withKnobs)
