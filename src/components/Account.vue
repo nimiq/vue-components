@@ -45,6 +45,7 @@
         align-items: center;
         padding: calc(1.5 * var(--nimiq-size, 8px)) calc(4 * var(--nimiq-size, 8px));
         box-sizing: border-box;
+        flex-shrink: 0;
     }
 
     .identicon {

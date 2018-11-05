@@ -21,5 +21,6 @@
         display: flex;
         flex-direction: column;
         border-radius: calc(1 * var(--nimiq-size, 8px));
+        flex-shrink: 0;
     }
 </style>
