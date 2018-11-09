@@ -12,12 +12,13 @@ import AmountWithDetails from '../components/AmountWithDetails.vue';
 import Contact from '../components/Contact.vue';
 import Identicon from '../components/Identicon.vue';
 import LabelInput from '../components/LabelInput.vue';
-import Login from '../components/Login.vue';
-import LoginList from '../components/LoginList.vue';
-import LoginMenu from '../components/LoginMenu.vue';
-import LoginSelector from '../components/LoginSelector.vue';
+import Wallet from '../components/Wallet.vue';
+import WalletList from '../components/WalletList.vue';
+import WalletMenu from '../components/WalletMenu.vue';
+import WalletSelector from '../components/WalletSelector.vue';
 import PaymentInfoLine from '../components/PaymentInfoLine.vue';
 import SmallPage from '../components/SmallPage.vue';
+import LoadingSpinner from '../components/LoadingSpinner.vue';
 
 import CheckoutFlow from './CheckoutFlow.vue';
 
@@ -74,7 +75,13 @@ storiesOf('Basic', module)
             },
             template: `<LabelInput :value="value" @changed="changed"/>`,
         };
-    });
+    })
+    .add('LoadingSpinner', () => {
+        return {
+            components: {LoadingSpinner},
+            template: `<LoadingSpinner />`,
+        };
+    });;
 
 storiesOf('Components', module)
     .addDecorator(withKnobs)
@@ -129,7 +136,7 @@ storiesOf('Components', module)
                     ]
                 };
             },
-            template: `<AccountList @account-selected="accountSelected" :accounts="accounts" loginId="helloworld1"/>`
+            template: `<AccountList @account-selected="accountSelected" :accounts="accounts" walletId="helloworld1"/>`
         };
     })
     .add('AccountSelector', () => {
@@ -137,9 +144,9 @@ storiesOf('Components', module)
             components: {AccountSelector},
             data() {
                 return {
-                    loginId: 'helloworld2',
-                    loginLabel: 'Keyguard Wallet',
-                    loginType: 1,
+                    walletId: 'helloworld2',
+                    walletLabel: 'Keyguard Wallet',
+                    walletType: 1,
                     accounts: [
                         {
                             userFriendlyAddress: 'NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM',
@@ -156,10 +163,10 @@ storiesOf('Components', module)
             },
             methods: {
                 accountSelected: action('account-selected'),
-                switchLogin: action('switch-login'),
+                switchWallet: action('switch-wallet'),
             },
-            template: `<AccountSelector @account-selected="accountSelected" @switch-login="switchLogin" :accounts="accounts" :loginId="loginId" :loginLabel
-            ="loginLabel" :loginType="loginType"/>`
+            template: `<AccountSelector @account-selected="accountSelected" @switch-wallet="switchWallet" :accounts="accounts" :walletId="walletId" :walletLabel
+            ="walletLabel" :walletType="walletType"/>`
         };
     })
     .add('Address', () => {
@@ -199,48 +206,48 @@ storiesOf('Components', module)
             template: `<Contact label="${label}" :address="address" :show-options="${showOptions}" @select="onSelect" @change="onChange" @delete="onDelete"/>`,
         };
     })
-    .add('Login', () => {
-        const label = text('label', 'Main Login');
+    .add('Wallet', () => {
+        const label = text('label', 'Main Wallet');
         const userFriendlyId = text('user-friendly-id', 'funny giraffe');
         const id = text('id', 'abc');
         return {
-            components: {Login},
+            components: {Wallet},
             data() {
                 return {
                     id: 'abcdef',
                     label: 'Keyguard Wallet',
-                    addresses: new Map([['path1', {}], ['path2', {}], ['path3', {}], ['path4', {}], ['path5', {}]]),
+                    accounts: new Map([['path1', {}], ['path2', {}], ['path3', {}], ['path4', {}], ['path5', {}]]),
                     contracts: [],
                     type: 1, // BIP39
                     // userFriendlyId: 'funny giraffe',
                 };
             },
-            template: `<Login :id="id"
+            template: `<Wallet :id="id"
                               :label="label"
-                              :numberAccounts="addresses.size + contracts.length"
+                              :numberAccounts="accounts.size + contracts.length"
                               :type="type"/>`
         };
     })
-    .add('LoginList', () => {
+    .add('WalletList', () => {
         return {
-            components: {LoginList},
+            components: {WalletList},
             methods: {
-                loginSelected: action('login-selected'),
+                walletSelected: action('wallet-selected'),
             },
             data() {
                 return {
-                    logins: [
+                    wallets: [
                         {
                             id: 'abcdef',
                             label: 'Keyguard Wallet',
-                            addresses: new Map([['path1', {}], ['path2', {}], ['path3', {}], ['path4', {}], ['path5', {}]]),
+                            accounts: new Map([['path1', {}], ['path2', {}], ['path3', {}], ['path4', {}], ['path5', {}]]),
                             contracts: [],
                             type: 1, // BIP39
                             // userFriendlyId: 'funny giraffe',
                         }, {
                             id: 'vwxyz',
                             label: 'Ledger Wallet',
-                            addresses: new Map([['path1', {}], ['path2', {}], ['path3', {}]]),
+                            accounts: new Map([['path1', {}], ['path2', {}], ['path3', {}]]),
                             contracts: [],
                             type: 2, // LEDGER
                             // userFriendlyId: 'black panther',
@@ -248,86 +255,86 @@ storiesOf('Components', module)
                     ]
                 };
             },
-            template: `<LoginList @login-selected="loginSelected" :logins="logins"/>`
+            template: `<WalletList @wallet-selected="walletSelected" :wallets="wallets"/>`
         };
     })
-    .add('LoginMenu', () => {
+    .add('WalletMenu', () => {
         return {
-            components: {LoginMenu},
+            components: {WalletMenu},
             methods: {
-                loginSelected: action('login-selected'),
-                renameLogin: action('rename-login'),
-                exportLogin: action('export-login'),
-                logoutLogin: action('logout-login'),
+                walletSelected: action('wallet-selected'),
+                renameWallet: action('rename-wallet'),
+                exportWallet: action('export-wallet'),
+                logoutWallet: action('logout-wallet'),
                 create: action('create'),
                 login: action('login'),
             },
             data() {
                 return {
-                    activeLoginId: 'abcdef',
-                    logins: [
+                    activeWalletId: 'abcdef',
+                    wallets: [
                         {
                             id: 'abcdef',
                             label: 'Keyguard Wallet',
-                            addresses: new Map([['path1', {}], ['path2', {}], ['path3', {}], ['path4', {}], ['path5', {}]]),
+                            accounts: new Map([['path1', {}], ['path2', {}], ['path3', {}], ['path4', {}], ['path5', {}]]),
                             contracts: [],
                             type: 1, // BIP39
                         }, {
                             id: 'vwxyz',
                             label: 'Ledger Wallet',
-                            addresses: new Map([['path1', {}], ['path2', {}], ['path3', {}]]),
+                            accounts: new Map([['path1', {}], ['path2', {}], ['path3', {}]]),
                             contracts: [],
                             type: 2, // LEDGER
                         }, {
                             id: 'legacy-01',
                             label: 'Keyguard Wallet',
-                            addresses: new Map([['path1', {}]]),
+                            accounts: new Map([['path1', {}]]),
                             contracts: [],
                             type: 0, // LEGACY
                         }, {
                             id: 'legacy-02',
                             label: 'Keyguard Wallet',
-                            addresses: new Map([['path1', {}]]),
+                            accounts: new Map([['path1', {}]]),
                             contracts: [],
                             type: 0, // LEGACY
                         }
                     ]
                 };
             },
-            template: windowTemplate(`<LoginMenu
-                :logins="logins"
-                :active-login-id="activeLoginId"
-                @login-selected="loginSelected"
-                @rename-login="renameLogin"
-                @export-login="exportLogin"
-                @logout-login="logoutLogin"
+            template: windowTemplate(`<WalletMenu
+                :wallets="wallets"
+                :active-wallet-id="activeWalletId"
+                @wallet-selected="walletSelected"
+                @rename-wallet="renameWallet"
+                @export-wallet="exportWallet"
+                @logout-wallet="logoutWallet"
                 @create="create"
                 @login="login"
             />`)
         };
     })
-    .add('LoginSelector', () => {
+    .add('WalletSelector', () => {
         return {
-            components: {LoginSelector},
+            components: {WalletSelector},
             methods: {
-                loginSelected: action('login-selected'),
-                addLogin: action('add-login'),
+                walletSelected: action('wallet-selected'),
+                addWallet: action('add-wallet'),
                 back: action('back'),
             },
             data() {
                 return {
-                    logins: [
+                    wallets: [
                         {
                             id: 'abcdef',
                             label: 'Keyguard Wallet',
-                            addresses: new Map([['path1', {}], ['path2', {}], ['path3', {}], ['path4', {}], ['path5', {}]]),
+                            accounts: new Map([['path1', {}], ['path2', {}], ['path3', {}], ['path4', {}], ['path5', {}]]),
                             contracts: [],
                             type: 1, // BIP39
                             // userFriendlyId: 'funny giraffe',
                         }, {
                             id: 'vwxyz',
                             label: 'Ledger Wallet',
-                            addresses: new Map([['path1', {}], ['path2', {}], ['path3', {}]]),
+                            accounts: new Map([['path1', {}], ['path2', {}], ['path3', {}]]),
                             contracts: [],
                             type: 2, // LEDGER
                             // userFriendlyId: 'black panther',
@@ -335,7 +342,7 @@ storiesOf('Components', module)
                     ]
                 };
             },
-            template: `<LoginSelector @login-selected="loginSelected" @add-login="addLogin" @back="back" :logins="logins"/>`
+            template: `<WalletSelector @wallet-selected="walletSelected" @add-wallet="addWallet" @back="back" :wallets="wallets"/>`
         };
     })
     .add('PaymentInfoLine', () => {
@@ -366,13 +373,14 @@ storiesOf('Pages/Payment', module)
             components: {AccountSelector, PaymentInfoLine, SmallPage},
             methods: {
                 accountSelected: action('account-selected'),
-                switchLogin: action('switch-login')
+                switchWallet: action('switch-wallet'),
+                back: action('back'),
             },
             data() {
                 return {
-                    loginId: 'helloworld3',
-                    loginLabel: 'Keyguard Wallet',
-                    loginType: 1,
+                    walletId: 'helloworld3',
+                    walletLabel: 'Keyguard Wallet',
+                    walletType: 1,
                     accounts: [
                         {
                             userFriendlyAddress: 'NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM',
@@ -390,33 +398,33 @@ storiesOf('Pages/Payment', module)
             template: windowTemplate(`
 <PaymentInfoLine :amount="199000" :networkFee="1000" :networkFeeEditable="false" origin="https://shop.nimiq.com"/>
 <small-page>
-    <AccountSelector @account-selected="accountSelected" @switch-login="switchLogin" :accounts="accounts" :loginId="loginId" :loginLabel="loginLabel" :loginType="loginType"/>
+    <AccountSelector @account-selected="accountSelected" @switch-wallet="switchWallet" @back="back" :accounts="accounts" :walletId="walletId" :walletLabel="walletLabel" :walletType="walletType"/>
 </small-page>
 `),
         };
     })
-    .add('LoginSelector', () => {
+    .add('WalletSelector', () => {
         return {
-            components: {LoginSelector, PaymentInfoLine, SmallPage},
+            components: {WalletSelector, PaymentInfoLine, SmallPage},
             methods: {
-                loginSelected: action('login-selected'),
-                addLogin: action('add-login'),
+                walletSelected: action('wallet-selected'),
+                addWallet: action('add-wallet'),
                 back: action('back'),
             },
             data() {
                 return {
-                    logins: [
+                    wallets: [
                         {
                             id: 'abcdef',
                             label: 'Keyguard Wallet',
-                            addresses: new Map([['path1', {}], ['path2', {}], ['path3', {}], ['path4', {}], ['path5', {}]]),
+                            accounts: new Map([['path1', {}], ['path2', {}], ['path3', {}], ['path4', {}], ['path5', {}]]),
                             contracts: [],
                             type: 1, // BIP39
                             // userFriendlyId: 'funny giraffe',
                         }, {
                             id: 'vwxyz',
                             label: 'Ledger Wallet',
-                            addresses: new Map([['path1', {}], ['path2', {}], ['path3', {}]]),
+                            accounts: new Map([['path1', {}], ['path2', {}], ['path3', {}]]),
                             contracts: [],
                             type: 2, // LEDGER
                             // userFriendlyId: 'black panther',
@@ -427,7 +435,7 @@ storiesOf('Pages/Payment', module)
             template: windowTemplate(`
 <PaymentInfoLine :amount="199000" :networkFee="1000" :networkFeeEditable="false" origin="https://shop.nimiq.com"/>
 <small-page>
-    <LoginSelector @login-selected="loginSelected" @add-login="addLogin" @back="back" :logins="logins"/>
+    <WalletSelector @wallet-selected="walletSelected" @add-wallet="addWallet" @back="back" :wallets="wallets"/>
 </small-page>
 `),
         };
@@ -436,17 +444,17 @@ storiesOf('Pages/Payment', module)
         return {
             components: {CheckoutFlow},
             methods: {
-                addLogin: action('add-login'),
+                addWallet: action('add-wallet'),
                 accountSelected: action('account-selected'),
                 back: action('back'),
             },
             data() {
                 return {
-                    logins: [
+                    wallets: [
                         {
                             id: 'legacy-01',
                             label: 'Keyguard Wallet',
-                            addresses: new Map([
+                            accounts: new Map([
                                 ['NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM', {
                                     userFriendlyAddress: 'NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM',
                                     label: 'Standard Account',
@@ -460,7 +468,7 @@ storiesOf('Pages/Payment', module)
                         {
                             id: 'abcdef',
                             label: 'Keyguard Wallet',
-                            addresses: new Map([
+                            accounts: new Map([
                                 ['NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM', {
                                     userFriendlyAddress: 'NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM',
                                     label: 'Standard Account',
@@ -478,7 +486,7 @@ storiesOf('Pages/Payment', module)
                         }, {
                             id: 'vwxyz',
                             label: 'Ledger Wallet',
-                            addresses: new Map([
+                            accounts: new Map([
                                 ['NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM', {
                                     userFriendlyAddress: 'NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM',
                                     label: 'Standard Account',
@@ -498,7 +506,7 @@ storiesOf('Pages/Payment', module)
                 };
             },
             template: windowTemplate(`
-<CheckoutFlow :logins="logins" @account-selected="accountSelected" @add-login="addLogin" @back="back"/>
+<CheckoutFlow :wallets="wallets" @account-selected="accountSelected" @add-wallet="addWallet" @back="back"/>
 `),
         };
     });

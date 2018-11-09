@@ -1,16 +1,16 @@
 <template>
-    <div class="login-selector">
+    <div class="wallet-selector">
         <PageHeader back-arrow @back="$emit('back')">
             {{ title }}
         </PageHeader>
 
         <div class="page-body">
-            <LoginList :logins="walletLogins" @login-selected="loginSelected" show-arrows/>
+            <WalletList :wallets="walletWallets" @wallet-selected="walletSelected" show-arrows/>
 
             <AccountList v-if="legacyAccounts.length > 0" :accounts="legacyAccounts" @account-selected="accountSelected"/>
         </div>
 
-        <PageFooter v-if="showAddLogin" @click.native="addLogin">
+        <PageFooter v-if="showAddWallet" @click.native="addWallet">
             <div class="icon-plus-circle"></div>
             <div>Add Wallet</div>
         </PageFooter>
@@ -19,52 +19,52 @@
 
 <script lang="ts">
 import {Component, Emit, Prop, Vue} from 'vue-property-decorator';
-import LoginList from './LoginList.vue';
+import WalletList from './WalletList.vue';
 import AccountList from './AccountList.vue';
 import PageHeader from './PageHeader.vue';
 import PageFooter from './PageFooter.vue';
 
-@Component({components: {LoginList, AccountList, PageHeader, PageFooter}})
-export default class LoginSelector extends Vue {
-    @Prop(Array) public logins!:
-        Array<{ id: string, label: string, addresses: Map<string, any>, contracts: object[], type: number }>;
+@Component({components: {WalletList, AccountList, PageHeader, PageFooter}})
+export default class WalletSelector extends Vue {
+    @Prop(Array) public wallets!:
+        Array<{ id: string, label: string, accounts: Map<string, any>, contracts: object[], type: number }>;
     @Prop({type: String, default: 'Select Wallet'}) public title!: string;
-    @Prop({type: Boolean, default: true}) public showAddLogin!: boolean;
+    @Prop({type: Boolean, default: true}) public showAddWallet!: boolean;
 
-    private get walletLogins() {
-        return this.logins.filter((login) => login.type !== 0); // Return only non-legacy wallets
+    private get walletWallets() {
+        return this.wallets.filter((wallet) => wallet.type !== 0); // Return only non-legacy wallets
     }
 
     private get legacyAccounts() {
-        const legacyLogins = this.logins.filter((login) => login.type === 0); // Filter legacy wallets
-        return legacyLogins.map((login) => {
-            const addressInfo = login.addresses.values().next().value;
+        const legacyWallets = this.wallets.filter((wallet) => wallet.type === 0); // Filter legacy wallets
+        return legacyWallets.map((wallet) => {
+            const addressInfo = wallet.accounts.values().next().value;
             return {
                 label: addressInfo.label,
                 userFriendlyAddress: addressInfo.userFriendlyAddress,
                 balance: addressInfo.balance,
-                loginId: login.id,
+                walletId: wallet.id,
             };
         });
     }
 
     @Emit()
     // tslint:disable-next-line no-empty
-    private loginSelected(loginId: string) {}
+    private walletSelected(walletId: string) {}
 
     @Emit()
     // tslint:disable-next-line no-empty
-    private accountSelected(loginId: string, address: string) {}
+    private accountSelected(walletId: string, address: string) {}
 
     @Emit()
-    private addLogin() {
-        console.log('adding-login, login-selector');
+    private addWallet() {
+        console.log('adding-wallet, wallet-selector');
     }
 }
 </script>
 
 <style scoped>
-    .login-selector {
+    .wallet-selector {
         display: flex;
         flex-direction: column;
         flex-grow: 1;
@@ -77,11 +77,11 @@ export default class LoginSelector extends Vue {
         overflow-y: auto;
     }
 
-    .login-selector >>> .account {
+    .wallet-selector >>> .account {
         padding-left: calc(3 * var(--nimiq-size, 8px));
     }
 
-    .login-selector >>> .account .identicon {
+    .wallet-selector >>> .account .identicon {
         margin-right: calc(1 * var(--nimiq-size, 8px));
     }
 

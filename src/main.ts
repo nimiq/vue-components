@@ -9,10 +9,11 @@
 export { default as ContactList } from './components/ContactList.vue';
 // export { default as Identicon } from './components/Identicon.vue';
 // export { default as LabelInput } from './components/LabelInput.vue';
-// export { default as Login } from './components/Login.vue';
-// export { default as LoginList } from './components/LoginList.vue';
-export { default as LoginMenu } from './components/LoginMenu.vue';
-// export { default as LoginSelector } from './components/LoginSelector.vue';
+// export { default as LoadingSpinner } from './components/LoadingSpinner.vue';
+// export { default as Wallet } from './components/Wallet.vue';
+// export { default as WalletList } from './components/WalletList.vue';
+export { default as WalletMenu } from './components/WalletMenu.vue';
+// export { default as WalletSelector } from './components/WalletSelector.vue';
 // export { default as NewContact } from './components/NewContact.vue';
 // export { default as PageHeader } from './components/PageHeader.vue';
 // export { default as PageFooter } from './components/PageFooter.vue';

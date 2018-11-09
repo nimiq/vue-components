@@ -38,6 +38,7 @@
         line-height: 1;
         letter-spacing: 0.1em;
         text-transform: uppercase;
+        flex-shrink: 0;
     }
 
     .amount {
