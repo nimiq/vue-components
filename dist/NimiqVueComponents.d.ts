@@ -6,19 +6,13 @@ declare module 'NimiqVueComponents' {
     export { default as Account } from 'NimiqVueComponents/src/components/Account.vue';
     export { default as AccountList } from 'NimiqVueComponents/src/components/AccountList.vue';
     export { default as AccountSelector } from 'NimiqVueComponents/src/components/AccountSelector.vue';
-    export { default as Address } from 'NimiqVueComponents/src/components/Address.vue';
     export { default as Amount } from 'NimiqVueComponents/src/components/Amount.vue';
-    export { default as AmountWithDetails } from 'NimiqVueComponents/src/components/AmountWithDetails.vue';
-    export { default as Contact } from 'NimiqVueComponents/src/components/Contact.vue';
-    export { default as ContactList } from 'NimiqVueComponents/src/components/ContactList.vue';
     export { default as Identicon } from 'NimiqVueComponents/src/components/Identicon.vue';
     export { default as LabelInput } from 'NimiqVueComponents/src/components/LabelInput.vue';
     export { default as LoadingSpinner } from 'NimiqVueComponents/src/components/LoadingSpinner.vue';
     export { default as Wallet } from 'NimiqVueComponents/src/components/Wallet.vue';
     export { default as WalletList } from 'NimiqVueComponents/src/components/WalletList.vue';
-    export { default as WalletMenu } from 'NimiqVueComponents/src/components/WalletMenu.vue';
     export { default as WalletSelector } from 'NimiqVueComponents/src/components/WalletSelector.vue';
-    export { default as NewContact } from 'NimiqVueComponents/src/components/NewContact.vue';
     export { default as PageHeader } from 'NimiqVueComponents/src/components/PageHeader.vue';
     export { default as PageFooter } from 'NimiqVueComponents/src/components/PageFooter.vue';
     export { default as PaymentInfoLine } from 'NimiqVueComponents/src/components/PaymentInfoLine.vue';
@@ -51,50 +45,12 @@ declare module 'NimiqVueComponents/src/components/AccountSelector.vue' {
     }
 }
 
-declare module 'NimiqVueComponents/src/components/Address.vue' {
-    import { Vue } from 'vue-property-decorator';
-    export default class Address extends Vue {
-        address: string;
-    }
-}
-
 declare module 'NimiqVueComponents/src/components/Amount.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class Amount extends Vue {
         amount: number;
         decimals: number;
         showApprox: boolean;
-    }
-}
-
-declare module 'NimiqVueComponents/src/components/AmountWithDetails.vue' {
-    import { Vue } from 'vue-property-decorator';
-    export default class AmountWithDetails extends Vue {
-        amount: number;
-        networkFee: number;
-        networkFeeEditable: boolean;
-        decimals: number;
-        toggleDetails(): void;
-    }
-}
-
-declare module 'NimiqVueComponents/src/components/Contact.vue' {
-    import { Vue } from 'vue-property-decorator';
-    export default class Contact extends Vue {
-        address: string;
-        label: string;
-        showOptions?: boolean;
-        abortTrigger?: number;
-    }
-}
-
-declare module 'NimiqVueComponents/src/components/ContactList.vue' {
-    import { Vue } from 'vue-property-decorator';
-    export default class ContactList extends Vue {
-        contacts: Array<{
-            address: string;
-            label: string;
-        }>;
     }
 }
 
@@ -131,12 +87,6 @@ declare module 'NimiqVueComponents/src/components/WalletList.vue' {
     }
 }
 
-declare module 'NimiqVueComponents/src/components/WalletMenu.vue' {
-    import { Vue } from 'vue-property-decorator';
-    export default class WalletMenu extends Vue {
-    }
-}
-
 declare module 'NimiqVueComponents/src/components/WalletSelector.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class WalletSelector extends Vue {
@@ -149,13 +99,6 @@ declare module 'NimiqVueComponents/src/components/WalletSelector.vue' {
         }>;
         title: string;
         showAddWallet: boolean;
-    }
-}
-
-declare module 'NimiqVueComponents/src/components/NewContact.vue' {
-    import { Vue } from 'vue-property-decorator';
-    export default class NewContact extends Vue {
-        edit(): void;
     }
 }
 
