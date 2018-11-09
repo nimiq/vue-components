@@ -4,20 +4,20 @@
         <small-page>
             <div class="visible-area">
                 <div class="multi-pages" :style="`transform: translate3d(-${(page - 1) * 100}%, 0, 0)`">
-                    <LoginSelector @login-selected="loginSelected"
+                    <WalletSelector @wallet-selected="walletSelected"
                                    @account-selected="accountSelected"
-                                   @add-login="addLogin"
+                                   @add-wallet="addWallet"
                                    @back="back"
-                                   :logins="logins"/>
+                                   :wallets="wallets"/>
                     <AccountSelector
                             @account-selected="accountSelected"
-                            @switch-login="switchLogin"
-                            @back="switchLogin"
+                            @switch-wallet="switchWallet"
+                            @back="switchWallet"
                             :accounts="currentAccounts"
-                            :loginId="currentLogin ? currentLogin.id : ''"
-                            :loginLabel="currentLogin ? currentLogin.label : ''"
-                            :loginType="currentLogin ? currentLogin.type : 0"
-                            :show-switch-login="false"/>
+                            :walletId="currentWallet ? currentWallet.id : ''"
+                            :walletLabel="currentWallet ? currentWallet.label : ''"
+                            :walletType="currentWallet ? currentWallet.type : 0"
+                            :show-switch-wallet="false"/>
                 </div>
             </div>
         </small-page>
@@ -26,31 +26,31 @@
 
 <script lang="ts">
 import {Component, Emit, Prop, Vue} from 'vue-property-decorator';
-import LoginSelector from '../components/LoginSelector.vue';
+import WalletSelector from '../components/WalletSelector.vue';
 import AccountSelector from '../components/AccountSelector.vue';
 import SmallPage from '../components/SmallPage.vue';
 import PaymentInfoLine from '../components/PaymentInfoLine.vue';
 
-@Component({components: {PaymentInfoLine, SmallPage, AccountSelector, LoginSelector}})
+@Component({components: {PaymentInfoLine, SmallPage, AccountSelector, WalletSelector}})
 export default class CheckoutFlow extends Vue {
-    @Prop(Array) private logins!:
-        Array<{ id: string, label: string, addresses: object[], contracts: object[], type: number }>;
-    @Prop(String) private preselectedLoginId!: string;
+    @Prop(Array) private wallets!:
+        Array<{ id: string, label: string, accounts: object[], contracts: object[], type: number }>;
+    @Prop(String) private preselectedWalletId!: string;
 
     private page: number = 1;
-    private selectedLoginId: string|null = null; // undefined is not reactive
+    private selectedWalletId: string|null = null; // undefined is not reactive
 
-    private get currentLogin() {
-        const loginId = this.selectedLoginId || this.preselectedLoginId || false;
-        if (!loginId) return undefined;
+    private get currentWallet() {
+        const walletId = this.selectedWalletId || this.preselectedWalletId || false;
+        if (!walletId) return undefined;
 
-        return this.logins.find((l) => l.id === loginId);
+        return this.wallets.find((l) => l.id === walletId);
     }
 
     private get currentAccounts() {
-        const login = this.currentLogin;
-        if (!login) return [];
-        return Array.from(login.addresses.values());
+        const wallet = this.currentWallet;
+        if (!wallet) return [];
+        return Array.from(wallet.accounts.values());
     }
 
     @Emit()
@@ -58,22 +58,22 @@ export default class CheckoutFlow extends Vue {
     private back() {}
 
     @Emit()
-    private loginSelected(loginId: string) {
-        this.selectedLoginId = loginId;
+    private walletSelected(walletId: string) {
+        this.selectedWalletId = walletId;
         this.page = 2;
     }
 
     @Emit()
-    private switchLogin() {
+    private switchWallet() {
         this.page = 1;
     }
 
     @Emit()
-    private addLogin() {
-        this.logins.push({
+    private addWallet() {
+        this.wallets.push({
             id: '123456',
             label: 'New Wallet',
-            addresses: [{}, {}],
+            accounts: [{}, {}],
             contracts: [],
             type: 1, // BIP39
             // userFriendlyId: 'black panther',
@@ -82,7 +82,7 @@ export default class CheckoutFlow extends Vue {
 
     @Emit()
     // tslint:disable-next-line no-empty
-    private accountSelected(loginId: string, address: string) {}
+    private accountSelected(walletId: string, address: string) {}
 }
 </script>
 
