@@ -1,6 +1,6 @@
 <template>
     <div class="account-list">
-        <div class="account-entry" v-for="account in accounts" @click="accountSelected(account.loginId || loginId, account.userFriendlyAddress)" :key="account.userFriendlyAddress">
+        <div class="account-entry" v-for="account in accounts" @click="accountSelected(account.walletId || walletId, account.userFriendlyAddress)" :key="account.userFriendlyAddress">
             <Account :address="account.userFriendlyAddress"
                      :label="account.label"
                      :balance="account.balance"
@@ -17,12 +17,12 @@
     @Component({components: {Account}})
     export default class AccountList extends Vue {
         @Prop(Array) public accounts!: Array<{ label: string, userFriendlyAddress: string, balance?: number }>;
-        @Prop(String) private loginId?: string;
+        @Prop(String) private walletId?: string;
         @Prop(Boolean) private editable?: boolean;
 
         @Emit()
         // tslint:disable-next-line no-empty
-        private accountSelected(loginId: string, address: string) {}
+        private accountSelected(walletId: string, address: string) {}
 
         @Emit()
         // tslint:disable-next-line no-empty
