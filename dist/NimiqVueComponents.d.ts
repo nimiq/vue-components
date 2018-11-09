@@ -14,10 +14,10 @@ declare module 'NimiqVueComponents' {
     export { default as Identicon } from 'NimiqVueComponents/src/components/Identicon.vue';
     export { default as LabelInput } from 'NimiqVueComponents/src/components/LabelInput.vue';
     export { default as LoadingSpinner } from 'NimiqVueComponents/src/components/LoadingSpinner.vue';
-    export { default as Login } from 'NimiqVueComponents/src/components/Login.vue';
-    export { default as LoginList } from 'NimiqVueComponents/src/components/LoginList.vue';
-    export { default as LoginMenu } from 'NimiqVueComponents/src/components/LoginMenu.vue';
-    export { default as LoginSelector } from 'NimiqVueComponents/src/components/LoginSelector.vue';
+    export { default as Wallet } from 'NimiqVueComponents/src/components/Wallet.vue';
+    export { default as WalletList } from 'NimiqVueComponents/src/components/WalletList.vue';
+    export { default as WalletMenu } from 'NimiqVueComponents/src/components/WalletMenu.vue';
+    export { default as WalletSelector } from 'NimiqVueComponents/src/components/WalletSelector.vue';
     export { default as NewContact } from 'NimiqVueComponents/src/components/NewContact.vue';
     export { default as PageHeader } from 'NimiqVueComponents/src/components/PageHeader.vue';
     export { default as PageFooter } from 'NimiqVueComponents/src/components/PageFooter.vue';
@@ -119,36 +119,36 @@ declare module 'NimiqVueComponents/src/components/LoadingSpinner.vue' {
     }
 }
 
-declare module 'NimiqVueComponents/src/components/Login.vue' {
+declare module 'NimiqVueComponents/src/components/Wallet.vue' {
     import { Vue } from 'vue-property-decorator';
-    export default class Login extends Vue {
+    export default class Wallet extends Vue {
     }
 }
 
-declare module 'NimiqVueComponents/src/components/LoginList.vue' {
+declare module 'NimiqVueComponents/src/components/WalletList.vue' {
     import { Vue } from 'vue-property-decorator';
-    export default class LoginList extends Vue {
+    export default class WalletList extends Vue {
     }
 }
 
-declare module 'NimiqVueComponents/src/components/LoginMenu.vue' {
+declare module 'NimiqVueComponents/src/components/WalletMenu.vue' {
     import { Vue } from 'vue-property-decorator';
-    export default class LoginMenu extends Vue {
+    export default class WalletMenu extends Vue {
     }
 }
 
-declare module 'NimiqVueComponents/src/components/LoginSelector.vue' {
+declare module 'NimiqVueComponents/src/components/WalletSelector.vue' {
     import { Vue } from 'vue-property-decorator';
-    export default class LoginSelector extends Vue {
-        logins: Array<{
+    export default class WalletSelector extends Vue {
+        wallets: Array<{
             id: string;
             label: string;
-            addresses: Map<string, any>;
+            accounts: Map<string, any>;
             contracts: object[];
             type: number;
         }>;
         title: string;
-        showAddLogin: boolean;
+        showAddWallet: boolean;
     }
 }
 
