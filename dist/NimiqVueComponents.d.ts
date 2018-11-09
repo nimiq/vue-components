@@ -4,7 +4,7 @@
 
 declare module 'NimiqVueComponents' {
     export { default as ContactList } from 'NimiqVueComponents/src/components/ContactList.vue';
-    export { default as LoginMenu } from 'NimiqVueComponents/src/components/LoginMenu.vue';
+    export { default as WalletMenu } from 'NimiqVueComponents/src/components/WalletMenu.vue';
 }
 
 declare module 'NimiqVueComponents/src/components/ContactList.vue' {
@@ -17,9 +17,9 @@ declare module 'NimiqVueComponents/src/components/ContactList.vue' {
     }
 }
 
-declare module 'NimiqVueComponents/src/components/LoginMenu.vue' {
+declare module 'NimiqVueComponents/src/components/WalletMenu.vue' {
     import { Vue } from 'vue-property-decorator';
-    export default class LoginMenu extends Vue {
+    export default class WalletMenu extends Vue {
     }
 }
 
