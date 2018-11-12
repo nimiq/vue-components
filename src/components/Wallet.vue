@@ -3,7 +3,10 @@
         <div class="wallet-icon" :class="walletIconClass"></div>
         <div class="wallet-description" v-if="label">
             <div class="label">{{ label }}</div>
-            <div class="number-accounts">{{numberAccounts}} Accounts</div>
+            <div class="details">
+                <span>{{numberAccounts}} Accounts</span>
+                <Amount v-if="balance !== undefined" :amount="balance" :decimals="0"/>
+            </div>
         </div>
         <div v-if="showArrow" class="icon-chevron-right"></div>
     </div>
@@ -11,13 +14,15 @@
 
 <script lang="ts">
     import { Component, Prop, Vue } from 'vue-property-decorator';
+    import Amount from './Amount.vue';
 
-    @Component
+    @Component({components: { Amount }})
     export default class Wallet extends Vue {
         @Prop(String) private id!: string;
         @Prop(String) private label?: string;
         @Prop(Number) private numberAccounts!: number;
         @Prop(Number) private type!: number;
+        @Prop(Number) private balance?: number;
         @Prop({type: Boolean, default: false}) private showArrow!: boolean;
 
         private get walletIconClass() {
@@ -70,9 +75,16 @@
         flex-grow: 1;
     }
 
-    .number-accounts {
+    .details {
         font-size: calc(1.75 * var(--nimiq-size, 8px));
         line-height: calc(2.5 * var(--nimiq-size, 8px));
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .amount {
+        color: #21BCA5;
     }
 
     .icon-chevron-right {
