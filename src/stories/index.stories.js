@@ -243,6 +243,7 @@ storiesOf('Components', module)
                             accounts: new Map([['path1', {}], ['path2', {}], ['path3', {}], ['path4', {}], ['path5', {}]]),
                             contracts: [],
                             type: 1, // BIP39
+                            balance: 101 * 1e5,
                             // userFriendlyId: 'funny giraffe',
                         }, {
                             id: 'vwxyz',
@@ -250,6 +251,7 @@ storiesOf('Components', module)
                             accounts: new Map([['path1', {}], ['path2', {}], ['path3', {}]]),
                             contracts: [],
                             type: 2, // LEDGER
+                            balance: 553452 * 1e5,
                             // userFriendlyId: 'black panther',
                         }
                     ]
@@ -279,24 +281,28 @@ storiesOf('Components', module)
                             accounts: new Map([['path1', {}], ['path2', {}], ['path3', {}], ['path4', {}], ['path5', {}]]),
                             contracts: [],
                             type: 1, // BIP39
+                            balance: 62345123 * 1e5,
                         }, {
                             id: 'vwxyz',
                             label: 'Ledger Wallet',
                             accounts: new Map([['path1', {}], ['path2', {}], ['path3', {}]]),
                             contracts: [],
                             type: 2, // LEDGER
+                            balance: 101 * 1e5,
                         }, {
                             id: 'legacy-01',
                             label: 'Keyguard Wallet',
                             accounts: new Map([['path1', {}]]),
                             contracts: [],
                             type: 0, // LEGACY
+                            balance: 1239 * 1e5,
                         }, {
                             id: 'legacy-02',
                             label: 'Keyguard Wallet',
                             accounts: new Map([['path1', {}]]),
                             contracts: [],
                             type: 0, // LEGACY
+                            balance: 123 * 1e5,
                         }
                     ]
                 };
