@@ -24,7 +24,7 @@ import CheckoutFlow from './CheckoutFlow.vue';
 
 function windowTemplate(slot) {
     return `
-        <div style="background: #F4F4F5; padding: 128px; display: flex; flex-direction: column; justify-content: center; align-items: center; font-size: 18px;">
+        <div style="background: #F4F4F5; padding: 64px; display: flex; flex-direction: column; justify-content: center; align-items: center; font-size: 18px;">
             ${slot}
         </div>
     `;
@@ -366,7 +366,7 @@ storiesOf('Components', module)
             components: {SmallPage},
             template: windowTemplate(`
 <small-page>
-    <div style="height: 20rem; padding: 2rem">Some text on a page</div>
+    <p>Some text on a page</p>
 </small-page>
 `),
         };
