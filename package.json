@@ -18,8 +18,9 @@
     "vue-property-decorator": "^7.0.0"
   },
   "devDependencies": {
-    "@nimiq/iqons": "https://github.com/nimiq/iqons.git#a3302e06b0a53b6daeb745d13dbfd930b304c791",
-    "@nimiq/secure-utils": "https://github.com/nimiq/secure-utils.git#3937c23c2703d5359eebe2c3bf7b3c9290b26100",
+    "@nimiq/iqons": "nimiq/iqons#a3302e06b0a53b6daeb745d13dbfd930b304c791",
+    "@nimiq/secure-utils": "nimiq/secure-utils#3937c23c2703d5359eebe2c3bf7b3c9290b26100",
+    "@nimiq/style": "nimiq/nimiq-style#next",
     "@storybook/addon-actions": "^4.0.0-alpha.14",
     "@storybook/addon-knobs": "^4.0.0-alpha.14",
     "@storybook/addon-links": "^4.0.0-alpha.14",

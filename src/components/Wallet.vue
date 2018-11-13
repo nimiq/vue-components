@@ -65,7 +65,7 @@
     }
 
     .label {
-        font-weight: 500;
+        font-weight: 600;
         font-size: calc(2.25 * var(--nimiq-size, 8px));
         line-height: calc(2.5 * var(--nimiq-size, 8px));
         margin-bottom: calc(0.375 * var(--nimiq-size, 8px));

@@ -1,5 +1,5 @@
 <template>
-    <div class="account">
+    <div class="account" :class="editable ? 'editable': ''">
         <Identicon :address="address"/>
         <div class="account-description">
             <div class="label-and-balance">
@@ -65,16 +65,28 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        font-weight: 500;
+        font-weight: 600;
         font-size: calc(2.25 * var(--nimiq-size, 8px));
         line-height: calc(2.5 * var(--nimiq-size, 8px));
+        margin-bottom: calc(0.375 * var(--nimiq-size, 8px));
+    }
+
+    .editable .label-and-balance {
+        margin-bottom: 0;
     }
 
     .label {
-        margin-bottom: 0.375em;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+    }
+
+    .label >>> input {
+        padding-bottom: calc(0.375 * var(--nimiq-size, 8px));
+    }
+
+    .label >>> .nq-icon {
+        margin-bottom: calc(0.375 * var(--nimiq-size, 8px));
     }
 
     .balance {
@@ -82,13 +94,14 @@
     }
 
     .address {
-        font-size: calc(1.5 * var(--nimiq-size, 8px));
-        line-height: calc(2.5 * var(--nimiq-size, 8px));
-        font-family: "Andale Mono", monospace;
+        font-size: calc(1.625 * var(--nimiq-size, 8px));
+        line-height: calc(2 * var(--nimiq-size, 8px));
+        font-family: "Fira Mono", "Andale Mono", monospace;
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow-x: hidden;
         word-spacing: -0.2em;
-        max-width: calc(38.5 * var(--nimiq-size, 8px));
+        max-width: 100%;
+        opacity: 0.7;
     }
 </style>
