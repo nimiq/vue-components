@@ -4,11 +4,11 @@
             {{ title }}
         </PageHeader>
 
-        <div class="page-body">
+        <PageBody>
             <WalletList :wallets="walletWallets" @wallet-selected="walletSelected" show-arrows/>
 
             <AccountList v-if="legacyAccounts.length > 0" :accounts="legacyAccounts" @account-selected="accountSelected"/>
-        </div>
+        </PageBody>
 
         <PageFooter v-if="showAddWallet" @click.native="addWallet">
             <div class="icon-plus-circle"></div>
@@ -22,9 +22,10 @@ import {Component, Emit, Prop, Vue} from 'vue-property-decorator';
 import WalletList from './WalletList.vue';
 import AccountList from './AccountList.vue';
 import PageHeader from './PageHeader.vue';
+import PageBody from './PageBody.vue';
 import PageFooter from './PageFooter.vue';
 
-@Component({components: {WalletList, AccountList, PageHeader, PageFooter}})
+@Component({components: {WalletList, AccountList, PageHeader, PageBody, PageFooter}})
 export default class WalletSelector extends Vue {
     @Prop(Array) public wallets!:
         Array<{ id: string, label: string, accounts: Map<string, any>, contracts: object[], type: number }>;
@@ -72,9 +73,7 @@ export default class WalletSelector extends Vue {
     }
 
     .page-body {
-        flex-grow: 1;
-        background: #fafafa;
-        overflow-y: auto;
+        padding: 0 !important;
     }
 
     .wallet-selector >>> .account {
@@ -93,7 +92,7 @@ export default class WalletSelector extends Vue {
         height: calc(4.25 * var(--nimiq-size, 8px));
         width: calc(4.25 * var(--nimiq-size, 8px));
         flex-shrink: 0;
-        margin-right: 2.5rem;
+        margin-right: calc(2 * var(--nimiq-size, 8px));
         background: lightgray;
         border-radius: 50%;
     }

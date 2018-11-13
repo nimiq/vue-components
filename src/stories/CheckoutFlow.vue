@@ -4,20 +4,21 @@
         <small-page>
             <div class="visible-area">
                 <div class="multi-pages" :style="`transform: translate3d(-${(page - 1) * 100}%, 0, 0)`">
-                    <WalletSelector @wallet-selected="walletSelected"
-                                   @account-selected="accountSelected"
-                                   @add-wallet="addWallet"
-                                   @back="back"
-                                   :wallets="wallets"/>
+                    <WalletSelector
+                        :wallets="wallets"
+                        @wallet-selected="walletSelected"
+                        @account-selected="accountSelected"
+                        @add-wallet="addWallet"
+                        @back="back"/>
                     <AccountSelector
-                            @account-selected="accountSelected"
-                            @switch-wallet="switchWallet"
-                            @back="switchWallet"
-                            :accounts="currentAccounts"
-                            :walletId="currentWallet ? currentWallet.id : ''"
-                            :walletLabel="currentWallet ? currentWallet.label : ''"
-                            :walletType="currentWallet ? currentWallet.type : 0"
-                            :show-switch-wallet="false"/>
+                        :accounts="currentAccounts"
+                        :walletId="currentWallet ? currentWallet.id : ''"
+                        :walletLabel="currentWallet ? currentWallet.label : ''"
+                        :walletType="currentWallet ? currentWallet.type : 0"
+                        :show-switch-wallet="false"
+                        @account-selected="accountSelected"
+                        @switch-wallet="switchWallet"
+                        @back="switchWallet"/>
                 </div>
             </div>
         </small-page>
@@ -34,7 +35,7 @@ import PaymentInfoLine from '../components/PaymentInfoLine.vue';
 @Component({components: {PaymentInfoLine, SmallPage, AccountSelector, WalletSelector}})
 export default class CheckoutFlow extends Vue {
     @Prop(Array) private wallets!:
-        Array<{ id: string, label: string, accounts: object[], contracts: object[], type: number }>;
+        Array<{ id: string, label: string, accounts: Map<string, any>, contracts: any[], type: number }>;
     @Prop(String) private preselectedWalletId!: string;
 
     private page: number = 1;
@@ -71,9 +72,9 @@ export default class CheckoutFlow extends Vue {
     @Emit()
     private addWallet() {
         this.wallets.push({
-            id: '123456',
+            id: '12345z-' + this.wallets.length,
             label: 'New Wallet',
-            accounts: [{}, {}],
+            accounts: new Map<string, any>([['1', {}], ['2', {}]]),
             contracts: [],
             type: 1, // BIP39
             // userFriendlyId: 'black panther',

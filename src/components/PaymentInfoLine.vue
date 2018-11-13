@@ -1,5 +1,5 @@
 <template>
-    <div class="info-line">
+    <div class="info-line nq-label">
         <div class="description">
             Payment to <span class="origin">{{ originDomain }}</span>
         </div>
@@ -26,19 +26,28 @@
 </script>
 
 <style scoped>
+    /** Nimiq Style **/
+    .nq-label {
+        font-size: calc(1.75 * var(--nimiq-size, 8px));
+        line-height: calc(1.5 * var(--nimiq-size, 8px));
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.107em;
+        opacity: 0.7;
+    }
+    /** END Nimiq Style **/
+
     .info-line {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         box-sizing: border-box;
-        padding: calc(1.5 * var(--nimiq-size, 8px)) calc(1.25 * var(--nimiq-size, 8px));
-        width: 450px;
-        max-width: 100%;
-        font-size: calc(1.5 * var(--nimiq-size, 8px));
-        line-height: 1;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
+        margin: calc(2 * var(--nimiq-size, 8px)) calc(1.25 * var(--nimiq-size, 8px));
+        width: 100%;
+        max-width: calc(56.25 * var(--nimiq-size, 8px)); /* 450px */
         flex-shrink: 0;
+        font-size: calc(1.5 * var(--nimiq-size, 8px));
+        font-weight: normal;
     }
 
     .amount {

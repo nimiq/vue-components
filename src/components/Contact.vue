@@ -122,7 +122,7 @@
 
     .contact .label {
         display: block;
-        font-weight: bold;
+        font-weight: 600;
         margin-bottom: calc(0.25 * var(--nimiq-size, 8px));
         white-space: nowrap;
         overflow: hidden;
