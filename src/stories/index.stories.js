@@ -24,7 +24,7 @@ import CheckoutFlow from './CheckoutFlow.vue';
 
 function windowTemplate(slot) {
     return `
-        <div style="background: #F4F4F5; padding: 128px; display: flex; flex-direction: column; justify-content: center; align-items: center; font-size: 18px;">
+        <div style="background: #F4F4F5; padding: 64px; display: flex; flex-direction: column; justify-content: center; align-items: center; font-size: 18px;">
             ${slot}
         </div>
     `;
@@ -243,6 +243,7 @@ storiesOf('Components', module)
                             accounts: new Map([['path1', {}], ['path2', {}], ['path3', {}], ['path4', {}], ['path5', {}]]),
                             contracts: [],
                             type: 1, // BIP39
+                            balance: 101 * 1e5,
                             // userFriendlyId: 'funny giraffe',
                         }, {
                             id: 'vwxyz',
@@ -250,6 +251,7 @@ storiesOf('Components', module)
                             accounts: new Map([['path1', {}], ['path2', {}], ['path3', {}]]),
                             contracts: [],
                             type: 2, // LEDGER
+                            balance: 553452 * 1e5,
                             // userFriendlyId: 'black panther',
                         }
                     ]
@@ -279,24 +281,28 @@ storiesOf('Components', module)
                             accounts: new Map([['path1', {}], ['path2', {}], ['path3', {}], ['path4', {}], ['path5', {}]]),
                             contracts: [],
                             type: 1, // BIP39
+                            balance: 62345123 * 1e5,
                         }, {
                             id: 'vwxyz',
                             label: 'Ledger Wallet',
                             accounts: new Map([['path1', {}], ['path2', {}], ['path3', {}]]),
                             contracts: [],
                             type: 2, // LEDGER
+                            balance: 101 * 1e5,
                         }, {
                             id: 'legacy-01',
                             label: 'Keyguard Wallet',
                             accounts: new Map([['path1', {}]]),
                             contracts: [],
                             type: 0, // LEGACY
+                            balance: 1239 * 1e5,
                         }, {
                             id: 'legacy-02',
                             label: 'Keyguard Wallet',
                             accounts: new Map([['path1', {}]]),
                             contracts: [],
                             type: 0, // LEGACY
+                            balance: 123 * 1e5,
                         }
                     ]
                 };
@@ -360,7 +366,7 @@ storiesOf('Components', module)
             components: {SmallPage},
             template: windowTemplate(`
 <small-page>
-    <div style="height: 20rem; padding: 2rem">Some text on a page</div>
+    <p>Some text on a page</p>
 </small-page>
 `),
         };

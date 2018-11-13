@@ -4,11 +4,11 @@
             {{ title }}
         </PageHeader>
 
-        <div class="page-body">
+        <PageBody>
             <div class="wallet-label"><div class="wallet-icon" :class="walletIconClass"></div> {{ walletLabel }}</div>
 
             <AccountList :accounts="accounts" :walletId="walletId" @account-selected="accountSelected"/>
-        </div>
+        </PageBody>
 
         <PageFooter v-if="showSwitchWallet" @click.native="switchWallet">
             <div class="icon-plus-circle"></div>
@@ -21,9 +21,10 @@
     import {Component, Emit, Prop, Vue} from 'vue-property-decorator';
     import AccountList from './AccountList.vue';
     import PageHeader from './PageHeader.vue';
+    import PageBody from './PageBody.vue';
     import PageFooter from './PageFooter.vue';
 
-    @Component({components: {AccountList, PageHeader, PageFooter}})
+    @Component({components: {AccountList, PageHeader, PageBody, PageFooter}})
     export default class AccountSelector extends Vue {
         @Prop({type: String, default: 'Select Account'}) private title!: string;
         @Prop(String) private walletId!: string;
@@ -71,7 +72,6 @@
             calc(3 * var(--nimiq-size, 8px))
             calc(2 * var(--nimiq-size, 8px))
             calc(3 * var(--nimiq-size, 8px));
-        background: #fafafa;
     }
 
     .wallet-icon {
@@ -94,9 +94,7 @@
     }
 
     .page-body {
-        flex-grow: 1;
-        background: #fafafa;
-        overflow-y: auto;
+        padding: 0 !important;
     }
 
     .icon-plus-circle {
