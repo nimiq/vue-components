@@ -14,6 +14,7 @@ declare module 'NimiqVueComponents' {
     export { default as WalletList } from 'NimiqVueComponents/src/components/WalletList.vue';
     export { default as WalletSelector } from 'NimiqVueComponents/src/components/WalletSelector.vue';
     export { default as PageHeader } from 'NimiqVueComponents/src/components/PageHeader.vue';
+    export { default as PageBody } from 'NimiqVueComponents/src/components/PageBody.vue';
     export { default as PageFooter } from 'NimiqVueComponents/src/components/PageFooter.vue';
     export { default as PaymentInfoLine } from 'NimiqVueComponents/src/components/PaymentInfoLine.vue';
     export { default as SmallPage } from 'NimiqVueComponents/src/components/SmallPage.vue';
@@ -106,6 +107,12 @@ declare module 'NimiqVueComponents/src/components/PageHeader.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class PageHeader extends Vue {
         readonly progressSteps: any[];
+    }
+}
+
+declare module 'NimiqVueComponents/src/components/PageBody.vue' {
+    import { Vue } from 'vue-property-decorator';
+    export default class PageBody extends Vue {
     }
 }
 
