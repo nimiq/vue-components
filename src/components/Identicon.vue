@@ -14,6 +14,9 @@ if (IqonsSvg[0] === '"') {
 } else {
     Iqons.svgPath = IqonsSvg;
 }
+if ((Iqons.svgPath as string).substr(0, 4) !== 'http') {
+    Iqons.svgPath = '/' + Iqons.svgPath;
+}
 
 @Component
 export default class Identicon extends Vue {
