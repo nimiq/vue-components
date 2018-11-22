@@ -267,6 +267,7 @@ storiesOf('Components', module)
                 walletSelected: action('wallet-selected'),
                 renameWallet: action('rename-wallet'),
                 exportWallet: action('export-wallet'),
+                changePassphraseWallet: action('change-passphrase-wallet'),
                 logoutWallet: action('logout-wallet'),
                 create: action('create'),
                 login: action('login'),
@@ -277,7 +278,7 @@ storiesOf('Components', module)
                     wallets: [
                         {
                             id: 'abcdef',
-                            label: 'Keyguard Wallet',
+                            label: 'My Keyguard Wallet',
                             accounts: new Map([['path1', {}], ['path2', {}], ['path3', {}], ['path4', {}], ['path5', {}]]),
                             contracts: [],
                             type: 1, // BIP39
@@ -313,6 +314,7 @@ storiesOf('Components', module)
                 @wallet-selected="walletSelected"
                 @rename-wallet="renameWallet"
                 @export-wallet="exportWallet"
+                @change-passphrase-wallet="changePassphraseWallet"
                 @logout-wallet="logoutWallet"
                 @create="create"
                 @login="login"
