@@ -1,11 +1,12 @@
 <template>
     <div class="account-list">
         <div class="account-entry" v-for="account in accounts" @click="accountSelected(account.walletId || walletId, account.userFriendlyAddress)" :key="account.userFriendlyAddress">
-            <Account :address="account.userFriendlyAddress"
-                     :label="account.label"
-                     :balance="account.balance"
-                     :editable="editable"
-                     @changed="accountChanged(account.userFriendlyAddress, $event)"/>
+            <Account :ref="account.userFriendlyAddress"
+                :address="account.userFriendlyAddress"
+                :label="account.label"
+                :balance="account.balance"
+                :editable="editable"
+                @changed="accountChanged(account.userFriendlyAddress, $event)"/>
         </div>
     </div>
 </template>
@@ -27,6 +28,10 @@
         @Emit()
         // tslint:disable-next-line no-empty
         private accountChanged(address: string, label: string) {}
+
+        public focus(address: string) {
+            (this.$refs[address] as Account).focus();
+        }
     }
 </script>
 

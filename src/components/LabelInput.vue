@@ -23,6 +23,10 @@
             this.lastValue = this.liveValue;
             (this.$refs.input as HTMLInputElement).blur();
         }
+
+        public focus() {
+            (this.$refs.input as HTMLInputElement).focus();
+        }
     }
 </script>
 
