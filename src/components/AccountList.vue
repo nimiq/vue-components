@@ -21,6 +21,10 @@
         @Prop(String) private walletId?: string;
         @Prop(Boolean) private editable?: boolean;
 
+        public focus(address: string) {
+            (this.$refs[address] as Account).focus();
+        }
+
         @Emit()
         // tslint:disable-next-line no-empty
         private accountSelected(walletId: string, address: string) {}
@@ -29,9 +33,6 @@
         // tslint:disable-next-line no-empty
         private accountChanged(address: string, label: string) {}
 
-        public focus(address: string) {
-            (this.$refs[address] as Account).focus();
-        }
     }
 </script>
 
