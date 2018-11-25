@@ -26,6 +26,7 @@ declare module 'NimiqVueComponents/src/components/Account.vue' {
         address: string;
         label: string;
         balance: number;
+        focus(): void;
     }
 }
 
@@ -37,6 +38,7 @@ declare module 'NimiqVueComponents/src/components/AccountList.vue' {
             userFriendlyAddress: string;
             balance?: number;
         }>;
+        focus(address: string): void;
     }
 }
 
@@ -67,6 +69,7 @@ declare module 'NimiqVueComponents/src/components/Identicon.vue' {
 declare module 'NimiqVueComponents/src/components/LabelInput.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class LabelInput extends Vue {
+        focus(): void;
     }
 }
 
