@@ -27,16 +27,16 @@
         @Prop(Number) public balance!: number;
         @Prop(Boolean) private editable?: boolean;
 
+        public focus() {
+            (this.$refs.label as LabelInput).focus();
+        }
+
         @Emit()
         // tslint:disable-next-line no-empty
         private changed(label: string) {}
 
         private get formattedAddress() {
             return Identicon.formatAddress(this.address);
-        }
-
-        public focus() {
-            (this.$refs.label as LabelInput).focus();
         }
     }
 </script>
