@@ -22,7 +22,9 @@
         @Prop(Boolean) private editable?: boolean;
 
         public focus(address: string) {
-            (this.$refs[address] as Account).focus();
+            if (this.$refs.hasOwnProperty(address)) {
+                (this.$refs[address][0] as Account).focus();
+            }
         }
 
         @Emit()
