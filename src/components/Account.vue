@@ -4,7 +4,7 @@
         <div class="account-description">
             <div class="label-and-balance">
                 <div v-if="!editable" class="label">{{ label }}</div>
-                <div v-else class="label"><LabelInput :value="label" @changed="changed"/></div>
+                <div v-else class="label"><LabelInput :value="label" @changed="changed" ref="label"/></div>
 
                 <div class="balance" v-if="balance || balance === 0"><Amount :amount="balance" :decimals="2"/></div>
                 <div class="balance balance-loading" v-if="!balance && balance !== 0"></div>
@@ -33,6 +33,10 @@
 
         private get formattedAddress() {
             return Identicon.formatAddress(this.address);
+        }
+
+        public focus() {
+            (this.$refs.label as LabelInput).focus();
         }
     }
 </script>
