@@ -28,7 +28,9 @@
         @Prop(Boolean) private editable?: boolean;
 
         public focus() {
-            (this.$refs.label as LabelInput).focus();
+            if (this.editable) {
+                (this.$refs.label as LabelInput).focus();
+            }
         }
 
         @Emit()

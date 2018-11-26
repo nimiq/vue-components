@@ -11,8 +11,8 @@
         </PageBody>
 
         <PageFooter v-if="showAddWallet" @click.native="addWallet">
-            <div class="icon-plus-circle"></div>
-            <div>Add Wallet</div>
+            <div class="nq-icon add-circle"></div>
+            <div>Add wallet</div>
         </PageFooter>
     </div>
 </template>
@@ -65,6 +65,22 @@ export default class WalletSelector extends Vue {
 </script>
 
 <style scoped>
+    /** Nimiq Style **/
+    .nq-icon {
+        width: 1em;
+        height: 1em;
+        background-repeat: no-repeat;
+        background-position: center;
+        display: inline-block;
+        background-size: 100%;
+        background-size: contain;
+    }
+
+    .nq-icon.add-circle {
+        background-image: url('data:image/svg+xml,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 34 34"><path fill="%23724CEB" d="M15.69,9.15v6.54H9.15v2.62h6.54v6.54h2.62v-6.54h6.54v-2.62h-6.54V9.15H15.69z M17,2.62 c7.96,0,14.38,6.43,14.38,14.38S24.96,31.38,17,31.38S2.62,24.96,2.62,17S9.04,2.62,17,2.62z M17,0C7.63,0,0,7.63,0,17 s7.63,17,17,17s17-7.63,17-17S26.37,0,17,0z"/></svg>');
+    }
+    /** END Nimiq Style **/
+
     .wallet-selector {
         display: flex;
         flex-direction: column;
@@ -88,13 +104,11 @@ export default class WalletSelector extends Vue {
         border-top: solid 1px #f2f2f2;
     }
 
-    .icon-plus-circle {
+    .add-circle {
         height: calc(4.25 * var(--nimiq-size, 8px));
         width: calc(4.25 * var(--nimiq-size, 8px));
         flex-shrink: 0;
         margin-right: calc(2 * var(--nimiq-size, 8px));
-        background: lightgray;
-        border-radius: 50%;
     }
 
     .page-footer {
