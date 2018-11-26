@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import {Component, Prop, Watch, Vue} from 'vue-property-decorator';
-import ValidationUtils from '@nimiq/secure-utils/validation-utils/validation-utils.js';
+import { ValidationUtils } from '@nimiq/utils';
 import Iqons from '@nimiq/iqons/dist/iqons.min.js';
 import IqonsSvg from '@nimiq/iqons/dist/iqons.min.svg';
 if (IqonsSvg[0] === '"') {
