@@ -187,14 +187,10 @@ module.exports = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCE
 
 /***/ }),
 
-/***/ "049f":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ "05f7":
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Identicon_vue_vue_type_style_index_0_id_4e26992e_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("7457");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Identicon_vue_vue_type_style_index_0_id_4e26992e_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Identicon_vue_vue_type_style_index_0_id_4e26992e_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
- /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Identicon_vue_vue_type_style_index_0_id_4e26992e_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+// extracted by mini-css-extract-plugin
 
 /***/ }),
 
@@ -586,6 +582,17 @@ module.exports = __webpack_require__("9e1e") ? function (object, key, value) {
 
 /***/ }),
 
+/***/ "36a4":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Identicon_vue_vue_type_style_index_0_id_4c1ae300_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("05f7");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Identicon_vue_vue_type_style_index_0_id_4c1ae300_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Identicon_vue_vue_type_style_index_0_id_4c1ae300_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+ /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Identicon_vue_vue_type_style_index_0_id_4c1ae300_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
 /***/ "38fd":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -889,13 +896,6 @@ module.exports = function (it, S) {
   throw TypeError("Can't convert object to primitive value");
 };
 
-
-/***/ }),
-
-/***/ "7457":
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
 
 /***/ }),
 
@@ -1981,12 +1981,12 @@ function __importDefault(mod) {
 // EXTERNAL MODULE: external "vue-property-decorator"
 var external_vue_property_decorator_ = __webpack_require__("01a6");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"b8b430b6-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Identicon.vue?vue&type=template&id=4e26992e&scoped=true&
-var Identiconvue_type_template_id_4e26992e_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"identicon"},[_c('img',{attrs:{"src":_vm.dataUrl}})])}
-var Identiconvue_type_template_id_4e26992e_scoped_true_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"b8b430b6-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Identicon.vue?vue&type=template&id=4c1ae300&scoped=true&
+var Identiconvue_type_template_id_4c1ae300_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"identicon"},[_c('img',{attrs:{"src":_vm.dataUrl}})])}
+var Identiconvue_type_template_id_4c1ae300_scoped_true_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Identicon.vue?vue&type=template&id=4e26992e&scoped=true&
+// CONCATENATED MODULE: ./src/components/Identicon.vue?vue&type=template&id=4c1ae300&scoped=true&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.regexp.replace.js
 var es6_regexp_replace = __webpack_require__("a481");
@@ -1994,58 +1994,336 @@ var es6_regexp_replace = __webpack_require__("a481");
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.regexp.match.js
 var es6_regexp_match = __webpack_require__("4917");
 
-// CONCATENATED MODULE: ./node_modules/@nimiq/secure-utils/validation-utils/validation-utils.js
+// CONCATENATED MODULE: ./node_modules/@nimiq/utils/dist/module/BrowserDetection.js
+class BrowserDetection {
+    static isDesktopSafari() {
+        // see https://stackoverflow.com/a/23522755
+        return /^((?!chrome|android).)*safari/i.test(navigator.userAgent) && !/mobile/i.test(navigator.userAgent);
+    }
+    static isSafari() {
+        return !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/);
+    }
+    static isIOS() {
+        return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    }
+    static iOSversion() {
+        if (/iP(hone|od|ad)/.test(navigator.platform)) {
+            const v = (navigator.appVersion).match(/OS (\d+)_(\d+)_?(\d+)?/);
+            return [parseInt(v[1], 10), parseInt(v[2], 10), parseInt(v[3] || '0', 10)];
+        }
+    }
+    static isBadIOS() {
+        const version = this.iOSversion();
+        return version && version[0] < 11 || (version[0] === 11 && version[1] === 2); // Only 11.2 has the WASM bug
+    }
+    /**
+     * Detect if the browser is running in Private Browsing mode
+     *
+     * @returns {Promise}
+     */
+    static isPrivateMode() {
+        return new Promise((resolve) => {
+            const on = () => { resolve(true); }; // is in private mode
+            const off = () => { resolve(false); }; // not private mode
+            const isSafari = () => {
+                return (/Constructor/.test(window.HTMLElement) ||
+                    (function (root) {
+                        return (!root || root.pushNotification).toString() === '[object SafariRemoteNotification]';
+                    })(window.safari));
+            };
+            // Chrome & Opera
+            if (window.webkitRequestFileSystem) {
+                return void window.webkitRequestFileSystem(0, 0, off, on);
+            }
+            // Firefox
+            if (document.documentElement && 'MozAppearance' in document.documentElement.style) {
+                // @ts-ignore
+                const db = indexedDB.open(null);
+                db.onerror = on;
+                db.onsuccess = off;
+                return void 0;
+            }
+            // Safari
+            if (isSafari()) {
+                try {
+                    window.openDatabase(null, null, null, null);
+                }
+                catch (_) {
+                    return on();
+                }
+            }
+            // IE10+ & Edge
+            if (!window.indexedDB && (window.PointerEvent || window.MSPointerEvent)) {
+                return on();
+            }
+            // others
+            return off();
+        });
+    }
+}
+
+
+//# sourceMappingURL=BrowserDetection.js.map
+
+// CONCATENATED MODULE: ./node_modules/@nimiq/utils/dist/module/Utf8Tools.js
+/* tslint:disable:no-bitwise one-line triple-equals */
+/**
+ * Sources:
+ *
+ * Conversion functions taken from
+ * https://github.com/google/closure-library/blob/master/closure/goog/crypt/crypt.js
+ *
+ * UTF-8 validitiy limit values from
+ * https://lemire.me/blog/2018/05/09/how-quickly-can-you-check-that-a-string-is-valid-unicode-utf-8/
+ */
+class Utf8Tools {
+    static stringToUtf8ByteArray(str) {
+        // TODO: Use native implementations if/when available
+        const out = [];
+        let p = 0;
+        for (let i = 0; i < str.length; i++) {
+            let c = str.charCodeAt(i);
+            if (c < 128) {
+                out[p++] = c;
+            }
+            else if (c < 2048) {
+                out[p++] = (c >> 6) | 192;
+                out[p++] = (c & 63) | 128;
+            }
+            else if (((c & 0xFC00) == 0xD800) && (i + 1) < str.length
+                && ((str.charCodeAt(i + 1) & 0xFC00) == 0xDC00)) {
+                // Surrogate Pair
+                c = 0x10000 + ((c & 0x03FF) << 10) + (str.charCodeAt(++i) & 0x03FF);
+                out[p++] = (c >> 18) | 240;
+                out[p++] = ((c >> 12) & 63) | 128;
+                out[p++] = ((c >> 6) & 63) | 128;
+                out[p++] = (c & 63) | 128;
+            }
+            else {
+                out[p++] = (c >> 12) | 224;
+                out[p++] = ((c >> 6) & 63) | 128;
+                out[p++] = (c & 63) | 128;
+            }
+        }
+        return new Uint8Array(out);
+    }
+    static utf8ByteArrayToString(bytes) {
+        // TODO: Use native implementations if/when available
+        const out = [];
+        let pos = 0;
+        let c = 0;
+        while (pos < bytes.length) {
+            const c1 = bytes[pos++];
+            if (c1 < 128) {
+                out[c++] = String.fromCharCode(c1);
+            }
+            else if (c1 > 191 && c1 < 224) {
+                const c2 = bytes[pos++];
+                out[c++] = String.fromCharCode((c1 & 31) << 6 | c2 & 63);
+            }
+            else if (c1 > 239 && c1 < 365) {
+                // Surrogate Pair
+                const c2 = bytes[pos++];
+                const c3 = bytes[pos++];
+                const c4 = bytes[pos++];
+                const u = ((c1 & 7) << 18 | (c2 & 63) << 12 | (c3 & 63) << 6 | c4 & 63) - 0x10000;
+                out[c++] = String.fromCharCode(0xD800 + (u >> 10));
+                out[c++] = String.fromCharCode(0xDC00 + (u & 1023));
+            }
+            else {
+                const c2 = bytes[pos++];
+                const c3 = bytes[pos++];
+                out[c++] = String.fromCharCode((c1 & 15) << 12 | (c2 & 63) << 6 | c3 & 63);
+            }
+        }
+        return out.join('');
+    }
+    static isValidUtf8(bytes) {
+        let i = 0;
+        while (i < bytes.length) {
+            const first = bytes[i]; // The byte
+            if (first <= 0x7F)
+                ++i; // Is valid single-byte (ASCII)
+            else if (first >= 0xC2 && first <= 0xDF) { // Possible two-byte
+                const second = bytes[++i];
+                if (second >= 0x80 && second <= 0xBF)
+                    ++i; // Is valid two-byte
+                else
+                    break;
+            }
+            else if (first === 0xE0) { // Possible three-byte
+                const second = bytes[++i];
+                const third = bytes[++i];
+                if (second >= 0xA0 && second <= 0xBF
+                    && third >= 0x80 && third <= 0xBF)
+                    ++i; // Is valid three-byte
+                else
+                    break;
+            }
+            else if (first >= 0xE1 && first <= 0xEC) { // Possible three-byte
+                const second = bytes[++i];
+                const third = bytes[++i];
+                if (second >= 0x80 && second <= 0xBF
+                    && third >= 0x80 && third <= 0xBF)
+                    ++i; // Is valid three-byte
+                else
+                    break;
+            }
+            else if (first === 0xED) { // Possible three-byte
+                const second = bytes[++i];
+                const third = bytes[++i];
+                if (second >= 0x80 && second <= 0x9F
+                    && third >= 0x80 && third <= 0xBF)
+                    ++i; // Is valid three-byte
+                else
+                    break;
+            }
+            else if (first >= 0xEE && first <= 0xEF) { // Possible three-byte
+                const second = bytes[++i];
+                const third = bytes[++i];
+                if (second >= 0x80 && second <= 0xBF
+                    && third >= 0x80 && third <= 0xBF)
+                    ++i; // Is valid three-byte
+                else
+                    break;
+            }
+            else if (first === 0xF0) { // Possible four-byte
+                const second = bytes[++i];
+                const third = bytes[++i];
+                const fourth = bytes[++i];
+                if (second >= 0x90 && second <= 0xBF
+                    && third >= 0x80 && third <= 0xBF
+                    && fourth >= 0x80 && fourth <= 0xBF)
+                    ++i; // Is valid four-byte
+                else
+                    break;
+            }
+            else if (first >= 0xF1 && first <= 0xF3) { // Possible four-byte
+                const second = bytes[++i];
+                const third = bytes[++i];
+                const fourth = bytes[++i];
+                if (second >= 0x80 && second <= 0xBF
+                    && third >= 0x80 && third <= 0xBF
+                    && fourth >= 0x80 && fourth <= 0xBF)
+                    ++i; // Is valid four-byte
+                else
+                    break;
+            }
+            else if (first === 0xF4) { // Possible four-byte
+                const second = bytes[++i];
+                const third = bytes[++i];
+                const fourth = bytes[++i];
+                if (second >= 0x80 && second <= 0x8F
+                    && third >= 0x80 && third <= 0xBF
+                    && fourth >= 0x80 && fourth <= 0xBF)
+                    ++i; // Is valid four-byte
+                else
+                    break;
+            }
+            else
+                break;
+        }
+        // If the whole array was walked successfully, then the last check also increased the counter
+        // and the index i is equal to the length of the array.
+        // If the while loop was broken early, i is smaller and the array is not valid UTF-8.
+        return i === bytes.length;
+    }
+}
+
+
+//# sourceMappingURL=Utf8Tools.js.map
+
+// CONCATENATED MODULE: ./node_modules/@nimiq/utils/dist/module/ValidationUtils.js
 class ValidationUtils {
     static isValidAddress(address) {
-        if (!address) return false;
+        if (!address)
+            return false;
         try {
             this.isUserFriendlyAddress(address);
             return true;
-        } catch (e) {
+        }
+        catch (e) {
             return false;
         }
     }
-
     // Copied from: https://github.com/nimiq-network/core/blob/master/src/main/generic/consensus/base/account/Address.js
-
     static isUserFriendlyAddress(str) {
-        if (!str) return;
-
+        if (!str)
+            return;
         str = str.replace(/ /g, '');
         if (str.substr(0, 2).toUpperCase() !== 'NQ') {
+            // TODO use custom error class?
+            // @ts-ignore
             throw new Error('Addresses start with NQ', 201);
         }
         if (str.length !== 36) {
+            // TODO use custom error class?
+            // @ts-ignore
             throw new Error('Addresses are 36 chars (ignoring spaces)', 202);
         }
         if (this._ibanCheck(str.substr(4) + str.substr(0, 4)) !== 1) {
+            // TODO use custom error class?
+            // @ts-ignore
             throw new Error('Address Checksum invalid', 203);
         }
     }
-
     static _ibanCheck(str) {
         const num = str.split('').map((c) => {
             const code = c.toUpperCase().charCodeAt(0);
             return code >= 48 && code <= 57 ? c : (code - 55).toString();
         }).join('');
         let tmp = '';
-
         for (let i = 0; i < Math.ceil(num.length / 6); i++) {
             tmp = (parseInt(tmp + num.substr(i * 6, 6)) % 97).toString();
         }
-
         return parseInt(tmp);
     }
-
     static isValidHash(hash) {
         // not using Nimiq Api here to don't require it to be loaded already
         try {
             return atob(hash).length === 32;
-        } catch(e) {
+        }
+        catch (e) {
             return false;
         }
     }
 }
+
+
+//# sourceMappingURL=ValidationUtils.js.map
+
+// CONCATENATED MODULE: ./node_modules/@nimiq/utils/dist/module/PasteHandler.js
+// Not sure if we still need this one, I'll leave it for now
+class PasteHandler {
+    static setDefaultTarget(target) {
+        if (PasteHandler.listener !== undefined) {
+            window.removeEventListener('paste', PasteHandler.listener);
+        }
+        PasteHandler.listener = PasteHandler.createListener(target);
+        window.addEventListener('paste', PasteHandler.listener);
+    }
+    static createListener(target) {
+        return (e) => {
+            const activeElement = document.activeElement && document.activeElement.className;
+            const isInInput = activeElement === 'input' || activeElement === 'textarea';
+            if (isInInput)
+                return; // We are interested in the case were we're NOT in an input yet
+            target.focus();
+            e.stopPropagation();
+        };
+    }
+}
+
+/* harmony default export */ var module_PasteHandler = (PasteHandler);
+//# sourceMappingURL=PasteHandler.js.map
+
+// CONCATENATED MODULE: ./node_modules/@nimiq/utils/dist/module/main.js
+
+
+
+
+//# sourceMappingURL=main.js.map
+
 // CONCATENATED MODULE: ./node_modules/@nimiq/iqons/dist/iqons.min.js
 const IqonsCatalog={face:["face_01","face_02","face_03","face_04","face_05","face_06","face_07","face_08","face_09","face_10","face_11","face_12","face_13","face_14","face_15","face_16","face_17","face_18","face_19","face_20","face_21"],side:["side_01","side_02","side_03","side_04","side_05","side_06","side_07","side_08","side_09","side_10","side_11","side_12","side_13","side_14","side_15","side_16","side_17","side_18","side_19","side_20","side_21"],top:["top_01","top_02","top_03","top_04","top_05","top_06","top_07","top_08","top_09","top_10","top_11","top_12","top_13","top_14","top_15","top_16","top_17","top_18","top_19","top_20","top_21"],bottom:["bottom_01","bottom_02","bottom_03","bottom_04","bottom_05","bottom_06","bottom_07","bottom_08","bottom_09","bottom_10","bottom_11","bottom_12","bottom_13","bottom_14","bottom_15","bottom_16","bottom_17","bottom_18","bottom_19","bottom_20","bottom_21"]};
 class Iqons{static async svg(t,s=!1){const e=this._hash(t);return this._svgTemplate(e[0],e[2],e[3]+e[4],e[5]+e[6],e[7]+e[8],e[9]+e[10],e[11],e[12],s)}static async render(t,s){s.innerHTML=await this.svg(t)}static async toDataUrl(t){return`data:image/svg+xml;base64,${btoa(await this.svg(t,!0)).replace(/#/g,"%23")}`}static placeholder(t="#bbb",s=1){return`<svg viewBox="0 0 160 160" width="160" height="160" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/2000/xlink" >\n    <path fill="none" stroke="${t}" stroke-width="${2*s}" transform="translate(0, 8) scale(0.5)" d="M251.6 17.34l63.53 110.03c5.72 9.9 5.72 22.1 0 32L251.6 269.4c-5.7 9.9-16.27 16-27.7 16H96.83c-11.43 0-22-6.1-27.7-16L5.6 159.37c-5.7-9.9-5.7-22.1 0-32L69.14 17.34c5.72-9.9 16.28-16 27.7-16H223.9c11.43 0 22 6.1 27.7 16z"/>\n    <g transform="scale(0.9) translate(9, 8)">\n        <circle cx="80" cy="80" r="40" fill="none" stroke="${t}" stroke-width="${s}" opacity=".9"></circle>\n        <g opacity=".1" fill="#010101"><path d="M119.21,80a39.46,39.46,0,0,1-67.13,28.13c10.36,2.33,36,3,49.82-14.28,10.39-12.47,8.31-33.23,4.16-43.26A39.35,39.35,0,0,1,119.21,80Z"/></g>\`\n    </g>\n</svg>`}static renderPlaceholder(t,s,e){t.innerHTML=this.placeholder(s,e)}static placeholderToDataUrl(t,s){return`data:image/svg+xml;base64,${btoa(this.placeholder(t,s))}`}static async image(t){const s=await this.toDataUrl(t),e=await this._loadImage(s);return e.style.width="100%",e.style.height="100%",e}static async _svgTemplate(t,s,e,a,n,r,i,c,l){return this._$svg(await this._$iqons(t,s,e,a,n,r,i,l),c)}static async _$iqons(t,s,e,a,n,r,i,c){for(t=parseInt(t),s=parseInt(s),i=parseInt(i),t===s&&++t>9&&(t=0);i===t||i===s;)++i>9&&(i=0);return t=this.colors[t],s=this.colors[s],`<g color="${t}" fill="${i=this.colors[i]}">\n    <rect fill="${s}" x="0" y="0" width="160" height="160"></rect>\n    <circle cx="80" cy="80" r="40" fill="${t}"></circle>\n    <g opacity=".1" fill="#010101"><path d="M119.21,80a39.46,39.46,0,0,1-67.13,28.13c10.36,2.33,36,3,49.82-14.28,10.39-12.47,8.31-33.23,4.16-43.26A39.35,39.35,0,0,1,119.21,80Z"/></g>\n    ${await this._generatePart("top",a,c)}\n    ${await this._generatePart("side",n,c)}\n    ${await this._generatePart("face",e,c)}\n    ${await this._generatePart("bottom",r,c)}\n</g>`}static _$svg(t,s){const e=this._getRandomId();return`<svg viewBox="0 0 160 160" width="160" height="160" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/2000/xlink" >\n    <defs>\n        <clipPath id="hexagon-clip-${e}" transform="scale(0.5) translate(0, 16)">\n            <path d="M251.6 17.34l63.53 110.03c5.72 9.9 5.72 22.1 0 32L251.6 269.4c-5.7 9.9-16.27 16-27.7 16H96.83c-11.43 0-22-6.1-27.7-16L5.6 159.37c-5.7-9.9-5.7-22.1 0-32L69.14 17.34c5.72-9.9 16.28-16 27.7-16H223.9c11.43 0 22 6.1 27.7 16z"/>\n        </clipPath>\n    </defs>\n    <path fill="white" stroke="#bbbbbb" transform="translate(0, 8) scale(0.5)" d="M251.6 17.34l63.53 110.03c5.72 9.9 5.72 22.1 0 32L251.6 269.4c-5.7 9.9-16.27 16-27.7 16H96.83c-11.43 0-22-6.1-27.7-16L5.6 159.37c-5.7-9.9-5.7-22.1 0-32L69.14 17.34c5.72-9.9 16.28-16 27.7-16H223.9c11.43 0 22 6.1 27.7 16z"/>\n    <g transform="scale(0.9) translate(9, 8)">\n        <g clip-path="url(#hexagon-clip-${e})">\n            ${t}\n        </g>\n    </g>\n</svg>`}static async _generatePart(t,s,e=!1){if(e){const e=await this._getAssets(),a="#"+t+"_"+this._assetIndex(s,t);return e.querySelector(a).innerHTML}return`<use width="160" height="160" xlink:href="${this.svgPath}#${t}_${this._assetIndex(s,t)}"/>`}static _loadImage(t){return new Promise((s,e)=>{const a=document.createElement("img");a.addEventListener("load",t=>s(a),{once:!0}),a.src=t})}static async _getAssets(){return this._assets?this._assets:(this._assets=fetch(this.svgPath).then(t=>t.text()).then(t=>{const s=document.createElement("x-assets");return s.innerHTML=t,this._assets=s,s}),this._assets)}static get colors(){return["#fb8c00","#d32f2f","#fbc02d","#3949ab","#03a9f4","#8e24aa","#009688","#f06292","#7cb342","#795548"]}static get assetCounts(){return{face:IqonsCatalog.face.length,side:IqonsCatalog.side.length,top:IqonsCatalog.top.length,bottom:IqonsCatalog.bottom.length,gaze:2}}static _assetIndex(t,s){return(t=Number(t)%this.assetCounts[s]+1)<10&&(t="0"+t),t}static _hash(t){return(""+t.split("").map(t=>Number(t.charCodeAt(0))+3).reduce((t,s)=>t*(1-t)*this.__chaosHash(s),.5)).split("").reduce((t,s)=>s+t,"").substr(4,17)}static __chaosHash(t){let s=1/t;for(let t=0;t<100;t++)s=(1-s)*s*3.569956786876;return s}static _getRandomId(){let t=new Uint32Array(1);return crypto.getRandomValues(t),t[0]}}
@@ -2067,22 +2345,18 @@ var Identicon_1;
 
 
 
+ // Detect Iqons.svgPath
+// @ts-ignore
 
-console.debug(iqons_min_default.a);
-
-if (iqons_min_default.a[0] === '"') {
-  Iqons.svgPath = iqons_min_default.a.substring(1, iqons_min_default.a.length - 1);
+if (self.NIMIQ_IQONS_SVG_PATH) {
+  Iqons.svgPath = self.NIMIQ_IQONS_SVG_PATH;
 } else {
-  Iqons.svgPath = iqons_min_default.a;
+  if (iqons_min_default.a[0] === '"') {
+    Iqons.svgPath = iqons_min_default.a.substring(1, iqons_min_default.a.length - 1);
+  } else {
+    Iqons.svgPath = iqons_min_default.a;
+  }
 }
-
-console.debug(Iqons.svgPath);
-
-if (Iqons.svgPath.substr(0, 4) !== 'http') {
-  Iqons.svgPath = '/' + Iqons.svgPath;
-}
-
-console.debug(Iqons.svgPath);
 
 var Identiconvue_type_script_lang_ts_Identicon = Identicon_1 =
 /*#__PURE__*/
@@ -2139,8 +2413,8 @@ Identiconvue_type_script_lang_ts_Identicon = Identicon_1 = __decorate([external_
 /* harmony default export */ var Identiconvue_type_script_lang_ts_ = (Identiconvue_type_script_lang_ts_Identicon);
 // CONCATENATED MODULE: ./src/components/Identicon.vue?vue&type=script&lang=ts&
  /* harmony default export */ var components_Identiconvue_type_script_lang_ts_ = (Identiconvue_type_script_lang_ts_); 
-// EXTERNAL MODULE: ./src/components/Identicon.vue?vue&type=style&index=0&id=4e26992e&scoped=true&lang=css&
-var Identiconvue_type_style_index_0_id_4e26992e_scoped_true_lang_css_ = __webpack_require__("049f");
+// EXTERNAL MODULE: ./src/components/Identicon.vue?vue&type=style&index=0&id=4c1ae300&scoped=true&lang=css&
+var Identiconvue_type_style_index_0_id_4c1ae300_scoped_true_lang_css_ = __webpack_require__("36a4");
 
 // CONCATENATED MODULE: ./node_modules/vue-loader/lib/runtime/componentNormalizer.js
 /* globals __VUE_SSR_CONTEXT__ */
@@ -2248,11 +2522,11 @@ function normalizeComponent (
 
 var component = normalizeComponent(
   components_Identiconvue_type_script_lang_ts_,
-  Identiconvue_type_template_id_4e26992e_scoped_true_render,
-  Identiconvue_type_template_id_4e26992e_scoped_true_staticRenderFns,
+  Identiconvue_type_template_id_4c1ae300_scoped_true_render,
+  Identiconvue_type_template_id_4c1ae300_scoped_true_staticRenderFns,
   false,
   null,
-  "4e26992e",
+  "4c1ae300",
   null
   
 )

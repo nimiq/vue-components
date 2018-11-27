@@ -61,7 +61,7 @@ declare module 'NimiqVueComponents/src/components/Identicon.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class Identicon extends Vue {
         static formatAddress(str: string): string;
-        static isUserFriendlyAddress(str: string): any;
+        static isUserFriendlyAddress(str: string): boolean;
         address: string;
     }
 }
