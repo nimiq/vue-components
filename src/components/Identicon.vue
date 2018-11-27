@@ -9,14 +9,17 @@ import {Component, Prop, Watch, Vue} from 'vue-property-decorator';
 import ValidationUtils from '@nimiq/secure-utils/validation-utils/validation-utils.js';
 import Iqons from '@nimiq/iqons/dist/iqons.min.js';
 import IqonsSvg from '@nimiq/iqons/dist/iqons.min.svg';
+console.debug(IqonsSvg);
 if (IqonsSvg[0] === '"') {
     Iqons.svgPath = IqonsSvg.substring(1, IqonsSvg.length - 1);
 } else {
     Iqons.svgPath = IqonsSvg;
 }
+console.debug(Iqons.svgPath);
 if ((Iqons.svgPath as string).substr(0, 4) !== 'http') {
     Iqons.svgPath = '/' + Iqons.svgPath;
 }
+console.debug(Iqons.svgPath);
 
 @Component
 export default class Identicon extends Vue {
