@@ -12,7 +12,7 @@ import IqonsSvg from '@nimiq/iqons/dist/iqons.min.svg';
 
 // Detect Iqons.svgPath
 // @ts-ignore
-if (self.NIMIQ_IQONS_SVG_PATH) { Iqons.svgPath = self.NIMIQ_IQONS_SVG_PATH; }
+if (self.NIMIQ_IQONS_SVG_PATH) Iqons.svgPath = self.NIMIQ_IQONS_SVG_PATH;
 else {
     if (IqonsSvg[0] === '"') {
         Iqons.svgPath = IqonsSvg.substring(1, IqonsSvg.length - 1);
