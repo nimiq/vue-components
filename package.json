@@ -1,15 +1,20 @@
 {
   "name": "@nimiq/vue-components",
   "version": "0.1.0",
-  "main": "dist/NimiqVueComponents.common.js",
-  "module": "dist/NimiqVueComponents.umd.js",
+  "main": "dist/NimiqVueComponents.umd.js",
+  "module": "dist/NimiqVueComponents.esm.js",
+  "unpkg": "dist/NimiqVueComponents.min.js",
   "types": "types/index.d.ts",
   "files": [
     "dist/**/*",
     "types/**/*"
   ],
   "scripts": {
-    "build": "vue-cli-service build --target lib --name NimiqVueComponents src/main.ts; vue-cli-service bundle-dts --name NimiqVueComponents",
+    "build": "npm run build:unpkg & npm run build:es & npm run build:umd",
+    "build:umd": "rollup --config rollup.config.js --format umd --file dist/NimiqVueComponents.umd.js",
+    "build:es": "rollup --config rollup.config.js --format es --file dist/NimiqVueComponents.esm.js",
+    "build:unpkg": "rollup --config rollup.config.js --format iife --file dist/NimiqVueComponents.min.js",
+    "build:single": "rollup --config rollup.config.js --format umd --file dist/NimiqVueComponents.standalone.umd.js",
     "lint": "vue-cli-service lint",
     "storybook": "start-storybook -p 6006 -c .storybook -s ."
   },
@@ -20,19 +25,21 @@
   "devDependencies": {
     "@nimiq/iqons": "nimiq/iqons#a3302e06b0a53b6daeb745d13dbfd930b304c791",
     "@nimiq/secure-utils": "nimiq/secure-utils#3937c23c2703d5359eebe2c3bf7b3c9290b26100",
-    "@nimiq/style": "nimiq/nimiq-style#next",
+    "@nimiq/style": "^0.3.4",
     "@storybook/addon-actions": "^4.0.0-alpha.14",
     "@storybook/addon-knobs": "^4.0.0-alpha.14",
     "@storybook/addon-links": "^4.0.0-alpha.14",
     "@storybook/addon-viewport": "^4.0.0-alpha.14",
     "@storybook/vue": "^4.0.0-alpha.14",
-    "@vue/cli-plugin-babel": "^3.0.0-rc.10",
-    "@vue/cli-plugin-typescript": "^3.0.0-rc.10",
-    "@vue/cli-service": "^3.1.1",
-    "moment": "^2.22.2",
-    "ts-loader": "^4.4.2",
+    "minimist": "^1.2.0",
+    "rollup": "^0.67.3",
+    "rollup-plugin-buble": "^0.19.4",
+    "rollup-plugin-node-resolve": "^3.4.0",
+    "rollup-plugin-typescript": "^1.0.0",
+    "rollup-plugin-uglify-es": "^0.0.1",
+    "rollup-plugin-vue": "^4.3.2",
+    "tslib": "^1.9.3",
     "typescript": "^3.0.1",
-    "vue-cli-plugin-ts-bundler": "^0.0.3",
     "vue-template-compiler": "^2.5.17"
   },
   "eslintConfig": {
