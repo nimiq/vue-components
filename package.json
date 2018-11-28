@@ -10,7 +10,7 @@
     "types/**/*"
   ],
   "scripts": {
-    "build": "npm run build:unpkg & npm run build:es & npm run build:umd",
+    "build": "yarn build:unpkg & yarn build:es & yarn run build:umd",
     "build:umd": "rollup --config rollup.config.js --format umd --file dist/NimiqVueComponents.umd.js",
     "build:es": "rollup --config rollup.config.js --format es --file dist/NimiqVueComponents.esm.js",
     "build:unpkg": "rollup --config rollup.config.js --format iife --file dist/NimiqVueComponents.min.js",
