@@ -751,13 +751,15 @@
     shallowequal "^0.2.2"
     velocity-react "^1.3.1"
 
-"@nimiq/iqons@nimiq/iqons#a3302e06b0a53b6daeb745d13dbfd930b304c791":
+"@nimiq/iqons@^1.0.0":
   version "1.0.0"
-  resolved "https://codeload.github.com/nimiq/iqons/tar.gz/a3302e06b0a53b6daeb745d13dbfd930b304c791"
+  resolved "https://registry.yarnpkg.com/@nimiq/iqons/-/iqons-1.0.0.tgz#a6e35aeb5609e4eca12ddee92ddc5b5ab3f49807"
+  integrity sha512-buJlMCxaZph/4AlfOehW7Ey1rzsyEf8UAnjL9Hq4GXg7lq1REO0lClKu2TAYORh/HMqdJ8vFdBuVOUCUoKuHDA==
 
-"@nimiq/style@nimiq/nimiq-style#next":
-  version "0.1.3"
-  resolved "https://codeload.github.com/nimiq/nimiq-style/tar.gz/7f90f3cf95164afc4362b3470fe26c1f718cc351"
+"@nimiq/style@^0.3.4":
+  version "0.3.4"
+  resolved "https://registry.yarnpkg.com/@nimiq/style/-/style-0.3.4.tgz#dec68f59ba280830b39b1616653f04411905d14f"
+  integrity sha512-Xvxs/T8JiVTCXRnkuWE1a2b+fiQpdBypVtcQPUx6DJQx/SXSuNzhpszY/qugC2jRE4s5uYE9aU5+2kaxLcu5Jw==
 
 "@nimiq/utils@^0.0.5":
   version "0.0.5"
