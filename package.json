@@ -15,10 +15,10 @@
   },
   "dependencies": {
     "vue": "^2.5.17",
-    "vue-property-decorator": "^7.0.0"
+    "vue-property-decorator": "^7.0.0",
+    "@nimiq/iqons": "^1.0.1"
   },
   "devDependencies": {
-    "@nimiq/iqons": "^1.0.0",
     "@nimiq/style": "^0.3.4",
     "@nimiq/utils": "^0.0.5",
     "@storybook/addon-actions": "^4.0.0-alpha.14",
