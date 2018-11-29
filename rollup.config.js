@@ -4,6 +4,7 @@ import uglify from 'rollup-plugin-uglify-es';
 import resolve from 'rollup-plugin-node-resolve'
 import typescript from 'rollup-plugin-typescript'
 import minimist from 'minimist';
+import svg from 'rollup-plugin-svg';
 
 const argv = minimist(process.argv.slice(2));
 
@@ -27,12 +28,15 @@ const config = {
       compileTemplate: true,
     }),
     // buble(),
+    svg(),
+    resolve()
   ],
 };
 
-// Only minify browser (iife) version
+// Only minify browser (iife) version and bundle all dependencies
 if (argv.format === 'iife') {
-  config.plugins.push(uglify());
+    config.external = [];
+    config.plugins.push(uglify());
 }
 
 export default config;
