@@ -1,6 +1,8 @@
 {
   "name": "@nimiq/vue-components",
   "version": "0.1.0",
+  "author": "Nimiq",
+  "license": "Apache-2.0",
   "main": "dist/NimiqVueComponents.common.js",
   "module": "dist/NimiqVueComponents.umd.js",
   "types": "types/index.d.ts",
