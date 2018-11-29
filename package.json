@@ -23,9 +23,9 @@
     "vue-property-decorator": "^7.0.0"
   },
   "devDependencies": {
-    "@nimiq/iqons": "nimiq/iqons#a3302e06b0a53b6daeb745d13dbfd930b304c791",
-    "@nimiq/secure-utils": "nimiq/secure-utils#3937c23c2703d5359eebe2c3bf7b3c9290b26100",
+    "@nimiq/iqons": "^1.0.0",
     "@nimiq/style": "^0.3.4",
+    "@nimiq/utils": "^0.0.5",
     "@storybook/addon-actions": "^4.0.0-alpha.14",
     "@storybook/addon-knobs": "^4.0.0-alpha.14",
     "@storybook/addon-links": "^4.0.0-alpha.14",

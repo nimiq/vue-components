@@ -23,7 +23,7 @@
     import Identicon from './Identicon.vue';
     import Address from './Address.vue';
 
-    import ValidationUtils from '@nimiq/secure-utils/validation-utils/validation-utils.js';
+    import { ValidationUtils } from '@nimiq/utils';
 
     @Component({components: {Identicon, Address}})
     export default class NewContact extends Vue {
