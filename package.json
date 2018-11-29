@@ -1,6 +1,8 @@
 {
   "name": "@nimiq/vue-components",
   "version": "0.1.0",
+  "author": "Nimiq",
+  "license": "Apache-2.0",
   "main": "dist/NimiqVueComponents.umd.js",
   "module": "dist/NimiqVueComponents.esm.js",
   "unpkg": "dist/NimiqVueComponents.min.js",
@@ -25,7 +27,7 @@
   },
   "devDependencies": {
     "@nimiq/style": "^0.3.4",
-    "@nimiq/utils": "^0.0.5",
+    "@nimiq/utils": "^0.0.6",
     "@storybook/addon-actions": "^4.0.0-alpha.14",
     "@storybook/addon-knobs": "^4.0.0-alpha.14",
     "@storybook/addon-links": "^4.0.0-alpha.14",
