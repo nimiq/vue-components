@@ -13,7 +13,7 @@ const config = {
     name: 'NimiqVueComponents',
     exports: 'named',
   },
-  external: ['vue', 'vue-property-decorator', '@nimiq/iqons/dist/iqons.min.svg'],
+  external: ['vue', 'vue-property-decorator', '@nimiq/iqons'],
   plugins: [
     typescript({
       tsconfig: false,
@@ -26,7 +26,6 @@ const config = {
       css: true,
       compileTemplate: true,
     }),
-    resolve(),
     // buble(),
   ],
 };
