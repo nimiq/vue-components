@@ -138,10 +138,11 @@ storiesOf('Components', module)
                             label: 'Primary account',
                             balance: 12023110,
                         }
-                    ]
+                    ],
+                    minBalance: 1000e5,
                 };
             },
-            template: `<AccountList @account-selected="accountSelected" :accounts="accounts" walletId="helloworld1"/>`
+            template: `<AccountList @account-selected="accountSelected" :accounts="accounts" walletId="helloworld1" :minBalance="minBalance"/>`
         };
     })
     .add('AccountSelector', () => {

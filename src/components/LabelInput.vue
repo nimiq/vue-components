@@ -1,7 +1,7 @@
 <template>
     <form class="label-input" @submit.prevent="changed">
         <label>
-            <input type="text" :style="{width: `${Math.max(2, liveValue.length + 1)}ch`}" v-model="liveValue" @focus="$event.target.select()" @blur="changed" ref="input">
+            <input type="text" :style="{width: `${Math.max(2, liveValue.length + 1)}ch`}" v-model="liveValue" @blur="changed" ref="input">
             <i class="nq-icon edit"></i>
         </label>
     </form>
@@ -60,7 +60,7 @@
         color: inherit;
         font-weight: inherit;
         margin: 0;
-        padding: 0;
+        padding: calc(0.5 * var(--nimiq-size, 8px)) 0;
         line-height: 1.11;
         height: calc(2.5 * var(--nimiq-size, 8px));
     }
@@ -74,7 +74,7 @@
         opacity: 0.2;
         will-change: opacity;
         transition: opacity 100ms ease;
-        vertical-align: bottom;
+        vertical-align: middle;
     }
 
     .nq-icon.edit:hover {
