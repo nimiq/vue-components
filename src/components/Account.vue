@@ -3,7 +3,9 @@
         <div class="identicon-and-label">
             <Identicon :address="address"/>
 
-            <div v-if="!editable" class="label">{{ label }}</div>
+            <div v-if="!editable" class="label">
+                <div>{{ label }}</div>
+            </div>
             <div v-else class="label">
                 <LabelInput :value="label" @changed="changed" ref="label"/>
             </div>
@@ -69,15 +71,20 @@
         width: calc(5.625 * var(--nimiq-size, 8px));
         height: calc(5.625 * var(--nimiq-size, 8px));
         flex-shrink: 0;
-        margin-right: calc(2 * var(--nimiq-size, 8px));
+        margin-right: calc(1.5 * var(--nimiq-size, 8px));
     }
 
     .label {
         white-space: nowrap;
+        font-weight: 600;
+        overflow: hidden;
+    }
+
+    .label div {
+        opacity: 0.7;
         overflow: hidden;
         text-overflow: ellipsis;
-        font-weight: 600;
-        opacity: 0.7;
+        padding-left: calc(1 * var(--nimiq-size, 8px));
     }
 
     .balance {
