@@ -24,7 +24,7 @@ import CheckoutFlow from './CheckoutFlow.vue';
 
 function windowTemplate(slot) {
     return `
-        <div style="background: #F4F4F5; padding: 64px; display: flex; flex-direction: column; justify-content: center; align-items: center; font-size: 18px;">
+        <div style="background: var(--nimiq-gray); padding: 64px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
             ${slot}
         </div>
     `;
@@ -124,14 +124,19 @@ storiesOf('Components', module)
                 return {
                     accounts: [
                         {
-                            userFriendlyAddress: 'NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM',
-                            label: 'Primary account',
-                            balance: 12023110,
-                        },
-                        {
                             userFriendlyAddress: 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1',
                             label: 'HODL account',
                             balance: 2712415141213,
+                        },
+                        {
+                            userFriendlyAddress: 'NQ21 YPRN 1KVN BQP5A17U YGD3 HH96 6TKA 6BL4',
+                            label: 'HODL account 2',
+                            balance: 100000000,
+                        },
+                        {
+                            userFriendlyAddress: 'NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM',
+                            label: 'Primary account',
+                            balance: 12023110,
                         }
                     ]
                 };
