@@ -41,12 +41,12 @@
 <style scoped>
     /* Nimiq Style */
     .nq-label {
-        font-size: 1.75rem;
+        font-size: calc(1.75 * var(--nimiq-size, 8px));
         line-height: 0.857;
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 0.107em;
-        margin: 1rem 0;
+        margin: calc(1 * var(--nimiq-size, 8px)) 0;
         opacity: 0.7;
     }
     /* END Nimiq Style */
@@ -57,7 +57,11 @@
     }
 
     .wallet-label {
-        margin: 2.5rem 2rem 2.5rem 3rem;
+        margin:
+            calc(2 * var(--nimiq-size, 8px))
+            calc(2 * var(--nimiq-size, 8px))
+            calc(2.5 * var(--nimiq-size, 8px))
+            calc(3 * var(--nimiq-size, 8px));
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -65,7 +69,7 @@
 
     .wallet-label .nq-label {
         margin: 0;
-        margin-right: 2rem;
+        margin-right: calc(2 * var(--nimiq-size, 8px));
     }
 
     .wallet-label::after {
