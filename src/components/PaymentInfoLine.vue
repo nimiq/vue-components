@@ -5,7 +5,7 @@
             <i class="nq-icon arrow-right"></i>
         </div>
         <div class="description">
-            <div v-if="showShopLogo" class="shop-logo">
+            <div v-if="shopLogoUrl && showShopLogo" class="shop-logo">
                 <div class="cover"></div>
                 <img class="logo" :src="shopLogoUrl" @error="showShopLogo = false">
             </div>
