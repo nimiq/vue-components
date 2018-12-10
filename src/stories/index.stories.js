@@ -166,9 +166,9 @@ storiesOf('Components', module)
             },
             methods: {
                 accountSelected: action('account-selected'),
-                switchWallet: action('switch-wallet'),
+                login: action('login'),
             },
-            template: `<AccountSelector @account-selected="accountSelected" @switch-wallet="switchWallet" :accounts="accounts" :walletId="walletId" :walletLabel
+            template: `<AccountSelector @account-selected="accountSelected" @login="login" :accounts="accounts" :walletId="walletId" :walletLabel
             ="walletLabel" :walletType="walletType"/>`
         };
     })
@@ -403,10 +403,7 @@ storiesOf('Pages', module)
         return {
             components: {AccountInfo, SmallPage},
             methods: {
-                accountSelected: action('account-selected'),
-                switchWallet: action('switch-wallet'),
-                back: action('back'),
-                merchantInfoClicked: action('merchant-info-clicked'),
+                close: action('close'),
             },
             data() {
                 return {
@@ -419,7 +416,31 @@ storiesOf('Pages', module)
                 };
             },
             template: windowTemplate(`<small-page style="height: 560px;">
-    <AccountInfo :address="account.userFriendlyAddress" :label="account.label" :balance="account.balance" :walletLabel="walletLabel"/>
+    <AccountInfo :address="account.userFriendlyAddress" :label="account.label" :balance="account.balance" :walletLabel="walletLabel" @close="close"/>
+</small-page>
+`),
+        };
+    })
+    .add('AccountInfo (merchant)', () => {
+        return {
+            components: {AccountInfo, SmallPage},
+            methods: {
+                close: action('close'),
+            },
+            data() {
+                return {
+                    walletLabel: 'Keyguard Wallet',
+                    account: {
+                        userFriendlyAddress: 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1',
+                        label: 'Savings',
+                        balance: 2712415141213
+                    },
+                    origin: 'https://shop.nimiq.com',
+                    shopLogoUrl: 'https://shop.nimiq.com/wp-content/uploads/2018/10/nimiq_signet_rgb_base_size.576px.png',
+                };
+            },
+            template: windowTemplate(`<small-page style="height: 560px;">
+    <AccountInfo :address="account.userFriendlyAddress" :shopLogoUrl="shopLogoUrl" :origin="origin" @close="close"/>
 </small-page>
 `),
         };
@@ -429,12 +450,18 @@ storiesOf('Pages/Checkout', module)
     .addDecorator(withKnobs)
     .add('AccountSelector', () => {
         return {
-            components: {AccountSelector, PaymentInfoLine, SmallPage},
+            components: {AccountSelector, PaymentInfoLine, AccountInfo, SmallPage},
             methods: {
                 accountSelected: action('account-selected'),
-                switchWallet: action('switch-wallet'),
-                back: action('back'),
-                merchantInfoClicked: action('merchant-info-clicked'),
+                login: action('login'),
+                openMerchantInfo: function(event) {
+                    this.showMerchantInfo = true;
+                    return action('merchant-info-clicked')(event);
+                },
+                closeMerchantInfo: function(event) {
+                    this.showMerchantInfo = false;
+                    return action('close')(event);
+                },
             },
             data() {
                 return {
@@ -459,12 +486,14 @@ storiesOf('Pages/Checkout', module)
                     origin: 'https://shop.nimiq.com',
                     shopLogoUrl: 'https://shop.nimiq.com/wp-content/uploads/2018/10/nimiq_signet_rgb_base_size.576px.png',
                     minBalance: 1000e5,
+                    showMerchantInfo: false,
                 };
             },
-            template: windowTemplate(`<small-page>
-    <PaymentInfoLine :amount="amount" :fee="fee" :address="shopAddress" :origin="origin" :shopLogoUrl="shopLogoUrl" @merchant-info-clicked="merchantInfoClicked"/>
+            template: windowTemplate(`<small-page style="position: relative;">
+    <PaymentInfoLine :amount="amount" :fee="fee" :address="shopAddress" :origin="origin" :shopLogoUrl="shopLogoUrl" @merchant-info-clicked="openMerchantInfo"/>
     <h1 style="font-size: 3rem; text-align: center; margin: 3rem 0; line-height: 1;">Choose an account to pay</h1>
-    <AccountSelector @account-selected="accountSelected" @switch-wallet="switchWallet" @back="back" :accounts="accounts" :walletId="walletId" :walletLabel="walletLabel" :walletType="walletType" :minBalance="minBalance"/>
+    <AccountSelector @account-selected="accountSelected" @login="login" :accounts="accounts" :walletId="walletId" :walletLabel="walletLabel" :walletType="walletType" :minBalance="minBalance"/>
+    <AccountInfo v-if="showMerchantInfo" :address="shopAddress" :origin="origin" :shopLogoUrl="shopLogoUrl" @close="closeMerchantInfo" style="position: absolute; left: 0; top: 0;"/>
 </small-page>
 `),
         };
