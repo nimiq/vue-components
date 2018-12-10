@@ -1,6 +1,6 @@
 <template>
     <div class="account-list">
-        <div class="account-entry"
+        <a href="javascript:void(0)" class="account-entry"
             v-for="account in accounts"
             :class="{
                 'good-balance': minBalance && (account.balance || 0) >= minBalance,
@@ -19,7 +19,7 @@
             />
 
             <i class="nq-icon chevron-right"></i>
-        </div>
+        </a>
     </div>
 </template>
 
@@ -82,12 +82,14 @@ import { clearTimeout } from 'timers';
 /* END Nimiq Style */
 
     .account-entry {
-        cursor: pointer;
+        display: block;
         transition: background 300ms;
         border-radius: calc(0.5 * var(--nimiq-size, 8px));
         margin: calc(0.5 * var(--nimiq-size, 8px)) calc(2 * var(--nimiq-size, 8px));
         position: relative;
         overflow: hidden; /* chevron-right is outside the box */
+        color: inherit;
+        text-decoration: none;
     }
 
     .account-entry >>> .label,
@@ -120,7 +122,7 @@ import { clearTimeout } from 'timers';
         background-color: rgba(31, 35, 72, 0.06);
     }
 
-    .account-entry:not(.bad-balance):hover >>> .label,
+    .account-entry:not(.bad-balance):hover >>> .label div,
     .account-entry:not(.bad-balance):hover >>> .balance {
         opacity: 1;
     }
