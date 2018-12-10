@@ -3,7 +3,7 @@
         <div class="wallet-label">
             <span class="nq-label">{{ walletLabel }}</span>
         </div>
-        <AccountList :accounts="accounts" :walletId="walletId" @account-selected="accountSelected"/>
+        <AccountList :accounts="accounts" :walletId="walletId" :minBalance="minBalance" @account-selected="accountSelected"/>
     </div>
 </template>
 
@@ -19,6 +19,7 @@
         @Prop(Number) private walletType!: number;
         @Prop(Array) private accounts!: Array<{ label: string, userFriendlyAddress: string, balance?: number }>;
         @Prop({type: Boolean, default: false}) private showSwitchWallet!: boolean;
+        @Prop(Number) private minBalance?: boolean;
 
         @Emit()
         // tslint:disable-next-line no-empty

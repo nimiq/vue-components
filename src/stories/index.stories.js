@@ -389,6 +389,7 @@ storiesOf('Pages/Payment', module)
                 accountSelected: action('account-selected'),
                 switchWallet: action('switch-wallet'),
                 back: action('back'),
+                merchantInfoClicked: action('merchant-info-clicked'),
             },
             data() {
                 return {
@@ -406,13 +407,18 @@ storiesOf('Pages/Payment', module)
                             label: 'Savings',
                             balance: 2712415141213
                         }
-                    ]
+                    ],
+                    amount: 199900000,
+                    fee: 138,
+                    address: 'NQ21 YPRN 1KVN BQP5 A17U YGD3 HH96 6TKA 6BL4',
+                    origin: 'https://j-shop.com',
+                    minBalance: 1000e5,
                 };
             },
-            template: windowTemplate(`
-<PaymentInfoLine :amount="199000" :networkFee="1000" :networkFeeEditable="false" origin="https://shop.nimiq.com"/>
-<small-page>
-    <AccountSelector @account-selected="accountSelected" @switch-wallet="switchWallet" @back="back" :accounts="accounts" :walletId="walletId" :walletLabel="walletLabel" :walletType="walletType"/>
+            template: windowTemplate(`<small-page>
+    <PaymentInfoLine :amount="amount" :fee="fee" :address="address" :origin="origin" @merchant-info-clicked="merchantInfoClicked"/>
+    <h1 style="font-size: 3rem; text-align: center; margin: 3rem 0; line-height: 1;">Choose an account to pay</h1>
+    <AccountSelector @account-selected="accountSelected" @switch-wallet="switchWallet" @back="back" :accounts="accounts" :walletId="walletId" :walletLabel="walletLabel" :walletType="walletType" :minBalance="minBalance"/>
 </small-page>
 `),
         };
