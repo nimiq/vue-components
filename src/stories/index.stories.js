@@ -76,6 +76,20 @@ storiesOf('Basic', module)
             template: `<LabelInput :value="value" @changed="changed"/>`,
         };
     })
+    .add('LabelInput (restricted to 63 bytes)', () => {
+        return {
+            components: {LabelInput},
+            methods: {
+                changed: action('changed'),
+            },
+            data() {
+                return {
+                    value: "Standard Account"
+                };
+            },
+            template: `<LabelInput :value="value" :maxBytes="63" @changed="changed"/>`,
+        };
+    })
     .add('LoadingSpinner', () => {
         return {
             components: {LoadingSpinner},

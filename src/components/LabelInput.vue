@@ -1,7 +1,7 @@
 <template>
     <form class="label-input" @submit.prevent="changed">
         <label>
-            <input type="text" :style="{width: `${Math.max(2, liveValue.length + 1)}ch`}" v-model="liveValue" @focus="$event.target.select()" @blur="changed" ref="input">
+            <input type="text" :style="{width: `${Math.max(2, liveValue.length + 1)}ch`}" v-model="liveValue" @focus="$event.target.select()" @input="input" @blur="changed" ref="input">
             <i class="nq-icon edit"></i>
         </label>
     </form>
@@ -9,22 +9,38 @@
 
 <script lang="ts">
     import { Component, Prop, Vue } from 'vue-property-decorator';
+    import { Utf8Tools } from '@nimiq/utils';
 
     @Component({components: {}})
     export default class LabelInput extends Vue {
         @Prop(String) private value?: string;
+        @Prop(Number) private maxBytes?: number;
 
         private liveValue = this.value;
         private lastValue = this.value;
+        private lastEmittedValue = this.value;
 
         public focus() {
             (this.$refs.input as HTMLInputElement).focus();
         }
+        
+        public input() {
+            if (this.maxBytes !== undefined) {
+                const lengthInBytes = Utf8Tools.stringToUtf8ByteArray(this.liveValue!)
+                                        .byteLength;
+                if (lengthInBytes > this.maxBytes) {
+                   this.liveValue = this.lastValue;
+                   return;
+                }
+            }
+
+            this.lastValue = this.liveValue;
+        }
 
         private changed() {
-            if (this.liveValue === this.lastValue) return;
+            if (this.liveValue === this.lastEmittedValue) return;
             this.$emit('changed', this.liveValue);
-            this.lastValue = this.liveValue;
+            this.lastEmittedValue = this.liveValue;
             (this.$refs.input as HTMLInputElement).blur();
         }
     }
