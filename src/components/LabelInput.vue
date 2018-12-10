@@ -14,7 +14,8 @@
     @Component({components: {}})
     export default class LabelInput extends Vue {
         @Prop(String) private value?: string;
-        @Prop(Number) private maxBytes?: number;
+        // Protected enables us to inherit from the component and set a default value for that property
+        @Prop(Number) protected maxBytes?: number;
 
         private liveValue = this.value;
         private lastValue = this.value;
