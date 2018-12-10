@@ -1,6 +1,6 @@
 <template>
     <div class="address-display">
-        <div v-for="chunk in chunks" class="chunk" :key="chunk">{{ chunk }}</div>
+        <span v-for="chunk in chunks" class="chunk" :key="chunk">{{ chunk }}<span class="space">&nbsp;</span></span>
     </div>
 </template>
 
@@ -21,7 +21,6 @@ export default class Input extends Vue {
 
 <style scoped>
     .address-display {
-        display: block;
         width: 100%;
         max-width: calc(28.25 * var(--nimiq-size, 8px));
         font-family: 'Fira Mono', monospace;
@@ -40,5 +39,9 @@ export default class Input extends Vue {
         text-align: center;
         box-sizing: border-box;
         text-transform: uppercase;
+    }
+
+    .space {
+        font-size: 0;
     }
 </style>
