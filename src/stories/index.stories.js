@@ -7,6 +7,7 @@ import Account from '../components/Account.vue';
 import AccountList from '../components/AccountList.vue';
 import AccountSelector from '../components/AccountSelector.vue';
 import Address from '../components/Address.vue';
+import AddressInput from '../components/AddressInput.vue';
 import Amount from '../components/Amount.vue';
 import AmountWithDetails from '../components/AmountWithDetails.vue';
 import Contact from '../components/Contact.vue';
@@ -178,6 +179,15 @@ storiesOf('Components', module)
                 return { address };
             },
             template: `<Address :address="address"/>`,
+        };
+    })
+    .add('AddressInput', () => {
+        return {
+            components: {AddressInput},
+            methods: {
+                changed: action('changed'),
+            },
+            template: `<AddressInput @changed="changed"/>`,
         };
     })
     .add('AmountWithDetails', () => {
