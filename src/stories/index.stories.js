@@ -11,7 +11,7 @@ import Amount from '../components/Amount.vue';
 import AmountWithDetails from '../components/AmountWithDetails.vue';
 import Contact from '../components/Contact.vue';
 import Identicon from '../components/Identicon.vue';
-import LabelInput from '../components/LabelInput.vue';
+import Input from '../components/Input.vue';
 import Wallet from '../components/Wallet.vue';
 import WalletList from '../components/WalletList.vue';
 import WalletMenu from '../components/WalletMenu.vue';
@@ -62,18 +62,13 @@ storiesOf('Basic', module)
             template: `<Identicon :address="address"/>`,
         };
     })
-    .add('LabelInput', () => {
+    .add('Input', () => {
         return {
-            components: {LabelInput},
+            components: {Input},
             methods: {
                 changed: action('changed'),
             },
-            data() {
-                return {
-                    value: "Standard Account"
-                };
-            },
-            template: `<LabelInput :value="value" @changed="changed"/>`,
+            template: `<Input placeholder="Name this account..." @changed="changed"/>`,
         };
     })
     .add('LoadingSpinner', () => {

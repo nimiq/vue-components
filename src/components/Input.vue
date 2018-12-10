@@ -1,9 +1,6 @@
 <template>
     <form class="label-input" @submit.prevent="changed">
-        <label>
-            <input type="text" :placeholder="placeholder" :style="{width: `${Math.max(placeholder.length, liveValue.length) + 1}ch`}" v-model="liveValue" @blur="changed" ref="input">
-            <!-- <i class="nq-icon edit"></i> -->
-        </label>
+        <input type="text" :placeholder="placeholder" :style="{width: `${Math.max(placeholder.length, liveValue.length) + 1}ch`}" v-model="liveValue" @blur="changed" ref="input">
     </form>
 </template>
 
@@ -11,8 +8,8 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component({components: {}})
-export default class LabelInput extends Vue {
-    @Prop(String) private value?: string;
+export default class Input extends Vue {
+    @Prop({type: String, default: ''}) private value!: string;
     @Prop({type: String, default: 'Name your account'}) private placeholder!: string;
 
     private liveValue = this.value;
