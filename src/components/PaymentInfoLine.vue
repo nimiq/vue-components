@@ -7,7 +7,7 @@
         <div class="description">
             <div v-if="showShopLogo" class="shop-logo">
                 <div class="cover"></div>
-                <img class="logo" src="https://static11.jassets.com/live/images/favicon.ico" @error="showShopLogo = false">
+                <img class="logo" :src="shopLogoUrl" @error="showShopLogo = false">
             </div>
             <Identicon v-else :address="address"/>
             <span class="origin">{{ originDomain }}</span><a href="javascript:void(0)" class="nq-icon info-circle" @click="merchantInfoClicked"></a>

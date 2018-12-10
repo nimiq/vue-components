@@ -427,13 +427,14 @@ storiesOf('Pages/Payment', module)
                     ],
                     amount: 199900000,
                     fee: 138,
-                    address: 'NQ21 YPRN 1KVN BQP5 A17U YGD3 HH96 6TKA 6BL4',
-                    origin: 'https://j-shop.com',
+                    shopAddress: 'NQ21 YPRN 1KVN BQP5 A17U YGD3 HH96 6TKA 6BL4',
+                    origin: 'https://shop.nimiq.com',
+                    shopLogoUrl: 'https://shop.nimiq.com/wp-content/uploads/2018/10/nimiq_signet_rgb_base_size.576px.png',
                     minBalance: 1000e5,
                 };
             },
             template: windowTemplate(`<small-page>
-    <PaymentInfoLine :amount="amount" :fee="fee" :address="address" :origin="origin" @merchant-info-clicked="merchantInfoClicked"/>
+    <PaymentInfoLine :amount="amount" :fee="fee" :address="shopAddress" :origin="origin" :shopLogoUrl="shopLogoUrl" @merchant-info-clicked="merchantInfoClicked"/>
     <h1 style="font-size: 3rem; text-align: center; margin: 3rem 0; line-height: 1;">Choose an account to pay</h1>
     <AccountSelector @account-selected="accountSelected" @switch-wallet="switchWallet" @back="back" :accounts="accounts" :walletId="walletId" :walletLabel="walletLabel" :walletType="walletType" :minBalance="minBalance"/>
 </small-page>
