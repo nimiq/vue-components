@@ -7,6 +7,7 @@ import Account from '../components/Account.vue';
 import AccountList from '../components/AccountList.vue';
 import AccountSelector from '../components/AccountSelector.vue';
 import Address from '../components/Address.vue';
+import AddressDisplay from '../components/AddressDisplay.vue';
 import AddressInput from '../components/AddressInput.vue';
 import Amount from '../components/Amount.vue';
 import AmountWithDetails from '../components/AmountWithDetails.vue';
@@ -179,6 +180,17 @@ storiesOf('Components', module)
                 return { address };
             },
             template: `<Address :address="address"/>`,
+        };
+    })
+    .add('AddressDisplay', () => {
+        return {
+            data() {
+                return {
+                    address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE',
+                };
+            },
+            components: {AddressDisplay},
+            template: `<AddressDisplay :address="address"/>`,
         };
     })
     .add('AddressInput', () => {
