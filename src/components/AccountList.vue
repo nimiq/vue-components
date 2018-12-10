@@ -79,7 +79,11 @@ import { clearTimeout } from 'timers';
     .nq-icon.chevron-right {
         background-image: url('data:image/svg+xml,<svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.3137 2L18.7978 10.4865L10.3137 18.9706" stroke="%231F2348" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
     }
-/* END Nimiq Style */
+    /* END Nimiq Style */
+
+    .account-list {
+        flex-grow: 1;
+    }
 
     .account-entry {
         display: block;
