@@ -1,9 +1,9 @@
-import Vue from 'vue';
 import {storiesOf} from '@storybook/vue';
 import {action} from '@storybook/addon-actions';
 import {boolean, number, text, withKnobs} from '@storybook/addon-knobs';
 
 import Account from '../components/Account.vue';
+import AccountInfo from '../components/AccountInfo.vue';
 import AccountList from '../components/AccountList.vue';
 import AccountSelector from '../components/AccountSelector.vue';
 import Address from '../components/Address.vue';
@@ -397,7 +397,35 @@ storiesOf('Components', module)
         };
     });
 
-storiesOf('Pages/Payment', module)
+storiesOf('Pages', module)
+    .addDecorator(withKnobs)
+    .add('AccountInfo', () => {
+        return {
+            components: {AccountInfo, SmallPage},
+            methods: {
+                accountSelected: action('account-selected'),
+                switchWallet: action('switch-wallet'),
+                back: action('back'),
+                merchantInfoClicked: action('merchant-info-clicked'),
+            },
+            data() {
+                return {
+                    walletLabel: 'Keyguard Wallet',
+                    account: {
+                        userFriendlyAddress: 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1',
+                        label: 'Savings',
+                        balance: 2712415141213
+                    },
+                };
+            },
+            template: windowTemplate(`<small-page style="height: 560px;">
+    <AccountInfo :address="account.userFriendlyAddress" :label="account.label" :balance="account.balance" :walletLabel="walletLabel"/>
+</small-page>
+`),
+        };
+    });
+
+storiesOf('Pages/Checkout', module)
     .addDecorator(withKnobs)
     .add('AccountSelector', () => {
         return {
