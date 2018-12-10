@@ -13,10 +13,10 @@ export default class LoadingSpinner extends Vue {}
         background-image: url('../assets/loading-spinner.svg');
         background-repeat: no-repeat;
         background-position: center;
-        background-size: 9rem;
+        background-size: calc(9 * var(--nimiq-size, 8px));
         z-index: 1;
         display: block;
-        height: 9rem;
-        width: 10rem;
+        height: calc(9 * var(--nimiq-size, 8px));
+        width: calc(10 * var(--nimiq-size, 8px));
     }
 </style>
