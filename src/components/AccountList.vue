@@ -96,6 +96,11 @@ import { clearTimeout } from 'timers';
         text-decoration: none;
     }
 
+    .account-entry >>> .identicon img {
+        transform: scale(0.9);
+        transition: transform 300ms;
+    }
+
     .account-entry >>> .label,
     .account-entry >>> .balance {
         transition: opacity 300ms, color 300ms, margin-right 300ms;
@@ -124,6 +129,9 @@ import { clearTimeout } from 'timers';
 
     .account-entry:not(.bad-balance):hover {
         background-color: rgba(31, 35, 72, 0.06);
+    .account-entry:not(.bad-balance):hover >>> img,
+    .account-entry:not(.bad-balance):focus >>> img {
+        transform: scale(1);
     }
 
     .account-entry:not(.bad-balance):hover >>> .label div,
