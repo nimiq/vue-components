@@ -3,7 +3,7 @@
         <div class="header"></div>
 
         <div class="container" :class="{'extra-spacing': wallets.length === 1}">
-            <div v-for="wallet in wallets" :key="wallet.id">
+            <div v-for="wallet in sortedWallets" :key="wallet.id">
                 <div v-if="wallets.length > 1" class="wallet-label">
                     <span class="nq-label">{{ wallet.label }}</span>
                 </div>
@@ -12,7 +12,7 @@
         </div>
 
         <div class="footer">
-            <button v-if="allowLogin" class="nq-button-s" @click="login">Login with another Wallet</button>
+            <button v-if="allowLogin" class="nq-button-s" @click="login">Login to another Wallet</button>
         </div>
     </div>
 </template>
@@ -41,11 +41,10 @@ interface WalletInfo {
 @Component({
     components: {AccountList},
     filters: {
-        accountsToArray: (accounts: Map<string, AccountInfo>) => {
+        accountsToArray: (accounts: Map<string, AccountInfo>): AccountInfo[] => {
             return Array.from(accounts.values());
         },
-        sortAccounts: (accounts: AccountInfo[], minBalance?: number) => {
-            console.log(accounts);
+        sortAccounts: (accounts: AccountInfo[], minBalance?: number): AccountInfo[] => {
             if (!minBalance) return accounts;
 
             return accounts.slice(0).sort((a: AccountInfo, b: AccountInfo): number => {
@@ -60,6 +59,19 @@ export default class AccountSelector extends Vue {
     @Prop(Array) private wallets!: WalletInfo[];
     @Prop(Number) private minBalance?: number;
     @Prop({type: Boolean, default: true}) private allowLogin!: boolean;
+
+    private get sortedWallets(): WalletInfo[] {
+        if (!this.minBalance) return this.wallets;
+
+        return this.wallets.slice(0).sort((a: WalletInfo, b: WalletInfo): number => {
+            const balanceA = Array.from(a.accounts.values()).reduce((sum, account) => sum + (account.balance || 0), 0);
+            const balanceB = Array.from(b.accounts.values()).reduce((sum, account) => sum + (account.balance || 0), 0);
+
+            if ((!balanceA || balanceA < this.minBalance!) && balanceB && balanceB >= this.minBalance!) return 1;
+            if ((!balanceB || balanceB < this.minBalance!) && balanceA && balanceA >= this.minBalance!) return -1;
+            return 0;
+        });
+    }
 
     @Emit()
     // tslint:disable-next-line no-empty
