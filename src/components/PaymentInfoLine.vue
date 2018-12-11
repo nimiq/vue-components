@@ -4,14 +4,15 @@
         <div class="arrow-runway">
             <i class="nq-icon arrow-right"></i>
         </div>
-        <div class="description">
+        <a href="javascript:void(0)" class="description" @click="merchantInfoClicked">
             <div v-if="shopLogoUrl && showShopLogo" class="shop-logo">
                 <div class="cover"></div>
                 <img class="logo" :src="shopLogoUrl" @error="showShopLogo = false">
             </div>
             <Identicon v-else :address="address"/>
-            <span class="origin">{{ originDomain }}</span><a href="javascript:void(0)" class="nq-icon info-circle" @click="merchantInfoClicked"></a>
-        </div>
+            <span class="origin">{{ originDomain }}</span>
+            <i class="nq-icon info-circle"></i>
+        </a>
     </div>
 </template>
 
@@ -97,6 +98,9 @@
         background-size: calc(2 * var(--nimiq-size, 8px));
         background-position: left center;
         /* animation: arrow-shooting 2s ease-in-out infinite; */
+
+        opacity: 0.3;
+        background-position: center;
     }
 
     @keyframes arrow-shooting {
@@ -111,6 +115,14 @@
         display: flex;
         flex-direction: row;
         align-items: center;
+        color: inherit;
+        text-decoration: none;
+        outline: none;
+    }
+
+    .description:hover,
+    .description:focus {
+        text-decoration: underline;
     }
 
     .shop-logo,
