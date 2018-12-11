@@ -33,7 +33,7 @@ import { clearTimeout } from 'timers';
         @Prop(Array) public accounts!: Array<{ label: string, userFriendlyAddress: string, balance?: number }>;
         @Prop(String) private walletId?: string;
         @Prop(Boolean) private editable?: boolean;
-        @Prop(Number) private minBalance?: boolean;
+        @Prop(Number) private minBalance?: number;
 
         private wrongClickedAddress: string | null = null;
         private wrongClickedAddressTimeout: number | null = null;
@@ -83,6 +83,7 @@ import { clearTimeout } from 'timers';
 
     .account-list {
         flex-grow: 1;
+        overflow-y: auto;
     }
 
     .account-entry {
@@ -108,11 +109,11 @@ import { clearTimeout } from 'timers';
 
     .account-entry .chevron-right {
         position: absolute;
-        right: calc(2.5 * var(--nimiq-size, 8px));
+        right: calc(2 * var(--nimiq-size, 8px));
         top: calc(3.625 * var(--nimiq-size, 8px));
         width: calc(2 * var(--nimiq-size, 8px));
         height: calc(2 * var(--nimiq-size, 8px));
-        transform: translateX(calc(4 * var(--nimiq-size, 8px)));
+        transform: translateX(calc(3 * var(--nimiq-size, 8px)));
         opacity: 0;
         transition: transform 300ms, opacity 300ms;
     }
@@ -127,15 +128,21 @@ import { clearTimeout } from 'timers';
         opacity: 0.2;
     }
 
-    .account-entry:not(.bad-balance):hover {
+    .account-entry:not(.bad-balance):hover,
+    .account-entry:not(.bad-balance):focus {
         background-color: rgba(31, 35, 72, 0.06);
+        outline: none;
+    }
+
     .account-entry:not(.bad-balance):hover >>> img,
     .account-entry:not(.bad-balance):focus >>> img {
         transform: scale(1);
     }
 
     .account-entry:not(.bad-balance):hover >>> .label div,
-    .account-entry:not(.bad-balance):hover >>> .balance {
+    .account-entry:not(.bad-balance):hover >>> .balance,
+    .account-entry:not(.bad-balance):focus >>> .label div,
+    .account-entry:not(.bad-balance):focus >>> .balance {
         opacity: 1;
     }
 
@@ -144,12 +151,14 @@ import { clearTimeout } from 'timers';
         opacity: 1;
     }
 
-    .account-entry.good-balance:hover >>> .balance {
-        margin-right: calc(4 * var(--nimiq-size, 8px));
+    .account-entry.good-balance:hover >>> .balance,
+    .account-entry.good-balance:focus >>> .balance {
+        margin-right: calc(3 * var(--nimiq-size, 8px));
         color: #21BCA5;
     }
 
-    .account-entry.good-balance:hover .chevron-right {
+    .account-entry.good-balance:hover .chevron-right,
+    .account-entry.good-balance:focus .chevron-right {
         transform: translateX(0);
         opacity: 0.23;
     }

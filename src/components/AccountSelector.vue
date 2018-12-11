@@ -1,37 +1,74 @@
 <template>
     <div class="account-selector">
-        <div class="wallet-label">
-            <span class="nq-label">{{ walletLabel }}</span>
+        <div class="header"></div>
+
+        <div class="container" :class="{'extra-spacing': wallets.length === 1}">
+            <div v-for="wallet in wallets" :key="wallet.id">
+                <div v-if="wallets.length > 1" class="wallet-label">
+                    <span class="nq-label">{{ wallet.label }}</span>
+                </div>
+                <AccountList :accounts="wallet.accounts | accountsToArray | sortAccounts(minBalance)" :walletId="wallet.id" :minBalance="minBalance" @account-selected="accountSelected"/>
+            </div>
         </div>
-        <AccountList :accounts="accounts" :walletId="walletId" :minBalance="minBalance" @account-selected="accountSelected"/>
+
         <div class="footer">
-            <button v-if="showSwitchWallet" class="nq-button-s" @click="login">Login with another Wallet</button>
+            <button v-if="allowLogin" class="nq-button-s" @click="login">Login with another Wallet</button>
         </div>
     </div>
 </template>
 
 <script lang="ts">
-    import {Component, Emit, Prop, Vue} from 'vue-property-decorator';
-    import AccountList from './AccountList.vue';
+import {Component, Emit, Prop, Vue} from 'vue-property-decorator';
+import AccountList from './AccountList.vue';
 
-    @Component({components: {AccountList}})
-    export default class AccountSelector extends Vue {
-        @Prop({type: String, default: 'Select Account'}) private title!: string;
-        @Prop(String) private walletId!: string;
-        @Prop(String) private walletLabel!: string;
-        @Prop(Number) private walletType!: number;
-        @Prop(Array) private accounts!: Array<{ label: string, userFriendlyAddress: string, balance?: number }>;
-        @Prop({type: Boolean, default: true}) private showSwitchWallet!: boolean;
-        @Prop(Number) private minBalance?: boolean;
+type AccountInfo = {
+    path: string,
+    label: string,
+    address: Nimiq.Address,
+    userFriendlyAddress: string,
+    balance?: number
+};
 
-        @Emit()
-        // tslint:disable-next-line no-empty
-        private accountSelected(walletId: string, address: string) {}
+type WalletInfo = {
+    id: string,
+    label: string,
+    accounts: Map<string, AccountInfo>,
+    contracts: any[],
+    type: number,
+    keyMissing: boolean,
+};
 
-        @Emit()
-        // tslint:disable-next-line no-empty
-        private login() {}
+@Component({
+    components: {AccountList},
+    filters: {
+        accountsToArray: (accounts: Map<string, AccountInfo>) => {
+            return Array.from(accounts.values());
+        },
+        sortAccounts: (accounts: AccountInfo[], minBalance?: number) => {
+            console.log(accounts);
+            if (!minBalance) return accounts;
+
+            return accounts.slice(0).sort((a: AccountInfo, b: AccountInfo): number => {
+                if ((!a.balance || a.balance < minBalance) && b.balance && b.balance >= minBalance) return 1;
+                if ((!b.balance || b.balance < minBalance) && a.balance && a.balance >= minBalance) return -1;
+                return 0;
+            });
+        }
     }
+})
+export default class AccountSelector extends Vue {
+    @Prop(Array) private wallets!: WalletInfo[];
+    @Prop(Number) private minBalance?: number;
+    @Prop({type: Boolean, default: true}) private allowLogin!: boolean;
+
+    @Emit()
+    // tslint:disable-next-line no-empty
+    private accountSelected(walletId: string, address: string) {}
+
+    @Emit()
+    // tslint:disable-next-line no-empty
+    private login() {}
+}
 </script>
 
 <style scoped>
@@ -90,11 +127,21 @@
         flex-direction: column;
     }
 
+    .container {
+        overflow-y: auto;
+        padding-top: 0.5rem;
+        flex-grow: 1;
+    }
+
+    .container.extra-spacing {
+        padding-top: 3rem;
+    }
+
     .wallet-label {
         margin:
+            calc(3.5 * var(--nimiq-size, 8px))
             calc(2 * var(--nimiq-size, 8px))
             calc(2 * var(--nimiq-size, 8px))
-            calc(2.5 * var(--nimiq-size, 8px))
             calc(3 * var(--nimiq-size, 8px));
         display: flex;
         flex-direction: row;
@@ -114,11 +161,20 @@
         background: rgba(31, 35, 72, 0.1);
     }
 
+    .header {
+        height: 4rem;
+        margin-bottom: -4rem;
+        flex-shrink: 0;
+        background: linear-gradient(white 0, transparent 4rem);
+        z-index: 1;
+        pointer-events: none;
+    }
+
     .footer {
         padding: 4rem 0;
         margin-top: -4rem;
         text-align: center;
-        background: linear-gradient(transparent 0%, white 50%);
+        background: linear-gradient(transparent 0, white 4rem, transparent 4rem);
         position: relative;
         pointer-events: none;
     }
