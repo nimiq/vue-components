@@ -17,29 +17,29 @@
 </template>
 
 <script lang="ts">
-    import {Component, Prop, Emit, Vue} from 'vue-property-decorator';
-    import Amount from './Amount.vue';
-    import Identicon from './Identicon.vue';
+import {Component, Prop, Emit, Vue} from 'vue-property-decorator';
+import Amount from './Amount.vue';
+import Identicon from './Identicon.vue';
 
-    @Component({components: {Amount, Identicon}})
-    export default class PaymentInfoLine extends Vue {
-        @Prop(Number) private amount!: number;
-        @Prop(Number) private fee!: number;
-        @Prop({type: Number, default: 2, validator(value) { return value >= 0 && value <= 5; }}) public decimals!: number;
-        @Prop(String) private origin!: string;
-        @Prop(String) private address?: string;
-        @Prop(String) private shopLogoUrl?: string;
+@Component({components: {Amount, Identicon}})
+export default class PaymentInfoLine extends Vue {
 
-        private showShopLogo: boolean = true;
-
-        private get originDomain() {
-            return this.origin.split('://')[1];
-        }
-
-        @Emit()
-        // eslint-disable-next-line no-empty
-        merchantInfoClicked() {}
+    private get originDomain() {
+        return this.origin.split('://')[1];
     }
+    @Prop({type: Number, default: 2, validator(value) { return value >= 0 && value <= 5; }}) public decimals!: number;
+    @Prop(Number) private amount!: number;
+    @Prop(Number) private fee!: number;
+    @Prop(String) private origin!: string;
+    @Prop(String) private address?: string;
+    @Prop(String) private shopLogoUrl?: string;
+
+    private showShopLogo: boolean = true;
+
+    @Emit()
+    // tslint:disable-next-line no-empty
+    private merchantInfoClicked() {}
+}
 </script>
 
 <style scoped>

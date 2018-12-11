@@ -40,7 +40,7 @@ export default class Input extends Vue {
     }
 
     private onInput(index: number) {
-        const input = (this.$refs[`input${index}`] as HTMLInputElement)
+        const input = (this.$refs[`input${index}`] as HTMLInputElement);
         const value = input.value.toUpperCase();
 
         let cleanValue: string;
@@ -48,8 +48,8 @@ export default class Input extends Vue {
             switch (value.length) {
                 case 1: cleanValue = value === 'N' ? value : ''; break;
                 case 2: cleanValue = value === 'NQ' ? value : 'N'; break;
-                case 3: cleanValue = `NQ${!isNaN(parseInt(value[2])) ? value[2] : ''}`; break;
-                case 4: cleanValue = `NQ${value[2]}${!isNaN(parseInt(value[3])) ? value[3] : ''}`; break;
+                case 3: cleanValue = `NQ${!isNaN(parseInt(value[2], 10)) ? value[2] : ''}`; break;
+                case 4: cleanValue = `NQ${value[2]}${!isNaN(parseInt(value[3], 10)) ? value[3] : ''}`; break;
                 default: cleanValue = '';
             }
         } else {
@@ -66,7 +66,7 @@ export default class Input extends Vue {
         this.changed(index, cleanValue);
     }
 
-    private changed(index:number, value: string) {
+    private changed(index: number, value: string) {
         this.addressChunks[index] = value;
 
         const address = this.addressChunks.join(' ');

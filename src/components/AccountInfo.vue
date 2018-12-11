@@ -20,7 +20,7 @@
                     </path>
                 </clipPath>
             </defs>
-            </svg>
+        </svg>
     </div>
 </template>
 
@@ -48,7 +48,7 @@ export default class AccountInfo extends Vue {
 
     @Emit()
     // tslint:disable-next-line no-empty
-    close() {};
+    private close() {}
 }
 </script>
 

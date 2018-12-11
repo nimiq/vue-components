@@ -21,22 +21,22 @@
 import {Component, Emit, Prop, Vue} from 'vue-property-decorator';
 import AccountList from './AccountList.vue';
 
-type AccountInfo = {
-    path: string,
-    label: string,
-    address: Nimiq.Address,
-    userFriendlyAddress: string,
-    balance?: number
-};
+interface AccountInfo {
+    path: string;
+    label: string;
+    address: Nimiq.Address;
+    userFriendlyAddress: string;
+    balance?: number;
+}
 
-type WalletInfo = {
-    id: string,
-    label: string,
-    accounts: Map<string, AccountInfo>,
-    contracts: any[],
-    type: number,
-    keyMissing: boolean,
-};
+interface WalletInfo {
+    id: string;
+    label: string;
+    accounts: Map<string, AccountInfo>;
+    contracts: any[];
+    type: number;
+    keyMissing: boolean;
+}
 
 @Component({
     components: {AccountList},
@@ -53,8 +53,8 @@ type WalletInfo = {
                 if ((!b.balance || b.balance < minBalance) && a.balance && a.balance >= minBalance) return -1;
                 return 0;
             });
-        }
-    }
+        },
+    },
 })
 export default class AccountSelector extends Vue {
     @Prop(Array) private wallets!: WalletInfo[];

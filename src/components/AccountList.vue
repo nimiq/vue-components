@@ -24,11 +24,11 @@
 </template>
 
 <script lang="ts">
-    import {Component, Emit, Prop, Vue} from 'vue-property-decorator';
-    import Account from './Account.vue';
+import {Component, Emit, Prop, Vue} from 'vue-property-decorator';
+import Account from './Account.vue';
 import { clearTimeout } from 'timers';
 
-    @Component({components: {Account}})
+@Component({components: {Account}})
     export default class AccountList extends Vue {
         @Prop(Array) public accounts!: Array<{ label: string, userFriendlyAddress: string, balance?: number }>;
         @Prop(String) private walletId?: string;

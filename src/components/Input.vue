@@ -16,9 +16,9 @@ import { Utf8Tools } from '@nimiq/utils';
 
 @Component({components: {}})
 export default class Input extends Vue {
+    @Prop(Number) protected maxBytes?: number;
     @Prop({type: String, default: ''}) private value!: string;
     @Prop({type: String, default: 'Name your account'}) private placeholder!: string;
-    @Prop(Number) protected maxBytes?: number;
 
     private liveValue = this.value;
     private lastValue = this.value;
