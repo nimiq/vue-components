@@ -87,19 +87,19 @@ export default class AccountInfo extends Vue {
         flex-grow: 1;
         position: relative;
         background: rgba(255, 255, 255, 0.95);
-        border-radius: 1rem;
+        border-radius: calc(1 * var(--nimiq-size, 8px));
         width: 100%;
         height: 100%;
         z-index: 29;
     }
 
     .cancel-circle {
-        width: 3rem;
-        height: 3rem;
+        width: calc(3 * var(--nimiq-size, 8px));
+        height: calc(3 * var(--nimiq-size, 8px));
         background-size: 135%;
         position: absolute;
-        top: 2rem;
-        right: 2rem;
+        top: calc(2 * var(--nimiq-size, 8px));
+        right: calc(2 * var(--nimiq-size, 8px));
         opacity: 0.16;
     }
 
@@ -107,10 +107,10 @@ export default class AccountInfo extends Vue {
         content: '';
         display: block;
         position: absolute;
-        top: -1rem;
-        right: -1rem;
-        bottom: -1rem;
-        left: -1rem;
+        top: calc(-1 * var(--nimiq-size, 8px));
+        right: calc(-1 * var(--nimiq-size, 8px));
+        bottom: calc(-1 * var(--nimiq-size, 8px));
+        left: calc(-1 * var(--nimiq-size, 8px));
     }
 
     .cancel-circle:focus,
@@ -120,9 +120,9 @@ export default class AccountInfo extends Vue {
 
     .identicon,
     .shop-logo {
-        width: 146px;
-        height: 146px;
-        margin-bottom: 3rem;
+        width: calc(18.25 * var(--nimiq-size, 8px));
+        height: calc(18.25 * var(--nimiq-size, 8px));
+        margin-bottom: calc(3 * var(--nimiq-size, 8px));
     }
 
     .shop-logo {
@@ -154,25 +154,25 @@ export default class AccountInfo extends Vue {
     }
 
     .label {
-        font-size: 24px;
+        font-size: calc(3 * var(--nimiq-size, 8px));
         font-weight: 600;
         line-height: 1;
     }
 
     .label + .wallet-label {
-        margin-top: 12px;
+        margin-top: calc(1.5 * var(--nimiq-size, 8px));
     }
 
     .amount {
-        font-size: 24px;
-        margin-top: 2rem;
+        font-size: calc(3 * var(--nimiq-size, 8px));
+        margin-top: calc(2 * var(--nimiq-size, 8px));
     }
 
     .address-display {
-        margin-top: 7rem;
+        margin-top: calc(7 * var(--nimiq-size, 8px));
     }
 
     .labels + .address-display {
-        margin-top: 9rem;
+        margin-top: calc(9 * var(--nimiq-size, 8px));
     }
 </style>

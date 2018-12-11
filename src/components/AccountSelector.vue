@@ -85,16 +85,16 @@ export default class AccountSelector extends Vue {
 
     .nq-button-s {
         display: inline-block;
-        font-size: 1.75rem;
-        line-height: 2rem;
-        height: 3.375rem;
+        font-size: calc(1.75 * var(--nimiq-size, 8px));
+        line-height: calc(2 * var(--nimiq-size, 8px));
+        height: calc(3.375 * var(--nimiq-size, 8px));
         text-decoration: none;
         font-weight: bold;
         letter-spacing: 0.014em;
-        padding: 0 1.5rem;
+        padding: 0 calc(1.5 * var(--nimiq-size, 8px));
         background-color: rgba(31, 35, 72, 0.07); /* Based on Nimiq Blue */
         color: var(--nimiq-blue);
-        border-radius: 1.6875rem;
+        border-radius: calc(1.6875 * var(--nimiq-size, 8px));
         transition: background-color 150ms;
         will-change: background-color;
         border: none;
@@ -107,10 +107,10 @@ export default class AccountSelector extends Vue {
         content: '';
         display: block;
         position: absolute;
-        left: -1rem;
-        top: -1rem;
-        right: -1rem;
-        bottom: -1rem;
+        left: calc(-1 * var(--nimiq-size, 8px));
+        top: calc(-1 * var(--nimiq-size, 8px));
+        right: calc(-1 * var(--nimiq-size, 8px));
+        bottom: calc(-1 * var(--nimiq-size, 8px));
     }
 
     .nq-button-s:hover,
@@ -129,12 +129,12 @@ export default class AccountSelector extends Vue {
 
     .container {
         overflow-y: auto;
-        padding-top: 0.5rem;
+        padding-top: calc(0.5 * var(--nimiq-size, 8px));
         flex-grow: 1;
     }
 
     .container.extra-spacing {
-        padding-top: 3rem;
+        padding-top: calc(3 * var(--nimiq-size, 8px));
     }
 
     .wallet-label {
@@ -162,19 +162,19 @@ export default class AccountSelector extends Vue {
     }
 
     .header {
-        height: 4rem;
-        margin-bottom: -4rem;
+        height: calc(4 * var(--nimiq-size, 8px));
+        margin-bottom: calc(-4 * var(--nimiq-size, 8px));
         flex-shrink: 0;
-        background: linear-gradient(white 0, transparent 4rem);
+        background: linear-gradient(white 0, transparent calc(4 * var(--nimiq-size, 8px)));
         z-index: 1;
         pointer-events: none;
     }
 
     .footer {
-        padding: 4rem 0;
-        margin-top: -4rem;
+        padding: calc(4 * var(--nimiq-size, 8px)) 0;
+        margin-top: calc(-4 * var(--nimiq-size, 8px));
         text-align: center;
-        background: linear-gradient(transparent 0, white 4rem, transparent 4rem);
+        background: linear-gradient(transparent 0, white calc(4 * var(--nimiq-size, 8px)), transparent calc(4 * var(--nimiq-size, 8px)));
         position: relative;
         pointer-events: none;
     }
