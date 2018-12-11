@@ -35,7 +35,6 @@ export default class Input extends Vue {
         margin: calc(0.875 * var(--nimiq-size, 8px)) 0;
         line-height: 1.11;
         width: 33%;
-        height: 100%;
         text-align: center;
         box-sizing: border-box;
         text-transform: uppercase;
