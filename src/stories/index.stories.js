@@ -73,6 +73,20 @@ storiesOf('Basic', module)
             template: `<Input placeholder="Name this account..." @changed="changed"/>`,
         };
     })
+    .add('Input (restricted to 63 bytes)', () => {
+        return {
+            components: {Input},
+            methods: {
+                changed: action('changed'),
+            },
+            data() {
+                return {
+                    value: "Standard Account"
+                };
+            },
+            template: `<Input :value="value" :maxBytes="63" @changed="changed"/>`,
+        };
+    })
     .add('LoadingSpinner', () => {
         return {
             components: {LoadingSpinner},

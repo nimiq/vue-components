@@ -1,28 +1,48 @@
 <template>
     <form class="label-input" @submit.prevent="changed">
-        <input type="text" :placeholder="placeholder" :style="{width: `${Math.max(placeholder.length, liveValue.length) + 1}ch`}" v-model="liveValue" @blur="changed" ref="input">
+        <input type="text"
+            :placeholder="placeholder"
+            :style="{width: `${Math.max(placeholder.length, liveValue.length) + 1}ch`}"
+            v-model="liveValue"
+            @input="input"
+            @blur="changed"
+            ref="input">
     </form>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Utf8Tools } from '@nimiq/utils';
 
 @Component({components: {}})
 export default class Input extends Vue {
     @Prop({type: String, default: ''}) private value!: string;
     @Prop({type: String, default: 'Name your account'}) private placeholder!: string;
+    @Prop(Number) protected maxBytes?: number;
 
     private liveValue = this.value;
     private lastValue = this.value;
+    private lastEmittedValue = this.value;
 
     public focus() {
         (this.$refs.input as HTMLInputElement).focus();
     }
 
+    public input() {
+        if (this.maxBytes) {
+            const lengthInBytes = Utf8Tools.stringToUtf8ByteArray(this.liveValue!).byteLength;
+            if (lengthInBytes > this.maxBytes) {
+                this.liveValue = this.lastValue;
+                return;
+            }
+            this.lastValue = this.liveValue;
+        }
+    }
+
     private changed() {
-        if (this.liveValue === this.lastValue) return;
+        if (this.liveValue === this.lastEmittedValue) return;
         this.$emit('changed', this.liveValue);
-        this.lastValue = this.liveValue;
+        this.lastEmittedValue = this.liveValue;
         (this.$refs.input as HTMLInputElement).blur();
     }
 }
