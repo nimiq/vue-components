@@ -24,7 +24,7 @@ import AccountList from './AccountList.vue';
 interface AccountInfo {
     path: string;
     label: string;
-    address: Nimiq.Address;
+    // address: Nimiq.Address; // Nimiq namespace is not known and not used by @nimiq/vue-components
     userFriendlyAddress: string;
     balance?: number;
 }
