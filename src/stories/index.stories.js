@@ -21,6 +21,7 @@ import WalletSelector from '../components/WalletSelector.vue';
 import PaymentInfoLine from '../components/PaymentInfoLine.vue';
 import SmallPage from '../components/SmallPage.vue';
 import LoadingSpinner from '../components/LoadingSpinner.vue';
+import OnboardingMenu from '../components/OnboardingMenu.vue';
 
 import CheckoutFlow from './CheckoutFlow.vue';
 
@@ -411,6 +412,17 @@ storiesOf('Components', module)
     <p>Some text on a page</p>
 </small-page>
 `),
+        };
+    })
+    .add('OnboardingMenu', () => {
+        return {
+            components: {OnboardingMenu},
+            methods: {
+                signup: action('signup'),
+                login: action('login'),
+                ledger: action('ledger'),
+            },
+            template: windowTemplate(`<OnboardingMenu @signup="signup" @login="login" @ledger="ledger"/>`),
         };
     });
 
