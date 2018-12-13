@@ -465,7 +465,8 @@ storiesOf('Pages', module)
                         balance: 2712415141213,
                     },
                     origin: 'https://shop.nimiq.com',
-                    shopLogoUrl: 'https://shop.nimiq.com/wp-content/uploads/2018/10/nimiq_signet_rgb_base_size.576px.png',
+                    // shopLogoUrl: 'https://shop.nimiq.com/wp-content/uploads/2018/10/nimiq_signet_rgb_base_size.576px.png',
+                    shopLogoUrl: 'https://www.decsa.com/wp-content/uploads/2016/10/mcds.png',
                 };
             },
             template: windowTemplate(`<small-page style="height: 560px;">
