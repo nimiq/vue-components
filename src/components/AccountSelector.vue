@@ -21,7 +21,7 @@
 import {Component, Emit, Prop, Vue} from 'vue-property-decorator';
 import AccountList from './AccountList.vue';
 
-interface AccountInfo {
+export interface AccountInfo {
     path: string;
     label: string;
     // address: Nimiq.Address; // Nimiq namespace is not known and not used by @nimiq/vue-components
@@ -30,7 +30,7 @@ interface AccountInfo {
     walletId?: string;
 }
 
-interface WalletInfo {
+export interface WalletInfo {
     id: string;
     label: string;
     accounts: Map<string, AccountInfo>;

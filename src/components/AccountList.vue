@@ -26,10 +26,11 @@
 <script lang="ts">
 import {Component, Emit, Prop, Vue} from 'vue-property-decorator';
 import Account from './Account.vue';
+import { AccountInfo } from './AccountSelector.vue';
 
 @Component({components: {Account}})
 export default class AccountList extends Vue {
-    @Prop(Array) public accounts!: Array<{ label: string, userFriendlyAddress: string, balance?: number, walletId?: string }>;
+    @Prop(Array) public accounts!: AccountInfo[];
     @Prop(String) private walletId?: string;
     @Prop(Boolean) private editable?: boolean;
     @Prop(Number) private minBalance?: number;
