@@ -27,6 +27,7 @@ interface AccountInfo {
     // address: Nimiq.Address; // Nimiq namespace is not known and not used by @nimiq/vue-components
     userFriendlyAddress: string;
     balance?: number;
+    walletId?: string;
 }
 
 interface WalletInfo {

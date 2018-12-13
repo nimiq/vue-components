@@ -26,42 +26,41 @@
 <script lang="ts">
 import {Component, Emit, Prop, Vue} from 'vue-property-decorator';
 import Account from './Account.vue';
-import { clearTimeout } from 'timers';
 
 @Component({components: {Account}})
-    export default class AccountList extends Vue {
-        @Prop(Array) public accounts!: Array<{ label: string, userFriendlyAddress: string, balance?: number }>;
-        @Prop(String) private walletId?: string;
-        @Prop(Boolean) private editable?: boolean;
-        @Prop(Number) private minBalance?: number;
+export default class AccountList extends Vue {
+    @Prop(Array) public accounts!: Array<{ label: string, userFriendlyAddress: string, balance?: number, walletId?: string }>;
+    @Prop(String) private walletId?: string;
+    @Prop(Boolean) private editable?: boolean;
+    @Prop(Number) private minBalance?: number;
 
-        private wrongClickedAddress: string | null = null;
-        private wrongClickedAddressTimeout: number | null = null;
+    private wrongClickedAddress: string | null = null;
+    private wrongClickedAddressTimeout: number | null = null;
 
-        public focus(address: string) {
-            if (this.editable && this.$refs.hasOwnProperty(address)) {
-                (this.$refs[address] as Account[])[0].focus();
-            }
+    public focus(address: string) {
+        if (this.editable && this.$refs.hasOwnProperty(address)) {
+            (this.$refs[address] as Account[])[0].focus();
         }
-
-        private accountSelected(walletId: string, address: string, enoughBalance: boolean) {
-            if (this.wrongClickedAddressTimeout) {
-                window.clearTimeout(this.wrongClickedAddressTimeout);
-                this.wrongClickedAddressTimeout = null;
-            }
-            if (!enoughBalance) {
-                this.wrongClickedAddress = address;
-                this.wrongClickedAddressTimeout = window.setTimeout(() => this.wrongClickedAddress = null, 300);
-            } else {
-                this.$emit('account-selected', walletId, address);
-            }
-        }
-
-        @Emit()
-        // tslint:disable-next-line no-empty
-        private accountChanged(address: string, label: string) {}
-
     }
+
+    private accountSelected(walletId: string, address: string, enoughBalance: boolean) {
+        if (this.wrongClickedAddressTimeout) {
+            window.clearTimeout(this.wrongClickedAddressTimeout);
+            this.wrongClickedAddressTimeout = null;
+        }
+        if (!enoughBalance) {
+            this.wrongClickedAddress = address;
+            this.wrongClickedAddressTimeout = window.setTimeout(() => this.wrongClickedAddress = null, 300);
+        } else {
+            this.$emit('account-selected', walletId, address);
+        }
+    }
+
+    @Emit()
+    // tslint:disable-next-line no-empty
+    private accountChanged(address: string, label: string) {}
+
+}
 </script>
 
 <style scoped>
