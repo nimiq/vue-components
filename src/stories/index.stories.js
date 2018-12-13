@@ -91,7 +91,7 @@ storiesOf('Basic', module)
     .add('LoadingSpinner', () => {
         return {
             components: {LoadingSpinner},
-            template: `<LoadingSpinner />`,
+            template: `<div style="color: #0582CA"><LoadingSpinner /></div>`,
         };
     });;
 
