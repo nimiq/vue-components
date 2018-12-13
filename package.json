@@ -20,7 +20,7 @@
     "vue-property-decorator": "^7.0.0"
   },
   "devDependencies": {
-    "@nimiq/iqons": "^1.1.0",
+    "@nimiq/iqons": "^1.1.1",
     "@nimiq/style": "^0.4.0",
     "@nimiq/utils": "^0.0.6",
     "@storybook/addon-actions": "^4.0.0-alpha.14",
