@@ -755,13 +755,14 @@
   version "1.0.0"
   resolved "https://codeload.github.com/nimiq/iqons/tar.gz/a3302e06b0a53b6daeb745d13dbfd930b304c791"
 
-"@nimiq/secure-utils@nimiq/secure-utils#3937c23c2703d5359eebe2c3bf7b3c9290b26100":
-  version "0.0.0"
-  resolved "https://codeload.github.com/nimiq/secure-utils/tar.gz/3937c23c2703d5359eebe2c3bf7b3c9290b26100"
-
 "@nimiq/style@nimiq/nimiq-style#next":
   version "0.1.3"
   resolved "https://codeload.github.com/nimiq/nimiq-style/tar.gz/7f90f3cf95164afc4362b3470fe26c1f718cc351"
+
+"@nimiq/utils@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@nimiq/utils/-/utils-0.0.6.tgz#dcc7959cbd43ea2b7907c052b68a749c95bff840"
+  integrity sha512-Obllk0DCMa+PeQ/N2wC9AuyopBSB7wuS4ke5N99aVOnQUscfo8UJFOUfITKS1yZ8Ah02AxY2+tEGzkMwuFUSkQ==
 
 "@nodelib/fs.stat@^1.0.1":
   version "1.1.0"

@@ -1,11 +1,12 @@
 <template>
     <div class="account-list">
         <div class="account-entry" v-for="account in accounts" @click="accountSelected(account.walletId || walletId, account.userFriendlyAddress)" :key="account.userFriendlyAddress">
-            <Account :address="account.userFriendlyAddress"
-                     :label="account.label"
-                     :balance="account.balance"
-                     :editable="editable"
-                     @changed="accountChanged(account.userFriendlyAddress, $event)"/>
+            <Account :ref="account.userFriendlyAddress"
+                :address="account.userFriendlyAddress"
+                :label="account.label"
+                :balance="account.balance"
+                :editable="editable"
+                @changed="accountChanged(account.userFriendlyAddress, $event)"/>
         </div>
     </div>
 </template>
@@ -20,6 +21,12 @@
         @Prop(String) private walletId?: string;
         @Prop(Boolean) private editable?: boolean;
 
+        public focus(address: string) {
+            if (this.editable && this.$refs.hasOwnProperty(address)) {
+                (this.$refs[address][0] as Account).focus();
+            }
+        }
+
         @Emit()
         // tslint:disable-next-line no-empty
         private accountSelected(walletId: string, address: string) {}
@@ -27,6 +34,7 @@
         @Emit()
         // tslint:disable-next-line no-empty
         private accountChanged(address: string, label: string) {}
+
     }
 </script>
 

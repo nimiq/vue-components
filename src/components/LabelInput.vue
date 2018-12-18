@@ -17,6 +17,10 @@
         private liveValue = this.value;
         private lastValue = this.value;
 
+        public focus() {
+            (this.$refs.input as HTMLInputElement).focus();
+        }
+
         private changed() {
             if (this.liveValue === this.lastValue) return;
             this.$emit('changed', this.liveValue);

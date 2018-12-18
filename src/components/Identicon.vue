@@ -6,13 +6,19 @@
 
 <script lang="ts">
 import {Component, Prop, Watch, Vue} from 'vue-property-decorator';
-import ValidationUtils from '@nimiq/secure-utils/validation-utils/validation-utils.js';
+import { ValidationUtils } from '@nimiq/utils';
 import Iqons from '@nimiq/iqons/dist/iqons.min.js';
 import IqonsSvg from '@nimiq/iqons/dist/iqons.min.svg';
-if (IqonsSvg[0] === '"') {
-    Iqons.svgPath = IqonsSvg.substring(1, IqonsSvg.length - 1);
-} else {
-    Iqons.svgPath = IqonsSvg;
+
+// Detect Iqons.svgPath
+// @ts-ignore
+if (self.NIMIQ_IQONS_SVG_PATH) Iqons.svgPath = self.NIMIQ_IQONS_SVG_PATH;
+else {
+    if (IqonsSvg[0] === '"') {
+        Iqons.svgPath = IqonsSvg.substring(1, IqonsSvg.length - 1);
+    } else {
+        Iqons.svgPath = IqonsSvg;
+    }
 }
 
 @Component

@@ -8,4 +8,13 @@ const configureWebpack = {
   }
 }
 
+if (process.argv.includes('build')) {
+  configureWebpack.mode = 'production';
+  configureWebpack.optimization = {
+    providedExports: true,
+    usedExports: true,
+    sideEffects: true,
+  };
+}
+
 module.exports = { configureWebpack };
