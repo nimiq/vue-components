@@ -88,7 +88,7 @@ export default class AccountList extends Vue {
 
     .account-entry {
         display: block;
-        transition: background 300ms;
+        transition: background-color .3s ease;
         border-radius: calc(0.5 * var(--nimiq-size, 8px));
         margin: calc(0.5 * var(--nimiq-size, 8px)) calc(2 * var(--nimiq-size, 8px));
         position: relative;
@@ -99,12 +99,12 @@ export default class AccountList extends Vue {
 
     .account-entry >>> .identicon img {
         transform: scale(0.9);
-        transition: transform 300ms;
+        transition: transform .45s ease;
     }
 
     .account-entry >>> .label,
     .account-entry >>> .balance {
-        transition: opacity 300ms, color 300ms, margin-right 300ms;
+        transition: opacity .3s ease, color .3s ease, margin-right .45s ease;
     }
 
     .account-entry .chevron-right {
@@ -115,7 +115,7 @@ export default class AccountList extends Vue {
         height: calc(2 * var(--nimiq-size, 8px));
         transform: translateX(calc(3 * var(--nimiq-size, 8px)));
         opacity: 0;
-        transition: transform 300ms, opacity 300ms;
+        transition: transform .45s ease, opacity .35s .1s ease;
     }
 
     .account-entry.bad-balance {
