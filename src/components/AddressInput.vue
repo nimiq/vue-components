@@ -31,7 +31,7 @@ import { ValidationUtils } from '@nimiq/utils';
 @Component({components: {}})
 export default class Input extends Vue {
     @Prop({type: String, default: ''}) private value!: string;
-    @Prop({type: String, default: 'Name your account'}) private placeholder!: string;
+    @Prop({type: String, default: 'Name your address'}) private placeholder!: string;
 
     private addressChunks: string[] = [];
 
