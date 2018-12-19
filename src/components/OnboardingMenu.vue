@@ -15,7 +15,7 @@
         <button class="choice signup" tabindex="1" @click="signup">
             <svg width="54" height="54" viewBox="0 0 54 54" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M27 54C41.9117 54 54 41.9117 54 27C54 12.0883 41.9117 0 27 0C12.0883 0 0 12.0883 0 27C0 41.9117 12.0883 54 27 54ZM29.5 14C30.0523 14 30.5 14.4477 30.5 15V23.5H39C39.5523 23.5 40 23.9477 40 24.5V29.5C40 30.0523 39.5523 30.5 39 30.5H30.5V39C30.5 39.5523 30.0523 40 29.5 40H24.5C23.9477 40 23.5 39.5523 23.5 39V30.5H15C14.4477 30.5 14 30.0523 14 29.5V24.5C14 23.9477 14.4477 23.5 15 23.5H23.5V15C23.5 14.4477 23.9477 14 24.5 14H29.5Z"/></svg>
             <h2 class="nq-h2">Create Account</h2>
-            <p class="nq-text">Choose an address. Set a password. Done.</p>
+            <p class="nq-text">Choose an avatar. Set a password. Done.</p>
         </button>
 
         <div class="background-container">
