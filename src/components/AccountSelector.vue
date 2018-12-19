@@ -12,7 +12,7 @@
         </div>
 
         <div class="footer">
-            <button v-if="allowLogin" class="nq-button-s" @click="login">Login to another Wallet</button>
+            <button v-if="allowLogin" class="nq-button-s" @click="login">Login to another Account</button>
         </div>
     </div>
 </template>
