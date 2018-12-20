@@ -4,7 +4,7 @@
         <div class="wallet-description" v-if="label">
             <div class="label">{{ label }}</div>
             <div class="details">
-                <span>{{numberAccounts}} Addresses</span>
+                <span>{{numberAccounts}} Address{{ numberAccounts > 0 && 'es' }}</span>
                 <Amount v-if="balance !== undefined" :amount="balance" :decimals="0"/>
             </div>
         </div>
