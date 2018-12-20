@@ -280,15 +280,23 @@ storiesOf('Components', module)
                     wallets: [
                         {
                             id: 'abcdef',
-                            label: 'Keyguard Wallet',
+                            label: 'Keyguard Account',
                             accounts: new Map([['path1', {}], ['path2', {}], ['path3', {}], ['path4', {}], ['path5', {}]]),
                             contracts: [],
                             type: 1, // BIP39
                             balance: 101 * 1e5,
                             // userFriendlyId: 'funny giraffe',
                         }, {
+                            id: 'ihhhhahh',
+                            label: 'Keyguard Account',
+                            accounts: new Map([['path1', {}]]),
+                            contracts: [],
+                            type: 1, // BIP39
+                            balance: 101 * 1e5,
+                            // userFriendlyId: 'funny giraffe',
+                        }, {
                             id: 'vwxyz',
-                            label: 'Ledger Wallet',
+                            label: 'Ledger Account',
                             accounts: new Map([['path1', {}], ['path2', {}], ['path3', {}]]),
                             contracts: [],
                             type: 2, // LEDGER
