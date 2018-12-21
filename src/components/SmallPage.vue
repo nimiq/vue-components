@@ -32,7 +32,7 @@
     .small-page {
         width: 100%;
         max-width: calc(56.25 * var(--nimiq-size, 8px)); /* 450px */
-        height: calc(70.5 * var(--nimiq-size, 8px)); /* 564px */
+        min-height: calc(58 * var(--nimiq-size, 8px)); /* 464px */
         display: flex;
         flex-direction: column;
         flex-shrink: 0;
