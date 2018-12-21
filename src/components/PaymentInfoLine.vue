@@ -122,7 +122,7 @@ export default class PaymentInfoLine extends Vue {
 
     .description:hover,
     .description:focus {
-        text-decoration: underline;
+        text-decoration: none;
     }
 
     .shop-logo,
@@ -160,10 +160,23 @@ export default class PaymentInfoLine extends Vue {
 
     .origin {
         margin-top: calc(-0.25 * var(--nimiq-size, 8px));
+        transition: opacity .3s ease;
     }
 
     .info-circle {
         opacity: 0.3;
         margin-left: calc(1 * var(--nimiq-size, 8px));
+        transition: opacity .3s ease;
+    }
+
+    .description:hover .origin,
+    .description:focus .origin {
+        opacity: .7;
+    }
+
+    .description:hover .info-circle,
+    .description:focus .info-circle {
+        /* TODO Ideally, we could change the color to --nimiq-light-blue on :focus instead, but this works for now */
+        opacity: 1;
     }
 </style>

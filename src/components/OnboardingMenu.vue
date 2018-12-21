@@ -185,7 +185,7 @@ export default class AccountList extends Vue {
         left: calc(0.75 * var(--nimiq-size, 8px));
         top: calc(0.75 * var(--nimiq-size, 8px));
         transform: translate3d(0, 0, 0);
-        transition: transform 500ms;
+        transition: transform .4s ease;
         z-index: 100;
         width: calc((100% - 1.5 * var(--nimiq-size, 8px)) / 3);
         height: calc(100% - 1.5 * var(--nimiq-size, 8px));

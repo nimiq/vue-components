@@ -100,22 +100,31 @@ export default class AccountInfo extends Vue {
         position: absolute;
         top: calc(2 * var(--nimiq-size, 8px));
         right: calc(2 * var(--nimiq-size, 8px));
-        opacity: 0.16;
+        opacity: 0.2;
+        transition: opacity .3s ease, transform .45s ease;
     }
 
     .cancel-circle::after {
+        /* enlarged click area */
         content: '';
         display: block;
         position: absolute;
-        top: calc(-1 * var(--nimiq-size, 8px));
-        right: calc(-1 * var(--nimiq-size, 8px));
-        bottom: calc(-1 * var(--nimiq-size, 8px));
-        left: calc(-1 * var(--nimiq-size, 8px));
+        top: calc(-2 * var(--nimiq-size, 8px));
+        right: calc(-2 * var(--nimiq-size, 8px));
+        bottom: calc(-2 * var(--nimiq-size, 8px));
+        left: calc(-2 * var(--nimiq-size, 8px));
     }
 
     .cancel-circle:focus,
     .cancel-circle:hover {
-        opacity: 0.25;
+        opacity: .4;
+        transform: scale(1.06);
+    }
+
+    .cancel-circle:focus {
+        /* TODO Ideally, we could change the color to --nimiq-light-blue on :focus instead, but this works for now */
+        opacity: .7;
+        outline: none;
     }
 
     .identicon,

@@ -91,6 +91,19 @@
         left: calc(4.5 * var(--nimiq-size, 8px));
         top: calc(4.5 * var(--nimiq-size, 8px));
         cursor: pointer;
+        transition: opacity .3s ease, transform .4s ease;
+    }
+
+    .page-header-back-button:hover {
+        opacity: .4;
+        transform: translate3D(-3px,0,0);
+    }
+
+    .page-header-back-button:focus {
+        /* TODO Ideally, we could change the color to --nimiq-light-blue on :focus instead, but this works for now */
+        opacity: .7;
+        transform: translate3D(-3px,0,0);
+        outline: none;
     }
 
     .page-header.has-progress-indicator .page-header-back-button {
