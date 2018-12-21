@@ -96,13 +96,13 @@
 
     .page-header-back-button:hover {
         opacity: .4;
-        transform: translate3D(-3px,0,0);
+        transform: translate3D(-3px, 0, 0);
     }
 
     .page-header-back-button:focus {
         /* TODO Ideally, we could change the color to --nimiq-light-blue on :focus instead, but this works for now */
         opacity: .7;
-        transform: translate3D(-3px,0,0);
+        transform: translate3D(-3px, 0, 0);
         outline: none;
     }
 

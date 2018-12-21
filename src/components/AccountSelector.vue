@@ -108,8 +108,8 @@ export default class AccountSelector extends Vue {
         background-color: rgba(31, 35, 72, 0.07); /* Based on Nimiq Blue */
         color: var(--nimiq-blue);
         border-radius: calc(1.6875 * var(--nimiq-size, 8px));
-        transition: background-color 150ms;
-        will-change: background-color;
+        transition: color 300ms ease, background-color 300ms ease;
+        will-change: color, background-color;
         border: none;
         cursor: pointer;
         position: relative;
@@ -120,15 +120,21 @@ export default class AccountSelector extends Vue {
         content: '';
         display: block;
         position: absolute;
-        left: calc(-1 * var(--nimiq-size, 8px));
-        top: calc(-1 * var(--nimiq-size, 8px));
-        right: calc(-1 * var(--nimiq-size, 8px));
-        bottom: calc(-1 * var(--nimiq-size, 8px));
+        left: calc(-1.5 * var(--nimiq-size, 8px));
+        top: calc(-1.5 * var(--nimiq-size, 8px));
+        right: calc(-1.5 * var(--nimiq-size, 8px));
+        bottom: calc(-1.5 * var(--nimiq-size, 8px));
     }
 
     .nq-button-s:hover,
     .nq-button-s:active {
         background-color: rgba(31, 35, 72, 0.12); /* Based on Nimiq Blue */
+    }
+
+    .nq-button-s:focus {
+        outline: none;
+        color: var(--nimiq-light-blue);
+        background-color: rgba(5, 130, 202, 0.16); /* Based on Nimiq Light Blue */
     }
     /* END Nimiq Style */
 

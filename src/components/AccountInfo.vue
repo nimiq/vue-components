@@ -109,10 +109,10 @@ export default class AccountInfo extends Vue {
         content: '';
         display: block;
         position: absolute;
-        top: calc(-2 * var(--nimiq-size, 8px));
-        right: calc(-2 * var(--nimiq-size, 8px));
-        bottom: calc(-2 * var(--nimiq-size, 8px));
-        left: calc(-2 * var(--nimiq-size, 8px));
+        top: calc(-1.5 * var(--nimiq-size, 8px));
+        right: calc(-1.5 * var(--nimiq-size, 8px));
+        bottom: calc(-1.5 * var(--nimiq-size, 8px));
+        left: calc(-1.5 * var(--nimiq-size, 8px));
     }
 
     .cancel-circle:focus,
