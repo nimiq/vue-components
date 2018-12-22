@@ -30,22 +30,20 @@
     /** Nimiq Style **/
     .nq-h1 {
         font-size: calc(3 * var(--nimiq-size, 8px));
-        line-height: calc(3.5 * var(--nimiq-size, 8px));
+        line-height: 1.2;
         font-weight: bold;
-        margin: calc(2 * var(--nimiq-size, 8px)) 0;
+        margin: calc(3 * var(--nimiq-size, 8px)) 0;
     }
 
     .nq-h2 {
         font-size: calc(2.5 * var(--nimiq-size, 8px));
-        line-height: calc(3 * var(--nimiq-size, 8px));
+        line-height: 1.2;
         font-weight: bold;
-        margin: calc(1.5 * var(--nimiq-size, 8px)) 0;
+        margin: calc(2.5 * var(--nimiq-size, 8px)) 0;
     }
 
     .nq-card-header {
-        padding: calc(4.5 * var(--nimiq-size, 8px));
-        background: white;
-        border-bottom: 1px solid rgba(31, 35, 72, 0.07);
+        padding: calc(4 * var(--nimiq-size, 8px));
         text-align: center;
         border-top-left-radius: calc(1 * var(--nimiq-size, 8px));
         border-top-right-radius: calc(1 * var(--nimiq-size, 8px));
@@ -53,7 +51,7 @@
 
     @media (max-width: 450px) {
         .nq-card-header {
-            padding: calc(3.5 * var(--nimiq-size, 8px));
+            padding: calc(3 * var(--nimiq-size, 8px));
         }
     }
 
@@ -93,6 +91,19 @@
         left: calc(4.5 * var(--nimiq-size, 8px));
         top: calc(4.5 * var(--nimiq-size, 8px));
         cursor: pointer;
+        transition: opacity .3s ease, transform .4s ease;
+    }
+
+    .page-header-back-button:hover {
+        opacity: .4;
+        transform: translate3D(-3px, 0, 0);
+    }
+
+    .page-header-back-button:focus {
+        /* TODO Ideally, we could change the color to --nimiq-light-blue on :focus instead, but this works for now */
+        opacity: .7;
+        transform: translate3D(-3px, 0, 0);
+        outline: none;
     }
 
     .page-header.has-progress-indicator .page-header-back-button {

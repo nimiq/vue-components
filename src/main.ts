@@ -20,3 +20,4 @@ export { default as WalletMenu } from './components/WalletMenu.vue';
 // export { default as PageFooter } from './components/PageFooter.vue';
 // export { default as PaymentInfoLine } from './components/PaymentInfoLine.vue';
 // export { default as SmallPage } from './components/SmallPage.vue';
+// export { default as OnboardingMenu } from './components/OnboardingMenu.vue';

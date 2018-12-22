@@ -1,16 +1,18 @@
 <template>
-    <div class="account" :class="editable ? 'editable': ''">
-        <Identicon :address="address"/>
-        <div class="account-description">
-            <div class="label-and-balance">
-                <div v-if="!editable" class="label">{{ label }}</div>
-                <div v-else class="label"><LabelInput :value="label" @changed="changed" ref="label"/></div>
+    <div class="account" :class="{ 'editable': editable }">
+        <div class="identicon-and-label">
+            <Identicon :address="address"/>
 
-                <div class="balance" v-if="balance || balance === 0"><Amount :amount="balance" :decimals="2"/></div>
-                <div class="balance balance-loading" v-if="!balance && balance !== 0"></div>
+            <div v-if="!editable" class="label">
+                <div>{{ label }}</div>
             </div>
-            <div class="address">{{ formattedAddress }}</div>
+            <div v-else class="label">
+                <Input :value="label" @changed="changed" ref="label"/>
+            </div>
         </div>
+
+        <div class="balance" v-if="balance || balance === 0"><Amount :amount="balance" :decimals="2"/></div>
+        <!-- <div class="balance balance-loading" v-if="!balance && balance !== 0"></div> -->
     </div>
 </template>
 
@@ -18,9 +20,9 @@
     import { Component, Prop, Emit, Vue } from 'vue-property-decorator';
     import Identicon from './Identicon.vue';
     import Amount from './Amount.vue';
-    import LabelInput from './LabelInput.vue';
+    import Input from './Input.vue';
 
-    @Component({components: {Amount, Identicon, LabelInput}})
+    @Component({components: {Amount, Identicon, Input}})
     export default class Account extends Vue {
         @Prop(String) public address!: string;
         @Prop(String) public label!: string;
@@ -29,7 +31,7 @@
 
         public focus() {
             if (this.editable) {
-                (this.$refs.label as LabelInput).focus();
+                (this.$refs.label as Input).focus();
             }
         }
 
@@ -49,65 +51,46 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        padding: calc(1.5 * var(--nimiq-size, 8px)) calc(4 * var(--nimiq-size, 8px));
+        justify-content: space-between;
+        padding: calc(1.75 * var(--nimiq-size, 8px)) calc(2 * var(--nimiq-size, 8px));
         box-sizing: border-box;
         flex-shrink: 0;
+        font-size: calc(2 * var(--nimiq-size, 8px));
+        line-height: 1.25;
+    }
+
+    .identicon-and-label {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        overflow: hidden;
+        min-width: calc(5.625 * var(--nimiq-size, 8px));
     }
 
     .identicon {
-        width: calc(8 * var(--nimiq-size, 8px));
-        height: calc(8 * var(--nimiq-size, 8px));
+        width: calc(5.625 * var(--nimiq-size, 8px));
+        height: calc(5.625 * var(--nimiq-size, 8px));
         flex-shrink: 0;
-        margin-right: calc(2 * var(--nimiq-size, 8px));
-    }
-
-    .account-description {
-        flex-grow: 1;
-        --lost-width: calc(10 * var(--nimiq-size, 8px));
-        width: calc(100% - var(--lost-width));
-    }
-
-    .label-and-balance {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        font-weight: 600;
-        font-size: calc(2.25 * var(--nimiq-size, 8px));
-        line-height: calc(2.5 * var(--nimiq-size, 8px));
-        margin-bottom: calc(0.375 * var(--nimiq-size, 8px));
-    }
-
-    .editable .label-and-balance {
-        margin-bottom: 0;
+        margin-right: calc(1.5 * var(--nimiq-size, 8px));
     }
 
     .label {
         white-space: nowrap;
+        font-weight: 600;
+        overflow: hidden;
+    }
+
+    .label div {
+        opacity: 0.7;
         overflow: hidden;
         text-overflow: ellipsis;
-    }
-
-    .label >>> input {
-        padding-bottom: calc(0.375 * var(--nimiq-size, 8px));
-    }
-
-    .label >>> .nq-icon {
-        margin-bottom: calc(0.375 * var(--nimiq-size, 8px));
+        padding-left: calc(1 * var(--nimiq-size, 8px));
     }
 
     .balance {
-        color: #24bdb6;
-    }
-
-    .address {
-        font-size: calc(1.625 * var(--nimiq-size, 8px));
-        line-height: calc(2 * var(--nimiq-size, 8px));
-        font-family: "Fira Mono", "Andale Mono", monospace;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        overflow-x: hidden;
-        word-spacing: -0.2em;
-        max-width: 100%;
+        flex-shrink: 0;
+        font-weight: bold;
+        margin-left: calc(2 * var(--nimiq-size, 8px));
         opacity: 0.7;
     }
 </style>
