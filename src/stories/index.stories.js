@@ -267,7 +267,7 @@ storiesOf('Components', module)
                 walletSelected: action('wallet-selected'),
                 renameWallet: action('rename-wallet'),
                 exportWallet: action('export-wallet'),
-                changePassphraseWallet: action('change-passphrase-wallet'),
+                changePasswordWallet: action('change-password-wallet'),
                 logoutWallet: action('logout-wallet'),
                 create: action('create'),
                 login: action('login'),
@@ -314,7 +314,7 @@ storiesOf('Components', module)
                 @wallet-selected="walletSelected"
                 @rename-wallet="renameWallet"
                 @export-wallet="exportWallet"
-                @change-passphrase-wallet="changePassphraseWallet"
+                @change-password-wallet="changePasswordWallet"
                 @logout-wallet="logoutWallet"
                 @create="create"
                 @login="login"

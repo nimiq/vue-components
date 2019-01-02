@@ -23,7 +23,7 @@
                 <div class="button-small-group" v-else>
                     <button
                         class="nq-button-s"
-                        @click="changePassphraseWallet(activeWallet.id)"
+                        @click="changePasswordWallet(activeWallet.id)"
                         v-if="activeWallet.type !== 2 /* LEDGER */">Change password</button>
                     <button
                         class="nq-button-s red"
@@ -118,7 +118,7 @@ export default class WalletMenu extends Vue {
 
     @Emit()
     // tslint:disable-next-line no-empty
-    private changePassphraseWallet(walletId: string) {}
+    private changePasswordWallet(walletId: string) {}
 
     @Emit()
     // tslint:disable-next-line no-empty
