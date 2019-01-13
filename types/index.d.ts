@@ -1,3 +1,3 @@
-/// <reference path="../dist/NimiqVueComponents.d.ts" />
+/// <reference types="../dist/NimiqVueComponents.d.ts" />
 export * from 'NimiqVueComponents';
 

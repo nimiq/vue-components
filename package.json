@@ -3,15 +3,17 @@
   "version": "0.1.0",
   "author": "Nimiq",
   "license": "Apache-2.0",
-  "main": "dist/NimiqVueComponents.common.js",
-  "module": "dist/NimiqVueComponents.umd.js",
+  "main": "dist/NimiqVueComponents.umd.js",
+  "module": "dist/NimiqVueComponents.esm.js",
   "types": "types/index.d.ts",
+  "sideEffects": false,
   "files": [
     "dist/**/*",
     "types/**/*"
   ],
   "scripts": {
     "build": "vue-cli-service build --target lib --name NimiqVueComponents src/main.ts; vue-cli-service bundle-dts --name NimiqVueComponents",
+    "build-rollup": "rollup -c --environment BUILD:production",
     "lint": "vue-cli-service lint",
     "storybook": "start-storybook -p 6006 -c .storybook -s ."
   },
@@ -32,8 +34,11 @@
     "@vue/cli-plugin-typescript": "^3.0.0-rc.10",
     "@vue/cli-service": "^3.1.1",
     "moment": "^2.22.2",
+    "rollup": "^1.1.0",
+    "rollup-plugin-typescript2": "^0.18.1",
+    "rollup-plugin-vue": "^4.4.0",
     "ts-loader": "^4.4.2",
-    "typescript": "^3.0.1",
+    "typescript": "^3.2.2",
     "vue-cli-plugin-ts-bundler": "^0.0.3",
     "vue-template-compiler": "^2.5.17"
   },
