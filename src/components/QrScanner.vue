@@ -18,6 +18,9 @@
                 <div ref="overlay" class="overlay">
                     <slot name="overlay"></slot>
                 </div>
+                <div v-if="accessDenied" class="access-denied">
+                    Failed to access camera stream.
+                </div>
                 <a href="javascript:void(0)" class="nq-icon cancel-circle" @click="_cancel"></a>
             </div>
         </transition>
@@ -54,6 +57,7 @@ class QrScanner extends Vue {
     @Prop(Function) public validate?: (scanResult: string) => boolean;
 
     private state: QrScanner.State = 'intro' as QrScanner.State.INTRO;
+    private accessDenied: boolean = false;
     private _scanner!: QrScannerLib;
     private _lastResult?: string;
     private _lastResultTime: number = 0;
@@ -86,10 +90,13 @@ class QrScanner extends Vue {
         if (!QrScanner.enabled) return; // user should enable scanner on intro page first
         try {
             await this._scanner.start();
+            this.accessDenied = false;
+            return true;
         } catch (e) {
             QrScanner.enabled = false;
-            this.state = QrScanner.State.INTRO;
+            this.accessDenied = true;
             this.$emit(QrScanner.Events.ERROR, e);
+            return false;
         }
     }
 
@@ -297,5 +304,15 @@ export default QrScanner;
         /* TODO Ideally, we could change the color to --nimiq-light-blue on :focus instead, but this works for now */
         opacity: .7;
         outline: none;
+    }
+
+    .access-denied {
+        color: white;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        width: 18.75rem;
     }
 </style>
