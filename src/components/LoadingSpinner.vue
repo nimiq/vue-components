@@ -20,21 +20,32 @@ export default class LoadingSpinner extends Vue {}
 
     #big-hex {
         stroke-dashoffset: -40.5;
-        animation: big-hex 3s linear infinite;
+        animation: big-hex 4s cubic-bezier(0.76, 0.29, 0.29, 0.76) infinite;
     }
 
     #small-hex {
         stroke-dashoffset: 13;
-        animation: small-hex 3s linear infinite;
-    }
-
-    @keyframes big-hex {
-        from { stroke-dashoffset: -40.5 }
-        to   { stroke-dashoffset: 112 }
+        animation: small-hex 4s cubic-bezier(0.76, 0.29, 0.29, 0.76) infinite;
     }
 
     @keyframes small-hex {
-        from { stroke-dashoffset: 13 }
-        to   { stroke-dashoffset: 165.5 }
+        0%   { stroke-dashoffset: 13 }
+        17%  { stroke-dashoffset: 38.42 }
+        33%  { stroke-dashoffset: 63.84 }
+        50%  { stroke-dashoffset: 89.25 }
+        67%  { stroke-dashoffset: 114.66 }
+        83%  { stroke-dashoffset: 140.08 }
+        100% { stroke-dashoffset: 165.5 }
     }
+
+    @keyframes big-hex {
+        0%   { stroke-dashoffset: -40.5 }
+        17%  { stroke-dashoffset: -15.08 }
+        33%  { stroke-dashoffset: 10.33 }
+        50%  { stroke-dashoffset: 35.75 }
+        67%  { stroke-dashoffset: 61.17 }
+        83%  { stroke-dashoffset: 86.58 }
+        100% { stroke-dashoffset: 112 }
+    }
+
 </style>
