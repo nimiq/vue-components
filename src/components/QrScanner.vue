@@ -32,7 +32,6 @@
 // TODO detect whether device has a camera with enumerateMediaDevices and whether permission was granted (check labels)
 
 import { Component, Prop, Vue } from 'vue-property-decorator';
-// @ts-ignore: no type definitions for qr-scanner yet (FIXME as soon as types are provided)
 import QrScannerLib from 'qr-scanner';
 
 // Declare qr worker as asset using file-loader which copies the file to dist and binds the path to QrScannerWorker
@@ -108,7 +107,7 @@ class QrScanner extends Vue {
         this._scanner.setGrayscaleWeights(red, green, blue);
     }
 
-    public setInversionMode(inversionMode: string) {
+    public setInversionMode(inversionMode: QrScannerLib.InversionMode) {
         this._scanner.setInversionMode(inversionMode);
     }
 

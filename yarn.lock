@@ -9011,9 +9011,10 @@ q@^1.1.2:
   resolved "https://registry.yarnpkg.com/q/-/q-1.5.1.tgz#7e32f75b41381291d04611f1bf14109ac00651d7"
   integrity sha1-fjL3W0E4EpHQRhHxvxQQmsAGUdc=
 
-"qr-scanner@github:nimiq/qr-scanner":
-  version "0.5.0"
-  resolved "https://codeload.github.com/nimiq/qr-scanner/tar.gz/f5771a827983a9b2b77e5cb8a4922b27f44010ea"
+qr-scanner@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/qr-scanner/-/qr-scanner-1.0.0.tgz#597d3435266fa2272b85b5a604b53abf58012bf3"
+  integrity sha512-WfrBnWjFjXQcPgeGJaF5MbEQR+TRkovCI0eYOAmsbMDxyp4p+yS4s66RXtni0tlKn5gpMVK1r/mI8USZFTv8vw==
 
 qs@6.5.1:
   version "6.5.1"
