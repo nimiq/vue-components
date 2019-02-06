@@ -76,6 +76,7 @@ class QrScanner extends Vue {
     private _scanner!: QrScannerLib;
     private _lastResult?: string;
     private _lastResultTime: number = 0;
+    private _cameraRetryTimer?: number;
 
     private mounted() {
         this.repositionOverlay = this.repositionOverlay.bind(this);
@@ -93,6 +94,7 @@ class QrScanner extends Vue {
     }
 
     private destroyed() {
+        this.stop();
         this._scanner.destroy();
         window.removeEventListener('resize', this.repositionOverlay);
     }
@@ -101,16 +103,26 @@ class QrScanner extends Vue {
         try {
             await this._scanner.start();
             this.cameraAccessFailed = false;
-            return true;
+            if (this._cameraRetryTimer) {
+                window.clearInterval(this._cameraRetryTimer);
+                this._cameraRetryTimer = null;
+            }
         } catch (e) {
             this.cameraAccessFailed = true;
             this.$emit(QrScanner.Events.ERROR, e);
-            return false;
+            if (!this._cameraRetryTimer) {
+                this._cameraRetryTimer = window.setInterval(() => this.start(), 3000);
+            }
         }
+        return !this.cameraAccessFailed;
     }
 
     public stop() {
         this._scanner.stop();
+        if (this._cameraRetryTimer) {
+            window.clearInterval(this._cameraRetryTimer);
+            this._cameraRetryTimer = null;
+        }
     }
 
     public setGrayscaleWeights(red, green, blue) {
