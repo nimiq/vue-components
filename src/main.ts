@@ -8,6 +8,7 @@ export { default as AmountWithDetails } from './components/AmountWithDetails.vue
 export { default as Contact } from './components/Contact.vue';
 export { default as ContactList } from './components/ContactList.vue';
 export { default as Identicon } from './components/Identicon.vue';
+export { default as IdenticonContact } from './components/IdenticonContact.vue';
 export { default as LabelInput } from './components/LabelInput.vue';
 export { default as LoadingSpinner } from './components/LoadingSpinner.vue';
 export { default as NewContact } from './components/NewContact.vue';

@@ -14,6 +14,8 @@ import AmountWithDetails from '../components/AmountWithDetails.vue';
 import Contact from '../components/Contact.vue';
 import Identicon from '../components/Identicon.vue';
 import Input from '../components/Input.vue';
+import IdenticonContact from '../components/IdenticonContact.vue';
+import LabelInput from '../components/LabelInput.vue';
 import Wallet from '../components/Wallet.vue';
 import WalletList from '../components/WalletList.vue';
 import WalletMenu from '../components/WalletMenu.vue';
@@ -65,7 +67,29 @@ storiesOf('Basic', module)
             template: `<Identicon :address="address"/>`,
         };
     })
-    .add('Input', () => {
+    .add('IdenticonContact', () => {
+        const address = text('address', 'NQ07 0000 00000000 0000 0000 0000 0000 0000');
+        const name = 'Nimiq';
+        return {
+            components: {IdenticonContact},
+            data() {
+                return { address, name };
+            },
+            template: `<IdenticonContact :address="address" :name="name"/>`,
+        };
+    })    
+    .add('IdenticonContact (empty)', () => {
+        const address = text('address', '');
+        const name = '';
+        return {
+            components: {IdenticonContact},
+            data() {
+                return { address, name };
+            },
+            template: `<IdenticonContact :address="address" :name="name"/>`,
+        };
+    })
+    .add('LabelInput', () => {
         return {
             components: {Input},
             methods: {
