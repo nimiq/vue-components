@@ -11,12 +11,15 @@ import Amount from '../components/Amount.vue';
 import AmountWithDetails from '../components/AmountWithDetails.vue';
 import Contact from '../components/Contact.vue';
 import Identicon from '../components/Identicon.vue';
-import LabelInput from '../components/LabelInput.vue';
+//import Input from '../components/Input.vue';
+import IdenticonContact from '../components/IdenticonContact.vue';
+import InputAddress from '../components/InputAddress.vue';
 import Wallet from '../components/Wallet.vue';
 import WalletList from '../components/WalletList.vue';
 import WalletMenu from '../components/WalletMenu.vue';
 import WalletSelector from '../components/WalletSelector.vue';
 import PaymentInfoLine from '../components/PaymentInfoLine.vue';
+import SendTx from '../components/SendTx.vue';
 import SmallPage from '../components/SmallPage.vue';
 import LoadingSpinner from '../components/LoadingSpinner.vue';
 
@@ -60,6 +63,39 @@ storiesOf('Basic', module)
                 return { address };
             },
             template: `<Identicon :address="address"/>`,
+        };
+    })
+    .add('IdenticonContact', () => {
+        const address = text('address', 'NQ07 0000 00000000 0000 0000 0000 0000 0000');
+        const name = 'Nimiq';
+        return {
+            components: {IdenticonContact},
+            data() {
+                return { address, name };
+            },
+            template: `<IdenticonContact :address="address" :name="name"/>`,
+        };
+    })    
+    .add('IdenticonContact (empty)', () => {
+        const address = text('address', '');
+        const name = '';
+        return {
+            components: {IdenticonContact},
+            data() {
+                return { address, name };
+            },
+            template: `<IdenticonContact :address="address" :name="name"/>`,
+        };
+    })
+    .add('InputAddress (empty)', () => {
+        const address = text('address', '');
+        const name = '';
+        return {
+            components: {InputAddress},
+            data() {
+                return { address, name };
+            },
+            template: `<InputAddress :address="address" :name="name"/>`,
         };
     })
     .add('LabelInput', () => {
@@ -387,7 +423,30 @@ storiesOf('Components', module)
 `),
         };
     });
-
+storiesOf('Pages', module)
+storiesOf('Pages/SendTx', module)
+    .addDecorator(withKnobs)
+    .add('SendTx', () => {
+        return {
+            components: {SendTx, SmallPage},
+            template: windowTemplate(`
+                <small-page style="height: 560px;">
+                    <SendTx address="NQ10 7" :disabled="false">
+                    </SendTx>
+                </small-page>
+            `)
+        };
+    })
+    .add('SendTx (full/disabled)', () => {
+        return {
+            components: {SendTx, SmallPage},
+            template: windowTemplate(`
+                <small-page style="height: 560px;">
+                    <SendTx address="NQ72 YBV0 9SSA XBAN 820M 8H0B 339V FJP4 34DH" :disabled="true"></SendTx>
+                </small-page>
+            `)
+        };
+    })
 storiesOf('Pages/Payment', module)
     .addDecorator(withKnobs)
     .add('AccountSelector', () => {
