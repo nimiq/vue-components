@@ -15,12 +15,14 @@ import Contact from '../components/Contact.vue';
 import Identicon from '../components/Identicon.vue';
 import Input from '../components/Input.vue';
 import IdenticonContact from '../components/IdenticonContact.vue';
+import InputAddress from '../components/InputAddress.vue';
 import LabelInput from '../components/LabelInput.vue';
 import Wallet from '../components/Wallet.vue';
 import WalletList from '../components/WalletList.vue';
 import WalletMenu from '../components/WalletMenu.vue';
 import WalletSelector from '../components/WalletSelector.vue';
 import PaymentInfoLine from '../components/PaymentInfoLine.vue';
+import SendTx from '../components/SendTx.vue';
 import SmallPage from '../components/SmallPage.vue';
 import LoadingSpinner from '../components/LoadingSpinner.vue';
 import OnboardingMenu from '../components/OnboardingMenu.vue';
@@ -87,6 +89,17 @@ storiesOf('Basic', module)
                 return { address, name };
             },
             template: `<IdenticonContact :address="address" :name="name"/>`,
+        };
+    })
+    .add('InputAddress (empty)', () => {
+        const address = text('address', '');
+        const name = '';
+        return {
+            components: {InputAddress},
+            data() {
+                return { address, name };
+            },
+            template: `<InputAddress :address="address" :name="name"/>`,
         };
     })
     .add('LabelInput', () => {
@@ -436,6 +449,26 @@ storiesOf('Components', module)
             template: `<div style="width: 400px"><PaymentInfoLine :amount="${amount}" :fee="${fee}" origin="${origin}"/></div>`,
         };
     })
+    .add('SendTx Page', () => {
+        return {
+            components: {SmallPage, IdenticonContact, InputAddress},
+            template: windowTemplate(`
+<SmallPage>
+    <div class="nq-card-header">
+        <h1 class="nq-h1">Send Transaction</h1>
+    </div>
+    <div style=".cont {display: inline-block}">
+    </div>
+    <div style="text-align: center">
+    <p><span class="nq-label">Enter Address</span></p>
+    <InputAddress />
+    <p>Adress unavailable?</p>
+    <p><button class="nq-button-s">create cashlink</button></p>
+    </div>
+</SmallPage>
+`),
+        };
+    })
     .add('SmallPage', () => {
         return {
             components: {SmallPage},
@@ -457,8 +490,10 @@ storiesOf('Components', module)
             template: windowTemplate(`<OnboardingMenu @signup="signup" @login="login" @ledger="ledger"/>`),
         };
     });
-
 storiesOf('Pages', module)
+storiesOf('Pages/SendTx', module)
+    .addDecorator(withKnobs)
+storiesOf('Pages/Payment', module)
     .addDecorator(withKnobs)
     .add('AccountInfo', () => {
         return {
