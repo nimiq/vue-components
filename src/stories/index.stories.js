@@ -19,6 +19,7 @@ import WalletList from '../components/WalletList.vue';
 import WalletMenu from '../components/WalletMenu.vue';
 import WalletSelector from '../components/WalletSelector.vue';
 import PaymentInfoLine from '../components/PaymentInfoLine.vue';
+import QrScanner from '../components/QrScanner.vue';
 import SmallPage from '../components/SmallPage.vue';
 import LoadingSpinner from '../components/LoadingSpinner.vue';
 import OnboardingMenu from '../components/OnboardingMenu.vue';
@@ -410,6 +411,20 @@ storiesOf('Components', module)
         return {
             components: {PaymentInfoLine},
             template: `<div style="width: 400px"><PaymentInfoLine :amount="${amount}" :fee="${fee}" origin="${origin}"/></div>`,
+        };
+    })
+    .add('QrScanner', () => {
+        return {
+            components: { SmallPage, QrScanner },
+            template: windowTemplate(`
+                <SmallPage style="height: 560px; overflow: hidden">
+                    <QrScanner style="height: 100%" @result="result" @cancel="cancel" @error="error"></QrScanner>
+                </SmallPage>`),
+            methods: {
+                result: action(QrScanner.Events.RESULT),
+                cancel: action(QrScanner.Events.CANCEL),
+                error: action(QrScanner.Events.ERROR),
+            },
         };
     })
     .add('SmallPage', () => {
