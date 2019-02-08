@@ -1,336 +1,257 @@
 <template>
     <div class="input-address">
-        <form>
-            <input class="nimiq-address-input" v-on:paste="paste" maxlength=4 v-on:keydown="kdown" v-on:keyup="kup" v-on:mouseover="save" v-model="text[0]" type="text" placeholder="NQ" />
-            <input class="nimiq-address-input" v-on:paste="paste" maxlength=4 v-on:keydown="kdown" v-on:keyup="kup" v-model="text[1]" type="text" />
-            <input class="nimiq-address-input" v-on:paste="paste" maxlength=4 v-on:keydown="kdown" v-on:keyup="kup" v-model="text[2]" type="text" /><br>
-            <input class="nimiq-address-input" v-on:paste="paste" maxlength=4 v-on:keydown="kdown" v-on:keyup="kup" v-model="text[3]" type="text" />
-            <input class="nimiq-address-input" v-on:paste="paste" maxlength=4 v-on:keydown="kdown" v-on:keyup="kup" v-model="text[4]" type="text" />
-            <input class="nimiq-address-input" v-on:paste="paste" maxlength=4 v-on:keydown="kdown" v-on:keyup="kup" v-model="text[5]" type="text" /><br>
-            <input class="nimiq-address-input" v-on:paste="paste" maxlength=4 v-on:keydown="kdown" v-on:keyup="kup" v-model="text[6]" type="text" />
-            <input class="nimiq-address-input" v-on:paste="paste" maxlength=4 v-on:keydown="kdown" v-on:keyup="kup" v-model="text[7]" type="text" />
-            <input class="nimiq-address-input" v-on:paste="paste" maxlength=4 v-on:keydown="kdown" v-on:keyup="kup" v-model="text[8]" type="text" />
-        </form>
+        <textarea id="nimiq-address" v-on:focus="onFocus" v-on:paste="onPaste" v-on:keyup="keyUp" v-on:keydown="keyDown" v-model="address" placeholder="nq" name="Text1" maxlength="45"></textarea>
     </div>
 </template>
 
 <script lang="ts">
 import {Component, Prop, Watch, Vue} from 'vue-property-decorator';
-import Identicon from './Identicon.vue'
 import '@nimiq/style/nimiq-style.min.css'
 
-function alphaNum(text) {
 
-    return text.replace(/\W/g,'')
-}
 
-function splitText(text, size) {
-    if (text) {
-        var split = text.match(/.{1,4}/g);
-        if (split) {
-            if (split.length > size) {
-                return split
-            } else {
-                return split.concat(Array(size - split.length).fill(''))
-            }
+function preFormatAddress(val) {
+    try { 
+        // remove invalid characters
+        var plain = val.trim().replace(/[wizo]/gi,'').replace(/[\W](?!$)/gi,'')
+    } catch(err) {}
+
+    try {
+    if (plain.length == 1) {
+        if (plain.match(/n/i)) {
+            return plain
+        } else if (plain.match(/q/i)) {
+            return 'nq'
+        } else {
+            return 'nq'.concat(plain)
         }
+    } else if ((plain.length == 2) || (plain[0].match(/\d/))) {
+        return 'NQ'.concat(plain.replace(/[nq]/gi,''))
+    } else {
+        return plain.replace(/^([\D]{1,2})/,"NQ")
     }
-    return Array(size).fill('')
+    } catch(err) {return ''}   
 }
 
-function lockInput(inputElement) {
-    inputElement.maxLength = inputElement.value.length;
+function formatAddress(val) {
+    if (!val) {return ''}
+    var trailing = (val[val.length - 1] == ' ')
+    var tokens = preFormatAddress(val).match(/\w{1,4}/g)
+    var address = tokens.join(' ')
+    address = address.split('')
+        try { // insert linebreak
+            if (address.length >= 14) {
+            address[14] = '\n'  
+            }
+            if (address.length >= 29) {
+            address[29] = '\n'
+            }
+        } catch(err) {}
+    return address.join('').substr(0,44)
 }
 
-function freeInput(inputElement) {
-    inputElement.removeAttribute('maxLength')
-}
 
-@Component({components: {Identicon}})
+@Component({components: {}})
 export default class InputAddress extends Vue {
-    text = Array(9).fill('');
-    Address = '';
-    oldAddress = ''
-    active = -1;
-    act = false;
-    maxLength = 4
-    clipboardData = ''
-    counter = 0
-    first = false;
-    keyNext = [""];
-    keyPrevKeyUp = ["ArrowLeft"]
-    keyPrevKeyDown = ["Backspace"]
-    s = 0
-    e = 0
+    //caretPosition = 0
 
-    private kdownFirst(event) {
-        console.log(event.target)
-        if (event.target.value.length == 0 ) {
-            if (!event.key.match(/n/i)) {
-                event.target.value = 'nq';
-            }
-        } 
-        this.kdown(event)
-    }
-
-    private kdown(event) {
-        if ((!event.key.match(/[a-zA-Z0-9]/g)) || (event.target.value.length == this.maxLength )) {
-            lockInput(event.target)
-        }
-
-        var s = event.target.selectionStart
-        var e = event.target.selectionEnd
-
-        if ((s == e) && (s == this.maxLength) && (event.key.length == 1)) {
-               // if (this.keyNext.indexof(event.code)) {
-                try {
-                    this.getNextInput(event.target).focus()
-                } catch(err) {console.log(err)}
-               // }  
-        }   
-        if ((s == e) && (s == 0) && (this.keyPrevKeyDown.indexOf(event.key) > -1)) {
-            try {
-                this.getPreviousInput(event.target).focus()
-            } catch(err) {console.log(err)}
-        }
-    }
+    addressLength = 44
     
-
-    private kup(event) {
-        if (event.target.maxLength < this.maxLength) {
-            freeInput(event.target)
-        } 
-
-        var s = event.target.selectionStart
-        var e = event.target.selectionEnd
-
-        console.log(event)
-        console.log({s, e})
- 
-        if (s == e) {
-            if (s == this.maxLength) {
-               // if (this.keyNext.indexof(event.code)) {
-                try {
-                    this.getNextInput(event.target).focus()
-                } catch(err) {console.log(err)}
-               // }  
-            } 
-            if ((s == 0) && (this.keyPrevKeyUp.indexOf(event.key) > -1)) {
-               // if (this.keyPrev.indexof(event.code)) {
-                try {
-                    this.getPreviousInput(event.target).focus()
-                } catch(err) {console.log(err)}
-               // }
-            }
-        }
+    private getTextarea() {
+        return this.$el.getElementsByTagName('textarea').item(0)
     }
 
-    private pasteFirst(event) {
-        this.paste()
+    private lockInput(inputElement) {
+        inputElement.maxLength = inputElement.value.length;
     }
 
-    private paste(event, prefix = '') {
-        var clipboard = event.clipboardData.getData('Text').replace(/\W/g,'')
-        event.stopPropagation()
+    private freeInput(inputElement) {
+        inputElement.removeAttribute('maxLength')
+    }
+
+    private onFocus(event) {
+        // TODO
+    }
+
+    private onPaste(event) {
         event.preventDefault()
+        var input = event.clipboardData.getData('Text').replace(/\W/g,'')
+        var k = this.preCalcTextInput(formatAddress(input))
+        event.target.value = k.n
+        event.target.selectionStart = k.c 
+        event.target.selectionEnd = k.c 
+    }
 
-        var s = event.target.selectionStart
-        var e = event.target.selectionEnd
+    private keyDown(event) {
+        var t = event.target
+        
+        var specialKey = (event.altKey) || (event.ctrlKey) || (event.metaKey)
 
-        if ((event.target.maxLength == event.target.value.length) && (e == s)) {
-            return
-        }
+        if (specialKey) {return}
 
-        var text = event.target.value
-        text = text.substr(0,s) + clipboard + text.substr(e)
+        this.lockInput(t)
 
-        event.target.value = text.substr(0, this.maxLength)
-        clipboard = text.substr(this.maxLength)
-
-
-        try {
-        var n = this.getNextInput(event.target)
-        while ((n) && (clipboard)) {
-            if (!n.value) {
-                console.log(clipboard)
-                n.value = clipboard.substr(0, this.maxLength)
-                clipboard = clipboard.substr(this.maxLength)
+        if (event.key.length == 1) {
+            event.preventDefault()
+            if ('0123456789abcdefghjklmnpqrstuvxyABCDEFGHJKLMNPQRSTUVXY'.indexOf(event.key) > -1) {
+            var k = this.preCalcTextInput(event.key)
+            event.target.value = k.n
+            event.target.selectionStart = k.c 
+            event.target.selectionEnd = k.c 
+            //this.caretPosition = k.c 
             } else {
-                break;
+                // trigger bad char here
             }
-            n.focus()
-            n = this.getNextInput(n)
         }
-        } catch(err) {console.log(err)}
 
-        var e = this.getInputElements()
-        // set component text to input 
-        for (var i = 0; i < this.text.length; i++) {
-            this.text[i] = e[i].value
-        }
-        // trigger text changed 
-        this.onTextChanged(this.text, this.text)
-    }
-
-
-    private save(event) {
-        console.log('ENTER')
-    }
-
-    private getInputElements() {
-        return this.$el.getElementsByClassName('nimiq-address-input')
-    }
-
-    private getActiveInput() {
-        var e = document.activeElement
-        try {
-            return this.isInput(e) ? e : null;
-        } catch(err){
-            return null
-        }  
-    }
-
-    private isInput(input) {
-        return input.classList.contains('nimiq-address-input')
-    }
-
-    private getNextInput(input) {
-        if (input === this.getLastInput()) {
-            return null
-        } else {
-            while(!this.isInput(input.nextElementSibling)) {
-                input = input.nextElementSibling
+        if (event.key == 'Tab') {
+            c = (Math.floor(c/5)+1)*5
+            t.selectionEnd = c + 4
+            t.selectionStart = c 
+            if (c > this.addressLength) {
+                return
+            } else {
+                event.preventDefault()
             }
-            return input.nextElementSibling
         }
-    }
 
-    private getPreviousInput(input) {
-        if (input === this.getFirstInput()) {
-            return null
-        } else {
-            while(!this.isInput(input.previousElementSibling)) {
-                input = input.previousElementSibling
+        if (event.key == ' ') {
+            if (t.selectionStart == t.selectionEnd) {
+                if ((t.selectionStart+1)%5 == 0) {
+                    var k = this.preCalcTextInput(event.key)
+                    event.target.value = k.n
+                    event.target.selectionStart = k.c 
+                    event.target.selectionEnd = k.c 
+                    //this.caretPosition = k.c 
+                }
+            } else {
+                event.preventDefault()
+                var k = this.preCalcTextDelete()
+                event.target.value  = k.n
+                event.target.selectionStart = k.c 
+                event.target.selectionEnd = k.c 
+                //this.caretPosition = k.c
             }
-            return input.previousElementSibling
-        } 
-    }
+        }
 
-    private getActiveInputIndex() {
+        if (event.key == 'Delete') {
+            event.preventDefault()
+            var k = this.preCalcTextDelete()
+            event.target.value  = k.n
+            event.target.selectionStart = k.c 
+            event.target.selectionEnd = k.c 
+            //this.caretPosition = k.c
+        }
+
+        if (event.key == 'Backspace') {
+            event.preventDefault()
+            var k = this.preCalcTextBackspace()
+            event.target.value  = k.n
+            event.target.selectionStart = k.c 
+            event.target.selectionEnd = k.c 
+            //this.caretPosition = k.c
+        }
+
+        this.freeInput(t)
         
     }
 
-    private disableInput(input) {
-        if (input.value.length == this.maxLength) {
-            input.classList.add('dis')
-        } else {
-            input.classList.remove('dis')
-        }
+    private keyUp(event) {
+        event.preventDefault()
+        var t = event.target
+        this.freeInput(t)
     }
 
-    private getFirstInput() {
-        return this.getInputElements()[0]
+    private preCalcTextDelete() {
+        var t = this.getTextarea()
+        var v = t.value
+        var s = t.selectionStart
+        var e = t.selectionEnd
+        var c = s
+        if (s == e) {
+            e++
+            try {
+                if (v[s].match(/\W/)) {
+                    e++
+                }
+            } catch(err) {}
+        }
+        var a = v.substr(0,s)
+        var m = v.substr(s,e)   // highlighted text
+        var b = v.substr(e,v.length)
+        var n = formatAddress(a+b) // new text generated after formatting
+        return {a, m, b, c, n, s, e}   
     }
 
-    private getLastInput() {
-        var i = this.getInputElements()
-        return i[i.length]
+    private preCalcTextBackspace() {
+        var t = this.getTextarea()
+        var v = t.value
+        var s = t.selectionStart
+        var e = t.selectionEnd
+        var c = (s == e) ? s - 1 : s
+        s = (s == e) ? s - 1 : s
+        var a = v.substr(0,s)
+        var m = v.substr(s,e)   // highlighted text
+        var b = v.substr(e,v.length)
+        var n = formatAddress(a+b) // new text generated after formatting
+        return {a, m, b, c, n, s, e}   
     }
 
-    @Watch('text', {immediate: true, deep: false})
-    onTextChanged(val: string, oldVal: string) {
-        if (!this.first) {this.first = true} else {
-        this.counter++
-        var maxLen = this.maxLength
-        this.Address = this.text.join('')
+    private preCalcTextInput(input) {
+        var t = this.getTextarea()
+        var v = t.value
+        var s = t.selectionStart
+        var e = t.selectionEnd
+        var a = v.substr(0,s)
+        var m = v.substr(s,e)
+        var b = v.substr(e,v.length)
+        var c = formatAddress(a+input).length // new caret position
+        var n = formatAddress(a+input+b) // new text generated after formatting
+        return {a, m, b, c, n, input, s, e}
+    }
 
-        for (let e of this.getInputElements()) {
-            this.disableInput(e)
-        }
-        
-        return 
-        }
+    @Watch('address', {immediate: true, deep: false})
+    onTfieldChanged(val: string, oldVal: string) {
+        this.address = formatAddress(val)
     }
 
     @Prop(String) public address!: string;
-    @Prop(String) public name!: string;
 }
 </script>
 
 <style scoped>
-    form {
-        background-color: white;
-        padding: 10px;
-    }
 
-    input {
-        /*letter-spacing: 0.1em;*/
+    textarea {
+        word-spacing: 30px;
         text-transform: uppercase;
-        width: 3em;
+        width: 3*3em;
+        height: 100px;
         font-family: 'Fira Mono', system-ui, sans-serif;
         font-family: Fira Mono;
         font-style: normal;
         font-weight: normal;
-        line-height: 24px;
+        line-height: 30px;
         font-size: 24px;
-        border: 2px solid #dbdce2;
-        border-radius: 8px;
+        border: 2px var(--nimiq-gray);
+        border-radius: 4px;
         margin: 4px;
         box-sizing: border-box;
+        resize: none;
 
-        color: var(--nimiq-light-blue);
-        size: 4;
+        color: var(--nimiq-blue);
 
         /* Light Blue */
         mix-blend-mode: normal;
         /*opacity: 0.6;   */
-
+        outline: none;
+        overflow: hidden;
+        padding-left: 30px;
+        background-color: transparent;
     }
 
-    input:focus {
-
+    textarea::placeholder {
+        color: var(--nimiq-light-blue);
+        opacity: 0.6;
     }
 
-    .dis {
-        color: black;
-        border: 2px solid white;
-        color: var(--nimiq-blue);
-    }
-
-    input:disabled {
-        color: black;
-        border: 2px solid white;
-        color: var(--nimiq-blue);
-    }
-
-    input::placeholder {
-            color: var(--nimiq-light-blue);
-            opacity: 0.6
-        };
-
-    span {
-        text-align: center;
-    }
-
-    .identicon-contact {
-        width: calc(10 * var(--nimiq-size, 8px));
-        min-width: calc(5 * var(--nimiq-size, 8px));
-        text-align: center
-    }
-
-    .identicon-contact .identicon {
-        margin: auto;
-    }
-
-    .name-placeholder {
-        background-color: var(--nimiq-light-gray);
-        width: calc(10 * var(--nimiq-size, 8px));
-        height: 1em;
-        border-radius: 0.5em;
-    }
-
-    img {
-        width: 100%;
-        height: 100%;
-    }
 </style>

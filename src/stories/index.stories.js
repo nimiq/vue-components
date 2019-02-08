@@ -453,20 +453,20 @@ storiesOf('Components', module)
         return {
             components: {SmallPage, IdenticonContact, InputAddress},
             template: windowTemplate(`
-<SmallPage>
-    <div class="nq-card-header">
-        <h1 class="nq-h1">Send Transaction</h1>
-    </div>
-    <div style=".cont {display: inline-block}">
-    </div>
-    <div style="text-align: center">
-    <p><span class="nq-label">Enter Address</span></p>
-    <InputAddress />
-    <p>Adress unavailable?</p>
-    <p><button class="nq-button-s">create cashlink</button></p>
-    </div>
-</SmallPage>
-`),
+                <SmallPage>
+                    <div class="nq-card-header">
+                        <h1 class="nq-h1">Send Transaction</h1>
+                    </div>
+                    <IdenticonContact />
+                    <IdenticonContact />
+                    <div style="text-align: center">
+                    <p><span class="nq-label">Enter address</span></p>
+                    <InputAddress address="NQ07"/>
+                    <p>Adress unavailable?</p>
+                    <p><button class="nq-button-s">create cashlink</button></p>
+                    </div>
+                </SmallPage>
+            `),
         };
     })
     .add('SmallPage', () => {
