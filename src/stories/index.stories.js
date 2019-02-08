@@ -16,7 +16,6 @@ import Identicon from '../components/Identicon.vue';
 import Input from '../components/Input.vue';
 import IdenticonContact from '../components/IdenticonContact.vue';
 import InputAddress from '../components/InputAddress.vue';
-import LabelInput from '../components/LabelInput.vue';
 import Wallet from '../components/Wallet.vue';
 import WalletList from '../components/WalletList.vue';
 import WalletMenu from '../components/WalletMenu.vue';
