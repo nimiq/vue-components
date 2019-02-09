@@ -25,7 +25,7 @@
             (this.$refs.input as HTMLInputElement).focus();
         }
 
-        public input() {
+        private onInput() {
             if (this.maxBytes !== undefined) {
                 const lengthInBytes = Utf8Tools.stringToUtf8ByteArray(this.liveValue!).byteLength;
                 if (lengthInBytes > this.maxBytes) {
