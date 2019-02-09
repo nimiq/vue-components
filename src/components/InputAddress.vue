@@ -1,14 +1,10 @@
 <template>
     <div class="input-address">
-        <div v-for="i in 3" >
-            <div style="display: flex; margin-bottom: 0px;" >
-                <InputTextChunk v-for="j in 3" ref="input" :disabled="disabled"/>
-            </div>
-        </div>
         <div>
-            <textarea id="nimiq-address" v-model="address" v-on:focus="onFocus" v-on:copy="onCopy" v-on:paste="onPaste" v-on:keyup="keyUp" v-on:keydown="keyDown" placeholder="nq" name="Text1" maxlength="45" :disabled="disabled"></textarea>
+            <textarea id="nimiq-address" v-model="address" v-on:focus="onFocus" v-on:focusout="onFocusout" v-on:mouseover="onMouseover" v-on:click="onClick" v-on:copy="onCopy" v-on:paste="onPaste" v-on:cut="onCut" v-on:keyup="keyUp" v-on:keydown="keyDown" placeholder="nq" name="Text1" maxlength="45" :disabled="disabled"></textarea>
+        </div>        
+        <div ref="display" v-on:focus="onFocus"  v-on:copy="onCopy" v-on:paste="onPaste" v-on:keyup="keyUp" v-on:keydown="keyDown" id="div-input">
         </div>
-        <div class="grid-overlay"></div>
     </div>
 </template>
 
@@ -51,7 +47,7 @@ function preFormatAddress(val: string) {
     } catch(err) {console.log(err); return ''}   
 }
 
-function formatAddress(val: any) {
+function formatAddress(val: any):string {
     if (val !instanceof String) {return}    
     const trailing:boolean = (val[val.length - 1] == ' ')
     const pre = preFormatAddress(val)
@@ -120,10 +116,7 @@ function copyTextToClipboard(text) {
   try {
     var successful = document.execCommand('copy');
     var msg = successful ? 'successful' : 'unsuccessful';
-    console.log('Copying text command was ' + msg);
-  } catch (err) {
-    console.log('Oops, unable to copy');
-  }
+  } catch (err) { console.log(err )}
 
   document.body.removeChild(textArea);
 }
@@ -136,19 +129,44 @@ export default class InputAddress extends Vue {
     @Prop(Boolean, {default: false}) public disabled!: boolean;
 
     mounted() {
-        console.log('mounted')   
         this.updateDisplay()
-        console.log(this.disabled)
         if (this.disabled) {
-            
+
         }
     }
 
     private updateDisplay():string {
-        const text:string = this.getTextarea().value
-        for (let i = 0; i < this.$refs.input.length; i++) {
-            this.$refs.input[i].text = text.substr(5*i,4)
+        const t = this.getTextarea()
+        const s = t.selectionStart
+        const e = t.selectionEnd
+        const text:string = t.value
+        var active:boolean
+  
+        let tokens:string[] = text.match(/[\w\d]{1,4}/gi)
+        if (tokens) {
+            tokens = tokens.concat(Array(9 - tokens.length).fill(''))
+        } else {
+            tokens = Array(9).fill('')
         }
+        this.$refs.display.innerHTML = '' 
+        let nl:string
+        for (let i = 0; i < tokens.length; i++) {
+            nl = ((i+1)%3 == 0) ? '<br>' : '' 
+            active = ((Math.floor(s/5) <= i) && (i <= Math.floor(e/5)) && (document.activeElement === t))
+            this.$refs.display.innerHTML += this.chunkHTML(tokens[i], active) + nl 
+        }     
+    }
+
+
+    private chunkHTML(text:string, active:boolean = false):string  {
+        text = text.substr(0,4)
+        let fill:string = ''
+        while (text.length + fill.length < 4) {
+            fill += '0'
+        }
+        let fillTag = (fill) ? `<span class="cbl-fill">${fill} </span>` : ''
+        text += (text.length == 4) ? ' ' : ''
+        return `<div class="chunk-border ${(active) ? 'active' : ''} cbl-${text.length}"></div><span class="cbl-${text.length}">${text}</span>${fillTag}`
     }
 
     private getTextarea():string {
@@ -164,12 +182,24 @@ export default class InputAddress extends Vue {
     }
 
     private onFocus(event:Event):void {
-        // TODO
+        this.updateDisplay()
     }
 
-    private onCopy(event:event):void {
+    private onFocusout(event:Event):void {
+        this.updateDisplay()
+    }
+
+    private onClick(event:Event):void {
+        this.updateDisplay()
+    }
+
+    private onMouseover(event:Event):void {
+        this.updateDisplay()
+    }
+
+    private onCopy(event:Event):void {
         console.log(event)
-        copyTextToClipboard(event.target.value.replace(/\n/g,' '))
+        //copyTextToClipboard(event.target.value.replace(/\n/g,' '))
     }
 
     private onPaste(event:Event):void {
@@ -182,21 +212,36 @@ export default class InputAddress extends Vue {
         this.updateDisplay()
     }
 
+    private onCut(event:Event): void {
+        this.updateDisplay()
+    }
+
     private keyDown(event:Event):void {
         let t:Element = event.target
-        
+
         const specialKey:boolean = (event.altKey) || (event.ctrlKey) || (event.metaKey)
 
-        if (specialKey) {return}
+        if (specialKey) {
+            this.updateDisplay()
+            return
+        }
 
         if (event.key == 'Enter') {event.preventDefault()}
 
         this.lockInput(t)
 
+        if (["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].indexOf(event.key) > -1) {
+            this.updateDisplay()
+        }
+
         if (event.key.length == 1) {
             event.preventDefault()
             if ('0123456789abcdefghjklmnpqrstuvxyABCDEFGHJKLMNPQRSTUVXY'.indexOf(event.key) > -1) {
-            const k:string = this.preCalcTextInput(event.key)
+            let k:string = this.preCalcTextInput(event.key)      
+            if ((k.c+1)%5 == 0) {
+                // add space when at end of box
+                k = this.preCalcTextInput(event.key+' ')
+            }
             t.value = k.n
             t.selectionStart = k.c 
             t.selectionEnd = k.c 
@@ -206,13 +251,27 @@ export default class InputAddress extends Vue {
         }
 
         if (event.key == 'Tab') {
-            const c:integer = (Math.floor(c/5)+1)*5
-            t.selectionEnd = c + 4
-            t.selectionStart = c 
-            if (c > this.addressLength) {
-                return
-            } else {
+            const cs:integer = (Math.floor(t.selectionStart/5)+1)*5
+            const ce:integer = (Math.floor(t.selectionEnd/5)+1)*5
+            const l:integer = (Math.floor(t.value.length/5)+1)*5
+
+            
+            if (event.shiftKey) {
+                if ((t.selectionStart == t.selectionEnd) && (t.selectionEnd == 0)) {
+                    return
+                }
                 event.preventDefault()
+                t.selectionEnd = (ce-10 > 0) ? ce-6 : 0
+                t.selectionStart = (ce-10 > 0) ? ce-10: 0
+                console.log([cs, ce, l])
+            } else {
+                if ((t.selectionStart == t.selectionEnd) && (t.selectionEnd == t.value.length)) {
+                    return
+                }
+                event.preventDefault()
+                t.selectionEnd = cs + 4 
+                t.selectionStart = cs 
+                console.log([t.selectionStart, t.selectionEnd, l, cs])
             }
         }
 
@@ -313,44 +372,76 @@ export default class InputAddress extends Vue {
 
 </script>
 
-<style scoped>
 
+<style>
+    .chunk-border {
+        --border-height: 2em;
+        border: 2px solid rgba(0,0,0,0);
+        border-radius: 4px;
+        margin: 0;
+        margin-right: calc(-74px + var(--offset));
+        width: 74px;
+        height: 35px;
+        margin-top: 3px;
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .cbl-0 {
+        border-color: var(--nimiq-gray)
+    }
+
+    .cbl-4 {
+        border-color: var(--nimiq-blue);
+        color: var(--nimiq-blue);
+    }
+
+    .cbl-5 {
+        border-color: transparent;
+    }
+
+    .cbl-fill {
+        color: transparent;
+    }
+
+    .active {
+        border-color: var(--nimiq-light-blue);
+    }
+
+    .cbl-1, .cbl-2, .cbl-3 {
+        color: var(--nimiq-light-blue);
+    }
+
+</style>
+
+<style scoped>
     .input-address {
         position: relative;
-        text-align: center;
-        display: inline-block;
+        margin: auto;
+        width: 280px;
+        height: 125px;
+        overflow: hidden;
     }
 
-    .grid-overlay {
-        position: absolute;
-        left: 6px;
-        top: 6px;
-        width: 228px;
-        height: 114px;
-        background-image: url('data:image/svg+xml,<svg viewBox="0 0 228 114" version="1" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1"><path d="M158 0v28c0 2 2 4 4 4h66v8h-66c-2 0-4 1-4 3v27c0 2 2 4 4 4h64l2-1v9h-66c-2 0-4 1-4 3v27l1 2h-9V85c0-2-2-3-4-3H82c-2 0-4 1-4 3v27l1 2h-9V85c0-2-2-3-4-3H0v-9l2 1h64c2 0 4-2 4-4V43c0-2-2-3-4-3H0v-9l2 1h64c2 0 4-2 4-4V2 0h8v28c0 2 2 4 4 4h64c2 0 4-2 4-4V2 0h8zm-12 74c2 0 4-2 4-4V43c0-2-2-3-4-3H82c-2 0-4 1-4 3v27c0 2 2 4 4 4h64z" fill="white"/></svg>');    
-        -webkit-touch-callout: none;
-        -webkit-user-select: none;
-        -khtml-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        outline: 0;
-        pointer-events: none;
+    div, textarea {
+        --line-height: 42px;
+        --offset: 7px;
+        --word-spacing: 25px; /* distance between chunks */
     }
 
-    textarea { /* for chrome on macOS */
+    textarea {
         position: absolute;
-        left: 0px;
-        top: -2px;
-        word-spacing: 16.5px;
+        left: 9px;
+        top: 0px;
+        word-spacing: var(--word-spacing);
         text-transform: uppercase;
-        width: 235px;
+        width: 280px;
         height: 125px;
         font-family: 'Fira Mono', system-ui, sans-serif;
         font-family: Fira Mono;
         font-style: normal;
         font-weight: normal;
-        line-height: 42px;
+        line-height: var(--line-height);
         font-size: 24px;
         margin: 0px;
         padding-left: 7px;
@@ -358,9 +449,9 @@ export default class InputAddress extends Vue {
         border: none;
         outline: none;
         overflow: hidden;
-        background-color: transparent;
-        color: rgba(0,0,0,0.0);
+        color: rgba(255,0,1,0.0);
         caret-color: var(--nimiq-blue);
+        z-index: 0;
     }
 
     textarea::placeholder {
@@ -368,4 +459,21 @@ export default class InputAddress extends Vue {
         opacity: 0.6;
     }
 
+    #div-input {
+        left: 9px;
+        top: 2px;
+        pointer-events: none;
+        width: 280px;
+        height: 125px;
+        overflow: hidden;
+        word-spacing: calc(-1*var(--offset) + var(--word-spacing));
+        font-family: 'Fira Mono', system-ui, sans-serif;
+        line-height: var(--line-height);
+        text-align: left;
+        font-family: 'Fira Mono', system-ui, sans-serif;
+        font-family: Fira Mono;
+        font-size: 24px;
+        z-index: 10;
+        position: absolute;
+    }
 </style>

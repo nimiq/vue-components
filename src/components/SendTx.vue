@@ -19,7 +19,7 @@
                 <p><span class="nq-label">Enter address</span></p>
                 <InputAddress :address="address" :disabled="disabled"/>
                 </div>
-                <p id="annotation">Adress unavailable?</p>
+                <p id="annotation">Address unavailable?</p>
                 <p><button class="nq-button-s">Create a Cashlink</button></p>
             </div>
         </div>
@@ -77,8 +77,10 @@
     }
 
     #address-input {
-        margin-bottom: 39px
+        margin-bottom: 39px;
+        margin-left: calc(50%+10%);
     }
+
 
     #annotation {
         margin-bottom: 5px
