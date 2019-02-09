@@ -1,7 +1,7 @@
 <template>
     <form class="label-input" @submit.prevent="changed">
         <label>
-            <input type="text" :style="{width: `${Math.max(2, liveValue.length + 1)}ch`}" v-model="liveValue" @focus="$event.target.select()" @input="input" @blur="changed" ref="input">
+            <input type="text" :style="{width: `${Math.max(2, liveValue.length + 1)}ch`}" v-model="liveValue" @focus="$event.target.select()" @input="onInput" @blur="changed" ref="input">
             <i class="nq-icon edit"></i>
         </label>
     </form>
