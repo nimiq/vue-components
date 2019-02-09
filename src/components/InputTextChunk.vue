@@ -1,6 +1,6 @@
 <template>
     <div class="input-address">
-        <input v-model= "text" :class="'length'+text.length.toString()" type="text" maxlength="4" />
+        <input v-model= "text" :class="'length'+text.length.toString()" type="text" maxlength="4" :disabled="disabled"/>
     </div>
 </template>
 
@@ -11,7 +11,8 @@ import '@nimiq/style/nimiq-style.min.css'
 
 @Component({components: {}})
 export default class InputTextChunk extends Vue {
-    //caretPosition = 0    
+
+    @Prop(Boolean, {default: false}) public disabled!: boolean;
 
     public data() {
         return {
@@ -78,9 +79,12 @@ export default class InputTextChunk extends Vue {
     }
 
     input.length4 {
-        color: var(---nimiq-blue);
+        color: var(--nimiq-blue);
         border-color: white;
     }
 
+    input:disabled {
+        color: #dadada;
+    }
 
 </style>

@@ -2,11 +2,11 @@
     <div class="input-address">
         <div v-for="i in 3" >
             <div style="display: flex; margin-bottom: 0px;" >
-                <InputTextChunk v-for="j in 3" ref="input"/>
+                <InputTextChunk v-for="j in 3" ref="input" :disabled="disabled"/>
             </div>
         </div>
         <div>
-            <textarea id="nimiq-address" v-model="address" v-on:focus="onFocus" v-on:copy="onCopy" v-on:paste="onPaste" v-on:keyup="keyUp" v-on:keydown="keyDown" placeholder="nq" name="Text1" maxlength="45"></textarea>
+            <textarea id="nimiq-address" v-model="address" v-on:focus="onFocus" v-on:copy="onCopy" v-on:paste="onPaste" v-on:keyup="keyUp" v-on:keydown="keyDown" placeholder="nq" name="Text1" maxlength="45" :disabled="disabled"></textarea>
         </div>
         <div class="grid-overlay"></div>
     </div>
@@ -111,8 +111,6 @@ function copyTextToClipboard(text) {
 
   // Avoid flash of white box if rendered for any reason.
   textArea.style.background = 'transparent';
-
-
   textArea.value = text;
 
   document.body.appendChild(textArea);
@@ -135,9 +133,15 @@ export default class InputAddress extends Vue {
 
     @Prop(String) public address!: string;
 
+    @Prop(Boolean, {default: false}) public disabled!: boolean;
+
     mounted() {
         console.log('mounted')   
         this.updateDisplay()
+        console.log(this.disabled)
+        if (this.disabled) {
+            
+        }
     }
 
     private updateDisplay():string {

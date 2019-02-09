@@ -453,7 +453,7 @@ storiesOf('Components', module)
             components: {SendTx, SmallPage, IdenticonContact},
             template: windowTemplate(`
                 <small-page style="height: 560px;">
-                    <SendTx address="n107">
+                    <SendTx address="NQ10 7" :disabled="false">
                         <IdenticonContact name="Simon" address="NQ72 YBV0 9SSA XBAN 820M 8H0B 339V FJP4 34DH"/>
                         <IdenticonContact name="Name" address="NQ79 XYXY FE3L 7CQL KAN3 KRVK 2P0L B33D JQ81"/>
                         <IdenticonContact name="" address=""/>
@@ -471,6 +471,20 @@ storiesOf('Components', module)
                         <IdenticonContact/>
                         <IdenticonContact/>
                         <IdenticonContact/>
+                    </SendTx>
+                </small-page>
+            `)
+        };
+    })
+    .add('SendTx (full/disabled)', () => {
+        return {
+            components: {SendTx, SmallPage, IdenticonContact},
+            template: windowTemplate(`
+                <small-page style="height: 560px;">
+                    <SendTx address="NQ72 YBV0 9SSA XBAN 820M 8H0B 339V FJP4 34DH" :disabled="true">
+                        <IdenticonContact name="Simon" address="NQ72 YBV0 9SSA XBAN 820M 8H0B 339V FJP4 34DH"/>
+                        <IdenticonContact name="Name" address="NQ79 XYXY FE3L 7CQL KAN3 KRVK 2P0L B33D JQ81"/>
+                        <IdenticonContact name="" address=""/>
                     </SendTx>
                 </small-page>
             `)

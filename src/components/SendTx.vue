@@ -17,7 +17,7 @@
                 </div>
                 <div id="address-input">
                 <p><span class="nq-label">Enter address</span></p>
-                <InputAddress :address="address" style=""/>
+                <InputAddress :address="address" :disabled="disabled"/>
                 </div>
                 <p id="annotation">Adress unavailable?</p>
                 <p><button class="nq-button-s">Create a Cashlink</button></p>
@@ -36,6 +36,7 @@
     export default class SendTx extends Vue {
 
         @Prop(String) public address!: string;
+        @Prop(Boolean, {default: false}) public disabled!: boolean;
 
     }
 </script>
