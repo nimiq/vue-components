@@ -6,8 +6,9 @@
             </div>
         </div>
         <div>
-            <textarea id="nimiq-address" v-model="address" v-on:focus="onFocus" v-on:paste="onPaste" v-on:keyup="keyUp" v-on:keydown="keyDown" placeholder="nq" name="Text1" maxlength="45"></textarea>
+            <textarea id="nimiq-address" v-model="address" v-on:focus="onFocus" v-on:copy="onCopy" v-on:paste="onPaste" v-on:keyup="keyUp" v-on:keydown="keyDown" placeholder="nq" name="Text1" maxlength="45"></textarea>
         </div>
+        <div class="grid-overlay"></div>
     </div>
 </template>
 
@@ -57,6 +58,9 @@ function formatAddress(val: any) {
     if (pre.length == 0) {return ''}
     const tokens:string[] = pre.match(/\w{1,4}/g) 
     let address:string = tokens.join(' ')
+    if ((trailing) && (address.length%5 == 4)) {
+        address += ' '
+    }
     address = address.split('')
         try { // insert linebreak
             if (address.length >= 14) {
@@ -67,6 +71,63 @@ function formatAddress(val: any) {
             }
         } catch(err) {}
     return address.join('').substr(0,44)
+}
+
+function copyTextToClipboard(text) {
+  var textArea = document.createElement("textarea");
+
+  //
+  // *** This styling is an extra step which is likely not required. ***
+  //
+  // Why is it here? To ensure:
+  // 1. the element is able to have focus and selection.
+  // 2. if element was to flash render it has minimal visual impact.
+  // 3. less flakyness with selection and copying which **might** occur if
+  //    the textarea element is not visible.
+  //
+  // The likelihood is the element won't even render, not even a flash,
+  // so some of these are just precautions. However in IE the element
+  // is visible whilst the popup box asking the user for permission for
+  // the web page to copy to the clipboard.
+  //
+
+  // Place in top-left corner of screen regardless of scroll position.
+  textArea.style.position = 'fixed';
+  textArea.style.top = 0;
+  textArea.style.left = 0;
+
+  // Ensure it has a small width and height. Setting to 1px / 1em
+  // doesn't work as this gives a negative w/h on some browsers.
+  textArea.style.width = '2em';
+  textArea.style.height = '2em';
+
+  // We don't need padding, reducing the size if it does flash render.
+  textArea.style.padding = 0;
+
+  // Clean up any borders.
+  textArea.style.border = 'none';
+  textArea.style.outline = 'none';
+  textArea.style.boxShadow = 'none';
+
+  // Avoid flash of white box if rendered for any reason.
+  textArea.style.background = 'transparent';
+
+
+  textArea.value = text;
+
+  document.body.appendChild(textArea);
+  textArea.focus();
+  textArea.select();
+
+  try {
+    var successful = document.execCommand('copy');
+    var msg = successful ? 'successful' : 'unsuccessful';
+    console.log('Copying text command was ' + msg);
+  } catch (err) {
+    console.log('Oops, unable to copy');
+  }
+
+  document.body.removeChild(textArea);
 }
 
 @Component({components: {InputTextChunk}})
@@ -100,6 +161,11 @@ export default class InputAddress extends Vue {
 
     private onFocus(event:Event):void {
         // TODO
+    }
+
+    private onCopy(event:event):void {
+        console.log(event)
+        copyTextToClipboard(event.target.value.replace(/\n/g,' '))
     }
 
     private onPaste(event:Event):void {
@@ -246,9 +312,26 @@ export default class InputAddress extends Vue {
 <style scoped>
 
     .input-address {
-        background-color: white;
         position: relative;
         text-align: center;
+        display: inline-block;
+    }
+
+    .grid-overlay {
+        position: absolute;
+        left: 6px;
+        top: 6px;
+        width: 228px;
+        height: 114px;
+        background-image: url('data:image/svg+xml,<svg viewBox="0 0 228 114" version="1" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1"><path d="M158 0v28c0 2 2 4 4 4h66v8h-66c-2 0-4 1-4 3v27c0 2 2 4 4 4h64l2-1v9h-66c-2 0-4 1-4 3v27l1 2h-9V85c0-2-2-3-4-3H82c-2 0-4 1-4 3v27l1 2h-9V85c0-2-2-3-4-3H0v-9l2 1h64c2 0 4-2 4-4V43c0-2-2-3-4-3H0v-9l2 1h64c2 0 4-2 4-4V2 0h8v28c0 2 2 4 4 4h64c2 0 4-2 4-4V2 0h8zm-12 74c2 0 4-2 4-4V43c0-2-2-3-4-3H82c-2 0-4 1-4 3v27c0 2 2 4 4 4h64z" fill="white"/></svg>');    
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        outline: 0;
+        pointer-events: none;
     }
 
     textarea { /* for chrome on macOS */

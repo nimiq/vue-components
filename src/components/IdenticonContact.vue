@@ -25,19 +25,23 @@ export default class IdenticonContact extends Vue {
     }
 
     .identicon-contact {
-        width: calc(10 * var(--nimiq-size, 8px));
+        width: calc(11 * var(--nimiq-size, 8px));
         min-width: calc(5 * var(--nimiq-size, 8px));
-        text-align: center
+        text-align: center;
+        margin: 0;
     }
 
     .identicon-contact .identicon {
         margin: auto;
+        width: 72%;
     }
 
     .name-placeholder {
-        background-color: var(--nimiq-light-gray);
-        width: calc(10 * var(--nimiq-size, 8px));
-        height: 1em;
+        background-color: var(--nimiq-gray);
+        width: 72%;
+        height: 0.5em;
+        margin: auto;
+        margin-top: 8px;
         border-radius: 0.5em;
     }
 

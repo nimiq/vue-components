@@ -448,24 +448,32 @@ storiesOf('Components', module)
             template: `<div style="width: 400px"><PaymentInfoLine :amount="${amount}" :fee="${fee}" origin="${origin}"/></div>`,
         };
     })
-    .add('SendTx Page', () => {
+    .add('SendTx', () => {
         return {
-            components: {SmallPage, IdenticonContact, InputAddress},
+            components: {SendTx, SmallPage, IdenticonContact},
             template: windowTemplate(`
-                <SmallPage>
-                    <div class="nq-card-header">
-                        <h1 class="nq-h1">Send Transaction</h1>
-                    </div>
-                    <IdenticonContact />
-                    <IdenticonContact />
-                    <div style="text-align: center">
-                    <p><span class="nq-label">Enter address</span></p>
-                    <InputAddress address="NQ07"/>
-                    <p>Adress unavailable?</p>
-                    <p><button class="nq-button-s">create cashlink</button></p>
-                    </div>
-                </SmallPage>
-            `),
+                <small-page style="height: 560px;">
+                    <SendTx address="n107">
+                        <IdenticonContact name="Simon" address="NQ72 YBV0 9SSA XBAN 820M 8H0B 339V FJP4 34DH"/>
+                        <IdenticonContact name="Name" address="NQ79 XYXY FE3L 7CQL KAN3 KRVK 2P0L B33D JQ81"/>
+                        <IdenticonContact name="" address=""/>
+                    </SendTx>
+                </small-page>
+            `)
+        };
+    })
+    .add('SendTx (empty)', () => {
+        return {
+            components: {SendTx, SmallPage, IdenticonContact},
+            template: windowTemplate(`
+                <small-page style="height: 560px;">
+                    <SendTx address="">
+                        <IdenticonContact/>
+                        <IdenticonContact/>
+                        <IdenticonContact/>
+                    </SendTx>
+                </small-page>
+            `)
         };
     })
     .add('SmallPage', () => {
