@@ -13,9 +13,9 @@
 
     @Component({components: {}})
     export default class LabelInput extends Vue {
-        @Prop(String) private value?: string;
         // Protected enables us to inherit from the component and set a default value for that property
         @Prop(Number) protected maxBytes?: number;
+        @Prop(String) private value?: string;
 
         private liveValue = this.value;
         private lastValue = this.value;
@@ -24,14 +24,13 @@
         public focus() {
             (this.$refs.input as HTMLInputElement).focus();
         }
-        
+
         public input() {
             if (this.maxBytes !== undefined) {
-                const lengthInBytes = Utf8Tools.stringToUtf8ByteArray(this.liveValue!)
-                                        .byteLength;
+                const lengthInBytes = Utf8Tools.stringToUtf8ByteArray(this.liveValue!).byteLength;
                 if (lengthInBytes > this.maxBytes) {
-                   this.liveValue = this.lastValue;
-                   return;
+                    this.liveValue = this.lastValue;
+                    return;
                 }
             }
 
