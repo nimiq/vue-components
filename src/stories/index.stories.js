@@ -20,6 +20,7 @@ import WalletMenu from '../components/WalletMenu.vue';
 import WalletSelector from '../components/WalletSelector.vue';
 import PaymentInfoLine from '../components/PaymentInfoLine.vue';
 import QrScanner from '../components/QrScanner.vue';
+import QrCode from '../components/QrCode.vue';
 import SmallPage from '../components/SmallPage.vue';
 import LoadingSpinner from '../components/LoadingSpinner.vue';
 import OnboardingMenu from '../components/OnboardingMenu.vue';
@@ -425,6 +426,52 @@ storiesOf('Components', module)
                 cancel: action(QrScanner.Events.CANCEL),
                 error: action(QrScanner.Events.ERROR),
             },
+        };
+    })
+    .add('QrCode', () => {
+        return {
+            components: { QrCode },
+            data: () => ({
+                data: '',
+                errorCorrection: 'M',
+                radius: .5,
+                fill: '#0582ca',
+                background: '#ffffff',
+                size: 128,
+            }),
+            template: windowTemplate(`
+                <QrCode :data="data" :errorCorrection="errorCorrection" :radius="parseFloat(radius)" :fill="fill"
+                    :background="background" :size="parseInt(size)"/>
+                <label>
+                    Data
+                    <input v-model="data">
+                </label>
+                <label>
+                    Error Correction
+                    <select v-model="errorCorrection">
+                        <option>L</option>
+                        <option>M</option>
+                        <option>H</option>
+                        <option>Q</option>
+                    </select>
+                </label>
+                <label>
+                    Radius
+                    <input v-model="radius" type="range" min="0" max=".5" step=".01">
+                </label>
+                <label>
+                    Fill
+                    <input v-model="fill" type="color">
+                </label>
+                <label>
+                    Background
+                    <input v-model="background" type="color">
+                </label>
+                <label>
+                    Size
+                    <input v-model="size" type="number" min="1" step="1">
+                </label>
+            `)
         };
     })
     .add('SmallPage', () => {
