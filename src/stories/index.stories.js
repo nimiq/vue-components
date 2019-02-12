@@ -448,48 +448,6 @@ storiesOf('Components', module)
             template: `<div style="width: 400px"><PaymentInfoLine :amount="${amount}" :fee="${fee}" origin="${origin}"/></div>`,
         };
     })
-    .add('SendTx', () => {
-        return {
-            components: {SendTx, SmallPage, IdenticonContact},
-            template: windowTemplate(`
-                <small-page style="height: 560px;">
-                    <SendTx address="NQ10 7" :disabled="false">
-                        <IdenticonContact name="Simon" address="NQ72 YBV0 9SSA XBAN 820M 8H0B 339V FJP4 34DH"/>
-                        <IdenticonContact name="Name" address="NQ79 XYXY FE3L 7CQL KAN3 KRVK 2P0L B33D JQ81"/>
-                        <IdenticonContact name="" address=""/>
-                    </SendTx>
-                </small-page>
-            `)
-        };
-    })
-    .add('SendTx (empty)', () => {
-        return {
-            components: {SendTx, SmallPage, IdenticonContact},
-            template: windowTemplate(`
-                <small-page style="height: 560px;">
-                    <SendTx address="">
-                        <IdenticonContact/>
-                        <IdenticonContact/>
-                        <IdenticonContact/>
-                    </SendTx>
-                </small-page>
-            `)
-        };
-    })
-    .add('SendTx (full/disabled)', () => {
-        return {
-            components: {SendTx, SmallPage, IdenticonContact},
-            template: windowTemplate(`
-                <small-page style="height: 560px;">
-                    <SendTx address="NQ72 YBV0 9SSA XBAN 820M 8H0B 339V FJP4 34DH" :disabled="true">
-                        <IdenticonContact name="Simon" address="NQ72 YBV0 9SSA XBAN 820M 8H0B 339V FJP4 34DH"/>
-                        <IdenticonContact name="Name" address="NQ79 XYXY FE3L 7CQL KAN3 KRVK 2P0L B33D JQ81"/>
-                        <IdenticonContact name="" address=""/>
-                    </SendTx>
-                </small-page>
-            `)
-        };
-    })
     .add('SmallPage', () => {
         return {
             components: {SmallPage},
@@ -514,6 +472,27 @@ storiesOf('Components', module)
 storiesOf('Pages', module)
 storiesOf('Pages/SendTx', module)
     .addDecorator(withKnobs)
+    .add('SendTx', () => {
+        return {
+            components: {SendTx, SmallPage},
+            template: windowTemplate(`
+                <small-page style="height: 560px;">
+                    <SendTx address="NQ10 7" :disabled="false">
+                    </SendTx>
+                </small-page>
+            `)
+        };
+    })
+    .add('SendTx (full/disabled)', () => {
+        return {
+            components: {SendTx, SmallPage},
+            template: windowTemplate(`
+                <small-page style="height: 560px;">
+                    <SendTx address="NQ72 YBV0 9SSA XBAN 820M 8H0B 339V FJP4 34DH" :disabled="true"></SendTx>
+                </small-page>
+            `)
+        };
+    })
 storiesOf('Pages/Payment', module)
     .addDecorator(withKnobs)
     .add('AccountInfo', () => {

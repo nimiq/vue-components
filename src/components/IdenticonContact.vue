@@ -2,14 +2,13 @@
     <div class="identicon-contact">
         <Identicon :address="address" />
         <span v-if="name">{{ name }}</span>
-        <div v-if="!name" class="name-placeholder"></div>
+        <div v-else class="name-placeholder"></div>
     </div>
 </template>
 
 <script lang="ts">
-import {Component, Prop, Watch, Vue} from 'vue-property-decorator';
-import Identicon from './Identicon.vue'
-import '@nimiq/style/nimiq-style.min.css'
+import {Component, Prop, Vue} from 'vue-property-decorator';
+import Identicon from './Identicon.vue';
 
 @Component({components: {Identicon}})
 export default class IdenticonContact extends Vue {
@@ -19,16 +18,9 @@ export default class IdenticonContact extends Vue {
 </script>
 
 <style scoped>
-
-    span {
-        text-align: center;
-    }
-
     .identicon-contact {
         width: calc(11 * var(--nimiq-size, 8px));
-        min-width: calc(5 * var(--nimiq-size, 8px));
         text-align: center;
-        margin: 0;
     }
 
     .identicon-contact .identicon {
@@ -39,14 +31,9 @@ export default class IdenticonContact extends Vue {
     .name-placeholder {
         background-color: var(--nimiq-gray);
         width: 72%;
-        height: 0.5em;
+        height: var(--nimiq-size, 8px);
         margin: auto;
-        margin-top: 8px;
-        border-radius: 0.5em;
-    }
-
-    img {
-        width: 100%;
-        height: 100%;
+        margin-top: var(--nimiq-size, 8px);
+        border-radius: calc(0.5*var(--nimiq-size, 8px));
     }
 </style>

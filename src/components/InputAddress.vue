@@ -5,8 +5,8 @@
         </div>        
         <div ref="display" class="div-input">
             <div class="chunk-container" v-for="(chunk, index) in textDisplay"><!--
-            --><div :class="`chunk-border ${isActive(index)?'active':''} chunk-${chunk.length}`"></div><!--
-            --><span :class="`chunk-${chunk.length}`">{{ chunk }}</span><span class="chunk-fill">{{ Array(4-chunk.length).fill('F').join('') }}</span><br v-if="index%3 == 2"><span v-else>&nbsp;</span>
+            --><div :class="`chunk-border chunk-${chunk.length} ${isActive(index)?'active':''}`"></div><!--
+            --><span :class="`chunk-${chunk.length} ${isActive(index)?'active':''}`">{{ chunk }}</span><span class="chunk-fill">{{ Array(4-chunk.length).fill('F').join('') }}</span><br v-if="index%3 == 2"><span v-else>&nbsp;</span>
             </div>
         </div>
     </div>
@@ -94,8 +94,9 @@ export default class InputAddress extends Vue {
         //this.$refs.display.textContent = '';
         let newLine: string;
         for (let i = 0; i < tokens.length; i++) {
-            this.textDisplay[i] = tokens[i];
             newLine = ((i + 1) % 3 == 0) ? '<br>' : '';
+
+            this.textDisplay[i] = tokens[i];
             active = (Math.floor(start / 5) <= i && i <= Math.floor(end / 5) && document.activeElement === textarea);
             //this.$refs.display.innerHTML += this.chunkHTML(tokens[i], active) + newLine;
         }
@@ -135,8 +136,6 @@ export default class InputAddress extends Vue {
         const t: HTMLTextAreaElement = event.target;
 
         const specialKey: boolean = event.altKey || event.ctrlKey || event.metaKey;
-
-
 
         if (specialKey) {
             this.updateDisplay();
@@ -188,6 +187,7 @@ export default class InputAddress extends Vue {
             if (t.selectionStart == t.selectionEnd) {
                 if ((t.selectionStart + 1) % 5 == 0) {
                     const k: {caret: number, text: string} = this.preCalcTextInput(event.key);
+                    this.setCaretAndText(k)
                 }
             } else {
                 event.preventDefault();
@@ -279,20 +279,17 @@ export default class InputAddress extends Vue {
 
 <style scoped>
     .chunk-border {
-        border: 2px solid rgba(0,0,0,0);
-        border-radius: 4px;
+        border: calc(var(--nimiq-size, 8px)/4) solid rgba(0,0,0,0);
+        border-radius: calc(var(--nimiq-size, 8px)/2);
         margin: 0;
         margin-right: calc(-74px + var(--offset));
-        width: 74px;
-        height: 35px;
-        margin-top: 3px;
+        width: calc(9.25 * var(--nimiq-size, 8px));
+        height: calc(4.375* var(--nimiq-size, 8px));
+        margin-top: calc(0.375 * var(--nimiq-size, 8px));
         display: inline-block;
         vertical-align: top;
         border-color: var(--nimiq-gray);
     }
-
-
-
 
     .chunk-fill {
         color: transparent;
@@ -300,21 +297,7 @@ export default class InputAddress extends Vue {
 
     .active {
         border-color: var(--nimiq-light-blue);
-        color: var(--nimiq-blue);
-    }
-
-    .chunk-4 {
-        border-color: transparent;
-        color: var(--nimiq-blue);
-    }
-
-    .input-address {
-        position: relative;
-        width: calc(33.75 * var(--nimiq-size, 8px));
-        height: calc(25.2 * var(--nimiq-size, 8px));
-        overflow: hidden;
-        background: blue;
-        margin-left: calc(50% - var(--nimiq-size, 8px)*16.25);
+        color: var(--nimiq-light-blue);
     }
 
     div, textarea {
@@ -323,26 +306,23 @@ export default class InputAddress extends Vue {
         --word-spacing: calc(3.125 * var(--nimiq-size, 8px)); /* distance between chunks */
     }
 
+    .input-address {
+        position: relative;
+        width: calc(35 * var(--nimiq-size, 8px));
+        height: calc(16.25 * var(--nimiq-size, 8px));
+        overflow: hidden;
+        background: blue;
+        margin-left: calc(50% - var(--nimiq-size, 8px)*16.25);
+    }
+
     textarea {
-        position: absolute;
-        left: 0px;
         top: 0px;
         word-spacing: var(--word-spacing);
-        text-transform: uppercase;
-        width: calc(33.75 * var(--nimiq-size, 8px));
-        height: calc(25.2 * var(--nimiq-size, 8px));
-        font-family: 'Fira Mono', system-ui, sans-serif;
-        font-family: Fira Mono;
-        font-style: normal;
-        font-weight: normal;
-        line-height: var(--line-height);
-        font-size: calc(3*var(--nimiq-size, 8px));
         padding-left: calc(0.875*var(--nimiq-size, 8px));
         resize: none;
         border: none;
         outline: none;
-        overflow: hidden;
-        color: var(--nimiq-light-blue);
+        color: rgba(0,0,0,0);
         caret-color: var(--nimiq-blue);
         z-index: 0;
     }
@@ -352,22 +332,25 @@ export default class InputAddress extends Vue {
         opacity: 0.6;
     }
 
-    .div-input {
+    .div-input, textarea {
         left: 0px;
-        top: 2px;
-        pointer-events: none;
-        width: 280px;
-        height: 125px;
-        overflow: hidden;
-        word-spacing: calc(-1*var(--offset) + var(--word-spacing));
-        font-family: 'Fira Mono', system-ui, sans-serif;
-        line-height: var(--line-height);
-        /*text-align: left;*/
-        font-family: 'Fira Mono', system-ui, sans-serif;
-        font-family: Fira Mono;
-        font-size: 24px;
-        z-index: 10;
         position: absolute;
+        width: 100%;
+        height: 100%;
+        text-transform: uppercase;
+        line-height: var(--line-height);
+        overflow: hidden;
+        font-family: Fira Mono, system-ui, monospace;
+        font-style: normal;
+        font-weight: normal;
+        font-size: calc(3*var(--nimiq-size, 8px));
+    }
+
+    .div-input {
+        top: calc(var(--nimiq-size, 8px)/4);;
+        pointer-events: none;
+        word-spacing: calc(-1*var(--offset) + var(--word-spacing));
+        z-index: 10;
         padding: 0;
     }
 
