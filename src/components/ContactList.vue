@@ -1,9 +1,11 @@
 <template>
     <div class="contact-list">
-        <input type="text" class="search-field" placeholder="Search..." v-model="searchTerm" ref="search">
-        <i class="material-icons search-icon">search</i>
-        <a href="#" class="material-icons search-clear" title="Clear search" v-if="searchTerm"
-           @click.prevent="clearSearch">clear</a>
+        <template v-if="contacts.length > 3">
+            <input type="text" class="search-field" placeholder="Search..." v-model="searchTerm" ref="search">
+            <i class="material-icons search-icon">search</i>
+            <a href="#" class="material-icons search-clear" title="Clear search" v-if="searchTerm"
+               @click.prevent="clearSearch">clear</a>
+        </template>
 
         <div class="list">
             <span v-if="isAddingNewContact">New contact:</span>
@@ -258,8 +260,7 @@ import NewContact from './NewContact.vue';
 
     .contact-list .no-contacts .material-icons {
         display: block;
-        font-size: calc(15 * var(--nimiq-size, 8px));
-        margin: calc(0.1 * var(--nimiq-size, 8px));
+        font-size: calc(10 * var(--nimiq-size, 8px));
         opacity: 0.3;
     }
 
