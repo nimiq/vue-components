@@ -35,8 +35,8 @@ export default class Input extends Vue {
                 this.liveValue = this.lastValue;
                 return;
             }
-            this.lastValue = this.liveValue;
         }
+        this.lastValue = this.liveValue;
     }
 
     private changed() {
