@@ -1,5 +1,5 @@
 <template>
-    <canvas></canvas>
+    <canvas v-if="!!data"></canvas>
 </template>
 
 <script lang="ts">
