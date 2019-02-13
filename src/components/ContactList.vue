@@ -105,6 +105,7 @@ import NewContact from './NewContact.vue';
         private clearSearch() {
             this.searchTerm = '';
             const search: HTMLInputElement = this.$refs.search as HTMLInputElement;
+            if (!search) return;
             search.focus();
         }
 

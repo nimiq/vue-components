@@ -1,6 +1,6 @@
 <template>
     <div class="contact" @click="select">
-        <Identicon :address="isEditing ? workingAddress : address"/>
+        <Identicon :address="isEditing ? workingAddress : address" :class="{ 'small': !isEditing && !showOptions }"/>
 
         <div class="info" v-if="!isEditing">
             <span class="label">{{ label }}</span>
@@ -98,6 +98,7 @@
 
     .contact {
         display: flex;
+        align-items: center;
         max-width: calc(61.25 * var(--nimiq-size, 8px));
         padding: calc(1 * var(--nimiq-size, 8px)) calc(2 * var(--nimiq-size, 8px));
         /* border-bottom: 1px solid rgba(0, 0, 0, 0.1); */
@@ -110,6 +111,10 @@
         width: calc(10 * var(--nimiq-size, 8px));
         min-width: calc(6.25 * var(--nimiq-size, 8px));
         height: calc(8.875 * var(--nimiq-size, 8px));
+    }
+
+    .contact .identicon.small {
+        height: calc(6 * var(--nimiq-size, 8px));
     }
 
     .contact .info {
