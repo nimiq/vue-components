@@ -6239,12 +6239,12 @@ var WalletMenu_component = normalizeComponent(
 
 WalletMenu_component.options.__file = "WalletMenu.vue"
 /* harmony default export */ var components_WalletMenu = (WalletMenu_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"b2deed3a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/QrCode.vue?vue&type=template&id=16c2615f&
-var QrCodevue_type_template_id_16c2615f_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('canvas')}
-var QrCodevue_type_template_id_16c2615f_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"b2deed3a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/QrCode.vue?vue&type=template&id=201d1b40&
+var QrCodevue_type_template_id_201d1b40_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (!!_vm.data)?_c('canvas'):_vm._e()}
+var QrCodevue_type_template_id_201d1b40_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/QrCode.vue?vue&type=template&id=16c2615f&
+// CONCATENATED MODULE: ./src/components/QrCode.vue?vue&type=template&id=201d1b40&
 
 // CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/builtin/es6/arrayWithHoles.js
 function _arrayWithHoles(arr) {
@@ -6513,8 +6513,8 @@ QrCodevue_type_script_lang_ts_QrCode = __decorate([vue_class_component_common_de
 
 var QrCode_component = normalizeComponent(
   components_QrCodevue_type_script_lang_ts_,
-  QrCodevue_type_template_id_16c2615f_render,
-  QrCodevue_type_template_id_16c2615f_staticRenderFns,
+  QrCodevue_type_template_id_201d1b40_render,
+  QrCodevue_type_template_id_201d1b40_staticRenderFns,
   false,
   null,
   null,
