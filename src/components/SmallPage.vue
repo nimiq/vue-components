@@ -31,8 +31,8 @@
 
     .small-page {
         width: 100%;
-        max-width: calc(56.25 * var(--nimiq-size, 8px)); /* 450px */
-        min-height: calc(58 * var(--nimiq-size, 8px)); /* 464px */
+        max-width: calc(52.5 * var(--nimiq-size, 8px)); /* 420px */
+        height: calc(70.5 * var(--nimiq-size, 8px)); /* 564px */
         display: flex;
         flex-direction: column;
         flex-shrink: 0;
