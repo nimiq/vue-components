@@ -7,7 +7,7 @@
                 <div>{{ label }}</div>
             </div>
             <div v-else class="label">
-                <Input :value="label" @changed="changed" ref="label"/>
+                <LabelInput :value="label" @changed="changed" ref="label"/>
             </div>
         </div>
 
@@ -20,9 +20,9 @@
     import { Component, Prop, Emit, Vue } from 'vue-property-decorator';
     import Identicon from './Identicon.vue';
     import Amount from './Amount.vue';
-    import Input from './Input.vue';
+    import LabelInput from './LabelInput.vue';
 
-    @Component({components: {Amount, Identicon, Input}})
+    @Component({components: {Amount, Identicon, LabelInput}})
     export default class Account extends Vue {
         @Prop(String) public address!: string;
         @Prop(String) public label!: string;
@@ -31,7 +31,7 @@
 
         public focus() {
             if (this.editable) {
-                (this.$refs.label as Input).focus();
+                (this.$refs.label as LabelInput).focus();
             }
         }
 

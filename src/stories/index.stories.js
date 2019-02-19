@@ -13,7 +13,7 @@ import Amount from '../components/Amount.vue';
 import AmountWithDetails from '../components/AmountWithDetails.vue';
 import Contact from '../components/Contact.vue';
 import Identicon from '../components/Identicon.vue';
-import Input from '../components/Input.vue';
+import LabelInput from '../components/LabelInput.vue';
 import Wallet from '../components/Wallet.vue';
 import WalletList from '../components/WalletList.vue';
 import WalletMenu from '../components/WalletMenu.vue';
@@ -65,27 +65,13 @@ storiesOf('Basic', module)
             template: `<Identicon :address="address"/>`,
         };
     })
-    .add('Input', () => {
+    .add('LabelInput', () => {
         return {
-            components: {Input},
+            components: {LabelInput},
             methods: {
                 changed: action('changed'),
             },
-            template: `<Input placeholder="Name this account..." @changed="changed"/>`,
-        };
-    })
-    .add('Input (restricted to 63 bytes)', () => {
-        return {
-            components: {Input},
-            methods: {
-                changed: action('changed'),
-            },
-            data() {
-                return {
-                    value: "Standard Address"
-                };
-            },
-            template: `<Input :value="value" :maxBytes="63" @changed="changed"/>`,
+            template: `<LabelInput placeholder="Name this account..." @changed="changed"/>`,
         };
     })
     .add('LabelInput (restricted to 63 bytes)', () => {
