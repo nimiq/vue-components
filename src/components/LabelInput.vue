@@ -64,12 +64,11 @@ export default class LabelInput extends Vue {
         padding: calc(0.75 * var(--nimiq-size, 8px));
         line-height: 1.11;
         height: calc(2.5 * var(--nimiq-size, 8px));
-        border: calc(0.25 * var(--nimiq-size, 8px)) solid transparent;
+        border: calc(0.25 * var(--nimiq-size, 8px)) solid rgba(31, 35, 72, 0.1);
         border-radius: calc(0.5 * var(--nimiq-size, 8px));
         max-width: 100%;
         height: 100%;
         box-sizing: border-box;
-        border-color: rgba(31, 35, 72, 0.1);
         transition: width 200ms ease-out, border 200ms, color 200ms;
     }
 

@@ -184,7 +184,10 @@ export default class AccountSelector extends Vue {
         height: calc(4 * var(--nimiq-size, 8px));
         margin-bottom: calc(-4 * var(--nimiq-size, 8px));
         flex-shrink: 0;
-        background: linear-gradient(white 0, transparent calc(4 * var(--nimiq-size, 8px)));
+        background: linear-gradient(
+            white 0,
+            rgba(255, 255, 255, 0) calc(4 * var(--nimiq-size, 8px))
+        );
         z-index: 1;
         pointer-events: none;
     }
@@ -193,7 +196,11 @@ export default class AccountSelector extends Vue {
         padding: calc(4 * var(--nimiq-size, 8px)) 0;
         margin-top: calc(-4 * var(--nimiq-size, 8px));
         text-align: center;
-        background: linear-gradient(transparent 0, white calc(4 * var(--nimiq-size, 8px)), transparent calc(4 * var(--nimiq-size, 8px)));
+        background: linear-gradient(
+            rgba(255, 255, 255, 0) 0,
+            white calc(4 * var(--nimiq-size, 8px)),
+            rgba(255, 255, 255, 0) calc(4 * var(--nimiq-size, 8px))
+        );
         position: relative;
         pointer-events: none;
     }
