@@ -82,10 +82,24 @@ storiesOf('Basic', module)
             },
             data() {
                 return {
-                    value: "Standard Account"
+                    value: "Standard Address"
                 };
             },
             template: `<Input :value="value" :maxBytes="63" @changed="changed"/>`,
+        };
+    })
+    .add('LabelInput (restricted to 63 bytes)', () => {
+        return {
+            components: {LabelInput},
+            methods: {
+                changed: action('changed'),
+            },
+            data() {
+                return {
+                    value: "Standard Address"
+                };
+            },
+            template: `<LabelInput :value="value" :maxBytes="63" @changed="changed"/>`,
         };
     })
     .add('LoadingSpinner', () => {
@@ -516,7 +530,7 @@ storiesOf('Pages/Checkout', module)
                                 },
                                 {
                                     userFriendlyAddress: 'NQ66 A99L SPYE G24D E802 HF3M SXRQ 5MT2 AF3Y',
-                                    label: 'Standard Account',
+                                    label: 'Standard Address',
                                     balance: 42023110,
                                 },
                                 {
@@ -678,7 +692,7 @@ storiesOf('Pages/Checkout', module)
                             accounts: new Map([
                                 ['NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM', {
                                     userFriendlyAddress: 'NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM',
-                                    label: 'Standard Account',
+                                    label: 'Standard Address',
                                     balance: 2023110
                                 }]
                             ]),
@@ -692,7 +706,7 @@ storiesOf('Pages/Checkout', module)
                             accounts: new Map([
                                 ['NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM', {
                                     userFriendlyAddress: 'NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM',
-                                    label: 'Standard Account',
+                                    label: 'Standard Address',
                                     balance: 12023110
                                 }],
                                 ['NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1', {
@@ -710,7 +724,7 @@ storiesOf('Pages/Checkout', module)
                             accounts: new Map([
                                 ['NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM', {
                                     userFriendlyAddress: 'NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM',
-                                    label: 'Standard Account',
+                                    label: 'Standard Address',
                                     balance: 12023110
                                 }],
                                 ['NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1', {

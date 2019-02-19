@@ -4,8 +4,8 @@
             :placeholder="placeholder"
             :style="{width: `${Math.max(placeholder.length, liveValue.length) + 1}ch`}"
             v-model="liveValue"
-            @input="input"
-            @blur="changed"
+            @input="onInput"
+            @blur="onBlur"
             ref="input">
     </form>
 </template>
@@ -14,11 +14,11 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { Utf8Tools } from '@nimiq/utils';
 
-@Component({components: {}})
-export default class Input extends Vue {
+@Component
+export default class LabelInput extends Vue {
     @Prop(Number) protected maxBytes?: number;
     @Prop({type: String, default: ''}) private value!: string;
-    @Prop({type: String, default: 'Name your account'}) private placeholder!: string;
+    @Prop({type: String, default: 'Name your address'}) private placeholder!: string;
 
     private liveValue = this.value;
     private lastValue = this.value;
@@ -28,7 +28,7 @@ export default class Input extends Vue {
         (this.$refs.input as HTMLInputElement).focus();
     }
 
-    public input() {
+    public onInput() {
         if (this.maxBytes) {
             const lengthInBytes = Utf8Tools.stringToUtf8ByteArray(this.liveValue!).byteLength;
             if (lengthInBytes > this.maxBytes) {
@@ -39,7 +39,7 @@ export default class Input extends Vue {
         }
     }
 
-    private changed() {
+    private onBlur() {
         if (this.liveValue === this.lastEmittedValue) return;
         this.$emit('changed', this.liveValue);
         this.lastEmittedValue = this.liveValue;
