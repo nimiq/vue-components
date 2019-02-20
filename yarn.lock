@@ -755,10 +755,6 @@
   version "1.0.0"
   resolved "https://codeload.github.com/nimiq/iqons/tar.gz/a3302e06b0a53b6daeb745d13dbfd930b304c791"
 
-"@nimiq/qr-encoder@github:nimiq/qr-encoder#daniel/reuse-canvas":
-  version "0.1.0"
-  resolved "https://codeload.github.com/nimiq/qr-encoder/tar.gz/146ba3ca1a2f2a22f523912110a950f54f530ff7"
-
 "@nimiq/style@nimiq/nimiq-style#next":
   version "0.1.3"
   resolved "https://codeload.github.com/nimiq/nimiq-style/tar.gz/7f90f3cf95164afc4362b3470fe26c1f718cc351"
@@ -9006,6 +9002,10 @@ q@^1.1.2:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/q/-/q-1.5.1.tgz#7e32f75b41381291d04611f1bf14109ac00651d7"
   integrity sha1-fjL3W0E4EpHQRhHxvxQQmsAGUdc=
+
+"qr-code@github:nimiq/qr-encoder":
+  version "1.0.0"
+  resolved "https://codeload.github.com/nimiq/qr-encoder/tar.gz/d394670d537b0d8244c55f927c7f8a78f7df6542"
 
 qs@6.5.1:
   version "6.5.1"
