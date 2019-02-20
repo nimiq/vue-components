@@ -20,4 +20,5 @@ export { default as PageBody } from './components/PageBody.vue';
 export { default as PageFooter } from './components/PageFooter.vue';
 export { default as PaymentInfoLine } from './components/PaymentInfoLine.vue';
 export { default as QrCode } from './components/QrCode.vue';
+export { default as QrScanner } from './components/QrScanner.vue';
 export { default as SmallPage } from './components/SmallPage.vue';
