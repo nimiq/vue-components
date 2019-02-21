@@ -756,19 +756,15 @@
   resolved "https://registry.yarnpkg.com/@nimiq/iqons/-/iqons-1.1.1.tgz#9ec533ce285e334f58ee857557b47605c2863305"
   integrity sha512-Z7/i/s6C1X1u4iBGBRkdas0jP9gTgHCUB1DH2NAvzXscGgbmrxU7RE8dABLxlNYwQVXEZKcKyPUz5FQTGNDKvg==
 
-"@nimiq/qr-encoder@github:nimiq/qr-encoder#daniel/reuse-canvas":
-  version "0.1.0"
-  resolved "https://codeload.github.com/nimiq/qr-encoder/tar.gz/146ba3ca1a2f2a22f523912110a950f54f530ff7"
+"@nimiq/style@^0.4.2":
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/@nimiq/style/-/style-0.4.3.tgz#b4e7ffaf664179ef6e749cc61bcb80916498ec25"
+  integrity sha512-QcdnvwlDq02POynONC+oez6RJdTDEPHtFKgjnV+aQYBd4T70bcJbk72tZJsqwwKbKzjTGr+czTKrcGV8CwKAaw==
 
-"@nimiq/style@^0.4.1":
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/@nimiq/style/-/style-0.4.1.tgz#42b6e3a8ba4a0c7dbd71893b4149094466b48c49"
-  integrity sha512-OLWRXTgtxOv0R5cOMZ3M2WCoardx6thGbZbxbpnWdhZkqoYnWqGp0oV5X5ic6Vde4mt403ogXwbfGtzwJknvrQ==
-
-"@nimiq/utils@^0.0.6":
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/@nimiq/utils/-/utils-0.0.6.tgz#dcc7959cbd43ea2b7907c052b68a749c95bff840"
-  integrity sha512-Obllk0DCMa+PeQ/N2wC9AuyopBSB7wuS4ke5N99aVOnQUscfo8UJFOUfITKS1yZ8Ah02AxY2+tEGzkMwuFUSkQ==
+"@nimiq/utils@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@nimiq/utils/-/utils-0.2.0.tgz#a9bc73358f95a355518bc371870282d65f494ebe"
+  integrity sha512-vuLZ09OYY3AKX0wJfnBMfx8ybogrNjWXLIoOe8HUURMa6oOFxbnLO0bc9yLIwFWWoWqB6t6RcInDMJOQcpkJyA==
 
 "@nodelib/fs.stat@^1.0.1":
   version "1.1.0"
@@ -9017,10 +9013,14 @@ q@^1.1.2:
   resolved "https://registry.yarnpkg.com/q/-/q-1.5.1.tgz#7e32f75b41381291d04611f1bf14109ac00651d7"
   integrity sha1-fjL3W0E4EpHQRhHxvxQQmsAGUdc=
 
-qr-scanner@^1.0.0:
+"qr-code@github:nimiq/qr-encoder":
   version "1.0.0"
-  resolved "https://registry.yarnpkg.com/qr-scanner/-/qr-scanner-1.0.0.tgz#597d3435266fa2272b85b5a604b53abf58012bf3"
-  integrity sha512-WfrBnWjFjXQcPgeGJaF5MbEQR+TRkovCI0eYOAmsbMDxyp4p+yS4s66RXtni0tlKn5gpMVK1r/mI8USZFTv8vw==
+  resolved "https://codeload.github.com/nimiq/qr-encoder/tar.gz/d394670d537b0d8244c55f927c7f8a78f7df6542"
+
+qr-scanner@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/qr-scanner/-/qr-scanner-1.1.1.tgz#49775d3992733b5198f01a9aa65225962b0cb17d"
+  integrity sha512-vZmtaIpxx4rqnrg4iX62pQJ12bcIpfTEe/hL4Pr5PwQ/fih8W+ErfAZVFnnrdipeDC6L+5BfzMIqs/s6SYi4WA==
 
 qs@6.5.1:
   version "6.5.1"

@@ -72,7 +72,7 @@ class QrScanner extends Vue {
     private cameraAccessFailed: boolean = false;
     private hasCamera: boolean = true;
     private isMobileOrTablet: boolean = BrowserDetection.isMobile();
-    private browser: BrowserDetection.Browser = BrowserDetection.getBrowser();
+    private browser: BrowserDetection.Browser = BrowserDetection.detectBrowser();
     private _scanner!: QrScannerLib;
     private _lastResult?: string;
     private _lastResultTime: number = 0;
