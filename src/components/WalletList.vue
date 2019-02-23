@@ -29,25 +29,6 @@ export default class WalletList extends Vue {
 </script>
 
 <style scoped>
-    /** Nimiq Style **/
-    /* .nq-label {
-        font-size: calc(1.75 * var(--nimiq-size, 8px));
-        line-height: calc(1.5 * var(--nimiq-size, 8px));
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.107em;
-        opacity: 0.7;
-    } */
-    /** END Nimiq Style **/
-
-    /* .nq-label {
-        padding:
-            calc(3 * var(--nimiq-size, 8px))
-            calc(3 * var(--nimiq-size, 8px))
-            calc(2 * var(--nimiq-size, 8px))
-            calc(3 * var(--nimiq-size, 8px));
-    } */
-
     .wallet-entry {
         cursor: pointer;
         transition: background 300ms;

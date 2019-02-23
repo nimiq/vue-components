@@ -1,9 +1,11 @@
 <template>
     <div class="contact-list">
-        <input type="text" class="search-field" placeholder="Search..." v-model="searchTerm" ref="search">
-        <i class="material-icons search-icon">search</i>
-        <a href="#" class="material-icons search-clear" title="Clear search" v-if="searchTerm"
-           @click.prevent="clearSearch">clear</a>
+        <template v-if="contacts.length > 3">
+            <input type="text" class="search-field" placeholder="Search..." v-model="searchTerm" ref="search">
+            <i class="material-icons search-icon">search</i>
+            <a href="#" class="material-icons search-clear" title="Clear search" v-if="searchTerm"
+               @click.prevent="clearSearch">clear</a>
+        </template>
 
         <div class="list">
             <span v-if="isAddingNewContact">New contact:</span>
@@ -103,6 +105,7 @@ import NewContact from './NewContact.vue';
         private clearSearch() {
             this.searchTerm = '';
             const search: HTMLInputElement = this.$refs.search as HTMLInputElement;
+            if (!search) return;
             search.focus();
         }
 
@@ -198,9 +201,9 @@ import NewContact from './NewContact.vue';
     .contact-list .search-field {
         width: 100%;
         border: none !important;
-        padding: calc(1.5 * var(--nimiq-size, 8px)) calc(5 * var(--nimiq-size, 8px));
+        padding: 1.5rem 5rem;
         background: rgba(0, 0, 0, 0.05);
-        border-radius: calc(0.5 * var(--nimiq-size, 8px));
+        border-radius: 0.5rem;
         text-align: left;
     }
 
@@ -214,8 +217,8 @@ import NewContact from './NewContact.vue';
 
     .contact-list .search-icon {
         position: absolute;
-        left: calc(1 * var(--nimiq-size, 8px));
-        top: calc(1.5 * var(--nimiq-size, 8px));
+        left: 1rem;
+        top: 1.5rem;
         opacity: 0.4;
     }
 
@@ -225,10 +228,10 @@ import NewContact from './NewContact.vue';
 
     .contact-list .search-clear {
         position: absolute;
-        right: calc(0.5 * var(--nimiq-size, 8px));
-        top: calc(1 * var(--nimiq-size, 8px));
+        right: 0.5rem;
+        top: 1rem;
         opacity: 0.4;
-        padding: calc(0.5 * var(--nimiq-size, 8px));
+        padding: 0.5rem;
         border-radius: 50%;
         cursor: pointer;
     }
@@ -240,11 +243,11 @@ import NewContact from './NewContact.vue';
     }
 
     .contact-list .list {
-        margin-top: calc(2 * var(--nimiq-size, 8px));
+        margin-top: 2rem;
     }
 
     .contact-list .contact {
-        padding: calc(1 * var(--nimiq-size, 8px));
+        padding: 1rem;
     }
 
     .contact-list .contact:hover {
@@ -258,8 +261,7 @@ import NewContact from './NewContact.vue';
 
     .contact-list .no-contacts .material-icons {
         display: block;
-        font-size: calc(15 * var(--nimiq-size, 8px));
-        margin: calc(0.1 * var(--nimiq-size, 8px));
+        font-size: 10rem;
         opacity: 0.3;
     }
 
