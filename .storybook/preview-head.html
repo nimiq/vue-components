@@ -1,45 +1,28 @@
 <link href="https://fonts.googleapis.com/css?family=Muli:400,600,700" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Fira+Mono&text=0123456789ABCDEFGHJKLMNPQRSTUVXY" rel="stylesheet">
+<link href="../node_modules/@nimiq/style/nimiq-style.min.css" rel="stylesheet">
+<link href="../node_modules/@nimiq/style/nimiq-style-icons.min.css" rel="stylesheet">
 <style>
+    html,
+    body {
+        min-height: 100%;
+    }
+
     html {
-        height: 100%;
-
-        /* Nimiq color palette */
-        --nimiq-blue:       #1F2348; /* rgb(31, 35, 72) */
-        --nimiq-light-blue: #0582CA; /* rgb(5, 130, 202) */
-        --nimiq-gold:       #E9B213; /* rgb(233, 178, 19) */
-        --nimiq-green:      #21BCA5; /* rgb(33, 188, 165) */
-        --nimiq-orange:     #FC8702; /* rgb(252, 135, 2) */
-        --nimiq-red:        #D94432; /* rgb(216, 65, 51) */
-        --nimiq-gray:       #F4F4F4;
-        --nimiq-light-gray: #FAFAFA;
-
-        /* Background gradients */
-        --nimiq-blue-bg:       radial-gradient(circle at bottom right, #260133, var(--nimiq-blue));
-        --nimiq-light-blue-bg: radial-gradient(circle at bottom right, #265DD7, var(--nimiq-light-blue));
-        --nimiq-gold-bg:       radial-gradient(circle at bottom right, #EC991C, var(--nimiq-gold));
-        --nimiq-green-bg:      radial-gradient(circle at bottom right, #41A38E, var(--nimiq-green));
-        --nimiq-orange-bg:     radial-gradient(circle at bottom right, #FD6216, var(--nimiq-orange));
-        --nimiq-red-bg:        radial-gradient(circle at bottom right, #CC3047, var(--nimiq-red));
-
         font-size: 8px;
-        --nimiq-size: 8px;
+        --nimiq-size: 1rem;
     }
 
     @media (max-width: 420px) {
         html {
             font-size: 7px;
-            --nimiq-size: 7px;
         }
     }
 
     body {
-        height: 100%;
-        color: var(--nimiq-blue);
         margin: 0;
-
         font-size: 2.25rem; /* 18px */
-        font-family: 'Muli', system-ui, sans-serif;
+        font-family: 'Muli', sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         text-rendering: optimizeLegibility;
