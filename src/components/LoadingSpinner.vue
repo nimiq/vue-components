@@ -46,5 +46,4 @@ export default class LoadingSpinner extends Vue {}
         83%  { stroke-dashoffset: 86.58 }
         100% { stroke-dashoffset: 112 }
     }
-
 </style>

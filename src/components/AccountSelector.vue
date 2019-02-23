@@ -85,59 +85,6 @@ export default class AccountSelector extends Vue {
 </script>
 
 <style scoped>
-    /* Nimiq Style */
-    .nq-label {
-        font-size: calc(1.75 * var(--nimiq-size, 8px));
-        line-height: 0.857;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.107em;
-        margin: calc(1 * var(--nimiq-size, 8px)) 0;
-        opacity: 0.7;
-    }
-
-    .nq-button-s {
-        display: inline-block;
-        font-size: calc(1.75 * var(--nimiq-size, 8px));
-        line-height: calc(2 * var(--nimiq-size, 8px));
-        height: calc(3.375 * var(--nimiq-size, 8px));
-        text-decoration: none;
-        font-weight: bold;
-        letter-spacing: 0.014em;
-        padding: 0 calc(1.5 * var(--nimiq-size, 8px));
-        background-color: rgba(31, 35, 72, 0.07); /* Based on Nimiq Blue */
-        color: var(--nimiq-blue);
-        border-radius: calc(1.6875 * var(--nimiq-size, 8px));
-        transition: color 300ms ease, background-color 300ms ease;
-        will-change: color, background-color;
-        border: none;
-        cursor: pointer;
-        position: relative;
-        font-family: inherit;
-    }
-
-    .nq-button-s::after {
-        content: '';
-        display: block;
-        position: absolute;
-        left: calc(-1.5 * var(--nimiq-size, 8px));
-        top: calc(-1.5 * var(--nimiq-size, 8px));
-        right: calc(-1.5 * var(--nimiq-size, 8px));
-        bottom: calc(-1.5 * var(--nimiq-size, 8px));
-    }
-
-    .nq-button-s:hover,
-    .nq-button-s:active {
-        background-color: rgba(31, 35, 72, 0.12); /* Based on Nimiq Blue */
-    }
-
-    .nq-button-s:focus {
-        outline: none;
-        color: var(--nimiq-light-blue);
-        background-color: rgba(5, 130, 202, 0.16); /* Based on Nimiq Light Blue */
-    }
-    /* END Nimiq Style */
-
     .account-selector {
         overflow: auto;
         display: flex;

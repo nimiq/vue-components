@@ -60,6 +60,4 @@
     }
 </script>
 
-<style>
-    /* Uses the styles of Contact.vue */
-</style>
+<!-- Uses the styles of Contact.vue -->

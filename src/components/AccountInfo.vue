@@ -53,16 +53,6 @@ export default class AccountInfo extends Vue {
 
 <style scoped>
     /* Nimiq Style */
-    .nq-label {
-        font-size: calc(1.75 * var(--nimiq-size, 8px));
-        line-height: 0.857;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.107em;
-        margin: calc(1 * var(--nimiq-size, 8px)) 0;
-        opacity: 0.7;
-    }
-
     .nq-icon {
         width: 1em;
         height: 1em;

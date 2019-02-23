@@ -28,39 +28,6 @@
 
 <style scoped>
     /** Nimiq Style **/
-    .nq-h1 {
-        font-size: calc(3 * var(--nimiq-size, 8px));
-        line-height: 1.2;
-        font-weight: bold;
-        margin: calc(3 * var(--nimiq-size, 8px)) 0;
-    }
-
-    .nq-h2 {
-        font-size: calc(2.5 * var(--nimiq-size, 8px));
-        line-height: 1.2;
-        font-weight: bold;
-        margin: calc(2.5 * var(--nimiq-size, 8px)) 0;
-    }
-
-    .nq-card-header {
-        padding: calc(4 * var(--nimiq-size, 8px));
-        text-align: center;
-        border-top-left-radius: calc(1 * var(--nimiq-size, 8px));
-        border-top-right-radius: calc(1 * var(--nimiq-size, 8px));
-    }
-
-    @media (max-width: 450px) {
-        .nq-card-header {
-            padding: calc(3 * var(--nimiq-size, 8px));
-        }
-    }
-
-    .nq-card-header .nq-h1,
-    .nq-card-header .nq-h2 {
-        margin: 0;
-        line-height: 1;
-    }
-
     .nq-icon {
         width: 1em;
         height: 1em;
