@@ -1,6 +1,6 @@
 import {storiesOf} from '@storybook/vue';
 import {action} from '@storybook/addon-actions';
-import {boolean, number, text, withKnobs} from '@storybook/addon-knobs';
+import {boolean, number, text, object, withKnobs} from '@storybook/addon-knobs';
 
 import Account from '../components/Account.vue';
 import AccountInfo from '../components/AccountInfo.vue';
@@ -11,6 +11,7 @@ import AddressDisplay from '../components/AddressDisplay.vue';
 import Amount from '../components/Amount.vue';
 import AmountWithDetails from '../components/AmountWithDetails.vue';
 import Contact from '../components/Contact.vue';
+import ContactList from '../components/ContactList.vue';
 import Identicon from '../components/Identicon.vue';
 import LabelInput from '../components/LabelInput.vue';
 import Wallet from '../components/Wallet.vue';
@@ -94,7 +95,7 @@ storiesOf('Basic', module)
             components: {LoadingSpinner},
             template: `<div style="color: #0582CA"><LoadingSpinner /></div>`,
         };
-    });;
+    });
 
 storiesOf('Components', module)
     .addDecorator(withKnobs)
@@ -237,6 +238,76 @@ storiesOf('Components', module)
                 return { address };
             },
             template: `<Contact label="${label}" :address="address" :show-options="${showOptions}" @select="onSelect" @change="onChange" @delete="onDelete"/>`,
+        };
+    })
+    .add('ContactList', () => {
+        // setup knobs
+        const contacts = object('Contacts', [{
+            label: 'Nimiq Bar',
+            address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
+        }, {
+            label: 'Nimiq Shop',
+            address: 'NQ26 XM1G BFAD PACE R5L0 C85L 6143 FD8L 82U9',
+        }, {
+            label: 'Nimiq Foundation',
+            address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF',
+        }, {
+            label: 'Nimiq Charity',
+            address: 'NQ19 YG54 46TX EHGQ D2R2 V8XA JX84 UFG0 S0MC',
+        }]);
+
+        return {
+            components: { ContactList },
+            data: () => ({
+                contacts
+            }),
+            methods: {
+                onSelect: action('select'),
+                onSet: action('set'),
+                onRemove: action('remove'),
+                onNotification: action('notification'),
+                addNewContact() {
+                    this.$refs.contactList.addNewContact();
+                },
+                abortNewContact() {
+                    this.$refs.contactList.abortNewContact();
+                },
+                toggleManaging() {
+                    this.$refs.contactList.toggleManaging();
+                },
+                exportContacts() {
+                    this.$refs.contactList.export();
+                },
+                importContacts() {
+                    this.$refs.contactList.import();
+                },
+                clearSearch() {
+                    this.$refs.contactList.clearSearch();
+                },
+                reset() {
+                    this.$refs.contactList.reset();
+                },
+            },
+            template: `
+                <div>
+                    <ContactList ref="contactList" :contacts="contacts" @select-contact="onSelect" @set-contact="onSet"
+                        @remove-contact="onRemove" @notification="onNotification"></ContactList>
+                    <hr>
+                    <!--
+                    note: while knobs also offers the functionality to add buttons to the knobs panel, the preview
+                    iframe gets completely rerendered whenever one is pressed, destroying the old ContactList instance.
+                    Therefore, we create our own buttons in the template to trigger methods on the current
+                    ContactList instance.
+                    -->
+                    <button class="nq-button" @click="addNewContact">Add New Contact</button>
+                    <button class="nq-button" @click="abortNewContact">Abort New Contact</button>
+                    <button class="nq-button" @click="toggleManaging">Toggle Managing</button>
+                    <button class="nq-button" @click="exportContacts">Export</button>
+                    <button class="nq-button" @click="importContacts">Import</button>
+                    <button class="nq-button" @click="clearSearch">Clear Search</button>
+                    <button class="nq-button" @click="reset">Reset</button>
+                </div>
+            `
         };
     })
     .add('Wallet', () => {
