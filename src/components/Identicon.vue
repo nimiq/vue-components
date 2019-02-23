@@ -7,19 +7,7 @@
 <script lang="ts">
 import {Component, Prop, Watch, Vue} from 'vue-property-decorator';
 import { ValidationUtils } from '@nimiq/utils';
-import Iqons from '@nimiq/iqons/dist/iqons.min.js';
-import IqonsSvg from '@nimiq/iqons/dist/iqons.min.svg';
-
-// Detect Iqons.svgPath
-// @ts-ignore
-if (self.NIMIQ_IQONS_SVG_PATH) Iqons.svgPath = self.NIMIQ_IQONS_SVG_PATH;
-else {
-    if (IqonsSvg[0] === '"') {
-        Iqons.svgPath = IqonsSvg.substring(1, IqonsSvg.length - 1);
-    } else {
-        Iqons.svgPath = IqonsSvg;
-    }
-}
+import Iqons from '@nimiq/iqons/dist/iqons.bundle.min.js';
 
 @Component
 export default class Identicon extends Vue {

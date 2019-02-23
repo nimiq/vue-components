@@ -751,10 +751,12 @@
     shallowequal "^0.2.2"
     velocity-react "^1.3.1"
 
-"@nimiq/iqons@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@nimiq/iqons/-/iqons-1.1.1.tgz#9ec533ce285e334f58ee857557b47605c2863305"
-  integrity sha512-Z7/i/s6C1X1u4iBGBRkdas0jP9gTgHCUB1DH2NAvzXscGgbmrxU7RE8dABLxlNYwQVXEZKcKyPUz5FQTGNDKvg==
+"@nimiq/iqons@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@nimiq/iqons/-/iqons-1.2.1.tgz#ad867645f34f4cd83831606889360b26c398c4b7"
+  integrity sha512-nY8MpmATBEkFTGTvyimlxu0Rv0LZ6YwZ+BORTZHT0DRkhTMHVCyPQJvJ5AOnsCLzA1qoT+DSe3tfzfvEvf9jQg==
+  dependencies:
+    dom-parser "^0.1.5"
 
 "@nimiq/style@^0.4.3":
   version "0.4.3"
@@ -4560,6 +4562,11 @@ dom-helpers@^3.3.1:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/dom-helpers/-/dom-helpers-3.3.1.tgz#fc1a4e15ffdf60ddde03a480a9c0fece821dd4a6"
   integrity sha512-2Sm+JaYn74OiTM2wHvxJOo3roiq/h25Yi69Fqk269cNUwIXsCvATB6CRSFC9Am/20G2b28hGv/+7NiWydIrPvg==
+
+dom-parser@^0.1.5:
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/dom-parser/-/dom-parser-0.1.5.tgz#a4f6019f9a315b75d7428aaa7ccbf5bd859e16fb"
+  integrity sha1-pPYBn5oxW3XXQoqqfMv1vYWeFvs=
 
 dom-serializer@0:
   version "0.1.0"
