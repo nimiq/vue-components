@@ -68,12 +68,9 @@ export default class PaymentInfoLine extends Vue {
         flex-direction: row;
         justify-content: space-between;
         box-sizing: border-box;
-        margin: calc(2.5 * var(--nimiq-size, 8px))
-                calc(2.5 * var(--nimiq-size, 8px))
-                calc(1 * var(--nimiq-size, 8px))
-                calc(2.5 * var(--nimiq-size, 8px));
+        margin: 2.5rem 2.5rem 1rem 2.5rem;
         flex-shrink: 0;
-        font-size: calc(2 * var(--nimiq-size, 8px));
+        font-size: 2rem;
         line-height: 1.5;
         font-weight: normal;
     }
@@ -94,18 +91,18 @@ export default class PaymentInfoLine extends Vue {
     .arrow-right {
         opacity: 0;
         width: 100%;
-        background-size: calc(2 * var(--nimiq-size, 8px));
+        background-size: 2rem;
         /* animation: arrow-shooting 2s ease-in-out infinite; */
         opacity: 0.3;
         background-position: center;
     }
 
     @keyframes arrow-shooting {
-        from { transform: translateX(calc(20% - var(--nimiq-size, 8px))); }
+        from { transform: translateX(calc(20% - 1rem)); }
         10% { opacity: 0; }
         50% { opacity: 0.3; }
         90% { opacity: 0; }
-        to { transform: translateX(calc(80% - var(--nimiq-size, 8px))); }
+        to { transform: translateX(calc(80% - 1rem)); }
     }
 
     .description {
@@ -125,11 +122,11 @@ export default class PaymentInfoLine extends Vue {
     .shop-logo,
     .identicon {
         min-width: unset;
-        width: calc(3.375 * var(--nimiq-size, 8px));
-        height: calc(3.375 * var(--nimiq-size, 8px));
-        margin-top: calc(-0.25 * var(--nimiq-size, 8px));
-        margin-bottom: calc(-0.125 * var(--nimiq-size, 8px));
-        margin-right: calc(1 * var(--nimiq-size, 8px));
+        width: 3.375rem;
+        height: 3.375rem;
+        margin-top: -0.25rem;
+        margin-bottom: -0.125rem;
+        margin-right: 1rem;
     }
 
     .shop-logo {
@@ -155,13 +152,13 @@ export default class PaymentInfoLine extends Vue {
     }
 
     .origin {
-        margin-top: calc(-0.25 * var(--nimiq-size, 8px));
+        margin-top: -0.25rem;
         transition: opacity .3s ease;
     }
 
     .info-circle {
         opacity: 0.3;
-        margin-left: calc(1 * var(--nimiq-size, 8px));
+        margin-left: 1rem;
         transition: opacity .3s ease;
     }
 

@@ -50,9 +50,9 @@ export default class AccountList extends Vue {
     .onboarding-menu {
         max-width: unset;
         min-height: unset;
-        width: calc(88 * var(--nimiq-size, 8px));
-        height: calc(29 * var(--nimiq-size, 8px));
-        padding: calc(0.75 * var(--nimiq-size, 8px));
+        width: 88rem;
+        height: 29rem;
+        padding: 0.75rem;
         position: relative;
         display: flex;
         flex-direction: row-reverse;
@@ -73,7 +73,7 @@ export default class AccountList extends Vue {
         outline: none;
         font-size: inherit;
         font-family: inherit;
-        padding: calc(4 * var(--nimiq-size, 8px));
+        padding: 4rem;
         transition: color 500ms;
         cursor: pointer;
         text-align: left;
@@ -87,7 +87,7 @@ export default class AccountList extends Vue {
     .choice.login:focus ~ .choice.signup svg,
     .choice.ledger:hover ~ .choice.signup svg,
     .choice.ledger:focus ~ .choice.signup svg {
-        height: calc(6.75 * var(--nimiq-size, 8px));
+        height: 6.75rem;
         color: rgba(31, 35, 72, 0.2); /* based on Nimiq Blue */
         transition: color 500ms;
     }
@@ -111,11 +111,11 @@ export default class AccountList extends Vue {
         content: '';
         display: block;
         position: absolute;
-        right: calc(-0.125 * var(--nimiq-size, 8px));
-        top: calc(2 * var(--nimiq-size, 8px));
-        width: calc(0.25 * var(--nimiq-size, 8px));
-        border-radius: calc(0.25 * var(--nimiq-size, 8px));
-        height: calc(100% - 4 * var(--nimiq-size, 8px));
+        right: -0.125rem;
+        top: 2rem;
+        width: 0.25rem;
+        border-radius: 0.25rem;
+        height: calc(100% - 4rem);
         background: var(--nimiq-blue);
         opacity: 0.1;
         transition: opacity 500ms;
@@ -130,8 +130,8 @@ export default class AccountList extends Vue {
     }
 
     .nq-h2 {
-        margin-top: calc(4.25 * var(--nimiq-size, 8px));
-        margin-bottom: calc(1.25 * var(--nimiq-size, 8px));
+        margin-top: 4.25rem;
+        margin-bottom: 1.25rem;
     }
 
     .text {
@@ -142,13 +142,13 @@ export default class AccountList extends Vue {
 
     .background-container {
         position: absolute;
-        left: calc(0.75 * var(--nimiq-size, 8px));
-        top: calc(0.75 * var(--nimiq-size, 8px));
+        left: 0.75rem;
+        top: 0.75rem;
         transform: translate3d(0, 0, 0);
         transition: transform .4s ease;
         z-index: 100;
-        width: calc((100% - 1.5 * var(--nimiq-size, 8px)) / 3);
-        height: calc(100% - 1.5 * var(--nimiq-size, 8px));
+        width: calc((100% - 1.5rem) / 3);
+        height: calc(100% - 1.5rem);
     }
 
     .background {
@@ -157,7 +157,7 @@ export default class AccountList extends Vue {
         top: 0;
         width: 100%;
         height: 100%;
-        border-radius: calc(0.5 * var(--nimiq-size, 8px));
+        border-radius: 0.5rem;
         transition: opacity 500ms;
     }
 
@@ -191,7 +191,7 @@ export default class AccountList extends Vue {
         .onboarding-menu {
             margin: 0;
             width: 100%;
-            height: calc(50 * var(--nimiq-size));
+            height: 50rem;
             flex-direction: column-reverse;
         }
 
@@ -202,7 +202,7 @@ export default class AccountList extends Vue {
         .choice.ledger:focus ~ .choice.signup {
             width: 100%;
             height: 33%;
-            padding: calc(3.5 * var(--nimiq-size, 8px)) calc(3 * var(--nimiq-size, 8px));
+            padding: 3.5rem 3rem;
         }
 
         .choice h2 {
@@ -214,7 +214,7 @@ export default class AccountList extends Vue {
             top: 50%;
             /* combination of right and transform, that renders signup and login SVGs at 32px margin
             (80% * svg width - right = -32px) and ledger at a nice looking position */
-            right: calc(9.4 * var(--nimiq-size, 8px));
+            right: 9.4rem;
             transform: translateY(-50%) translateX(80%);
         }
 
@@ -224,16 +224,16 @@ export default class AccountList extends Vue {
         .choice.ledger:focus ~ .choice.signup::after {
             top: unset;
             right: unset;
-            bottom: calc(-0.125 * var(--nimiq-size, 8px));
-            left: calc(2 * var(--nimiq-size, 8px));
-            height: calc(0.25 * var(--nimiq-size, 8px));
-            border-radius: calc(0.25 * var(--nimiq-size, 8px));
-            width: calc(100% - 4 * var(--nimiq-size, 8px));
+            bottom: -0.125rem;
+            left: 2rem;
+            height: 0.25rem;
+            border-radius: 0.25rem;
+            width: calc(100% - 4rem);
         }
 
         .background-container {
-            width: calc(100% - 1.5 * var(--nimiq-size, 8px));
-            height: calc((100% - 1.5 * var(--nimiq-size, 8px)) / 3);
+            width: calc(100% - 1.5rem);
+            height: calc((100% - 1.5rem) / 3);
         }
 
         .choice.login:hover ~ .background-container,

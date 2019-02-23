@@ -89,8 +89,8 @@ export default class AccountList extends Vue {
     .account-entry {
         display: block;
         transition: background-color .3s ease;
-        border-radius: calc(0.5 * var(--nimiq-size, 8px));
-        margin: calc(0.5 * var(--nimiq-size, 8px)) calc(2 * var(--nimiq-size, 8px));
+        border-radius: 0.5rem;
+        margin: 0.5rem 2rem;
         position: relative;
         overflow: hidden; /* chevron-right is outside the box */
         color: inherit;
@@ -109,11 +109,11 @@ export default class AccountList extends Vue {
 
     .account-entry .chevron-right {
         position: absolute;
-        right: calc(2 * var(--nimiq-size, 8px));
-        top: calc(3.625 * var(--nimiq-size, 8px));
-        width: calc(2 * var(--nimiq-size, 8px));
-        height: calc(2 * var(--nimiq-size, 8px));
-        transform: translateX(calc(3 * var(--nimiq-size, 8px)));
+        right: 2rem;
+        top: 3.625rem;
+        width: 2rem;
+        height: 2rem;
+        transform: translateX(3rem);
         opacity: 0;
         transition: transform .45s ease, opacity .35s .1s ease;
     }
@@ -153,7 +153,7 @@ export default class AccountList extends Vue {
 
     .account-entry.good-balance:hover >>> .balance,
     .account-entry.good-balance:focus >>> .balance {
-        margin-right: calc(3 * var(--nimiq-size, 8px));
+        margin-right: 3rem;
         color: #21BCA5;
     }
 

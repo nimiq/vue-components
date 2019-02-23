@@ -61,11 +61,11 @@ export default class LabelInput extends Vue {
         color: rgba(31, 35, 72, 0.7);
         font-weight: inherit;
         margin: 0;
-        padding: calc(0.75 * var(--nimiq-size, 8px));
+        padding: 0.75rem;
         line-height: 1.11;
-        height: calc(2.5 * var(--nimiq-size, 8px));
-        border: calc(0.25 * var(--nimiq-size, 8px)) solid rgba(31, 35, 72, 0.1);
-        border-radius: calc(0.5 * var(--nimiq-size, 8px));
+        height: 2.5rem;
+        border: 0.25rem solid rgba(31, 35, 72, 0.1);
+        border-radius: 0.5rem;
         max-width: 100%;
         height: 100%;
         box-sizing: border-box;

@@ -14,11 +14,11 @@
 <style scoped>
     .small-page {
         width: 100%;
-        max-width: calc(52.5 * var(--nimiq-size, 8px)); /* 420px */
-        height: calc(70.5 * var(--nimiq-size, 8px)); /* 564px */
+        max-width: 52.5rem; /* 420px */
+        height: 70.5rem; /* 564px */
         display: flex;
         flex-direction: column;
         flex-shrink: 0;
-        margin: 0 calc(1.25 * var(--nimiq-size, 8px));
+        margin: 0 1.25rem;
     }
 </style>

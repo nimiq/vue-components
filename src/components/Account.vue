@@ -48,10 +48,10 @@
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        padding: calc(1.75 * var(--nimiq-size, 8px)) calc(2 * var(--nimiq-size, 8px));
+        padding: 1.75rem 2rem;
         box-sizing: border-box;
         flex-shrink: 0;
-        font-size: calc(2 * var(--nimiq-size, 8px));
+        font-size: 2rem;
         line-height: 1.25;
     }
 
@@ -60,14 +60,14 @@
         flex-direction: row;
         align-items: center;
         overflow: hidden;
-        min-width: calc(5.625 * var(--nimiq-size, 8px));
+        min-width: 5.625rem;
     }
 
     .identicon {
-        width: calc(5.625 * var(--nimiq-size, 8px));
-        height: calc(5.625 * var(--nimiq-size, 8px));
+        width: 5.625rem;
+        height: 5.625rem;
         flex-shrink: 0;
-        margin-right: calc(1.5 * var(--nimiq-size, 8px));
+        margin-right: 1.5rem;
     }
 
     .label {
@@ -80,13 +80,13 @@
         opacity: 0.7;
         overflow: hidden;
         text-overflow: ellipsis;
-        padding-left: calc(1 * var(--nimiq-size, 8px));
+        padding-left: 1rem;
     }
 
     .balance {
         flex-shrink: 0;
         font-weight: bold;
-        margin-left: calc(2 * var(--nimiq-size, 8px));
+        margin-left: 2rem;
         opacity: 0.7;
     }
 </style>
