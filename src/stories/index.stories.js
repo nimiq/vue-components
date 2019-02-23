@@ -3,9 +3,11 @@ import {action} from '@storybook/addon-actions';
 import {boolean, number, text, withKnobs} from '@storybook/addon-knobs';
 
 import Account from '../components/Account.vue';
+import AccountInfo from '../components/AccountInfo.vue';
 import AccountList from '../components/AccountList.vue';
 import AccountSelector from '../components/AccountSelector.vue';
 import Address from '../components/Address.vue';
+import AddressDisplay from '../components/AddressDisplay.vue';
 import Amount from '../components/Amount.vue';
 import AmountWithDetails from '../components/AmountWithDetails.vue';
 import Contact from '../components/Contact.vue';
@@ -20,12 +22,13 @@ import QrCode from '../components/QrCode.vue';
 import QrScanner from '../components/QrScanner.vue';
 import SmallPage from '../components/SmallPage.vue';
 import LoadingSpinner from '../components/LoadingSpinner.vue';
+import OnboardingMenu from '../components/OnboardingMenu.vue';
 
 import CheckoutFlow from './CheckoutFlow.vue';
 
 function windowTemplate(slot) {
     return `
-        <div style="background: #F4F4F5; padding: 64px; display: flex; flex-direction: column; justify-content: center; align-items: center; font-size: 18px;">
+        <div style="background: var(--nimiq-gray); padding: 64px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
             ${slot}
         </div>
     `;
@@ -69,12 +72,7 @@ storiesOf('Basic', module)
             methods: {
                 changed: action('changed'),
             },
-            data() {
-                return {
-                    value: "Standard Address"
-                };
-            },
-            template: `<LabelInput :value="value" @changed="changed"/>`,
+            template: `<LabelInput placeholder="Name this account..." @changed="changed"/>`,
         };
     })
     .add('LabelInput (restricted to 63 bytes)', () => {
@@ -94,7 +92,7 @@ storiesOf('Basic', module)
     .add('LoadingSpinner', () => {
         return {
             components: {LoadingSpinner},
-            template: `<LoadingSpinner />`,
+            template: `<div style="color: #0582CA"><LoadingSpinner /></div>`,
         };
     });;
 
@@ -139,19 +137,25 @@ storiesOf('Components', module)
                 return {
                     accounts: [
                         {
-                            userFriendlyAddress: 'NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM',
-                            label: 'Primary account',
-                            balance: 12023110,
-                        },
-                        {
                             userFriendlyAddress: 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1',
                             label: 'HODL account',
                             balance: 2712415141213,
+                        },
+                        {
+                            userFriendlyAddress: 'NQ21 YPRN 1KVN BQP5A17U YGD3 HH96 6TKA 6BL4',
+                            label: 'HODL account 2',
+                            balance: 100000000,
+                        },
+                        {
+                            userFriendlyAddress: 'NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM',
+                            label: 'Primary account',
+                            balance: 12023110,
                         }
-                    ]
+                    ],
+                    minBalance: 1000e5,
                 };
             },
-            template: `<AccountList @account-selected="accountSelected" :accounts="accounts" walletId="helloworld1"/>`
+            template: `<AccountList @account-selected="accountSelected" :accounts="accounts" walletId="helloworld1" :minBalance="minBalance"/>`
         };
     })
     .add('AccountSelector', () => {
@@ -159,29 +163,32 @@ storiesOf('Components', module)
             components: {AccountSelector},
             data() {
                 return {
-                    walletId: 'helloworld2',
-                    walletLabel: 'Keyguard Wallet',
-                    walletType: 1,
-                    accounts: [
+                    wallets: [
                         {
-                            userFriendlyAddress: 'NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM',
-                            label: 'Primary account',
-                            balance: 12023110
+                            id: 'helloworld2',
+                            label: 'Keyguard Wallet',
+                            type: 1,
+                            accounts: [
+                                {
+                                    userFriendlyAddress: 'NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM',
+                                    label: 'Primary account',
+                                    balance: 12023110,
+                                },
+                                {
+                                    userFriendlyAddress: 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1',
+                                    label: 'HODL account',
+                                    balance: 2712415141213,
+                                }
+                            ],
                         },
-                        {
-                            userFriendlyAddress: 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1',
-                            label: 'HODL account',
-                            balance: 2712415141213
-                        }
-                    ]
+                    ],
                 };
             },
             methods: {
                 accountSelected: action('account-selected'),
-                switchWallet: action('switch-wallet'),
+                login: action('login'),
             },
-            template: `<AccountSelector @account-selected="accountSelected" @switch-wallet="switchWallet" :accounts="accounts" :walletId="walletId" :walletLabel
-            ="walletLabel" :walletType="walletType"/>`
+            template: `<AccountSelector @account-selected="accountSelected" @login="login" :wallets="wallets"/>`
         };
     })
     .add('Address', () => {
@@ -192,6 +199,17 @@ storiesOf('Components', module)
                 return { address };
             },
             template: `<Address :address="address"/>`,
+        };
+    })
+    .add('AddressDisplay', () => {
+        return {
+            data() {
+                return {
+                    address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE',
+                };
+            },
+            components: {AddressDisplay},
+            template: `<AddressDisplay :address="address"/>`,
         };
     })
     .add('AmountWithDetails', () => {
@@ -254,15 +272,23 @@ storiesOf('Components', module)
                     wallets: [
                         {
                             id: 'abcdef',
-                            label: 'Keyguard Wallet',
+                            label: 'Keyguard Account',
                             accounts: new Map([['path1', {}], ['path2', {}], ['path3', {}], ['path4', {}], ['path5', {}]]),
                             contracts: [],
                             type: 1, // BIP39
                             balance: 101 * 1e5,
                             // userFriendlyId: 'funny giraffe',
                         }, {
+                            id: 'ihhhhahh',
+                            label: 'Keyguard Account',
+                            accounts: new Map([['path1', {}]]),
+                            contracts: [],
+                            type: 1, // BIP39
+                            balance: 101 * 1e5,
+                            // userFriendlyId: 'funny giraffe',
+                        }, {
                             id: 'vwxyz',
-                            label: 'Ledger Wallet',
+                            label: 'Ledger Account',
                             accounts: new Map([['path1', {}], ['path2', {}], ['path3', {}]]),
                             contracts: [],
                             type: 2, // LEDGER
@@ -371,11 +397,13 @@ storiesOf('Components', module)
     .add('PaymentInfoLine', () => {
         const origin = text('origin', 'https://shop.nimiq.com');
         const amount = number('amount', 199862);
-        const networkFee = number('networkFee', 138);
-        const networkFeeEditable = boolean('networkFeeEditable', false);
+        const fee = number('fee', 138);
         return {
             components: {PaymentInfoLine},
-            template: `<div style="width: 400px"><PaymentInfoLine :amount="${amount}" :networkFee="${networkFee}" :networkFeeEditable="${networkFeeEditable}" origin="${origin}"/></div>`,
+            methods: {
+                merchantInfoClicked: action('merchant-info-clicked'),
+            },
+            template: `<div style="width: 400px"><PaymentInfoLine :amount="${amount}" :fee="${fee}" origin="${origin}" @merchant-info-clicked="merchantInfoClicked"/></div>`,
         };
     })
     .add('QrCode', () => {
@@ -447,41 +475,205 @@ storiesOf('Components', module)
 </small-page>
 `),
         };
+    })
+    .add('OnboardingMenu', () => {
+        return {
+            components: {OnboardingMenu},
+            methods: {
+                signup: action('signup'),
+                login: action('login'),
+                ledger: action('ledger'),
+            },
+            template: windowTemplate(`<OnboardingMenu @signup="signup" @login="login" @ledger="ledger"/>`),
+        };
     });
 
-storiesOf('Pages/Payment', module)
+storiesOf('Pages', module)
     .addDecorator(withKnobs)
-    .add('AccountSelector', () => {
+    .add('AccountInfo', () => {
         return {
-            components: {AccountSelector, PaymentInfoLine, SmallPage},
+            components: {AccountInfo, SmallPage},
             methods: {
-                accountSelected: action('account-selected'),
-                switchWallet: action('switch-wallet'),
-                back: action('back'),
+                close: action('close'),
             },
             data() {
                 return {
-                    walletId: 'helloworld3',
                     walletLabel: 'Keyguard Wallet',
-                    walletType: 1,
-                    accounts: [
-                        {
-                            userFriendlyAddress: 'NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM',
-                            label: 'Standard Address',
-                            balance: 12023110
-                        },
-                        {
-                            userFriendlyAddress: 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1',
-                            label: 'Savings',
-                            balance: 2712415141213
-                        }
-                    ]
+                    account: {
+                        userFriendlyAddress: 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1',
+                        label: 'Savings',
+                        balance: 2712415141213,
+                    },
                 };
             },
-            template: windowTemplate(`
-<PaymentInfoLine :amount="199000" :networkFee="1000" :networkFeeEditable="false" origin="https://shop.nimiq.com"/>
-<small-page>
-    <AccountSelector @account-selected="accountSelected" @switch-wallet="switchWallet" @back="back" :accounts="accounts" :walletId="walletId" :walletLabel="walletLabel" :walletType="walletType"/>
+            template: windowTemplate(`<small-page style="height: 560px;">
+    <AccountInfo :address="account.userFriendlyAddress" :label="account.label" :balance="account.balance" :walletLabel="walletLabel" @close="close"/>
+</small-page>
+`),
+        };
+    })
+    .add('AccountInfo (merchant)', () => {
+        return {
+            components: {AccountInfo, SmallPage},
+            methods: {
+                close: action('close'),
+            },
+            data() {
+                return {
+                    walletLabel: 'Keyguard Wallet',
+                    account: {
+                        userFriendlyAddress: 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1',
+                        label: 'Savings',
+                        balance: 2712415141213,
+                    },
+                    origin: 'https://shop.nimiq.com',
+                    // shopLogoUrl: 'https://shop.nimiq.com/wp-content/uploads/2018/10/nimiq_signet_rgb_base_size.576px.png',
+                    shopLogoUrl: 'https://www.decsa.com/wp-content/uploads/2016/10/mcds.png',
+                };
+            },
+            template: windowTemplate(`<small-page style="height: 560px;">
+    <AccountInfo :address="account.userFriendlyAddress" :shopLogoUrl="shopLogoUrl" :origin="origin" @close="close"/>
+</small-page>
+`),
+        };
+    });
+
+storiesOf('Pages/Checkout', module)
+    .addDecorator(withKnobs)
+    .add('AccountSelector (one wallet)', () => {
+        return {
+            components: {AccountSelector, PaymentInfoLine, AccountInfo, SmallPage},
+            methods: {
+                accountSelected: action('account-selected'),
+                login: action('login'),
+                openMerchantInfo: function(event) {
+                    this.showMerchantInfo = true;
+                    return action('merchant-info-clicked')(event);
+                },
+                closeMerchantInfo: function(event) {
+                    this.showMerchantInfo = false;
+                    return action('close')(event);
+                },
+            },
+            data() {
+                return {
+                    wallets: [
+                        {
+                            id: 'helloworld3',
+                            label: 'Keyguard Wallet',
+                            type: 1, // BIP39
+                            accounts: [
+                                {
+                                    userFriendlyAddress: 'NQ06 P49N KLUN P978 TY4P K96P F7RE 6UAX E03B',
+                                    label: 'My real Savings',
+                                    balance: 98273987345,
+                                },
+                                {
+                                    userFriendlyAddress: 'NQ66 A99L SPYE G24D E802 HF3M SXRQ 5MT2 AF3Y',
+                                    label: 'Standard Address',
+                                    balance: 42023110,
+                                },
+                                {
+                                    userFriendlyAddress: 'NQ61 H1EF 8AAJ UC8X E8XX U91E KL97 LLLV 7DRH',
+                                    label: 'Not my Savings',
+                                    balance: 7463341234,
+                                },
+                            ],
+                        },
+                    ],
+                    amount: 199900000,
+                    fee: 138,
+                    shopAddress: 'NQ21 YPRN 1KVN BQP5 A17U YGD3 HH96 6TKA 6BL4',
+                    origin: 'https://mcdonalds.com',
+                    shopLogoUrl: 'https://brandmark.io/logo-rank/random/mcdonalds.png',
+                    showMerchantInfo: false,
+                };
+            },
+            template: windowTemplate(`<small-page style="height: 560px; position: relative;">
+    <PaymentInfoLine :amount="amount" :fee="fee" :address="shopAddress" :origin="origin" :shopLogoUrl="shopLogoUrl" @merchant-info-clicked="openMerchantInfo"/>
+    <h1 style="font-size: 3rem; text-align: center; margin: 3rem 0 1rem; line-height: 1;">Choose an account to pay</h1>
+    <AccountSelector @account-selected="accountSelected" @login="login" :wallets="wallets" :minBalance="amount + fee"/>
+    <AccountInfo v-if="showMerchantInfo" :address="shopAddress" :origin="origin" :shopLogoUrl="shopLogoUrl" @close="closeMerchantInfo" style="position: absolute; left: 0; top: 0;"/>
+</small-page>
+`),
+        };
+    })
+    .add('AccountSelector (two wallets)', () => {
+        return {
+            components: {AccountSelector, PaymentInfoLine, AccountInfo, SmallPage},
+            methods: {
+                accountSelected: action('account-selected'),
+                login: action('login'),
+                openMerchantInfo: function(event) {
+                    this.showMerchantInfo = true;
+                    return action('merchant-info-clicked')(event);
+                },
+                closeMerchantInfo: function(event) {
+                    this.showMerchantInfo = false;
+                    return action('close')(event);
+                },
+            },
+            data() {
+                return {
+                    wallets: [
+                        {
+                            id: 'helloworld3',
+                            label: 'Keyguard Wallet',
+                            type: 1, // BIP39
+                            accounts: [
+                                {
+                                    userFriendlyAddress: 'NQ06 P49N KLUN P978 TY4P K96P F7RE 6UAX E03B',
+                                    label: 'My real Savings',
+                                    balance: 98273987345,
+                                },
+                                {
+                                    userFriendlyAddress: 'NQ66 A99L SPYE G24D E802 HF3M SXRQ 5MT2 AF3Y',
+                                    label: 'Standard Account',
+                                    balance: 42023110,
+                                },
+                                {
+                                    userFriendlyAddress: 'NQ61 H1EF 8AAJ UC8X E8XX U91E KL97 LLLV 7DRH',
+                                    label: 'Not my Savings',
+                                    balance: 7463341234,
+                                },
+                            ],
+                        },
+                        {
+                            id: 'helloworld4',
+                            label: 'Ledger Wallet',
+                            type: 1, // BIP39
+                            accounts: [
+                                {
+                                    userFriendlyAddress: 'NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM',
+                                    label: 'Standard Account',
+                                    balance: 123023110,
+                                },
+                                {
+                                    userFriendlyAddress: 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1',
+                                    label: 'My Savings',
+                                    balance: 293872343,
+                                },
+                                {
+                                    userFriendlyAddress: 'NQ21 YPRN 1KVN BQP5 A17U YGD3 HH96 6TKA 6BL4',
+                                    label: 'Standard Account',
+                                    balance: 2023110,
+                                },
+                            ],
+                        },
+                    ],
+                    amount: 199900000,
+                    fee: 138,
+                    shopAddress: 'NQ21 YPRN 1KVN BQP5 A17U YGD3 HH96 6TKA 6BL4',
+                    origin: 'https://shop.nimiq.com',
+                    shopLogoUrl: 'https://shop.nimiq.com/wp-content/uploads/2018/10/nimiq_signet_rgb_base_size.576px.png',
+                    showMerchantInfo: false,
+                };
+            },
+            template: windowTemplate(`<small-page style="position: relative;">
+    <PaymentInfoLine :amount="amount" :fee="fee" :address="shopAddress" :origin="origin" :shopLogoUrl="shopLogoUrl" @merchant-info-clicked="openMerchantInfo"/>
+    <h1 style="font-size: 3rem; text-align: center; margin: 3rem 0 1rem; line-height: 1;">Choose an account to pay</h1>
+    <AccountSelector @account-selected="accountSelected" @login="login" :wallets="wallets" :minBalance="amount + fee"/>
+    <AccountInfo v-if="showMerchantInfo" :address="shopAddress" :origin="origin" :shopLogoUrl="shopLogoUrl" @close="closeMerchantInfo" style="position: absolute; left: 0; top: 0;"/>
 </small-page>
 `),
         };
