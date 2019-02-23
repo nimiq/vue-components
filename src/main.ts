@@ -5,7 +5,6 @@ export { default as AccountList } from './components/AccountList.vue';
 export { default as AccountSelector } from './components/AccountSelector.vue';
 export { default as Address } from './components/Address.vue';
 export { default as AddressDisplay } from './components/AddressDisplay.vue';
-export { default as AddressInput } from './components/AddressInput.vue';
 export { default as Amount } from './components/Amount.vue';
 export { default as AmountWithDetails } from './components/AmountWithDetails.vue';
 export { default as Contact } from './components/Contact.vue';

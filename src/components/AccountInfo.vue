@@ -42,7 +42,6 @@ export default class AccountInfo extends Vue {
     private showShopLogo: boolean = true;
 
     private get originDomain() {
-        console.log(this.origin);
         return this.origin ? this.origin.split('://')[1] : '';
     }
 
@@ -90,7 +89,7 @@ export default class AccountInfo extends Vue {
         border-radius: calc(1 * var(--nimiq-size, 8px));
         width: 100%;
         height: 100%;
-        z-index: 29;
+        z-index: 2;
     }
 
     .cancel-circle {
@@ -118,7 +117,7 @@ export default class AccountInfo extends Vue {
     .cancel-circle:focus,
     .cancel-circle:hover {
         opacity: .4;
-        transform: scale(1.06);
+        /* transform: scale(1.06); */
     }
 
     .cancel-circle:focus {

@@ -38,10 +38,6 @@
         @Emit()
         // tslint:disable-next-line no-empty
         private changed(label: string) {}
-
-        private get formattedAddress() {
-            return Identicon.formatAddress(this.address);
-        }
     }
 </script>
 

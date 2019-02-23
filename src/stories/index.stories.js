@@ -8,7 +8,6 @@ import AccountList from '../components/AccountList.vue';
 import AccountSelector from '../components/AccountSelector.vue';
 import Address from '../components/Address.vue';
 import AddressDisplay from '../components/AddressDisplay.vue';
-import AddressInput from '../components/AddressInput.vue';
 import Amount from '../components/Amount.vue';
 import AmountWithDetails from '../components/AmountWithDetails.vue';
 import Contact from '../components/Contact.vue';
@@ -213,15 +212,6 @@ storiesOf('Components', module)
             template: `<AddressDisplay :address="address"/>`,
         };
     })
-    .add('AddressInput', () => {
-        return {
-            components: {AddressInput},
-            methods: {
-                changed: action('changed'),
-            },
-            template: `<AddressInput @changed="changed"/>`,
-        };
-    })
     .add('AmountWithDetails', () => {
         const amount = number('amount', 199862);
         const networkFee = number('networkFee', 138);
@@ -408,10 +398,12 @@ storiesOf('Components', module)
         const origin = text('origin', 'https://shop.nimiq.com');
         const amount = number('amount', 199862);
         const fee = number('fee', 138);
-        const networkFeeEditable = boolean('networkFeeEditable', false);
         return {
             components: {PaymentInfoLine},
-            template: `<div style="width: 400px"><PaymentInfoLine :amount="${amount}" :fee="${fee}" origin="${origin}"/></div>`,
+            methods: {
+                merchantInfoClicked: action('merchant-info-clicked'),
+            },
+            template: `<div style="width: 400px"><PaymentInfoLine :amount="${amount}" :fee="${fee}" origin="${origin}" @merchant-info-clicked="merchantInfoClicked"/></div>`,
         };
     })
     .add('QrCode', () => {

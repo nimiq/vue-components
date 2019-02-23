@@ -8,8 +8,8 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { ValidationUtils } from '@nimiq/utils';
 
-@Component({components: {}})
-export default class Input extends Vue {
+@Component
+export default class AddressDisplay extends Vue {
     @Prop(String) private address!: string;
 
     private get chunks(): string[] {

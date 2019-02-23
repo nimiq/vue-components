@@ -139,11 +139,10 @@ export default class AccountSelector extends Vue {
     /* END Nimiq Style */
 
     .account-selector {
-        flex-grow: 1;
         overflow: auto;
-        flex-grow: 1;
         display: flex;
         flex-direction: column;
+        flex-grow: 1;
     }
 
     .container {

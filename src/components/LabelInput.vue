@@ -28,7 +28,7 @@ export default class LabelInput extends Vue {
         (this.$refs.input as HTMLInputElement).focus();
     }
 
-    public onInput() {
+    private onInput() {
         if (this.maxBytes) {
             const lengthInBytes = Utf8Tools.stringToUtf8ByteArray(this.liveValue!).byteLength;
             if (lengthInBytes > this.maxBytes) {

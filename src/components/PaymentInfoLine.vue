@@ -85,7 +85,6 @@ export default class PaymentInfoLine extends Vue {
 
     .arrow-runway {
         flex-grow: 1;
-        text-align: right;
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -96,9 +95,7 @@ export default class PaymentInfoLine extends Vue {
         opacity: 0;
         width: 100%;
         background-size: calc(2 * var(--nimiq-size, 8px));
-        background-position: left center;
         /* animation: arrow-shooting 2s ease-in-out infinite; */
-
         opacity: 0.3;
         background-position: center;
     }
@@ -132,7 +129,6 @@ export default class PaymentInfoLine extends Vue {
         height: calc(3.375 * var(--nimiq-size, 8px));
         margin-top: calc(-0.25 * var(--nimiq-size, 8px));
         margin-bottom: calc(-0.125 * var(--nimiq-size, 8px));
-        display: inline-block;
         margin-right: calc(1 * var(--nimiq-size, 8px));
     }
 
