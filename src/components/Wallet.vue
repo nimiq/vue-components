@@ -27,9 +27,9 @@
 
         private get walletIconClass() {
             switch (this.type) {
-                case 0: return 'keyguard'; // Legacy
-                case 1: return 'keyguard';
-                case 2: return 'ledger';
+                case 1: return 'keyguard'; // Legacy
+                case 2: return 'keyguard';
+                case 3: return 'ledger';
             }
         }
     }
