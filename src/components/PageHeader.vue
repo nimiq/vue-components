@@ -28,39 +28,6 @@
 
 <style scoped>
     /** Nimiq Style **/
-    .nq-h1 {
-        font-size: calc(3 * var(--nimiq-size, 8px));
-        line-height: 1.2;
-        font-weight: bold;
-        margin: calc(3 * var(--nimiq-size, 8px)) 0;
-    }
-
-    .nq-h2 {
-        font-size: calc(2.5 * var(--nimiq-size, 8px));
-        line-height: 1.2;
-        font-weight: bold;
-        margin: calc(2.5 * var(--nimiq-size, 8px)) 0;
-    }
-
-    .nq-card-header {
-        padding: calc(4 * var(--nimiq-size, 8px));
-        text-align: center;
-        border-top-left-radius: calc(1 * var(--nimiq-size, 8px));
-        border-top-right-radius: calc(1 * var(--nimiq-size, 8px));
-    }
-
-    @media (max-width: 450px) {
-        .nq-card-header {
-            padding: calc(3 * var(--nimiq-size, 8px));
-        }
-    }
-
-    .nq-card-header .nq-h1,
-    .nq-card-header .nq-h2 {
-        margin: 0;
-        line-height: 1;
-    }
-
     .nq-icon {
         width: 1em;
         height: 1em;
@@ -81,15 +48,15 @@
     }
 
     .page-header.has-progress-indicator {
-        padding-top: calc(6 * var(--nimiq-size, 8px));
+        padding-top: 6rem;
     }
 
     .page-header-back-button {
-        width: calc(3 * var(--nimiq-size, 8px));
-        height: calc(3 * var(--nimiq-size, 8px));
+        width: 3rem;
+        height: 3rem;
         position: absolute;
-        left: calc(4.5 * var(--nimiq-size, 8px));
-        top: calc(4.5 * var(--nimiq-size, 8px));
+        left: 4.5rem;
+        top: 4.5rem;
         cursor: pointer;
         transition: opacity .3s ease, transform .4s ease;
     }
@@ -107,7 +74,7 @@
     }
 
     .page-header.has-progress-indicator .page-header-back-button {
-        top: calc(6 * var(--nimiq-size, 8px));
+        top: 6rem;
     }
 
     .progress-indicator {
@@ -115,7 +82,7 @@
         box-sizing: border-box;
         display: flex;
         flex-direction: row;
-        padding: calc(0.5 * var(--nimiq-size, 8px));
+        padding: 0.5rem;
         position: absolute;
         left: 0;
         top: 0;
@@ -123,10 +90,10 @@
 
     .progress-indicator .indicator {
         flex-grow: 1;
-        height: calc(0.5 * var(--nimiq-size, 8px));
-        border-radius: calc(0.25 * var(--nimiq-size, 8px));
+        height: 0.5rem;
+        border-radius: 0.25rem;
         background: #e5e5e5;
-        margin: calc(0.5 * var(--nimiq-size, 8px));
+        margin: 0.5rem;
     }
 
     .progress-indicator .indicator.active {

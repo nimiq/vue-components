@@ -51,8 +51,8 @@
     .amount-with-details .drop-link {
         display: inline-block;
         border-bottom: 1px solid transparent;
-        padding-left: calc(0.2 * var(--nimiq-size, 8px));
-        margin: calc(0.1 * var(--nimiq-size, 8px));
+        padding-left: 0.2rem;
+        margin: 0.1rem;
         cursor: pointer;
         opacity: 0.95;
     }
@@ -69,25 +69,25 @@
     .amount-with-details .info-box {
         position: absolute;
         background: #fefefe;
-        box-shadow: 0 calc(0.125 * var(--nimiq-size, 8px)) calc(0.625 * var(--nimiq-size, 8px)) rgba(0, 0, 0, 0.5);
-        border-radius: calc(0.5 * var(--nimiq-size, 8px));
-        padding: calc(0.5 * var(--nimiq-size, 8px));
+        box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.5);
+        border-radius: 0.5rem;
+        padding: 0.5rem;
         right: 0;
         white-space: nowrap;
-        margin-top: calc(0.2 * var(--nimiq-size, 8px));
+        margin-top: 0.2rem;
         color: #111;
         z-index: 100;
     }
 
     .amount-with-details .info-box .info-rows {
         display: grid;
-        grid-template-columns: calc(9 * var(--nimiq-size, 8px)) auto calc(1.5 * var(--nimiq-size, 8px));
+        grid-template-columns: 9rem auto 1.5rem;
     }
 
     .amount-with-details .info-box .item-value {
         text-align: right;
-        padding-left: calc(1 * var(--nimiq-size, 8px));
-        padding-bottom: calc(0.5 * var(--nimiq-size, 8px));
+        padding-left: 1rem;
+        padding-bottom: 0.5rem;
     }
 
     .amount-with-details .info-box .fee {
@@ -96,14 +96,9 @@
 
     .amount-with-details .info-box .total-sum {
         background: #eee;
-        margin: 0
-            calc(-0.5 * var(--nimiq-size, 8px))
-            calc(-0.5 * var(--nimiq-size, 8px))
-            calc(-0.5 * var(--nimiq-size, 8px));
-        padding: calc(0.5 * var(--nimiq-size, 8px));
-        border-radius: 0 0
-            calc(0.5 * var(--nimiq-size, 8px))
-            calc(0.5 * var(--nimiq-size, 8px));
+        margin: 0 -0.5rem -0.5rem -0.5rem;
+        padding: 0.5rem;
+        border-radius: 0 0 0.5rem 0.5rem;
         font-weight: bold;
     }
 

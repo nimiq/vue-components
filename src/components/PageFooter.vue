@@ -12,18 +12,6 @@
 </script>
 
 <style scoped>
-    /** Nimiq Style **/
-    .nq-card-footer {
-        padding: calc(1 * var(--nimiq-size, 8px));
-        border-bottom-left-radius: calc(1 * var(--nimiq-size, 8px));
-        border-bottom-right-radius: calc(1 * var(--nimiq-size, 8px));
-    }
-
-    .nq-card-body + .nq-card-footer {
-        padding-top: 0;
-    }
-    /** END Nimiq Style **/
-
     .page-footer {
         display: flex;
         flex-direction: row;

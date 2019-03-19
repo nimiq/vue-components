@@ -4,8 +4,8 @@
             :placeholder="placeholder"
             :style="{width: `${Math.max(placeholder.length, liveValue.length) + 1}ch`}"
             v-model="liveValue"
-            @input="input"
-            @blur="changed"
+            @input="onInput"
+            @blur="onBlur"
             ref="input">
     </form>
 </template>
@@ -14,11 +14,11 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { Utf8Tools } from '@nimiq/utils';
 
-@Component({components: {}})
-export default class Input extends Vue {
+@Component
+export default class LabelInput extends Vue {
     @Prop(Number) protected maxBytes?: number;
     @Prop({type: String, default: ''}) private value!: string;
-    @Prop({type: String, default: 'Name your account'}) private placeholder!: string;
+    @Prop({type: String, default: 'Name your address'}) private placeholder!: string;
 
     private liveValue = this.value;
     private lastValue = this.value;
@@ -28,7 +28,7 @@ export default class Input extends Vue {
         (this.$refs.input as HTMLInputElement).focus();
     }
 
-    public input() {
+    private onInput() {
         if (this.maxBytes) {
             const lengthInBytes = Utf8Tools.stringToUtf8ByteArray(this.liveValue!).byteLength;
             if (lengthInBytes > this.maxBytes) {
@@ -39,7 +39,7 @@ export default class Input extends Vue {
         this.lastValue = this.liveValue;
     }
 
-    private changed() {
+    private onBlur() {
         if (this.liveValue === this.lastEmittedValue) return;
         this.$emit('changed', this.liveValue);
         this.lastEmittedValue = this.liveValue;
@@ -61,15 +61,14 @@ export default class Input extends Vue {
         color: rgba(31, 35, 72, 0.7);
         font-weight: inherit;
         margin: 0;
-        padding: calc(0.75 * var(--nimiq-size, 8px));
+        padding: 0.75rem;
         line-height: 1.11;
-        height: calc(2.5 * var(--nimiq-size, 8px));
-        border: calc(0.25 * var(--nimiq-size, 8px)) solid transparent;
-        border-radius: calc(0.5 * var(--nimiq-size, 8px));
+        height: 2.5rem;
+        border: 0.25rem solid rgba(31, 35, 72, 0.1);
+        border-radius: 0.5rem;
         max-width: 100%;
         height: 100%;
         box-sizing: border-box;
-        border-color: rgba(31, 35, 72, 0.1);
         transition: width 200ms ease-out, border 200ms, color 200ms;
     }
 

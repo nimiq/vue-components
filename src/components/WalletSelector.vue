@@ -33,11 +33,11 @@ export default class WalletSelector extends Vue {
     @Prop({type: Boolean, default: true}) public showAddWallet!: boolean;
 
     private get walletWallets() {
-        return this.wallets.filter((wallet) => wallet.type !== 0); // Return only non-legacy wallets
+        return this.wallets.filter((wallet) => wallet.type !== 1 /* LEGACY */); // Return only non-legacy wallets
     }
 
     private get legacyAccounts() {
-        const legacyWallets = this.wallets.filter((wallet) => wallet.type === 0); // Filter legacy wallets
+        const legacyWallets = this.wallets.filter((wallet) => wallet.type === 1 /* LEGACY */); // Filter legacy wallets
         return legacyWallets.map((wallet) => {
             const addressInfo = wallet.accounts.values().next().value;
             return {
@@ -93,11 +93,11 @@ export default class WalletSelector extends Vue {
     }
 
     .wallet-selector >>> .account {
-        padding-left: calc(3 * var(--nimiq-size, 8px));
+        padding-left: 3rem;
     }
 
     .wallet-selector >>> .account .identicon {
-        margin-right: calc(1 * var(--nimiq-size, 8px));
+        margin-right: 1rem;
     }
 
     .account-list {
@@ -105,10 +105,10 @@ export default class WalletSelector extends Vue {
     }
 
     .add-circle {
-        height: calc(4.25 * var(--nimiq-size, 8px));
-        width: calc(4.25 * var(--nimiq-size, 8px));
+        height: 4.25rem;
+        width: 4.25rem;
         flex-shrink: 0;
-        margin-right: calc(2 * var(--nimiq-size, 8px));
+        margin-right: 2rem;
     }
 
     .page-footer {

@@ -85,83 +85,25 @@ export default class AccountSelector extends Vue {
 </script>
 
 <style scoped>
-    /* Nimiq Style */
-    .nq-label {
-        font-size: calc(1.75 * var(--nimiq-size, 8px));
-        line-height: 0.857;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.107em;
-        margin: calc(1 * var(--nimiq-size, 8px)) 0;
-        opacity: 0.7;
-    }
-
-    .nq-button-s {
-        display: inline-block;
-        font-size: calc(1.75 * var(--nimiq-size, 8px));
-        line-height: calc(2 * var(--nimiq-size, 8px));
-        height: calc(3.375 * var(--nimiq-size, 8px));
-        text-decoration: none;
-        font-weight: bold;
-        letter-spacing: 0.014em;
-        padding: 0 calc(1.5 * var(--nimiq-size, 8px));
-        background-color: rgba(31, 35, 72, 0.07); /* Based on Nimiq Blue */
-        color: var(--nimiq-blue);
-        border-radius: calc(1.6875 * var(--nimiq-size, 8px));
-        transition: color 300ms ease, background-color 300ms ease;
-        will-change: color, background-color;
-        border: none;
-        cursor: pointer;
-        position: relative;
-        font-family: inherit;
-    }
-
-    .nq-button-s::after {
-        content: '';
-        display: block;
-        position: absolute;
-        left: calc(-1.5 * var(--nimiq-size, 8px));
-        top: calc(-1.5 * var(--nimiq-size, 8px));
-        right: calc(-1.5 * var(--nimiq-size, 8px));
-        bottom: calc(-1.5 * var(--nimiq-size, 8px));
-    }
-
-    .nq-button-s:hover,
-    .nq-button-s:active {
-        background-color: rgba(31, 35, 72, 0.12); /* Based on Nimiq Blue */
-    }
-
-    .nq-button-s:focus {
-        outline: none;
-        color: var(--nimiq-light-blue);
-        background-color: rgba(5, 130, 202, 0.16); /* Based on Nimiq Light Blue */
-    }
-    /* END Nimiq Style */
-
     .account-selector {
-        flex-grow: 1;
         overflow: auto;
-        flex-grow: 1;
         display: flex;
         flex-direction: column;
+        flex-grow: 1;
     }
 
     .container {
         overflow-y: auto;
-        padding-top: calc(0.5 * var(--nimiq-size, 8px));
+        padding-top: 0.5rem;
         flex-grow: 1;
     }
 
     .container.extra-spacing {
-        padding-top: calc(3 * var(--nimiq-size, 8px));
+        padding-top: 3rem;
     }
 
     .wallet-label {
-        margin:
-            calc(3.5 * var(--nimiq-size, 8px))
-            calc(2 * var(--nimiq-size, 8px))
-            calc(2 * var(--nimiq-size, 8px))
-            calc(3 * var(--nimiq-size, 8px));
+        margin: 3.5rem 2rem 2rem 3rem;
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -169,7 +111,7 @@ export default class AccountSelector extends Vue {
 
     .wallet-label .nq-label {
         margin: 0;
-        margin-right: calc(2 * var(--nimiq-size, 8px));
+        margin-right: 2rem;
     }
 
     .wallet-label::after {
@@ -181,19 +123,26 @@ export default class AccountSelector extends Vue {
     }
 
     .header {
-        height: calc(4 * var(--nimiq-size, 8px));
-        margin-bottom: calc(-4 * var(--nimiq-size, 8px));
+        height: 4rem;
+        margin-bottom: -4rem;
         flex-shrink: 0;
-        background: linear-gradient(white 0, transparent calc(4 * var(--nimiq-size, 8px)));
+        background: linear-gradient(
+            white 0,
+            rgba(255, 255, 255, 0) 4rem
+        );
         z-index: 1;
         pointer-events: none;
     }
 
     .footer {
-        padding: calc(4 * var(--nimiq-size, 8px)) 0;
-        margin-top: calc(-4 * var(--nimiq-size, 8px));
+        padding: 4rem 0;
+        margin-top: -4rem;
         text-align: center;
-        background: linear-gradient(transparent 0, white calc(4 * var(--nimiq-size, 8px)), transparent calc(4 * var(--nimiq-size, 8px)));
+        background: linear-gradient(
+            rgba(255, 255, 255, 0) 0,
+            white 4rem,
+            rgba(255, 255, 255, 0) 4rem
+        );
         position: relative;
         pointer-events: none;
     }

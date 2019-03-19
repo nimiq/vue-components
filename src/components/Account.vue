@@ -7,7 +7,7 @@
                 <div>{{ label }}</div>
             </div>
             <div v-else class="label">
-                <Input :value="label" @changed="changed" ref="label"/>
+                <LabelInput :value="label" @changed="changed" ref="label"/>
             </div>
         </div>
 
@@ -20,9 +20,9 @@
     import { Component, Prop, Emit, Vue } from 'vue-property-decorator';
     import Identicon from './Identicon.vue';
     import Amount from './Amount.vue';
-    import Input from './Input.vue';
+    import LabelInput from './LabelInput.vue';
 
-    @Component({components: {Amount, Identicon, Input}})
+    @Component({components: {Amount, Identicon, LabelInput}})
     export default class Account extends Vue {
         @Prop(String) public address!: string;
         @Prop(String) public label!: string;
@@ -31,17 +31,13 @@
 
         public focus() {
             if (this.editable) {
-                (this.$refs.label as Input).focus();
+                (this.$refs.label as LabelInput).focus();
             }
         }
 
         @Emit()
         // tslint:disable-next-line no-empty
         private changed(label: string) {}
-
-        private get formattedAddress() {
-            return Identicon.formatAddress(this.address);
-        }
     }
 </script>
 
@@ -52,10 +48,10 @@
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        padding: calc(1.75 * var(--nimiq-size, 8px)) calc(2 * var(--nimiq-size, 8px));
+        padding: 1.75rem 2rem;
         box-sizing: border-box;
         flex-shrink: 0;
-        font-size: calc(2 * var(--nimiq-size, 8px));
+        font-size: 2rem;
         line-height: 1.25;
     }
 
@@ -64,14 +60,14 @@
         flex-direction: row;
         align-items: center;
         overflow: hidden;
-        min-width: calc(5.625 * var(--nimiq-size, 8px));
+        min-width: 5.625rem;
     }
 
     .identicon {
-        width: calc(5.625 * var(--nimiq-size, 8px));
-        height: calc(5.625 * var(--nimiq-size, 8px));
+        width: 5.625rem;
+        height: 5.625rem;
         flex-shrink: 0;
-        margin-right: calc(1.5 * var(--nimiq-size, 8px));
+        margin-right: 1.5rem;
     }
 
     .label {
@@ -84,13 +80,13 @@
         opacity: 0.7;
         overflow: hidden;
         text-overflow: ellipsis;
-        padding-left: calc(1 * var(--nimiq-size, 8px));
+        padding-left: 1rem;
     }
 
     .balance {
         flex-shrink: 0;
         font-weight: bold;
-        margin-left: calc(2 * var(--nimiq-size, 8px));
+        margin-left: 2rem;
         opacity: 0.7;
     }
 </style>

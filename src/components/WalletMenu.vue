@@ -14,7 +14,7 @@
                     <button
                         class="nq-button-s"
                         @click="exportWallet(activeWallet.id)"
-                        v-if="activeWallet.type !== 2 /* LEDGER */">Export</button>
+                        v-if="activeWallet.type !== 3 /* LEDGER */">Export</button>
                     <button
                         class="nq-button-s"
                         @click="renameWallet(activeWallet.id)">Rename</button>
@@ -24,7 +24,7 @@
                     <button
                         class="nq-button-s"
                         @click="changePassphraseWallet(activeWallet.id)"
-                        v-if="activeWallet.type !== 2 /* LEDGER */">Change password</button>
+                        v-if="activeWallet.type !== 3 /* LEDGER */">Change password</button>
                     <button
                         class="nq-button-s red"
                         @click="logoutWallet(activeWallet.id)">Logout</button>
@@ -32,7 +32,7 @@
 
 
                 <button
-                    v-if="activeWalletId !== LEGACY_ID && activeWallet.type === 2 /* LEDGER */"
+                    v-if="activeWalletId !== LEGACY_ID && activeWallet.type === 3 /* LEDGER */"
                     class="nq-button-s red"
                     @click="logoutWallet(activeWallet.id)">Logout</button>
                 <button
@@ -74,7 +74,7 @@ export default class WalletMenu extends Vue {
     private get selectableWallets() {
         // Filter out active wallet
         const selectableWallets = this.wallets.filter(
-            (wallet) => wallet.id !== this.activeWalletId && wallet.type !== 0,
+            (wallet) => wallet.id !== this.activeWalletId && wallet.type !== 1 /* LEGACY */,
         );
         if (this.activeWalletId !== this.LEGACY_ID && this.legacyAccountCount > 0) {
             selectableWallets.push(this.legacyWallet);
@@ -83,7 +83,7 @@ export default class WalletMenu extends Vue {
     }
 
     private get legacyWallets() {
-        return this.wallets.filter((wallet) => wallet.type === 0 /* LEGACY */);
+        return this.wallets.filter((wallet) => wallet.type === 1 /* LEGACY */);
     }
 
     private get legacyAccountCount() {
@@ -99,7 +99,7 @@ export default class WalletMenu extends Vue {
             label: this.LEGACY_LABEL,
             accounts,
             contracts: [],
-            type: 0,
+            type: 1 /* LEGACY */,
             balance: this.legacyWallets.reduce((sum, wallet) => sum + (wallet.balance || 0), 0),
         };
     }
@@ -139,108 +139,28 @@ export default class WalletMenu extends Vue {
 </script>
 
 <style scoped>
-    /** Nimiq Style **/
-    .nq-label {
-        font-size: calc(1.75 * var(--nimiq-size, 8px));
-        line-height: 0.857;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.107em;
-        margin: calc(1 * var(--nimiq-size, 8px)) 0;
-        opacity: 0.7;
-    }
-
-    .nq-button-s {
-        display: inline-block;
-        font-size: calc(1.75 * var(--nimiq-size, 8px));
-        line-height: calc(2 * var(--nimiq-size, 8px));
-        height: calc(3.375 * var(--nimiq-size, 8px));
-        text-decoration: none;
-        font-weight: bold;
-        letter-spacing: 0.014em;
-        padding: 0 calc(1.5 * var(--nimiq-size, 8px));
-        background-color: rgba(31, 35, 72, 0.07); /* Based on Nimiq Blue */
-        color: #1F2348;
-        border-radius: calc(1.6875 * var(--nimiq-size, 8px));
-        transition: color 300ms ease, background-color 300ms ease;
-        will-change: color, background-color;
-        border: none;
-        cursor: pointer;
-        position: relative;
-        font-family: inherit;
-    }
-
-    .nq-button-s::after {
-        content: '';
-        display: block;
-        position: absolute;
-        left: calc(-1.5 * var(--nimiq-size, 8px));
-        top: calc(-1.5 * var(--nimiq-size, 8px));
-        right: calc(-1.5 * var(--nimiq-size, 8px));
-        bottom: calc(-1.5 * var(--nimiq-size, 8px));
-    }
-
-    .nq-button-s:hover,
-    .nq-button-s:active {
-        background-color: rgba(31, 35, 72, 0.12); /* Based on Nimiq Blue */
-    }
-
-    .nq-button-s:focus {
-        outline: none;
-        color: #0582CA;
-        background-color: rgba(5, 130, 202, 0.16); /* Based on Nimiq Light Blue */
-    }
-
-    /* Color variations */
-
-    /* light blue */
-    .nq-button-s.light-blue {
-        color: #0582CA;
-        background-color: rgba(5, 130, 202, 0.1); /* Based on Nimiq Light Blue */
-    }
-
-    .nq-button-s.light-blue:hover,
-    .nq-button-s.light-blue:active,
-    .nq-button-s.light-blue:focus {
-        background-color: rgba(5, 130, 202, 0.16); /* Based on Nimiq Light Blue */
-    }
-
-    /* red */
-    .nq-button-s.red {
-        color: #D94432;
-        background-color: rgba(216, 65, 51, 0.1); /* Based on Nimiq Red */
-    }
-
-    .nq-button-s.red:hover,
-    .nq-button-s.red:active,
-    .nq-button-s.red:focus {
-        background-color: rgba(216, 65, 51, 0.16); /* Based on Nimiq Red */
-    }
-    /** END Nimiq Style **/
-
-
     .wallet-menu {
-        --viewport-margin: calc(4 * var(--nimiq-size, 8px));
+        --viewport-margin: 4rem;
         width: calc(100vw - var(--viewport-margin));
-        max-width: calc(42.5 * var(--nimiq-size, 8px));
+        max-width: 42.5rem;
         background: white;
-        border-radius: calc(1 * var(--nimiq-size, 8px));
+        border-radius: 1rem;
         box-shadow: 0 4px 28px rgba(0, 0, 0, 0.111158);
-        min-height: calc(41.75 * var(--nimiq-size, 8px));
+        min-height: 41.75rem;
         max-height: 100vh;
         display: flex;
         flex-direction: column;
     }
 
     .active-wallet {
-        padding: calc(3 * var(--nimiq-size, 8px));
-        padding-bottom: calc(0.5 * var(--nimiq-size, 8px));
+        padding: 3rem;
+        padding-bottom: 0.5rem;
         flex-shrink: 0;
     }
 
     .active-wallet h2 {
         margin: 0;
-        font-size: calc(1.5 * var(--nimiq-size, 8px));
+        font-size: 1.5rem;
         text-transform: uppercase;
         letter-spacing: 0.143em;
         font-weight: 500;
@@ -248,7 +168,7 @@ export default class WalletMenu extends Vue {
     }
 
     .active-wallet .button-row {
-        padding-bottom: calc(2.5 * var(--nimiq-size, 8px));
+        padding-bottom: 2.5rem;
     }
 
     .wallet-list {
@@ -261,8 +181,8 @@ export default class WalletMenu extends Vue {
     }
 
     .wallet-list >>> .wallet {
-        padding-left: calc(3 * var(--nimiq-size, 8px));
-        padding-right: calc(3 * var(--nimiq-size, 8px));
+        padding-left: 3rem;
+        padding-right: 3rem;
     }
 
     .button-row,
@@ -274,7 +194,7 @@ export default class WalletMenu extends Vue {
     }
 
     .menu-footer {
-        padding: calc(3 * var(--nimiq-size, 8px));
+        padding: 3rem;
     }
 
     .button-small-group {
@@ -301,17 +221,17 @@ export default class WalletMenu extends Vue {
     }
 
     .button-small-group button:first-child {
-        border-top-left-radius: calc(1.6875 * var(--nimiq-size, 8px));
-        border-bottom-left-radius: calc(1.6875 * var(--nimiq-size, 8px));
+        border-top-left-radius: 1.6875rem;
+        border-bottom-left-radius: 1.6875rem;
     }
 
     .button-small-group button:first-child::after {
-        left: calc(-1.5 * var(--nimiq-size, 8px));
+        left: -1.5rem;
     }
 
     .button-small-group button:last-child {
-        border-top-right-radius: calc(1.6875 * var(--nimiq-size, 8px));
-        border-bottom-right-radius: calc(1.6875 * var(--nimiq-size, 8px));
+        border-top-right-radius: 1.6875rem;
+        border-bottom-right-radius: 1.6875rem;
     }
 
     .button-small-group button:last-child::before {
@@ -319,6 +239,6 @@ export default class WalletMenu extends Vue {
     }
 
     .button-small-group button:last-child::after {
-        right: calc(-1.5 * var(--nimiq-size, 8px));
+        right: -1.5rem;
     }
 </style>

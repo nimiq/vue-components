@@ -42,7 +42,6 @@ export default class AccountInfo extends Vue {
     private showShopLogo: boolean = true;
 
     private get originDomain() {
-        console.log(this.origin);
         return this.origin ? this.origin.split('://')[1] : '';
     }
 
@@ -54,16 +53,6 @@ export default class AccountInfo extends Vue {
 
 <style scoped>
     /* Nimiq Style */
-    .nq-label {
-        font-size: calc(1.75 * var(--nimiq-size, 8px));
-        line-height: 0.857;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.107em;
-        margin: calc(1 * var(--nimiq-size, 8px)) 0;
-        opacity: 0.7;
-    }
-
     .nq-icon {
         width: 1em;
         height: 1em;
@@ -87,19 +76,19 @@ export default class AccountInfo extends Vue {
         flex-grow: 1;
         position: relative;
         background: rgba(255, 255, 255, 0.95);
-        border-radius: calc(1 * var(--nimiq-size, 8px));
+        border-radius: 1rem;
         width: 100%;
         height: 100%;
-        z-index: 29;
+        z-index: 2;
     }
 
     .cancel-circle {
-        width: calc(3 * var(--nimiq-size, 8px));
-        height: calc(3 * var(--nimiq-size, 8px));
+        width: 3rem;
+        height: 3rem;
         background-size: 135%;
         position: absolute;
-        top: calc(2 * var(--nimiq-size, 8px));
-        right: calc(2 * var(--nimiq-size, 8px));
+        top: 2rem;
+        right: 2rem;
         opacity: 0.2;
         transition: opacity .3s ease, transform .45s ease;
     }
@@ -109,16 +98,16 @@ export default class AccountInfo extends Vue {
         content: '';
         display: block;
         position: absolute;
-        top: calc(-1.5 * var(--nimiq-size, 8px));
-        right: calc(-1.5 * var(--nimiq-size, 8px));
-        bottom: calc(-1.5 * var(--nimiq-size, 8px));
-        left: calc(-1.5 * var(--nimiq-size, 8px));
+        top: -1.5rem;
+        right: -1.5rem;
+        bottom: -1.5rem;
+        left: -1.5rem;
     }
 
     .cancel-circle:focus,
     .cancel-circle:hover {
         opacity: .4;
-        transform: scale(1.06);
+        /* transform: scale(1.06); */
     }
 
     .cancel-circle:focus {
@@ -129,9 +118,9 @@ export default class AccountInfo extends Vue {
 
     .identicon,
     .shop-logo {
-        width: calc(18.25 * var(--nimiq-size, 8px));
-        height: calc(18.25 * var(--nimiq-size, 8px));
-        margin-bottom: calc(3 * var(--nimiq-size, 8px));
+        width: 18.25rem;
+        height: 18.25rem;
+        margin-bottom: 3rem;
     }
 
     .shop-logo {
@@ -163,25 +152,25 @@ export default class AccountInfo extends Vue {
     }
 
     .label {
-        font-size: calc(3 * var(--nimiq-size, 8px));
+        font-size: 3rem;
         font-weight: 600;
         line-height: 1;
     }
 
     .label + .wallet-label {
-        margin-top: calc(1.5 * var(--nimiq-size, 8px));
+        margin-top: 1.5rem;
     }
 
     .amount {
-        font-size: calc(3 * var(--nimiq-size, 8px));
-        margin-top: calc(2 * var(--nimiq-size, 8px));
+        font-size: 3rem;
+        margin-top: 2rem;
     }
 
     .address-display {
-        margin-top: calc(7 * var(--nimiq-size, 8px));
+        margin-top: 7rem;
     }
 
     .labels + .address-display {
-        margin-top: calc(9 * var(--nimiq-size, 8px));
+        margin-top: 9rem;
     }
 </style>

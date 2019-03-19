@@ -8,8 +8,8 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { ValidationUtils } from '@nimiq/utils';
 
-@Component({components: {}})
-export default class Input extends Vue {
+@Component
+export default class AddressDisplay extends Vue {
     @Prop(String) private address!: string;
 
     private get chunks(): string[] {
@@ -22,17 +22,17 @@ export default class Input extends Vue {
 <style scoped>
     .address-display {
         width: 100%;
-        max-width: calc(28.25 * var(--nimiq-size, 8px));
+        max-width: 28.25rem;
         font-family: 'Fira Mono', monospace;
         opacity: 0.5;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-        font-size: calc(3 * var(--nimiq-size, 8px));
+        font-size: 3rem;
     }
 
     .chunk {
-        margin: calc(0.875 * var(--nimiq-size, 8px)) 0;
+        margin: 0.875rem 0;
         line-height: 1.11;
         width: 33%;
         text-align: center;
