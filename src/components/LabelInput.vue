@@ -1,5 +1,5 @@
 <template>
-    <form class="label-input" @submit.prevent="changed">
+    <form class="label-input" @submit.prevent="onBlur">
         <input type="text"
             :placeholder="placeholder"
             :style="{width: `${Math.max(placeholder.length, liveValue.length) + 1}ch`}"
