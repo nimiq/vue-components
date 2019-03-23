@@ -226,7 +226,7 @@ storiesOf('Components', module)
                 };
             },
             components: {AddressRing},
-            template: `<div style="background: white"><AddressRing :addresses="addresses"/></div>`,
+            template: `<AddressRing :addresses="addresses"/>`,
         };
     })
     .add('AddressRing (more than 6)', () => {
@@ -250,7 +250,7 @@ storiesOf('Components', module)
                 };
             },
             components: {AddressRing},
-            template: `<div style="background: white"><AddressRing :addresses="addresses"/></div>`,
+            template: `<AddressRing :addresses="addresses"/>`,
         };
     })
     .add('AddressRing (empty)', () => {
@@ -261,7 +261,7 @@ storiesOf('Components', module)
                 };
             },
             components: {AddressRing},
-            template: `<div style="background: white"><AddressRing :addresses="addresses"/></div>`,
+            template: `<AddressRing :addresses="addresses"/>`,
         };
     })
     .add('AmountWithDetails', () => {

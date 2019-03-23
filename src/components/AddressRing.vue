@@ -15,7 +15,7 @@
             class="identicon"
         />
         <svg v-for="index in emptyHexagons" :key="6 - index" class="identicon nq-icon">
-            <use class="nq-gray" xlink:href="../../node_modules/@nimiq/style/nimiq-style.icons.svg#nq-hexagon"/>
+            <use class="nq-blue opaque" xlink:href="../../node_modules/@nimiq/style/nimiq-style.icons.svg#nq-hexagon"/>
         </svg>
     </div>
 </template>
@@ -41,9 +41,10 @@
         align-items: center;
         justify-content: center;
         box-sizing: border-box;
-        width: 100%;
-        height: 41rem;
+        width: 10rem; 
+        height: 10rem;
         position: relative;
+        transform: scale(0.24);
     }
 
     .identicon {
@@ -59,8 +60,7 @@
     .identicon:nth-child(5) { transform: translate( 12.5rem,   7.25rem); }
     .identicon:nth-child(6) { transform: translate( 12.5rem,  -7.25rem); }
 
-    /* Currently not defined in nimiq-style */
-    .nq-gray {
-        color: var(--nimiq-gray);
+    .opaque {
+        opacity: 0.1;
     }
 </style>
