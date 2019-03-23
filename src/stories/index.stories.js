@@ -8,6 +8,7 @@ import AccountList from '../components/AccountList.vue';
 import AccountSelector from '../components/AccountSelector.vue';
 import Address from '../components/Address.vue';
 import AddressDisplay from '../components/AddressDisplay.vue';
+import AddressRing from '../components/AddressRing.vue';
 import Amount from '../components/Amount.vue';
 import AmountWithDetails from '../components/AmountWithDetails.vue';
 import Contact from '../components/Contact.vue';
@@ -211,6 +212,56 @@ storiesOf('Components', module)
             },
             components: {AddressDisplay},
             template: `<AddressDisplay :address="address"/>`,
+        };
+    })
+    .add('AddressRing', () => {
+        return {
+            data() {
+                return {
+                    addresses: [
+                        'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE',
+                        'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
+                        'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
+                    ],
+                };
+            },
+            components: {AddressRing},
+            template: `<div style="background: white"><AddressRing :addresses="addresses"/></div>`,
+        };
+    })
+    .add('AddressRing (more than 6)', () => {
+        return {
+            data() {
+                return {
+                    addresses: [
+                        'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE',
+                        'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
+                        'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
+                        'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
+                        'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
+                        'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
+                        'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
+                        'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
+                        'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
+                        'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
+                        'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
+                        'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
+                    ],
+                };
+            },
+            components: {AddressRing},
+            template: `<div style="background: white"><AddressRing :addresses="addresses"/></div>`,
+        };
+    })
+    .add('AddressRing (empty)', () => {
+        return {
+            data() {
+                return {
+                    addresses: [],
+                };
+            },
+            components: {AddressRing},
+            template: `<div style="background: white"><AddressRing :addresses="addresses"/></div>`,
         };
     })
     .add('AmountWithDetails', () => {

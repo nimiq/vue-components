@@ -16,12 +16,12 @@
     "storybook": "start-storybook -p 6006 -c .storybook -s ."
   },
   "dependencies": {
+    "@nimiq/style": "^0.5.1",
     "vue": "^2.5.17",
     "vue-property-decorator": "^7.0.0"
   },
   "devDependencies": {
     "@nimiq/iqons": "^1.1.1",
-    "@nimiq/style": "^0.4.3",
     "@nimiq/utils": "^0.2.0",
     "@storybook/addon-actions": "^4.0.0-alpha.14",
     "@storybook/addon-knobs": "^4.0.0-alpha.14",
