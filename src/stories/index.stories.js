@@ -8,7 +8,7 @@ import AccountList from '../components/AccountList.vue';
 import AccountSelector from '../components/AccountSelector.vue';
 import Address from '../components/Address.vue';
 import AddressDisplay from '../components/AddressDisplay.vue';
-import AddressRing from '../components/AddressRing.vue';
+import AccountAddresses from '../components/AccountAddresses.vue';
 import Amount from '../components/Amount.vue';
 import AmountWithDetails from '../components/AmountWithDetails.vue';
 import Contact from '../components/Contact.vue';
@@ -214,7 +214,7 @@ storiesOf('Components', module)
             template: `<AddressDisplay :address="address"/>`,
         };
     })
-    .add('AddressRing', () => {
+    .add('AccountAddresses', () => {
         return {
             data() {
                 return {
@@ -225,11 +225,11 @@ storiesOf('Components', module)
                     ],
                 };
             },
-            components: {AddressRing},
-            template: `<AddressRing :addresses="addresses"/>`,
+            components: {AccountAddresses},
+            template: `<AccountAddresses :addresses="addresses"/>`,
         };
     })
-    .add('AddressRing (more than 6)', () => {
+    .add('AccountAddresses (more than 6)', () => {
         return {
             data() {
                 return {
@@ -249,19 +249,19 @@ storiesOf('Components', module)
                     ],
                 };
             },
-            components: {AddressRing},
-            template: `<AddressRing :addresses="addresses"/>`,
+            components: {AccountAddresses},
+            template: `<AccountAddresses :addresses="addresses"/>`,
         };
     })
-    .add('AddressRing (empty)', () => {
+    .add('AccountAddresses (empty)', () => {
         return {
             data() {
                 return {
                     addresses: [],
                 };
             },
-            components: {AddressRing},
-            template: `<AddressRing :addresses="addresses"/>`,
+            components: {AccountAddresses},
+            template: `<AccountAddresses :addresses="addresses"/>`,
         };
     })
     .add('AmountWithDetails', () => {
