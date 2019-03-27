@@ -226,7 +226,7 @@ storiesOf('Components', module)
                 };
             },
             components: {AccountAddresses},
-            template: `<AccountAddresses :addresses="addresses"/>`,
+            template: `<AccountAddresses :addresses="addresses" :animate="true"/>`,
         };
     })
     .add('AccountAddresses (more than 6)', () => {
@@ -250,7 +250,7 @@ storiesOf('Components', module)
                 };
             },
             components: {AccountAddresses},
-            template: `<AccountAddresses :addresses="addresses"/>`,
+            template: `<AccountAddresses :addresses="addresses" :animate="true"/>`,
         };
     })
     .add('AccountAddresses (empty)', () => {
@@ -261,7 +261,7 @@ storiesOf('Components', module)
                 };
             },
             components: {AccountAddresses},
-            template: `<AccountAddresses :addresses="addresses"/>`,
+            template: `<AccountAddresses :addresses="addresses" :animate="true"/>`,
         };
     })
     .add('AmountWithDetails', () => {
