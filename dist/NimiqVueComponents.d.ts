@@ -47,6 +47,12 @@ declare module 'NimiqVueComponents/src/components/AccountList.vue' {
 
 declare module 'NimiqVueComponents/src/components/AccountSelector.vue' {
     import { Vue } from 'vue-property-decorator';
+    export interface ContractInfo {
+        label: string;
+        userFriendlyAddress: string;
+        balance?: number;
+        walletId?: string;
+    }
     export interface AccountInfo {
         path: string;
         label: string;
