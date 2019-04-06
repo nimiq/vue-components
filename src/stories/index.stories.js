@@ -1,6 +1,6 @@
 import {storiesOf} from '@storybook/vue';
 import {action} from '@storybook/addon-actions';
-import {boolean, number, text, object, withKnobs} from '@storybook/addon-knobs';
+import {boolean, number, text, object, select, withKnobs} from '@storybook/addon-knobs';
 
 import Account from '../components/Account.vue';
 import AccountInfo from '../components/AccountInfo.vue';
@@ -619,50 +619,46 @@ storiesOf('Components', module)
 storiesOf('Pages', module)
     .addDecorator(withKnobs)
     .add('AccountInfo', () => {
+        const demoType = select('Demo Type', {
+            'Normal Account': 'normal',
+            'Merchant': 'merchant',
+        }, 'normal');
+
+        const demoData = {
+            normal: {
+                walletLabel: 'Keyguard Wallet',
+                account: {
+                    userFriendlyAddress: 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1',
+                    label: 'Savings',
+                    balance: 2712415141213,
+                },
+                origin: null,
+                shopLogoUrl: null,
+            },
+            merchant: {
+                walletLabel: null,
+                account: {
+                    userFriendlyAddress: 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1',
+                },
+                origin: 'https://shop.nimiq.com',
+                // shopLogoUrl: 'https://shop.nimiq.com/wp-content/uploads/2018/10/nimiq_signet_rgb_base_size.576px.png',
+                shopLogoUrl: 'https://www.decsa.com/wp-content/uploads/2016/10/mcds.png',
+            },
+        }[demoType];
+
         return {
             components: {AccountInfo, SmallPage},
             methods: {
                 close: action('close'),
             },
-            data() {
-                return {
-                    walletLabel: 'Keyguard Wallet',
-                    account: {
-                        userFriendlyAddress: 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1',
-                        label: 'Savings',
-                        balance: 2712415141213,
-                    },
-                };
-            },
-            template: windowTemplate(`<small-page style="height: 560px;">
-    <AccountInfo :address="account.userFriendlyAddress" :label="account.label" :balance="account.balance" :walletLabel="walletLabel" @close="close"/>
-</small-page>
-`),
-        };
-    })
-    .add('AccountInfo (merchant)', () => {
-        return {
-            components: {AccountInfo, SmallPage},
-            methods: {
-                close: action('close'),
-            },
-            data() {
-                return {
-                    walletLabel: 'Keyguard Wallet',
-                    account: {
-                        userFriendlyAddress: 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1',
-                        label: 'Savings',
-                        balance: 2712415141213,
-                    },
-                    origin: 'https://shop.nimiq.com',
-                    // shopLogoUrl: 'https://shop.nimiq.com/wp-content/uploads/2018/10/nimiq_signet_rgb_base_size.576px.png',
-                    shopLogoUrl: 'https://www.decsa.com/wp-content/uploads/2016/10/mcds.png',
-                };
-            },
-            template: windowTemplate(`<small-page style="height: 560px;">
-    <AccountInfo :address="account.userFriendlyAddress" :shopLogoUrl="shopLogoUrl" :origin="origin" @close="close"/>
-</small-page>
-`),
+            data: () => demoData,
+            template: windowTemplate(`
+                <small-page style="height: 560px;">
+                    <AccountInfo :address="account.userFriendlyAddress" :label="account.label"
+                    :balance="account.balance" :walletLabel="walletLabel"
+                    :shopLogoUrl="shopLogoUrl" :origin="origin" @close="close"/>
+                </small-page>
+            `),
         };
     });
 
