@@ -1,5 +1,5 @@
 <template>
-    <div class="account-info">
+    <div class="account-details">
         <a href="javascript:void(0)" class="nq-icon cancel-circle" @click="close"></a>
         <Account layout="column" :address="address" :image="image" :label="label !== address ? label : ''"
              :walletLabel="walletLabel" :balance="balance"></Account>
@@ -14,7 +14,7 @@ import Amount from './Amount.vue';
 import AddressDisplay from './AddressDisplay.vue';
 
 @Component({components: {Account, Amount, AddressDisplay}})
-export default class AccountInfo extends Vue {
+export default class AccountDetails extends Vue {
     @Prop(String) private address!: string;
     @Prop(String) private image?: string;
     @Prop(String) private label?: string;
@@ -44,7 +44,7 @@ export default class AccountInfo extends Vue {
     }
     /* END Nimiq Style */
 
-    .account-info {
+    .account-details {
         display: flex;
         flex-direction: column;
         justify-content: center;

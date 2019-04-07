@@ -3,7 +3,7 @@ import {action} from '@storybook/addon-actions';
 import {boolean, number, text, object, select, withKnobs} from '@storybook/addon-knobs';
 
 import Account from '../components/Account.vue';
-import AccountInfo from '../components/AccountInfo.vue';
+import AccountDetails from '../components/AccountDetails.vue';
 import AccountList from '../components/AccountList.vue';
 import AccountSelector from '../components/AccountSelector.vue';
 import Address from '../components/Address.vue';
@@ -619,7 +619,7 @@ storiesOf('Components', module)
 
 storiesOf('Pages', module)
     .addDecorator(withKnobs)
-    .add('AccountInfo', () => {
+    .add('AccountDetails', () => {
         const demoType = select('Demo Type', {
             'Normal Account': 'normal',
             'Merchant': 'merchant',
@@ -648,7 +648,7 @@ storiesOf('Pages', module)
         }[demoType];
 
         return {
-            components: {AccountInfo, SmallPage},
+            components: {AccountDetails, SmallPage},
             methods: {
                 close: action('close'),
             },
@@ -660,7 +660,7 @@ storiesOf('Pages', module)
             },
             template: windowTemplate(`
                 <small-page style="height: 560px;">
-                    <AccountInfo :address="account.userFriendlyAddress" :label="label"
+                    <AccountDetails :address="account.userFriendlyAddress" :label="label"
                     :balance="account.balance" :walletLabel="walletLabel"
                     :image="shopLogoUrl" @close="close"/>
                 </small-page>
@@ -672,7 +672,7 @@ storiesOf('Pages/Checkout', module)
     .addDecorator(withKnobs)
     .add('AccountSelector (one wallet)', () => {
         return {
-            components: {AccountSelector, PaymentInfoLine, AccountInfo, SmallPage},
+            components: {AccountSelector, PaymentInfoLine, AccountDetails, SmallPage},
             methods: {
                 accountSelected: action('account-selected'),
                 login: action('login'),
@@ -725,14 +725,14 @@ storiesOf('Pages/Checkout', module)
     <PaymentInfoLine :amount="amount" :fee="fee" :address="shopAddress" :origin="origin" :shopLogoUrl="shopLogoUrl" @merchant-info-clicked="openMerchantInfo"/>
     <h1 style="font-size: 3rem; text-align: center; margin: 3rem 0 1rem; line-height: 1;">Choose an account to pay</h1>
     <AccountSelector @account-selected="accountSelected" @login="login" :wallets="wallets" :minBalance="amount + fee"/>
-    <AccountInfo v-if="showMerchantInfo" :address="shopAddress" :label="originDomain" :image="shopLogoUrl" @close="closeMerchantInfo" style="position: absolute; left: 0; top: 0;"/>
+    <AccountDetails v-if="showMerchantInfo" :address="shopAddress" :label="originDomain" :image="shopLogoUrl" @close="closeMerchantInfo" style="position: absolute; left: 0; top: 0;"/>
 </small-page>
 `),
         };
     })
     .add('AccountSelector (two wallets)', () => {
         return {
-            components: {AccountSelector, PaymentInfoLine, AccountInfo, SmallPage},
+            components: {AccountSelector, PaymentInfoLine, AccountDetails, SmallPage},
             methods: {
                 accountSelected: action('account-selected'),
                 login: action('login'),
@@ -808,7 +808,7 @@ storiesOf('Pages/Checkout', module)
     <PaymentInfoLine :amount="amount" :fee="fee" :address="shopAddress" :origin="origin" :shopLogoUrl="shopLogoUrl" @merchant-info-clicked="openMerchantInfo"/>
     <h1 style="font-size: 3rem; text-align: center; margin: 3rem 0 1rem; line-height: 1;">Choose an account to pay</h1>
     <AccountSelector @account-selected="accountSelected" @login="login" :wallets="wallets" :minBalance="amount + fee"/>
-    <AccountInfo v-if="showMerchantInfo" :address="shopAddress" :label="originDomain" :image="shopLogoUrl" @close="closeMerchantInfo" style="position: absolute; left: 0; top: 0;"/>
+    <AccountDetails v-if="showMerchantInfo" :address="shopAddress" :label="originDomain" :image="shopLogoUrl" @close="closeMerchantInfo" style="position: absolute; left: 0; top: 0;"/>
 </small-page>
 `),
         };
