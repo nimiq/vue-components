@@ -104,32 +104,21 @@ storiesOf('Components', module)
         const label = text('label', 'My account');
         const address = text('address', 'NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM');
         const balance = number('balance', 12023110);
-
-        return {
-            components: {Account},
-            data() {
-                return { address };
-            },
-            template: `<Account :address="address" label="${label}" :balance="${balance}"></Account>`,
-        };
-    })
-    .add('Account (editable)', () => {
-        const label = text('label', 'My account');
-        const address = text('address', 'NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM');
-        const balance = number('balance', 12023110);
+        const editable = boolean('editable', false);
 
         return {
             components: {Account},
             methods: {
                 changed: action('changed'),
             },
-            data() {
-                return { address };
-            },
-            template: `<Account :address="address" label="${label}" :balance="${balance}" :editable="true" @changed="changed"></Account>`,
+            data: () => ({ address, label, balance, editable }),
+            template: `<Account :address="address" :label="label" :balance="balance"
+                :editable="editable" @changed="changed"></Account>`,
         };
     })
     .add('AccountList', () => {
+        const minBalance = number('minBalance', 1000) * 1e5;
+        const editable = boolean('editable', false);
         return {
             components: {AccountList},
             methods: {
@@ -154,10 +143,12 @@ storiesOf('Components', module)
                             balance: 12023110,
                         }
                     ],
-                    minBalance: 1000e5,
+                    minBalance,
+                    editable,
                 };
             },
-            template: `<AccountList @account-selected="accountSelected" :accounts="accounts" walletId="helloworld1" :minBalance="minBalance"/>`
+            template: `<AccountList @account-selected="accountSelected" :accounts="accounts" walletId="helloworld1"
+                :minBalance="minBalance" :editable="editable" />`
         };
     })
     .add('AccountSelector', () => {
