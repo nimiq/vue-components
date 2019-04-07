@@ -101,19 +101,26 @@ storiesOf('Basic', module)
 storiesOf('Components', module)
     .addDecorator(withKnobs)
     .add('Account', () => {
-        const label = text('label', 'My account');
-        const address = text('address', 'NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM');
-        const balance = number('balance', 12023110);
-        const editable = boolean('editable', false);
+        const layout = select('Layout', ['row', 'column'], 'row');
+        const address = text('Address', 'NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM');
+        const label = text('Label', 'My account');
+        const walletLabel = text('Wallet Label', '');
+        const image = select('Image Url', {
+            'None': '',
+            'Restaurant Golden Swallow': 'https://www.decsa.com/wp-content/uploads/2016/10/mcds.png',
+            'Invalid Image': 'javascript:alert(1)',
+        }, '');
+        const balance = number('Balance (can be empty)', 12023110);
+        const editable = boolean('Editable', false);
 
         return {
             components: {Account},
             methods: {
                 changed: action('changed'),
             },
-            data: () => ({ address, label, balance, editable }),
-            template: `<Account :address="address" :label="label" :balance="balance"
-                :editable="editable" @changed="changed"></Account>`,
+            data: () => ({ layout, address, label, walletLabel, image, balance, editable }),
+            template: `<Account :layout="layout" :address="address" :label="label" :walletLabel="walletLabel"
+                :image="image" :balance="balance" :editable="editable" @changed="changed"></Account>`,
         };
     })
     .add('AccountList', () => {
