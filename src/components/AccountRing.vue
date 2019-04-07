@@ -23,12 +23,12 @@ export default class AccountRing extends Vue {
 <style scoped>
     .account-ring {
         position: relative;
-        --hex-width: calc(var(--nimiq-size) * 4);
+        width: 11.25rem;
+        height: 11.25rem;
+        --hex-width: calc(35.556%);
         --hex-height: calc(var(--hex-width) * (24 / 27)); /* from placeholder viewBox="0 0 27 24" */
         --gap-x: calc(var(--hex-width) / 12);
         --gap-y: calc(var(--gap-x) * .9);
-        min-height: calc(3 * var(--hex-height) + 2 * var(--gap-y));
-        min-width: calc(2.5 * var(--hex-width) + 2 * var(--gap-x));
     }
 
     .account {
