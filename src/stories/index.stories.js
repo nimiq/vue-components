@@ -514,7 +514,9 @@ storiesOf('Components', module)
         };
     })
     .add('PaymentInfoLine', () => {
+        const address = text('address', 'NQ07 0000 00000000 0000 0000 0000 0000 0000');
         const origin = text('origin', 'https://shop.nimiq.com');
+        const shopLogo = text('shopLogo', 'https://www.decsa.com/wp-content/uploads/2016/10/mcds.png');
         const amount = number('amount', 199862);
         const fee = number('fee', 138);
         return {
@@ -522,7 +524,8 @@ storiesOf('Components', module)
             methods: {
                 merchantInfoClicked: action('merchant-info-clicked'),
             },
-            template: `<div style="width: 400px"><PaymentInfoLine :amount="${amount}" :fee="${fee}" origin="${origin}" @merchant-info-clicked="merchantInfoClicked"/></div>`,
+            template: `<div style="width: 400px"><PaymentInfoLine address="${address}" :amount="${amount}" :fee="${fee}"
+                origin="${origin}" shopLogoUrl="${shopLogo}" @merchant-info-clicked="merchantInfoClicked"/></div>`,
         };
     })
     .add('QrCode', () => {
