@@ -630,7 +630,7 @@ storiesOf('Pages', module)
                 walletLabel: 'Keyguard Wallet',
                 account: {
                     userFriendlyAddress: 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1',
-                    label: 'Savings',
+                    label: 'Savings Account',
                     balance: 2712415141213,
                 },
                 origin: null,
@@ -641,7 +641,7 @@ storiesOf('Pages', module)
                 account: {
                     userFriendlyAddress: 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1',
                 },
-                origin: 'https://shop.nimiq.com',
+                origin: 'https://macces.com',
                 // shopLogoUrl: 'https://shop.nimiq.com/wp-content/uploads/2018/10/nimiq_signet_rgb_base_size.576px.png',
                 shopLogoUrl: 'https://www.decsa.com/wp-content/uploads/2016/10/mcds.png',
             },
@@ -653,11 +653,16 @@ storiesOf('Pages', module)
                 close: action('close'),
             },
             data: () => demoData,
+            computed: {
+                label() {
+                    return this.account.label || this.origin.split('://')[1];
+                }
+            },
             template: windowTemplate(`
                 <small-page style="height: 560px;">
-                    <AccountInfo :address="account.userFriendlyAddress" :label="account.label"
+                    <AccountInfo :address="account.userFriendlyAddress" :label="label"
                     :balance="account.balance" :walletLabel="walletLabel"
-                    :shopLogoUrl="shopLogoUrl" :origin="origin" @close="close"/>
+                    :image="shopLogoUrl" @close="close"/>
                 </small-page>
             `),
         };
@@ -711,6 +716,7 @@ storiesOf('Pages/Checkout', module)
                     fee: 138,
                     shopAddress: 'NQ21 YPRN 1KVN BQP5 A17U YGD3 HH96 6TKA 6BL4',
                     origin: 'https://mcdonalds.com',
+                    originDomain: 'mcdonalds.com',
                     shopLogoUrl: 'https://brandmark.io/logo-rank/random/mcdonalds.png',
                     showMerchantInfo: false,
                 };
@@ -719,7 +725,7 @@ storiesOf('Pages/Checkout', module)
     <PaymentInfoLine :amount="amount" :fee="fee" :address="shopAddress" :origin="origin" :shopLogoUrl="shopLogoUrl" @merchant-info-clicked="openMerchantInfo"/>
     <h1 style="font-size: 3rem; text-align: center; margin: 3rem 0 1rem; line-height: 1;">Choose an account to pay</h1>
     <AccountSelector @account-selected="accountSelected" @login="login" :wallets="wallets" :minBalance="amount + fee"/>
-    <AccountInfo v-if="showMerchantInfo" :address="shopAddress" :origin="origin" :shopLogoUrl="shopLogoUrl" @close="closeMerchantInfo" style="position: absolute; left: 0; top: 0;"/>
+    <AccountInfo v-if="showMerchantInfo" :address="shopAddress" :label="originDomain" :image="shopLogoUrl" @close="closeMerchantInfo" style="position: absolute; left: 0; top: 0;"/>
 </small-page>
 `),
         };
@@ -793,6 +799,7 @@ storiesOf('Pages/Checkout', module)
                     fee: 138,
                     shopAddress: 'NQ21 YPRN 1KVN BQP5 A17U YGD3 HH96 6TKA 6BL4',
                     origin: 'https://shop.nimiq.com',
+                    originDomain: 'shop.nimiq.com',
                     shopLogoUrl: 'https://shop.nimiq.com/wp-content/uploads/2018/10/nimiq_signet_rgb_base_size.576px.png',
                     showMerchantInfo: false,
                 };
@@ -801,7 +808,7 @@ storiesOf('Pages/Checkout', module)
     <PaymentInfoLine :amount="amount" :fee="fee" :address="shopAddress" :origin="origin" :shopLogoUrl="shopLogoUrl" @merchant-info-clicked="openMerchantInfo"/>
     <h1 style="font-size: 3rem; text-align: center; margin: 3rem 0 1rem; line-height: 1;">Choose an account to pay</h1>
     <AccountSelector @account-selected="accountSelected" @login="login" :wallets="wallets" :minBalance="amount + fee"/>
-    <AccountInfo v-if="showMerchantInfo" :address="shopAddress" :origin="origin" :shopLogoUrl="shopLogoUrl" @close="closeMerchantInfo" style="position: absolute; left: 0; top: 0;"/>
+    <AccountInfo v-if="showMerchantInfo" :address="shopAddress" :label="originDomain" :image="shopLogoUrl" @close="closeMerchantInfo" style="position: absolute; left: 0; top: 0;"/>
 </small-page>
 `),
         };
