@@ -230,7 +230,7 @@ storiesOf('Components', module)
                 Atomatic width/height:<br><br>
                 <AccountRing :addresses="addresses" :animate="true"/>
                 <br>300px width/height:<br><br>
-                <AccountRing style="width: 300px; height: 300px;" :addresses="addresses" :animate="true"/>
+                <AccountRing style="width: 300px;" :addresses="addresses" :animate="true"/>
             </div>`,
         };
     })
