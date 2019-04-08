@@ -1,7 +1,7 @@
 <template>
     <div class="account-ring">
-        <div v-for="n in 6" class="account" :key="n" :class="{ placeholder: n > addresses.length, 'pop-in': animate }">
-            <Identicon v-if="n <= addresses.length" :address="addresses[n - 1]"></Identicon>
+        <div v-for="n in 6" class="account" :key="n" :class="{ placeholder: n > addresses.length }">
+            <Identicon v-if="n <= addresses.length" :address="addresses[n - 1]" :class="{ 'pop-in': animate }"></Identicon>
         </div>
     </div>
 </template>
@@ -88,10 +88,10 @@ export default class AccountRing extends Vue {
         top: calc(50% - 1 * var(--hex-height) - 0.5 * var(--gap-y));
     }
 
-    .account:nth-child(1).pop-in { animation-delay: 500ms; }
-    .account:nth-child(2).pop-in { animation-delay: 550ms; }
-    .account:nth-child(3).pop-in { animation-delay: 600ms; }
-    .account:nth-child(4).pop-in { animation-delay: 650ms; }
-    .account:nth-child(5).pop-in { animation-delay: 700ms; }
-    .account:nth-child(6).pop-in { animation-delay: 750ms; }
+    .account:nth-child(1) .pop-in { animation-delay: 500ms; }
+    .account:nth-child(2) .pop-in { animation-delay: 550ms; }
+    .account:nth-child(3) .pop-in { animation-delay: 600ms; }
+    .account:nth-child(4) .pop-in { animation-delay: 650ms; }
+    .account:nth-child(5) .pop-in { animation-delay: 700ms; }
+    .account:nth-child(6) .pop-in { animation-delay: 750ms; }
 </style>
