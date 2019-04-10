@@ -182,6 +182,7 @@ storiesOf('Components', module)
                                     balance: 2712415141213,
                                 }
                             ],
+                            contracts: [],
                         },
                     ],
                 };
@@ -706,6 +707,7 @@ storiesOf('Pages/Checkout', module)
                                     balance: 7463341234,
                                 },
                             ],
+                            contracts: [],
                         },
                     ],
                     amount: 199900000,
@@ -764,6 +766,7 @@ storiesOf('Pages/Checkout', module)
                                     balance: 7463341234,
                                 },
                             ],
+                            contracts: [],
                         },
                         {
                             id: 'helloworld4',
@@ -786,6 +789,7 @@ storiesOf('Pages/Checkout', module)
                                     balance: 2023110,
                                 },
                             ],
+                            contracts: [],
                         },
                     ],
                     amount: 199900000,
