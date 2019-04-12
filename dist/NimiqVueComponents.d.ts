@@ -4,8 +4,9 @@
 
 declare module 'NimiqVueComponents' {
     export { default as Account } from 'NimiqVueComponents/src/components/Account.vue';
-    export { default as AccountInfo } from 'NimiqVueComponents/src/components/AccountInfo.vue';
+    export { default as AccountDetails } from 'NimiqVueComponents/src/components/AccountDetails.vue';
     export { default as AccountList } from 'NimiqVueComponents/src/components/AccountList.vue';
+    export { default as AccountRing } from 'NimiqVueComponents/src/components/AccountRing.vue';
     export { default as AccountSelector } from 'NimiqVueComponents/src/components/AccountSelector.vue';
     export { default as AddressDisplay } from 'NimiqVueComponents/src/components/AddressDisplay.vue';
     export { default as Amount } from 'NimiqVueComponents/src/components/Amount.vue';
@@ -24,15 +25,19 @@ declare module 'NimiqVueComponents/src/components/Account.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class Account extends Vue {
         address: string;
+        image?: string;
         label: string;
-        balance: number;
+        walletLabel?: string;
+        balance?: number;
+        editable?: boolean;
+        layout: string;
         focus(): void;
     }
 }
 
-declare module 'NimiqVueComponents/src/components/AccountInfo.vue' {
+declare module 'NimiqVueComponents/src/components/AccountDetails.vue' {
     import { Vue } from 'vue-property-decorator';
-    export default class AccountInfo extends Vue {
+    export default class AccountDetails extends Vue {
     }
 }
 
@@ -42,6 +47,14 @@ declare module 'NimiqVueComponents/src/components/AccountList.vue' {
     export default class AccountList extends Vue {
         accounts: AccountInfo[];
         focus(address: string): void;
+    }
+}
+
+declare module 'NimiqVueComponents/src/components/AccountRing.vue' {
+    import { Vue } from 'vue-property-decorator';
+    export default class AccountRing extends Vue {
+        addresses: string[];
+        animate: boolean;
     }
 }
 
