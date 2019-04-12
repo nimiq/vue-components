@@ -1,7 +1,8 @@
 // Components
 export { default as Account } from './components/Account.vue';
-export { default as AccountInfo } from './components/AccountInfo.vue';
+export { default as AccountDetails } from './components/AccountDetails.vue';
 export { default as AccountList } from './components/AccountList.vue';
+export { default as AccountRing } from './components/AccountRing.vue';
 export { default as AccountSelector } from './components/AccountSelector.vue';
 // export { default as Address } from './components/Address.vue';
 export { default as AddressDisplay } from './components/AddressDisplay.vue';

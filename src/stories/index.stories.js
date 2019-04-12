@@ -1,13 +1,14 @@
 import {storiesOf} from '@storybook/vue';
 import {action} from '@storybook/addon-actions';
-import {boolean, number, text, object, withKnobs} from '@storybook/addon-knobs';
+import {boolean, number, text, object, select, withKnobs} from '@storybook/addon-knobs';
 
 import Account from '../components/Account.vue';
-import AccountInfo from '../components/AccountInfo.vue';
+import AccountDetails from '../components/AccountDetails.vue';
 import AccountList from '../components/AccountList.vue';
 import AccountSelector from '../components/AccountSelector.vue';
 import Address from '../components/Address.vue';
 import AddressDisplay from '../components/AddressDisplay.vue';
+import AccountRing from '../components/AccountRing.vue';
 import Amount from '../components/Amount.vue';
 import AmountWithDetails from '../components/AmountWithDetails.vue';
 import Contact from '../components/Contact.vue';
@@ -100,35 +101,31 @@ storiesOf('Basic', module)
 storiesOf('Components', module)
     .addDecorator(withKnobs)
     .add('Account', () => {
-        const label = text('label', 'My account');
-        const address = text('address', 'NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM');
-        const balance = number('balance', 12023110);
-
-        return {
-            components: {Account},
-            data() {
-                return { address };
-            },
-            template: `<Account :address="address" label="${label}" :balance="${balance}"></Account>`,
-        };
-    })
-    .add('Account (editable)', () => {
-        const label = text('label', 'My account');
-        const address = text('address', 'NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM');
-        const balance = number('balance', 12023110);
+        const layout = select('Layout', ['row', 'column'], 'row');
+        const address = text('Address', 'NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM');
+        const label = text('Label', 'My account');
+        const walletLabel = text('Wallet Label', '');
+        const image = select('Image Url', {
+            'None': '',
+            'Restaurant Golden Swallow': 'https://www.decsa.com/wp-content/uploads/2016/10/mcds.png',
+            'Invalid Image': 'javascript:alert(1)',
+        }, '');
+        const balance = number('Balance (can be empty)', 12023110);
+        const editable = boolean('Editable', false);
 
         return {
             components: {Account},
             methods: {
                 changed: action('changed'),
             },
-            data() {
-                return { address };
-            },
-            template: `<Account :address="address" label="${label}" :balance="${balance}" :editable="true" @changed="changed"></Account>`,
+            data: () => ({ layout, address, label, walletLabel, image, balance, editable }),
+            template: `<Account :layout="layout" :address="address" :label="label" :walletLabel="walletLabel"
+                :image="image" :balance="balance" :editable="editable" @changed="changed"></Account>`,
         };
     })
     .add('AccountList', () => {
+        const minBalance = number('minBalance', 1000) * 1e5;
+        const editable = boolean('editable', false);
         return {
             components: {AccountList},
             methods: {
@@ -153,10 +150,12 @@ storiesOf('Components', module)
                             balance: 12023110,
                         }
                     ],
-                    minBalance: 1000e5,
+                    minBalance,
+                    editable,
                 };
             },
-            template: `<AccountList @account-selected="accountSelected" :accounts="accounts" walletId="helloworld1" :minBalance="minBalance"/>`
+            template: `<AccountList @account-selected="accountSelected" :accounts="accounts" walletId="helloworld1"
+                :minBalance="minBalance" :editable="editable" />`
         };
     })
     .add('AccountSelector', () => {
@@ -181,6 +180,7 @@ storiesOf('Components', module)
                                     balance: 2712415141213,
                                 }
                             ],
+                            contracts: [],
                         },
                     ],
                 };
@@ -211,6 +211,61 @@ storiesOf('Components', module)
             },
             components: {AddressDisplay},
             template: `<AddressDisplay :address="address"/>`,
+        };
+    })
+    .add('AccountRing', () => {
+        return {
+            data() {
+                return {
+                    addresses: [
+                        'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE',
+                        'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
+                        'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
+                    ],
+                };
+            },
+            components: {AccountRing},
+            template: `<div>
+                Atomatic width/height:<br><br>
+                <AccountRing :addresses="addresses" :animate="true"/>
+                <br>300px width/height:<br><br>
+                <AccountRing style="width: 300px;" :addresses="addresses" :animate="true"/>
+            </div>`,
+        };
+    })
+    .add('AccountRing (more than 6)', () => {
+        return {
+            data() {
+                return {
+                    addresses: [
+                        'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE',
+                        'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
+                        'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
+                        'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
+                        'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
+                        'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
+                        'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
+                        'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
+                        'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
+                        'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
+                        'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
+                        'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
+                    ],
+                };
+            },
+            components: {AccountRing},
+            template: `<AccountRing :addresses="addresses" :animate="true"/>`,
+        };
+    })
+    .add('AccountRing (empty)', () => {
+        return {
+            data() {
+                return {
+                    addresses: [],
+                };
+            },
+            components: {AccountRing},
+            template: `<AccountRing :addresses="addresses" :animate="true"/>`,
         };
     })
     .add('AmountWithDetails', () => {
@@ -466,7 +521,9 @@ storiesOf('Components', module)
         };
     })
     .add('PaymentInfoLine', () => {
+        const address = text('address', 'NQ07 0000 00000000 0000 0000 0000 0000 0000');
         const origin = text('origin', 'https://shop.nimiq.com');
+        const shopLogo = text('shopLogo', 'https://www.decsa.com/wp-content/uploads/2016/10/mcds.png');
         const amount = number('amount', 199862);
         const fee = number('fee', 138);
         return {
@@ -474,7 +531,8 @@ storiesOf('Components', module)
             methods: {
                 merchantInfoClicked: action('merchant-info-clicked'),
             },
-            template: `<div style="width: 400px"><PaymentInfoLine :amount="${amount}" :fee="${fee}" origin="${origin}" @merchant-info-clicked="merchantInfoClicked"/></div>`,
+            template: `<div style="width: 400px"><PaymentInfoLine address="${address}" :amount="${amount}" :fee="${fee}"
+                origin="${origin}" shopLogoUrl="${shopLogo}" @merchant-info-clicked="merchantInfoClicked"/></div>`,
         };
     })
     .add('QrCode', () => {
@@ -561,51 +619,52 @@ storiesOf('Components', module)
 
 storiesOf('Pages', module)
     .addDecorator(withKnobs)
-    .add('AccountInfo', () => {
+    .add('AccountDetails', () => {
+        const demoType = select('Demo Type', {
+            'Normal Account': 'normal',
+            'Merchant': 'merchant',
+        }, 'normal');
+
+        const demoData = {
+            normal: {
+                walletLabel: 'Keyguard Wallet',
+                account: {
+                    userFriendlyAddress: 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1',
+                    label: 'Savings Account',
+                    balance: 2712415141213,
+                },
+                origin: null,
+                shopLogoUrl: null,
+            },
+            merchant: {
+                walletLabel: null,
+                account: {
+                    userFriendlyAddress: 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1',
+                },
+                origin: 'https://macces.com',
+                // shopLogoUrl: 'https://shop.nimiq.com/wp-content/uploads/2018/10/nimiq_signet_rgb_base_size.576px.png',
+                shopLogoUrl: 'https://www.decsa.com/wp-content/uploads/2016/10/mcds.png',
+            },
+        }[demoType];
+
         return {
-            components: {AccountInfo, SmallPage},
+            components: {AccountDetails, SmallPage},
             methods: {
                 close: action('close'),
             },
-            data() {
-                return {
-                    walletLabel: 'Keyguard Wallet',
-                    account: {
-                        userFriendlyAddress: 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1',
-                        label: 'Savings',
-                        balance: 2712415141213,
-                    },
-                };
+            data: () => demoData,
+            computed: {
+                label() {
+                    return this.account.label || this.origin.split('://')[1];
+                }
             },
-            template: windowTemplate(`<small-page style="height: 560px;">
-    <AccountInfo :address="account.userFriendlyAddress" :label="account.label" :balance="account.balance" :walletLabel="walletLabel" @close="close"/>
-</small-page>
-`),
-        };
-    })
-    .add('AccountInfo (merchant)', () => {
-        return {
-            components: {AccountInfo, SmallPage},
-            methods: {
-                close: action('close'),
-            },
-            data() {
-                return {
-                    walletLabel: 'Keyguard Wallet',
-                    account: {
-                        userFriendlyAddress: 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1',
-                        label: 'Savings',
-                        balance: 2712415141213,
-                    },
-                    origin: 'https://shop.nimiq.com',
-                    // shopLogoUrl: 'https://shop.nimiq.com/wp-content/uploads/2018/10/nimiq_signet_rgb_base_size.576px.png',
-                    shopLogoUrl: 'https://www.decsa.com/wp-content/uploads/2016/10/mcds.png',
-                };
-            },
-            template: windowTemplate(`<small-page style="height: 560px;">
-    <AccountInfo :address="account.userFriendlyAddress" :shopLogoUrl="shopLogoUrl" :origin="origin" @close="close"/>
-</small-page>
-`),
+            template: windowTemplate(`
+                <small-page style="height: 560px;">
+                    <AccountDetails :address="account.userFriendlyAddress" :label="label"
+                    :balance="account.balance" :walletLabel="walletLabel"
+                    :image="shopLogoUrl" @close="close"/>
+                </small-page>
+            `),
         };
     });
 
@@ -613,7 +672,7 @@ storiesOf('Pages/Checkout', module)
     .addDecorator(withKnobs)
     .add('AccountSelector (one wallet)', () => {
         return {
-            components: {AccountSelector, PaymentInfoLine, AccountInfo, SmallPage},
+            components: {AccountSelector, PaymentInfoLine, AccountDetails, SmallPage},
             methods: {
                 accountSelected: action('account-selected'),
                 login: action('login'),
@@ -650,12 +709,14 @@ storiesOf('Pages/Checkout', module)
                                     balance: 7463341234,
                                 },
                             ],
+                            contracts: [],
                         },
                     ],
                     amount: 199900000,
                     fee: 138,
                     shopAddress: 'NQ21 YPRN 1KVN BQP5 A17U YGD3 HH96 6TKA 6BL4',
                     origin: 'https://mcdonalds.com',
+                    originDomain: 'mcdonalds.com',
                     shopLogoUrl: 'https://brandmark.io/logo-rank/random/mcdonalds.png',
                     showMerchantInfo: false,
                 };
@@ -664,14 +725,14 @@ storiesOf('Pages/Checkout', module)
     <PaymentInfoLine :amount="amount" :fee="fee" :address="shopAddress" :origin="origin" :shopLogoUrl="shopLogoUrl" @merchant-info-clicked="openMerchantInfo"/>
     <h1 style="font-size: 3rem; text-align: center; margin: 3rem 0 1rem; line-height: 1;">Choose an account to pay</h1>
     <AccountSelector @account-selected="accountSelected" @login="login" :wallets="wallets" :minBalance="amount + fee"/>
-    <AccountInfo v-if="showMerchantInfo" :address="shopAddress" :origin="origin" :shopLogoUrl="shopLogoUrl" @close="closeMerchantInfo" style="position: absolute; left: 0; top: 0;"/>
+    <AccountDetails v-if="showMerchantInfo" :address="shopAddress" :label="originDomain" :image="shopLogoUrl" @close="closeMerchantInfo" style="position: absolute; left: 0; top: 0;"/>
 </small-page>
 `),
         };
     })
     .add('AccountSelector (two wallets)', () => {
         return {
-            components: {AccountSelector, PaymentInfoLine, AccountInfo, SmallPage},
+            components: {AccountSelector, PaymentInfoLine, AccountDetails, SmallPage},
             methods: {
                 accountSelected: action('account-selected'),
                 login: action('login'),
@@ -708,6 +769,7 @@ storiesOf('Pages/Checkout', module)
                                     balance: 7463341234,
                                 },
                             ],
+                            contracts: [],
                         },
                         {
                             id: 'helloworld4',
@@ -730,12 +792,14 @@ storiesOf('Pages/Checkout', module)
                                     balance: 2023110,
                                 },
                             ],
+                            contracts: [],
                         },
                     ],
                     amount: 199900000,
                     fee: 138,
                     shopAddress: 'NQ21 YPRN 1KVN BQP5 A17U YGD3 HH96 6TKA 6BL4',
                     origin: 'https://shop.nimiq.com',
+                    originDomain: 'shop.nimiq.com',
                     shopLogoUrl: 'https://shop.nimiq.com/wp-content/uploads/2018/10/nimiq_signet_rgb_base_size.576px.png',
                     showMerchantInfo: false,
                 };
@@ -744,7 +808,7 @@ storiesOf('Pages/Checkout', module)
     <PaymentInfoLine :amount="amount" :fee="fee" :address="shopAddress" :origin="origin" :shopLogoUrl="shopLogoUrl" @merchant-info-clicked="openMerchantInfo"/>
     <h1 style="font-size: 3rem; text-align: center; margin: 3rem 0 1rem; line-height: 1;">Choose an account to pay</h1>
     <AccountSelector @account-selected="accountSelected" @login="login" :wallets="wallets" :minBalance="amount + fee"/>
-    <AccountInfo v-if="showMerchantInfo" :address="shopAddress" :origin="origin" :shopLogoUrl="shopLogoUrl" @close="closeMerchantInfo" style="position: absolute; left: 0; top: 0;"/>
+    <AccountDetails v-if="showMerchantInfo" :address="shopAddress" :label="originDomain" :image="shopLogoUrl" @close="closeMerchantInfo" style="position: absolute; left: 0; top: 0;"/>
 </small-page>
 `),
         };
