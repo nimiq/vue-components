@@ -16,7 +16,7 @@
     "storybook": "start-storybook -p 6006 -c .storybook -s ."
   },
   "dependencies": {
-    "@nimiq/style": "^0.5.1",
+    "@nimiq/style": "^0.6.0",
     "vue": "^2.5.17",
     "vue-property-decorator": "^7.0.0"
   },
