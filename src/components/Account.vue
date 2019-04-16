@@ -103,6 +103,7 @@
         flex-direction: row;
         overflow: hidden;
         min-width: 5.625rem;
+        flex-grow: 1;
     }
 
     .column .identicon-and-label {
@@ -163,6 +164,10 @@
     .row .wallet-label {
         white-space: nowrap;
         font-weight: 600;
+    }
+
+    .row .label {
+        flex-grow: 1;
     }
 
     .column .label,

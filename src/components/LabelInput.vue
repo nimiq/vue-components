@@ -57,15 +57,14 @@ export default class LabelInput extends Vue {
         const placeholderWidth = (this.$refs.widthPlaceholder as HTMLSpanElement).offsetWidth;
         const valueWidth = (this.$refs.widthValue as HTMLSpanElement).offsetWidth;
 
-        // Add a padding, so entering new letters does not flicker the input before width is adjusted
-        this.width = Math.max(placeholderWidth, valueWidth) + 20;
+        // Add an additional padding, so entering new letters does not flicker the input before width is adjusted
+        this.width = Math.max(placeholderWidth, valueWidth) + 4;
     }
 }
 </script>
 
 <style scoped>
     .label-input {
-        display: inline;
         position: relative;
     }
 
@@ -75,10 +74,13 @@ export default class LabelInput extends Vue {
         pointer-events: none;
         user-select: none;
         white-space: nowrap;
+        padding: 0 2.25rem; /* nq-input padding + border-width */
+        max-width: 100%;
     }
 
     input {
-        box-sizing: content-box;
         padding-right: 0;
+        max-width: 100%;
+        transition: width 50ms ease-out;
     }
 </style>
