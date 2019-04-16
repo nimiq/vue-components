@@ -756,10 +756,10 @@
   resolved "https://registry.yarnpkg.com/@nimiq/iqons/-/iqons-1.1.1.tgz#9ec533ce285e334f58ee857557b47605c2863305"
   integrity sha512-Z7/i/s6C1X1u4iBGBRkdas0jP9gTgHCUB1DH2NAvzXscGgbmrxU7RE8dABLxlNYwQVXEZKcKyPUz5FQTGNDKvg==
 
-"@nimiq/style@^0.5.1":
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/@nimiq/style/-/style-0.5.1.tgz#1022a6dab6d43d8c4c9747449f873c327338f3c5"
-  integrity sha512-5j4e0kA1ugYyk5PlsiI9ZfpEIE0HTUN1Qyg3TPxpqAMMv5PJY4zQm/HQiYDFI4M2vT7KK8J3oWwhQk6elhM9xg==
+"@nimiq/style@^0.6.0":
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/@nimiq/style/-/style-0.6.0.tgz#27600b7cd11f1fc0ec7f8a17b64aa9fb15fb20ce"
+  integrity sha512-Vv7Ut5rLVF06Nl4C679TX7uY2TrUdg3LScgFq7S0oqyokvj/O8n2jG294AMvRVdDuaLBRaoFSB+YSnABeWdYVQ==
 
 "@nimiq/utils@^0.2.0":
   version "0.2.0"
