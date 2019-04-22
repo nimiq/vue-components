@@ -69,6 +69,8 @@
                 </svg>
             `);
             /* tslint:enable max-line-length */
+            // avoid a line-height being rendered for default display: inline. Applied via code for CSP compatibility.
+            (document.body.lastElementChild as SVGElement).style.display = 'block';
         }
     }
 </script>
@@ -122,8 +124,8 @@
     }
 
     .column .identicon {
-        width: 9rem;
-        height: 9rem;
+        width: 10rem;
+        height: 10rem;
         margin-bottom: 1.5rem;
     }
 
