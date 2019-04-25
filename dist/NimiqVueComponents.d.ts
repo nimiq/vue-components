@@ -27,8 +27,10 @@ declare module 'NimiqVueComponents/src/components/Account.vue' {
         address: string;
         image?: string;
         label: string;
+        placeholder?: string;
         walletLabel?: string;
         balance?: number;
+        decimals: number;
         editable?: boolean;
         layout: string;
         focus(): void;
@@ -62,6 +64,7 @@ declare module 'NimiqVueComponents/src/components/AccountSelector.vue' {
     import { Vue } from 'vue-property-decorator';
     export interface ContractInfo {
         label: string;
+        placeholder?: string;
         userFriendlyAddress: string;
         balance?: number;
         walletId?: string;
@@ -69,6 +72,7 @@ declare module 'NimiqVueComponents/src/components/AccountSelector.vue' {
     export interface AccountInfo {
         path: string;
         label: string;
+        placeholder?: string;
         userFriendlyAddress: string;
         balance?: number;
         walletId?: string;
