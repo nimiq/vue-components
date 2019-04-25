@@ -11,6 +11,7 @@
                     :accounts="wallet | listAccountsAndContracts | sortAccountsAndContracts(minBalance)"
                     :walletId="wallet.id"
                     :minBalance="minBalance"
+                    :decimals="decimals"
                     @account-selected="accountSelected"/>
             </div>
         </div>
@@ -28,6 +29,7 @@ import AccountList from './AccountList.vue';
 // This is a reduced list of properties, for convenience
 export interface ContractInfo {
     label: string;
+    placeholder?: string;
     userFriendlyAddress: string;
     balance?: number;
     walletId?: string;
@@ -36,6 +38,7 @@ export interface ContractInfo {
 export interface AccountInfo {
     path: string;
     label: string;
+    placeholder?: string;
     // address: Nimiq.Address; // Nimiq namespace is not known and not used by @nimiq/vue-components
     userFriendlyAddress: string;
     balance?: number;
@@ -71,6 +74,7 @@ export interface WalletInfo {
 })
 export default class AccountSelector extends Vue {
     @Prop(Array) private wallets!: WalletInfo[];
+    @Prop(Number) private decimals?: number;
     @Prop(Number) private minBalance?: number;
     @Prop({type: Boolean, default: true}) private allowLogin!: boolean;
 
