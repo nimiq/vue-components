@@ -13,7 +13,9 @@
             <Account :ref="account.userFriendlyAddress"
                 :address="account.userFriendlyAddress"
                 :label="account.label"
+                :placeholder="account.placeholder"
                 :balance="account.balance"
+                :decimals="decimals"
                 :editable="editable"
                 @changed="accountChanged(account.userFriendlyAddress, $event)"
             />
@@ -33,6 +35,7 @@ export default class AccountList extends Vue {
     @Prop(Array) public accounts!: AccountInfo[];
     @Prop(String) private walletId?: string;
     @Prop(Boolean) private editable?: boolean;
+    @Prop(Number) private decimals?: number;
     @Prop(Number) private minBalance?: number;
 
     private wrongClickedAddress: string | null = null;
@@ -130,7 +133,7 @@ export default class AccountList extends Vue {
 
     .account-entry:not(.bad-balance):hover,
     .account-entry:not(.bad-balance):focus {
-        background-color: rgba(31, 35, 72, 0.06);
+        background-color: rgba(31, 35, 72, 0.06); /* Based on Nimiq Blue */
         outline: none;
     }
 
@@ -147,14 +150,14 @@ export default class AccountList extends Vue {
     }
 
     .account-entry.bad-balance.highlight-low-balance >>> .balance {
-        color: #D94432;
+        color: var(--nimiq-red);
         opacity: 1;
     }
 
     .account-entry.good-balance:hover >>> .balance,
     .account-entry.good-balance:focus >>> .balance {
         margin-right: 3rem;
-        color: #21BCA5;
+        color: var(--nimiq-green);
     }
 
     .account-entry.good-balance:hover .chevron-right,

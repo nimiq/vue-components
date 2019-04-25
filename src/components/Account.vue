@@ -9,13 +9,13 @@
 
             <div v-if="!editable" class="label">{{ label }}</div>
             <div v-else class="label editable">
-                <LabelInput :value="label" @changed="changed" ref="label"/>
+                <LabelInput :value="label" :placeholder="placeholder" @changed="changed" ref="label"/>
             </div>
 
             <div v-if="layout === 'column' && walletLabel" class="nq-label wallet-label">{{ walletLabel }}</div>
         </div>
 
-        <Amount v-if="balance || balance === 0" class="balance" :amount="balance" :decimals="2" />
+        <Amount v-if="balance || balance === 0" class="balance" :amount="balance" :decimals="decimals" />
     </div>
 </template>
 
@@ -30,8 +30,10 @@
         @Prop(String) public address!: string;
         @Prop(String) public image?: string;
         @Prop(String) public label!: string;
+        @Prop(String) public placeholder?: string;
         @Prop(String) public walletLabel?: string;
         @Prop(Number) public balance?: number;
+        @Prop({type: Number, default: 2}) public decimals!: number;
         @Prop(Boolean) public editable?: boolean;
         @Prop({
             type: String,
