@@ -58,7 +58,14 @@ export default class LabelInput extends Vue {
         const valueWidth = (this.$refs.widthValue as HTMLSpanElement).offsetWidth;
 
         // Add an additional padding, so entering new letters does not flicker the input before width is adjusted
-        this.width = Math.max(placeholderWidth, valueWidth) + 4;
+        //
+        // A third of the font-size was found to be a good compromise between not adding too big a gap and
+        // still resonably supporting wide letters (it still jumps for W at bigger font-sizes, but that's why
+        // it's called a compromise).
+        const fontSize = parseFloat(window.getComputedStyle((this.$refs.input as HTMLInputElement), null)
+            .getPropertyValue('font-size'));
+
+        this.width = Math.max(placeholderWidth, valueWidth) + fontSize / 3;
     }
 }
 </script>
@@ -66,6 +73,7 @@ export default class LabelInput extends Vue {
 <style scoped>
     .label-input {
         position: relative;
+        overflow: hidden; /* limit width-finder width to parent available width */
     }
 
     .width-finder {
@@ -73,7 +81,7 @@ export default class LabelInput extends Vue {
         color: transparent;
         pointer-events: none;
         user-select: none;
-        white-space: nowrap;
+        white-space: pre;
         padding: 0 2.25rem; /* nq-input padding + border-width */
         max-width: 100%;
     }
