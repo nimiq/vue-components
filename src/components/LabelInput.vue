@@ -83,7 +83,6 @@ export default class LabelInput extends Vue {
         user-select: none;
         white-space: pre;
         padding: 0 2.25rem; /* nq-input padding + border-width */
-        max-width: 100%;
     }
 
     input {
