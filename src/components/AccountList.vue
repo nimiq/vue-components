@@ -13,7 +13,7 @@
             <Account :ref="account.userFriendlyAddress"
                 :address="account.userFriendlyAddress"
                 :label="account.label"
-                :placeholder="account.placeholder"
+                :placeholder="account.defaultLabel"
                 :balance="account.balance"
                 :decimals="decimals"
                 :editable="editable"
