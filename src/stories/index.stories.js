@@ -124,6 +124,7 @@ storiesOf('Components', module)
     })
     .add('AccountList', () => {
         const minBalance = number('minBalance', 1000) * 1e5;
+        const decimals = number('decimals', 2);
         const editable = boolean('editable', false);
         return {
             components: {AccountList},
@@ -150,11 +151,12 @@ storiesOf('Components', module)
                         }
                     ],
                     minBalance,
+                    decimals,
                     editable,
                 };
             },
             template: `<AccountList @account-selected="accountSelected" :accounts="accounts" walletId="helloworld1"
-                :minBalance="minBalance" :editable="editable" />`
+                :minBalance="minBalance" :decimals="decimals" :editable="editable" />`
         };
     })
     .add('AccountSelector', () => {
