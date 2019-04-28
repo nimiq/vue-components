@@ -168,39 +168,77 @@ storiesOf('Components', module)
         };
     })
     .add('AccountSelector', () => {
-        return {
-            components: {AccountSelector},
-            data() {
-                return {
-                    wallets: [
+        const demoType = select('Demo Type', {
+            'Single Account': 'single-account',
+            'Multiple Accounts': 'multiple-accounts',
+        }, 'multiple-accounts');
+        const minBalance = number('minBalance', 500) * 1e5
+        const decimals = number('decimals', 2);
+        const disableContracts = boolean('disableContracts', false);
+        const allowLogin = boolean('allowLogin', true);
+
+        const demoData = {
+            wallets: [
+                {
+                    id: 'helloworld',
+                    label: 'Keyguard Wallet',
+                    type: 1,
+                    accounts: [
                         {
-                            id: 'helloworld2',
-                            label: 'Keyguard Wallet',
-                            type: 1,
-                            accounts: [
-                                {
-                                    userFriendlyAddress: 'NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM',
-                                    label: 'Primary account',
-                                    balance: 12023110,
-                                    path: "44'/242'/0'/0'",
-                                },
-                                {
-                                    userFriendlyAddress: 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1',
-                                    label: 'HODL account',
-                                    balance: 2712415141213,
-                                    path: "44'/242'/0'/1'",
-                                }
-                            ],
-                            contracts: [],
+                            userFriendlyAddress: 'NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM',
+                            label: 'Primary account',
+                            balance: 12023110,
+                            path: "44'/242'/0'/0'",
+                        },
+                        {
+                            userFriendlyAddress: 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1',
+                            label: 'HODL account',
+                            balance: 2712415141213,
+                            path: "44'/242'/0'/1'",
                         },
                     ],
-                };
-            },
+                    contracts: [
+                        {
+                            userFriendlyAddress: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE',
+                            label: 'My Vesting Contract',
+                            balance: 777777777,
+                        },
+                    ],
+                },
+            ],
+            minBalance,
+            decimals,
+            disableContracts,
+            allowLogin,
+        };
+
+        if (demoType === 'multiple-accounts') {
+            demoData.wallets.push({
+                id: 'helloword2',
+                label: 'Ledger Wallet',
+                type: 2,
+                accounts: [
+                    {
+                        userFriendlyAddress: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
+                        label: 'My Ledger Account',
+                        balance: 9876543210,
+                        path: "44'/242'/0'/0'",
+                    }
+                ],
+                contracts: [],
+            });
+        }
+
+        return {
+            components: {AccountSelector},
+            data: () => demoData,
             methods: {
                 accountSelected: action('account-selected'),
                 login: action('login'),
             },
-            template: `<AccountSelector @account-selected="accountSelected" @login="login" :wallets="wallets"/>`
+            template: `<AccountSelector @account-selected="accountSelected" @login="login" :wallets="wallets"
+                :minBalance="minBalance" :decimals="decimals" :disableContracts="disableContracts"
+                :allowLogin="allowLogin"/>`
         };
     })
     .add('Address', () => {
