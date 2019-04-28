@@ -182,7 +182,7 @@ storiesOf('Components', module)
                 {
                     id: 'helloworld',
                     label: 'Keyguard Wallet',
-                    type: 1,
+                    type: 2, // BIP39
                     accounts: [
                         {
                             userFriendlyAddress: 'NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM',
@@ -216,7 +216,7 @@ storiesOf('Components', module)
             demoData.wallets.push({
                 id: 'helloword2',
                 label: 'Ledger Wallet',
-                type: 2,
+                type: 3, // LEDGER
                 accounts: [
                     {
                         userFriendlyAddress: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
@@ -426,7 +426,7 @@ storiesOf('Components', module)
                     label: 'Keyguard Wallet',
                     accounts: new Map([['path1', {}], ['path2', {}], ['path3', {}], ['path4', {}], ['path5', {}]]),
                     contracts: [],
-                    type: 1, // BIP39
+                    type: 2, // BIP39
                     // userFriendlyId: 'funny giraffe',
                 };
             },
@@ -450,7 +450,7 @@ storiesOf('Components', module)
                             label: 'Keyguard Account',
                             accounts: new Map([['path1', {}], ['path2', {}], ['path3', {}], ['path4', {}], ['path5', {}]]),
                             contracts: [],
-                            type: 1, // BIP39
+                            type: 2, // BIP39
                             balance: 101 * 1e5,
                             // userFriendlyId: 'funny giraffe',
                         }, {
@@ -458,7 +458,7 @@ storiesOf('Components', module)
                             label: 'Keyguard Account',
                             accounts: new Map([['path1', {}]]),
                             contracts: [],
-                            type: 1, // BIP39
+                            type: 2, // BIP39
                             balance: 101 * 1e5,
                             // userFriendlyId: 'funny giraffe',
                         }, {
@@ -466,7 +466,7 @@ storiesOf('Components', module)
                             label: 'Ledger Account',
                             accounts: new Map([['path1', {}], ['path2', {}], ['path3', {}]]),
                             contracts: [],
-                            type: 2, // LEDGER
+                            type: 3, // LEDGER
                             balance: 553452 * 1e5,
                             // userFriendlyId: 'black panther',
                         }
@@ -497,28 +497,28 @@ storiesOf('Components', module)
                             label: 'My Keyguard Wallet',
                             accounts: new Map([['path1', {}], ['path2', {}], ['path3', {}], ['path4', {}], ['path5', {}]]),
                             contracts: [],
-                            type: 1, // BIP39
+                            type: 2, // BIP39
                             balance: 62345123 * 1e5,
                         }, {
                             id: 'vwxyz',
                             label: 'Ledger Wallet',
                             accounts: new Map([['path1', {}], ['path2', {}], ['path3', {}]]),
                             contracts: [],
-                            type: 2, // LEDGER
+                            type: 3, // LEDGER
                             balance: 101 * 1e5,
                         }, {
                             id: 'legacy-01',
                             label: 'Keyguard Wallet',
                             accounts: new Map([['path1', {}]]),
                             contracts: [],
-                            type: 0, // LEGACY
+                            type: 1, // LEGACY
                             balance: 1239 * 1e5,
                         }, {
                             id: 'legacy-02',
                             label: 'Keyguard Wallet',
                             accounts: new Map([['path1', {}]]),
                             contracts: [],
-                            type: 0, // LEGACY
+                            type: 1, // LEGACY
                             balance: 123 * 1e5,
                         }
                     ]
