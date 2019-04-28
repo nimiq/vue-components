@@ -213,7 +213,7 @@ storiesOf('Components', module)
         };
 
         if (demoType === 'multiple-accounts') {
-            demoData.wallets.push({
+            demoData.wallets.unshift({
                 id: 'helloword2',
                 label: 'Ledger Wallet',
                 type: 3, // LEDGER

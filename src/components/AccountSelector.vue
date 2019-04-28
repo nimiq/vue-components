@@ -76,6 +76,7 @@ export interface WalletInfo {
                 // sort accounts with insufficient funds below accounts with enough balance
                 if ((!a.balance || a.balance < minBalance) && b.balance && b.balance >= minBalance) return 1;
                 if ((!b.balance || b.balance < minBalance) && a.balance && a.balance >= minBalance) return -1;
+
                 return 0;
             });
         },
@@ -92,22 +93,16 @@ export default class AccountSelector extends Vue {
         if (!this.minBalance) return this.wallets;
 
         return this.wallets.slice(0).sort((a: WalletInfo, b: WalletInfo): number => {
-            const balanceA =
-                Array.from(a.accounts.values())
-                    .reduce((sum: number, account: AccountInfo) => sum + (account.balance || 0), 0)
-                + (!this.disableContracts
-                    ? a.contracts.reduce((sum: number, contract: ContractInfo) => sum + (contract.balance || 0), 0)
-                    : 0);
+            const hasAddressWithSufficientBalance = (accounts: Map<string, AccountInfo>, contracts: ContractInfo[]) =>
+                Array.from(accounts.values()).some((account) => account.balance >= this.minBalance)
+                    || (!this.disableContracts && contracts.some((contract) => contract.balance >= this.minBalance));
 
-            const balanceB =
-                Array.from(b.accounts.values())
-                    .reduce((sum: number, account: AccountInfo) => sum + (account.balance || 0), 0)
-                + (!this.disableContracts
-                    ? b.contracts.reduce((sum: number, contract: ContractInfo) => sum + (contract.balance || 0), 0)
-                    : 0);
+            const aHasAddressWithSufficientBalance = hasAddressWithSufficientBalance(a.accounts, a.contracts);
+            const bHasAddressWithSufficientBalance = hasAddressWithSufficientBalance(b.accounts, b.contracts);
 
-            if ((!balanceA || balanceA < this.minBalance!) && balanceB && balanceB >= this.minBalance!) return 1;
-            if ((!balanceB || balanceB < this.minBalance!) && balanceA && balanceA >= this.minBalance!) return -1;
+            if (!aHasAddressWithSufficientBalance && bHasAddressWithSufficientBalance) return 1;
+            if (aHasAddressWithSufficientBalance && !bHasAddressWithSufficientBalance) return -1;
+
             return 0;
         });
     }
