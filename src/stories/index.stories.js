@@ -120,9 +120,10 @@ storiesOf('Components', module)
         };
     })
     .add('AccountList', () => {
-        const minBalance = number('minBalance', 1000) * 1e5;
+        const minBalance = number('minBalance', 500) * 1e5;
         const decimals = number('decimals', 2);
         const editable = boolean('editable', false);
+        const disableContracts = boolean('disableContracts', false);
         return {
             components: {AccountList},
             methods: {
@@ -135,25 +136,35 @@ storiesOf('Components', module)
                             userFriendlyAddress: 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1',
                             label: 'HODL account',
                             balance: 2712415141213,
+                            path: "44'/242'/0'/0'",
                         },
                         {
                             userFriendlyAddress: 'NQ21 YPRN 1KVN BQP5A17U YGD3 HH96 6TKA 6BL4',
                             label: 'HODL account 2',
                             balance: 100000000,
+                            path: "44'/242'/0'/1'",
+                        },
+                        {
+                            userFriendlyAddress: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE',
+                            label: 'My Vesting Contract',
+                            balance: 77777777,
                         },
                         {
                             userFriendlyAddress: 'NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM',
                             label: 'Primary account',
                             balance: 12023110,
-                        }
+                            path: "44'/242'/0'/2'",
+                        },
                     ],
                     minBalance,
                     decimals,
                     editable,
+                    disableContracts,
                 };
             },
             template: `<AccountList @account-selected="accountSelected" :accounts="accounts" walletId="helloworld1"
-                :minBalance="minBalance" :decimals="decimals" :editable="editable" />`
+                :minBalance="minBalance" :decimals="decimals" :editable="editable"
+                :disableContracts="disableContracts" />`
         };
     })
     .add('AccountSelector', () => {
@@ -171,11 +182,13 @@ storiesOf('Components', module)
                                     userFriendlyAddress: 'NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM',
                                     label: 'Primary account',
                                     balance: 12023110,
+                                    path: "44'/242'/0'/0'",
                                 },
                                 {
                                     userFriendlyAddress: 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1',
                                     label: 'HODL account',
                                     balance: 2712415141213,
+                                    path: "44'/242'/0'/1'",
                                 }
                             ],
                             contracts: [],
