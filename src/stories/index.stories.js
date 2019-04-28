@@ -175,6 +175,9 @@ storiesOf('Components', module)
         const minBalance = number('minBalance', 500) * 1e5
         const decimals = number('decimals', 2);
         const disableContracts = boolean('disableContracts', false);
+        const disableLegacyAccounts = boolean('disableLegacyAccounts', false);
+        const disableBip39Accounts = boolean('disableBip39Accounts', false);
+        const disableLedgerAccounts = boolean('disableLedgerAccounts', false);
         const allowLogin = boolean('allowLogin', true);
 
         const demoData = {
@@ -209,6 +212,9 @@ storiesOf('Components', module)
             minBalance,
             decimals,
             disableContracts,
+            disableLegacyAccounts,
+            disableBip39Accounts,
+            disableLedgerAccounts,
             allowLogin,
         };
 
@@ -238,7 +244,8 @@ storiesOf('Components', module)
             },
             template: `<AccountSelector @account-selected="accountSelected" @login="login" :wallets="wallets"
                 :minBalance="minBalance" :decimals="decimals" :disableContracts="disableContracts"
-                :allowLogin="allowLogin"/>`
+                :disableLegacyAccounts="disableLegacyAccounts" :disableBip39Accounts="disableBip39Accounts"
+                :disableLedgerAccounts="disableLedgerAccounts" :allowLogin="allowLogin"/>`
         };
     })
     .add('Address', () => {

@@ -3,9 +3,20 @@
         <div class="header"></div>
 
         <div class="container" :class="{'extra-spacing': wallets.length === 1}">
-            <div v-for="wallet in sortedWallets" :key="wallet.id">
-                <div v-if="wallets.length > 1" class="wallet-label">
-                    <span class="nq-label">{{ wallet.label }}</span>
+            <div v-for="wallet in sortedWallets" :key="wallet.id"
+                :class="{
+                    'disabled-account': _isAccountDisabled(wallet),
+                    'highlighted-disabled-account': highlightedDisabledAccount === wallet,
+                }"
+                @click="_accountClicked(wallet)"
+            >
+                <div v-if="wallets.length > 1 || _isAccountDisabled(wallet)" class="wallet-label">
+                    <div>
+                        <span class="nq-label">{{ wallet.label }}</span>
+                        <div v-if="_isAccountDisabled(wallet)" class="warning-disabled-account nq-label">
+                            (Incompatible with this operation)
+                        </div>
+                    </div>
                 </div>
                 <AccountList
                     :accounts="wallet | listAccountsAndContracts | sortAccountsAndContracts(minBalance, disableContracts)"
@@ -87,12 +98,24 @@ export default class AccountSelector extends Vue {
     @Prop(Number) private decimals?: number;
     @Prop(Number) private minBalance?: number;
     @Prop(Boolean) private disableContracts?: boolean;
+    @Prop(Boolean) private disableLegacyAccounts?: boolean;
+    @Prop(Boolean) private disableBip39Accounts?: boolean;
+    @Prop(Boolean) private disableLedgerAccounts?: boolean;
     @Prop({type: Boolean, default: true}) private allowLogin!: boolean;
 
-    private get sortedWallets(): WalletInfo[] {
-        if (!this.minBalance) return this.wallets;
+    private highlightedDisabledAccount: WalletInfo | null = null;
+    private highlightedDisabledAccountTimeout: number = -1;
 
+    private get sortedWallets(): WalletInfo[] {
         return this.wallets.slice(0).sort((a: WalletInfo, b: WalletInfo): number => {
+            const aDisabled = this._isAccountDisabled(a);
+            const bDisabled = this._isAccountDisabled(b);
+
+            if (aDisabled && !bDisabled) return 1;
+            if (!aDisabled && bDisabled) return -1;
+
+            if (!this.minBalance) return 0; // don't sort by balance if no minBalance required
+
             const hasAddressWithSufficientBalance = (accounts: Map<string, AccountInfo>, contracts: ContractInfo[]) =>
                 Array.from(accounts.values()).some((account) => account.balance >= this.minBalance)
                     || (!this.disableContracts && contracts.some((contract) => contract.balance >= this.minBalance));
@@ -114,6 +137,20 @@ export default class AccountSelector extends Vue {
     @Emit()
     // tslint:disable-next-line no-empty
     private login() {}
+
+    private _isAccountDisabled(account: WalletInfo): boolean {
+        return this.disableLegacyAccounts && account.type === 1 /* LEGACY */
+            || this.disableBip39Accounts && account.type === 2 /* BIP39 */
+            || this.disableLedgerAccounts && account.type === 3 /* LEDGER */;
+    }
+
+    private _accountClicked(account: WalletInfo) {
+        if (!this._isAccountDisabled(account)) return;
+
+        window.clearTimeout(this.highlightedDisabledAccountTimeout);
+        this.highlightedDisabledAccount = account;
+        this.highlightedDisabledAccountTimeout = window.setTimeout(() => this.highlightedDisabledAccount = null, 300);
+    }
 }
 </script>
 
@@ -133,6 +170,36 @@ export default class AccountSelector extends Vue {
 
     .container.extra-spacing {
         padding-top: 3rem;
+    }
+
+    .disabled-account {
+        cursor: not-allowed;
+    }
+
+    .disabled-account > * {
+        pointer-events: none;
+    }
+
+    .disabled-account > .wallet-label .nq-label {
+        opacity: .4;
+    }
+
+    .disabled-account .warning-disabled-account {
+        padding-top: .5rem;
+        text-transform: none;
+        line-height: 1.2;
+        transition: opacity .3s ease, color .3s ease;
+    }
+
+    .disabled-account.highlighted-disabled-account .warning-disabled-account {
+        color: var(--nimiq-red);
+        opacity: 1;
+    }
+
+    .disabled-account >>> .identicon,
+    .disabled-account >>> .label,
+    .disabled-account >>> .balance {
+        opacity: .2 !important;
     }
 
     .wallet-label {

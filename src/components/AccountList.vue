@@ -184,7 +184,7 @@ export default class AccountList extends Vue {
     }
 
     a.account-entry.disabled-contract::after {
-        content: 'Contracts are not supported by this operation.';
+        content: 'Contracts are incompatible with this operation.';
         position: absolute;
         left: 0;
         top: 0;
