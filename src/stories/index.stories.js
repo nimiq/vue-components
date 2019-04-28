@@ -18,7 +18,6 @@ import LabelInput from '../components/LabelInput.vue';
 import Wallet from '../components/Wallet.vue';
 import WalletList from '../components/WalletList.vue';
 import WalletMenu from '../components/WalletMenu.vue';
-import WalletSelector from '../components/WalletSelector.vue';
 import PaymentInfoLine from '../components/PaymentInfoLine.vue';
 import QrCode from '../components/QrCode.vue';
 import QrScanner from '../components/QrScanner.vue';
@@ -487,38 +486,6 @@ storiesOf('Components', module)
             />`)
         };
     })
-    .add('WalletSelector', () => {
-        return {
-            components: {WalletSelector},
-            methods: {
-                walletSelected: action('wallet-selected'),
-                addWallet: action('add-wallet'),
-                back: action('back'),
-            },
-            data() {
-                return {
-                    wallets: [
-                        {
-                            id: 'abcdef',
-                            label: 'Keyguard Wallet',
-                            accounts: new Map([['path1', {}], ['path2', {}], ['path3', {}], ['path4', {}], ['path5', {}]]),
-                            contracts: [],
-                            type: 1, // BIP39
-                            // userFriendlyId: 'funny giraffe',
-                        }, {
-                            id: 'vwxyz',
-                            label: 'Ledger Wallet',
-                            accounts: new Map([['path1', {}], ['path2', {}], ['path3', {}]]),
-                            contracts: [],
-                            type: 2, // LEDGER
-                            // userFriendlyId: 'black panther',
-                        }
-                    ]
-                };
-            },
-            template: `<WalletSelector @wallet-selected="walletSelected" @add-wallet="addWallet" @back="back" :wallets="wallets"/>`
-        };
-    })
     .add('PaymentInfoLine', () => {
         const address = text('address', 'NQ07 0000 00000000 0000 0000 0000 0000 0000');
         const origin = text('origin', 'https://shop.nimiq.com');
@@ -797,43 +764,6 @@ storiesOf('Pages/Checkout', module)
     <h1 style="font-size: 3rem; text-align: center; margin: 3rem 0 1rem; line-height: 1;">Choose an account to pay</h1>
     <AccountSelector @account-selected="accountSelected" @login="login" :wallets="wallets" :minBalance="amount + fee"/>
     <AccountDetails v-if="showMerchantInfo" :address="shopAddress" :label="originDomain" :image="shopLogoUrl" @close="closeMerchantInfo" style="position: absolute; left: 0; top: 0;"/>
-</small-page>
-`),
-        };
-    })
-    .add('WalletSelector', () => {
-        return {
-            components: {WalletSelector, PaymentInfoLine, SmallPage},
-            methods: {
-                walletSelected: action('wallet-selected'),
-                addWallet: action('add-wallet'),
-                back: action('back'),
-            },
-            data() {
-                return {
-                    wallets: [
-                        {
-                            id: 'abcdef',
-                            label: 'Keyguard Wallet',
-                            accounts: new Map([['path1', {}], ['path2', {}], ['path3', {}], ['path4', {}], ['path5', {}]]),
-                            contracts: [],
-                            type: 1, // BIP39
-                            // userFriendlyId: 'funny giraffe',
-                        }, {
-                            id: 'vwxyz',
-                            label: 'Ledger Wallet',
-                            accounts: new Map([['path1', {}], ['path2', {}], ['path3', {}]]),
-                            contracts: [],
-                            type: 2, // LEDGER
-                            // userFriendlyId: 'black panther',
-                        }
-                    ],
-                };
-            },
-            template: windowTemplate(`
-<PaymentInfoLine :amount="199000" :networkFee="1000" :networkFeeEditable="false" origin="https://shop.nimiq.com"/>
-<small-page>
-    <WalletSelector @wallet-selected="walletSelected" @add-wallet="addWallet" @back="back" :wallets="wallets"/>
 </small-page>
 `),
         };
