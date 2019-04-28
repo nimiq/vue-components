@@ -25,8 +25,6 @@ import QrScanner from '../components/QrScanner.vue';
 import SmallPage from '../components/SmallPage.vue';
 import LoadingSpinner from '../components/LoadingSpinner.vue';
 
-import CheckoutFlow from './CheckoutFlow.vue';
-
 function windowTemplate(slot) {
     return `
         <div style="background: var(--nimiq-gray); padding: 64px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
@@ -837,76 +835,6 @@ storiesOf('Pages/Checkout', module)
 <small-page>
     <WalletSelector @wallet-selected="walletSelected" @add-wallet="addWallet" @back="back" :wallets="wallets"/>
 </small-page>
-`),
-        };
-    })
-    .add('Flow', () => {
-        return {
-            components: {CheckoutFlow},
-            methods: {
-                addWallet: action('add-wallet'),
-                accountSelected: action('account-selected'),
-                back: action('back'),
-            },
-            data() {
-                return {
-                    wallets: [
-                        {
-                            id: 'legacy-01',
-                            label: 'Keyguard Wallet',
-                            accounts: new Map([
-                                ['NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM', {
-                                    userFriendlyAddress: 'NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM',
-                                    label: 'Standard Address',
-                                    balance: 2023110
-                                }]
-                            ]),
-                            contracts: [],
-                            type: 0, // LEGACY
-                            // userFriendlyId: 'funny giraffe',
-                        },
-                        {
-                            id: 'abcdef',
-                            label: 'Keyguard Wallet',
-                            accounts: new Map([
-                                ['NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM', {
-                                    userFriendlyAddress: 'NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM',
-                                    label: 'Standard Address',
-                                    balance: 12023110
-                                }],
-                                ['NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1', {
-                                    userFriendlyAddress: 'NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1',
-                                    label: 'Savings',
-                                    balance: 2712415141213
-                                }]
-                            ]),
-                            contracts: [],
-                            type: 1, // BIP39
-                            // userFriendlyId: 'funny giraffe',
-                        }, {
-                            id: 'vwxyz',
-                            label: 'Ledger Wallet',
-                            accounts: new Map([
-                                ['NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM', {
-                                    userFriendlyAddress: 'NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM',
-                                    label: 'Standard Address',
-                                    balance: 12023110
-                                }],
-                                ['NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1', {
-                                    userFriendlyAddress: 'NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1',
-                                    label: 'Savings',
-                                    balance: 2712415141213
-                                }]
-                            ]),
-                            contracts: [],
-                            type: 2, // LEDGER
-                            // userFriendlyId: 'black panther',
-                        }
-                    ],
-                };
-            },
-            template: windowTemplate(`
-<CheckoutFlow :wallets="wallets" @account-selected="accountSelected" @add-wallet="addWallet" @back="back"/>
 `),
         };
     });
