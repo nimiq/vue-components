@@ -8,7 +8,6 @@
                     'disabled-account': _isAccountDisabled(wallet),
                     'highlighted-disabled-account': highlightedDisabledAccount === wallet,
                 }"
-                @click="_accountClicked(wallet)"
             >
                 <div v-if="wallets.length > 1 || _isAccountDisabled(wallet)" class="wallet-label">
                     <div>
@@ -24,7 +23,10 @@
                     :minBalance="minBalance"
                     :decimals="decimals"
                     :disableContracts="disableContracts"
-                    @account-selected="accountSelected"/>
+                    :disabled="_isAccountDisabled(wallet)"
+                    @account-selected="accountSelected"
+                    @click.native="_accountClicked(wallet)"
+                />
             </div>
         </div>
 
@@ -172,14 +174,6 @@ export default class AccountSelector extends Vue {
         padding-top: 3rem;
     }
 
-    .disabled-account {
-        cursor: not-allowed;
-    }
-
-    .disabled-account > * {
-        pointer-events: none;
-    }
-
     .disabled-account > .wallet-label .nq-label {
         opacity: .4;
     }
@@ -194,12 +188,6 @@ export default class AccountSelector extends Vue {
     .disabled-account.highlighted-disabled-account .warning-disabled-account {
         color: var(--nimiq-red);
         opacity: 1;
-    }
-
-    .disabled-account >>> .identicon,
-    .disabled-account >>> .label,
-    .disabled-account >>> .balance {
-        opacity: .2 !important;
     }
 
     .wallet-label {

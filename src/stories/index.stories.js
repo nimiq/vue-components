@@ -124,6 +124,7 @@ storiesOf('Components', module)
         const decimals = number('decimals', 2);
         const editable = boolean('editable', false);
         const disableContracts = boolean('disableContracts', false);
+        const disabled = boolean('disabled', false);
         return {
             components: {AccountList},
             methods: {
@@ -160,11 +161,12 @@ storiesOf('Components', module)
                     decimals,
                     editable,
                     disableContracts,
+                    disabled,
                 };
             },
             template: `<AccountList @account-selected="accountSelected" :accounts="accounts" walletId="helloworld1"
-                :minBalance="minBalance" :decimals="decimals" :editable="editable"
-                :disableContracts="disableContracts" />`
+                :minBalance="minBalance" :decimals="decimals" :editable="editable" :disableContracts="disableContracts"
+                :disabled="disabled" />`
         };
     })
     .add('AccountSelector', () => {

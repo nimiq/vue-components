@@ -3,11 +3,11 @@
         <component :is="accountContainerTag" href="javascript:void(0)" class="account-entry"
             v-for="account in accounts"
             :class="{
-                'incompatible': disableContracts && _isContract(account) || minBalance && account.balance < minBalance,
+                'disabled': disabled || disableContracts && _isContract(account) || minBalance && account.balance < minBalance,
                 'disabled-contract': disableContracts && _isContract(account),
                 'good-balance': minBalance && (account.balance || 0) >= minBalance,
                 'bad-balance': minBalance && (account.balance || 0) < minBalance,
-                'highlight-incompatible-address': highlightedIncompatibleAddress === account.userFriendlyAddress,
+                'highlight-disabled-address': highlightedDisabledAddress === account.userFriendlyAddress,
             }"
             @click="accountSelected(account)" :key="account.userFriendlyAddress"
         >
@@ -17,7 +17,7 @@
                 :placeholder="account.defaultLabel"
                 :balance="account.balance"
                 :decimals="decimals"
-                :editable="editable"
+                :editable="editable && !disabled"
                 @changed="accountChanged(account.userFriendlyAddress, $event)"
             />
 
@@ -39,9 +39,10 @@ export default class AccountList extends Vue {
     @Prop(Number) private decimals?: number;
     @Prop(Number) private minBalance?: number;
     @Prop(Boolean) private disableContracts?: boolean;
+    @Prop(Boolean) private disabled?: boolean;
 
-    private highlightedIncompatibleAddress: string | null = null;
-    private highlightedIncompatibleAddressTimeout: number | null = null;
+    private highlightedDisabledAddress: string | null = null;
+    private highlightedDisabledAddressTimeout: number | null = null;
 
     public focus(address: string) {
         if (this.editable && this.$refs.hasOwnProperty(address)) {
@@ -50,24 +51,26 @@ export default class AccountList extends Vue {
     }
 
     private accountSelected(account: AccountInfo) {
+        if (this.disabled) return;
+
         const hasEnoughBalance = !this.minBalance || account.balance >= this.minBalance;
-        if (this.highlightedIncompatibleAddressTimeout) {
-            window.clearTimeout(this.highlightedIncompatibleAddressTimeout);
-            this.highlightedIncompatibleAddressTimeout = null;
+        if (this.highlightedDisabledAddressTimeout) {
+            window.clearTimeout(this.highlightedDisabledAddressTimeout);
+            this.highlightedDisabledAddressTimeout = null;
         }
         const isDisabledContract = this.disableContracts && this._isContract(account);
         if (isDisabledContract || (this.minBalance && account.balance < this.minBalance)) {
             const waitTime = isDisabledContract ? 1500 : 300;
-            this.highlightedIncompatibleAddress = account.userFriendlyAddress;
-            this.highlightedIncompatibleAddressTimeout =
-                window.setTimeout(() => this.highlightedIncompatibleAddress = null, waitTime);
+            this.highlightedDisabledAddress = account.userFriendlyAddress;
+            this.highlightedDisabledAddressTimeout =
+                window.setTimeout(() => this.highlightedDisabledAddress = null, waitTime);
         } else {
             this.$emit('account-selected', account.walletId || this.walletId, account.userFriendlyAddress);
         }
     }
 
     private get accountContainerTag() {
-        return !this.editable ? 'a' : 'div';
+        return !this.editable || this.disabled ? 'a' : 'div';
     }
 
     @Emit()
@@ -138,47 +141,47 @@ export default class AccountList extends Vue {
         transition: transform .45s ease, opacity .35s .1s ease;
     }
 
-    a.account-entry:not(.incompatible):hover,
-    a.account-entry:not(.incompatible):focus {
+    a.account-entry:not(.disabled):hover,
+    a.account-entry:not(.disabled):focus {
         background-color: rgba(31, 35, 72, 0.06); /* Based on Nimiq Blue */
         outline: none;
     }
 
-    a.account-entry:not(.incompatible):hover >>> img,
-    a.account-entry:not(.incompatible):focus >>> img {
+    a.account-entry:not(.disabled):hover >>> img,
+    a.account-entry:not(.disabled):focus >>> img {
         transform: scale(1);
     }
 
-    a.account-entry:not(.incompatible):hover >>> .label,
-    a.account-entry:not(.incompatible):hover >>> .balance,
-    a.account-entry:not(.incompatible):focus >>> .label,
-    a.account-entry:not(.incompatible):focus >>> .balance {
+    a.account-entry:not(.disabled):hover >>> .label,
+    a.account-entry:not(.disabled):hover >>> .balance,
+    a.account-entry:not(.disabled):focus >>> .label,
+    a.account-entry:not(.disabled):focus >>> .balance {
         opacity: 1;
     }
 
-    a.account-entry:not(.incompatible).good-balance:hover >>> .balance,
-    a.account-entry:not(.incompatible).good-balance:focus >>> .balance {
+    a.account-entry:not(.disabled).good-balance:hover >>> .balance,
+    a.account-entry:not(.disabled).good-balance:focus >>> .balance {
         margin-right: 3rem;
         color: var(--nimiq-green);
     }
 
-    a.account-entry:not(.incompatible).good-balance:hover .chevron-right,
-    a.account-entry:not(.incompatible).good-balance:focus .chevron-right {
+    a.account-entry:not(.disabled).good-balance:hover .chevron-right,
+    a.account-entry:not(.disabled).good-balance:focus .chevron-right {
         transform: translateX(0);
         opacity: 0.23;
     }
 
-    a.account-entry.incompatible {
+    a.account-entry.disabled {
         cursor: not-allowed;
     }
 
-    a.account-entry.incompatible >>> .identicon,
-    a.account-entry.incompatible >>> .label,
-    a.account-entry.incompatible >>> .balance {
+    a.account-entry.disabled >>> .identicon,
+    a.account-entry.disabled >>> .label,
+    a.account-entry.disabled >>> .balance {
         opacity: 0.2;
     }
 
-    a.account-entry.bad-balance:not(.disabled-contract).highlight-incompatible-address >>> .balance {
+    a.account-entry.bad-balance:not(.disabled-contract).highlight-disabled-address >>> .balance {
         color: var(--nimiq-red);
         opacity: 1;
     }
@@ -199,11 +202,11 @@ export default class AccountList extends Vue {
         opacity: 0;
     }
 
-    a.account-entry.disabled-contract.highlight-incompatible-address .account {
+    a.account-entry.disabled-contract.highlight-disabled-address .account {
         opacity: .2;
     }
 
-    a.account-entry.disabled-contract.highlight-incompatible-address::after {
+    a.account-entry.disabled-contract.highlight-disabled-address::after {
         opacity: 1;
     }
 </style>
