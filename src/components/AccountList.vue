@@ -1,6 +1,6 @@
 <template>
     <div class="account-list">
-        <a href="javascript:void(0)" class="account-entry"
+        <component v-bind:is="accountContainerTag" href="javascript:void(0)" class="account-entry"
             v-for="account in accounts"
             :class="{
                 'good-balance': minBalance && (account.balance || 0) >= minBalance,
@@ -21,7 +21,7 @@
             />
 
             <i class="nq-icon chevron-right"></i>
-        </a>
+        </component>
     </div>
 </template>
 
@@ -58,6 +58,10 @@ export default class AccountList extends Vue {
         } else {
             this.$emit('account-selected', walletId, address);
         }
+    }
+
+    private get accountContainerTag() {
+        return !this.editable ? 'a' : 'div';
     }
 
     @Emit()
@@ -121,47 +125,47 @@ export default class AccountList extends Vue {
         transition: transform .45s ease, opacity .35s .1s ease;
     }
 
-    .account-entry.bad-balance {
+    a.account-entry.bad-balance {
         cursor: auto;
     }
 
-    .account-entry.bad-balance >>> .identicon,
-    .account-entry.bad-balance >>> .label,
-    .account-entry.bad-balance >>> .balance {
+    a.account-entry.bad-balance >>> .identicon,
+    a.account-entry.bad-balance >>> .label,
+    a.account-entry.bad-balance >>> .balance {
         opacity: 0.2;
     }
 
-    .account-entry:not(.bad-balance):hover,
-    .account-entry:not(.bad-balance):focus {
+    a.account-entry:not(.bad-balance):hover,
+    a.account-entry:not(.bad-balance):focus {
         background-color: rgba(31, 35, 72, 0.06); /* Based on Nimiq Blue */
         outline: none;
     }
 
-    .account-entry:not(.bad-balance):hover >>> img,
-    .account-entry:not(.bad-balance):focus >>> img {
+    a.account-entry:not(.bad-balance):hover >>> img,
+    a.account-entry:not(.bad-balance):focus >>> img {
         transform: scale(1);
     }
 
-    .account-entry:not(.bad-balance):hover >>> .label div,
-    .account-entry:not(.bad-balance):hover >>> .balance,
-    .account-entry:not(.bad-balance):focus >>> .label div,
-    .account-entry:not(.bad-balance):focus >>> .balance {
+    a.account-entry:not(.bad-balance):hover >>> .label div,
+    a.account-entry:not(.bad-balance):hover >>> .balance,
+    a.account-entry:not(.bad-balance):focus >>> .label div,
+    a.account-entry:not(.bad-balance):focus >>> .balance {
         opacity: 1;
     }
 
-    .account-entry.bad-balance.highlight-low-balance >>> .balance {
+    a.account-entry.bad-balance.highlight-low-balance >>> .balance {
         color: var(--nimiq-red);
         opacity: 1;
     }
 
-    .account-entry.good-balance:hover >>> .balance,
-    .account-entry.good-balance:focus >>> .balance {
+    a.account-entry.good-balance:hover >>> .balance,
+    a.account-entry.good-balance:focus >>> .balance {
         margin-right: 3rem;
         color: var(--nimiq-green);
     }
 
-    .account-entry.good-balance:hover .chevron-right,
-    .account-entry.good-balance:focus .chevron-right {
+    a.account-entry.good-balance:hover .chevron-right,
+    a.account-entry.good-balance:focus .chevron-right {
         transform: translateX(0);
         opacity: 0.23;
     }
