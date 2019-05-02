@@ -1,4 +1,4 @@
-const { resolve } = require('path');
+const path = require('path');
 
 const configureWebpack = {
   resolve: {
@@ -22,4 +22,32 @@ if (process.argv.includes('build')) {
   };
 }
 
-module.exports = { configureWebpack };
+const chainWebpack = config => {
+  // Delete default SVG rule to replace it
+  config.module.rules.delete('svg');
+
+  config.module
+    .rule('svg')
+      .test(/\.(svg)(\?.*)?$/)
+        // Add new icon SVG rule
+        .oneOf('icons')
+          .test(/icons/)
+          .use('svg-sprite-loader')
+            .loader('svg-sprite-loader')
+            .options({
+              symbolId: filePath => `nq-${path.basename(filePath, '.svg')}`
+            })
+            .end()
+          .end()
+        // Re-add default svg rule
+        .oneOf('normal')
+          .use('file-loader')
+            .loader('file-loader')
+            .options({
+              name: 'img/[name].[hash:8].[ext]'
+            })
+            .end()
+          .end()
+}
+
+module.exports = { configureWebpack, chainWebpack };

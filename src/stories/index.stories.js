@@ -13,6 +13,7 @@ import Amount from '../components/Amount.vue';
 import AmountWithDetails from '../components/AmountWithDetails.vue';
 import Contact from '../components/Contact.vue';
 import ContactList from '../components/ContactList.vue';
+import Icon from '../components/Icon.vue';
 import Identicon from '../components/Identicon.vue';
 import LabelInput from '../components/LabelInput.vue';
 import Wallet from '../components/Wallet.vue';
@@ -52,6 +53,49 @@ storiesOf('Basic', module)
             components: {Amount},
             style: `td { text-align: right }`,
             template
+        };
+    })
+    .add('Icon', () => {
+        return {
+            components: {Icon},
+            template: `
+                <div style="font-size: 40px; color: var(--nimiq-blue); padding: 16px;">
+                    <Icon name="alert-triangle"/>
+                    <Icon name="arrow-left-small"/>
+                    <Icon name="arrow-left"/>
+                    <Icon name="arrow-right-small"/>
+                    <Icon name="arrow-right"/>
+                    <Icon name="browser-login"/>
+                    <Icon name="caret-right-small"/>
+                    <Icon name="checkmark"/>
+                    <Icon name="close"/>
+                    <Icon name="contacts"/>
+                    <Icon name="copy"/>
+                    <Icon name="download"/>
+                    <Icon name="face-neutral"/>
+                    <Icon name="face-sad"/>
+                    <Icon name="fire"/>
+                    <Icon name="gear"/>
+                    <Icon name="hexagon"/>
+                    <Icon name="info-circle"/>
+                    <Icon name="keys"/>
+                    <Icon name="ledger"/>
+                    <Icon name="lock-locked"/>
+                    <Icon name="lock-unlocked"/>
+                    <Icon name="login"/>
+                    <Icon name="menu-dots"/>
+                    <Icon name="paper-edit"/>
+                    <Icon name="plus-circle"/>
+                    <Icon name="qr-code"/>
+                    <Icon name="questionmark"/>
+                    <Icon name="scan-qr-code"/>
+                    <Icon name="settings"/>
+                    <Icon name="shredder"/>
+                    <Icon name="skull"/>
+                    <Icon name="transfer"/>
+                    <Icon name="view-off"/>
+                    <Icon name="view"/>
+                </div>`,
         };
     })
     .add('Identicon', () => {
