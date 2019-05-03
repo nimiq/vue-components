@@ -23,31 +23,29 @@ if (process.argv.includes('build')) {
 }
 
 const chainWebpack = config => {
-  // Delete default SVG rule to replace it
-  config.module.rules.delete('svg');
+  const svgRule = config.module.rule('svg');
+  const svgDefaultHandler = svgRule.uses.values()[0];
+  svgRule.uses.clear();
 
   config.module
     .rule('svg')
-      .test(/\.(svg)(\?.*)?$/)
-        // Add new icon SVG rule
-        .oneOf('icons')
-          .test(/icons/)
-          .use('svg-sprite-loader')
-            .loader('svg-sprite-loader')
-            .options({
-              symbolId: filePath => `nq-${path.basename(filePath, '.svg')}`
-            })
-            .end()
+      // Add new icon SVG rule
+      .oneOf('icons')
+        .test(/icons/)
+        .use('svg-sprite-loader')
+          .loader('svg-sprite-loader')
+          .options({
+            symbolId: filePath => `nq-${path.basename(filePath, '.svg')}`
+          })
           .end()
-        // Re-add default svg rule
-        .oneOf('normal')
-          .use('file-loader')
-            .loader('file-loader')
-            .options({
-              name: 'img/[name].[hash:8].[ext]'
-            })
-            .end()
+        .end()
+      // Re-add default SVG rule
+      .oneOf('default')
+        .use()
+          .loader(svgDefaultHandler.get('loader'))
+          .options(svgDefaultHandler.get('options'))
           .end()
+        .end()
 }
 
 module.exports = { configureWebpack, chainWebpack };

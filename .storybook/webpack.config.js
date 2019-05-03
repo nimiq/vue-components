@@ -1,13 +1,16 @@
 const path = require('path');
 
 module.exports = (storybookBaseConfig, env, config) => {
+    // Save and remove default SVG rule to add a custom one below
+    const svgRule = config.module.rules.find(rule => rule.test.toString().includes('svg'));
+    config.module.rules = config.module.rules.filter(rule => !rule.test.toString().includes('svg'));
+
     return {
         ...config,
         plugins: [...config.plugins, new (require('vue-loader/lib/plugin'))()],
         module: {
             ...config.module,
-                                           // Remove default SVG rule to add a custom one below
-            rules: [...config.module.rules.filter(rule => !rule.test.toString().includes('svg')), {
+            rules: [...config.module.rules, {
                 test: /\.tsx?$/,
                 loader: require.resolve('ts-loader'),
                 options: {
@@ -15,18 +18,18 @@ module.exports = (storybookBaseConfig, env, config) => {
                     transpileOnly: true
                 }
             }, {
-                test: /\.(svg)(\?.*)?$/,
+                test: svgRule.test,
                 oneOf: [{
+                    // Add new icon SVG rule
                     test: /icons/,
                     loader: 'svg-sprite-loader',
                     options: {
                         symbolId: filePath => `nq-${path.basename(filePath, '.svg')}`
                     }
                 }, {
-                    loader: 'file-loader',
-                    options: {
-                        name: 'img/[name].[hash:8].[ext]'
-                    }
+                    // Re-add default SVG rule
+                    loader: svgRule.loader,
+                    options: svgRule.options
                 }],
             }]
         },
