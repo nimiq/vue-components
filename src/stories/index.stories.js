@@ -447,6 +447,7 @@ storiesOf('Components', module)
         };
     })
     .add('WalletList', () => {
+        const activeWalletId = select('Active Wallet', ['abcdef', 'ihhhhahh', 'vwxyz'], 'abcdef');
         return {
             components: {WalletList},
             methods: {
@@ -459,7 +460,7 @@ storiesOf('Components', module)
             },
             data() {
                 return {
-                    activeWalletId: 'ihhhhahh',
+                    activeWalletId: activeWalletId,
                     wallets: [
                         {
                             id: 'abcdef',
@@ -508,6 +509,7 @@ storiesOf('Components', module)
         };
     })
     .add('WalletMenu', () => {
+        const activeWalletId = select('Active Wallet', ['abcdef', 'ihhhhahh', 'vwxyz'], 'abcdef');
         return {
             components: {WalletMenu},
             methods: {
@@ -522,7 +524,7 @@ storiesOf('Components', module)
             },
             data() {
                 return {
-                    activeWalletId: 'vwxyz',
+                    activeWalletId: activeWalletId,
                     wallets: [
                         {
                             id: 'abcdef',
