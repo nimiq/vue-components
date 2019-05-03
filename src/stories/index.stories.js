@@ -409,24 +409,41 @@ storiesOf('Components', module)
     })
     .add('Wallet', () => {
         const label = text('label', 'Main Wallet');
-        const userFriendlyId = text('user-friendly-id', 'funny giraffe');
-        const id = text('id', 'abc');
+        const id = text('id', '47ee824fc910');
+        const balance = number('balance', 100000);
         return {
             components: {Wallet},
+            methods: {
+                exportFile: action('export-file'),
+                exportWords: action('export-words'),
+                rename: action('rename'),
+                changePassword: action('change-password'),
+                logout: action('logout'),
+            },
             data() {
                 return {
-                    id: 'abcdef',
-                    label: 'Keyguard Wallet',
-                    accounts: new Map([['path1', {}], ['path2', {}], ['path3', {}], ['path4', {}], ['path5', {}]]),
-                    contracts: [],
-                    type: 1, // BIP39
-                    // userFriendlyId: 'funny giraffe',
+                    wallet: {
+                        id,
+                        label,
+                        accounts: [
+                            {address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE'},
+                            {address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK'},
+                            {address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF'},
+                            {address: 'NQ19 YG54 46TX EHGQ D2R2 V8XA JX84 UFG0 S0MC'},
+                        ],
+                        contracts: [],
+                        balance: balance * 1e5,
+                        type: 1, // BIP39
+                    },
                 };
             },
-            template: `<Wallet :id="id"
-                              :label="label"
-                              :numberAccounts="accounts.size + contracts.length"
-                              :type="type"/>`
+            template: `<Wallet :wallet="wallet"
+                               @export-file="exportFile"
+                               @export-words="exportWords"
+                               @rename="rename"
+                               @change-password="changePassword"
+                               @logout="logout"
+                            />`
         };
     })
     .add('WalletList', () => {
@@ -434,39 +451,60 @@ storiesOf('Components', module)
             components: {WalletList},
             methods: {
                 walletSelected: action('wallet-selected'),
+                exportFile: action('export-file'),
+                exportWords: action('export-words'),
+                rename: action('rename'),
+                changePassword: action('change-password'),
+                logout: action('logout'),
             },
             data() {
                 return {
+                    activeWalletId: 'ihhhhahh',
                     wallets: [
                         {
                             id: 'abcdef',
-                            label: 'Keyguard Account',
-                            accounts: new Map([['path1', {}], ['path2', {}], ['path3', {}], ['path4', {}], ['path5', {}]]),
-                            contracts: [],
+                            label: 'Standard Account',
+                            accounts: [
+                                {address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE'},
+                                {address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK'},
+                                {address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF'},
+                            ],
                             type: 1, // BIP39
                             balance: 101 * 1e5,
-                            // userFriendlyId: 'funny giraffe',
                         }, {
                             id: 'ihhhhahh',
                             label: 'Keyguard Account',
-                            accounts: new Map([['path1', {}]]),
-                            contracts: [],
+                            accounts: [
+                                {address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE'},
+                                {address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK'},
+                                {address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF'},
+                            ],
                             type: 1, // BIP39
                             balance: 101 * 1e5,
-                            // userFriendlyId: 'funny giraffe',
                         }, {
                             id: 'vwxyz',
                             label: 'Ledger Account',
-                            accounts: new Map([['path1', {}], ['path2', {}], ['path3', {}]]),
-                            contracts: [],
+                            accounts: [
+                                {address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE'},
+                                {address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK'},
+                                {address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF'},
+                            ],
                             type: 2, // LEDGER
                             balance: 553452 * 1e5,
-                            // userFriendlyId: 'black panther',
                         }
                     ]
                 };
             },
-            template: `<WalletList @wallet-selected="walletSelected" :wallets="wallets"/>`
+            template: `<WalletList
+                :wallets="wallets"
+                :activeWalletId="activeWalletId"
+                @wallet-selected="walletSelected"
+                @export-file="exportFile"
+                @export-words="exportWords"
+                @rename="rename"
+                @change-password="changePassword"
+                @logout="logout"/>
+            `,
         };
     })
     .add('WalletMenu', () => {
@@ -474,45 +512,48 @@ storiesOf('Components', module)
             components: {WalletMenu},
             methods: {
                 walletSelected: action('wallet-selected'),
-                renameWallet: action('rename-wallet'),
-                exportWallet: action('export-wallet'),
-                changePassphraseWallet: action('change-passphrase-wallet'),
-                logoutWallet: action('logout-wallet'),
-                create: action('create'),
-                login: action('login'),
+                exportFile: action('export-file'),
+                exportWords: action('export-words'),
+                rename: action('rename'),
+                changePassword: action('change-password'),
+                logout: action('logout'),
+                settings: action('settings'),
+                addAccount: action('add-account'),
             },
             data() {
                 return {
-                    activeWalletId: 'abcdef',
+                    activeWalletId: 'vwxyz',
                     wallets: [
                         {
                             id: 'abcdef',
-                            label: 'My Keyguard Wallet',
-                            accounts: new Map([['path1', {}], ['path2', {}], ['path3', {}], ['path4', {}], ['path5', {}]]),
-                            contracts: [],
+                            label: 'Standard Account',
+                            accounts: [
+                                {address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE'},
+                                {address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK'},
+                                {address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF'},
+                            ],
                             type: 1, // BIP39
-                            balance: 62345123 * 1e5,
-                        }, {
-                            id: 'vwxyz',
-                            label: 'Ledger Wallet',
-                            accounts: new Map([['path1', {}], ['path2', {}], ['path3', {}]]),
-                            contracts: [],
-                            type: 2, // LEDGER
                             balance: 101 * 1e5,
                         }, {
-                            id: 'legacy-01',
-                            label: 'Keyguard Wallet',
-                            accounts: new Map([['path1', {}]]),
-                            contracts: [],
-                            type: 0, // LEGACY
-                            balance: 1239 * 1e5,
+                            id: 'ihhhhahh',
+                            label: 'Keyguard Account',
+                            accounts: [
+                                {address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE'},
+                                {address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK'},
+                                {address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF'},
+                            ],
+                            type: 1, // BIP39
+                            balance: 101 * 1e5,
                         }, {
-                            id: 'legacy-02',
-                            label: 'Keyguard Wallet',
-                            accounts: new Map([['path1', {}]]),
-                            contracts: [],
-                            type: 0, // LEGACY
-                            balance: 123 * 1e5,
+                            id: 'vwxyz',
+                            label: 'Ledger Account',
+                            accounts: [
+                                {address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE'},
+                                {address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK'},
+                                {address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF'},
+                            ],
+                            type: 2, // LEDGER
+                            balance: 553452 * 1e5,
                         }
                     ]
                 };
@@ -521,12 +562,13 @@ storiesOf('Components', module)
                 :wallets="wallets"
                 :active-wallet-id="activeWalletId"
                 @wallet-selected="walletSelected"
-                @rename-wallet="renameWallet"
-                @export-wallet="exportWallet"
-                @change-passphrase-wallet="changePassphraseWallet"
-                @logout-wallet="logoutWallet"
-                @create="create"
-                @login="login"
+                @export-file="exportFile"
+                @export-words="exportWords"
+                @rename="rename"
+                @change-password="changePassword"
+                @logout="logout"
+                @settings="settings"
+                @add-account="addAccount"
             />`)
         };
     })
