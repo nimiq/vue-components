@@ -8,10 +8,10 @@
         <button class="menu-toggle" @click.stop>
             <Icon name="menu-dots"/>
             <div class="menu nq-blue-bg">
-                <button class="item" @click="$emit('export-file', wallet.id)">Save Login File</button>
-                <button class="item" @click="$emit('export-words', wallet.id)">Create Backup</button>
+                <button v-if="wallet.type !== 3 /* LEDGER */" class="item" @click="$emit('export-file', wallet.id)">Save Login File</button>
+                <button v-if="wallet.type !== 3 /* LEDGER */" class="item" @click="$emit('export-words', wallet.id)">Create Backup</button>
                 <button class="item" @click="$emit('rename', wallet.id)">Rename</button>
-                <button class="item" @click="$emit('change-password', wallet.id)">Change Password</button>
+                <button v-if="wallet.type !== 3 /* LEDGER */" class="item" @click="$emit('change-password', wallet.id)">Change Password</button>
                 <div class="separator"></div>
                 <button class="item" @click="$emit('logout', wallet.id)"><Icon name="arrow-right-small"/>Logout</button>
             </div>
@@ -91,7 +91,7 @@ export default class Wallet extends Vue {
     }
 
     .wallet:hover .menu-toggle,
-    .wallet:focus .menu-toggle,
+    :focus .menu-toggle,
     .menu-toggle:focus,
     .menu-toggle:focus-within,
     .active .menu-toggle {

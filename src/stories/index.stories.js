@@ -470,7 +470,7 @@ storiesOf('Components', module)
                                 {address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK'},
                                 {address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF'},
                             ],
-                            type: 1, // BIP39
+                            type: 2, // BIP39
                             balance: 101 * 1e5,
                         }, {
                             id: 'ihhhhahh',
@@ -480,7 +480,7 @@ storiesOf('Components', module)
                                 {address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK'},
                                 {address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF'},
                             ],
-                            type: 1, // BIP39
+                            type: 2, // BIP39
                             balance: 101 * 1e5,
                         }, {
                             id: 'vwxyz',
@@ -490,7 +490,7 @@ storiesOf('Components', module)
                                 {address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK'},
                                 {address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF'},
                             ],
-                            type: 2, // LEDGER
+                            type: 3, // LEDGER
                             balance: 553452 * 1e5,
                         }
                     ]
@@ -534,7 +534,7 @@ storiesOf('Components', module)
                                 {address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK'},
                                 {address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF'},
                             ],
-                            type: 1, // BIP39
+                            type: 2, // BIP39
                             balance: 101 * 1e5,
                         }, {
                             id: 'ihhhhahh',
@@ -544,7 +544,7 @@ storiesOf('Components', module)
                                 {address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK'},
                                 {address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF'},
                             ],
-                            type: 1, // BIP39
+                            type: 2, // BIP39
                             balance: 101 * 1e5,
                         }, {
                             id: 'vwxyz',
@@ -554,7 +554,7 @@ storiesOf('Components', module)
                                 {address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK'},
                                 {address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF'},
                             ],
-                            type: 2, // LEDGER
+                            type: 3, // LEDGER
                             balance: 553452 * 1e5,
                         }
                     ]
