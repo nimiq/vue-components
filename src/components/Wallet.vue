@@ -53,6 +53,7 @@ export default class Wallet extends Vue {
 
     .wallet-description {
         flex-grow: 1;
+        min-width: 0;
     }
 
     .account-ring {
@@ -60,13 +61,15 @@ export default class Wallet extends Vue {
         height: 7rem;
         margin-left: 2rem;
         margin-right: 1.5rem;
+        flex-shrink: 0;
     }
 
     .label {
         font-weight: bold;
         font-size: 2.25rem;
-        line-height: 2rem;
-        margin-bottom: .5rem;
+        line-height: 3rem;
+        white-space: nowrap;
+        mask-image: linear-gradient(90deg , white, white calc(100% - 3rem), rgba(255,255,255, 0));
     }
 
     .amount {
@@ -88,6 +91,7 @@ export default class Wallet extends Vue {
         font-family: inherit;
         transition: opacity .2s;
         outline: none;
+        flex-shrink: 0;
     }
 
     .wallet:hover .menu-toggle,

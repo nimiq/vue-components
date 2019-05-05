@@ -538,7 +538,7 @@ storiesOf('Components', module)
                             balance: 101 * 1e5,
                         }, {
                             id: 'ihhhhahh',
-                            label: 'Keyguard Account',
+                            label: 'Oversized account label',
                             accounts: [
                                 {address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE'},
                                 {address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK'},
