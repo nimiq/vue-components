@@ -447,7 +447,7 @@ storiesOf('Components', module)
         };
     })
     .add('WalletList', () => {
-        const activeWalletId = select('Active Wallet', ['abcdef', 'ihhhhahh', 'vwxyz'], 'abcdef');
+        const activeWalletId = select('Active Wallet', ['account_1', 'account_2', 'account_3'], 'account_1');
         return {
             components: {WalletList},
             methods: {
@@ -463,7 +463,7 @@ storiesOf('Components', module)
                     activeWalletId: activeWalletId,
                     wallets: [
                         {
-                            id: 'abcdef',
+                            id: 'account_1',
                             label: 'Standard Account',
                             accounts: [
                                 {address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE'},
@@ -471,9 +471,11 @@ storiesOf('Components', module)
                                 {address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF'},
                             ],
                             type: 2, // BIP39
+                            fileExported: true,
+                            wordsExported: false,
                             balance: 101 * 1e5,
                         }, {
-                            id: 'ihhhhahh',
+                            id: 'account_2',
                             label: 'Keyguard Account',
                             accounts: [
                                 {address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE'},
@@ -481,9 +483,11 @@ storiesOf('Components', module)
                                 {address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF'},
                             ],
                             type: 2, // BIP39
+                            fileExported: false,
+                            wordsExported: true,
                             balance: 101 * 1e5,
                         }, {
-                            id: 'vwxyz',
+                            id: 'account_3',
                             label: 'Ledger Account',
                             accounts: [
                                 {address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE'},
@@ -509,7 +513,7 @@ storiesOf('Components', module)
         };
     })
     .add('WalletMenu', () => {
-        const activeWalletId = select('Active Wallet', ['abcdef', 'ihhhhahh', 'vwxyz'], 'abcdef');
+        const activeWalletId = select('Active Wallet', ['account_1', 'account_2', 'account_3', 'account_4'], 'account_1');
         return {
             components: {WalletMenu},
             methods: {
@@ -527,17 +531,19 @@ storiesOf('Components', module)
                     activeWalletId: activeWalletId,
                     wallets: [
                         {
-                            id: 'abcdef',
-                            label: 'Standard Account',
+                            id: 'account_1',
+                            label: 'Single-Address Accounts',
                             accounts: [
                                 {address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE'},
                                 {address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK'},
                                 {address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF'},
                             ],
-                            type: 2, // BIP39
+                            type: 1, // BIP39
+                            fileExported: false,
+                            wordsExported: false,
                             balance: 101 * 1e5,
                         }, {
-                            id: 'ihhhhahh',
+                            id: 'account_2',
                             label: 'Oversized account label',
                             accounts: [
                                 {address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE'},
@@ -545,9 +551,23 @@ storiesOf('Components', module)
                                 {address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF'},
                             ],
                             type: 2, // BIP39
-                            balance: 101 * 1e5,
+                            fileExported: true,
+                            wordsExported: false,
+                            balance: 202 * 1e5,
                         }, {
-                            id: 'vwxyz',
+                            id: 'account_3',
+                            label: 'My account',
+                            accounts: [
+                                {address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE'},
+                                {address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK'},
+                                {address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF'},
+                            ],
+                            type: 2, // BIP39
+                            fileExported: false,
+                            wordsExported: true,
+                            balance: 1000000 * 1e5,
+                        }, {
+                            id: 'account_4',
                             label: 'Ledger Account',
                             accounts: [
                                 {address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE'},
@@ -555,6 +575,8 @@ storiesOf('Components', module)
                                 {address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF'},
                             ],
                             type: 3, // LEDGER
+                            fileExported: false,
+                            wordsExported: false,
                             balance: 553452 * 1e5,
                         }
                     ]

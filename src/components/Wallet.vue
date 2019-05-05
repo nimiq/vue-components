@@ -3,17 +3,24 @@
         <AccountRing :addresses="addresses"/>
         <div class="wallet-description">
             <div class="label">{{ wallet.label }}</div>
-            <Amount v-if="wallet.balance !== undefined" :amount="wallet.balance" :decimals="0"/>
+            <div class="amount-container" :class="{'nq-orange': exportMissing}">
+                <Icon v-if="exportMissing" name="alert-triangle"/>
+                <Amount v-if="wallet.balance !== undefined" :amount="wallet.balance" :decimals="0"/>
+            </div>
         </div>
-        <button class="menu-toggle" @click.stop>
+        <button v-if="isBip39 || isLedger" class="menu-toggle" @click.stop>
             <Icon name="menu-dots"/>
             <div class="menu nq-blue-bg">
-                <button v-if="wallet.type !== 3 /* LEDGER */" class="item" @click="$emit('export-file', wallet.id)">Save Login File</button>
-                <button v-if="wallet.type !== 3 /* LEDGER */" class="item" @click="$emit('export-words', wallet.id)">Create Backup</button>
+                <button v-if="isBip39" class="item export" @click="$emit('export-file', wallet.id)">
+                    Save Login File<Icon v-if="fileMissing" class="nq-orange" name="alert-triangle"/>
+                </button>
+                <button v-if="isBip39" class="item export" @click="$emit('export-words', wallet.id)">
+                    Create Backup<Icon v-if="wordsMissing" class="nq-orange" name="alert-triangle"/>
+                </button>
                 <button class="item" @click="$emit('rename', wallet.id)">Rename</button>
-                <button v-if="wallet.type !== 3 /* LEDGER */" class="item" @click="$emit('change-password', wallet.id)">Change Password</button>
+                <button v-if="isBip39" class="item" @click="$emit('change-password', wallet.id)">Change Password</button>
                 <div class="separator"></div>
-                <button class="item" @click="$emit('logout', wallet.id)"><Icon name="arrow-right-small"/>Logout</button>
+                <button class="item logout" @click="$emit('logout', wallet.id)"><Icon name="arrow-right-small"/>Logout</button>
             </div>
         </button>
     </div>
@@ -32,12 +39,34 @@ export default class Wallet extends Vue {
         label: string,
         accounts: any[],
         type: number,
+        fileExported: boolean,
+        wordsExported: boolean,
         balance?: number
     };
 
     get addresses() {
         return this.wallet.accounts
             .reduce((addresses: string[], account: any) => addresses.concat(account.address), []);
+    }
+
+    get isBip39(): boolean {
+        return this.wallet.type === 2 /* BIP39 */;
+    }
+
+    get isLedger(): boolean {
+        return this.wallet.type === 3 /* LEDGER */;
+    }
+
+    get fileMissing(): boolean {
+        return this.isBip39 && !this.wallet.fileExported;
+    }
+
+    get wordsMissing(): boolean {
+        return this.isBip39 && !this.wallet.wordsExported;
+    }
+
+    get exportMissing(): boolean {
+        return this.fileMissing || this.wordsMissing;
     }
 }
 </script>
@@ -49,6 +78,7 @@ export default class Wallet extends Vue {
         flex-direction: row;
         align-items: center;
         position: relative;
+        height: 10rem;
     }
 
     .wallet-description {
@@ -72,11 +102,21 @@ export default class Wallet extends Vue {
         mask-image: linear-gradient(90deg , white, white calc(100% - 3rem), rgba(255,255,255, 0));
     }
 
-    .amount {
+    .amount-container {
         font-size: 1.75rem;
         font-weight: 600;
         line-height: 2rem;
         opacity: .5;
+        display: flex;
+    }
+
+    .amount-container.nq-orange {
+        opacity: 1;
+    }
+
+    .amount-container .nq-icon {
+        margin-right: 1rem;
+        font-size: 2rem;
     }
 
     .menu-toggle {
@@ -85,7 +125,6 @@ export default class Wallet extends Vue {
         cursor: pointer;
         padding: 0;
         width: 7rem;
-        height: 10rem;
         opacity: 0;
         pointer-events: none;
         font-family: inherit;
@@ -135,18 +174,17 @@ export default class Wallet extends Vue {
         display: block;
         background: none;
         border: none;
-        color: inherit;
+        color: rgba(255, 255, 255, .6);
         font-family: inherit;
         text-align: left;
         cursor: pointer;
-        opacity: .6;
         font-size: 2rem;
         line-height: 3.75rem;
         font-weight: 600;
         width: 100%;
         padding: 0 1rem;
         margin-bottom: .75rem;
-        transition: opacity .2s, color .2s;
+        transition: color .2s;
     }
 
     .menu .item:last-child {
@@ -155,7 +193,7 @@ export default class Wallet extends Vue {
 
     .menu .item:hover,
     .menu .item:focus {
-        opacity: 1;
+        color: white;
     }
 
     .menu .item:last-child:hover,
@@ -165,15 +203,22 @@ export default class Wallet extends Vue {
 
     .menu .item .nq-icon {
         vertical-align: middle;
-        margin-right: 1rem;
         margin-bottom: .25rem;
+    }
+
+    .menu .export .nq-icon {
+        margin-left: 1rem;
+    }
+
+    .menu .logout .nq-icon {
+        margin-right: 1rem;
     }
 
     .menu .separator {
         margin-bottom: .75rem;
         background: white;
-        opacity: .1;
         width: 100%;
         height: 1px;
+        opacity: .1;
     }
 </style>
