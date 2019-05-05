@@ -10,7 +10,6 @@ export { default as Amount } from './components/Amount.vue';
 export { default as AmountWithDetails } from './components/AmountWithDetails.vue';
 export { default as Contact } from './components/Contact.vue';
 export { default as ContactList } from './components/ContactList.vue';
-export { default as Icon } from './components/Icon.vue';
 export { default as Identicon } from './components/Identicon.vue';
 export { default as LabelInput } from './components/LabelInput.vue';
 export { default as LoadingSpinner } from './components/LoadingSpinner.vue';
@@ -25,3 +24,6 @@ export { default as SmallPage } from './components/SmallPage.vue';
 export { default as Wallet } from './components/Wallet.vue';
 export { default as WalletList } from './components/WalletList.vue';
 export { default as WalletMenu } from './components/WalletMenu.vue';
+
+// Comment out unused icons in the components/Icons.ts file
+export * from './components/Icons';
