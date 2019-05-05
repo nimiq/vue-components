@@ -14,6 +14,8 @@ import AmountWithDetails from '../components/AmountWithDetails.vue';
 import Contact from '../components/Contact.vue';
 import ContactList from '../components/ContactList.vue';
 import Icon from '../components/Icon.vue';
+import AlertTriangleIcon from '../components/Icons/AlertTriangleIcon';
+import ArrowLeftSmallIcon from '../components/Icons/ArrowLeftSmallIcon';
 import Identicon from '../components/Identicon.vue';
 import LabelInput from '../components/LabelInput.vue';
 import Wallet from '../components/Wallet.vue';
@@ -95,6 +97,16 @@ storiesOf('Basic', module)
                     <Icon name="transfer"/>
                     <Icon name="view-off"/>
                     <Icon name="view"/>
+                </div>`,
+        };
+    })
+    .add('Icon2', () => {
+        return {
+            components: {AlertTriangleIcon, ArrowLeftSmallIcon},
+            template: `
+                <div style="font-size: 40px; color: var(--nimiq-blue); padding: 16px;">
+                    <AlertTriangleIcon/>
+                    <ArrowLeftSmallIcon/>
                 </div>`,
         };
     })
