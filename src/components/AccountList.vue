@@ -20,7 +20,7 @@
                 @changed="accountChanged(account.userFriendlyAddress, $event)"
             />
 
-            <i class="nq-icon chevron-right"></i>
+            <CaretRightSmallIcon/>
         </component>
     </div>
 </template>
@@ -29,8 +29,9 @@
 import {Component, Emit, Prop, Vue} from 'vue-property-decorator';
 import Account from './Account.vue';
 import { AccountInfo } from './AccountSelector.vue';
+import { CaretRightSmallIcon } from './Icons';
 
-@Component({components: {Account}})
+@Component({components: {Account, CaretRightSmallIcon}})
 export default class AccountList extends Vue {
     @Prop(Array) public accounts!: AccountInfo[];
     @Prop(String) private walletId?: string;
@@ -72,22 +73,6 @@ export default class AccountList extends Vue {
 </script>
 
 <style scoped>
-    /* Nimiq Style */
-    .nq-icon {
-        width: 1em;
-        height: 1em;
-        background-repeat: no-repeat;
-        background-position: center;
-        display: inline-block;
-        background-size: 100%;
-        background-size: contain;
-    }
-
-    .nq-icon.chevron-right {
-        background-image: url('data:image/svg+xml,<svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.3137 2L18.7978 10.4865L10.3137 18.9706" stroke="%231F2348" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
-    }
-    /* END Nimiq Style */
-
     .account-list {
         flex-grow: 1;
         overflow-y: auto;
@@ -114,12 +99,11 @@ export default class AccountList extends Vue {
         transition: opacity .3s ease, color .3s ease, margin-right .45s ease;
     }
 
-    .account-entry .chevron-right {
+    .account-entry .nq-icon {
         position: absolute;
         right: 2rem;
         top: 3.625rem;
-        width: 2rem;
-        height: 2rem;
+        font-size: 2rem;
         transform: translateX(3rem);
         opacity: 0;
         transition: transform .45s ease, opacity .35s .1s ease;
@@ -164,8 +148,8 @@ export default class AccountList extends Vue {
         color: var(--nimiq-green);
     }
 
-    a.account-entry.good-balance:hover .chevron-right,
-    a.account-entry.good-balance:focus .chevron-right {
+    a.account-entry.good-balance:hover .nq-icon,
+    a.account-entry.good-balance:focus .nq-icon {
         transform: translateX(0);
         opacity: 0.23;
     }
