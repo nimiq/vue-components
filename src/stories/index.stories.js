@@ -410,7 +410,10 @@ storiesOf('Components', module)
     .add('Wallet', () => {
         const label = text('label', 'Main Wallet');
         const id = text('id', '47ee824fc910');
+        const type = select('type', ['legacy', 'bip39', 'ledger'], 'bip39');
         const balance = number('balance', 100000);
+        const fileExported = boolean('fileExported', true);
+        const wordsExported = boolean('wordsExported', true);
         return {
             components: {Wallet},
             methods: {
@@ -432,8 +435,10 @@ storiesOf('Components', module)
                             {address: 'NQ19 YG54 46TX EHGQ D2R2 V8XA JX84 UFG0 S0MC'},
                         ],
                         contracts: [],
+                        type: type === 'legacy' ? 1 : type === 'bip39' ? 2 : 3,
+                        fileExported: fileExported,
+                        wordsExported: wordsExported,
                         balance: balance * 1e5,
-                        type: 1, // BIP39
                     },
                 };
             },
