@@ -4,23 +4,23 @@
         <div class="wallet-description">
             <div class="label">{{ wallet.label }}</div>
             <div class="amount-container" :class="{'nq-orange': exportMissing}">
-                <Icon v-if="exportMissing" name="alert-triangle"/>
+                <AlertTriangleIcon v-if="exportMissing"/>
                 <Amount v-if="wallet.balance !== undefined" :amount="wallet.balance" :decimals="0"/>
             </div>
         </div>
         <button v-if="isBip39 || isLedger" class="menu-toggle" @click.stop>
-            <Icon name="menu-dots"/>
+            <MenuDotsIcon/>
             <div class="menu nq-blue-bg">
                 <button v-if="isBip39" class="item export" @click="$emit('export-file', wallet.id)">
-                    Save Login File<Icon v-if="fileMissing" class="nq-orange" name="alert-triangle"/>
+                    Save Login File<AlertTriangleIcon v-if="fileMissing" class="nq-orange"/>
                 </button>
                 <button v-if="isBip39" class="item export" @click="$emit('export-words', wallet.id)">
-                    Create Backup<Icon v-if="wordsMissing" class="nq-orange" name="alert-triangle"/>
+                    Create Backup<AlertTriangleIcon v-if="wordsMissing" class="nq-orange"/>
                 </button>
                 <button class="item" @click="$emit('rename', wallet.id)">Rename</button>
                 <button v-if="isBip39" class="item" @click="$emit('change-password', wallet.id)">Change Password</button>
                 <div class="separator"></div>
-                <button class="item logout" @click="$emit('logout', wallet.id)"><Icon name="arrow-right-small"/>Logout</button>
+                <button class="item logout" @click="$emit('logout', wallet.id)"><ArrowRightSmallIcon/>Logout</button>
             </div>
         </button>
     </div>
@@ -30,9 +30,9 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import AccountRing from './AccountRing.vue';
 import Amount from './Amount.vue';
-import Icon from './Icon.vue';
+import { AlertTriangleIcon, MenuDotsIcon, ArrowRightSmallIcon } from './Icons';
 
-@Component({components: { AccountRing, Amount, Icon }})
+@Component({components: { AccountRing, Amount, AlertTriangleIcon, MenuDotsIcon, ArrowRightSmallIcon }})
 export default class Wallet extends Vue {
     @Prop(Object) private wallet!: {
         id: string,
