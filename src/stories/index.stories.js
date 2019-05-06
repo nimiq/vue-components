@@ -518,7 +518,7 @@ storiesOf('Components', module)
         };
     })
     .add('WalletMenu', () => {
-        const activeWalletId = select('Active Wallet', ['account_1', 'account_2', 'account_3', 'account_4'], 'account_1');
+        const activeWalletId = select('Active Wallet', ['account_1', 'account_2', 'account_3', 'account_4'], 'account_2');
         return {
             components: {WalletMenu},
             methods: {

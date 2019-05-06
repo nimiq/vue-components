@@ -92,6 +92,7 @@ export default class Wallet extends Vue {
         margin-left: 2rem;
         margin-right: 1.5rem;
         flex-shrink: 0;
+        user-select: none;
     }
 
     .label {
@@ -122,9 +123,11 @@ export default class Wallet extends Vue {
     .menu-toggle {
         background: none;
         border: none;
+        color: inherit;
         cursor: pointer;
         padding: 0;
         width: 7rem;
+        height: 100%;
         opacity: 0;
         pointer-events: none;
         font-family: inherit;
@@ -162,6 +165,7 @@ export default class Wallet extends Vue {
         padding: 1rem;
         border-radius: .5rem;
         z-index: 1;
+        cursor: auto;
     }
 
     .menu-toggle:focus .menu,
@@ -208,6 +212,7 @@ export default class Wallet extends Vue {
 
     .menu .export .nq-icon {
         margin-left: 1rem;
+        color: var(--nimiq-orange);
     }
 
     .menu .logout .nq-icon {
@@ -215,7 +220,8 @@ export default class Wallet extends Vue {
     }
 
     .menu .separator {
-        margin-bottom: .75rem;
+        margin-top: 1.75rem;
+        margin-bottom: 1rem;
         background: white;
         width: 100%;
         height: 1px;
