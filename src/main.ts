@@ -24,3 +24,6 @@ export { default as SmallPage } from './components/SmallPage.vue';
 export { default as Wallet } from './components/Wallet.vue';
 export { default as WalletList } from './components/WalletList.vue';
 export { default as WalletMenu } from './components/WalletMenu.vue';
+
+// Comment out unused icons in the components/Icons.ts file
+export * from './components/Icons';

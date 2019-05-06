@@ -23,6 +23,7 @@ import QrCode from '../components/QrCode.vue';
 import QrScanner from '../components/QrScanner.vue';
 import SmallPage from '../components/SmallPage.vue';
 import LoadingSpinner from '../components/LoadingSpinner.vue';
+import * as Icons from '../components/Icons';
 
 function windowTemplate(slot) {
     return `
@@ -52,6 +53,49 @@ storiesOf('Basic', module)
             components: {Amount},
             style: `td { text-align: right }`,
             template
+        };
+    })
+    .add('Icons', () => {
+        return {
+            components: Icons,
+            template: `
+                <div style="font-size: 40px; color: var(--nimiq-blue); padding: 16px;">
+                    <AlertTriangleIcon/>
+                    <ArrowLeftSmallIcon/>
+                    <ArrowLeftIcon/>
+                    <ArrowRightSmallIcon/>
+                    <ArrowRightIcon/>
+                    <BrowserLoginIcon/>
+                    <CaretRightSmallIcon/>
+                    <CheckmarkIcon/>
+                    <CloseIcon/>
+                    <ContactsIcon/>
+                    <CopyIcon/>
+                    <DownloadIcon/>
+                    <FaceNeutralIcon/>
+                    <FaceSadIcon/>
+                    <FireIcon/>
+                    <GearIcon/>
+                    <HexagonIcon/>
+                    <InfoCircleIcon/>
+                    <KeysIcon/>
+                    <LedgerIcon/>
+                    <LockLockedIcon/>
+                    <LockUnlockedIcon/>
+                    <LoginIcon/>
+                    <MenuDotsIcon/>
+                    <PaperEditIcon/>
+                    <PlusCircleIcon/>
+                    <QrCodeIcon/>
+                    <QuestionmarkIcon/>
+                    <ScanQrCodeIcon/>
+                    <SettingsIcon/>
+                    <ShredderIcon/>
+                    <SkullIcon/>
+                    <TransferIcon/>
+                    <ViewOffIcon/>
+                    <ViewIcon/>
+                </div>`,
         };
     })
     .add('Identicon', () => {
