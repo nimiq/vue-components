@@ -43,11 +43,16 @@
         position: absolute;
         left: 4.25rem;
         top: 4rem;
-        line-height: 1;
-        cursor: pointer;
         transition: opacity .3s ease, transform .4s ease;
         opacity: .3;
         color: inherit;
+    }
+
+    @media (max-width: 450px) {
+        .page-header-back-button {
+            left: 3.25rem;
+            top: 3rem;
+        }
     }
 
     .page-header-back-button:hover,
@@ -58,7 +63,7 @@
     }
 
     .page-header-back-button .nq-icon {
-        vertical-align: bottom;
+        display: block;
     }
 
     .page-header.has-progress-indicator .page-header-back-button {

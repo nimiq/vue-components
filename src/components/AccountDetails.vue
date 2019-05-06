@@ -57,6 +57,10 @@ export default class AccountDetails extends Vue {
         transition: opacity .3s ease, color .3s ease;
     }
 
+    .cancel-circle .nq-icon {
+        display: block;
+    }
+
     .cancel-circle::after {
         /* enlarged click area */
         content: '';
