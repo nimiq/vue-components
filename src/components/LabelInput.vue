@@ -1,8 +1,10 @@
 <template>
-    <form class="label-input" @submit.prevent="changed">
-        <input type="text"
+    <form class="label-input" @submit.prevent="onBlur">
+        <span class="width-finder width-placeholder" ref="widthPlaceholder">{{placeholder}}</span>
+        <span class="width-finder width-value" ref="widthValue">{{liveValue}}</span>
+        <input type="text" class="nq-input"
             :placeholder="placeholder"
-            :style="{width: `${Math.max(placeholder.length, liveValue.length) + 1}ch`}"
+            :style="{width: `${this.width}px`}"
             v-model="liveValue"
             @input="onInput"
             @blur="onBlur"
@@ -11,7 +13,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { Utf8Tools } from '@nimiq/utils';
 
 @Component
@@ -23,6 +25,7 @@ export default class LabelInput extends Vue {
     private liveValue = this.value;
     private lastValue = this.value;
     private lastEmittedValue = this.value;
+    private width = 50;
 
     public focus() {
         (this.$refs.input as HTMLInputElement).focus();
@@ -45,43 +48,46 @@ export default class LabelInput extends Vue {
         this.lastEmittedValue = this.liveValue;
         (this.$refs.input as HTMLInputElement).blur();
     }
+
+    @Watch('liveValue', {immediate: true})
+    private async updateWidth() {
+        await Vue.nextTick(); // Await updated DOM
+        if (!this.$refs.widthPlaceholder) return;
+
+        const placeholderWidth = (this.$refs.widthPlaceholder as HTMLSpanElement).offsetWidth;
+        const valueWidth = (this.$refs.widthValue as HTMLSpanElement).offsetWidth;
+
+        // Add an additional padding, so entering new letters does not flicker the input before width is adjusted
+        //
+        // A third of the font-size was found to be a good compromise between not adding too big a gap and
+        // still resonably supporting wide letters (it still jumps for W at bigger font-sizes, but that's why
+        // it's called a compromise).
+        const fontSize = parseFloat(window.getComputedStyle((this.$refs.input as HTMLInputElement), null)
+            .getPropertyValue('font-size'));
+
+        this.width = Math.max(placeholderWidth, valueWidth) + fontSize / 3;
+    }
 }
 </script>
 
 <style scoped>
     .label-input {
-        display: inline;
+        position: relative;
+        overflow: hidden; /* limit width-finder width to parent available width */
+    }
+
+    .width-finder {
+        position: absolute;
+        color: transparent;
+        pointer-events: none;
+        user-select: none;
+        white-space: pre;
+        padding: 0 2.25rem; /* nq-input padding + border-width */
     }
 
     input {
-        background: none;
-        outline: none;
-        font-family: inherit;
-        font-size: inherit;
-        color: rgba(31, 35, 72, 0.7);
-        font-weight: inherit;
-        margin: 0;
-        padding: 0.75rem;
-        line-height: 1.11;
-        height: 2.5rem;
-        border: 0.25rem solid rgba(31, 35, 72, 0.1);
-        border-radius: 0.5rem;
+        padding-right: 0;
         max-width: 100%;
-        height: 100%;
-        box-sizing: border-box;
-        transition: width 200ms ease-out, border 200ms, color 200ms;
-    }
-
-    input::placeholder {
-        color: rgba(5, 130, 202, 0.7);
-    }
-
-    input:hover,
-    input:focus {
-        border-color: rgba(31, 35, 72, 0.16);
-    }
-
-    input:focus {
-        color: rgb(5, 130, 202);
+        transition: width 50ms ease-out;
     }
 </style>

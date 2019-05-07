@@ -52,7 +52,6 @@ export default class Identicon extends Vue {
 <style scoped>
     .identicon {
         width: 10rem;
-        min-width: 5rem;
     }
 
     img {

@@ -1,4 +1,8 @@
 module.exports = (storybookBaseConfig, env, config) => {
+    // Save and remove default SVG rule to add a custom one below
+    const svgRule = config.module.rules.find(rule => rule.test.toString().includes('svg'));
+    config.module.rules = config.module.rules.filter(rule => !rule.test.toString().includes('svg'));
+
     return {
         ...config,
         plugins: [...config.plugins, new (require('vue-loader/lib/plugin'))()],
@@ -11,6 +15,18 @@ module.exports = (storybookBaseConfig, env, config) => {
                     appendTsSuffixTo: [/\.vue$/],
                     transpileOnly: true
                 }
+            }, {
+                test: svgRule.test,
+                oneOf: [{
+                    // Add new icon SVG rule
+                    test: /icons/,
+                    loader: 'vue-svg-loader',
+                    options: { svgo: false }
+                }, {
+                    // Re-add default SVG rule
+                    loader: svgRule.loader,
+                    options: svgRule.options
+                }],
             }]
         },
         resolve: {

@@ -7,7 +7,12 @@
                 <div v-if="wallets.length > 1" class="wallet-label">
                     <span class="nq-label">{{ wallet.label }}</span>
                 </div>
-                <AccountList :accounts="wallet.accounts | accountsToArray | sortAccounts(minBalance)" :walletId="wallet.id" :minBalance="minBalance" @account-selected="accountSelected"/>
+                <AccountList
+                    :accounts="wallet | listAccountsAndContracts | sortAccountsAndContracts(minBalance)"
+                    :walletId="wallet.id"
+                    :minBalance="minBalance"
+                    :decimals="decimals"
+                    @account-selected="accountSelected"/>
             </div>
         </div>
 
@@ -21,9 +26,19 @@
 import {Component, Emit, Prop, Vue} from 'vue-property-decorator';
 import AccountList from './AccountList.vue';
 
+// This is a reduced list of properties, for convenience
+export interface ContractInfo {
+    label: string;
+    placeholder?: string;
+    userFriendlyAddress: string;
+    balance?: number;
+    walletId?: string;
+}
+
 export interface AccountInfo {
     path: string;
     label: string;
+    placeholder?: string;
     // address: Nimiq.Address; // Nimiq namespace is not known and not used by @nimiq/vue-components
     userFriendlyAddress: string;
     balance?: number;
@@ -42,13 +57,14 @@ export interface WalletInfo {
 @Component({
     components: {AccountList},
     filters: {
-        accountsToArray: (accounts: Map<string, AccountInfo>): AccountInfo[] => {
-            return Array.from(accounts.values());
+        listAccountsAndContracts(wallet: WalletInfo): Array<AccountInfo|ContractInfo> {
+            return [ ...wallet.accounts.values(), ...wallet.contracts ];
         },
-        sortAccounts: (accounts: AccountInfo[], minBalance?: number): AccountInfo[] => {
+        sortAccountsAndContracts: (accounts: Array<AccountInfo|ContractInfo>, minBalance?: number)
+            : Array<AccountInfo|ContractInfo> => {
             if (!minBalance) return accounts;
 
-            return accounts.slice(0).sort((a: AccountInfo, b: AccountInfo): number => {
+            return accounts.slice(0).sort((a: AccountInfo|ContractInfo, b: AccountInfo|ContractInfo): number => {
                 if ((!a.balance || a.balance < minBalance) && b.balance && b.balance >= minBalance) return 1;
                 if ((!b.balance || b.balance < minBalance) && a.balance && a.balance >= minBalance) return -1;
                 return 0;
@@ -58,6 +74,7 @@ export interface WalletInfo {
 })
 export default class AccountSelector extends Vue {
     @Prop(Array) private wallets!: WalletInfo[];
+    @Prop(Number) private decimals?: number;
     @Prop(Number) private minBalance?: number;
     @Prop({type: Boolean, default: true}) private allowLogin!: boolean;
 
@@ -65,8 +82,17 @@ export default class AccountSelector extends Vue {
         if (!this.minBalance) return this.wallets;
 
         return this.wallets.slice(0).sort((a: WalletInfo, b: WalletInfo): number => {
-            const balanceA = Array.from(a.accounts.values()).reduce((sum, account) => sum + (account.balance || 0), 0);
-            const balanceB = Array.from(b.accounts.values()).reduce((sum, account) => sum + (account.balance || 0), 0);
+            const balanceA =
+                Array.from(a.accounts.values())
+                    .reduce((sum: number, account: AccountInfo) => sum + (account.balance || 0), 0)
+                + a.contracts
+                    .reduce((sum: number, contract: ContractInfo) => sum + (contract.balance || 0), 0);
+
+            const balanceB =
+                Array.from(b.accounts.values())
+                    .reduce((sum: number, account: AccountInfo) => sum + (account.balance || 0), 0)
+                + b.contracts
+                    .reduce((sum: number, contract: ContractInfo) => sum + (contract.balance || 0), 0);
 
             if ((!balanceA || balanceA < this.minBalance!) && balanceB && balanceB >= this.minBalance!) return 1;
             if ((!balanceB || balanceB < this.minBalance!) && balanceA && balanceA >= this.minBalance!) return -1;
