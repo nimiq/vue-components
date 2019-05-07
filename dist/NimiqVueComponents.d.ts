@@ -3,12 +3,14 @@
 //   ../vue-property-decorator
 //   ../qr-code
 //   ../qr-scanner
+//   ../vue
 
 declare module 'NimiqVueComponents' {
     export { default as ContactList } from 'NimiqVueComponents/src/components/ContactList.vue';
     export { default as QrCode } from 'NimiqVueComponents/src/components/QrCode.vue';
     export { default as QrScanner } from 'NimiqVueComponents/src/components/QrScanner.vue';
     export { default as WalletMenu } from 'NimiqVueComponents/src/components/WalletMenu.vue';
+    export * from 'NimiqVueComponents/src/components/Icons';
 }
 
 declare module 'NimiqVueComponents/src/components/ContactList.vue' {
@@ -80,5 +82,32 @@ declare module 'NimiqVueComponents/src/components/WalletMenu.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class WalletMenu extends Vue {
     }
+}
+
+declare module 'NimiqVueComponents/src/components/Icons' {
+    import { CreateElement } from 'vue';
+    /**
+      * Comment out any unused icons here
+      */
+    export const AlertTriangleIcon: {
+        functional: boolean;
+        render(createElement: CreateElement): import("vue/types/vnode").VNode;
+    };
+    export const ArrowRightSmallIcon: {
+        functional: boolean;
+        render(createElement: CreateElement): import("vue/types/vnode").VNode;
+    };
+    export const GearIcon: {
+        functional: boolean;
+        render(createElement: CreateElement): import("vue/types/vnode").VNode;
+    };
+    export const HexagonIcon: {
+        functional: boolean;
+        render(createElement: CreateElement): import("vue/types/vnode").VNode;
+    };
+    export const MenuDotsIcon: {
+        functional: boolean;
+        render(createElement: CreateElement): import("vue/types/vnode").VNode;
+    };
 }
 
