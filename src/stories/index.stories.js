@@ -22,7 +22,11 @@ import PaymentInfoLine from '../components/PaymentInfoLine.vue';
 import QrCode from '../components/QrCode.vue';
 import QrScanner from '../components/QrScanner.vue';
 import SmallPage from '../components/SmallPage.vue';
+import PageHeader from '../components/PageHeader.vue';
+import PageBody from '../components/PageBody.vue';
+import PageFooter from '../components/PageFooter.vue';
 import LoadingSpinner from '../components/LoadingSpinner.vue';
+import * as Icons from '../components/Icons';
 
 function windowTemplate(slot) {
     return `
@@ -52,6 +56,49 @@ storiesOf('Basic', module)
             components: {Amount},
             style: `td { text-align: right }`,
             template
+        };
+    })
+    .add('Icons', () => {
+        return {
+            components: Icons,
+            template: `
+                <div style="font-size: 40px; color: var(--nimiq-blue); padding: 16px;">
+                    <AlertTriangleIcon/>
+                    <ArrowLeftSmallIcon/>
+                    <ArrowLeftIcon/>
+                    <ArrowRightSmallIcon/>
+                    <ArrowRightIcon/>
+                    <BrowserLoginIcon/>
+                    <CaretRightSmallIcon/>
+                    <CheckmarkIcon/>
+                    <CloseIcon/>
+                    <ContactsIcon/>
+                    <CopyIcon/>
+                    <DownloadIcon/>
+                    <FaceNeutralIcon/>
+                    <FaceSadIcon/>
+                    <FireIcon/>
+                    <GearIcon/>
+                    <HexagonIcon/>
+                    <InfoCircleIcon/>
+                    <KeysIcon/>
+                    <LedgerIcon/>
+                    <LockLockedIcon/>
+                    <LockUnlockedIcon/>
+                    <LoginIcon/>
+                    <MenuDotsIcon/>
+                    <PaperEditIcon/>
+                    <PlusCircleIcon/>
+                    <QrCodeIcon/>
+                    <QuestionmarkIcon/>
+                    <ScanQrCodeIcon/>
+                    <SettingsIcon/>
+                    <ShredderIcon/>
+                    <SkullIcon/>
+                    <TransferIcon/>
+                    <ViewOffIcon/>
+                    <ViewIcon/>
+                </div>`,
         };
     })
     .add('Identicon', () => {
@@ -365,110 +412,180 @@ storiesOf('Components', module)
     })
     .add('Wallet', () => {
         const label = text('label', 'Main Wallet');
-        const userFriendlyId = text('user-friendly-id', 'funny giraffe');
-        const id = text('id', 'abc');
+        const id = text('id', '47ee824fc910');
+        const type = select('type', ['legacy', 'bip39', 'ledger'], 'bip39');
+        const balance = number('balance', 100000);
+        const fileExported = boolean('fileExported', true);
+        const wordsExported = boolean('wordsExported', true);
         return {
             components: {Wallet},
+            methods: {
+                exportFile: action('export-file'),
+                exportWords: action('export-words'),
+                rename: action('rename'),
+                changePassword: action('change-password'),
+                logout: action('logout'),
+            },
             data() {
                 return {
-                    id: 'abcdef',
-                    label: 'Keyguard Wallet',
-                    accounts: new Map([['path1', {}], ['path2', {}], ['path3', {}], ['path4', {}], ['path5', {}]]),
-                    contracts: [],
-                    type: 1, // BIP39
-                    // userFriendlyId: 'funny giraffe',
+                    wallet: {
+                        id,
+                        label,
+                        accounts: [
+                            {address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE'},
+                            {address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK'},
+                            {address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF'},
+                            {address: 'NQ19 YG54 46TX EHGQ D2R2 V8XA JX84 UFG0 S0MC'},
+                        ],
+                        contracts: [],
+                        type: type === 'legacy' ? 1 : type === 'bip39' ? 2 : 3,
+                        fileExported: fileExported,
+                        wordsExported: wordsExported,
+                        balance: balance * 1e5,
+                    },
                 };
             },
-            template: `<Wallet :id="id"
-                              :label="label"
-                              :numberAccounts="accounts.size + contracts.length"
-                              :type="type"/>`
+            template: `<Wallet :wallet="wallet"
+                               @export-file="exportFile"
+                               @export-words="exportWords"
+                               @rename="rename"
+                               @change-password="changePassword"
+                               @logout="logout"
+                            />`
         };
     })
     .add('WalletList', () => {
+        const activeWalletId = select('Active Wallet', ['account_1', 'account_2', 'account_3'], 'account_1');
         return {
             components: {WalletList},
             methods: {
                 walletSelected: action('wallet-selected'),
+                exportFile: action('export-file'),
+                exportWords: action('export-words'),
+                rename: action('rename'),
+                changePassword: action('change-password'),
+                logout: action('logout'),
             },
             data() {
                 return {
+                    activeWalletId: activeWalletId,
                     wallets: [
                         {
-                            id: 'abcdef',
-                            label: 'Keyguard Account',
-                            accounts: new Map([['path1', {}], ['path2', {}], ['path3', {}], ['path4', {}], ['path5', {}]]),
-                            contracts: [],
-                            type: 1, // BIP39
+                            id: 'account_1',
+                            label: 'Standard Account',
+                            accounts: [
+                                {address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE'},
+                                {address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK'},
+                                {address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF'},
+                            ],
+                            type: 2, // BIP39
+                            fileExported: true,
+                            wordsExported: false,
                             balance: 101 * 1e5,
-                            // userFriendlyId: 'funny giraffe',
                         }, {
-                            id: 'ihhhhahh',
+                            id: 'account_2',
                             label: 'Keyguard Account',
-                            accounts: new Map([['path1', {}]]),
-                            contracts: [],
-                            type: 1, // BIP39
+                            accounts: [
+                                {address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE'},
+                                {address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK'},
+                                {address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF'},
+                            ],
+                            type: 2, // BIP39
+                            fileExported: false,
+                            wordsExported: true,
                             balance: 101 * 1e5,
-                            // userFriendlyId: 'funny giraffe',
                         }, {
-                            id: 'vwxyz',
+                            id: 'account_3',
                             label: 'Ledger Account',
-                            accounts: new Map([['path1', {}], ['path2', {}], ['path3', {}]]),
-                            contracts: [],
-                            type: 2, // LEDGER
+                            accounts: [
+                                {address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE'},
+                                {address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK'},
+                                {address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF'},
+                            ],
+                            type: 3, // LEDGER
                             balance: 553452 * 1e5,
-                            // userFriendlyId: 'black panther',
                         }
                     ]
                 };
             },
-            template: `<WalletList @wallet-selected="walletSelected" :wallets="wallets"/>`
+            template: `<WalletList
+                :wallets="wallets"
+                :activeWalletId="activeWalletId"
+                @wallet-selected="walletSelected"
+                @export-file="exportFile"
+                @export-words="exportWords"
+                @rename="rename"
+                @change-password="changePassword"
+                @logout="logout"/>
+            `,
         };
     })
     .add('WalletMenu', () => {
+        const activeWalletId = select('Active Wallet', ['account_1', 'account_2', 'account_3', 'account_4'], 'account_2');
         return {
             components: {WalletMenu},
             methods: {
                 walletSelected: action('wallet-selected'),
-                renameWallet: action('rename-wallet'),
-                exportWallet: action('export-wallet'),
-                changePassphraseWallet: action('change-passphrase-wallet'),
-                logoutWallet: action('logout-wallet'),
-                create: action('create'),
-                login: action('login'),
+                exportFile: action('export-file'),
+                exportWords: action('export-words'),
+                rename: action('rename'),
+                changePassword: action('change-password'),
+                logout: action('logout'),
+                settings: action('settings'),
+                addAccount: action('add-account'),
             },
             data() {
                 return {
-                    activeWalletId: 'abcdef',
+                    activeWalletId: activeWalletId,
                     wallets: [
                         {
-                            id: 'abcdef',
-                            label: 'My Keyguard Wallet',
-                            accounts: new Map([['path1', {}], ['path2', {}], ['path3', {}], ['path4', {}], ['path5', {}]]),
-                            contracts: [],
+                            id: 'account_1',
+                            label: 'Single-Address Accounts',
+                            accounts: [
+                                {address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE'},
+                                {address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK'},
+                                {address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF'},
+                            ],
                             type: 1, // BIP39
-                            balance: 62345123 * 1e5,
-                        }, {
-                            id: 'vwxyz',
-                            label: 'Ledger Wallet',
-                            accounts: new Map([['path1', {}], ['path2', {}], ['path3', {}]]),
-                            contracts: [],
-                            type: 2, // LEDGER
+                            fileExported: false,
+                            wordsExported: false,
                             balance: 101 * 1e5,
                         }, {
-                            id: 'legacy-01',
-                            label: 'Keyguard Wallet',
-                            accounts: new Map([['path1', {}]]),
-                            contracts: [],
-                            type: 0, // LEGACY
-                            balance: 1239 * 1e5,
+                            id: 'account_2',
+                            label: 'Oversized account label',
+                            accounts: [
+                                {address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE'},
+                                {address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK'},
+                                {address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF'},
+                            ],
+                            type: 2, // BIP39
+                            fileExported: true,
+                            wordsExported: false,
+                            balance: 202 * 1e5,
                         }, {
-                            id: 'legacy-02',
-                            label: 'Keyguard Wallet',
-                            accounts: new Map([['path1', {}]]),
-                            contracts: [],
-                            type: 0, // LEGACY
-                            balance: 123 * 1e5,
+                            id: 'account_3',
+                            label: 'My account',
+                            accounts: [
+                                {address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE'},
+                                {address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK'},
+                                {address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF'},
+                            ],
+                            type: 2, // BIP39
+                            fileExported: false,
+                            wordsExported: true,
+                            balance: 1000000 * 1e5,
+                        }, {
+                            id: 'account_4',
+                            label: 'Ledger Account',
+                            accounts: [
+                                {address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE'},
+                                {address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK'},
+                                {address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF'},
+                            ],
+                            type: 3, // LEDGER
+                            fileExported: false,
+                            wordsExported: false,
+                            balance: 553452 * 1e5,
                         }
                     ]
                 };
@@ -477,12 +594,13 @@ storiesOf('Components', module)
                 :wallets="wallets"
                 :active-wallet-id="activeWalletId"
                 @wallet-selected="walletSelected"
-                @rename-wallet="renameWallet"
-                @export-wallet="exportWallet"
-                @change-passphrase-wallet="changePassphraseWallet"
-                @logout-wallet="logoutWallet"
-                @create="create"
-                @login="login"
+                @export-file="exportFile"
+                @export-words="exportWords"
+                @rename="rename"
+                @change-password="changePassword"
+                @logout="logout"
+                @settings="settings"
+                @add-account="addAccount"
             />`)
         };
     })
@@ -563,10 +681,14 @@ storiesOf('Components', module)
     })
     .add('SmallPage', () => {
         return {
-            components: {SmallPage},
+            components: {SmallPage, PageHeader, PageBody, PageFooter},
             template: windowTemplate(`
 <small-page>
-    <p>Some text on a page</p>
+    <page-header :backArrow="true">Page header</page-header>
+    <page-body>
+        <p>Some text in the page body.</p>
+    </page-body>
+    <page-footer>Page footer</page-footer>
 </small-page>
 `),
         };

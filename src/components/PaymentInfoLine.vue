@@ -2,11 +2,11 @@
     <div class="info-line">
         <Amount :amount="amount + fee" :decimals="decimals" />
         <div class="arrow-runway">
-            <i class="nq-icon arrow-right"></i>
+            <ArrowRightIcon/>
         </div>
         <a href="javascript:void(0)" class="description" @click="merchantInfoClicked">
             <Account :address="address" :image="shopLogoUrl" :label="originDomain" />
-            <i class="nq-icon info-circle"></i>
+            <InfoCircleIcon class="info-circle"/>
         </a>
     </div>
 </template>
@@ -15,8 +15,9 @@
 import {Component, Prop, Emit, Vue} from 'vue-property-decorator';
 import Amount from './Amount.vue';
 import Account from './Account.vue';
+import { InfoCircleIcon, ArrowRightIcon } from './Icons';
 
-@Component({components: {Amount, Account}})
+@Component({components: {Amount, Account, InfoCircleIcon, ArrowRightIcon}})
 export default class PaymentInfoLine extends Vue {
 
     private get originDomain() {
@@ -36,26 +37,6 @@ export default class PaymentInfoLine extends Vue {
 </script>
 
 <style scoped>
-    /* Nimiq Style */
-    .nq-icon {
-        width: 1em;
-        height: 1em;
-        background-repeat: no-repeat;
-        background-position: center;
-        display: inline-block;
-        background-size: 100%;
-        background-size: contain;
-    }
-
-    .nq-icon.info-circle {
-        background-image: url('data:image/svg+xml,<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="8" y1="7.83301" x2="8" y2="11.333" stroke="%231F2348" stroke-linecap="round"/><circle cx="8" cy="4.75" r="0.5" fill="%231F2348" stroke="%231F2348" stroke-width="0.5"/><circle cx="8" cy="8" r="7.5" stroke="%231F2348"/></svg>');
-    }
-
-    .nq-icon.arrow-right {
-        background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 23 18" height="18" width="23"><path d="m 1.014242,9.04854 19.00211,-2.8e-4" stroke="%231F2348" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M 14.015222,16.001 21.014732,8.99951 14.015222,2" stroke="%231F2348" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
-    }
-    /* END Nimiq Style */
-
     .info-line {
         display: flex;
         flex-direction: row;
@@ -78,24 +59,23 @@ export default class PaymentInfoLine extends Vue {
         display: flex;
         flex-direction: row;
         align-items: center;
+        justify-content: center;
         overflow: hidden;
     }
 
-    .arrow-right {
+    .arrow-runway .nq-icon {
         opacity: 0;
-        width: 100%;
-        background-size: 2rem;
-        /* animation: arrow-shooting 2s ease-in-out infinite; */
-        opacity: 0.3;
-        background-position: center;
+        font-size: 2rem;
+        animation: arrow-shooting 2s ease-in-out infinite;
+        /* opacity: 0.3;     */
     }
 
     @keyframes arrow-shooting {
-        from { transform: translateX(calc(20% - 1rem)); }
+        from { transform: translateX(-2rem); }
         10% { opacity: 0; }
         50% { opacity: 0.3; }
         90% { opacity: 0; }
-        to { transform: translateX(calc(80% - 1rem)); }
+        to { transform: translateX(2rem); }
     }
 
     .description {
@@ -133,7 +113,7 @@ export default class PaymentInfoLine extends Vue {
         opacity: 1;
     }
 
-    .info-circle {
+    .description .nq-icon {
         opacity: 0.3;
         margin-left: 1rem;
         transition: opacity .3s ease;
@@ -144,8 +124,8 @@ export default class PaymentInfoLine extends Vue {
         opacity: .7;
     }
 
-    .description:hover .info-circle,
-    .description:focus .info-circle {
+    .description:hover .nq-icon,
+    .description:focus .nq-icon {
         /* TODO Ideally, we could change the color to --nimiq-light-blue on :focus instead, but this works for now */
         opacity: 1;
     }

@@ -1,5 +1,3 @@
-const { resolve } = require('path');
-
 const configureWebpack = {
   resolve: {
     alias: {
@@ -21,4 +19,28 @@ if (process.argv.includes('build')) {
   };
 }
 
-module.exports = { configureWebpack };
+const chainWebpack = config => {
+  const svgRule = config.module.rule('svg');
+  const svgDefaultHandler = svgRule.uses.values()[0];
+  svgRule.uses.clear();
+
+  config.module
+    .rule('svg')
+      // Add new icon SVG rule
+      .oneOf('icons')
+        .test(/icons/)
+        .use('vue-svg-loader')
+          .loader('vue-svg-loader')
+          .options({ svgo: false })
+          .end()
+        .end()
+      // Re-add default SVG rule
+      .oneOf('default')
+        .use()
+          .loader(svgDefaultHandler.get('loader'))
+          .options(svgDefaultHandler.get('options'))
+          .end()
+        .end()
+}
+
+module.exports = { configureWebpack, chainWebpack };
