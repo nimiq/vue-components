@@ -22,6 +22,9 @@ import PaymentInfoLine from '../components/PaymentInfoLine.vue';
 import QrCode from '../components/QrCode.vue';
 import QrScanner from '../components/QrScanner.vue';
 import SmallPage from '../components/SmallPage.vue';
+import PageHeader from '../components/PageHeader.vue';
+import PageBody from '../components/PageBody.vue';
+import PageFooter from '../components/PageFooter.vue';
 import LoadingSpinner from '../components/LoadingSpinner.vue';
 import * as Icons from '../components/Icons';
 
@@ -678,10 +681,14 @@ storiesOf('Components', module)
     })
     .add('SmallPage', () => {
         return {
-            components: {SmallPage},
+            components: {SmallPage, PageHeader, PageBody, PageFooter},
             template: windowTemplate(`
 <small-page>
-    <p>Some text on a page</p>
+    <page-header :backArrow="true">Page header</page-header>
+    <page-body>
+        <p>Some text in the page body.</p>
+    </page-body>
+    <page-footer>Page footer</page-footer>
 </small-page>
 `),
         };
