@@ -17,7 +17,15 @@ import { GearIcon } from './Icons';
 @Component({components: {WalletList, GearIcon}})
 export default class WalletMenu extends Vue {
     @Prop(Array) private wallets!:
-    Array<{ id: string, label: string, accounts: Map<string, any>, contracts: any[], type: number, balance?: number }>;
+    Array<{
+        id: string,
+        label: string,
+        accounts: any[],
+        type: number,
+        fileExported: boolean,
+        wordsExported: boolean,
+        balance?: number
+    }>;
     @Prop(String) private activeWalletId!: string;
 }
 </script>
@@ -29,8 +37,13 @@ export default class WalletMenu extends Vue {
         background: white;
         border-radius: 1rem;
         box-shadow: 0 4px 28px rgba(0, 0, 0, 0.111158);
+        min-height: 27.875rem; /* 223px, the height of the full wallet menu + padding */
         max-height: calc(100vh - 4rem);
         padding: 1rem;
+    }
+
+    .wallet-list {
+        min-height: 17.875rem; /* 143px, the available height */
     }
 
     .menu-footer {
