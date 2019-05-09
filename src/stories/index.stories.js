@@ -685,7 +685,10 @@ storiesOf('Components', module)
             components: {SmallPage, PageHeader, PageBody, PageFooter},
             template: windowTemplate(`
 <small-page>
-    <page-header :backArrow="true">Page header</page-header>
+    <page-header :backArrow="true">
+        Page header
+        <p slot="more" class="nq-notice info">I am an informative notice!</p>
+    </page-header>
     <page-body>
         <p>Some text in the page body.</p>
     </page-body>
