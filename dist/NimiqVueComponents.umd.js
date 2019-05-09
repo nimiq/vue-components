@@ -4337,7 +4337,8 @@ var IconBase = function IconBase(component) {
       });
     }
   };
-};
+}; // Should be FunctionalComponentOptions (imported from 'vue'), but as such cannot be imported in accounts...
+
 
 
 
