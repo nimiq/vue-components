@@ -1,11 +1,11 @@
-import { VueConstructor, CreateElement, FunctionalComponentOptions } from 'vue';
+import { VueConstructor, CreateElement } from 'vue';
 
 const IconBase = (component: VueConstructor) => ({
     functional: true,
     render(createElement: CreateElement) {
         return createElement(component, { class: 'nq-icon' });
     },
-} as FunctionalComponentOptions);
+} as any); // Should be FunctionalComponentOptions (imported from 'vue'), but as such cannot be imported in accounts...
 
 /**
  * SVG files in an /icons/ directory are automatically loaded as Vue components
