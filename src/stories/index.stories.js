@@ -554,9 +554,8 @@ storiesOf('Components', module)
                             id: 'account_2',
                             label: 'Oversized account label',
                             accounts: [
-                                {address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE'},
-                                {address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK'},
                                 {address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF'},
+                                {address: 'NQ21 SM4X BC54 M72X H53H U0QH BRU2 KBM9 MU39'},
                             ],
                             type: 2, // BIP39
                             fileExported: true,
@@ -566,9 +565,13 @@ storiesOf('Components', module)
                             id: 'account_3',
                             label: 'My account',
                             accounts: [
-                                {address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE'},
-                                {address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK'},
-                                {address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF'},
+                                {address: 'NQ36 V3GH CHUE RRDR 7619 HP76 465T CHQP 8UBC'},
+                                {address: 'NQ51 S9JC PS9V HH2U 7TX7 7JM7 DF7L HP8P SNTR'},
+                                {address: 'NQ67 E735 CV8L SB7C EEFC YMXR GY93 4DGV XNU0'},
+                                {address: 'NQ75 FDH0 ESFS 5RU2 KHBE 38H5 AMPE 10EC N5UB'},
+                                {address: 'NQ24 X1KN U7A9 QCQH EJYF YYB6 UCYG UAP5 UB5C'},
+                                {address: 'NQ82 83XN EBQE V75B 8P23 SKBE YD3L 615U D8RG'},
+                                {address: 'NQ82 83XN EBQE V75B 8P23 SKBE YD3L 615U D8RG'},
                             ],
                             type: 2, // BIP39
                             fileExported: false,
@@ -578,9 +581,7 @@ storiesOf('Components', module)
                             id: 'account_4',
                             label: 'Ledger Account',
                             accounts: [
-                                {address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE'},
-                                {address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK'},
-                                {address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF'},
+                                {address: 'NQ27 CSF9 0677 EJHY NE4G 55EQ R84L 09E0 KJT3'},
                             ],
                             type: 3, // LEDGER
                             fileExported: false,
@@ -684,7 +685,10 @@ storiesOf('Components', module)
             components: {SmallPage, PageHeader, PageBody, PageFooter},
             template: windowTemplate(`
 <small-page>
-    <page-header :backArrow="true">Page header</page-header>
+    <page-header :backArrow="true">
+        Page header
+        <p slot="more" class="nq-notice info">I am an informative notice!</p>
+    </page-header>
     <page-body>
         <p>Some text in the page body.</p>
     </page-body>

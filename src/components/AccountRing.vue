@@ -48,6 +48,7 @@ export default class AccountRing extends Vue {
     .account .identicon {
         width: 100%;
         height: 100%;
+        z-index: 1;
     }
 
     .account .nq-icon {
@@ -63,32 +64,31 @@ export default class AccountRing extends Vue {
 
     @keyframes pop-in {
         from { transform: scale(0); }
-        to   { transform: scale(1.15); }
+        to   { transform: scale(1); }
     }
-
     .account:nth-child(1) {
-        left: calc(50% - 0.5 * var(--hex-size));
-        top: calc(50% - 1.5 * var(--hex-height) - var(--gap-y));
+        left: calc(50% - 1.25 * var(--hex-size) - var(--gap-x));
+        top: calc(50% - 1 * var(--hex-height) - 0.5 * var(--gap-y));
     }
     .account:nth-child(2) {
         left: calc(50% - 1.25 * var(--hex-size) - var(--gap-x));
-        top: calc(50% - 1 * var(--hex-height) - 0.5 * var(--gap-y));
-    }
-    .account:nth-child(3) {
-        left: calc(50% - 1.25 * var(--hex-size) - var(--gap-x));
         top: calc(50% + 0.5 * var(--gap-y));
     }
-    .account:nth-child(4) {
+    .account:nth-child(3) {
         left: calc(50% - 0.5 * var(--hex-size));
         top: calc(50% + 0.5 * var(--hex-height) + var(--gap-y));
     }
-    .account:nth-child(5) {
+    .account:nth-child(4) {
         left: calc(50% + 0.25 * var(--hex-size) + var(--gap-x));
         top: calc(50% + 0.5 * var(--gap-y));
     }
-    .account:nth-child(6) {
+    .account:nth-child(5) {
         left: calc(50% + 0.25 * var(--hex-size) + var(--gap-x));
         top: calc(50% - 1 * var(--hex-height) - 0.5 * var(--gap-y));
+    }
+    .account:nth-child(6) {
+        left: calc(50% - 0.5 * var(--hex-size));
+        top: calc(50% - 1.5 * var(--hex-height) - var(--gap-y));
     }
 
     .account:nth-child(1) .pop-in { animation-delay: 500ms; }
