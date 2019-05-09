@@ -217,5 +217,9 @@ declare module 'NimiqVueComponents/src/components/Icons' {
         functional: boolean;
         render(createElement: CreateElement): import("vue/types/vnode").VNode;
     };
+    export const TransferIcon: {
+        functional: boolean;
+        render(createElement: CreateElement): import("vue/types/vnode").VNode;
+    };
 }
 

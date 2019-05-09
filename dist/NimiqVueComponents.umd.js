@@ -4298,6 +4298,35 @@ AddressDisplay_component.options.__file = "AddressDisplay.vue"
         }
       });
     
+// CONCATENATED MODULE: ./node_modules/@nimiq/style/src/icons/transfer.svg
+
+      /* harmony default export */ var transfer = ({
+        functional: true,
+        render(_h, _vm) {
+          const { _c, _v, data, children = [] } = _vm;
+
+          const {
+            class: classNames,
+            staticClass,
+            style,
+            staticStyle,
+            attrs = {},
+            ...rest
+          } = data;
+
+          return _c(
+            'svg',
+            {
+              class: [classNames,staticClass],
+              style: [style,staticStyle],
+              attrs: Object.assign({"width":"20","height":"20","viewBox":"0 0 20 20","xmlns":"http://www.w3.org/2000/svg"}, attrs),
+              ...rest,
+            },
+            children.concat([_c('path',{attrs:{"d":"M10.01 14.82a1 1 0 0 0 1.37-.37l3.37-5.83a.17.17 0 0 1 .22-.06l.73.41a.67.67 0 0 0 1-.58l-.07-3.89a.67.67 0 0 0-.99-.57l-3.4 1.89a.67.67 0 0 0 0 1.15l.71.42c.08.05.11.15.06.23l-3.37 5.83a1 1 0 0 0 .37 1.37zM8.23 5.19l-3.55 5.76a.17.17 0 0 1-.23.06l-.55-.32a.67.67 0 0 0-1 .59l.07 3.89a.67.67 0 0 0 .99.57l3.4-1.89a.67.67 0 0 0 0-1.16l-.89-.51a.17.17 0 0 1-.07-.1.16.16 0 0 1 .02-.13l3.52-5.72a1 1 0 1 0-1.7-1.05z","fill":"currentColor"}})])
+          )
+        }
+      });
+    
 // CONCATENATED MODULE: ./src/components/Icons.ts
 var IconBase = function IconBase(component) {
   return {
@@ -4309,6 +4338,7 @@ var IconBase = function IconBase(component) {
     }
   };
 };
+
 
 
 
@@ -4358,8 +4388,8 @@ var PlusCircleIcon = IconBase(plus_circle); // export const QrCodeIcon = IconBas
 // export const SettingsIcon = IconBase(Settings);
 // export const ShredderIcon = IconBase(Shredder);
 // export const SkullIcon = IconBase(Skull);
-// export const TransferIcon = IconBase(Transfer);
-// export const ViewOffIcon = IconBase(ViewOff);
+
+var TransferIcon = IconBase(transfer); // export const ViewOffIcon = IconBase(ViewOff);
 // export const ViewIcon = IconBase(View);
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--13-1!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/AccountDetails.vue?vue&type=script&lang=ts&
 
@@ -5302,6 +5332,7 @@ SmallPage_component.options.__file = "SmallPage.vue"
 /* concated harmony reexport LedgerIcon */__webpack_require__.d(__webpack_exports__, "LedgerIcon", function() { return LedgerIcon; });
 /* concated harmony reexport LoginIcon */__webpack_require__.d(__webpack_exports__, "LoginIcon", function() { return LoginIcon; });
 /* concated harmony reexport PlusCircleIcon */__webpack_require__.d(__webpack_exports__, "PlusCircleIcon", function() { return PlusCircleIcon; });
+/* concated harmony reexport TransferIcon */__webpack_require__.d(__webpack_exports__, "TransferIcon", function() { return TransferIcon; });
 
 
 
