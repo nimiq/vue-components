@@ -82,6 +82,6 @@ export const PlusCircleIcon = IconBase(PlusCircle);
 // export const SettingsIcon = IconBase(Settings);
 // export const ShredderIcon = IconBase(Shredder);
 // export const SkullIcon = IconBase(Skull);
-// export const TransferIcon = IconBase(Transfer);
+export const TransferIcon = IconBase(Transfer);
 // export const ViewOffIcon = IconBase(ViewOff);
 // export const ViewIcon = IconBase(View);
