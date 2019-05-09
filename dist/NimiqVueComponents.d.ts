@@ -161,65 +161,23 @@ declare module 'NimiqVueComponents/src/components/SmallPage.vue' {
 }
 
 declare module 'NimiqVueComponents/src/components/Icons' {
-    import { CreateElement } from 'vue';
+    import { FunctionalComponentOptions } from 'vue';
     /**
       * Comment out any unused icons here
       */
-    export const ArrowLeftSmallIcon: {
-        functional: boolean;
-        render(createElement: CreateElement): import("vue/types/vnode").VNode;
-    };
-    export const ArrowLeftIcon: {
-        functional: boolean;
-        render(createElement: CreateElement): import("vue/types/vnode").VNode;
-    };
-    export const ArrowRightIcon: {
-        functional: boolean;
-        render(createElement: CreateElement): import("vue/types/vnode").VNode;
-    };
-    export const CaretRightSmallIcon: {
-        functional: boolean;
-        render(createElement: CreateElement): import("vue/types/vnode").VNode;
-    };
-    export const CheckmarkIcon: {
-        functional: boolean;
-        render(createElement: CreateElement): import("vue/types/vnode").VNode;
-    };
-    export const CloseIcon: {
-        functional: boolean;
-        render(createElement: CreateElement): import("vue/types/vnode").VNode;
-    };
-    export const FaceNeutralIcon: {
-        functional: boolean;
-        render(createElement: CreateElement): import("vue/types/vnode").VNode;
-    };
-    export const FaceSadIcon: {
-        functional: boolean;
-        render(createElement: CreateElement): import("vue/types/vnode").VNode;
-    };
-    export const HexagonIcon: {
-        functional: boolean;
-        render(createElement: CreateElement): import("vue/types/vnode").VNode;
-    };
-    export const InfoCircleIcon: {
-        functional: boolean;
-        render(createElement: CreateElement): import("vue/types/vnode").VNode;
-    };
-    export const LedgerIcon: {
-        functional: boolean;
-        render(createElement: CreateElement): import("vue/types/vnode").VNode;
-    };
-    export const LoginIcon: {
-        functional: boolean;
-        render(createElement: CreateElement): import("vue/types/vnode").VNode;
-    };
-    export const PlusCircleIcon: {
-        functional: boolean;
-        render(createElement: CreateElement): import("vue/types/vnode").VNode;
-    };
-    export const TransferIcon: {
-        functional: boolean;
-        render(createElement: CreateElement): import("vue/types/vnode").VNode;
-    };
+    export const ArrowLeftSmallIcon: FunctionalComponentOptions<Record<string, any>, import("vue/types/options").PropsDefinition<Record<string, any>>>;
+    export const ArrowLeftIcon: FunctionalComponentOptions<Record<string, any>, import("vue/types/options").PropsDefinition<Record<string, any>>>;
+    export const ArrowRightIcon: FunctionalComponentOptions<Record<string, any>, import("vue/types/options").PropsDefinition<Record<string, any>>>;
+    export const CaretRightSmallIcon: FunctionalComponentOptions<Record<string, any>, import("vue/types/options").PropsDefinition<Record<string, any>>>;
+    export const CheckmarkIcon: FunctionalComponentOptions<Record<string, any>, import("vue/types/options").PropsDefinition<Record<string, any>>>;
+    export const CloseIcon: FunctionalComponentOptions<Record<string, any>, import("vue/types/options").PropsDefinition<Record<string, any>>>;
+    export const FaceNeutralIcon: FunctionalComponentOptions<Record<string, any>, import("vue/types/options").PropsDefinition<Record<string, any>>>;
+    export const FaceSadIcon: FunctionalComponentOptions<Record<string, any>, import("vue/types/options").PropsDefinition<Record<string, any>>>;
+    export const HexagonIcon: FunctionalComponentOptions<Record<string, any>, import("vue/types/options").PropsDefinition<Record<string, any>>>;
+    export const InfoCircleIcon: FunctionalComponentOptions<Record<string, any>, import("vue/types/options").PropsDefinition<Record<string, any>>>;
+    export const LedgerIcon: FunctionalComponentOptions<Record<string, any>, import("vue/types/options").PropsDefinition<Record<string, any>>>;
+    export const LoginIcon: FunctionalComponentOptions<Record<string, any>, import("vue/types/options").PropsDefinition<Record<string, any>>>;
+    export const PlusCircleIcon: FunctionalComponentOptions<Record<string, any>, import("vue/types/options").PropsDefinition<Record<string, any>>>;
+    export const TransferIcon: FunctionalComponentOptions<Record<string, any>, import("vue/types/options").PropsDefinition<Record<string, any>>>;
 }
 
