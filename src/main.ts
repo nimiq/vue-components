@@ -25,5 +25,40 @@ export { default as Wallet } from './components/Wallet.vue';
 export { default as WalletList } from './components/WalletList.vue';
 export { default as WalletMenu } from './components/WalletMenu.vue';
 
-// Comment out unused icons in the components/Icons.ts file
-export * from './components/Icons';
+export {
+    AlertTriangleIcon,
+    ArrowLeftSmallIcon,
+    ArrowLeftIcon,
+    ArrowRightSmallIcon,
+    ArrowRightIcon,
+    BrowserLoginIcon,
+    CaretRightSmallIcon,
+    CheckmarkIcon,
+    CloseIcon,
+    ContactsIcon,
+    CopyIcon,
+    DownloadIcon,
+    FaceNeutralIcon,
+    FaceSadIcon,
+    FireIcon,
+    GearIcon,
+    HexagonIcon,
+    InfoCircleIcon,
+    KeysIcon,
+    LedgerIcon,
+    LockLockedIcon,
+    LockUnlockedIcon,
+    LoginIcon,
+    MenuDotsIcon,
+    PaperEditIcon,
+    PlusCircleIcon,
+    QrCodeIcon,
+    QuestionmarkIcon,
+    ScanQrCodeIcon,
+    SettingsIcon,
+    ShredderIcon,
+    SkullIcon,
+    TransferIcon,
+    ViewOffIcon,
+    ViewIcon,
+} from './components/Icons';
