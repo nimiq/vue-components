@@ -41,7 +41,7 @@ export default class Wallet extends Vue {
         type: number,
         fileExported: boolean,
         wordsExported: boolean,
-        balance?: number
+        balance?: number,
     };
 
     get addresses() {

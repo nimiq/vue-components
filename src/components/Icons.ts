@@ -1,5 +1,6 @@
 import { VueConstructor, CreateElement } from 'vue';
 
+// tslint:disable-next-line:variable-name
 const IconBase = (component: VueConstructor) => ({
     functional: true,
     render(createElement: CreateElement) {
@@ -50,6 +51,7 @@ import View from '@nimiq/style/src/icons/view.svg';
 /**
  * Comment out any unused icons here
  */
+// tslint:disable:variable-name
 // export const AlertTriangleIcon = IconBase(AlertTriangle);
 export const ArrowLeftSmallIcon = IconBase(ArrowLeftSmall);
 export const ArrowLeftIcon = IconBase(ArrowLeft);
@@ -85,3 +87,4 @@ export const PlusCircleIcon = IconBase(PlusCircle);
 export const TransferIcon = IconBase(Transfer);
 // export const ViewOffIcon = IconBase(ViewOff);
 // export const ViewIcon = IconBase(View);
+// tslint:enable:variable-name
