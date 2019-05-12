@@ -3,7 +3,6 @@
 //   ../vue-property-decorator
 //   ../qr-code
 //   ../qr-scanner
-//   ../vue
 
 declare module 'NimiqVueComponents' {
     export { default as ContactList } from 'NimiqVueComponents/src/components/ContactList.vue';
@@ -85,29 +84,13 @@ declare module 'NimiqVueComponents/src/components/WalletMenu.vue' {
 }
 
 declare module 'NimiqVueComponents/src/components/Icons' {
-    import { CreateElement } from 'vue';
     /**
       * Comment out any unused icons here
       */
-    export const AlertTriangleIcon: {
-        functional: boolean;
-        render(createElement: CreateElement): import("vue/types/vnode").VNode;
-    };
-    export const ArrowRightSmallIcon: {
-        functional: boolean;
-        render(createElement: CreateElement): import("vue/types/vnode").VNode;
-    };
-    export const GearIcon: {
-        functional: boolean;
-        render(createElement: CreateElement): import("vue/types/vnode").VNode;
-    };
-    export const HexagonIcon: {
-        functional: boolean;
-        render(createElement: CreateElement): import("vue/types/vnode").VNode;
-    };
-    export const MenuDotsIcon: {
-        functional: boolean;
-        render(createElement: CreateElement): import("vue/types/vnode").VNode;
-    };
+    export const AlertTriangleIcon: any;
+    export const ArrowRightSmallIcon: any;
+    export const GearIcon: any;
+    export const HexagonIcon: any;
+    export const MenuDotsIcon: any;
 }
 
