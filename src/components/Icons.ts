@@ -1,10 +1,11 @@
-import { VueConstructor, CreateElement } from 'vue';
+import { VueConstructor, CreateElement, RenderContext } from 'vue';
 
+// See https://vuejs.org/v2/guide/render-function.html for documentation on createElement and functional components
 // tslint:disable-next-line:variable-name
 const IconBase = (component: VueConstructor) => ({
     functional: true,
-    render(createElement: CreateElement) {
-        return createElement(component, { class: 'nq-icon' });
+    render(createElement: CreateElement, context: RenderContext) {
+        return createElement(component, Object.assign({ class: 'nq-icon' }, context.data));
     },
 } as any); // Should be FunctionalComponentOptions (imported from 'vue'), but as such cannot be imported in accounts...
 
