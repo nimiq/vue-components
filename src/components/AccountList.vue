@@ -54,13 +54,13 @@ export default class AccountList extends Vue {
     private accountSelected(account: AccountInfo) {
         if (this.disabled) return;
 
-        const hasEnoughBalance = !this.minBalance || account.balance >= this.minBalance;
+        const hasEnoughBalance = !this.minBalance || (account.balance || 0) >= this.minBalance;
         if (this.highlightedDisabledAddressTimeout) {
             window.clearTimeout(this.highlightedDisabledAddressTimeout);
             this.highlightedDisabledAddressTimeout = null;
         }
         const isDisabledContract = this.disableContracts && this._isContract(account);
-        if (isDisabledContract || (this.minBalance && account.balance < this.minBalance)) {
+        if (isDisabledContract || (this.minBalance && (account.balance || 0) < this.minBalance)) {
             const waitTime = isDisabledContract ? 1500 : 300;
             this.highlightedDisabledAddress = account.userFriendlyAddress;
             this.highlightedDisabledAddressTimeout =

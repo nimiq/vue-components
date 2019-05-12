@@ -32,7 +32,7 @@
     @Component
     export default class QrCode extends Vue {
         @Prop(String)
-        public data: string;
+        public data?: string;
 
         @Prop({
             type: String,
@@ -60,14 +60,16 @@
                 ],
             }),
             validator: (fill) => {
-                const isValidColor = (c) => typeof(c) === 'string' && /^#([0-9a-f]{6}|[0-9a-f]{8})$/i.test(c);
+                const isValidColor = (c: any) => typeof(c) === 'string' && /^#([0-9a-f]{6}|[0-9a-f]{8})$/i.test(c);
                 if (isValidColor(fill)) return true;
                 const isValidGradient = ((fill.type === 'linear-gradient' && fill.position.length === 4)
                     || (fill.type === 'radial-gradient' && fill.position.length === 6))
-                    && fill.position.every((coordinate) => typeof coordinate === 'number');
+                    && fill.position.every((coordinate: any) => typeof coordinate === 'number');
                 if (!isValidGradient) return false;
                 const hasValidGradientStops = fill.colorStops.length >= 2
-                    && fill.colorStops.every(([offset, color]) => typeof(offset) === 'number' && isValidColor(color));
+                    && fill.colorStops.every(
+                        ([offset, color]: [any, any]) => typeof(offset) === 'number' && isValidColor(color),
+                    );
                 return hasValidGradientStops;
             },
         })
@@ -111,7 +113,7 @@
                 fill: this.fill,
                 background: this.background,
                 size: this.size,
-            }, this.$el);
+            }, this.$el as HTMLCanvasElement);
         }
     }
 </script>

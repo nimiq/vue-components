@@ -76,12 +76,12 @@ class QrScanner extends Vue {
     private _scanner!: QrScannerLib;
     private _lastResult?: string;
     private _lastResultTime: number = 0;
-    private _cameraRetryTimer?: number;
+    private _cameraRetryTimer: number|null = null;
 
     private mounted() {
         this.repositionOverlay = this.repositionOverlay.bind(this);
         const $video = this.$refs.video as HTMLVideoElement;
-        this._scanner = new QrScannerLib($video, (result) => this._onResult(result));
+        this._scanner = new QrScannerLib($video, (result: string) => this._onResult(result));
         $video.addEventListener('canplay', () => $video.classList.add('ready'));
         window.addEventListener('resize', this.repositionOverlay);
 
@@ -125,7 +125,7 @@ class QrScanner extends Vue {
         }
     }
 
-    public setGrayscaleWeights(red, green, blue) {
+    public setGrayscaleWeights(red: number, green: number, blue: number) {
         this._scanner.setGrayscaleWeights(red, green, blue);
     }
 
@@ -135,8 +135,8 @@ class QrScanner extends Vue {
 
     public repositionOverlay() {
         requestAnimationFrame(() => {
-            const scannerHeight = this.$el.offsetHeight;
-            const scannerWidth = this.$el.offsetWidth;
+            const scannerHeight = (this.$el as HTMLElement).offsetHeight;
+            const scannerWidth = (this.$el as HTMLElement).offsetWidth;
             const smallerDimension = Math.min(scannerHeight, scannerWidth);
             if (smallerDimension === 0) return; // component not visible or destroyed
             const overlaySize = Math.ceil(2 / 3 * smallerDimension);
@@ -151,14 +151,14 @@ class QrScanner extends Vue {
     }
 
     private _isVisible() {
-        return this.$el.offsetWidth > 0;
+        return (this.$el as HTMLElement).offsetWidth > 0;
     }
 
     private _cancel() {
         this.$emit(QrScanner.Events.CANCEL);
     }
 
-    private _onResult(result) {
+    private _onResult(result: string) {
         if ((result === this._lastResult && Date.now() - this._lastResultTime < this.reportFrequency)
             || (this.validate && !this.validate(result))) return;
         this._lastResult = result;

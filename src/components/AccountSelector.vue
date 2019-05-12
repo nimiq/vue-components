@@ -116,11 +116,12 @@ export default class AccountSelector extends Vue {
             if (aDisabled && !bDisabled) return 1;
             if (!aDisabled && bDisabled) return -1;
 
-            if (!this.minBalance) return 0; // don't sort by balance if no minBalance required
+            const minBalance = this.minBalance;
+            if (!minBalance) return 0; // don't sort by balance if no minBalance required
 
             const hasAddressWithSufficientBalance = (accounts: Map<string, AccountInfo>, contracts: ContractInfo[]) =>
-                Array.from(accounts.values()).some((account) => account.balance >= this.minBalance)
-                    || (!this.disableContracts && contracts.some((contract) => contract.balance >= this.minBalance));
+                Array.from(accounts.values()).some((account) => (account.balance || 0) >= minBalance)
+                    || (!this.disableContracts && contracts.some((contract) => (contract.balance || 0) >= minBalance));
 
             const aHasAddressWithSufficientBalance = hasAddressWithSufficientBalance(a.accounts, a.contracts);
             const bHasAddressWithSufficientBalance = hasAddressWithSufficientBalance(b.accounts, b.contracts);
@@ -143,7 +144,8 @@ export default class AccountSelector extends Vue {
     private _isAccountDisabled(account: WalletInfo): boolean {
         return this.disableLegacyAccounts && account.type === 1 /* LEGACY */
             || this.disableBip39Accounts && account.type === 2 /* BIP39 */
-            || this.disableLedgerAccounts && account.type === 3 /* LEDGER */;
+            || this.disableLedgerAccounts && account.type === 3 /* LEDGER */
+            || false;
     }
 
     private _accountClicked(account: WalletInfo) {

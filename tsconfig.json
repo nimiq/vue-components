@@ -9,6 +9,8 @@
         "esModuleInterop": true,
         "sourceMap": true,
         "baseUrl": ".",
+        "declaration": true,
+        "declarationDir": "dist/src",
         "types": [
             "node"
         ],
