@@ -7,6 +7,7 @@
             <ArrowLeftIcon/>
         </a>
         <h1 class="nq-h1"><slot></slot></h1>
+        <slot name="more"></slot>
     </div>
 </template>
 

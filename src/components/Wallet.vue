@@ -8,7 +8,7 @@
                 <Amount v-if="wallet.balance !== undefined" :amount="wallet.balance" :decimals="0"/>
             </div>
         </div>
-        <button v-if="isBip39 || isLedger" class="menu-toggle" @click.stop>
+        <button v-if="isBip39 || isLedger" class="menu-toggle" @click.stop onclick="this.focus()">
             <MenuDotsIcon/>
             <div class="menu nq-blue-bg">
                 <button v-if="isBip39" class="item export" @click="$emit('export-file', wallet.id)">
@@ -41,7 +41,7 @@ export default class Wallet extends Vue {
         type: number,
         fileExported: boolean,
         wordsExported: boolean,
-        balance?: number
+        balance?: number,
     };
 
     get addresses() {

@@ -153,9 +153,11 @@ storiesOf('Components', module)
         };
     })
     .add('AccountList', () => {
-        const minBalance = number('minBalance', 1000) * 1e5;
+        const minBalance = number('minBalance', 500) * 1e5;
         const decimals = number('decimals', 2);
         const editable = boolean('editable', false);
+        const disableContracts = boolean('disableContracts', false);
+        const disabled = boolean('disabled', false);
         return {
             components: {AccountList},
             methods: {
@@ -168,59 +170,117 @@ storiesOf('Components', module)
                             userFriendlyAddress: 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1',
                             label: 'HODL account',
                             balance: 2712415141213,
+                            path: "44'/242'/0'/0'",
                         },
                         {
                             userFriendlyAddress: 'NQ21 YPRN 1KVN BQP5A17U YGD3 HH96 6TKA 6BL4',
                             label: 'HODL account 2',
                             balance: 100000000,
+                            path: "44'/242'/0'/1'",
+                        },
+                        {
+                            userFriendlyAddress: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE',
+                            label: 'My Vesting Contract',
+                            balance: 77777777,
                         },
                         {
                             userFriendlyAddress: 'NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM',
                             label: 'Primary account',
                             balance: 12023110,
-                        }
+                            path: "44'/242'/0'/2'",
+                        },
                     ],
                     minBalance,
                     decimals,
                     editable,
+                    disableContracts,
+                    disabled,
                 };
             },
             template: `<AccountList @account-selected="accountSelected" :accounts="accounts" walletId="helloworld1"
-                :minBalance="minBalance" :decimals="decimals" :editable="editable" />`
+                :minBalance="minBalance" :decimals="decimals" :editable="editable" :disableContracts="disableContracts"
+                :disabled="disabled" />`
         };
     })
     .add('AccountSelector', () => {
-        return {
-            components: {AccountSelector},
-            data() {
-                return {
-                    wallets: [
+        const demoType = select('Demo Type', {
+            'Single Account': 'single-account',
+            'Multiple Accounts': 'multiple-accounts',
+        }, 'multiple-accounts');
+        const minBalance = number('minBalance', 500) * 1e5
+        const decimals = number('decimals', 2);
+        const disableContracts = boolean('disableContracts', false);
+        const disableLegacyAccounts = boolean('disableLegacyAccounts', false);
+        const disableBip39Accounts = boolean('disableBip39Accounts', false);
+        const disableLedgerAccounts = boolean('disableLedgerAccounts', false);
+        const allowLogin = boolean('allowLogin', true);
+
+        const demoData = {
+            wallets: [
+                {
+                    id: 'helloworld',
+                    label: 'Keyguard Wallet',
+                    type: 2, // BIP39
+                    accounts: [
                         {
-                            id: 'helloworld2',
-                            label: 'Keyguard Wallet',
-                            type: 1,
-                            accounts: [
-                                {
-                                    userFriendlyAddress: 'NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM',
-                                    label: 'Primary account',
-                                    balance: 12023110,
-                                },
-                                {
-                                    userFriendlyAddress: 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1',
-                                    label: 'HODL account',
-                                    balance: 2712415141213,
-                                }
-                            ],
-                            contracts: [],
+                            userFriendlyAddress: 'NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM',
+                            label: 'Primary account',
+                            balance: 12023110,
+                            path: "44'/242'/0'/0'",
+                        },
+                        {
+                            userFriendlyAddress: 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1',
+                            label: 'HODL account',
+                            balance: 2712415141213,
+                            path: "44'/242'/0'/1'",
                         },
                     ],
-                };
-            },
+                    contracts: [
+                        {
+                            userFriendlyAddress: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE',
+                            label: 'My Vesting Contract',
+                            balance: 777777777,
+                        },
+                    ],
+                },
+            ],
+            minBalance,
+            decimals,
+            disableContracts,
+            disableLegacyAccounts,
+            disableBip39Accounts,
+            disableLedgerAccounts,
+            allowLogin,
+        };
+
+        if (demoType === 'multiple-accounts') {
+            demoData.wallets.unshift({
+                id: 'helloword2',
+                label: 'Ledger Wallet',
+                type: 3, // LEDGER
+                accounts: [
+                    {
+                        userFriendlyAddress: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
+                        label: 'My Ledger Account',
+                        balance: 9876543210,
+                        path: "44'/242'/0'/0'",
+                    }
+                ],
+                contracts: [],
+            });
+        }
+
+        return {
+            components: {AccountSelector},
+            data: () => demoData,
             methods: {
                 accountSelected: action('account-selected'),
                 login: action('login'),
             },
-            template: `<AccountSelector @account-selected="accountSelected" @login="login" :wallets="wallets"/>`
+            template: `<AccountSelector @account-selected="accountSelected" @login="login" :wallets="wallets"
+                :minBalance="minBalance" :decimals="decimals" :disableContracts="disableContracts"
+                :disableLegacyAccounts="disableLegacyAccounts" :disableBip39Accounts="disableBip39Accounts"
+                :disableLedgerAccounts="disableLedgerAccounts" :allowLogin="allowLogin"/>`
         };
     })
     .add('Address', () => {
@@ -532,7 +592,7 @@ storiesOf('Components', module)
                                 {address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK'},
                                 {address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF'},
                             ],
-                            type: 1, // BIP39
+                            type: 1, // LEGACY
                             fileExported: false,
                             wordsExported: false,
                             balance: 101 * 1e5,
@@ -671,7 +731,10 @@ storiesOf('Components', module)
             components: {SmallPage, PageHeader, PageBody, PageFooter},
             template: windowTemplate(`
 <small-page>
-    <page-header :backArrow="true">Page header</page-header>
+    <page-header :backArrow="true">
+        Page header
+        <p slot="more" class="nq-notice info">I am an informative notice!</p>
+    </page-header>
     <page-body>
         <p>Some text in the page body.</p>
     </page-body>

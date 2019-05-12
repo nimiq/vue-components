@@ -51,7 +51,7 @@ export default class PaymentInfoLine extends Vue {
 
     .amount {
         font-weight: bold;
-        color: #0582CA;
+        color: var(--nimiq-light-blue);
     }
 
     .arrow-runway {

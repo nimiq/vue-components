@@ -1,14 +1,15 @@
 <template>
     <div class="account-list">
-        <component v-bind:is="accountContainerTag" href="javascript:void(0)" class="account-entry"
+        <component :is="accountContainerTag" href="javascript:void(0)" class="account-entry"
             v-for="account in accounts"
             :class="{
+                'disabled': disabled || disableContracts && _isContract(account) || minBalance && account.balance < minBalance,
+                'disabled-contract': disableContracts && _isContract(account),
                 'good-balance': minBalance && (account.balance || 0) >= minBalance,
                 'bad-balance': minBalance && (account.balance || 0) < minBalance,
-                'highlight-low-balance': wrongClickedAddress === account.userFriendlyAddress,
+                'highlight-disabled-address': highlightedDisabledAddress === account.userFriendlyAddress,
             }"
-            @click="accountSelected(account.walletId || walletId, account.userFriendlyAddress, !minBalance || account.balance >= minBalance)"
-            :key="account.userFriendlyAddress"
+            @click="accountSelected(account)" :key="account.userFriendlyAddress"
         >
             <Account :ref="account.userFriendlyAddress"
                 :address="account.userFriendlyAddress"
@@ -16,7 +17,7 @@
                 :placeholder="account.defaultLabel"
                 :balance="account.balance"
                 :decimals="decimals"
-                :editable="editable"
+                :editable="editable && !disabled"
                 @changed="accountChanged(account.userFriendlyAddress, $event)"
             />
 
@@ -28,7 +29,7 @@
 <script lang="ts">
 import {Component, Emit, Prop, Vue} from 'vue-property-decorator';
 import Account from './Account.vue';
-import { AccountInfo } from './AccountSelector.vue';
+import { AccountInfo, ContractInfo } from './AccountSelector.vue';
 import { CaretRightSmallIcon } from './Icons';
 
 @Component({components: {Account, CaretRightSmallIcon}})
@@ -38,9 +39,11 @@ export default class AccountList extends Vue {
     @Prop(Boolean) private editable?: boolean;
     @Prop(Number) private decimals?: number;
     @Prop(Number) private minBalance?: number;
+    @Prop(Boolean) private disableContracts?: boolean;
+    @Prop(Boolean) private disabled?: boolean;
 
-    private wrongClickedAddress: string | null = null;
-    private wrongClickedAddressTimeout: number | null = null;
+    private highlightedDisabledAddress: string | null = null;
+    private highlightedDisabledAddressTimeout: number | null = null;
 
     public focus(address: string) {
         if (this.editable && this.$refs.hasOwnProperty(address)) {
@@ -48,27 +51,36 @@ export default class AccountList extends Vue {
         }
     }
 
-    private accountSelected(walletId: string, address: string, enoughBalance: boolean) {
-        if (this.wrongClickedAddressTimeout) {
-            window.clearTimeout(this.wrongClickedAddressTimeout);
-            this.wrongClickedAddressTimeout = null;
+    private accountSelected(account: AccountInfo) {
+        if (this.disabled) return;
+
+        const hasEnoughBalance = !this.minBalance || account.balance >= this.minBalance;
+        if (this.highlightedDisabledAddressTimeout) {
+            window.clearTimeout(this.highlightedDisabledAddressTimeout);
+            this.highlightedDisabledAddressTimeout = null;
         }
-        if (!enoughBalance) {
-            this.wrongClickedAddress = address;
-            this.wrongClickedAddressTimeout = window.setTimeout(() => this.wrongClickedAddress = null, 300);
+        const isDisabledContract = this.disableContracts && this._isContract(account);
+        if (isDisabledContract || (this.minBalance && account.balance < this.minBalance)) {
+            const waitTime = isDisabledContract ? 1500 : 300;
+            this.highlightedDisabledAddress = account.userFriendlyAddress;
+            this.highlightedDisabledAddressTimeout =
+                window.setTimeout(() => this.highlightedDisabledAddress = null, waitTime);
         } else {
-            this.$emit('account-selected', walletId, address);
+            this.$emit('account-selected', account.walletId || this.walletId, account.userFriendlyAddress);
         }
     }
 
     private get accountContainerTag() {
-        return !this.editable ? 'a' : 'div';
+        return !this.editable || this.disabled ? 'a' : 'div';
     }
 
     @Emit()
     // tslint:disable-next-line no-empty
     private accountChanged(address: string, label: string) {}
 
+    private _isContract(account: AccountInfo | ContractInfo) {
+        return !('path' in account) || !account.path;
+    }
 }
 </script>
 
@@ -87,6 +99,10 @@ export default class AccountList extends Vue {
         overflow: hidden; /* chevron-right is outside the box */
         color: inherit;
         text-decoration: none;
+    }
+
+    .account-entry .account {
+        transition: opacity .3s ease;
     }
 
     .account-entry >>> .identicon img {
@@ -109,48 +125,72 @@ export default class AccountList extends Vue {
         transition: transform .45s ease, opacity .35s .1s ease;
     }
 
-    a.account-entry.bad-balance {
-        cursor: auto;
-    }
-
-    a.account-entry.bad-balance >>> .identicon,
-    a.account-entry.bad-balance >>> .label,
-    a.account-entry.bad-balance >>> .balance {
-        opacity: 0.2;
-    }
-
-    a.account-entry:not(.bad-balance):hover,
-    a.account-entry:not(.bad-balance):focus {
+    a.account-entry:not(.disabled):hover,
+    a.account-entry:not(.disabled):focus {
         background-color: rgba(31, 35, 72, 0.06); /* Based on Nimiq Blue */
         outline: none;
     }
 
-    a.account-entry:not(.bad-balance):hover >>> img,
-    a.account-entry:not(.bad-balance):focus >>> img {
+    a.account-entry:not(.disabled):hover >>> img,
+    a.account-entry:not(.disabled):focus >>> img {
         transform: scale(1);
     }
 
-    a.account-entry:not(.bad-balance):hover >>> .label div,
-    a.account-entry:not(.bad-balance):hover >>> .balance,
-    a.account-entry:not(.bad-balance):focus >>> .label div,
-    a.account-entry:not(.bad-balance):focus >>> .balance {
+    a.account-entry:not(.disabled):hover >>> .label,
+    a.account-entry:not(.disabled):hover >>> .balance,
+    a.account-entry:not(.disabled):focus >>> .label,
+    a.account-entry:not(.disabled):focus >>> .balance {
         opacity: 1;
     }
 
-    a.account-entry.bad-balance.highlight-low-balance >>> .balance {
-        color: var(--nimiq-red);
-        opacity: 1;
-    }
-
-    a.account-entry.good-balance:hover >>> .balance,
-    a.account-entry.good-balance:focus >>> .balance {
+    a.account-entry:not(.disabled).good-balance:hover >>> .balance,
+    a.account-entry:not(.disabled).good-balance:focus >>> .balance {
         margin-right: 3rem;
         color: var(--nimiq-green);
     }
 
-    a.account-entry.good-balance:hover .nq-icon,
-    a.account-entry.good-balance:focus .nq-icon {
+    a.account-entry:not(.disabled).good-balance:hover .nq-iqon,
+    a.account-entry:not(.disabled).good-balance:focus .nq-iqon {
         transform: translateX(0);
         opacity: 0.23;
+    }
+
+    a.account-entry.disabled {
+        cursor: not-allowed;
+    }
+
+    a.account-entry.disabled >>> .identicon,
+    a.account-entry.disabled >>> .label,
+    a.account-entry.disabled >>> .balance {
+        opacity: 0.2;
+    }
+
+    a.account-entry.bad-balance:not(.disabled-contract).highlight-disabled-address >>> .balance {
+        color: var(--nimiq-red);
+        opacity: 1;
+    }
+
+    a.account-entry.disabled-contract::after {
+        content: 'Contracts are incompatible with this operation.';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: var(--nimiq-red);
+        transition: opacity .3s ease;
+        opacity: 0;
+    }
+
+    a.account-entry.disabled-contract.highlight-disabled-address .account {
+        opacity: .2;
+    }
+
+    a.account-entry.disabled-contract.highlight-disabled-address::after {
+        opacity: 1;
     }
 </style>
