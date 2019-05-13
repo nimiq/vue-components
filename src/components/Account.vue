@@ -9,7 +9,7 @@
 
             <div v-if="!editable" class="label">{{ label }}</div>
             <div v-else class="label editable">
-                <LabelInput :value="label" :placeholder="placeholder" @changed="changed" ref="label"/>
+                <LabelInput :maxBytes="63" :value="label" :placeholder="placeholder" @changed="changed" ref="label"/>
             </div>
 
             <div v-if="layout === 'column' && walletLabel" class="nq-label wallet-label">{{ walletLabel }}</div>

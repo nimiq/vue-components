@@ -149,8 +149,8 @@ export default class AccountList extends Vue {
         color: var(--nimiq-green);
     }
 
-    a.account-entry:not(.disabled).good-balance:hover .nq-iqon,
-    a.account-entry:not(.disabled).good-balance:focus .nq-iqon {
+    a.account-entry:not(.disabled).good-balance:hover .nq-icon,
+    a.account-entry:not(.disabled).good-balance:focus .nq-icon {
         transform: translateX(0);
         opacity: 0.23;
     }
