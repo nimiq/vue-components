@@ -102,12 +102,12 @@ export default class AccountList extends Vue {
     .account-entry:not(.disabled)::after {
         content: "";
         position: absolute;
-        left: -5px;
-        top: -5px;
-        right: -5px;
-        bottom: -5px;
-        border: 2px solid rgba(5, 130, 202, 0.5); /* Based on Nimiq Light Blue */
-        border-radius: 8px;
+        left: -0.625rem;
+        top: -0.625rem;
+        right: -0.625rem;
+        bottom: -0.625rem;
+        border: 0.25rem solid rgba(5, 130, 202, 0.5); /* Based on Nimiq Light Blue */
+        border-radius: 1rem;
         opacity: 0;
     }
 
