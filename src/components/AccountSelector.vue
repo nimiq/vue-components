@@ -223,7 +223,7 @@ export default class AccountSelector extends Vue {
     }
 
     .footer {
-        padding: 4rem 0;
+        padding: 4rem 0 3rem;
         margin-top: -4rem;
         text-align: center;
         background: linear-gradient(
