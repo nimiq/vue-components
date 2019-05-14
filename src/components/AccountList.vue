@@ -210,39 +210,4 @@ export default class AccountList extends Vue {
     a.account-entry.disabled-contract.highlight-disabled-address::after {
         opacity: 1;
     }
-
-    /* balance hover & focus */
-
-    a.account-entry:not(.disabled).good-balance >>> .balance {
-        position: relative;
-        margin-left: 1rem;
-    }
-
-    a.account-entry:not(.disabled).good-balance >>> .balance:before,
-    a.account-entry:not(.disabled).good-balance >>> .balance:after {
-        content: "";
-        position: absolute;
-        right: 100%;
-        margin-right: 1rem;
-        top: 0;
-        height: 100%;
-        width: 24px;
-        background: linear-gradient(to left, rgba(255,255,255,1), rgba(255,255,255,0));
-        transition: opacity .3s cubic-bezier(0.25, 0, 0, 1);
-    }
-
-    a.account-entry:not(.disabled).good-balance >>> .balance:after {
-        opacity: 0;
-        background: linear-gradient(to left, rgba(242,242,244,1), rgba(242,242,244,0));
-    }
-
-    a.account-entry:not(.disabled).good-balance:hover >>> .balance:before,
-    a.account-entry:not(.disabled).good-balance:focus >>> .balance:before {
-        opacity: 0;
-    }
-    a.account-entry:not(.disabled).good-balance:hover >>> .balance:after,
-    a.account-entry:not(.disabled).good-balance:focus >>> .balance:after {
-        opacity: 1;
-    }
-    
 </style>
