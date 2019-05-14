@@ -87,32 +87,46 @@ export default class AccountList extends Vue {
 <style scoped>
     .account-list {
         flex-grow: 1;
-        overflow-y: auto;
     }
 
     .account-entry {
         display: block;
-        transition: background-color .3s ease;
+        transition: background-color .3s cubic-bezier(0.25, 0, 0, 1);
         border-radius: 0.5rem;
         margin: 0.5rem 2rem;
         position: relative;
-        overflow: hidden; /* chevron-right is outside the box */
         color: inherit;
         text-decoration: none;
     }
 
+    .account-entry:not(.disabled)::after {
+        content: "";
+        position: absolute;
+        left: -5px;
+        top: -5px;
+        right: -5px;
+        bottom: -5px;
+        border: 2px solid rgba(5, 130, 202, 0.5); /* Based on Nimiq Light Blue */
+        border-radius: 8px;
+        opacity: 0;
+    }
+
+    .account-entry:not(.disabled):focus::after {
+        opacity: 1;
+    }
+
     .account-entry .account {
-        transition: opacity .3s ease;
+        transition: opacity .3s cubic-bezier(0.25, 0, 0, 1);
     }
 
     .account-entry >>> .identicon img {
         transform: scale(0.9);
-        transition: transform .45s ease;
+        transition: transform .45s cubic-bezier(0.25, 0, 0, 1);
     }
 
     .account-entry >>> .label,
     .account-entry >>> .balance {
-        transition: opacity .3s ease, color .3s ease, margin-right .45s ease;
+        transition: opacity .3s cubic-bezier(0.25, 0, 0, 1), color .3s cubic-bezier(0.25, 0, 0, 1), margin-right .45s cubic-bezier(0.25, 0, 0, 1);
     }
 
     .account-entry .nq-icon {
@@ -122,13 +136,16 @@ export default class AccountList extends Vue {
         font-size: 2rem;
         transform: translateX(3rem);
         opacity: 0;
-        transition: transform .45s ease, opacity .35s .1s ease;
+        transition: transform .45s cubic-bezier(0.25, 0, 0, 1), opacity .35s .1s cubic-bezier(0.25, 0, 0, 1);
+    }
+
+    a.account-entry:focus {
+        outline: none;
     }
 
     a.account-entry:not(.disabled):hover,
     a.account-entry:not(.disabled):focus {
         background-color: rgba(31, 35, 72, 0.06); /* Based on Nimiq Blue */
-        outline: none;
     }
 
     a.account-entry:not(.disabled):hover >>> img,
@@ -149,8 +166,8 @@ export default class AccountList extends Vue {
         color: var(--nimiq-green);
     }
 
-    a.account-entry:not(.disabled).good-balance:hover .nq-iqon,
-    a.account-entry:not(.disabled).good-balance:focus .nq-iqon {
+    a.account-entry:not(.disabled).good-balance:hover .nq-icon,
+    a.account-entry:not(.disabled).good-balance:focus .nq-icon {
         transform: translateX(0);
         opacity: 0.23;
     }
@@ -182,7 +199,7 @@ export default class AccountList extends Vue {
         justify-content: center;
         text-align: center;
         color: var(--nimiq-red);
-        transition: opacity .3s ease;
+        transition: opacity .3s cubic-bezier(0.25, 0, 0, 1);
         opacity: 0;
     }
 
@@ -193,4 +210,39 @@ export default class AccountList extends Vue {
     a.account-entry.disabled-contract.highlight-disabled-address::after {
         opacity: 1;
     }
+
+    /* balance hover & focus */
+
+    a.account-entry:not(.disabled).good-balance >>> .balance {
+        position: relative;
+        margin-left: 1rem;
+    }
+
+    a.account-entry:not(.disabled).good-balance >>> .balance:before,
+    a.account-entry:not(.disabled).good-balance >>> .balance:after {
+        content: "";
+        position: absolute;
+        right: 100%;
+        margin-right: 1rem;
+        top: 0;
+        height: 100%;
+        width: 24px;
+        background: linear-gradient(to left, rgba(255,255,255,1), rgba(255,255,255,0));
+        transition: opacity .3s cubic-bezier(0.25, 0, 0, 1);
+    }
+
+    a.account-entry:not(.disabled).good-balance >>> .balance:after {
+        opacity: 0;
+        background: linear-gradient(to left, rgba(242,242,244,1), rgba(242,242,244,0));
+    }
+
+    a.account-entry:not(.disabled).good-balance:hover >>> .balance:before,
+    a.account-entry:not(.disabled).good-balance:focus >>> .balance:before {
+        opacity: 0;
+    }
+    a.account-entry:not(.disabled).good-balance:hover >>> .balance:after,
+    a.account-entry:not(.disabled).good-balance:focus >>> .balance:after {
+        opacity: 1;
+    }
+    
 </style>

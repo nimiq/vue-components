@@ -87,6 +87,7 @@
         flex-shrink: 0;
         font-size: 2rem;
         line-height: 1.2;
+        overflow: hidden; /* hide chevron right on hover*/
     }
 
     .account.row {
@@ -152,7 +153,6 @@
     .label,
     .wallet-label {
         overflow: hidden;
-        text-overflow: ellipsis;
     }
 
     .wallet-label {

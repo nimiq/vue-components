@@ -6,7 +6,9 @@
         </div>
         <a href="javascript:void(0)" class="description" @click="merchantInfoClicked">
             <Account :address="address" :image="shopLogoUrl" :label="originDomain" />
-            <InfoCircleIcon class="info-circle"/>
+            <div class="info-circle-container">
+                <InfoCircleIcon class="info-circle"/>
+            </div>
         </a>
     </div>
 </template>
@@ -42,7 +44,7 @@ export default class PaymentInfoLine extends Vue {
         flex-direction: row;
         justify-content: space-between;
         box-sizing: border-box;
-        margin: 2.5rem 2.5rem 1rem 2.5rem;
+        margin: 2rem 2.5rem 1rem 2.5rem;
         flex-shrink: 0;
         font-size: 2rem;
         line-height: 1.5;
@@ -66,16 +68,16 @@ export default class PaymentInfoLine extends Vue {
     .arrow-runway .nq-icon {
         opacity: 0;
         font-size: 2rem;
-        animation: arrow-shooting 2s ease-in-out infinite;
-        /* opacity: 0.3;     */
+        animation: arrow-shooting 2.7s cubic-bezier(.2,.5,.75,.5) infinite;
     }
 
     @keyframes arrow-shooting {
-        from { transform: translateX(-2rem); }
-        10% { opacity: 0; }
-        50% { opacity: 0.3; }
-        90% { opacity: 0; }
-        to { transform: translateX(2rem); }
+        0%   { transform: translate3D(-3.5rem, 0, 0); }
+        15%  { transform: translate3D(-3.5rem, 0, 0); opacity: 0; }
+        30%  { opacity: .2; }
+        70%  { opacity: .2; }
+        85%  { transform: translate3D(3rem, 0, 0); opacity: 0; }
+        100% { transform: translate3D(3rem, 0, 0); }
     }
 
     .description {
@@ -113,10 +115,15 @@ export default class PaymentInfoLine extends Vue {
         opacity: 1;
     }
 
-    .description .nq-icon {
+    .info-circle-container {
+        position: relative;
         opacity: 0.3;
         margin-left: 1rem;
         transition: opacity .3s ease;
+    }
+
+    .info-circle-container .nq-icon {
+        display: block;
     }
 
     .description:hover .account >>> .label,
@@ -124,9 +131,26 @@ export default class PaymentInfoLine extends Vue {
         opacity: .7;
     }
 
-    .description:hover .nq-icon,
-    .description:focus .nq-icon {
+    .description:hover .info-circle-container,
+    .description:focus .info-circle-container {
         /* TODO Ideally, we could change the color to --nimiq-light-blue on :focus instead, but this works for now */
         opacity: 1;
     }
+
+    .info-circle-container::after {
+        content: "";
+        position: absolute;
+        left: -5px;
+        top: -5px;
+        right: -5px;
+        bottom: -5px;
+        border: 2px solid rgba(5, 130, 202, 0.5); /* Based on Nimiq Light Blue */
+        border-radius: 50%;
+        opacity: 0;
+    }
+
+    .description:focus .info-circle-container::after {
+        opacity: 1;
+    }
+
 </style>
