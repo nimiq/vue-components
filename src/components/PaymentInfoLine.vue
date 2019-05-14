@@ -113,6 +113,7 @@ export default class PaymentInfoLine extends Vue {
         transition: opacity .3s ease;
         font-weight: unset;
         opacity: 1;
+        mask-image: unset; /* Remove gradient-fade-out */
     }
 
     .info-circle-container {
@@ -133,7 +134,6 @@ export default class PaymentInfoLine extends Vue {
 
     .description:hover .info-circle-container,
     .description:focus .info-circle-container {
-        /* TODO Ideally, we could change the color to --nimiq-light-blue on :focus instead, but this works for now */
         opacity: 1;
     }
 
