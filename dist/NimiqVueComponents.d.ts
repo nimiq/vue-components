@@ -163,6 +163,7 @@ declare module 'NimiqVueComponents/src/components/Icons' {
       */
     export const ArrowLeftSmallIcon: any;
     export const ArrowLeftIcon: any;
+    export const ArrowRightSmallIcon: any;
     export const ArrowRightIcon: any;
     export const CaretRightSmallIcon: any;
     export const CheckmarkIcon: any;
@@ -174,6 +175,7 @@ declare module 'NimiqVueComponents/src/components/Icons' {
     export const LedgerIcon: any;
     export const LoginIcon: any;
     export const PlusCircleIcon: any;
+    export const ScanQrCodeIcon: any;
     export const TransferIcon: any;
 }
 
