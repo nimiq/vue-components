@@ -39,23 +39,18 @@ function windowTemplate(slot) {
 storiesOf('Basic', module)
     .addDecorator(withKnobs)
     .add('Amount', () => {
-        let template = '<table style="text-align: right">';
-        for (const digit of [0, 2, 5]) {
-            template += `<tr><td colspan="2"><br><b>${digit} digits</b></td></tr>`;
-            for (const num of [138, 12345, 1234567, 123456789012, 12345000]) {
-                template += `<tr><td>${num} sat</td><td><Amount :amount="${num}" :decimals="${digit}"/></td></tr>`;
-            }
+        const amount = number('amount', 6.54321) * 1e5;
+        const minDecimals = number('minDecimals', 2);
+        const maxDecimals = number('maxDecimals', 5);
+        let decimals = parseFloat(text('decimals', ''));
+        if (Number.isNaN(decimals)) decimals = undefined;
+        const showApprox = boolean('showApprox', false);
 
-            template += `<tr><td colspan="2"><b>${digit} digits approx</b></td></tr>`;
-            for (const num of [138, 12345, 1234567, 123456789012, 12345000]) {
-                template += `<tr><td>${num} sat</td><td><Amount :amount="${num}" :decimals="${digit}" showApprox/></td></tr>`;
-            }
-        }
-        template += '</table>';
         return {
             components: {Amount},
-            style: `td { text-align: right }`,
-            template
+            data: () => ({ amount, minDecimals, maxDecimals, decimals, showApprox }),
+            template: `<Amount :amount="amount" :minDecimals="minDecimals" :maxDecimals="maxDecimals"
+                :decimals="decimals" :showApprox="showApprox" />`,
         };
     })
     .add('Icons', () => {
