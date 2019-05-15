@@ -97,7 +97,9 @@ declare module 'NimiqVueComponents/src/components/Amount.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class Amount extends Vue {
         amount: number;
-        decimals: number;
+        decimals?: number;
+        minDecimals: number;
+        maxDecimals: number;
         showApprox: boolean;
     }
 }
