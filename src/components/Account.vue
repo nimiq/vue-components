@@ -7,8 +7,8 @@
             </div>
             <Identicon v-else :address="address"/>
 
-            <div v-if="!editable" class="label">{{ label }}</div>
-            <div v-else class="label editable">
+            <div v-if="!editable" class="label" :class="{ 'address-font': _isLabelAddress }">{{ label }}</div>
+            <div v-else class="label editable" :class="{ 'address-font': _isLabelAddress }">
                 <LabelInput :maxBytes="63" :value="label" :placeholder="placeholder" @changed="changed" ref="label"/>
             </div>
 
@@ -24,6 +24,7 @@
     import Identicon from './Identicon.vue';
     import Amount from './Amount.vue';
     import LabelInput from './LabelInput.vue';
+    import { ValidationUtils } from '@nimiq/utils';
 
     @Component({components: {Amount, Identicon, LabelInput}})
     export default class Account extends Vue {
@@ -73,6 +74,10 @@
             /* tslint:enable max-line-length */
             // avoid a line-height being rendered for default display: inline. Applied via code for CSP compatibility.
             (document.body.lastElementChild as SVGElement).style.display = 'block';
+        }
+
+        private get _isLabelAddress() {
+            return ValidationUtils.isValidAddress(this.label);
         }
     }
 </script>
@@ -154,6 +159,11 @@
         margin-bottom: 0;
     }
 
+    .label,
+    .wallet-label {
+        overflow: hidden;
+    }
+
     .row .label:not(.editable) {
         opacity: 0.7;
         padding-left: 1rem;
@@ -161,7 +171,6 @@
 
     .row .label,
     .row .wallet-label {
-        overflow: hidden;
         white-space: nowrap;
         font-weight: 600;
         mask-image: linear-gradient(90deg , white, white calc(100% - 3rem), rgba(255,255,255, 0));
@@ -173,7 +182,7 @@
 
     .column .label,
     .column .wallet-label {
-        max-width: 16.5rem;
+        max-width: 18.5rem; /* 148px, the width the automatic labels are designed for */
         text-align: center;
         line-height: 1.5;
         /* TODO implement multi line ellipsis */
@@ -182,6 +191,12 @@
 
     .column .label-input >>> input {
         text-align: center;
+    }
+
+    .label.address-font {
+        font-family: "Fira Mono", "Andale Mono", monospace;
+        font-weight: normal;
+        text-transform: uppercase;
     }
 
     .balance {
