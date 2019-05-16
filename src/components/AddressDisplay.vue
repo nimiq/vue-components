@@ -6,7 +6,6 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { ValidationUtils } from '@nimiq/utils';
 
 @Component
 export default class AddressDisplay extends Vue {

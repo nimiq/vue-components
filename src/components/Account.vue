@@ -7,9 +7,9 @@
             </div>
             <Identicon v-else :address="address"/>
 
-            <div v-if="!editable" class="label">{{ label }}</div>
-            <div v-else class="label editable">
-                <LabelInput :value="label" :placeholder="placeholder" @changed="changed" ref="label"/>
+            <div v-if="!editable" class="label" :class="{ 'address-font': _isLabelAddress }">{{ label }}</div>
+            <div v-else class="label editable" :class="{ 'address-font': _isLabelAddress }">
+                <LabelInput :maxBytes="63" :value="label" :placeholder="placeholder" @changed="changed" ref="label"/>
             </div>
 
             <div v-if="layout === 'column' && walletLabel" class="nq-label wallet-label">{{ walletLabel }}</div>
@@ -24,6 +24,7 @@
     import Identicon from './Identicon.vue';
     import Amount from './Amount.vue';
     import LabelInput from './LabelInput.vue';
+    import { ValidationUtils } from '@nimiq/utils';
 
     @Component({components: {Amount, Identicon, LabelInput}})
     export default class Account extends Vue {
@@ -74,6 +75,10 @@
             // avoid a line-height being rendered for default display: inline. Applied via code for CSP compatibility.
             (document.body.lastElementChild as SVGElement).style.display = 'block';
         }
+
+        private get _isLabelAddress() {
+            return ValidationUtils.isValidAddress(this.label);
+        }
     }
 </script>
 
@@ -87,6 +92,7 @@
         flex-shrink: 0;
         font-size: 2rem;
         line-height: 1.2;
+        overflow: hidden; /* hide chevron right on hover*/
     }
 
     .account.row {
@@ -128,7 +134,7 @@
     .column .identicon {
         width: 10rem;
         height: 10rem;
-        margin-bottom: 1.5rem;
+        margin-bottom: 1.25rem;
     }
 
     .identicon .account-image {
@@ -149,14 +155,13 @@
         background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="none" width="146" height="146"><path d="M113.8 16.2l28.7 49.6c2.5 4.5 2.5 10 0 14.4l-28.7 49.6a14.4 14.4 0 0 1-12.5 7.2H44.1c-5.2 0-10-2.7-12.5-7.2L2.9 80.2C.4 75.7.4 70.2 3 65.8l28.7-49.6C34.2 11.7 38.9 9 44 9h57.2c5.2 0 10 2.7 12.5 7.2z" clip-rule="evenodd" stroke="%231f2348" stroke-width="2" opacity=".2"/></svg>');
     }
 
+    .wallet-label {
+        margin-bottom: 0;
+    }
+
     .label,
     .wallet-label {
         overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .wallet-label {
-        margin-bottom: 0;
     }
 
     .row .label:not(.editable) {
@@ -168,6 +173,7 @@
     .row .wallet-label {
         white-space: nowrap;
         font-weight: 600;
+        mask-image: linear-gradient(90deg , white, white calc(100% - 3rem), rgba(255,255,255, 0));
     }
 
     .row .label {
@@ -176,7 +182,7 @@
 
     .column .label,
     .column .wallet-label {
-        max-width: 16.5rem;
+        max-width: 18.5rem; /* 148px, the width the automatic labels are designed for */
         text-align: center;
         line-height: 1.5;
         /* TODO implement multi line ellipsis */
@@ -187,12 +193,18 @@
         text-align: center;
     }
 
+    .label.address-font {
+        font-family: "Fira Mono", "Andale Mono", monospace;
+        font-weight: normal;
+        text-transform: uppercase;
+    }
+
     .balance {
         flex-shrink: 0;
     }
 
     .row .balance {
-        margin-left: 2rem;
+        margin-left: 1rem;
         font-weight: bold;
         opacity: 0.7;
     }
