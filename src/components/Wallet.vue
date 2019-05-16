@@ -1,6 +1,8 @@
 <template>
     <div class="wallet">
-        <AccountRing :addresses="addresses"/>
+        <AccountRing v-if="isMultiAddress" :addresses="addresses"/>
+        <Identicon v-else :address="addresses[0]"/>
+
         <div class="wallet-description">
             <div class="label">{{ wallet.label }}</div>
             <div class="amount-container" :class="{'nq-orange': exportMissing}">
@@ -8,17 +10,18 @@
                 <Amount v-if="wallet.balance !== undefined" :amount="wallet.balance" :decimals="0"/>
             </div>
         </div>
-        <button v-if="isBip39 || isLedger" class="menu-toggle" @click.stop onclick="this.focus()">
+
+        <button class="menu-toggle" @click.stop onclick="this.focus()">
             <MenuDotsIcon/>
             <div class="menu nq-blue-bg">
                 <button v-if="isBip39" class="item export" @click="$emit('export-file', wallet.id)">
                     Save Login File<AlertTriangleIcon v-if="fileMissing" class="nq-orange"/>
                 </button>
-                <button v-if="isBip39" class="item export" @click="$emit('export-words', wallet.id)">
+                <button v-if="isKeyguard" class="item export" @click="$emit('export-words', wallet.id)">
                     Create Backup<AlertTriangleIcon v-if="wordsMissing" class="nq-orange"/>
                 </button>
                 <button class="item" @click="$emit('rename', wallet.id)">Rename</button>
-                <button v-if="isBip39" class="item" @click="$emit('change-password', wallet.id)">Change Password</button>
+                <button v-if="isKeyguard" class="item" @click="$emit('change-password', wallet.id)">Change Password</button>
                 <div class="separator"></div>
                 <button class="item logout" @click="$emit('logout', wallet.id)"><ArrowRightSmallIcon/>Logout</button>
             </div>
@@ -30,9 +33,10 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import AccountRing from './AccountRing.vue';
 import Amount from './Amount.vue';
+import Identicon from './Identicon.vue';
 import { AlertTriangleIcon, MenuDotsIcon, ArrowRightSmallIcon } from './Icons';
 
-@Component({components: { AccountRing, Amount, AlertTriangleIcon, MenuDotsIcon, ArrowRightSmallIcon }})
+@Component({components: { AccountRing, Amount, Identicon, AlertTriangleIcon, MenuDotsIcon, ArrowRightSmallIcon }})
 export default class Wallet extends Vue {
     @Prop(Object) private wallet!: {
         id: string,
@@ -44,9 +48,13 @@ export default class Wallet extends Vue {
         balance?: number,
     };
 
-    get addresses() {
+    get addresses(): string[] {
         return this.wallet.accounts
             .reduce((addresses: string[], account: any) => addresses.concat(account.address), []);
+    }
+
+    get isLegacy(): boolean {
+        return this.wallet.type === 1 /* LEGACY */
     }
 
     get isBip39(): boolean {
@@ -57,12 +65,20 @@ export default class Wallet extends Vue {
         return this.wallet.type === 3 /* LEDGER */;
     }
 
+    get isKeyguard(): boolean {
+        return this.isLegacy || this.isBip39;
+    }
+
+    get isMultiAddress(): boolean {
+        return this.isBip39 || this.isLedger;
+    }
+
     get fileMissing(): boolean {
         return this.isBip39 && !this.wallet.fileExported;
     }
 
     get wordsMissing(): boolean {
-        return this.isBip39 && !this.wallet.wordsExported;
+        return (this.isBip39 || this.isLegacy) && !this.wallet.wordsExported;
     }
 
     get exportMissing(): boolean {
@@ -86,7 +102,8 @@ export default class Wallet extends Vue {
         min-width: 0;
     }
 
-    .account-ring {
+    .account-ring,
+    .wallet > .identicon {
         width: 7rem;
         height: 7rem;
         margin-left: 2rem;
@@ -95,9 +112,13 @@ export default class Wallet extends Vue {
         user-select: none;
     }
 
+    .wallet > .identicon {
+        padding: 0 .375rem; /* Taking 3px off on both sides to reduce size while keeping alignment */
+    }
+
     .label {
         font-weight: bold;
-        font-size: 2.25rem;
+        font-size: 2.125rem;
         line-height: 3rem;
         white-space: nowrap;
         mask-image: linear-gradient(90deg , white, white calc(100% - 3rem), rgba(255,255,255, 0));
