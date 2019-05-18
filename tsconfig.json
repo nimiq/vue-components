@@ -15,9 +15,6 @@
         "paths": {
             "@/*": [
                 "src/*"
-            ],
-            "@nimiq": [
-                "node_modules/@nimiq"
             ]
         },
         "lib": [

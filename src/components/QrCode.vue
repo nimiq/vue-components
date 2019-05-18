@@ -4,9 +4,6 @@
 
 <script lang="ts">
     import {Component, Prop, Vue, Watch} from 'vue-property-decorator';
-
-    // Only importing types as we're not using value QrEncoder. The actual implementation is lazy loaded via import.
-    // http://www.typescriptlang.org/docs/handbook/modules.html#optional-module-loading-and-other-advanced-loading-scenarios
     import QrEncoder from 'qr-code';
 
     /**
@@ -64,10 +61,10 @@
                 if (isValidColor(fill)) return true;
                 const isValidGradient = ((fill.type === 'linear-gradient' && fill.position.length === 4)
                     || (fill.type === 'radial-gradient' && fill.position.length === 6))
-                    && fill.position.every((coordinate) => typeof coordinate === 'number');
+                    && fill.position.every((coordinate: unknown) => typeof coordinate === 'number');
                 if (!isValidGradient) return false;
                 const hasValidGradientStops = fill.colorStops.length >= 2
-                    && fill.colorStops.every(([offset, color]) => typeof(offset) === 'number' && isValidColor(color));
+                    && fill.colorStops.every(([offset, color]: [unknown, unknown]) => typeof(offset) === 'number' && isValidColor(color));
                 return hasValidGradientStops;
             },
         })
@@ -100,10 +97,6 @@
         @Watch('size')
         private async _updateQrCode() {
             if (!this.data) return;
-            // lazy load qr encoder and let webpack chunk it
-            // tslint:disable-next-line variable-name no-shadowed-variable
-            const QrEncoder = (await import(/* webpackChunkName: 'qr-encoder' */ 'qr-code'))
-                .default;
             QrEncoder.render({
                 text: this.data,
                 radius: this.radius,

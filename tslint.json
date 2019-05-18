@@ -8,6 +8,7 @@
       "node_modules/**"
     ]
   },
+  "declaration": true,
   "rules": {
     "quotemark": [true, "single"],
     "indent": [true, "spaces", 4],
