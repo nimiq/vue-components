@@ -35,25 +35,18 @@
         position: relative;
     }
 
-    .page-header.has-progress-indicator {
-        padding-top: 6rem;
-    }
-
     .page-header-back-button {
         font-size: 3rem;
         position: absolute;
-        left: 4.25rem;
-        top: 4rem;
-        transition: opacity .3s ease, transform .4s ease;
-        opacity: .3;
+        left: 4rem;
+        padding-top: .25rem;
+        opacity: 0.4;
+        transition: opacity .3s cubic-bezier(0.25, 0, 0, 1), transform .3s cubic-bezier(0.25, 0, 0, 1);
         color: inherit;
     }
 
-    @media (max-width: 450px) {
-        .page-header-back-button {
-            left: 3.25rem;
-            top: 3rem;
-        }
+    .page-header-back-button svg {
+        display: block;
     }
 
     .page-header-back-button:hover,
@@ -63,12 +56,24 @@
         outline: none;
     }
 
-    .page-header-back-button .nq-icon {
-        display: block;
+    @media (max-width: 450px) {
+        .page-header-back-button,
+        /* Don't move button left on mobile */
+        .page-header-back-button:hover,
+        .page-header-back-button:focus {
+            left: 3rem;
+            transform: none;
+        }
     }
 
-    .page-header.has-progress-indicator .page-header-back-button {
-        top: 6rem;
+    .page-header-back-button::after {
+        content: '';
+        display: block;
+        position: absolute;
+        left: -1.5rem;
+        top: -1.5rem;
+        right: -1.5rem;
+        bottom: -1.5rem;
     }
 
     .progress-indicator {
@@ -92,5 +97,10 @@
 
     .progress-indicator .indicator.active {
         background: #24bdb6;
+    }
+
+    .page-header.has-progress-indicator h1,
+    .page-header.has-progress-indicator .page-header-back-button {
+        margin-top: 1rem;
     }
 </style>
