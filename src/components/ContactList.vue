@@ -262,6 +262,7 @@ import NewContact from './NewContact.vue';
     .contact-list .no-contacts .material-icons {
         display: block;
         font-size: 10rem;
+        line-height: 1.1;
         opacity: 0.3;
     }
 
