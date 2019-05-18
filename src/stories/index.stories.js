@@ -26,6 +26,7 @@ import PageHeader from '../components/PageHeader.vue';
 import PageBody from '../components/PageBody.vue';
 import PageFooter from '../components/PageFooter.vue';
 import LoadingSpinner from '../components/LoadingSpinner.vue';
+import MigrationWelcome from '../components/MigrationWelcome.vue';
 import * as Icons from '../components/Icons';
 
 function windowTemplate(slot) {
@@ -805,6 +806,15 @@ storiesOf('Pages', module)
                     :image="shopLogoUrl" @close="close"/>
                 </small-page>
             `),
+        };
+    })
+    .add('MigrationWelcome', () => {
+        return {
+            components: {MigrationWelcome},
+            methods: {
+                finished: action('finished'),
+            },
+            template: windowTemplate(`<migration-welcome @finished="finished"></migration-welcome>`),
         };
     });
 
