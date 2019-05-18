@@ -55,7 +55,7 @@ import View from '@nimiq/style/src/icons/view.svg';
 // tslint:disable:variable-name
 export const AlertTriangleIcon = IconBase(AlertTriangle);
 // export const ArrowLeftSmallIcon = IconBase(ArrowLeftSmall);
-// export const ArrowLeftIcon = IconBase(ArrowLeft);
+export const ArrowLeftIcon = IconBase(ArrowLeft);
 export const ArrowRightSmallIcon = IconBase(ArrowRightSmall);
 // export const ArrowRightIcon = IconBase(ArrowRight);
 // export const BrowserLoginIcon = IconBase(BrowserLogin);
