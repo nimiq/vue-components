@@ -6,6 +6,7 @@
 
 declare module 'NimiqVueComponents' {
     export { default as ContactList } from 'NimiqVueComponents/src/components/ContactList.vue';
+    export { default as MigrationWelcome } from 'NimiqVueComponents/src/components/MigrationWelcome.vue';
     export { default as QrCode } from 'NimiqVueComponents/src/components/QrCode.vue';
     export { default as QrScanner } from 'NimiqVueComponents/src/components/QrScanner.vue';
     export { default as WalletMenu } from 'NimiqVueComponents/src/components/WalletMenu.vue';
@@ -19,6 +20,13 @@ declare module 'NimiqVueComponents/src/components/ContactList.vue' {
             address: string;
             label: string;
         }>;
+    }
+}
+
+declare module 'NimiqVueComponents/src/components/MigrationWelcome.vue' {
+    import { Vue } from 'vue-property-decorator';
+    export default class MigrationWelcome extends Vue {
+        reset(): void;
     }
 }
 
@@ -88,6 +96,7 @@ declare module 'NimiqVueComponents/src/components/Icons' {
       * Comment out any unused icons here
       */
     export const AlertTriangleIcon: any;
+    export const ArrowLeftIcon: any;
     export const ArrowRightSmallIcon: any;
     export const GearIcon: any;
     export const HexagonIcon: any;
