@@ -65,7 +65,7 @@ export default class LabelInput extends Vue {
         const fontSize = parseFloat(window.getComputedStyle((this.$refs.input as HTMLInputElement), null)
             .getPropertyValue('font-size'));
 
-        this.width = Math.max(placeholderWidth, valueWidth) + fontSize / 3;
+        this.width = (this.liveValue.length ? valueWidth : placeholderWidth) + fontSize / 3;
     }
 }
 </script>
