@@ -109,6 +109,7 @@ export default class AccountList extends Vue {
         border: 0.25rem solid rgba(5, 130, 202, 0.5); /* Based on Nimiq Light Blue */
         border-radius: 1rem;
         opacity: 0;
+        pointer-events: none;
     }
 
     .account-entry:not(.disabled):focus::after {

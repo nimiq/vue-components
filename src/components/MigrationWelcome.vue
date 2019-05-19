@@ -109,16 +109,8 @@
 </script>
 
 <style scoped>
-    .page-footer {
-        display: flex;
-        flex-direction: row;
-        flex-shrink: 0;
-        align-items: center;
-        justify-content: flex-start;
-        box-sizing: border-box;
-    }
-
     .page-body {
+        padding-top: 2rem !important;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -146,10 +138,20 @@
         width: 26rem;
     }
 
+    .nq-link {
+        text-decoration: none !important;
+    }
+
     .nq-link .nq-icon {
         margin-left: .375rem;
         font-size: 1.5rem;
         vertical-align: middle;
+        transition: transform 350ms cubic-bezier(.25, 0, 0, 1);
+    }
+
+    .nq-link:hover .nq-icon,
+    .nq-link:focus .nq-icon {
+        transform: translateX(.25rem);
     }
 
     .visual svg {
@@ -162,16 +164,15 @@
         width: 20.25rem;
         height: 34rem;
         margin-left: -7.25rem;
+        margin-top: -2rem;
     }
 
     .visual.account-menu {
-        width: 18rem;
-        height: 49.75rem;
-        margin-right: -0.25rem;
+        width: 20rem;
+        height: 48rem;
     }
 
     .nq-button {
-        width: 100%;
-        margin: 0 4.75rem 3rem;
+        margin-top: 0 !important;
     }
 </style>
