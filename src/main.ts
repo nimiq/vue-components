@@ -13,6 +13,7 @@ export { default as Amount } from './components/Amount.vue';
 export { default as Identicon } from './components/Identicon.vue';
 export { default as LabelInput } from './components/LabelInput.vue';
 export { default as LoadingSpinner } from './components/LoadingSpinner.vue';
+// export { default as MigrationWelcome } from './components/MigrationWelcome.vue';
 // export { default as NewContact } from './components/NewContact.vue';
 export { default as PageBody } from './components/PageBody.vue';
 export { default as PageFooter } from './components/PageFooter.vue';

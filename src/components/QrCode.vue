@@ -5,8 +5,6 @@
 <script lang="ts">
     import {Component, Prop, Vue, Watch} from 'vue-property-decorator';
 
-    // Only importing types as we're not using value QrEncoder. The actual implementation is lazy loaded via import.
-    // http://www.typescriptlang.org/docs/handbook/modules.html#optional-module-loading-and-other-advanced-loading-scenarios
     import QrEncoder from 'qr-code';
 
     /**
@@ -100,10 +98,6 @@
         @Watch('size')
         private async _updateQrCode() {
             if (!this.data) return;
-            // lazy load qr encoder and let webpack chunk it
-            // tslint:disable-next-line variable-name no-shadowed-variable
-            const QrEncoder = (await import(/* webpackChunkName: 'qr-encoder' */ 'qr-code'))
-                .default;
             QrEncoder.render({
                 text: this.data,
                 radius: this.radius,

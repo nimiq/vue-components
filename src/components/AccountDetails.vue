@@ -1,6 +1,6 @@
 <template>
     <div class="account-details">
-        <a href="javascript:void(0)" class="cancel-circle" @click="close">
+        <a href="javascript:void(0)" class="nq-button-s cancel-circle" @click="close">
             <CloseIcon/>
         </a>
         <Account layout="column" :address="address" :image="image" :label="label !== address ? label : ''"
@@ -47,40 +47,23 @@ export default class AccountDetails extends Vue {
     }
 
     .cancel-circle {
-        color: inherit;
         font-size: 3rem;
-        background-size: 135%;
         position: absolute;
         top: 2rem;
         right: 2rem;
-        opacity: 0.2;
-        transition: opacity .3s ease, color .3s ease;
+        padding: 0;
+        height: unset;
     }
 
     .cancel-circle .nq-icon {
-        display: block;
+        opacity: .2;
+        transition: opacity .3s cubic-bezier(0.25, 0, 0, 1);
     }
 
-    .cancel-circle::after {
-        /* enlarged click area */
-        content: '';
-        display: block;
-        position: absolute;
-        top: -1.5rem;
-        right: -1.5rem;
-        bottom: -1.5rem;
-        left: -1.5rem;
-    }
-
-    .cancel-circle:hover,
-    .cancel-circle:focus {
+    .cancel-circle:hover .nq-icon,
+    .cancel-circle:active .nq-icon,
+    .cancel-circle:focus .nq-icon {
         opacity: .4;
-        outline: none;
-    }
-
-    .cancel-circle:focus {
-        color: var(--nimiq-light-blue);
-        opacity: .7;
     }
 
     .account {

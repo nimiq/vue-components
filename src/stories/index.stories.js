@@ -26,6 +26,7 @@ import PageHeader from '../components/PageHeader.vue';
 import PageBody from '../components/PageBody.vue';
 import PageFooter from '../components/PageFooter.vue';
 import LoadingSpinner from '../components/LoadingSpinner.vue';
+import MigrationWelcome from '../components/MigrationWelcome.vue';
 import * as Icons from '../components/Icons';
 
 function windowTemplate(slot) {
@@ -510,7 +511,7 @@ storiesOf('Components', module)
         };
     })
     .add('WalletList', () => {
-        const activeWalletId = select('Active Wallet', ['account_1', 'account_2', 'account_3'], 'account_1');
+        const activeWalletId = select('Active Wallet', ['account_1', 'account_2', 'account_3', 'account_4'], 'account_1');
         return {
             components: {WalletList},
             methods: {
@@ -527,6 +528,16 @@ storiesOf('Components', module)
                     wallets: [
                         {
                             id: 'account_1',
+                            label: 'My old Account',
+                            accounts: [
+                                {address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE'},
+                            ],
+                            type: 1, // LEGACY
+                            fileExported: false,
+                            wordsExported: true,
+                            balance: 300000 * 1e5,
+                        }, {
+                            id: 'account_2',
                             label: 'Standard Account',
                             accounts: [
                                 {address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE'},
@@ -538,7 +549,7 @@ storiesOf('Components', module)
                             wordsExported: false,
                             balance: 101 * 1e5,
                         }, {
-                            id: 'account_2',
+                            id: 'account_3',
                             label: 'Keyguard Account',
                             accounts: [
                                 {address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE'},
@@ -550,7 +561,7 @@ storiesOf('Components', module)
                             wordsExported: true,
                             balance: 101 * 1e5,
                         }, {
-                            id: 'account_3',
+                            id: 'account_4',
                             label: 'Ledger Account',
                             accounts: [
                                 {address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE'},
@@ -576,7 +587,7 @@ storiesOf('Components', module)
         };
     })
     .add('WalletMenu', () => {
-        const activeWalletId = select('Active Wallet', ['account_1', 'account_2', 'account_3', 'account_4'], 'account_2');
+        const activeWalletId = select('Active Wallet', ['account_0', 'account_1', 'account_2', 'account_3', 'account_4'], 'account_3');
         return {
             components: {WalletMenu},
             methods: {
@@ -594,17 +605,25 @@ storiesOf('Components', module)
                     activeWalletId: activeWalletId,
                     wallets: [
                         {
-                            id: 'account_1',
-                            label: 'Single-Address Accounts',
+                            id: 'account_0',
+                            label: 'NIM Activation',
                             accounts: [
-                                {address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE'},
-                                {address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK'},
                                 {address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF'},
                             ],
                             type: 1, // LEGACY
                             fileExported: false,
-                            wordsExported: false,
-                            balance: 101 * 1e5,
+                            wordsExported: true,
+                            balance: 300000 * 1e5,
+                        }, {
+                            id: 'account_1',
+                            label: 'My first account',
+                            accounts: [
+                                {address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE'},
+                            ],
+                            type: 1, // LEGACY
+                            fileExported: false,
+                            wordsExported: true,
+                            balance: 300000 * 1e5,
                         }, {
                             id: 'account_2',
                             label: 'Oversized account label',
@@ -801,6 +820,15 @@ storiesOf('Pages', module)
                     :image="shopLogoUrl" @close="close"/>
                 </small-page>
             `),
+        };
+    })
+    .add('MigrationWelcome', () => {
+        return {
+            components: {MigrationWelcome},
+            methods: {
+                finished: action('finished'),
+            },
+            template: windowTemplate(`<migration-welcome @finished="finished"></migration-welcome>`),
         };
     });
 

@@ -14,10 +14,12 @@
 <style scoped>
     .page-footer {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         flex-shrink: 0;
-        align-items: center;
-        justify-content: flex-start;
         box-sizing: border-box;
+    }
+
+    .page-footer .nq-button {
+        margin: 2rem 4.75rem 3rem;
     }
 </style>
