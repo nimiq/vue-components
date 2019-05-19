@@ -55,13 +55,10 @@ export default class AccountDetails extends Vue {
         right: 2rem;
     }
 
-    .cancel-circle svg {
-        opacity: .2;
-        transition: opacity .3s cubic-bezier(0.25, 0, 0, 1);
-    }
-
     .cancel-circle .nq-icon {
         display: block;
+        opacity: .2;
+        transition: opacity .3s cubic-bezier(0.25, 0, 0, 1);
     }
 
     .cancel-circle::before {
@@ -88,9 +85,9 @@ export default class AccountDetails extends Vue {
         left: -1.5rem;
     }
 
-    .cancel-circle:hover svg,
-    .cancel-circle:active svg,
-    .cancel-circle:focus svg {
+    .cancel-circle:hover .nq-icon,
+    .cancel-circle:active .nq-icon,
+    .cancel-circle:focus .nq-icon {
         opacity: .4;
     }
 
