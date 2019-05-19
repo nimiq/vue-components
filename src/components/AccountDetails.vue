@@ -53,12 +53,28 @@ export default class AccountDetails extends Vue {
         position: absolute;
         top: 2rem;
         right: 2rem;
-        opacity: 0.2;
-        transition: opacity .3s ease, color .3s ease;
+    }
+
+    .cancel-circle svg {
+        opacity: .2;
+        transition: opacity .3s cubic-bezier(0.25, 0, 0, 1);
     }
 
     .cancel-circle .nq-icon {
         display: block;
+    }
+
+    .cancel-circle::before {
+        /* Focus Ring */
+        content: '';
+        position: absolute;
+        left: -5px;
+        top: -5px;
+        right: -5px;
+        bottom: -5px;
+        border: 2px solid rgba(5, 130, 202, 0.5); /* Based on Nimiq Light Blue */
+        border-radius: 500px;
+        opacity: 0;
     }
 
     .cancel-circle::after {
@@ -72,15 +88,18 @@ export default class AccountDetails extends Vue {
         left: -1.5rem;
     }
 
-    .cancel-circle:hover,
-    .cancel-circle:focus {
+    .cancel-circle:hover svg,
+    .cancel-circle:active svg,
+    .cancel-circle:focus svg {
         opacity: .4;
-        outline: none;
     }
 
     .cancel-circle:focus {
-        color: var(--nimiq-light-blue);
-        opacity: .7;
+        outline: none;
+    }
+
+    .cancel-circle:focus::before {
+        opacity: 1;
     }
 
     .account {
