@@ -8,7 +8,7 @@
                 </svg>
             </slot>
         </div>
-        <button class="nq-button-s cancel-button" @click="_cancel">Cancel</button>
+        <button class="nq-button-s inverse cancel-button" @click="_cancel">Cancel</button>
 
         <transition name="fade">
             <div v-if="cameraAccessFailed" class="camera-access-failed">
@@ -246,6 +246,13 @@ export default QrScanner;
         bottom: 3rem;
         left: 50%;
         transform: translateX(-50%);
+        color: inherit;
+    }
+
+    .cancel-button:hover,
+    .cancel-button:focus,
+    .cancel-button:active {
+        background: #EFF0F2; /* Indigo 7% */
     }
 
     .camera-access-failed {
