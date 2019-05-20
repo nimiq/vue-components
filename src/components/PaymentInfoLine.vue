@@ -2,7 +2,7 @@
     <div class="info-line">
         <Amount :amount="amount + fee" :decimals="decimals" />
         <div class="arrow-runway">
-            <ArrowRightIcon/>
+            <ArrowRightSmallIcon/>
         </div>
         <a href="javascript:void(0)" class="description" @click="merchantInfoClicked">
             <Account :address="address" :image="shopLogoUrl" :label="originDomain" />
@@ -17,9 +17,9 @@
 import {Component, Prop, Emit, Vue} from 'vue-property-decorator';
 import Amount from './Amount.vue';
 import Account from './Account.vue';
-import { InfoCircleIcon, ArrowRightIcon } from './Icons';
+import { InfoCircleIcon, ArrowRightSmallIcon } from './Icons';
 
-@Component({components: {Amount, Account, InfoCircleIcon, ArrowRightIcon}})
+@Component({components: {Amount, Account, InfoCircleIcon, ArrowRightSmallIcon}})
 export default class PaymentInfoLine extends Vue {
 
     private get originDomain() {
