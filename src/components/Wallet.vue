@@ -54,7 +54,7 @@ export default class Wallet extends Vue {
     }
 
     get isLegacy(): boolean {
-        return this.wallet.type === 1 /* LEGACY */
+        return this.wallet.type === 1 /* LEGACY */;
     }
 
     get isBip39(): boolean {

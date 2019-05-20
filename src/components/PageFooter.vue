@@ -19,7 +19,7 @@
         box-sizing: border-box;
     }
 
-    .page-footer .nq-button {
+    .page-footer >>> .nq-button {
         margin: 2rem 4.75rem 3rem;
     }
 </style>
