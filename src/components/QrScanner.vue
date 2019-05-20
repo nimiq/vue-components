@@ -135,8 +135,8 @@ class QrScanner extends Vue {
 
     public repositionOverlay() {
         requestAnimationFrame(() => {
-            const scannerHeight = this.$el.offsetHeight;
-            const scannerWidth = this.$el.offsetWidth;
+            const scannerHeight = (this.$el as HTMLElement).offsetHeight;
+            const scannerWidth = (this.$el as HTMLElement).offsetWidth;
             const smallerDimension = Math.min(scannerHeight, scannerWidth);
             if (smallerDimension === 0) return; // component not visible or destroyed
             const overlaySize = Math.ceil(2 / 3 * smallerDimension);
@@ -151,7 +151,7 @@ class QrScanner extends Vue {
     }
 
     private _isVisible() {
-        return this.$el.offsetWidth > 0;
+        return (this.$el as HTMLElement).offsetWidth > 0;
     }
 
     private _cancel() {

@@ -98,6 +98,7 @@
         @Watch('size')
         private async _updateQrCode() {
             if (!this.data) return;
+            await Vue.nextTick(); // Make sure the canvas is in the DOM (it depends on !!data)
             QrEncoder.render({
                 text: this.data,
                 radius: this.radius,
@@ -105,7 +106,7 @@
                 fill: this.fill,
                 background: this.background,
                 size: this.size,
-            }, this.$el);
+            }, this.$el as HTMLCanvasElement);
         }
     }
 </script>
