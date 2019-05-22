@@ -26,6 +26,7 @@ declare module 'NimiqVueComponents/src/components/ContactList.vue' {
 declare module 'NimiqVueComponents/src/components/MigrationWelcome.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class MigrationWelcome extends Vue {
+        link: string;
         reset(): void;
     }
 }
