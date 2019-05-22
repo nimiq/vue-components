@@ -1,6 +1,6 @@
 <template>
     <div>
-        <canvas v-if="!!data"></canvas>
+        <canvas ref="canvas" v-if="!!data"></canvas>
     </div>
 </template>
 
@@ -108,7 +108,7 @@
                 fill: this.fill,
                 background: this.background,
                 size: this.size,
-            }, this.$el as HTMLCanvasElement);
+            }, this.$refs.canvas as HTMLCanvasElement);
         }
     }
 </script>

@@ -8004,12 +8004,12 @@ var PaymentInfoLine_component = normalizeComponent(
 
 PaymentInfoLine_component.options.__file = "PaymentInfoLine.vue"
 /* harmony default export */ var components_PaymentInfoLine = (PaymentInfoLine_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6ce9ed87-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/QrCode.vue?vue&type=template&id=5c7a0163&
-var QrCodevue_type_template_id_5c7a0163_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[(!!_vm.data)?_c('canvas'):_vm._e()])}
-var QrCodevue_type_template_id_5c7a0163_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6ce9ed87-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/QrCode.vue?vue&type=template&id=1858df1a&
+var QrCodevue_type_template_id_1858df1a_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[(!!_vm.data)?_c('canvas',{ref:"canvas"}):_vm._e()])}
+var QrCodevue_type_template_id_1858df1a_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/QrCode.vue?vue&type=template&id=5c7a0163&
+// CONCATENATED MODULE: ./src/components/QrCode.vue?vue&type=template&id=1858df1a&
 
 // CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/builtin/es6/arrayWithHoles.js
 function _arrayWithHoles(arr) {
@@ -8164,7 +8164,7 @@ function (_Vue) {
                   fill: this.fill,
                   background: this.background,
                   size: this.size
-                }, this.$el);
+                }, this.$refs.canvas);
 
               case 5:
               case "end":
@@ -8267,8 +8267,8 @@ QrCodevue_type_script_lang_ts_QrCode = __decorate([vue_class_component_common_de
 
 var QrCode_component = normalizeComponent(
   components_QrCodevue_type_script_lang_ts_,
-  QrCodevue_type_template_id_5c7a0163_render,
-  QrCodevue_type_template_id_5c7a0163_staticRenderFns,
+  QrCodevue_type_template_id_1858df1a_render,
+  QrCodevue_type_template_id_1858df1a_staticRenderFns,
   false,
   null,
   null,
