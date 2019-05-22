@@ -8,7 +8,7 @@
         <PageBody v-if="page === 1" class="right-aligned">
             <div class="text">
                 <p class="nq-text">
-                    Handling multiple Address is now convenient and easy – with one password and shared login information.
+                    Handling multiple Addresses is now convenient and easy – with one password and shared login information.
                 </p>
                 <p class="nq-text">
                     <strong>Accounts</strong> hold, manage and aggregate Addresses.
@@ -28,10 +28,10 @@
                     The new Login Files are an easy and convenient way to gain access to your Account and its Addresses.
                 </p>
                 <p class="nq-text">
-                    Simply upload it to any browser and enter your password to login to Nimiq.
+                    Import it to any browser and enter your password to connect to Nimiq.
                 </p>
                 <p class="nq-text">
-                    <strong><a href="https://medium.com/nimiq-network" target="_blank" class="nq-link">Learn more here <ArrowRightSmallIcon/></a></strong>
+                    <strong><a :href="link" target="_blank" class="nq-link">Learn more here <ArrowRightSmallIcon/></a></strong>
                 </p>
             </div>
             <div class="visual login-file">
@@ -60,7 +60,7 @@
 </template>
 
 <script lang="ts">
-    import {Component, Vue} from 'vue-property-decorator';
+    import {Component, Prop, Vue} from 'vue-property-decorator';
     import SmallPage from './SmallPage.vue';
     import PageHeader from './PageHeader.vue';
     import PageBody from './PageBody.vue';
@@ -69,6 +69,8 @@
 
     @Component({components: {SmallPage, PageHeader, PageBody, PageFooter, ArrowRightSmallIcon}})
     export default class MigrationWelcome extends Vue {
+        @Prop({type: String, default: 'https://medium.com/nimiq-network'}) public link!: string;
+
         private page = 1;
 
         private content = [{
@@ -77,7 +79,7 @@
             button: 'Continue',
         }, {
             title: 'Improved Accessibility',
-            notice: 'Log in to your devices with the new<br>Nimiq Login Files.',
+            notice: 'Log in on your devices with the new<br>Nimiq Login Files.',
             button: 'What else?',
         }, {
             title: 'Old and new Accounts',
@@ -135,6 +137,10 @@
         color: var(--nimiq-blue);
         margin-left: 2rem;
         margin-right: 2rem;
+        width: 27rem;
+    }
+
+    .left-aligned .nq-text {
         width: 26rem;
     }
 
@@ -168,11 +174,11 @@
         width: 20.25rem;
         height: 34rem;
         margin-left: -7.25rem;
-        margin-top: -2rem;
+        margin-top: -1rem;
     }
 
     .visual.account-menu {
-        width: 20rem;
+        width: 18rem;
         height: 48rem;
     }
 

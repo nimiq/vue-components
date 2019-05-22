@@ -809,12 +809,16 @@ storiesOf('Pages', module)
         };
     })
     .add('MigrationWelcome', () => {
+        const link = text('Link', 'https://medium.com/nimiq-network');
         return {
             components: {MigrationWelcome},
+            data() {
+                return { link };
+            },
             methods: {
                 finished: action('finished'),
             },
-            template: windowTemplate(`<migration-welcome @finished="finished"></migration-welcome>`),
+            template: windowTemplate(`<migration-welcome :link="link" @finished="finished"></migration-welcome>`),
         };
     });
 
