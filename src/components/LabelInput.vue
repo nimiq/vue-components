@@ -2,7 +2,7 @@
     <form class="label-input" @submit.prevent="onBlur">
         <span class="width-finder width-placeholder" ref="widthPlaceholder">{{placeholder}}</span>
         <span class="width-finder width-value" ref="widthValue">{{liveValue}}</span>
-        <input type="text" class="nq-input"
+        <input type="text" class="nq-input" :class="{'vanishing': vanishing}"
             :placeholder="placeholder"
             :style="{width: `${this.width}px`}"
             v-model="liveValue"
@@ -19,19 +19,20 @@ import { Utf8Tools } from '@nimiq/utils';
 @Component
 export default class LabelInput extends Vue {
     @Prop(Number) protected maxBytes?: number;
-    @Prop({type: String, default: ''}) private value!: string;
+    @Prop({type: String, default: ''}) protected value!: string;
     @Prop({type: String, default: 'Name your address'}) private placeholder!: string;
+    @Prop({type: Boolean, default: false}) private vanishing!: boolean;
 
-    private liveValue = this.value;
-    private lastValue = this.value;
-    private lastEmittedValue = this.value;
-    private width = 50;
+    protected liveValue = this.value;
+    protected lastValue = this.value;
+    protected lastEmittedValue = this.value;
+    protected width = 50;
 
     public focus() {
         (this.$refs.input as HTMLInputElement).focus();
     }
 
-    private onInput() {
+    protected onInput() {
         if (this.maxBytes) {
             const lengthInBytes = Utf8Tools.stringToUtf8ByteArray(this.liveValue!).byteLength;
             if (lengthInBytes > this.maxBytes) {
@@ -50,7 +51,7 @@ export default class LabelInput extends Vue {
     }
 
     @Watch('liveValue', {immediate: true})
-    private async updateWidth() {
+    protected async updateWidth() {
         await Vue.nextTick(); // Await updated DOM
         if (!this.$refs.widthPlaceholder) return;
 
@@ -74,6 +75,7 @@ export default class LabelInput extends Vue {
     .label-input {
         position: relative;
         overflow: hidden; /* limit width-finder width to parent available width */
+        max-width: 100%;
     }
 
     .width-finder {
