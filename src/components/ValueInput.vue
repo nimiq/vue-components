@@ -1,16 +1,19 @@
 <template>
-    <form class="label-input" @submit.prevent="onBlur" ref="fullWidth">
-        <span class="width-finder width-placeholder" ref="widthPlaceholder">{{placeholder}}</span>
-        <div v-if="maxFontSize" class="full-width" :class="{'width-finder': maxWidth > 0}" >Width</div>
-        <span class="width-finder width-value" :style="{fontSize: `${fontSize}rem`}" ref="widthValue">{{liveValue}}</span>
-        <input type="text" class="nq-input nq-light-blue" :class="{'vanishing': vanishing}"
-            :placeholder="placeholder"
-            :style="{width: `${this.width}px`, fontSize: `${this.fontSize}rem`}"
-            v-model="liveValue"
-            @input="onInput"
-            @blur="onBlur"
-            ref="input">
-    </form>
+    <div class="amount">
+        <form class="label-input" @submit.prevent="onBlur" ref="fullWidth">
+            <span class="width-finder width-placeholder" ref="widthPlaceholder">{{placeholder}}</span>
+            <div v-if="maxFontSize" class="full-width" :class="{'width-finder': maxWidth > 0}" >Width</div>
+            <span class="width-finder width-value" :style="{fontSize: `${fontSize}rem`}" ref="widthValue">{{liveValue}}</span>
+            <input type="text" class="nq-input nq-light-blue" :class="{'vanishing': vanishing}"
+                :placeholder="placeholder"
+                :style="{width: `${this.width}px`, fontSize: `${this.fontSize}rem`}"
+                v-model="liveValue"
+                @input="onInput"
+                @blur="onBlur"
+                ref="input">
+        </form>
+        <span>NIM</span>
+    </div>
 </template>
 
 <script lang="ts">
@@ -101,5 +104,30 @@ export default class ValueInput extends LabelInput {
 
     .full-width {
         width: 1000px;
+    }
+
+
+    .amount {
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+        width: 100%;
+        font-size: 8rem;
+        line-height: 8.5rem;
+        border-top: .125rem solid var(--nimiq-highlight-bg);
+        margin-top: 1rem;
+        padding-top: 2rem;
+    }
+
+    .amount form {
+        display: flex;
+    }
+
+    .amount > span {
+        padding-left: 1rem;
+        font-size: 4rem;
+        font-weight: 700;
+        line-height: 4.5rem;
+        color: var(--nimiq-light-blue);
     }
 </style>
