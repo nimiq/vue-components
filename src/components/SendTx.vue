@@ -78,10 +78,7 @@
                 <div class="arrow-wrapper"><ArrowRightIcon class="nq-light-blue" /></div>
                 <Account layout="column" :address="recipient.address" :label="recipient.label || 'Unnamed Contact'" />
             </div>
-            <div class="amount">
-                <ValueInput :vanishing="true" placeholder="0.00" :maxFontSize="8" @changed="setValue" ref="valueInput" />
-                <span>NIM</span>
-            </div>
+            <ValueInput class="value" :vanishing="true" placeholder="0.00" :maxFontSize="8" @changed="setValue" ref="valueInput" />
             <LabelInput :vanishing="true" placeholder="Add a public message..." :maxBytes="64" @changed="setMessage" />
         </PageBody>
 
@@ -273,6 +270,12 @@ import { ArrowRightIcon, CloseIcon, ScanQrCodeIcon, SettingsIcon } from './Icons
         width: 100%;
     }
 
+    .send-tx .value {
+        display: flex;
+        align-items: center;
+        height: 12.5rem;
+    }
+
     .address-input {
         width: 28rem;
         height: 14.5rem;
@@ -361,30 +364,5 @@ import { ArrowRightIcon, CloseIcon, ScanQrCodeIcon, SettingsIcon } from './Icons
         right: 4rem;
         opacity: .25;
         font-size: 3.625rem;
-    }
-
-    .amount {
-        display: flex;
-        align-items: baseline;
-        justify-content: center;
-        width: 100%;
-        font-size: 8rem;
-        line-height: 8.5rem;
-        border-top: .125rem solid var(--nimiq-highlight-bg);
-        margin-top: 1rem;
-        padding-top: 2rem;
-    }
-
-    .amount form {
-        height: 12.5rem;
-        display: flex;
-    }
-
-    .amount > span {
-        padding-left: 1rem;
-        font-size: 4rem;
-        font-weight: 700;
-        line-height: 4.5rem;
-        color: var(--nimiq-light-blue);
     }
 </style>
