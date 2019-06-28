@@ -4,7 +4,7 @@
             <CloseIcon/>
         </a>
         <Account layout="column" :address="address" :image="image" :label="label !== address ? label : ''"
-             :walletLabel="walletLabel" :balance="balance"></Account>
+             :walletLabel="walletLabel" :balance="balance" :editable="editable" @changed="changed" ></Account>
         <Copyable :text="address">
             <AddressDisplay :address="address"/>
         </Copyable>
@@ -26,10 +26,15 @@ export default class AccountDetails extends Vue {
     @Prop(String) private label?: string;
     @Prop(String) private walletLabel?: string;
     @Prop(Number) private balance?: number;
+    @Prop(Boolean) private editable?: boolean;
 
     @Emit()
     // tslint:disable-next-line no-empty
     private close() {}
+
+    @Emit()
+    // tslint:disable-next-line no-empty
+    private changed(label: string) {}
 }
 </script>
 
