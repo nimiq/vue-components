@@ -24,7 +24,7 @@
             <ContactShortcuts
                 :contacts="contacts"
                 @contact-selected="setRecipient"
-                @contacts-opened="contactsOpened = true"/>
+                @contacts-opened="contacts.length > 0 ? contactsOpened = true : false"/>
             <label class="nq-label">Enter address</label>
             <AddressInput class="address-input" @address-entered="setRecipient" />
         </PageBody>
@@ -39,15 +39,16 @@
     </SmallPage>
 
     <SmallPage v-else class="send-tx">
-        <SmallPage class="overlay" v-if="!recipient.label  && !detailsClosed">
+        <SmallPage class="overlay" v-if="details !== Details.CLOSED">
             <AccountDetails
-                :address="recipient.address"
-                :editable="true"
-                @close="storeContactAndCloseOverlay(false)"
+                :address="details === Details.SENDER ? sender.address : recipient.address"
+                :editable="details === Details.RECIPIENT"
+                :label="details === Details.SENDER ? sender.label : recipient.label"
+                @close="details = Details.CLOSED"
                 @changed="setLabel"
                 />
             <PageFooter>
-                <button class="nq-button light-blue" @click="storeContactAndCloseOverlay(true)">Set amount</button>
+                <button class="nq-button light-blue" @click="storeContactAndCloseOverlay()">Set amount</button>
             </PageFooter>
         </SmallPage>
 
@@ -65,7 +66,7 @@
             </PageFooter>
         </SmallPage>
 
-        <PageHeader :backArrow="true" @back="recipient = null; detailsClosed = false; contactsOpened = false;">
+        <PageHeader :backArrow="true" @back="recipient = null; detailsClosed = Details.CLOSED; contactsOpened = false;">
             Set Amount
             <a href="javascript:void(0)" class="nq-blue options-button" @click="optionsOpened = true">
                 <SettingsIcon/>
@@ -74,9 +75,13 @@
 
         <PageBody>
             <div class="sender-and-recipient">
-                <Account layout="column" :address="sender.address" :label="sender.label" />
+                <a href="javascript:void(0);"  @click="details = Details.SENDER">
+                    <Account layout="column" :address="sender.address" :label="sender.label"/>
+                </a>
                 <div class="arrow-wrapper"><ArrowRightIcon class="nq-light-blue" /></div>
-                <Account layout="column" :address="recipient.address" :label="recipient.label || 'Unnamed Contact'" />
+                <a href="javascript:void(0);"  @click="details = Details.RECIPIENT">
+                    <Account layout="column" :address="recipient.address" :label="recipient.label || 'Unnamed Contact'"/>
+                </a>
             </div>
             <ValueInput class="value" :vanishing="true" placeholder="0.00" :maxFontSize="8" @changed="setValue" ref="valueInput" />
             <LabelInput :vanishing="true" placeholder="Add a public message..." :maxBytes="64" @changed="setMessage" />
@@ -105,6 +110,12 @@ import ValueInput from './ValueInput.vue';
 import SelectBar from './SelectBar.vue';
 import { ArrowRightIcon, CloseIcon, ScanQrCodeIcon, SettingsIcon } from './Icons';
 
+export enum Details {
+    CLOSED,
+    SENDER,
+    RECIPIENT,
+};
+
 @Component({components: {
     SmallPage,
     PageHeader,
@@ -131,7 +142,7 @@ import { ArrowRightIcon, CloseIcon, ScanQrCodeIcon, SettingsIcon } from './Icons
 
         private sender: {address: string, label: string, walletId} = null;
         private recipient: {address: string, label: string} = null;
-        private detailsClosed = false;
+        private details = Details.CLOSED;
         private contactsOpened = false;
         private optionsOpened = false;
         private fee = 0;
@@ -149,6 +160,8 @@ import { ArrowRightIcon, CloseIcon, ScanQrCodeIcon, SettingsIcon } from './Icons
                 const foundContact = this.contacts.find((contact) => contact.address === address);
                 if (foundContact) {
                     label = foundContact.label;
+                } else {
+                    this.details = Details.RECIPIENT;
                 }
             }
             this.recipient = {address, label};
@@ -187,12 +200,10 @@ import { ArrowRightIcon, CloseIcon, ScanQrCodeIcon, SettingsIcon } from './Icons
             }
         }
 
-        private storeContactAndCloseOverlay(storeContact: boolean) {
-            if (storeContact) {
-                this.recipient.label = this.label;
-                this.$emit('contact-added', this.recipient);
-            }
-            this.detailsClosed = true;
+        private storeContactAndCloseOverlay() {
+            this.recipient.label = this.label;
+            this.$emit('contact-added', this.recipient);
+            this.details = Details.CLOSED;
         }
 
         private sendTransaction() {
@@ -217,6 +228,7 @@ import { ArrowRightIcon, CloseIcon, ScanQrCodeIcon, SettingsIcon } from './Icons
                     text: 'express',
                     index: 2,
                 }],
+                Details,
             };
         }
 
@@ -337,7 +349,9 @@ import { ArrowRightIcon, CloseIcon, ScanQrCodeIcon, SettingsIcon } from './Icons
         margin-top: -3.25rem;
     }
 
-    .sender-and-recipient .account {
+    .sender-and-recipient a {
+        color: inherit;
+        text-decoration: none;
         width: calc(50% - 1.1235rem);
     }
 
