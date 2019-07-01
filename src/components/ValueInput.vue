@@ -34,9 +34,9 @@ export default class ValueInput extends LabelInput {
     }
 
     protected onInput() {
-        const regExp = new RegExp(/([0-9]*)(\.{0,1})([0-9]{0,5})/g);
+        const regExp = new RegExp(/([0-9]*\.?[0-9]{0,5})/g);
         const hits = regExp.exec(this.liveValue);
-        if (hits && `${hits[1]}${hits[2]}${hits[3]}` !== this.liveValue) {
+        if (hits && `${hits[1]}` !== this.liveValue) {
             this.liveValue = this.lastValue;
             return;
         }
