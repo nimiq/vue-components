@@ -8,6 +8,7 @@ import AccountList from '../components/AccountList.vue';
 import AccountSelector from '../components/AccountSelector.vue';
 import Address from '../components/Address.vue';
 import AddressDisplay from '../components/AddressDisplay.vue';
+import AddressInput from '../components/AddressInput.vue';
 import AccountRing from '../components/AccountRing.vue';
 import Amount from '../components/Amount.vue';
 import AmountWithDetails from '../components/AmountWithDetails.vue';
@@ -312,6 +313,22 @@ storiesOf('Components', module)
             },
             components: {AddressDisplay},
             template: `<AddressDisplay :address="address"/>`,
+        };
+    })
+    .add('AddressInput', () => {
+        return {
+            components: {AddressInput},
+            data() {
+                return {
+                    address: '',
+                    lastValidAddress: null,
+                };
+            },
+            template: `<div>
+                <AddressInput v-model="address" @address="lastValidAddress = $event" />
+                <div>Current address: {{ address }}</div>
+                <div>valid?: {{ address === lastValidAddress }}</div>
+            </div>`,
         };
     })
     .add('AccountRing', () => {
