@@ -1,7 +1,7 @@
 <template>
     <div class="address-input">
         <textarea ref="textarea" placeholder="NQ" spellcheck="false" autocomplete="off"
-            @keydown="_onKeyDown" @input="_onInput" @paste="_onPaste" @cut="_onCut"
+            @keydown="_onKeyDown" @input="_onInput" @paste="_onPaste" @cut="_onCut" @copy="_formatClipboard"
         ></textarea>
         <template v-for="i in 9">
             <div class="block"></div>
@@ -15,7 +15,6 @@ import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import {
     onChange as inputFormatOnChange,
     onPaste as inputFormatOnPaste,
-    onCut as inputFormatOnCut,
     onKeyDown as inputFormatOnKeyDown,
 } from 'input-format';
 import { ValidationUtils } from '@nimiq/utils';
@@ -24,7 +23,7 @@ import { ValidationUtils } from '@nimiq/utils';
 export default class AddressInput extends Vue {
     // definiton of the parse method for input-format (https://github.com/catamphetamine/input-format#usage)
     private static _parse(char: string, value: string) {
-        value = value.replace(/ /g, '');
+        value = value.replace(/\s/g, '');
         if (value.length >= 36) return; // reject characters when full address length (without spaces) is reached
 
         char = char.toUpperCase();
@@ -54,14 +53,14 @@ export default class AddressInput extends Vue {
         if (value !== '' && value !== 'N') {
             // If user typed a valid character and not typed N to start NQ, enforce NQ and form blocks
             value = value
-                .replace(/ /g, '')
+                .replace(/\s/g, '')
                 .replace(/^N?Q?/, 'NQ') // enforce NQ at the beginning
-                .replace(/.{4}/g, '$& ') // add spaces each 4 chars
-                .substring(0, 44); // address length with spaces, discarding the space after last block
+                .replace(/.{4}/g, (match, offset) => `${match}${(offset + 4) % 12 ? ' ' : '\n'}`) // form blocks
+                .substring(0, 44); // address length with spaces, discarding the new line after last block
         }
         return {
             text: value,
-            template: 'xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx', // used by input-format to position caret
+            template: 'xxxx xxxx xxxx\nxxxx xxxx xxxx\nxxxx xxxx xxxx', // used by input-format to position caret
         }
     }
 
@@ -81,7 +80,7 @@ export default class AddressInput extends Vue {
 
     @Watch('value')
     private _onExternalValueChange() {
-        if (this.value === this.$refs.textarea.value) return;
+        if (this.value.replace(/\s/g, '') === this.$refs.textarea.value.replace(/\s/g, '')) return;
 
         // could also be using format-input's parse and format helpers that preserve caret position but as we're not
         // interested in that, we calculate the formatted value manually
@@ -105,7 +104,25 @@ export default class AddressInput extends Vue {
     }
 
     private _onCut(e: ClipboardEvent) {
-        inputFormatOnCut(e, this.$refs.textarea, AddressInput._parse, AddressInput._format, this._afterChange);
+        this._formatClipboard(e);
+        // As _formatClipboard has to preventDefault(), we have to update the value manually.
+        // Note that selection.deleteFromDocument() wouldn't update the actual textarea value.
+        const textarea = this.$refs.textarea;
+        const selectionStart = textarea.selectionStart;
+        textarea.value = textarea.value.substring(0, selectionStart) + textarea.value.substring(textarea.selectionEnd);
+        textarea.selectionStart = textarea.selectionEnd = selectionStart; // restore correct caret position
+        // While input-format has an onCut handler the only difference to onChange is that it executes with a delay to
+        // await the changes from cutting to apply. As we implement cutting ourselves, we don't need that.
+        inputFormatOnChange(e, this.$refs.textarea, AddressInput._parse, AddressInput._format, this._afterChange);
+    }
+
+    private _formatClipboard(e: ClipboardEvent) {
+        // intercept event to replace new lines with spaces
+        const selection = document.getSelection();
+        const selectionText = selection.toString();
+        if (!selectionText) return; // use default behavior which typically is to not overwrite the previous clipboard
+        e.preventDefault(); // we have to prevent the default to be able to set the clipboard data
+        e.clipboardData.setData('text/plain', selectionText.replace(/\n/g, ' '));
     }
 
     private _afterChange(value: string) {
@@ -120,8 +137,9 @@ export default class AddressInput extends Vue {
             textarea.selectionStart += 2;
         }
 
-        // if selection is a caret in front of a space move caret behind space
-        if (textarea.selectionStart === textarea.selectionEnd && textarea.value[textarea.selectionStart] === ' ') {
+        // if selection is a caret in front of a space or new line move caret behind it
+        if (textarea.selectionStart === textarea.selectionEnd
+            && (textarea.value[textarea.selectionStart] === ' ' || textarea.value[textarea.selectionStart] === '\n')) {
             textarea.selectionStart += 1; // this also moves the selectionEnd as they were equal
         }
 
@@ -129,7 +147,7 @@ export default class AddressInput extends Vue {
     }
 
     private _notifyChanges() {
-        const formattedValue = this.$refs.textarea.value;
+        const formattedValue = this.$refs.textarea.value.replace(/\n/g, ' ');
         this.$emit('input', formattedValue);
 
         if (!ValidationUtils.isValidAddress(formattedValue)) return;
