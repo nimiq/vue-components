@@ -23,7 +23,7 @@ import { ValidationUtils } from '@nimiq/utils';
 export default class AddressInput extends Vue {
     // definiton of the parse method for input-format (https://github.com/catamphetamine/input-format#usage)
     private static _parse(char: string, value: string) {
-        value = value.replace(/\s/g, '');
+        value = AddressInput._stripWhitespace(value);
         if (value.length >= 36) return; // reject characters when full address length (without spaces) is reached
 
         char = char.toUpperCase();
@@ -52,16 +52,28 @@ export default class AddressInput extends Vue {
     private static _format(value: string) {
         if (value !== '' && value !== 'N') {
             // If user typed a valid character and not typed N to start NQ, enforce NQ and form blocks
-            value = value
-                .replace(/\s/g, '')
+            value = AddressInput._stripWhitespace(value)
                 .replace(/^N?Q?/, 'NQ') // enforce NQ at the beginning
                 .replace(/.{4}/g, (match, offset) => `${match}${(offset + 4) % 12 ? ' ' : '\n'}`) // form blocks
                 .substring(0, 44); // address length with spaces, discarding the new line after last block
+
+            if (value.endsWith(' ')) {
+                // The word spacing set via css is only applied to spaces that are actually between words which is not
+                // the case for an ending space and the caret after an ending space therefore gets rendered at the wrong
+                // position. To avoid that we add a zero-width space as an artificial word. We do not add that to the
+                // template returned to input-format though to avoid it being interpreted as a typed character which
+                // would place the caret after the zero width space.
+                value += '\u200B';
+            }
         }
         return {
             text: value,
             template: 'xxxx xxxx xxxx\nxxxx xxxx xxxx\nxxxx xxxx xxxx', // used by input-format to position caret
         }
+    }
+
+    private static _stripWhitespace(value: string) {
+        return value.replace(/\s|\u200B/g, ''); // normal whitespace, tabs, newlines or zero-width whitespace
     }
 
     // value that can be bound to via v-model
@@ -80,13 +92,14 @@ export default class AddressInput extends Vue {
 
     @Watch('value')
     private _onExternalValueChange() {
-        if (this.value.replace(/\s/g, '') === this.$refs.textarea.value.replace(/\s/g, '')) return;
+        const textarea = this.$refs.textarea;
+        if (AddressInput._stripWhitespace(this.value) === AddressInput._stripWhitespace(textarea.value)) return;
 
         // could also be using format-input's parse and format helpers that preserve caret position but as we're not
         // interested in that, we calculate the formatted value manually
         const parsedValue = this.value.split('').reduce((parsed, char) =>
             parsed + AddressInput._parse(char, parsed) || '', '');
-        this.$refs.textarea.value = AddressInput._format(parsedValue).text; // moves the caret to the end
+        textarea.value = AddressInput._format(parsedValue).text; // moves the caret to the end
 
         this._notifyChanges();
     }
@@ -122,7 +135,7 @@ export default class AddressInput extends Vue {
         const selectionText = selection.toString();
         if (!selectionText) return; // use default behavior which typically is to not overwrite the previous clipboard
         e.preventDefault(); // we have to prevent the default to be able to set the clipboard data
-        e.clipboardData.setData('text/plain', selectionText.replace(/\n/g, ' '));
+        e.clipboardData.setData('text/plain', selectionText.replace(/\n/g, ' ').replace(/\u200B/g, ''));
     }
 
     private _afterChange(value: string) {
@@ -147,7 +160,7 @@ export default class AddressInput extends Vue {
     }
 
     private _notifyChanges() {
-        const formattedValue = this.$refs.textarea.value.replace(/\n/g, ' ');
+        const formattedValue = this.$refs.textarea.value.replace(/\n/g, ' ').replace(/\u200B/g, '');
         this.$emit('input', formattedValue);
 
         if (!ValidationUtils.isValidAddress(formattedValue)) return;
