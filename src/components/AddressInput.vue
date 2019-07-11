@@ -3,6 +3,10 @@
         <textarea ref="textarea" placeholder="NQ" spellcheck="false" autocomplete="off"
             @keydown="_onKeyDown" @input="_onInput" @paste="_onPaste" @cut="_onCut"
         ></textarea>
+        <template v-for="i in 9">
+            <div class="block"></div>
+            <div v-if="i % 3" class="block-connector"></div>
+        </template>
     </div>
 </template>
 
@@ -135,5 +139,58 @@ export default class AddressInput extends Vue {
 </script>
 
 <style scoped>
+    .address-input {
+        --font-size: 3rem;
+        --block-height: 4.125rem;
+        --block-width: 8.5rem;
+        --block-gap: 1rem;
 
+        width: calc(3 * var(--block-width) + 2 * var(--block-gap));
+        height: calc(3 * var(--block-height) + 2 * var(--block-gap));
+        position: relative;
+        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: repeat(2, var(--block-width) var(--block-gap)) var(--block-width);
+        grid-template-rows: repeat(3, var(--block-height));
+        grid-row-gap: var(--block-gap);
+    }
+
+    textarea {
+        --line-height: calc(var(--block-height) + var(--block-gap));
+
+        position: absolute;
+        width: 100%;
+        height: calc(3 * var(--line-height));
+        line-height: var(--line-height);
+        top: calc(var(--font-size) / 24 * -3); /* -3px at default font size */
+        left: calc(var(--font-size) / 24 * 5); /* 5px at default font size */
+        padding: 0;
+        border: none;
+        outline: unset !important;
+        resize: none;
+        overflow: hidden;
+        z-index: 1;
+        font-family: Fira Mono, 'monospace';
+        font-size: var(--font-size);
+        color: var(--nimiq-blue);
+        background: transparent;
+        word-spacing: calc(var(--block-gap) / 2);
+        /* Mask image to make selections visible only within blocks. Using mask image instead clip path to be able to
+        click onto the textarea on the invisible areas too */
+        mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 123"><rect x="0" y="6" width="59" height="27"></rect><rect x="76" y="6" width="59" height="27"></rect><rect x="152" y="6" width="59" height="27"></rect><rect x="0" y="47" width="59" height="27"></rect><rect x="76" y="47" width="59" height="27"></rect><rect x="152" y="47" width="59" height="27"></rect><rect x="0" y="88" width="59" height="27"></rect><rect x="76" y="88" width="59" height="27"></rect><rect x="152" y="88" width="59" height="27"></rect></svg>');
+    }
+
+    .block {
+        border: .25rem solid var(--nimiq-blue);
+        border-radius: .5rem;
+        opacity: .1;
+    }
+
+    .block-connector {
+        width: var(--block-gap);
+        height: .25rem;
+        background: var(--nimiq-blue);
+        align-self: center;
+        opacity: .1;
+    }
 </style>

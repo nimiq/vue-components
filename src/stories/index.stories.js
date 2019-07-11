@@ -325,7 +325,7 @@ storiesOf('Components', module)
                 };
             },
             template: `<div>
-                <AddressInput v-model="address" @address="lastValidAddress = $event" />
+                <AddressInput v-model="address" @address="lastValidAddress = $event" style="background: white" />
                 <div>Current address: {{ address }}</div>
                 <div>valid?: {{ address === lastValidAddress }}</div>
             </div>`,
