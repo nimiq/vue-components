@@ -15,9 +15,10 @@ import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import {
     onChange as inputFormatOnChange,
     onPaste as inputFormatOnPaste,
+    onCut as inputFormatOnCut,
     onKeyDown as inputFormatOnKeyDown,
 } from 'input-format';
-import { ValidationUtils } from '@nimiq/utils';
+import { Clipboard, ValidationUtils } from '@nimiq/utils';
 
 @Component
 export default class AddressInput extends Vue {
@@ -69,7 +70,7 @@ export default class AddressInput extends Vue {
         return {
             text: value,
             template: 'xxxx xxxx xxxx\nxxxx xxxx xxxx\nxxxx xxxx xxxx', // used by input-format to position caret
-        }
+        };
     }
 
     private static _stripWhitespace(value: string) {
@@ -117,25 +118,17 @@ export default class AddressInput extends Vue {
     }
 
     private _onCut(e: ClipboardEvent) {
-        this._formatClipboard(e);
-        // As _formatClipboard has to preventDefault(), we have to update the value manually.
-        // Note that selection.deleteFromDocument() wouldn't update the actual textarea value.
-        const textarea = this.$refs.textarea;
-        const selectionStart = textarea.selectionStart;
-        textarea.value = textarea.value.substring(0, selectionStart) + textarea.value.substring(textarea.selectionEnd);
-        textarea.selectionStart = textarea.selectionEnd = selectionStart; // restore correct caret position
-        // While input-format has an onCut handler the only difference to onChange is that it executes with a delay to
-        // await the changes from cutting to apply. As we implement cutting ourselves, we don't need that.
-        inputFormatOnChange(e, this.$refs.textarea, AddressInput._parse, AddressInput._format, this._afterChange);
+        inputFormatOnCut(e, this.$refs.textarea, AddressInput._parse, AddressInput._format, this._afterChange);
+        this._formatClipboard();
     }
 
-    private _formatClipboard(e: ClipboardEvent) {
-        // intercept event to replace new lines with spaces
-        const selection = document.getSelection();
-        const selectionText = selection.toString();
-        if (!selectionText) return; // use default behavior which typically is to not overwrite the previous clipboard
-        e.preventDefault(); // we have to prevent the default to be able to set the clipboard data
-        e.clipboardData.setData('text/plain', selectionText.replace(/\n/g, ' ').replace(/\u200B/g, ''));
+    private _formatClipboard() {
+        // While it's possible to set the clipboard data via clipboardEvent.clipboardData.setData this requires calling
+        // preventDefault() which then results in the need to reimplement the behavior for cutting text and has side
+        // effects like the change not being added to the undo history. Therefore we let the browser do the default
+        // behavior but overwrite the clipboard afterwards.
+        const text = document.getSelection().toString().replace(/\n/g, ' ').replace(/\u200B/g, '');
+        setTimeout(() => Clipboard.copy(text));
     }
 
     private _afterChange(value: string) {
