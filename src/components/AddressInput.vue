@@ -188,8 +188,11 @@ export default class AddressInput extends Vue {
         this.currentValue = this.$refs.textarea.value.replace(/\n/g, ' ').replace(/\u200B/g, '');
         this.$emit('input', this.currentValue); // emit event compatible with v-model
 
-        if (!ValidationUtils.isValidAddress(this.currentValue)) return;
-        this.$emit('address', this.currentValue);
+        const isValid = ValidationUtils.isValidAddress(this.currentValue);
+        if (isValid) this.$emit('address', this.currentValue);
+
+        // if user entered a full address that is not valid give him a visual feedback
+        this.$el.classList.toggle('invalid', this.currentValue.length === AddressInput.ADDRESS_MAX_LENGTH && !isValid);
     }
 
     private _updateSelection() {
@@ -275,6 +278,21 @@ export default class AddressInput extends Vue {
         grid-template-columns: repeat(2, var(--block-width) var(--block-gap)) var(--block-width);
         grid-template-rows: repeat(3, var(--block-height));
         grid-row-gap: var(--block-gap);
+    }
+
+    .address-input.invalid {
+        animation: shake .4s;
+    }
+
+    /* Copied from @nimiq/style as the animations are not included in the package */
+    @keyframes shake {
+        from { transform: none; }
+        15% { transform: translate3d(-21%,0,0) rotate(-5deg); }
+        30% { transform: translate3d(13%,0,0) rotate(3deg); }
+        45% { transform: translate3d(-8%,0,0) rotate(-3deg); }
+        60% { transform: translate3d(5%,0,0) rotate(2deg); }
+        75% { transform: translate3d(-3%,0,0) rotate(-1deg); }
+        to { transform: none; }
     }
 
     textarea {
