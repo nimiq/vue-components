@@ -131,8 +131,15 @@ export default class AddressInput extends Vue {
         setTimeout(() => this._updateSelection(), 10); // for arrow keys in Firefox
     }
 
-    private _onInput(e: KeyboardEvent) {
-        inputFormatOnChange(e, this.$refs.textarea, AddressInput._parse, AddressInput._format, this._afterChange);
+    private _onInput(e: KeyboardEvent & { inputType?: string }) {
+        if (e.inputType === 'deleteByDrag') return; // we'll handle the subsequent insertFromDrop
+        const textarea = this.$refs.textarea;
+        if (e.inputType === 'historyRedo' && textarea.value.length >= 2 && !textarea.value.startsWith('NQ')) {
+            // Redo has problems when redoing an edit where NQ was added automatically. We make sure here to correctly
+            // apply the NQ again.
+            textarea.value = `NQ${textarea.value.substring(2)}`;
+        }
+        inputFormatOnChange(e, textarea, AddressInput._parse, AddressInput._format, this._afterChange);
     }
 
     private _onPaste(e: ClipboardEvent) {
