@@ -2,11 +2,16 @@
     <div class="address-input">
         <textarea ref="textarea" placeholder="NQ" spellcheck="false" autocomplete="off"
             @keydown="_onKeyDown" @input="_onInput" @paste="_onPaste" @cut="_onCut" @copy="_formatClipboard"
-            @select="_updateSelection" @focus="_updateSelection" @blur="_updateSelection" @click="_updateSelection"
+            @click="_updateSelection" @select="_updateSelection" @blur="_updateSelection" @focus="_onFocus"
         ></textarea>
         <template v-for="i in 9">
-            <div class="block" :class="{ focused: selectionStartBlock <= i - 1 && i - 1 <= selectionEndBlock }"></div>
-            <div v-if="i % 3" class="block-connector"></div>
+            <div class="block" :class="{
+                focused: _isBlockFocused(i - 1),
+                invisible: _isBlockFilled(i - 1),
+            }"></div>
+            <div v-if="i % 3" class="block-connector" :class="{
+                invisible: _isBlockFilled(i - 1) && !_isBlockFocused(i - 1) || _isBlockFilled(i) && !_isBlockFocused(i),
+            }"></div>
         </template>
     </div>
 </template>
@@ -23,10 +28,13 @@ import { BrowserDetection, Clipboard, ValidationUtils } from '@nimiq/utils';
 
 @Component
 export default class AddressInput extends Vue {
+    private static readonly ADDRESS_MAX_LENGTH_WITHOUT_SPACES = 9 * 4;
+    private static readonly ADDRESS_MAX_LENGTH = AddressInput.ADDRESS_MAX_LENGTH_WITHOUT_SPACES + 8;
+
     // definiton of the parse method for input-format (https://github.com/catamphetamine/input-format#usage)
     private static _parse(char: string, value: string) {
         value = AddressInput._stripWhitespace(value);
-        if (value.length >= 36) return; // reject characters when full address length (without spaces) is reached
+        if (value.length >= AddressInput.ADDRESS_MAX_LENGTH_WITHOUT_SPACES) return; // reject when max length reached
 
         char = char.toUpperCase();
 
@@ -57,7 +65,7 @@ export default class AddressInput extends Vue {
             value = AddressInput._stripWhitespace(value)
                 .replace(/^N?Q?/, 'NQ') // enforce NQ at the beginning
                 .replace(/.{4}/g, (match, offset) => `${match}${(offset + 4) % 12 ? ' ' : '\n'}`) // form blocks
-                .substring(0, 44); // address length with spaces, discarding the new line after last block
+                .substring(0, AddressInput.ADDRESS_MAX_LENGTH); // discarding the new line after last block
 
             if (value.endsWith(' ')) {
                 // The word spacing set via css is only applied to spaces that are actually between words which is not
@@ -87,6 +95,7 @@ export default class AddressInput extends Vue {
 
     public $refs: { textarea: HTMLTextAreaElement };
 
+    private currentValue: string = '';
     private selectionStartBlock: number = -1;
     private selectionEndBlock: number = -1;
 
@@ -106,14 +115,13 @@ export default class AddressInput extends Vue {
 
     @Watch('value')
     private _onExternalValueChange() {
-        const textarea = this.$refs.textarea;
-        if (AddressInput._stripWhitespace(this.value) === AddressInput._stripWhitespace(textarea.value)) return;
+        if (AddressInput._stripWhitespace(this.value) === AddressInput._stripWhitespace(this.currentValue)) return;
 
         // could also be using format-input's parse and format helpers that preserve caret position but as we're not
         // interested in that, we calculate the formatted value manually
         const parsedValue = this.value.split('').reduce((parsed, char) =>
             parsed + AddressInput._parse(char, parsed) || '', '');
-        textarea.value = AddressInput._format(parsedValue).text; // moves the caret to the end
+        this.$refs.textarea.value = AddressInput._format(parsedValue).text; // moves the caret to the end
 
         this._afterChange(parsedValue);
     }
@@ -134,6 +142,11 @@ export default class AddressInput extends Vue {
     private _onCut(e: ClipboardEvent) {
         inputFormatOnCut(e, this.$refs.textarea, AddressInput._parse, AddressInput._format, this._afterChange);
         this._formatClipboard();
+    }
+
+    private _onFocus() {
+        // have to add a delay because the textarea is not focused yet at this point
+        setTimeout(() => this._updateSelection());
     }
 
     private _formatClipboard() {
@@ -163,21 +176,20 @@ export default class AddressInput extends Vue {
             textarea.selectionStart += 1; // this also moves the selectionEnd as they were equal
         }
 
-        this._notifyChanges();
-        this._updateTextClipBackground(); // must rerender background after each change
-    }
+        this._updateTextClipBackground(); // must rerender background after each change, including new selection changes
 
-    private _notifyChanges() {
-        const formattedValue = this.$refs.textarea.value.replace(/\n/g, ' ').replace(/\u200B/g, '');
-        this.$emit('input', formattedValue);
+        this.currentValue = this.$refs.textarea.value.replace(/\n/g, ' ').replace(/\u200B/g, '');
+        this.$emit('input', this.currentValue); // emit event compatible with v-model
 
-        if (!ValidationUtils.isValidAddress(formattedValue)) return;
-        this.$emit('address', formattedValue);
+        if (!ValidationUtils.isValidAddress(this.currentValue)) return;
+        this.$emit('address', this.currentValue);
     }
 
     private _updateSelection() {
         const textarea = this.$refs.textarea;
-        const focused = document.activeElement === textarea;
+        const focused = document.activeElement === textarea
+            && (textarea.selectionStart !== AddressInput.ADDRESS_MAX_LENGTH // if all blocks are filled and the caret
+            || textarea.selectionEnd !== AddressInput.ADDRESS_MAX_LENGTH); // is at the end display as if not focused
         const selectionStartBlock = focused ? Math.floor(textarea.selectionStart / 5) : -1;
         const selectionEndBlock = focused ? Math.floor(textarea.selectionEnd / 5) : -1;
         if (selectionStartBlock === this.selectionStartBlock && selectionEndBlock === this.selectionEndBlock) return;
@@ -229,6 +241,14 @@ export default class AddressInput extends Vue {
         // Assign the color for unfocused text. While we could also set this in the svg, each rerendering of the svg
         // causes flickering in Firefox. By having a constant background color, this is way less noticeable.
         textarea.style.backgroundColor = 'var(--nimiq-blue)';
+    }
+
+    private _isBlockFocused(blockIndex: number) {
+        return this.selectionStartBlock <= blockIndex && blockIndex <= this.selectionEndBlock;
+    }
+
+    private _isBlockFilled(blockIndex: number) {
+        return this.currentValue.length >= blockIndex * 5 + 4;
     }
 }
 </script>
@@ -335,5 +355,14 @@ export default class AddressInput extends Vue {
         background: var(--nimiq-blue);
         align-self: center;
         opacity: .1;
+    }
+
+    .block,
+    .block-connector {
+        transition: opacity .2s cubic-bezier(0.25, 0, 0, 1);
+    }
+
+    .invisible {
+        opacity: 0;
     }
 </style>
