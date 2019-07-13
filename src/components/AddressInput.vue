@@ -1,5 +1,5 @@
 <template>
-    <div class="address-input">
+    <div class="address-input" :class="{ 'supports-mix-blend-mode': supportsMixBlendMode }">
         <textarea ref="textarea" placeholder="NQ" spellcheck="false" autocomplete="off"
             @keydown="_onKeyDown" @input="_onInput" @paste="_onPaste" @cut="_onCut" @copy="_formatClipboard"
             @click="_updateSelection" @select="_updateSelection" @blur="_updateSelection" @focus="_onFocus"
@@ -13,6 +13,20 @@
                 invisible: _isBlockFilled(i - 1) && !_isBlockFocused(i - 1) || _isBlockFilled(i) && !_isBlockFocused(i),
             }"></div>
         </template>
+
+        <template v-if="supportsMixBlendMode">
+            <template v-for="row in 3">
+                <template v-for="column in 3">
+                    <div class="color-overlay" :style="{
+                        /* Hidden when placeholder shown. Visibility instead of v-if to avoid flickering in Firefox */
+                        visibility: currentValue ? 'visible' : 'hidden',
+                        left: `calc(${column - 1} * (var(--block-width) + var(--block-gap)) + .25rem)`,
+                        top: `calc(${row - 1} * (var(--block-height) + var(--block-gap)) + .25rem)`,
+                        background:  `var(--nimiq-${_isBlockFocused((row - 1) * 3 + (column - 1)) ? 'light-' : ''}blue)`,
+                    }"></div>
+                </template>
+            </template>
+        </template>
     </div>
 </template>
 
@@ -24,7 +38,7 @@ import {
     onCut as inputFormatOnCut,
     onKeyDown as inputFormatOnKeyDown,
 } from 'input-format';
-import { BrowserDetection, Clipboard, ValidationUtils } from '@nimiq/utils';
+import { Clipboard, ValidationUtils } from '@nimiq/utils';
 
 @Component
 export default class AddressInput extends Vue {
@@ -98,6 +112,7 @@ export default class AddressInput extends Vue {
     private currentValue: string = '';
     private selectionStartBlock: number = -1;
     private selectionEndBlock: number = -1;
+    private supportsMixBlendMode: boolean = 'mix-blend-mode' in document.body.style;
 
     private mounted() {
         // trigger initial value change. Not using immediate watcher as it already fires before mounted.
@@ -183,8 +198,6 @@ export default class AddressInput extends Vue {
             textarea.selectionStart += 1; // this also moves the selectionEnd as they were equal
         }
 
-        this._updateTextClipBackground(); // must rerender background after each change, including new selection changes
-
         this.currentValue = this.$refs.textarea.value.replace(/\n/g, ' ').replace(/\u200B/g, '');
         this.$emit('input', this.currentValue); // emit event compatible with v-model
 
@@ -200,57 +213,8 @@ export default class AddressInput extends Vue {
         const focused = document.activeElement === textarea
             && (textarea.selectionStart !== AddressInput.ADDRESS_MAX_LENGTH // if all blocks are filled and the caret
             || textarea.selectionEnd !== AddressInput.ADDRESS_MAX_LENGTH); // is at the end display as if not focused
-        const selectionStartBlock = focused ? Math.floor(textarea.selectionStart / 5) : -1;
-        const selectionEndBlock = focused ? Math.floor(textarea.selectionEnd / 5) : -1;
-        if (selectionStartBlock === this.selectionStartBlock && selectionEndBlock === this.selectionEndBlock) return;
-        this.selectionStartBlock = selectionStartBlock;
-        this.selectionEndBlock = selectionEndBlock;
-        this._updateTextClipBackground();
-    }
-
-    private _updateTextClipBackground() {
-        const textarea = this.$refs.textarea;
-        if (textarea.classList.contains('background-clip-text-unsupported')) return;
-
-        if (!textarea.style.backgroundImage) {
-            // This is the first time we want to set a background. First check for support.
-            const computedStyle = window.getComputedStyle(textarea);
-            const supported = computedStyle['caret-color']
-                && (computedStyle['background-clip'] === 'text' || computedStyle['-webkit-background-clip'] === 'text');
-            textarea.classList.toggle('background-clip-text-unsupported', !supported);
-            if (!supported) return;
-        }
-
-        if (textarea.value.length === 0) {
-            // placeholder is shown
-            textarea.style.backgroundImage = 'unset';
-            textarea.style.backgroundColor = 'unset';
-            return;
-        }
-
-        // Generate a svg background image similar to the mask image that sets the color for focused blocks.
-        // Chrome (and potentially others) only rerender the background-clip on background change, not on text change,
-        // therefore we assign an incremental id to ensure a new svg is generated each time. In Firefox we don't need
-        // that and do not generate new svgs every time to reduce flickering.
-        const svgId = !BrowserDetection.isFirefox() ? `text-clip-${Date.now()}` : `text-clip`;
-        let svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 123" id="${svgId}">`;
-        const xOffset = 0;
-        const yOffset = 6;
-        const xStep = 76;
-        const yStep = 41;
-        for (let row = 0; row < 3; ++row) {
-            for (let column = 0; column < 3; ++column) {
-                const blockIndex = 3 * row + column;
-                if (blockIndex < this.selectionStartBlock || blockIndex > this.selectionEndBlock) continue;
-                svg += `<rect x="${xOffset + column * xStep}" y="${yOffset + row * yStep}" `
-                       + 'fill="#0582ca" width="59" height="27"/>'; // nimiq-light-bue
-            }
-        }
-        svg += '</svg>';
-        textarea.style.backgroundImage = `url(data:image/svg+xml;base64,${btoa(svg)})`;
-        // Assign the color for unfocused text. While we could also set this in the svg, each rerendering of the svg
-        // causes flickering in Firefox. By having a constant background color, this is way less noticeable.
-        textarea.style.backgroundColor = 'var(--nimiq-blue)';
+        this.selectionStartBlock = focused ? Math.floor(textarea.selectionStart / 5) : -1;
+        this.selectionEndBlock = focused ? Math.floor(textarea.selectionEnd / 5) : -1;
     }
 
     private _isBlockFocused(blockIndex: number) {
@@ -278,6 +242,7 @@ export default class AddressInput extends Vue {
         grid-template-columns: repeat(2, var(--block-width) var(--block-gap)) var(--block-width);
         grid-template-rows: repeat(3, var(--block-height));
         grid-row-gap: var(--block-gap);
+        background: white; /* Note: our text coloring with mix-blend-mode only works on white background */
     }
 
     .address-input.invalid {
@@ -328,14 +293,17 @@ export default class AddressInput extends Vue {
         }
     }
 
-    textarea:not(.background-clip-text-unsupported) {
-        /* Use background-clip to be able to set multiple text colors in the textarea. We could also achieve this with
-        a colored overlay with mix-blend-mode but at the disadvantage that it only works with white background and
-        also colorizes text selections */
-        color: transparent;
-        -webkit-background-clip: text;
-        background-clip: text;
-        caret-color: var(--nimiq-light-blue);
+    .supports-mix-blend-mode textarea {
+        color: black; /* the actual color will be set via mix-blend-mode */
+    }
+
+    .supports-mix-blend-mode textarea::selection {
+        color: white;
+        background: #561a51; /* a color that in combination with mix-blend-mode yields a color close to the default */
+    }
+
+    .supports-mix-blend-mode textarea::-moz-selection {
+        background: #411d68; /* a color that in combination with mix-blend-mode yields a color close to the default */
     }
 
     ::-webkit-input-placeholder {
@@ -353,15 +321,6 @@ export default class AddressInput extends Vue {
     :-moz-placeholder {
         color: var(--nimiq-light-blue);
         opacity: .6;
-    }
-
-    /* Setting a background color (see _updateTextClipBackground) does not work well in Firefox in combination with
-    background-clip: text and selections, the selected text is not highlighted by a background color. Therefore we
-    assign one here manually. Unfortunately setting the selection text color to white does also not seem to work in
-    Firefox, therefore we set a background color different from the default selection background color to get a higher
-    contrast to the text color. */
-    textarea::-moz-selection {
-        background: #0582ca26; /* nimiq-light-blue with .15 opacity */
     }
 
     .block {
@@ -389,5 +348,14 @@ export default class AddressInput extends Vue {
 
     .invisible {
         opacity: 0;
+    }
+
+    .color-overlay {
+        position: absolute;
+        width: calc(var(--block-width) - .5rem);
+        height: calc(var(--block-height) - .5rem);
+        mix-blend-mode: screen;
+        z-index: 1;
+        pointer-events: none;
     }
 </style>
