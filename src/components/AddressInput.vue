@@ -47,10 +47,8 @@ export default class AddressInput extends Vue {
 
     // definiton of the parse method for input-format (https://github.com/catamphetamine/input-format#usage)
     private static _parse(char: string, value: string) {
-        char = char.toUpperCase();
-
         // Handle I, O, W, Z which are the only characters missing in Nimiq's Base 32 address alphabet
-        switch (char) {
+        switch (char.toUpperCase()) {
             case 'I': char = '1'; break;
             case 'O': char = '0'; break;
             case 'Z': char = '2'; break;
@@ -62,18 +60,21 @@ export default class AddressInput extends Vue {
             + '|NQ\\d{1,2}' // first two characters after starting NQ must be digits
             + `|NQ\\d{2}[0-9A-Z]{1,${AddressInput.ADDRESS_MAX_LENGTH_WITHOUT_SPACES - 4}}` // valid address < max length
             + '|\\d' // Allow a single digit. It will then get expanded by a leading NQ.
-            + ')$');
+            + ')$', 'i');
 
+        // We return the original character without transforming it to uppercase to improve compatibility with some
+        // browsers that struggle with undo/redo of manipulated input. The actual transformation to uppercase is then
+        // done via CSS and when the value is exported
         if (regex.test(value + char)) return char;
         else return; // reject character
     }
 
     // definiton of the format method for input-format (https://github.com/catamphetamine/input-format#usage)
     private static _format(value: string) {
-        if (value !== '' && value !== 'N') {
+        if (value !== '' && value.toUpperCase() !== 'N') {
             // If user typed a valid character and not typed N to start NQ, enforce NQ and form blocks
             value = AddressInput._stripWhitespace(value)
-                .replace(/^N?Q?/, 'NQ') // enforce NQ at the beginning
+                .replace(/^N?Q?/i, 'NQ') // enforce NQ at the beginning
                 .replace(/.{4}/g, (match, offset) => `${match}${(offset + 4) % 12 ? ' ' : '\n'}`) // form blocks
                 .substring(0, AddressInput.ADDRESS_MAX_LENGTH); // discarding the new line after last block
 
@@ -94,6 +95,10 @@ export default class AddressInput extends Vue {
 
     private static _stripWhitespace(value: string) {
         return value.replace(/\s|\u200B/g, ''); // normal whitespace, tabs, newlines or zero-width whitespace
+    }
+
+    private static _exportValue(value: string) {
+        return value.toUpperCase().replace(/\n/g, ' ').replace(/\u200B/g, '');
     }
 
     // value that can be bound to via v-model
@@ -172,7 +177,7 @@ export default class AddressInput extends Vue {
         // preventDefault() which then results in the need to reimplement the behavior for cutting text and has side
         // effects like the change not being added to the undo history. Therefore we let the browser do the default
         // behavior but overwrite the clipboard afterwards.
-        const text = document.getSelection().toString().replace(/\n/g, ' ').replace(/\u200B/g, '');
+        const text = AddressInput._exportValue(document.getSelection().toString());
         setTimeout(() => Clipboard.copy(text));
     }
 
@@ -194,7 +199,7 @@ export default class AddressInput extends Vue {
             textarea.selectionStart += 1; // this also moves the selectionEnd as they were equal
         }
 
-        this.currentValue = this.$refs.textarea.value.replace(/\n/g, ' ').replace(/\u200B/g, '');
+        this.currentValue = AddressInput._exportValue(this.$refs.textarea.value);
         this.$emit('input', this.currentValue); // emit event compatible with v-model
 
         const isValid = ValidationUtils.isValidAddress(this.currentValue);
@@ -274,6 +279,7 @@ export default class AddressInput extends Vue {
         z-index: 1;
         font-family: Fira Mono, 'monospace';
         font-size: var(--font-size);
+        text-transform: uppercase;
         color: var(--nimiq-light-blue);
         background: transparent;
         word-spacing: calc(var(--block-gap) / 2);
