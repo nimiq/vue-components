@@ -1,5 +1,5 @@
 <template>
-    <div class="address-input" :class="{ 'supports-mix-blend-mode': supportsMixBlendMode }">
+    <div class="address-input">
         <textarea ref="textarea" placeholder="NQ" spellcheck="false" autocomplete="off"
             @keydown="_onKeyDown" @input="_onInput" @paste="_onPaste" @cut="_onCut" @copy="_formatClipboard"
             @click="_updateSelection" @select="_updateSelection" @blur="_updateSelection" @focus="_onFocus"
@@ -112,7 +112,7 @@ export default class AddressInput extends Vue {
     private currentValue: string = '';
     private selectionStartBlock: number = -1;
     private selectionEndBlock: number = -1;
-    private supportsMixBlendMode: boolean = 'mix-blend-mode' in document.body.style;
+    private supportsMixBlendMode: boolean = CSS.supports('mix-blend-mode', 'screen');
 
     private mounted() {
         // trigger initial value change. Not using immediate watcher as it already fires before mounted.
@@ -293,19 +293,6 @@ export default class AddressInput extends Vue {
         }
     }
 
-    .supports-mix-blend-mode textarea {
-        color: black; /* the actual color will be set via mix-blend-mode */
-    }
-
-    .supports-mix-blend-mode textarea::selection {
-        color: white;
-        background: #561a51; /* a color that in combination with mix-blend-mode yields a color close to the default */
-    }
-
-    .supports-mix-blend-mode textarea::-moz-selection {
-        background: #411d68; /* a color that in combination with mix-blend-mode yields a color close to the default */
-    }
-
     ::-webkit-input-placeholder {
         color: var(--nimiq-light-blue);
         opacity: .6;
@@ -350,12 +337,27 @@ export default class AddressInput extends Vue {
         opacity: 0;
     }
 
-    .color-overlay {
-        position: absolute;
-        width: calc(var(--block-width) - .5rem);
-        height: calc(var(--block-height) - .5rem);
-        mix-blend-mode: screen;
-        z-index: 1;
-        pointer-events: none;
+    @supports (mix-blend-mode: screen) {
+        textarea {
+            color: black; /* the actual color will be set via mix-blend-mode */
+        }
+
+        textarea::selection {
+            color: white;
+            background: #561a51; /* a color that in combination with mix-blend-mode yields a color close to the default */
+        }
+
+        textarea::-moz-selection {
+            background: #411d68; /* a color that in combination with mix-blend-mode yields a color close to the default */
+        }
+
+        .color-overlay {
+            position: absolute;
+            width: calc(var(--block-width) - .5rem);
+            height: calc(var(--block-height) - .5rem);
+            mix-blend-mode: screen;
+            z-index: 1;
+            pointer-events: none;
+        }
     }
 </style>
