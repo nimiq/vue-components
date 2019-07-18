@@ -277,22 +277,20 @@ export default class AddressInput extends Vue {
         resize: none;
         overflow: hidden;
         z-index: 1;
+        /* Note: if loading only a subset of Fira Mono, the whitespace character must be included for rendering of
+        spaces at correct width in some browsers */
         font-family: Fira Mono, 'monospace';
         font-size: var(--font-size);
         text-transform: uppercase;
+        /* the width of rendered letters may slightly differ across different browsers on different OSs. To compensate
+        for that we apply a letter-spacing based on the deviation from a reference value */
+        letter-spacing: calc(1.8rem - 1ch);
+        word-spacing: calc(var(--block-gap) / 2);
         color: var(--nimiq-light-blue);
         background: transparent;
-        word-spacing: calc(var(--block-gap) / 2);
         /* Mask image to make selections visible only within blocks. Using mask image instead clip path to be able to
         click onto the textarea on the invisible areas too */
-        mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 123"><rect x="0" y="6" width="59" height="27"/><rect x="76" y="6" width="59" height="27"/><rect x="152" y="6" width="59" height="27"/><rect x="0" y="47" width="59" height="27"/><rect x="76" y="47" width="59" height="27"/><rect x="152" y="47" width="59" height="27"/><rect x="0" y="88" width="59" height="27"/><rect x="76" y="88" width="59" height="27"/><rect x="152" y="88" width="59" height="27"/></svg>');
-    }
-
-    /* This css hack only applies to Firefox. Firefox requires a larger word-spacing for some reason. */
-    @-moz-document url-prefix() {
-        .address-input textarea {
-            word-spacing: calc(var(--block-gap) * .75);
-        }
+        mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 123"><rect x="-1" y="6" width="61" height="27"/><rect x="75" y="6" width="61" height="27"/><rect x="151" y="6" width="61" height="27"/><rect x="-1" y="47" width="61" height="27"/><rect x="75" y="47" width="61" height="27"/><rect x="151" y="47" width="61" height="27"/><rect x="-1" y="88" width="61" height="27"/><rect x="75" y="88" width="61" height="27"/><rect x="151" y="88" width="61" height="27"/></svg>');
     }
 
     ::-webkit-input-placeholder {
