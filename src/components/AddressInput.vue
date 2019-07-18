@@ -47,9 +47,6 @@ export default class AddressInput extends Vue {
 
     // definiton of the parse method for input-format (https://github.com/catamphetamine/input-format#usage)
     private static _parse(char: string, value: string) {
-        value = AddressInput._stripWhitespace(value);
-        if (value.length >= AddressInput.ADDRESS_MAX_LENGTH_WITHOUT_SPACES) return; // reject when max length reached
-
         char = char.toUpperCase();
 
         // Handle I, O, W, Z which are the only characters missing in Nimiq's Base 32 address alphabet
@@ -60,16 +57,15 @@ export default class AddressInput extends Vue {
             case 'W': return; // reject character
         }
 
-        const isNumeric = char >= '0' && char <= '9';
-        const isAlphaNumeric = isNumeric || (char >= 'A' && char <= 'Z');
-        if (!isAlphaNumeric
-            || (value === '' && char !== 'N' && !isNumeric) // Must start with N or the checksum (then NQ gets added)
-            || (value === 'N' && char !== 'Q') // Only Q allowed after starting N
-            || (value.length >= 2 && value.length < 4 && !isNumeric)) { // checksum at index 2 and 3 must be digits
-            return; // reject
-        }
+        const regex = new RegExp('^('
+            + 'N(Q?)' // NQ at the beginning
+            + '|NQ\\d{1,2}' // first two characters after starting NQ must be digits
+            + `|NQ\\d{2}[0-9A-Z]{1,${AddressInput.ADDRESS_MAX_LENGTH_WITHOUT_SPACES - 4}}` // valid address < max length
+            + '|\\d' // Allow a single digit. It will then get expanded by a leading NQ.
+            + ')$');
 
-        return char;
+        if (regex.test(value + char)) return char;
+        else return; // reject character
     }
 
     // definiton of the format method for input-format (https://github.com/catamphetamine/input-format#usage)
