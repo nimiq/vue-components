@@ -31,7 +31,7 @@
 
         <PageFooter>
             <p class="nq-text">Address unavailable?</p>
-            <button class="nq-button-s" @click="createCashlink">Create a Cashlink</button>
+            <button class="nq-button-s" @click="createCashlink(sender)">Create a Cashlink</button>
             <a href="javascript:void(0)" class="scan-qr nq-blue" @click="scanQr">
                 <ScanQrCodeIcon />
             </a>
@@ -48,7 +48,7 @@
                 @changed="setLabel"
                 />
             <PageFooter>
-                <button class="nq-button light-blue" @click="storeContactAndCloseOverlay()">Set amount</button>
+                <button class="nq-button light-blue" @click="storeContactAndCloseOverlay()">Save Contact</button>
             </PageFooter>
         </SmallPage>
 
@@ -83,7 +83,7 @@
                     <Account layout="column" :address="recipient.address" :label="recipient.label || 'Unnamed Contact'"/>
                 </a>
             </div>
-            <ValueInput class="value" :vanishing="true" placeholder="0.00" :maxFontSize="8" @changed="setValue" ref="valueInput" />
+            <AmountInput class="value" :vanishing="true" placeholder="0.00" :value="value" :maxValue="sender.balance" :maxFontSize="8" @changed="setValue" ref="valueInput" />
             <LabelInput :vanishing="true" placeholder="Add a public message..." :maxBytes="64" @changed="setMessage" />
         </PageBody>
 
@@ -106,15 +106,15 @@ import AccountSelector, { WalletInfo } from './AccountSelector.vue';
 import ContactList from './ContactList.vue';
 import ContactShortcuts from './ContactShortcuts.vue';
 import LabelInput from './LabelInput.vue';
-import ValueInput from './ValueInput.vue';
+import AmountInput from './AmountInput.vue';
 import SelectBar from './SelectBar.vue';
 import { ArrowRightIcon, CloseIcon, ScanQrCodeIcon, SettingsIcon } from './Icons';
 
-export enum Details {
+enum Details {
     CLOSED,
     SENDER,
     RECIPIENT,
-};
+}
 
 @Component({components: {
     SmallPage,
@@ -125,10 +125,10 @@ export enum Details {
     AccountDetails,
     AccountSelector,
     AddressInput,
+    AmountInput,
     ContactList,
     ContactShortcuts,
     LabelInput,
-    ValueInput,
     ArrowRightIcon,
     CloseIcon,
     ScanQrCodeIcon,
@@ -139,8 +139,12 @@ export enum Details {
         @Prop(Array) public contacts!: Array<{ address: string, label: string }>;
         @Prop(Array) public wallets!: WalletInfo[];
         @Prop({type: Object, default: null}) public preselectedSender: {walletId: string, address: string};
+        @Prop({type: Object, default: null}) public preselectedRecipient: {address: string, label: string};
+        @Prop({type: Number, default: null}) public preselectedValue: number;
+        @Prop({type: String, default: null}) public preselectedMessage: string;
 
-        private sender: {address: string, label: string, walletId} = null;
+
+        private sender: {address: string, label: string, walletId: string, balance: number} = null;
         private recipient: {address: string, label: string} = null;
         private details = Details.CLOSED;
         private contactsOpened = false;
@@ -150,9 +154,28 @@ export enum Details {
         private extraData = '';
         private label = '';
 
+        private async mounted() {
+            if (this.preselectedSender) {
+                this.setSender(this.preselectedSender.walletId, this.preselectedSender.address);
+            }
+            if (this.preselectedRecipient) {
+                this.setRecipient(this.preselectedRecipient.address, this.preselectedRecipient.label);
+            }
+            this.value = this.preselectedValue;
+            this.extraData = this.preselectedMessage;
+        }
+
         private setSender(walletId: string, address: string) {
             const wallet = this.wallets.find((value, index) => value.id === walletId);
-            this.sender = {address, label: wallet.label, walletId};
+            const foundAddress = wallet.accounts.get(address);
+            if (foundAddress) {
+                this.sender = {
+                    address,
+                    label: foundAddress.label,
+                    walletId,
+                    balance: foundAddress.balance,
+                };
+            }
         }
 
         private async setRecipient(address: string, label: string) {
@@ -164,10 +187,11 @@ export enum Details {
                     this.details = Details.RECIPIENT;
                 }
             }
+            this.label = label;
             this.recipient = {address, label};
             if (label) {
                 await Vue.nextTick(); // Await updated DOM
-                (this.$refs.valueInput as ValueInput).focus();
+                (this.$refs.valueInput as AmountInput).focus();
             }
         }
 
@@ -176,12 +200,8 @@ export enum Details {
             this.fee = (this.$refs.fee as SelectBar).value;
         }
 
-        private setValue(value: string) {
-            if (value === '') {
-                this.value = null;
-                return;
-            }
-            this.value = parseFloat(value);
+        private setValue(value: number) {
+            this.value = value;
         }
 
         private setMessage(value) {
@@ -191,13 +211,7 @@ export enum Details {
         private async setLabel(label: string) {
             this.label = label;
             await Vue.nextTick(); // Await updated DOM
-            (this.$refs.valueInput as ValueInput).focus();
-        }
-
-        private async created() {
-            if (this.preselectedSender) {
-                this.setSender(this.preselectedSender.walletId, this.preselectedSender.address);
-            }
+            (this.$refs.valueInput as AmountInput).focus();
         }
 
         private storeContactAndCloseOverlay() {
@@ -207,7 +221,12 @@ export enum Details {
         }
 
         private sendTransaction() {
-            this.$emit('send-tx', this.sender, this.recipient, this.value, this.extraData, this.fee);
+            this.$emit('send-tx',
+                this.sender,
+                this.recipient,
+                this.value,
+                this.extraData,
+                this.fee);
         }
 
         private data() {
@@ -242,7 +261,7 @@ export enum Details {
 
         @Emit()
         // tslint:disable-next-line no-empty
-        private createCashlink() {}
+        private createCashlink(sender: {address: string, label: string, walletId: string}) {}
 
     }
 </script>
@@ -262,11 +281,23 @@ export enum Details {
         width: 100%;
     }
 
+    .send-tx .page-header,
+    .send-tx .page-footer {
+        transition: opacity .3s;
+        opacity: 1;
+    }
     .send-tx .page-body {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: space-around;
+        transition: filter .4s, opacity .3s;
+        opacity: 1;
+        -webkit-filter: blur(0px);
+        -moz-filter: blur(0px);
+        -o-filter: blur(0px);
+        -ms-filter: blur(0px);
+        filter: blur(0px);
     }
 
     .send-tx .page-body > .nq-label {
@@ -284,8 +315,8 @@ export enum Details {
 
     .send-tx .value {
         display: flex;
-        align-items: center;
-        height: 12.5rem;
+        align-items: baseline;
+        height: 14.5rem; /* 12.5rem height + 2rem padding */
     }
 
     .address-input {
@@ -299,6 +330,7 @@ export enum Details {
         left: 0;
         top: 0;
         margin: 0;
+        background: rgba(255, 255, 255, .5);
     }
 
     .overlay.fee .page-body {
@@ -317,10 +349,27 @@ export enum Details {
     .overlay .cancel-circle {
         font-size: 3rem;
         position: absolute;
+        z-index: 1;
         top: 2rem;
         right: 2rem;
         padding: 0;
         height: unset;
+    }
+
+
+
+    .send-tx .overlay ~ .page-body {
+        opacity: .5;
+        -webkit-filter: blur(20px);
+        -moz-filter: blur(20px);
+        -o-filter: blur(20px);
+        -ms-filter: blur(20px);
+        filter: blur(20px);
+    }
+
+    .send-tx .overlay ~ .page-header,
+    .send-tx .overlay ~ .page-footer {
+        opacity: .05;
     }
 
     .cancel-circle .nq-icon {

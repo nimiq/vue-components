@@ -18,21 +18,21 @@ import { Utf8Tools } from '@nimiq/utils';
 
 @Component
 export default class LabelInput extends Vue {
-    @Prop(Number) protected maxBytes?: number;
-    @Prop({type: String, default: ''}) protected value!: string;
+    @Prop(Number) private maxBytes?: number;
+    @Prop({type: String, default: ''}) private value!: string;
     @Prop({type: String, default: 'Name your address'}) private placeholder!: string;
     @Prop({type: Boolean, default: false}) private vanishing!: boolean;
 
-    protected liveValue = this.value;
-    protected lastValue = this.value;
-    protected lastEmittedValue = this.value;
-    protected width = 50;
+    private liveValue = this.value;
+    private lastValue = this.value;
+    private lastEmittedValue = this.value;
+    private width = 50;
 
     public focus() {
         (this.$refs.input as HTMLInputElement).focus();
     }
 
-    protected onInput() {
+    private onInput() {
         if (this.maxBytes) {
             const lengthInBytes = Utf8Tools.stringToUtf8ByteArray(this.liveValue!).byteLength;
             if (lengthInBytes > this.maxBytes) {
@@ -51,7 +51,7 @@ export default class LabelInput extends Vue {
     }
 
     @Watch('liveValue', {immediate: true})
-    protected async updateWidth() {
+    private async updateWidth() {
         await Vue.nextTick(); // Await updated DOM
         if (!this.$refs.widthPlaceholder) return;
 
