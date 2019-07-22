@@ -116,7 +116,6 @@ declare module 'NimiqVueComponents/src/components/Identicon.vue' {
 declare module 'NimiqVueComponents/src/components/LabelInput.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class LabelInput extends Vue {
-        protected maxBytes?: number;
         focus(): void;
     }
 }
@@ -163,6 +162,7 @@ declare module 'NimiqVueComponents/src/components/Icons' {
     /**
       * Comment out any unused icons here
       */
+    export const AlertTriangleIcon: any;
     export const ArrowLeftSmallIcon: any;
     export const ArrowLeftIcon: any;
     export const ArrowRightSmallIcon: any;
@@ -170,14 +170,19 @@ declare module 'NimiqVueComponents/src/components/Icons' {
     export const CaretRightSmallIcon: any;
     export const CheckmarkIcon: any;
     export const CloseIcon: any;
+    export const ContactsIcon: any;
     export const FaceNeutralIcon: any;
     export const FaceSadIcon: any;
+    export const GearIcon: any;
     export const HexagonIcon: any;
     export const InfoCircleIcon: any;
     export const LedgerIcon: any;
     export const LoginIcon: any;
+    export const MenuDotsIcon: any;
     export const PlusCircleIcon: any;
+    export const QrCodeIcon: any;
     export const ScanQrCodeIcon: any;
+    export const SettingsIcon: any;
     export const TransferIcon: any;
 }
 
