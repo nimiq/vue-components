@@ -13,6 +13,7 @@ import Amount from '../components/Amount.vue';
 import AmountWithDetails from '../components/AmountWithDetails.vue';
 import Contact from '../components/Contact.vue';
 import ContactList from '../components/ContactList.vue';
+import ContactShortcuts from '../components/ContactShortcuts.vue';
 import Identicon from '../components/Identicon.vue';
 import LabelInput from '../components/LabelInput.vue';
 import Wallet from '../components/Wallet.vue';
@@ -27,6 +28,7 @@ import PageBody from '../components/PageBody.vue';
 import PageFooter from '../components/PageFooter.vue';
 import LoadingSpinner from '../components/LoadingSpinner.vue';
 import MigrationWelcome from '../components/MigrationWelcome.vue';
+import SendTx from '../components/SendTx.vue';
 import * as Icons from '../components/Icons';
 
 function windowTemplate(slot) {
@@ -466,6 +468,33 @@ storiesOf('Components', module)
             `
         };
     })
+    .add('ContactShortcuts', () => {
+        // setup knobs
+        const contacts = object('Contacts', [{
+            label: 'Nimiq Bar',
+            address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
+        }, {
+            label: 'Nimiq Shop',
+            address: 'NQ26 XM1G BFAD PACE R5L0 C85L 6143 FD8L 82U9',
+        }, {
+            label: 'Nimiq Foundation',
+            address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF',
+        }, {
+            label: 'Nimiq Charity',
+            address: 'NQ19 YG54 46TX EHGQ D2R2 V8XA JX84 UFG0 S0MC',
+        }]);
+
+        return {
+            components: { ContactShortcuts },
+            data: () => ({
+                contacts
+
+            }),
+            methods: {
+            },
+            template: `<ContactShortcuts :contacts="contacts"/>`,
+        };
+    })
     .add('Wallet', () => {
         const label = text('label', 'Main Wallet');
         const id = text('id', '47ee824fc910');
@@ -817,18 +846,119 @@ storiesOf('Pages', module)
                 <small-page style="height: 560px;">
                     <AccountDetails :address="account.userFriendlyAddress" :label="label"
                     :balance="account.balance" :walletLabel="walletLabel"
-                    :image="shopLogoUrl" @close="close"/>
+                    :image="shopLogoUrl" @close="close" :editable="true"/>
                 </small-page>
             `),
         };
     })
     .add('MigrationWelcome', () => {
+        const link = text('Link', 'https://medium.com/nimiq-network');
         return {
             components: {MigrationWelcome},
+            data() {
+                return { link };
+            },
             methods: {
                 finished: action('finished'),
             },
-            template: windowTemplate(`<migration-welcome @finished="finished"></migration-welcome>`),
+            template: windowTemplate(`<migration-welcome :link="link" @finished="finished"></migration-welcome>`),
+        };
+    })
+    .add('SendTx', () => {
+        const contacts = object('Contacts', [{
+            label: 'Nimiq Bar',
+            address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
+        }, {
+            label: 'Nimiq Shop',
+            address: 'NQ26 XM1G BFAD PACE R5L0 C85L 6143 FD8L 82U9',
+        }, {
+            label: 'Nimiq Foundation',
+            address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF',
+        }, {
+            label: 'Nimiq Charity',
+            address: 'NQ19 YG54 46TX EHGQ D2R2 V8XA JX84 UFG0 S0MC',
+        }]);
+        const wallets = object('Wallets', [
+            {
+                id: 'helloworld',
+                label: 'Keyguard Wallet',
+                type: 2, // BIP39
+                accounts: new Map([
+                    ['NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM', {
+                        userFriendlyAddress: 'NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM',
+                        label: 'Primary account',
+                        balance: 12023110,
+                        path: "44'/242'/0'/0'",
+                    }],
+                    ['NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1', {
+                        userFriendlyAddress: 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1',
+                        label: 'HODL account',
+                        balance: 2712415141213,
+                        path: "44'/242'/0'/1'",
+                    }],
+                ]),
+                contracts: [
+                    {
+                        userFriendlyAddress: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE',
+                        label: 'My Vesting Contract',
+                        balance: 777777777,
+                    },
+                ],
+            },
+            {
+                id: 'helloword2',
+                label: 'Ledger Wallet',
+                type: 3, // LEDGER
+                accounts: new Map([
+                    ['NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK', {
+                        userFriendlyAddress: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
+                        label: 'My Ledger Account',
+                        balance: 9876543210,
+                        path: "44'/242'/0'/0'",
+                    }]
+                ]),
+                contracts: [],
+            },
+            {
+                id: 'helloword3',
+                label: 'Ledger Wallet',
+                type: 3, // LEDGER
+                accounts: new Map([
+                    ['NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK', {
+                        userFriendlyAddress: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
+                        label: 'My second Ledger Account',
+                        balance: 98765210,
+                        path: "44'/242'/0'/0'",
+                    }]
+                ]),
+                contracts: [],
+            },
+        ]);
+        const value = number('Value', 1000009);
+        return {
+            components: { SendTx },
+            data: () => ({
+                contacts,
+                wallets,
+                value,
+            }),
+            methods: {
+                contactAdded: action('contactAdded'),
+                sendTx: action('sendTx'),
+                login: action('login'),
+                scanQr: action('scanQr'),
+                createCashlink: action('createCashlink'),
+            },
+            template:  windowTemplate(`<SendTx
+                :contacts="contacts"
+                :wallets="wallets"
+                @login="login"
+                @scan-qr="scanQr"
+                @send-tx="sendTx"
+                @contact-added="contactAdded"
+                @create-cashlink="createCashlink"
+                :preselectedValue="value"
+                />`),
         };
     });
 
