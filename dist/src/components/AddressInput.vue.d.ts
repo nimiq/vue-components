@@ -5,6 +5,7 @@ export default class AddressInput extends Vue {
     private static _parse;
     private static _format;
     private static _stripWhitespace;
+    private static _exportValue;
     value: string;
     $refs: {
         textarea: HTMLTextAreaElement;
