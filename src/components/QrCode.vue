@@ -84,6 +84,12 @@
         })
         public size!: number;
 
+        public async toDataUrl(type = 'image/png') {
+            if (!this.data) return 'data:,';
+            await Vue.nextTick(); // Make sure the canvas is in the DOM (it depends on !!data)
+            return (this.$el as HTMLCanvasElement).toDataURL(type);
+        }
+
         @Watch('data', { immediate: true })
         @Watch('errorCorrection')
         @Watch('radius')
