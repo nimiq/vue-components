@@ -4347,6 +4347,35 @@ var es6_object_assign = __webpack_require__("f751");
         }
       });
     
+// CONCATENATED MODULE: ./node_modules/@nimiq/style/src/icons/download.svg
+
+      /* harmony default export */ var download = ({
+        functional: true,
+        render(_h, _vm) {
+          const { _c, _v, data, children = [] } = _vm;
+
+          const {
+            class: classNames,
+            staticClass,
+            style,
+            staticStyle,
+            attrs = {},
+            ...rest
+          } = data;
+
+          return _c(
+            'svg',
+            {
+              class: [classNames,staticClass],
+              style: [style,staticStyle],
+              attrs: Object.assign({"width":"20","height":"20","viewBox":"0 0 20 20","xmlns":"http://www.w3.org/2000/svg"}, attrs),
+              ...rest,
+            },
+            children.concat([_c('path',{attrs:{"d":"M15.36 11.38a.83.83 0 0 0-.59-1.42h-3.31a.2.2 0 0 1-.2-.2V1.24a1.25 1.25 0 1 0-2.5 0v8.5c0 .12-.1.2-.22.2H5.23a.83.83 0 0 0-.59 1.43l4.77 4.77c.33.33.86.33 1.18 0l4.77-4.77zM16.02 18.75c0-.69-.55-1.25-1.25-1.25H5.23a1.25 1.25 0 1 0 0 2.5h9.54c.7 0 1.25-.56 1.25-1.25z","fill":"currentColor"}})])
+          )
+        }
+      });
+    
 // CONCATENATED MODULE: ./src/components/Icons.ts
 
 
@@ -4365,6 +4394,7 @@ var IconBase = function IconBase(component) {
 
 
 
+
 /**
  * Comment out any unused icons here
  */
@@ -4380,8 +4410,8 @@ var ArrowLeftIcon = IconBase(arrow_left); // export const ArrowRightSmallIcon = 
 // export const CloseIcon = IconBase(Close);
 // export const ContactsIcon = IconBase(Contacts);
 // export const CopyIcon = IconBase(Copy);
-// export const DownloadIcon = IconBase(Download);
-// export const FaceNeutralIcon = IconBase(FaceNeutral);
+
+var DownloadIcon = IconBase(download); // export const FaceNeutralIcon = IconBase(FaceNeutral);
 // export const FaceSadIcon = IconBase(FaceSad);
 // export const FireIcon = IconBase(Fire);
 // export const GearIcon = IconBase(Gear);
@@ -4496,12 +4526,12 @@ var PageHeader_component = normalizeComponent(
 
 PageHeader_component.options.__file = "PageHeader.vue"
 /* harmony default export */ var components_PageHeader = (PageHeader_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"46064dad-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/QrCode.vue?vue&type=template&id=43c47284&
-var QrCodevue_type_template_id_43c47284_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (!!_vm.data)?_c('canvas'):_vm._e()}
-var QrCodevue_type_template_id_43c47284_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"46064dad-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/QrCode.vue?vue&type=template&id=6e4bc918&
+var QrCodevue_type_template_id_6e4bc918_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (!!_vm.data)?_c('canvas'):_vm._e()}
+var QrCodevue_type_template_id_6e4bc918_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/QrCode.vue?vue&type=template&id=43c47284&
+// CONCATENATED MODULE: ./src/components/QrCode.vue?vue&type=template&id=6e4bc918&
 
 // CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/builtin/es6/arrayWithHoles.js
 function _arrayWithHoles(arr) {
@@ -4620,11 +4650,11 @@ function (_Vue) {
   }
 
   _createClass(QrCode, [{
-    key: "_updateQrCode",
+    key: "toDataUrl",
     value: function () {
-      var _updateQrCode2 = _asyncToGenerator(
+      var _toDataUrl = _asyncToGenerator(
       /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee() {
+      regeneratorRuntime.mark(function _callee(type) {
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -4634,10 +4664,46 @@ function (_Vue) {
                   break;
                 }
 
-                return _context.abrupt("return");
+                return _context.abrupt("return", 'data:,');
 
               case 2:
                 _context.next = 4;
+                return external_vue_property_decorator_["Vue"].nextTick();
+
+              case 4:
+                return _context.abrupt("return", this.$el.toDataURL(type));
+
+              case 5:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      return function toDataUrl(_x) {
+        return _toDataUrl.apply(this, arguments);
+      };
+    }()
+  }, {
+    key: "_updateQrCode",
+    value: function () {
+      var _updateQrCode2 = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee2() {
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                if (this.data) {
+                  _context2.next = 2;
+                  break;
+                }
+
+                return _context2.abrupt("return");
+
+              case 2:
+                _context2.next = 4;
                 return external_vue_property_decorator_["Vue"].nextTick();
 
               case 4:
@@ -4653,10 +4719,10 @@ function (_Vue) {
 
               case 5:
               case "end":
-                return _context.stop();
+                return _context2.stop();
             }
           }
-        }, _callee, this);
+        }, _callee2, this);
       }));
 
       return function _updateQrCode() {
@@ -4752,8 +4818,8 @@ QrCodevue_type_script_lang_ts_QrCode = __decorate([external_vue_property_decorat
 
 var QrCode_component = normalizeComponent(
   components_QrCodevue_type_script_lang_ts_,
-  QrCodevue_type_template_id_43c47284_render,
-  QrCodevue_type_template_id_43c47284_staticRenderFns,
+  QrCodevue_type_template_id_6e4bc918_render,
+  QrCodevue_type_template_id_6e4bc918_staticRenderFns,
   false,
   null,
   null,
@@ -4850,7 +4916,8 @@ SmallPage_component.options.__file = "SmallPage.vue"
 // export { default as WalletList } from './components/WalletList.vue';
 // export { default as WalletMenu } from './components/WalletMenu.vue';
 // Comment out unused icons in the components/Icons.ts file
-// export * from './components/Icons';
+
+
 // CONCATENATED MODULE: ./node_modules/@vue/cli-service/lib/commands/build/entry-lib-no-default.js
 /* concated harmony reexport AddressDisplay */__webpack_require__.d(__webpack_exports__, "AddressDisplay", function() { return components_AddressDisplay; });
 /* concated harmony reexport AddressInput */__webpack_require__.d(__webpack_exports__, "AddressInput", function() { return components_AddressInput; });
@@ -4859,6 +4926,8 @@ SmallPage_component.options.__file = "SmallPage.vue"
 /* concated harmony reexport PageHeader */__webpack_require__.d(__webpack_exports__, "PageHeader", function() { return components_PageHeader; });
 /* concated harmony reexport QrCode */__webpack_require__.d(__webpack_exports__, "QrCode", function() { return components_QrCode; });
 /* concated harmony reexport SmallPage */__webpack_require__.d(__webpack_exports__, "SmallPage", function() { return components_SmallPage; });
+/* concated harmony reexport ArrowLeftIcon */__webpack_require__.d(__webpack_exports__, "ArrowLeftIcon", function() { return ArrowLeftIcon; });
+/* concated harmony reexport DownloadIcon */__webpack_require__.d(__webpack_exports__, "DownloadIcon", function() { return DownloadIcon; });
 
 
 

@@ -11,6 +11,7 @@ declare module 'NimiqVueComponents' {
     export { default as PageHeader } from 'NimiqVueComponents/src/components/PageHeader.vue';
     export { default as QrCode } from 'NimiqVueComponents/src/components/QrCode.vue';
     export { default as SmallPage } from 'NimiqVueComponents/src/components/SmallPage.vue';
+    export * from 'NimiqVueComponents/src/components/Icons';
 }
 
 declare module 'NimiqVueComponents/src/components/AddressDisplay.vue' {
@@ -83,6 +84,7 @@ declare module 'NimiqVueComponents/src/components/QrCode.vue' {
         fill: string | QrEncoder.LinearGradient | QrEncoder.RadialGradient;
         background: string | null;
         size: number;
+        toDataUrl(type: 'image/png'): Promise<string>;
     }
 }
 
@@ -90,5 +92,13 @@ declare module 'NimiqVueComponents/src/components/SmallPage.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class SmallPage extends Vue {
     }
+}
+
+declare module 'NimiqVueComponents/src/components/Icons' {
+    /**
+      * Comment out any unused icons here
+      */
+    export const ArrowLeftIcon: any;
+    export const DownloadIcon: any;
 }
 

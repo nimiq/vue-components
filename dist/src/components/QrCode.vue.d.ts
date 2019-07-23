@@ -27,5 +27,6 @@ export default class QrCode extends Vue {
     fill: string | QrEncoder.LinearGradient | QrEncoder.RadialGradient;
     background: string | null;
     size: number;
+    toDataUrl(type: 'image/png'): Promise<string>;
     private _updateQrCode;
 }
