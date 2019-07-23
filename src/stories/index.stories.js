@@ -704,9 +704,11 @@ storiesOf('Components', module)
                 fill: '#0582ca',
                 background: '#ffffff',
                 size: 128,
+                dataUrl: '',
             }),
             template: windowTemplate(`
-                <QrCode :data="data" :errorCorrection="errorCorrection" :radius="parseFloat(radius)" :fill="fill"
+                <QrCode ref="qr-code"
+                    :data="data" :errorCorrection="errorCorrection" :radius="parseFloat(radius)" :fill="fill"
                     :background="background" :size="parseInt(size)"/>
                 <label>
                     Data
@@ -737,7 +739,15 @@ storiesOf('Components', module)
                     Size
                     <input v-model="size" type="number" min="1" step="1">
                 </label>
-            `)
+                <br>
+                <button @click="toDataUrl">Export to Data Url</button>
+                <div style="max-width: 500px; word-break: break-all">{{ dataUrl }}</div>
+            `),
+            methods: {
+                async toDataUrl() {
+                    this.dataUrl = await this.$refs['qr-code'].toDataUrl();
+                }
+            }
         };
     })
     .add('QrScanner', () => {
