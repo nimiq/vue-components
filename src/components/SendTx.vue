@@ -88,7 +88,7 @@
         </PageBody>
 
         <PageFooter>
-            <button class="nq-button light-blue" :disabled="value === null" @click="sendTransaction">Send transaction</button>
+            <button class="nq-button light-blue" :disabled="value === 0" @click="sendTransaction">Send transaction</button>
         </PageFooter>
     </SmallPage>
 </template>
