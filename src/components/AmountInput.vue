@@ -68,22 +68,16 @@ export default class AmountInput extends Vue {
 
     public get formattedValue() {
         if (!this.liveValue) return null;
-
-        const cursor = (this.$refs.input as HTMLInputElement).selectionStart;
-
-        const stringifyValue = `${this.liveValue / 1e5}${this.showDot ? '.' : ''}`.split('.');
-        stringifyValue[0] = stringifyValue[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-        // TODO
-        Vue.nextTick(() => (this.$refs.input as HTMLInputElement).setSelectionRange(cursor, cursor));
-        return stringifyValue.join('.');
+        return `${Number(this.liveValue / 1e5)}${this.showDot ? '.' : ''}`;
     }
 
     public set formattedValue(value: string) {
         if (!value) {
             this.liveValue = null;
         }
+        value = value.replace(/\,/, '.');
         const regExp = new RegExp(/(\d*)(\.(\d{0,5}))?/g);
-        const regExpResult = regExp.exec(value.replace(/\,/g, ''));
+        const regExpResult = regExp.exec(value);
         if (regExpResult[1]) {
             this.liveValue = Number(`${regExpResult[1]}${regExpResult[2] ? regExpResult[3].padEnd(5, '0') : '00000'}`);
             if (this.liveValue > this.maxValue) this.liveValue = this.maxValue;
