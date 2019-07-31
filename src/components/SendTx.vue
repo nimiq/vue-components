@@ -317,6 +317,9 @@ enum Details {
         display: flex;
         align-items: baseline;
         height: 14.5rem; /* 12.5rem height + 2rem padding */
+        border-top: .125rem solid var(--nimiq-highlight-bg);
+        margin-top: 1rem;
+        padding-top: 2rem;
     }
 
     .address-input {

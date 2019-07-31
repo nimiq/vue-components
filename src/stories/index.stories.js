@@ -153,15 +153,17 @@ storiesOf('Components', module)
         }, '');
         const balance = number('Balance (can be empty)', 12023110);
         const editable = boolean('Editable', false);
+        const cashlink = boolean('Cashlink', false);
 
         return {
             components: {Account},
             methods: {
                 changed: action('changed'),
             },
-            data: () => ({ layout, address, label, walletLabel, image, balance, editable }),
+            data: () => ({ layout, address, label, walletLabel, image, balance, editable, cashlink }),
             template: `<Account :layout="layout" :address="address" :label="label" :walletLabel="walletLabel"
-                :image="image" :balance="balance" :editable="editable" @changed="changed"></Account>`,
+                :image="image" :balance="balance" :editable="editable" :displayAsCashlink="cashlink"
+                @changed="changed"/>`,
         };
     })
     .add('AccountList', () => {

@@ -129,9 +129,6 @@ export default class AmountInput extends Vue {
         justify-content: center;
         width: 100%;
         font-size: 8rem;
-        border-top: .125rem solid var(--nimiq-highlight-bg);
-        margin-top: 1rem;
-        padding-top: 2rem;
     }
 
     .amount form {
