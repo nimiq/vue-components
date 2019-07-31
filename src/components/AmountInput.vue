@@ -82,6 +82,15 @@ export default class AmountInput extends Vue {
             this.liveValue = Number(`${regExpResult[1]}${regExpResult[2] ? regExpResult[3].padEnd(5, '0') : '00000'}`);
             if (this.liveValue > this.maxValue) this.liveValue = this.maxValue;
         }
+
+        if (this.liveValue > 0 && !this.lastEmittedValue) {
+            this.$emit('changed', this.liveValue);
+            this.lastEmittedValue = this.liveValue;
+        }
+        if (!this.liveValue && this.lastEmittedValue > 0) {
+            this.$emit('changed', 0);
+            this.lastEmittedValue = 0;
+        }
         this.showDot = regExpResult[2] === '.' && regExpResult[3] === '';
         // Trigger a valueChange for the getter.
         this.$forceUpdate();
