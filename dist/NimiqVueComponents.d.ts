@@ -35,6 +35,7 @@ declare module 'NimiqVueComponents/src/components/Account.vue' {
     export default class Account extends Vue {
         address: string;
         image?: string;
+        displayAsCashlink: boolean;
         label: string;
         placeholder?: string;
         walletLabel?: string;
