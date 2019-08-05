@@ -84,7 +84,7 @@
                     <Account layout="column" :address="recipient.address" :label="recipient.label || 'Unnamed Contact'"/>
                 </a>
             </div>
-            <AmountInput class="value" :maxAmount="sender.balance" @changed="setValue" ref="valueInput" />
+            <AmountInput class="value" @changed="setValue" ref="valueInput" />
             <div v-if="fee" class="fee-section nq-text-s">
                 + <Amount :amount="fee" :minDecimals="2" :maxDecimals="5" /> fee
             </div>
@@ -98,7 +98,7 @@
 </template>
 
 <script lang="ts">
-import {Component, Emit, Prop, Vue} from 'vue-property-decorator';
+import {Component, Emit, Prop, Vue, Watch} from 'vue-property-decorator';
 import SmallPage from './SmallPage.vue';
 import PageHeader from './PageHeader.vue';
 import PageBody from './PageBody.vue';
@@ -174,7 +174,7 @@ enum Details {
         }
 
         private setSender(walletId: string, address: string) {
-            const wallet = this.wallets.find((wallet) => wallet.id === walletId);
+            const wallet = this.wallets.find((walletToCheck) => walletToCheck.id === walletId);
             if (!wallet) return;
             const foundAddress = wallet.accounts.get(address);
             if (!foundAddress) return;
@@ -214,6 +214,14 @@ enum Details {
 
         private setValue(value: number) {
             this.value = value;
+            this.checkBalance();
+        }
+
+        @Watch('sender.balance')
+        private checkBalance() {
+            if (this.sender && this.sender.balance && this.value + this.fee > this.sender.balance) {
+                console.log('Insufficient Balance');
+            }
         }
 
         private setMessage(message: string) {
