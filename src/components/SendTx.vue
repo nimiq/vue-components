@@ -83,7 +83,7 @@
                     <Account layout="column" :address="recipient.address" :label="recipient.label || 'Unnamed Contact'"/>
                 </a>
             </div>
-            <AmountInput class="value" :vanishing="true" placeholder="0.00" :value="value" :maxValue="sender.balance" :maxFontSize="8" @changed="setValue" ref="valueInput" />
+            <AmountInput class="value" :vanishing="true" placeholder="0.00" :amount="null" :maxAmount="sender.balance" :maxFontSize="8" @changed="setValue" ref="valueInput" />
             <LabelInput :vanishing="true" placeholder="Add a public message..." :maxBytes="64" @changed="setMessage" />
         </PageBody>
 
