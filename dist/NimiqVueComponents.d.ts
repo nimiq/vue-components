@@ -268,7 +268,7 @@ declare module 'NimiqVueComponents/src/components/SelectBar.vue' {
     export default class SelectBar extends Vue {
         name: string;
         options: SelectBarOption[];
-        selectedValue: number;
+        selectedValue?: number;
         readonly value: number;
     }
 }
