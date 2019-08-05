@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts">
-import {Component, Prop, Vue} from 'vue-property-decorator';
+import {Component, Prop, Vue, Watch} from 'vue-property-decorator';
 
 export interface SelectBarOption {
     color: string;
@@ -45,6 +45,11 @@ export interface SelectBarOption {
                 return this.selected.color;
             } else return 'nq-highlight-bg';
         }
+
+        @Watch('selectedOption')
+        private onChanged(option: SelectBarOption) {
+            this.$emit('changed', option.value);
+    }
     }
 </script>
 

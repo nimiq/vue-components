@@ -28,6 +28,7 @@ import WalletMenu from '../components/WalletMenu.vue';
 import PaymentInfoLine from '../components/PaymentInfoLine.vue';
 import QrCode from '../components/QrCode.vue';
 import QrScanner from '../components/QrScanner.vue';
+import SelectBar from '../components/SelectBar.vue';
 import SmallPage from '../components/SmallPage.vue';
 import Timer from '../components/Timer.vue';
 import PageHeader from '../components/PageHeader.vue';
@@ -170,6 +171,35 @@ storiesOf('Basic', module)
             components: { CircleSpinner },
             template: `<CircleSpinner />`,
         };
+    })
+    .add('SelectBar', () => {
+        return {
+            components: { SelectBar },
+            methods: {
+                changed: action('changed'),
+            },
+            data() {
+                return {
+                    options: [{
+                        color: 'nq-light-blue-bg',
+                        value: 0,
+                        text: 'free',
+                        index: 0,
+                    }, {
+                        color: 'nq-green-bg',
+                        value: 1,
+                        text: 'standard',
+                        index: 1,
+                    }, {
+                        color: 'nq-gold-bg',
+                        value: 2,
+                        text: 'express',
+                        index: 2,
+                    }],
+                };
+            },
+            template: `<SelectBar :options="options" @changed="changed"/>`
+        }
     });
 
 storiesOf('Components', module)
