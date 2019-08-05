@@ -41,6 +41,7 @@ export default class LabelInput extends Vue {
             }
             this.lastValue = this.liveValue;
         }
+        this.$emit('changed', this.liveValue);
     }
 
     private onBlur() {

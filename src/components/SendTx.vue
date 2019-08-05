@@ -46,7 +46,7 @@
                 :label="details === Details.SENDER ? sender.label : recipient.label"
                 @close="details = Details.CLOSED"
                 @changed="setLabel"
-                />
+            />
             <PageFooter>
                 <button class="nq-button light-blue" @click="storeContactAndCloseOverlay()">Save Contact</button>
             </PageFooter>
@@ -59,7 +59,8 @@
             <PageBody>
                 <h1 class="nq-h1">Speed up your transaction</h1>
                 <p class="nq-text">By adding a transation fee, you can influence how fast your transaction will be processed.</p>
-                <SelectBar ref="fee" :options="OPTIONS" name="fee" :selectedValue="fee" />
+                <SelectBar ref="feeSetter" :options="OPTIONS" name="fee" :selectedValue="feeLunaPerByte" @changed="updateFeePreview" />
+                <Amount :amount="feePreview" :minDecimals="2" :maxDecimals="5" />
             </PageBody>
             <PageFooter>
                 <button class="nq-button light-blue" @click="setFee">Set fee</button>
@@ -83,7 +84,10 @@
                     <Account layout="column" :address="recipient.address" :label="recipient.label || 'Unnamed Contact'"/>
                 </a>
             </div>
-            <AmountInput class="value" :vanishing="true" placeholder="0.00" :amount="null" :maxAmount="sender.balance" :maxFontSize="8" @changed="setValue" ref="valueInput" />
+            <AmountInput class="value" @changed="setValue" ref="valueInput" />
+            <div v-if="fee" class="fee-section nq-text-s">
+                + <Amount :amount="fee" :minDecimals="2" :maxDecimals="5" /> fee
+            </div>
             <LabelInput :vanishing="true" placeholder="Add a public message..." :maxBytes="64" @changed="setMessage" />
         </PageBody>
 
@@ -94,7 +98,7 @@
 </template>
 
 <script lang="ts">
-import {Component, Emit, Prop, Vue} from 'vue-property-decorator';
+import {Component, Emit, Prop, Vue, Watch} from 'vue-property-decorator';
 import SmallPage from './SmallPage.vue';
 import PageHeader from './PageHeader.vue';
 import PageBody from './PageBody.vue';
@@ -106,9 +110,11 @@ import AccountSelector, { WalletInfo } from './AccountSelector.vue';
 import ContactList from './ContactList.vue';
 import ContactShortcuts from './ContactShortcuts.vue';
 import LabelInput from './LabelInput.vue';
+import Amount from './Amount.vue';
 import AmountInput from './AmountInput.vue';
-import SelectBar from './SelectBar.vue';
+import SelectBar, { SelectBarOption } from './SelectBar.vue';
 import { ArrowRightIcon, CloseIcon, ScanQrCodeIcon, SettingsIcon } from './Icons';
+import { Utf8Tools } from '@nimiq/utils';
 
 enum Details {
     CLOSED,
@@ -125,6 +131,7 @@ enum Details {
     AccountDetails,
     AccountSelector,
     AddressInput,
+    Amount,
     AmountInput,
     ContactList,
     ContactShortcuts,
@@ -138,19 +145,20 @@ enum Details {
     export default class SendTx extends Vue {
         @Prop(Array) public contacts!: Array<{ address: string, label: string }>;
         @Prop(Array) public wallets!: WalletInfo[];
-        @Prop({type: Object, default: null}) public preselectedSender: {walletId: string, address: string};
-        @Prop({type: Object, default: null}) public preselectedRecipient: {address: string, label: string};
-        @Prop({type: Number, default: null}) public preselectedValue: number;
-        @Prop({type: String, default: null}) public preselectedMessage: string;
+        @Prop(Object) public preselectedSender?: {walletId: string, address: string};
+        @Prop(Object) public preselectedRecipient?: {address: string, label: string};
+        @Prop({type: Number, default: 0}) public preselectedValue!: number;
+        @Prop({type: String, default: ''}) public preselectedMessage!: string;
 
 
-        private sender: {address: string, label: string, walletId: string, balance: number} = null;
-        private recipient: {address: string, label: string} = null;
+        private sender: {address: string, label: string, walletId: string, balance: number} | null = null;
+        private recipient: {address: string, label: string} | null = null;
         private details = Details.CLOSED;
         private contactsOpened = false;
         private optionsOpened = false;
-        private fee = 0;
-        private value: number = null;
+        private feeLunaPerByte = 0;
+        private feeLunaPerBytePreview = 0;
+        private value: number = 0;
         private extraData = '';
         private label = '';
 
@@ -166,16 +174,16 @@ enum Details {
         }
 
         private setSender(walletId: string, address: string) {
-            const wallet = this.wallets.find((value, index) => value.id === walletId);
+            const wallet = this.wallets.find((walletToCheck) => walletToCheck.id === walletId);
+            if (!wallet) return;
             const foundAddress = wallet.accounts.get(address);
-            if (foundAddress) {
-                this.sender = {
-                    address,
-                    label: foundAddress.label,
-                    walletId,
-                    balance: foundAddress.balance,
-                };
-            }
+            if (!foundAddress) return;
+            this.sender = {
+                address,
+                label: foundAddress.label,
+                walletId,
+                balance: foundAddress.balance || 0,
+            };
         }
 
         private async setRecipient(address: string, label: string) {
@@ -195,17 +203,29 @@ enum Details {
             }
         }
 
+        private updateFeePreview(fee: number) {
+            this.feeLunaPerBytePreview = fee;
+        }
+
         private setFee() {
             this.optionsOpened = false;
-            this.fee = (this.$refs.fee as SelectBar).value;
+            this.feeLunaPerByte = (this.$refs.feeSetter as SelectBar).value;
         }
 
         private setValue(value: number) {
             this.value = value;
+            this.checkBalance();
         }
 
-        private setMessage(value) {
-            this.extraData = value;
+        @Watch('sender.balance')
+        private checkBalance() {
+            if (this.sender && this.sender.balance && this.value + this.fee > this.sender.balance) {
+                console.log('Insufficient Balance');
+            }
+        }
+
+        private setMessage(message: string) {
+            this.extraData = message;
         }
 
         private async setLabel(label: string) {
@@ -215,7 +235,7 @@ enum Details {
         }
 
         private storeContactAndCloseOverlay() {
-            this.recipient.label = this.label;
+            this.recipient!.label = this.label;
             this.$emit('contact-added', this.recipient);
             this.details = Details.CLOSED;
         }
@@ -246,9 +266,23 @@ enum Details {
                     value: 2,
                     text: 'express',
                     index: 2,
-                }],
+                }] as SelectBarOption[],
                 Details,
             };
+        }
+
+        private get fee(): number {
+            if (this.extraData) {
+                return this.feeLunaPerByte * (166 + Utf8Tools.stringToUtf8ByteArray(this.extraData).byteLength);
+            }
+            return this.feeLunaPerByte * 138;
+        }
+
+        private get feePreview(): number {
+            if (this.extraData) {
+                return this.feeLunaPerBytePreview * (166 + Utf8Tools.stringToUtf8ByteArray(this.extraData).byteLength);
+            }
+            return this.feeLunaPerBytePreview * 138;
         }
 
         @Emit()
@@ -349,6 +383,10 @@ enum Details {
         margin-top: .5rem;
     }
 
+    .overlay.fee .amount {
+        margin-top: 3rem;
+    }
+
     .overlay .cancel-circle {
         font-size: 3rem;
         position: absolute;
@@ -358,8 +396,6 @@ enum Details {
         padding: 0;
         height: unset;
     }
-
-
 
     .send-tx .overlay ~ .page-body {
         opacity: .5;
@@ -412,11 +448,21 @@ enum Details {
         height: 9rem;
     }
 
+    .fee-section {
+        opacity: 0.5;
+    }
+
     .scan-qr {
         position: absolute;
         bottom: 3rem;
         right: 3rem;
         opacity: .4;
+        transition: opacity .2s ease;
+    }
+
+    .scan-qr:hover,
+    .scan-qr:focus {
+        opacity: .8;
     }
 
     .scan-qr svg {

@@ -10,6 +10,7 @@ import Address from '../components/Address.vue';
 import AddressDisplay from '../components/AddressDisplay.vue';
 import AccountRing from '../components/AccountRing.vue';
 import Amount from '../components/Amount.vue';
+import AmountInput from '../components/AmountInput.vue';
 import AmountWithDetails from '../components/AmountWithDetails.vue';
 import Contact from '../components/Contact.vue';
 import ContactList from '../components/ContactList.vue';
@@ -22,6 +23,7 @@ import WalletMenu from '../components/WalletMenu.vue';
 import PaymentInfoLine from '../components/PaymentInfoLine.vue';
 import QrCode from '../components/QrCode.vue';
 import QrScanner from '../components/QrScanner.vue';
+import SelectBar from '../components/SelectBar.vue';
 import SmallPage from '../components/SmallPage.vue';
 import PageHeader from '../components/PageHeader.vue';
 import PageBody from '../components/PageBody.vue';
@@ -54,6 +56,15 @@ storiesOf('Basic', module)
             data: () => ({ amount, minDecimals, maxDecimals, decimals, showApprox }),
             template: `<Amount :amount="amount" :minDecimals="minDecimals" :maxDecimals="maxDecimals"
                 :decimals="decimals" :showApprox="showApprox" />`,
+        };
+    })
+    .add('AmountInput', () => {
+        return {
+            components: { AmountInput },
+            methods: {
+                changed: action('changed'),
+            },
+            template: `<AmountInput @changed="changed"/>`,
         };
     })
     .add('Icons', () => {
@@ -137,6 +148,35 @@ storiesOf('Basic', module)
             components: {LoadingSpinner},
             template: `<div style="color: #0582CA"><LoadingSpinner /></div>`,
         };
+    })
+    .add('SelectBar', () => {
+        return {
+            components: { SelectBar },
+            methods: {
+                changed: action('changed'),
+            },
+            data() {
+                return {
+                    options: [{
+                        color: 'nq-light-blue-bg',
+                        value: 0,
+                        text: 'free',
+                        index: 0,
+                    }, {
+                        color: 'nq-green-bg',
+                        value: 1,
+                        text: 'standard',
+                        index: 1,
+                    }, {
+                        color: 'nq-gold-bg',
+                        value: 2,
+                        text: 'express',
+                        index: 2,
+                    }],
+                };
+            },
+            template: `<SelectBar :options="options" @changed="changed"/>`
+        }
     });
 
 storiesOf('Components', module)
