@@ -1,7 +1,7 @@
 <template>
     <div class="select-bar">
         <div v-for="option of options" :key="option.value">
-            <input :value="option" type="radio" :name="name" :id="option.value" v-model="selected">
+            <input :value="option" type="radio" :name="name" :id="option.value" v-model="selectedOption">
             <label :for="option.value" class="nq-label" :class="getColor(option)">{{option.text}}</label>
         </div>
     </div>
@@ -20,36 +20,33 @@ export interface SelectBarOption {
 @Component
     export default class SelectBar extends Vue {
         @Prop(String) public name!: string;
-        @Prop(Array) public options: SelectBarOption[];
-        @Prop(Number) public selectedValue: number;
+        @Prop(Array) public options!: SelectBarOption[];
+        @Prop(Number) public selectedValue?: number;
 
-        private selected: SelectBarOption = null;
+        private selectedOption: SelectBarOption | null = null;
 
         private created() {
             this.options = this.options.sort((a, b) => a.index - b.index);
 
-            this.selected = this.selectedValue
-                ? this.options.find((val) => val.value === this.selectedValue)
+            this.selectedOption = this.selectedValue
+                ? this.options.find((val) => val.value === this.selectedValue)!
                 : this.options[0];
         }
 
         public get value() {
-            if (this.selected) {
-                return this.selected.value;
-            }
-            return 0;
+            return this.selectedOption!.value;
         }
 
         private getColor(option: SelectBarOption) {
-            if (option.index <= this.selected.index) {
-                return this.selected.color;
+            if (option.index <= this.selectedOption!.index) {
+                return this.selectedOption!.color;
             } else return 'nq-highlight-bg';
         }
 
         @Watch('selectedOption')
         private onChanged(option: SelectBarOption) {
             this.$emit('changed', option.value);
-    }
+        }
     }
 </script>
 
