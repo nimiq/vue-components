@@ -22,12 +22,12 @@ import LabelInput from './LabelInput.vue';
 
 @Component
 export default class AmountInput extends Vue {
-    @Prop(Number) private maxFontSize?: number;
+    @Prop({type: Number, default: 8}) private maxFontSize!: number;
     @Prop({type: Number}) private amount?: number;
     @Prop({type: Number, default: 2100000000000000}) private maxAmount!: number;
     @Prop({type: String, default: '0.00'}) private placeholder!: string;
 
-    private liveValue: string = null;
+    private liveValue: string = '';
     private lastEmittedValue = 0;
     private width = 50;
     private fontSize = this.maxFontSize;
@@ -38,7 +38,7 @@ export default class AmountInput extends Vue {
         if (this.maxFontSize) {
             this.maxWidth = (this.$refs.fullWidth as HTMLElement).offsetWidth;
         }
-        this.formattedValue = this.amount ? (this.amount / 1e5).toString() : null;
+        this.formattedValue = this.amount ? (this.amount / 1e5).toString() : '';
         if (!this.formattedValue) this.updateWidth();
     }
 
@@ -72,12 +72,14 @@ export default class AmountInput extends Vue {
 
     public set formattedValue(value: string) {
         if (!value) {
-            this.liveValue = null;
+            this.liveValue = '';
+            this.$emit('changed', 0);
+            this.lastEmittedValue = 0;
             return;
         }
         value = value.replace(/\,/, '.');
         const regExp = new RegExp(/(\d*)(\.(\d{0,5}))?/g);
-        const regExpResult = regExp.exec(value);
+        const regExpResult = regExp.exec(value)!;
         if (regExpResult[1]) {
             this.liveValue = `${regExpResult[1]}${regExpResult[2] ? regExpResult[2] : ''}`;
             this.valueInLuna = Number(`${regExpResult[1]}${regExpResult[2] ? regExpResult[3].padEnd(5, '0') : '00000'}`);
@@ -87,14 +89,11 @@ export default class AmountInput extends Vue {
             }
         }
 
-        if (this.valueInLuna && !this.lastEmittedValue) {
+        if (this.lastEmittedValue !== this.valueInLuna) {
             this.$emit('changed', this.valueInLuna);
             this.lastEmittedValue = this.valueInLuna;
         }
-        if (!this.valueInLuna && this.lastEmittedValue) {
-            this.$emit('changed', 0);
-            this.lastEmittedValue = 0;
-        }
+
         // Trigger a valueChange for the getter.
         this.$forceUpdate();
     }
