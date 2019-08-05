@@ -10,6 +10,7 @@ import Address from '../components/Address.vue';
 import AddressDisplay from '../components/AddressDisplay.vue';
 import AccountRing from '../components/AccountRing.vue';
 import Amount from '../components/Amount.vue';
+import AmountInput from '../components/AmountInput.vue';
 import AmountWithDetails from '../components/AmountWithDetails.vue';
 import Contact from '../components/Contact.vue';
 import ContactList from '../components/ContactList.vue';
@@ -54,6 +55,15 @@ storiesOf('Basic', module)
             data: () => ({ amount, minDecimals, maxDecimals, decimals, showApprox }),
             template: `<Amount :amount="amount" :minDecimals="minDecimals" :maxDecimals="maxDecimals"
                 :decimals="decimals" :showApprox="showApprox" />`,
+        };
+    })
+    .add('AmountInput', () => {
+        return {
+            components: { AmountInput },
+            methods: {
+                changed: action('changed'),
+            },
+            template: `<AmountInput @changed="changed"/>`,
         };
     })
     .add('Icons', () => {
