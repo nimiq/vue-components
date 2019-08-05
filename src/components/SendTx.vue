@@ -59,7 +59,8 @@
             <PageBody>
                 <h1 class="nq-h1">Speed up your transaction</h1>
                 <p class="nq-text">By adding a transation fee, you can influence how fast your transaction will be processed.</p>
-                <SelectBar ref="fee" :options="OPTIONS" name="fee" :selectedValue="fee" />
+                <SelectBar ref="feeSetter" :options="OPTIONS" name="fee" :selectedValue="feeLunaPerByte" @changed="updateFeePreview" />
+                <Amount :amount="feePreview" :minDecimals="2" :maxDecimals="5" />
             </PageBody>
             <PageFooter>
                 <button class="nq-button light-blue" @click="setFee">Set fee</button>
@@ -84,6 +85,9 @@
                 </a>
             </div>
             <AmountInput class="value" :maxAmount="sender.balance" @changed="setValue" ref="valueInput" />
+            <div v-if="fee" class="fee-section nq-text-s">
+                + <Amount :amount="fee" :minDecimals="2" :maxDecimals="5" /> fee
+            </div>
             <LabelInput :vanishing="true" placeholder="Add a public message..." :maxBytes="64" @changed="setMessage" />
         </PageBody>
 
@@ -106,9 +110,11 @@ import AccountSelector, { WalletInfo } from './AccountSelector.vue';
 import ContactList from './ContactList.vue';
 import ContactShortcuts from './ContactShortcuts.vue';
 import LabelInput from './LabelInput.vue';
+import Amount from './Amount.vue';
 import AmountInput from './AmountInput.vue';
-import SelectBar from './SelectBar.vue';
+import SelectBar, { SelectBarOption } from './SelectBar.vue';
 import { ArrowRightIcon, CloseIcon, ScanQrCodeIcon, SettingsIcon } from './Icons';
+import { Utf8Tools } from '@nimiq/utils';
 
 enum Details {
     CLOSED,
@@ -125,6 +131,7 @@ enum Details {
     AccountDetails,
     AccountSelector,
     AddressInput,
+    Amount,
     AmountInput,
     ContactList,
     ContactShortcuts,
@@ -149,7 +156,8 @@ enum Details {
         private details = Details.CLOSED;
         private contactsOpened = false;
         private optionsOpened = false;
-        private fee = 0;
+        private feeLunaPerByte = 0;
+        private feeLunaPerBytePreview = 0;
         private value: number = 0;
         private extraData = '';
         private label = '';
@@ -195,9 +203,13 @@ enum Details {
             }
         }
 
+        private updateFeePreview(fee: number) {
+            this.feeLunaPerBytePreview = fee;
+        }
+
         private setFee() {
             this.optionsOpened = false;
-            this.fee = (this.$refs.fee as SelectBar).value;
+            this.feeLunaPerByte = (this.$refs.feeSetter as SelectBar).value;
         }
 
         private setValue(value: number) {
@@ -246,9 +258,23 @@ enum Details {
                     value: 2,
                     text: 'express',
                     index: 2,
-                }],
+                }] as SelectBarOption[],
                 Details,
             };
+        }
+
+        private get fee(): number {
+            if (this.extraData) {
+                return this.feeLunaPerByte * (166 + Utf8Tools.stringToUtf8ByteArray(this.extraData).byteLength);
+            }
+            return this.feeLunaPerByte * 138;
+        }
+
+        private get feePreview(): number {
+            if (this.extraData) {
+                return this.feeLunaPerBytePreview * (166 + Utf8Tools.stringToUtf8ByteArray(this.extraData).byteLength);
+            }
+            return this.feeLunaPerBytePreview * 138;
         }
 
         @Emit()
@@ -349,6 +375,10 @@ enum Details {
         margin-top: .5rem;
     }
 
+    .overlay.fee .amount {
+        margin-top: 3rem;
+    }
+
     .overlay .cancel-circle {
         font-size: 3rem;
         position: absolute;
@@ -358,8 +388,6 @@ enum Details {
         padding: 0;
         height: unset;
     }
-
-
 
     .send-tx .overlay ~ .page-body {
         opacity: .5;
@@ -410,6 +438,10 @@ enum Details {
     .sender-and-recipient .account .identicon {
         width: 9rem;
         height: 9rem;
+    }
+
+    .fee-section {
+        opacity: 0.5;
     }
 
     .scan-qr {
