@@ -23,23 +23,23 @@ import LabelInput from './LabelInput.vue';
 @Component
 export default class AmountInput extends Vue {
     @Prop(Number) private maxFontSize?: number;
-    @Prop({type: Number}) private value?: number;
-    @Prop({type: Number, default: 2100000000000000}) private maxValue!: number;
+    @Prop({type: Number}) private amount?: number;
+    @Prop({type: Number, default: 2100000000000000}) private maxAmount!: number;
     @Prop({type: String, default: '0.00'}) private placeholder!: string;
 
-    private liveValue = null;
-    private lastValue = this.value;
-    private lastEmittedValue = this.value;
-    private showDot = false;
+    private liveValue: string = null;
+    private lastEmittedValue = 0;
     private width = 50;
     private fontSize = this.maxFontSize;
     private maxWidth = 0;
+    private valueInLuna = 0;
 
     public async mounted() {
         if (this.maxFontSize) {
             this.maxWidth = (this.$refs.fullWidth as HTMLElement).offsetWidth;
         }
-        this.liveValue = this.value;
+        this.formattedValue = this.amount ? (this.amount / 1e5).toString() : null;
+        if (!this.formattedValue) this.updateWidth();
     }
 
     public focus() {
@@ -47,9 +47,9 @@ export default class AmountInput extends Vue {
     }
 
     private onBlur() {
-        if (this.liveValue === this.lastEmittedValue) return;
-        this.$emit('changed', this.liveValue);
-        this.lastEmittedValue = this.liveValue;
+        if (this.valueInLuna === this.lastEmittedValue) return;
+        this.$emit('changed', this.valueInLuna);
+        this.lastEmittedValue = this.valueInLuna;
         (this.$refs.input as HTMLInputElement).blur();
     }
 
@@ -67,31 +67,34 @@ export default class AmountInput extends Vue {
     }
 
     public get formattedValue() {
-        if (!this.liveValue) return null;
-        return `${Number(this.liveValue / 1e5)}${this.showDot ? '.' : ''}`;
+        return this.liveValue;
     }
 
     public set formattedValue(value: string) {
         if (!value) {
             this.liveValue = null;
+            return;
         }
         value = value.replace(/\,/, '.');
         const regExp = new RegExp(/(\d*)(\.(\d{0,5}))?/g);
         const regExpResult = regExp.exec(value);
         if (regExpResult[1]) {
-            this.liveValue = Number(`${regExpResult[1]}${regExpResult[2] ? regExpResult[3].padEnd(5, '0') : '00000'}`);
-            if (this.liveValue > this.maxValue) this.liveValue = this.maxValue;
+            this.liveValue = `${regExpResult[1]}${regExpResult[2] ? regExpResult[2] : ''}`;
+            this.valueInLuna = Number(`${regExpResult[1]}${regExpResult[2] ? regExpResult[3].padEnd(5, '0') : '00000'}`);
+            if (this.valueInLuna > this.maxAmount) {
+                this.liveValue = Number(this.maxAmount / 1e5).toString();
+                this.valueInLuna = this.maxAmount;
+            }
         }
 
-        if (this.liveValue > 0 && !this.lastEmittedValue) {
-            this.$emit('changed', this.liveValue);
-            this.lastEmittedValue = this.liveValue;
+        if (this.valueInLuna && !this.lastEmittedValue) {
+            this.$emit('changed', this.valueInLuna);
+            this.lastEmittedValue = this.valueInLuna;
         }
-        if (!this.liveValue && this.lastEmittedValue > 0) {
+        if (!this.valueInLuna && this.lastEmittedValue) {
             this.$emit('changed', 0);
             this.lastEmittedValue = 0;
         }
-        this.showDot = regExpResult[2] === '.' && regExpResult[3] === '';
         // Trigger a valueChange for the getter.
         this.$forceUpdate();
     }
