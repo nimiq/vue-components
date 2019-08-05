@@ -46,7 +46,7 @@
                 :label="details === Details.SENDER ? sender.label : recipient.label"
                 @close="details = Details.CLOSED"
                 @changed="setLabel"
-                />
+            />
             <PageFooter>
                 <button class="nq-button light-blue" @click="storeContactAndCloseOverlay()">Save Contact</button>
             </PageFooter>
@@ -83,7 +83,7 @@
                     <Account layout="column" :address="recipient.address" :label="recipient.label || 'Unnamed Contact'"/>
                 </a>
             </div>
-            <AmountInput class="value" :vanishing="true" placeholder="0.00" :amount="null" :maxAmount="sender.balance" :maxFontSize="8" @changed="setValue" ref="valueInput" />
+            <AmountInput class="value" :maxAmount="sender.balance" @changed="setValue" ref="valueInput" />
             <LabelInput :vanishing="true" placeholder="Add a public message..." :maxBytes="64" @changed="setMessage" />
         </PageBody>
 
@@ -138,19 +138,19 @@ enum Details {
     export default class SendTx extends Vue {
         @Prop(Array) public contacts!: Array<{ address: string, label: string }>;
         @Prop(Array) public wallets!: WalletInfo[];
-        @Prop({type: Object, default: null}) public preselectedSender: {walletId: string, address: string};
-        @Prop({type: Object, default: null}) public preselectedRecipient: {address: string, label: string};
-        @Prop({type: Number, default: null}) public preselectedValue: number;
-        @Prop({type: String, default: null}) public preselectedMessage: string;
+        @Prop(Object) public preselectedSender?: {walletId: string, address: string};
+        @Prop(Object) public preselectedRecipient?: {address: string, label: string};
+        @Prop({type: Number, default: 0}) public preselectedValue!: number;
+        @Prop({type: String, default: ''}) public preselectedMessage!: string;
 
 
-        private sender: {address: string, label: string, walletId: string, balance: number} = null;
-        private recipient: {address: string, label: string} = null;
+        private sender: {address: string, label: string, walletId: string, balance: number} | null = null;
+        private recipient: {address: string, label: string} | null = null;
         private details = Details.CLOSED;
         private contactsOpened = false;
         private optionsOpened = false;
         private fee = 0;
-        private value: number = null;
+        private value: number = 0;
         private extraData = '';
         private label = '';
 
@@ -166,16 +166,16 @@ enum Details {
         }
 
         private setSender(walletId: string, address: string) {
-            const wallet = this.wallets.find((value, index) => value.id === walletId);
+            const wallet = this.wallets.find((wallet) => wallet.id === walletId);
+            if (!wallet) return;
             const foundAddress = wallet.accounts.get(address);
-            if (foundAddress) {
-                this.sender = {
-                    address,
-                    label: foundAddress.label,
-                    walletId,
-                    balance: foundAddress.balance,
-                };
-            }
+            if (!foundAddress) return;
+            this.sender = {
+                address,
+                label: foundAddress.label,
+                walletId,
+                balance: foundAddress.balance || 0,
+            };
         }
 
         private async setRecipient(address: string, label: string) {
@@ -204,8 +204,8 @@ enum Details {
             this.value = value;
         }
 
-        private setMessage(value) {
-            this.extraData = value;
+        private setMessage(message: string) {
+            this.extraData = message;
         }
 
         private async setLabel(label: string) {
@@ -215,7 +215,7 @@ enum Details {
         }
 
         private storeContactAndCloseOverlay() {
-            this.recipient.label = this.label;
+            this.recipient!.label = this.label;
             this.$emit('contact-added', this.recipient);
             this.details = Details.CLOSED;
         }
@@ -417,6 +417,12 @@ enum Details {
         bottom: 3rem;
         right: 3rem;
         opacity: .4;
+        transition: opacity .2s ease;
+    }
+
+    .scan-qr:hover,
+    .scan-qr:focus {
+        opacity: .8;
     }
 
     .scan-qr svg {
