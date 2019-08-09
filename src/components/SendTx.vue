@@ -92,7 +92,7 @@
         </PageBody>
 
         <PageFooter>
-            <button class="nq-button light-blue" :disabled="value === 0" @click="sendTransaction">Send transaction</button>
+            <button class="nq-button light-blue" :disabled="value === 0" @click="sendTransaction">{{buttonText}}</button>
         </PageFooter>
     </SmallPage>
 </template>
@@ -147,6 +147,7 @@ enum Details {
         @Prop(Array) public wallets!: WalletInfo[];
         @Prop(Object) public preselectedSender?: {walletId: string, address: string};
         @Prop(Object) public preselectedRecipient?: {address: string, label: string};
+        @Prop({type: Boolean, default: false}) public isLoading;
         @Prop({type: Number, default: 0}) public preselectedValue!: number;
         @Prop({type: String, default: ''}) public preselectedMessage!: string;
 
@@ -241,12 +242,15 @@ enum Details {
         }
 
         private sendTransaction() {
-            this.$emit('send-tx',
-                this.sender,
-                this.recipient,
-                this.value,
-                this.extraData,
-                this.fee);
+            // needs to be SendTransactionRequest
+            this.$emit('send-tx', {
+                sender: this.sender.address,
+                recipient: this.recipient.address,
+                recipientType: 0, // Nimiq.Account.Type.BASIC
+                value: this.value,
+                fee: this.fee,
+                extraData: this.extraData,
+            });
         }
 
         private data() {
@@ -283,6 +287,10 @@ enum Details {
                 return this.feeLunaPerBytePreview * (166 + Utf8Tools.stringToUtf8ByteArray(this.extraData).byteLength);
             }
             return this.feeLunaPerBytePreview * 138;
+        }
+
+        private get buttonText(): string {
+            return this.isLoading ? 'Sending Trasnaction' : 'Send Transaction';
         }
 
         @Emit()
