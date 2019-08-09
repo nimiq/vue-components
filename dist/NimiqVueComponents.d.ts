@@ -5,12 +5,77 @@
 //   ../qr-scanner
 
 declare module 'NimiqVueComponents' {
+    export { default as Account } from 'NimiqVueComponents/src/components/Account.vue';
+    export { default as AccountDetails } from 'NimiqVueComponents/src/components/AccountDetails.vue';
+    export { default as AccountList } from 'NimiqVueComponents/src/components/AccountList.vue';
+    export { default as AccountSelector } from 'NimiqVueComponents/src/components/AccountSelector.vue';
     export { default as ContactList } from 'NimiqVueComponents/src/components/ContactList.vue';
+    export { default as Identicon } from 'NimiqVueComponents/src/components/Identicon.vue';
     export { default as MigrationWelcome } from 'NimiqVueComponents/src/components/MigrationWelcome.vue';
     export { default as QrCode } from 'NimiqVueComponents/src/components/QrCode.vue';
     export { default as QrScanner } from 'NimiqVueComponents/src/components/QrScanner.vue';
+    export { default as SendTx } from 'NimiqVueComponents/src/components/SendTx.vue';
     export { default as WalletMenu } from 'NimiqVueComponents/src/components/WalletMenu.vue';
     export * from 'NimiqVueComponents/src/components/Icons';
+}
+
+declare module 'NimiqVueComponents/src/components/Account.vue' {
+    import { Vue } from 'vue-property-decorator';
+    export default class Account extends Vue {
+        address: string;
+        image?: string;
+        displayAsCashlink: boolean;
+        label: string;
+        placeholder?: string;
+        walletLabel?: string;
+        balance?: number;
+        decimals: number;
+        editable?: boolean;
+        layout: string;
+        focus(): void;
+    }
+}
+
+declare module 'NimiqVueComponents/src/components/AccountDetails.vue' {
+    import { Vue } from 'vue-property-decorator';
+    export default class AccountDetails extends Vue {
+    }
+}
+
+declare module 'NimiqVueComponents/src/components/AccountList.vue' {
+    import { Vue } from 'vue-property-decorator';
+    import { AccountInfo } from 'NimiqVueComponents/src/components/AccountSelector.vue';
+    export default class AccountList extends Vue {
+        accounts: AccountInfo[];
+        focus(address: string): void;
+    }
+}
+
+declare module 'NimiqVueComponents/src/components/AccountSelector.vue' {
+    import { Vue } from 'vue-property-decorator';
+    export interface ContractInfo {
+        label: string;
+        userFriendlyAddress: string;
+        balance?: number;
+        walletId?: string;
+    }
+    export interface AccountInfo {
+        path: string;
+        label: string;
+        userFriendlyAddress: string;
+        balance?: number;
+        walletId?: string;
+    }
+    export interface WalletInfo {
+        id: string;
+        label: string;
+        accounts: Map<string, AccountInfo>;
+        contracts: any[];
+        type: number;
+        keyMissing: boolean;
+    }
+    export default class AccountSelector extends Vue {
+    }
 }
 
 declare module 'NimiqVueComponents/src/components/ContactList.vue' {
@@ -20,6 +85,15 @@ declare module 'NimiqVueComponents/src/components/ContactList.vue' {
             address: string;
             label: string;
         }>;
+    }
+}
+
+declare module 'NimiqVueComponents/src/components/Identicon.vue' {
+    import { Vue } from 'vue-property-decorator';
+    export default class Identicon extends Vue {
+        static formatAddress(str: string): string;
+        static isUserFriendlyAddress(str: string): boolean;
+        address: string;
     }
 }
 
@@ -86,6 +160,29 @@ declare module 'NimiqVueComponents/src/components/QrScanner.vue' {
     export default QrScanner;
 }
 
+declare module 'NimiqVueComponents/src/components/SendTx.vue' {
+    import { Vue } from 'vue-property-decorator';
+    import { WalletInfo } from 'NimiqVueComponents/src/components/AccountSelector.vue';
+    export default class SendTx extends Vue {
+        contacts: Array<{
+            address: string;
+            label: string;
+        }>;
+        wallets: WalletInfo[];
+        preselectedSender?: {
+            walletId: string;
+            address: string;
+        };
+        preselectedRecipient?: {
+            address: string;
+            label: string;
+        };
+        isLoading: any;
+        preselectedValue: number;
+        preselectedMessage: string;
+    }
+}
+
 declare module 'NimiqVueComponents/src/components/WalletMenu.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class WalletMenu extends Vue {
@@ -99,8 +196,16 @@ declare module 'NimiqVueComponents/src/components/Icons' {
     export const AlertTriangleIcon: any;
     export const ArrowLeftIcon: any;
     export const ArrowRightSmallIcon: any;
+    export const ArrowRightIcon: any;
+    export const CaretRightSmallIcon: any;
+    export const CloseIcon: any;
+    export const ContactsIcon: any;
     export const GearIcon: any;
     export const HexagonIcon: any;
+    export const InfoCircleIcon: any;
     export const MenuDotsIcon: any;
+    export const QrCodeIcon: any;
+    export const ScanQrCodeIcon: any;
+    export const SettingsIcon: any;
 }
 
