@@ -84,12 +84,6 @@
         })
         public size!: number;
 
-        private mounted() {
-            const $canvas = this.$el as HTMLCanvasElement;
-            $canvas.width = this.size;
-            $canvas.height = this.size;
-        }
-
         @Watch('data', { immediate: true })
         @Watch('errorCorrection')
         @Watch('radius')

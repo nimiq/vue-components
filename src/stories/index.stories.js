@@ -10,9 +10,11 @@ import Address from '../components/Address.vue';
 import AddressDisplay from '../components/AddressDisplay.vue';
 import AccountRing from '../components/AccountRing.vue';
 import Amount from '../components/Amount.vue';
+import AmountInput from '../components/AmountInput.vue';
 import AmountWithDetails from '../components/AmountWithDetails.vue';
 import Contact from '../components/Contact.vue';
 import ContactList from '../components/ContactList.vue';
+import ContactShortcuts from '../components/ContactShortcuts.vue';
 import Identicon from '../components/Identicon.vue';
 import LabelInput from '../components/LabelInput.vue';
 import Wallet from '../components/Wallet.vue';
@@ -21,12 +23,14 @@ import WalletMenu from '../components/WalletMenu.vue';
 import PaymentInfoLine from '../components/PaymentInfoLine.vue';
 import QrCode from '../components/QrCode.vue';
 import QrScanner from '../components/QrScanner.vue';
+import SelectBar from '../components/SelectBar.vue';
 import SmallPage from '../components/SmallPage.vue';
 import PageHeader from '../components/PageHeader.vue';
 import PageBody from '../components/PageBody.vue';
 import PageFooter from '../components/PageFooter.vue';
 import LoadingSpinner from '../components/LoadingSpinner.vue';
 import MigrationWelcome from '../components/MigrationWelcome.vue';
+import SendTx from '../components/SendTx.vue';
 import * as Icons from '../components/Icons';
 
 function windowTemplate(slot) {
@@ -52,6 +56,15 @@ storiesOf('Basic', module)
             data: () => ({ amount, minDecimals, maxDecimals, decimals, showApprox }),
             template: `<Amount :amount="amount" :minDecimals="minDecimals" :maxDecimals="maxDecimals"
                 :decimals="decimals" :showApprox="showApprox" />`,
+        };
+    })
+    .add('AmountInput', () => {
+        return {
+            components: { AmountInput },
+            methods: {
+                changed: action('changed'),
+            },
+            template: `<AmountInput @changed="changed"/>`,
         };
     })
     .add('Icons', () => {
@@ -121,6 +134,35 @@ storiesOf('Basic', module)
             components: {LoadingSpinner},
             template: `<div style="color: #0582CA"><LoadingSpinner /></div>`,
         };
+    })
+    .add('SelectBar', () => {
+        return {
+            components: { SelectBar },
+            methods: {
+                changed: action('changed'),
+            },
+            data() {
+                return {
+                    options: [{
+                        color: 'nq-light-blue-bg',
+                        value: 0,
+                        text: 'free',
+                        index: 0,
+                    }, {
+                        color: 'nq-green-bg',
+                        value: 1,
+                        text: 'standard',
+                        index: 1,
+                    }, {
+                        color: 'nq-gold-bg',
+                        value: 2,
+                        text: 'express',
+                        index: 2,
+                    }],
+                };
+            },
+            template: `<SelectBar :options="options" @changed="changed"/>`
+        }
     });
 
 storiesOf('Components', module)
@@ -137,15 +179,17 @@ storiesOf('Components', module)
         }, '');
         const balance = number('Balance (can be empty)', 12023110);
         const editable = boolean('Editable', false);
+        const cashlink = boolean('Cashlink', false);
 
         return {
             components: {Account},
             methods: {
                 changed: action('changed'),
             },
-            data: () => ({ layout, address, label, walletLabel, image, balance, editable }),
+            data: () => ({ layout, address, label, walletLabel, image, balance, editable, cashlink }),
             template: `<Account :layout="layout" :address="address" :label="label" :walletLabel="walletLabel"
-                :image="image" :balance="balance" :editable="editable" @changed="changed"></Account>`,
+                :image="image" :balance="balance" :editable="editable" :displayAsCashlink="cashlink"
+                @changed="changed"/>`,
         };
     })
     .add('AccountList', () => {
@@ -450,6 +494,33 @@ storiesOf('Components', module)
                     <button class="nq-button" @click="reset">Reset</button>
                 </div>
             `
+        };
+    })
+    .add('ContactShortcuts', () => {
+        // setup knobs
+        const contacts = object('Contacts', [{
+            label: 'Nimiq Bar',
+            address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
+        }, {
+            label: 'Nimiq Shop',
+            address: 'NQ26 XM1G BFAD PACE R5L0 C85L 6143 FD8L 82U9',
+        }, {
+            label: 'Nimiq Foundation',
+            address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF',
+        }, {
+            label: 'Nimiq Charity',
+            address: 'NQ19 YG54 46TX EHGQ D2R2 V8XA JX84 UFG0 S0MC',
+        }]);
+
+        return {
+            components: { ContactShortcuts },
+            data: () => ({
+                contacts
+
+            }),
+            methods: {
+            },
+            template: `<ContactShortcuts :contacts="contacts"/>`,
         };
     })
     .add('Wallet', () => {
@@ -803,7 +874,7 @@ storiesOf('Pages', module)
                 <small-page style="height: 560px;">
                     <AccountDetails :address="account.userFriendlyAddress" :label="label"
                     :balance="account.balance" :walletLabel="walletLabel"
-                    :image="shopLogoUrl" @close="close"/>
+                    :image="shopLogoUrl" @close="close" :editable="true"/>
                 </small-page>
             `),
         };
@@ -819,6 +890,103 @@ storiesOf('Pages', module)
                 finished: action('finished'),
             },
             template: windowTemplate(`<migration-welcome :link="link" @finished="finished"></migration-welcome>`),
+        };
+    })
+    .add('SendTx', () => {
+        const contacts = object('Contacts', [{
+            label: 'Nimiq Bar',
+            address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
+        }, {
+            label: 'Nimiq Shop',
+            address: 'NQ26 XM1G BFAD PACE R5L0 C85L 6143 FD8L 82U9',
+        }, {
+            label: 'Nimiq Foundation',
+            address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF',
+        }, {
+            label: 'Nimiq Charity',
+            address: 'NQ19 YG54 46TX EHGQ D2R2 V8XA JX84 UFG0 S0MC',
+        }]);
+        const wallets = object('Wallets', [
+            {
+                id: 'helloworld',
+                label: 'Keyguard Wallet',
+                type: 2, // BIP39
+                accounts: new Map([
+                    ['NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM', {
+                        userFriendlyAddress: 'NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM',
+                        label: 'Primary account',
+                        balance: 12023110,
+                        path: "44'/242'/0'/0'",
+                    }],
+                    ['NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1', {
+                        userFriendlyAddress: 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1',
+                        label: 'HODL account',
+                        balance: 2712415141213,
+                        path: "44'/242'/0'/1'",
+                    }],
+                ]),
+                contracts: [
+                    {
+                        userFriendlyAddress: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE',
+                        label: 'My Vesting Contract',
+                        balance: 777777777,
+                    },
+                ],
+            },
+            {
+                id: 'helloword2',
+                label: 'Ledger Wallet',
+                type: 3, // LEDGER
+                accounts: new Map([
+                    ['NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK', {
+                        userFriendlyAddress: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
+                        label: 'My Ledger Account',
+                        balance: 9876543210,
+                        path: "44'/242'/0'/0'",
+                    }]
+                ]),
+                contracts: [],
+            },
+            {
+                id: 'helloword3',
+                label: 'Ledger Wallet',
+                type: 3, // LEDGER
+                accounts: new Map([
+                    ['NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK', {
+                        userFriendlyAddress: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
+                        label: 'My second Ledger Account',
+                        balance: 98765210,
+                        path: "44'/242'/0'/0'",
+                    }]
+                ]),
+                contracts: [],
+            },
+        ]);
+        const value = number('Value', 1000009);
+        return {
+            components: { SendTx },
+            data: () => ({
+                contacts,
+                wallets,
+                value,
+            }),
+            methods: {
+                contactAdded: action('contactAdded'),
+                sendTx: action('sendTx'),
+                login: action('login'),
+                scanQr: action('scanQr'),
+                createCashlink: action('createCashlink'),
+            },
+            template:  windowTemplate(`<SendTx
+                :contacts="contacts"
+                :wallets="wallets"
+                @login="login"
+                @scan-qr="scanQr"
+                @send-tx="sendTx"
+                @contact-added="contactAdded"
+                @create-cashlink="createCashlink"
+                :preselectedValue="value"
+                />`),
         };
     });
 
