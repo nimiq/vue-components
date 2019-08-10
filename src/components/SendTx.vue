@@ -432,7 +432,7 @@ enum Details {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: space-around;
+        justify-content: space-between;
     }
 
     .send-tx .blur-target {
@@ -534,13 +534,13 @@ enum Details {
 
     .sender-and-recipient {
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         width: 100%;
     }
 
     .arrow-wrapper {
         font-size: 3rem;
-        margin-top: -3.25rem;
+        margin-top: 5.25rem;
     }
 
     .sender-and-recipient a {
