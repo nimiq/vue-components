@@ -77,7 +77,7 @@
             </SmallPage>
         </transition>
 
-        <PageHeader :backArrow="true" class="blur-target" @back="liveRecipient = null; detailsClosed = Details.NONE; contactsOpened = false;">
+        <PageHeader :backArrow="!sender || !recipient" class="blur-target" @back="backFromAmount">
             Set Amount
             <a href="javascript:void(0)" class="nq-blue options-button" @click="optionsOpened = true" title="Open settings">
                 <SettingsIcon/>
@@ -166,7 +166,6 @@ enum Details {
         @Prop({type: String, default: ''}) public message!: string;
         @Prop({type: Number, default: 0}) public validityStartHeight!: number;
 
-
         private liveSender: {
             address: string,
             label: string,
@@ -184,8 +183,20 @@ enum Details {
         private liveExtraData = '';
         private liveContactLabel = '';
 
+        public clear() {
+            this.liveSender = null;
+            this.liveRecipient = null;
+            this.displayedDetails = Details.NONE;
+            this.contactsOpened = false;
+            this.optionsOpened = false;
+            this.feeLunaPerByte = 0;
+            this.liveValue = 0;
+            this.liveExtraData = '';
+            this.liveContactLabel = '';
+        }
+
         @Watch('sender', {immediate: true})
-        private setSender(sender: {walletId: string, address: string}) {
+        private setSender(sender: {walletId: string, address: string} | null) {
             if (!sender) {
                 this.liveSender = null;
                 return;
@@ -213,7 +224,7 @@ enum Details {
         }
 
         @Watch('recipient', {immediate: true})
-        private async setRecipient(recipient: {address: string, label?: string}) {
+        private async setRecipient(recipient: {address: string, label?: string} | null) {
             if (!recipient) {
                 this.liveRecipient = null;
                 return;
@@ -250,6 +261,13 @@ enum Details {
 
         private updateRecipient(address: string, label?: string) {
             this.setRecipient({address, label});
+        }
+
+        private backFromAmount() {
+            if (!this.recipient) this.liveRecipient = null;
+            else if (!this.sender) this.liveSender = null;
+
+            this.contactsOpened = false;
         }
 
         private updateFeePreview(fee: number) {
