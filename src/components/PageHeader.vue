@@ -3,7 +3,7 @@
         <div v-if="progressIndicator" class="progress-indicator">
             <div v-for="thisStep in progressSteps" class="indicator" :class="thisStep <= step ? 'active' : ''" :key="thisStep"></div>
         </div>
-        <a v-if="backArrow" href="#" class="page-header-back-button" @click.prevent="$emit('back')">
+        <a v-if="backArrow" href="#" class="page-header-back-button" @click.prevent="$emit('back')" title="Go back">
             <ArrowLeftIcon/>
         </a>
         <h1 class="nq-h1"><slot></slot></h1>

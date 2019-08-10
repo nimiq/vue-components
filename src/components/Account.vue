@@ -216,10 +216,6 @@
         max-height: calc(2 * 1em * 1.5); /* #lines * font-size * line-height */
     }
 
-    .column .label-input >>> input {
-        text-align: center;
-    }
-
     .label.address-font {
         font-family: "Fira Mono", "Andale Mono", monospace;
         font-weight: normal;

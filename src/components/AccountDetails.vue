@@ -43,7 +43,7 @@ export default class AccountDetails extends Vue {
         align-items: center;
         flex-grow: 1;
         position: relative;
-        background: rgba(255, 255, 255, 0.95);
+        /* background: rgba(255, 255, 255, 0.95); */
         padding: 4rem;
         border-radius: 1rem;
         width: 100%;
@@ -58,6 +58,7 @@ export default class AccountDetails extends Vue {
         right: 2rem;
         padding: 0;
         height: unset;
+        background: none;
     }
 
     .cancel-circle .nq-icon {

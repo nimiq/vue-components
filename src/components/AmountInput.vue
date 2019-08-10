@@ -1,5 +1,5 @@
 <template>
-    <div class="amount">
+    <div class="amount-input">
         <form class="label-input" @submit.prevent="onBlur" ref="fullWidth">
             <span class="width-finder width-placeholder" ref="widthPlaceholder">{{placeholder}}</span>
             <div v-if="maxFontSize" class="full-width" :class="{'width-finder': maxWidth > 0}" >Width</div>
@@ -10,7 +10,7 @@
                 v-model="formattedValue"
                 ref="input">
         </form>
-        <span>NIM</span>
+        <span class="nim">NIM</span>
     </div>
 </template>
 
@@ -122,7 +122,7 @@ export default class AmountInput extends Vue {
         width: 1000px;
     }
 
-    .amount {
+    .amount-input {
         display: flex;
         align-items: baseline;
         justify-content: center;
@@ -130,11 +130,11 @@ export default class AmountInput extends Vue {
         font-size: 8rem;
     }
 
-    .amount form {
+    .amount-input form {
         display: flex;
     }
 
-    .amount > span {
+    .amount-input .nim {
         padding-left: 1rem;
         font-size: 4rem;
         font-weight: 700;

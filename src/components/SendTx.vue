@@ -3,24 +3,26 @@
         <PageHeader>
             Choose Sender
         </PageHeader>
-        <AccountSelector :wallets="wallets" @account-selected="setSender" @login="login" />
+        <AccountSelector :wallets="wallets" :minBalance="1" @account-selected="setSender" @login="login" />
     </SmallPage>
 
-    <SmallPage v-else-if="!recipient" class="send-tx">
-        <SmallPage class="overlay" v-if="contactsOpened">
-            <PageHeader :backArrow="true" @back="contactsOpened = false">
-                Select a contact
-            </PageHeader>
-            <PageBody class="contacts">
-                <ContactList :contacts="contacts" @select-contact="setRecipient"/>
-            </PageBody>
-        </SmallPage>
+    <SmallPage v-else-if="!recipient" class="send-tx" :class="{'overlay-open': contactsOpened}">
+        <transition name="transition-fade">
+            <SmallPage class="overlay" v-if="contactsOpened">
+                <PageHeader :backArrow="true" @back="contactsOpened = false">
+                    Select a contact
+                </PageHeader>
+                <PageBody class="contacts">
+                    <ContactList :contacts="contacts" @select-contact="setRecipient"/>
+                </PageBody>
+            </SmallPage>
+        </transition>
 
-        <PageHeader :backArrow="!preselectedSender" @back="sender = null">
+        <PageHeader :backArrow="!preselectedSender" @back="sender = null" class="blur-target">
             Send Transaction
         </PageHeader>
 
-        <PageBody>
+        <PageBody class="blur-target">
             <ContactShortcuts
                 :contacts="contacts"
                 @contact-selected="setRecipient"
@@ -29,7 +31,7 @@
             <AddressInput class="address-input" @address-entered="setRecipient" />
         </PageBody>
 
-        <PageFooter>
+        <PageFooter class="blur-target">
             <p class="nq-text">Address unavailable?</p>
             <button class="nq-button-s" @click="createCashlink(sender)">Create a Cashlink</button>
             <a href="javascript:void(0)" class="scan-qr nq-blue" @click="scanQr">
@@ -38,61 +40,67 @@
         </PageFooter>
     </SmallPage>
 
-    <SmallPage v-else class="send-tx">
-        <SmallPage class="overlay" v-if="details !== Details.CLOSED">
-            <AccountDetails
-                :address="details === Details.SENDER ? sender.address : recipient.address"
-                :editable="details === Details.RECIPIENT"
-                :label="details === Details.SENDER ? sender.label : recipient.label"
-                @close="details = Details.CLOSED"
-                @changed="setLabel"
-            />
-            <PageFooter>
-                <button class="nq-button light-blue" @click="storeContactAndCloseOverlay()">Save Contact</button>
-            </PageFooter>
-        </SmallPage>
+    <SmallPage v-else class="send-tx" :class="{'overlay-open': displayedDetails || optionsOpened}">
+        <transition name="transition-fade">
+            <SmallPage class="overlay" v-if="displayedDetails">
+                <AccountDetails
+                    :address="displayedDetails === Details.SENDER ? sender.address : recipient.address"
+                    :editable="displayedDetails === Details.RECIPIENT"
+                    :label="displayedDetails === Details.SENDER ? sender.label : recipient.label"
+                    :walletLabel="displayedDetails === Details.SENDER ? sender.walletLabel : null"
+                    :balance="displayedDetails === Details.SENDER ? sender.balance : null"
+                    @close="displayedDetails = Details.NONE"
+                    @changed="setLabel"
+                />
+                <PageFooter v-if="displayedDetails === Details.RECIPIENT">
+                    <button class="nq-button light-blue" @click="storeContactAndCloseOverlay()">Save Contact</button>
+                </PageFooter>
+            </SmallPage>
+        </transition>
 
-        <SmallPage class="overlay fee" v-if="optionsOpened">
-            <a href="javascript:void(0)" class="nq-button-s cancel-circle" @click="optionsOpened = false">
-                <CloseIcon/>
-            </a>
-            <PageBody>
-                <h1 class="nq-h1">Speed up your transaction</h1>
-                <p class="nq-text">By adding a transation fee, you can influence how fast your transaction will be processed.</p>
-                <SelectBar ref="feeSetter" :options="OPTIONS" name="fee" :selectedValue="feeLunaPerByte" @changed="updateFeePreview" />
-                <Amount :amount="feePreview" :minDecimals="2" :maxDecimals="5" />
-            </PageBody>
-            <PageFooter>
-                <button class="nq-button light-blue" @click="setFee">Set fee</button>
-            </PageFooter>
-        </SmallPage>
+        <transition name="transition-fade">
+            <SmallPage class="overlay fee" v-if="optionsOpened">
+                <a href="javascript:void(0)" class="nq-button-s cancel-circle" @click="optionsOpened = false">
+                    <CloseIcon/>
+                </a>
+                <PageBody>
+                    <h1 class="nq-h1">Speed up your transaction</h1>
+                    <p class="nq-text">By adding a transation fee, you can influence how fast your transaction will be processed.</p>
+                    <SelectBar ref="feeSetter" :options="FEE_OPTIONS" name="fee" :selectedValue="feeLunaPerByte" @changed="updateFeePreview" />
+                    <Amount :amount="feePreview" :minDecimals="2" :maxDecimals="5" />
+                </PageBody>
+                <PageFooter>
+                    <button class="nq-button light-blue" @click="setFee">Set fee</button>
+                </PageFooter>
+            </SmallPage>
+        </transition>
 
-        <PageHeader :backArrow="true" @back="recipient = null; detailsClosed = Details.CLOSED; contactsOpened = false;">
+        <PageHeader :backArrow="true" class="blur-target" @back="recipient = null; detailsClosed = Details.NONE; contactsOpened = false;">
             Set Amount
-            <a href="javascript:void(0)" class="nq-blue options-button" @click="optionsOpened = true">
+            <a href="javascript:void(0)" class="nq-blue options-button" @click="optionsOpened = true" title="Open settings">
                 <SettingsIcon/>
             </a>
         </PageHeader>
 
-        <PageBody>
+        <PageBody class="blur-target">
             <div class="sender-and-recipient">
-                <a href="javascript:void(0);"  @click="details = Details.SENDER">
+                <a href="javascript:void(0);"  @click="displayedDetails = Details.SENDER">
                     <Account layout="column" :address="sender.address" :label="sender.label"/>
                 </a>
                 <div class="arrow-wrapper"><ArrowRightIcon class="nq-light-blue" /></div>
-                <a href="javascript:void(0);"  @click="details = Details.RECIPIENT">
-                    <Account layout="column" :address="recipient.address" :label="recipient.label || 'Unnamed Contact'"/>
+                <a href="javascript:void(0);" @click="displayedDetails = Details.RECIPIENT">
+                    <Account layout="column" :address="recipient.address" :label="recipient.label || 'Unnamed Contact'" :class="{invalid: !recipientValid}"/>
                 </a>
             </div>
-            <AmountInput class="value" v-model="liveValue" ref="valueInput" />
+            <AmountInput class="value" :class="{invalid: !balanceValid}" v-model="liveValue" ref="valueInput" />
             <div v-if="fee" class="fee-section nq-text-s">
                 + <Amount :amount="fee" :minDecimals="2" :maxDecimals="5" /> fee
             </div>
-            <LabelInput :vanishing="true" placeholder="Add a public message..." :maxBytes="64" @changed="setMessage" />
+            <LabelInput :vanishing="true" placeholder="Add a public message..." :maxBytes="64" v-model="liveExtraData" />
         </PageBody>
 
-        <PageFooter>
-            <button class="nq-button light-blue" :disabled="value === 0" @click="sendTransaction">{{buttonText}}</button>
+        <PageFooter class="blur-target">
+            <button class="nq-button light-blue" :disabled="!isValid" @click="sendTransaction">{{buttonText}}</button>
         </PageFooter>
     </SmallPage>
 </template>
@@ -117,7 +125,7 @@ import { ArrowRightIcon, CloseIcon, ScanQrCodeIcon, SettingsIcon } from './Icons
 import { Utf8Tools } from '@nimiq/utils';
 
 enum Details {
-    CLOSED,
+    NONE,
     SENDER,
     RECIPIENT,
 }
@@ -147,21 +155,22 @@ enum Details {
         @Prop(Array) public wallets!: WalletInfo[];
         @Prop(Object) public preselectedSender?: {walletId: string, address: string};
         @Prop(Object) public preselectedRecipient?: {address: string, label: string};
-        @Prop({type: Boolean, default: false}) public isLoading;
+        @Prop({type: Boolean, default: false}) public isLoading!: boolean;
         @Prop({type: Number, default: 0}) public value!: number;
-        @Prop({type: String, default: ''}) public preselectedMessage!: string;
+        @Prop({type: String, default: ''}) public message!: string;
+        @Prop({type: Number, default: 0}) public validityStartHeight!: number;
 
 
-        private sender: {address: string, label: string, walletId: string, balance: number} | null = null;
-        private recipient: {address: string, label: string} | null = null;
-        private details = Details.CLOSED;
+        private sender: {address: string, label: string, walletId: string, walletLabel: string, balance: number} | null = null;
+        private recipient: {address: string, label?: string} | null = null;
+        private displayedDetails = Details.NONE;
         private contactsOpened = false;
         private optionsOpened = false;
         private feeLunaPerByte = 0;
         private feeLunaPerBytePreview = 0;
         private liveValue: number = 0;
-        private extraData = '';
-        private label = '';
+        private liveExtraData = '';
+        private liveContactLabel = '';
 
         private async mounted() {
             if (this.preselectedSender) {
@@ -170,7 +179,6 @@ enum Details {
             if (this.preselectedRecipient) {
                 this.setRecipient(this.preselectedRecipient.address, this.preselectedRecipient.label);
             }
-            this.extraData = this.preselectedMessage;
         }
 
         private setSender(walletId: string, address: string) {
@@ -182,20 +190,21 @@ enum Details {
                 address,
                 label: foundAddress.label,
                 walletId,
+                walletLabel: wallet.label,
                 balance: foundAddress.balance || 0,
             };
         }
 
-        private async setRecipient(address: string, label: string) {
+        private async setRecipient(address: string, label?: string) {
             if (!label) {
                 const foundContact = this.contacts.find((contact) => contact.address === address);
                 if (foundContact) {
                     label = foundContact.label;
                 } else {
-                    this.details = Details.RECIPIENT;
+                    this.displayedDetails = Details.RECIPIENT;
                 }
             }
-            this.label = label;
+            this.liveContactLabel = label || '';
             this.recipient = {address, label};
             if (label) {
                 await Vue.nextTick(); // Await updated DOM
@@ -225,37 +234,38 @@ enum Details {
             }
         }
 
+        @Watch('message', { immediate: true })
         private setMessage(message: string) {
-            this.extraData = message;
+            this.liveExtraData = message;
         }
 
         private async setLabel(label: string) {
-            this.label = label;
+            this.liveContactLabel = label;
             await Vue.nextTick(); // Await updated DOM
             (this.$refs.valueInput as AmountInput).focus();
         }
 
         private storeContactAndCloseOverlay() {
-            this.recipient!.label = this.label;
+            this.recipient!.label = this.liveContactLabel;
             this.$emit('contact-added', this.recipient);
-            this.details = Details.CLOSED;
+            this.displayedDetails = Details.NONE;
         }
 
         private sendTransaction() {
             // needs to be SendTransactionRequest
             this.$emit('send-tx', {
-                sender: this.sender.address,
-                recipient: this.recipient.address,
+                sender: this.sender!.address,
+                recipient: this.recipient!.address,
                 recipientType: 0, // Nimiq.Account.Type.BASIC
                 value: this.liveValue,
                 fee: this.fee,
-                extraData: this.extraData,
+                extraData: this.liveExtraData,
             });
         }
 
         private data() {
             return {
-                OPTIONS: [{
+                FEE_OPTIONS: [{
                     color: 'nq-light-blue-bg',
                     value: 0,
                     text: 'free',
@@ -276,21 +286,43 @@ enum Details {
         }
 
         private get fee(): number {
-            if (this.extraData) {
-                return this.feeLunaPerByte * (166 + Utf8Tools.stringToUtf8ByteArray(this.extraData).byteLength);
+            if (this.liveExtraData) {
+                return this.feeLunaPerByte * (166 + Utf8Tools.stringToUtf8ByteArray(this.liveExtraData).byteLength);
             }
             return this.feeLunaPerByte * 138;
         }
 
         private get feePreview(): number {
-            if (this.extraData) {
-                return this.feeLunaPerBytePreview * (166 + Utf8Tools.stringToUtf8ByteArray(this.extraData).byteLength);
+            if (this.liveExtraData) {
+                return this.feeLunaPerBytePreview * (166 + Utf8Tools.stringToUtf8ByteArray(this.liveExtraData).byteLength);
             }
             return this.feeLunaPerBytePreview * 138;
         }
 
         private get buttonText(): string {
-            return this.isLoading ? 'Sending Trasnaction' : 'Send Transaction';
+            return !this.validityStartHeight
+                ? 'Awaiting Consensus...'
+                : this.isLoading
+                    ? 'Sending Transaction...'
+                    : 'Send Transaction';
+        }
+
+        private get recipientValid(): boolean {
+            if (!this.sender || !this.recipient) return false;
+            const normalizedSender = this.sender.address.replace(/[\+ ]/g, '').toUpperCase();
+            const normalizedRecipient = this.recipient.address.replace(/[\+ ]/g, '').toUpperCase();
+            return normalizedSender !== normalizedRecipient;
+        }
+
+        private get balanceValid(): boolean {
+            return !this.sender || this.liveValue + this.feeLunaPerByte <= this.sender.balance;
+        }
+
+        private get isValid(): boolean {
+            return this.liveValue > 0
+                && this.recipientValid
+                && this.balanceValid
+                && this.validityStartHeight > 0;
         }
 
         @Emit()
@@ -333,13 +365,13 @@ enum Details {
         flex-direction: column;
         align-items: center;
         justify-content: space-around;
+    }
+
+    .send-tx .blur-target {
         transition: filter .4s, opacity .3s;
-        opacity: 1;
-        -webkit-filter: blur(0px);
-        -moz-filter: blur(0px);
-        -o-filter: blur(0px);
-        -ms-filter: blur(0px);
         filter: blur(0px);
+        opacity: 1;
+
     }
 
     .send-tx .page-body > .nq-label {
@@ -369,6 +401,11 @@ enum Details {
         height: 14.5rem;
     }
 
+    .transition-fade-enter,
+    .transition-fade-leave-to {
+        opacity: 0;
+    }
+
     .overlay {
         position: absolute;
         z-index: 2;
@@ -376,6 +413,7 @@ enum Details {
         top: 0;
         margin: 0;
         background: rgba(255, 255, 255, .5);
+        transition: opacity .4s;
     }
 
     .overlay.fee .page-body {
@@ -403,20 +441,12 @@ enum Details {
         right: 2rem;
         padding: 0;
         height: unset;
+        background: none;
     }
 
-    .send-tx .overlay ~ .page-body {
+    .send-tx.overlay-open .blur-target {
         opacity: .5;
-        -webkit-filter: blur(20px);
-        -moz-filter: blur(20px);
-        -o-filter: blur(20px);
-        -ms-filter: blur(20px);
         filter: blur(20px);
-    }
-
-    .send-tx .overlay ~ .page-header,
-    .send-tx .overlay ~ .page-footer {
-        opacity: .05;
     }
 
     .cancel-circle .nq-icon {
@@ -451,9 +481,19 @@ enum Details {
         width: calc(50% - 1.1235rem);
     }
 
+    .sender-and-recipient .account.invalid {
+        color: var(--nimiq-red);
+        font-weight: 600;
+    }
+
     .sender-and-recipient .account .identicon {
         width: 9rem;
         height: 9rem;
+    }
+
+    .amount-input.invalid >>> input,
+    .amount-input.invalid >>> .nim {
+        color: var(--nimiq-red) !important;
     }
 
     .fee-section {
