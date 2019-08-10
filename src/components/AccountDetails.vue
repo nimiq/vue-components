@@ -4,7 +4,8 @@
             <CloseIcon/>
         </a>
         <Account layout="column" :address="address" :image="image" :label="label !== address ? label : ''"
-             :walletLabel="walletLabel" :balance="balance" :editable="editable" @changed="changed" ></Account>
+             :walletLabel="walletLabel" :balance="balance" :editable="editable" :placeholder="placeholder"
+             @changed="changed" ref="account" ></Account>
         <AddressDisplay :address="address"/>
     </div>
 </template>
@@ -24,6 +25,13 @@ export default class AccountDetails extends Vue {
     @Prop(String) private walletLabel?: string;
     @Prop(Number) private balance?: number;
     @Prop(Boolean) private editable?: boolean;
+    @Prop(String) private placeholder?: string;
+
+    public focus() {
+        if (this.editable) {
+            (this.$refs.account as Account).focus();
+        }
+    }
 
     @Emit()
     // tslint:disable-next-line no-empty
@@ -43,12 +51,13 @@ export default class AccountDetails extends Vue {
         align-items: center;
         flex-grow: 1;
         position: relative;
-        background: rgba(255, 255, 255, 0.95);
+        /* background: rgba(255, 255, 255, 0.95); */
         padding: 4rem;
         border-radius: 1rem;
         width: 100%;
         height: 100%;
         z-index: 2;
+        box-sizing: border-box;
     }
 
     .cancel-circle {
@@ -58,6 +67,7 @@ export default class AccountDetails extends Vue {
         right: 2rem;
         padding: 0;
         height: unset;
+        background: none;
     }
 
     .cancel-circle .nq-icon {

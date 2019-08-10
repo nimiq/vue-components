@@ -8,6 +8,7 @@ import AccountList from '../components/AccountList.vue';
 import AccountSelector from '../components/AccountSelector.vue';
 import Address from '../components/Address.vue';
 import AddressDisplay from '../components/AddressDisplay.vue';
+import AddressInput from '../components/AddressInput.vue';
 import AccountRing from '../components/AccountRing.vue';
 import Amount from '../components/Amount.vue';
 import AmountInput from '../components/AmountInput.vue';
@@ -59,12 +60,18 @@ storiesOf('Basic', module)
         };
     })
     .add('AmountInput', () => {
+        const value = number('Value', 0);
         return {
             components: { AmountInput },
-            methods: {
-                changed: action('changed'),
+            data() {
+                return {
+                    value,
+                };
             },
-            template: `<AmountInput @changed="changed"/>`,
+            methods: {
+                input: action('input'),
+            },
+            template: `<AmountInput :value="value" @input="input"/>`,
         };
     })
     .add('Icons', () => {
@@ -125,8 +132,9 @@ storiesOf('Basic', module)
             components: {LabelInput},
             methods: {
                 changed: action('changed'),
+                input: action('input'),
             },
-            template: `<LabelInput placeholder="Name this account..." @changed="changed"/>`,
+            template: `<LabelInput placeholder="Name this account..." @changed="changed" @input="input"/>`,
         };
     })
     .add('LabelInput (restricted to 63 bytes)', () => {
@@ -134,13 +142,14 @@ storiesOf('Basic', module)
             components: {LabelInput},
             methods: {
                 changed: action('changed'),
+                input: action('input'),
             },
             data() {
                 return {
                     value: "Standard Address"
                 };
             },
-            template: `<LabelInput :value="value" :maxBytes="63" @changed="changed"/>`,
+            template: `<LabelInput :value="value" :maxBytes="63" @changed="changed" @input="input"/>`,
         };
     })
     .add('LoadingSpinner', () => {
@@ -356,6 +365,22 @@ storiesOf('Components', module)
             },
             components: {AddressDisplay},
             template: `<AddressDisplay :address="address"/>`,
+        };
+    })
+    .add('AddressInput', () => {
+        return {
+            components: {AddressInput},
+            data() {
+                return {
+                    address: '',
+                    lastValidAddress: null,
+                };
+            },
+            template: `<div>
+                <AddressInput v-model="address" @address="lastValidAddress = $event" />
+                <div>Current address: {{ address }}</div>
+                <div>valid?: {{ address === lastValidAddress }}</div>
+            </div>`,
         };
     })
     .add('AccountRing', () => {
@@ -775,9 +800,11 @@ storiesOf('Components', module)
                 fill: '#0582ca',
                 background: '#ffffff',
                 size: 128,
+                dataUrl: '',
             }),
             template: windowTemplate(`
-                <QrCode :data="data" :errorCorrection="errorCorrection" :radius="parseFloat(radius)" :fill="fill"
+                <QrCode ref="qr-code"
+                    :data="data" :errorCorrection="errorCorrection" :radius="parseFloat(radius)" :fill="fill"
                     :background="background" :size="parseInt(size)"/>
                 <label>
                     Data
@@ -808,7 +835,15 @@ storiesOf('Components', module)
                     Size
                     <input v-model="size" type="number" min="1" step="1">
                 </label>
-            `)
+                <br>
+                <button @click="toDataUrl">Export to Data Url</button>
+                <div style="max-width: 500px; word-break: break-all">{{ dataUrl }}</div>
+            `),
+            methods: {
+                async toDataUrl() {
+                    this.dataUrl = await this.$refs['qr-code'].toDataUrl();
+                }
+            }
         };
     })
     .add('QrScanner', () => {
@@ -907,6 +942,8 @@ storiesOf('Pages', module)
         };
     })
     .add('SendTx', () => {
+        const valueIsReadonly = boolean('Value is readonly', false);
+        const messageIsReadonly = boolean('Message is readonly', false);
         const contacts = object('Contacts', [{
             label: 'Nimiq Bar',
             address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
@@ -977,12 +1014,16 @@ storiesOf('Pages', module)
             },
         ]);
         const value = number('Value', 1000009);
+        const message = text('Message', '');
         return {
             components: { SendTx },
             data: () => ({
                 contacts,
                 wallets,
                 value,
+                valueIsReadonly,
+                message,
+                messageIsReadonly,
             }),
             methods: {
                 contactAdded: action('contactAdded'),
@@ -994,12 +1035,16 @@ storiesOf('Pages', module)
             template:  windowTemplate(`<SendTx
                 :contacts="contacts"
                 :wallets="wallets"
+                :validityStartHeight="987654"
+                :value="value"
+                :valueIsReadonly="valueIsReadonly"
+                :message="message"
+                :messageIsReadonly="messageIsReadonly"
                 @login="login"
                 @scan-qr="scanQr"
                 @send-tx="sendTx"
                 @contact-added="contactAdded"
                 @create-cashlink="createCashlink"
-                :preselectedValue="value"
                 />`),
         };
     });
