@@ -28,7 +28,7 @@
                 @contact-selected="updateRecipient"
                 @contacts-opened="contacts.length > 0 ? contactsOpened = true : false"/>
             <label class="nq-label">Enter address</label>
-            <AddressInput class="address-input" @address-entered="updateRecipient" />
+            <AddressInput @address="updateRecipient" />
         </PageBody>
 
         <PageFooter class="blur-target">
