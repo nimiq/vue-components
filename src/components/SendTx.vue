@@ -104,7 +104,9 @@
         </PageBody>
 
         <PageFooter class="blur-target">
-            <button class="nq-button light-blue" :disabled="!isValid" @click="sendTransaction">{{buttonText}}</button>
+            <button class="nq-button light-blue" :disabled="!isValid || isLoading" @click="sendTransaction">
+                <CircleSpinner v-if="showButtonLoader"/>{{buttonText}}
+            </button>
         </PageFooter>
     </SmallPage>
 </template>
@@ -125,6 +127,7 @@ import LabelInput from './LabelInput.vue';
 import Amount from './Amount.vue';
 import AmountInput from './AmountInput.vue';
 import SelectBar, { SelectBarOption } from './SelectBar.vue';
+import CircleSpinner from './CircleSpinner.vue';
 import { ArrowRightIcon, CloseIcon, ScanQrCodeIcon, SettingsIcon } from './Icons';
 import { Utf8Tools } from '@nimiq/utils';
 
@@ -152,6 +155,7 @@ enum Details {
     CloseIcon,
     ScanQrCodeIcon,
     SelectBar,
+    CircleSpinner,
     SettingsIcon,
 }})
     export default class SendTx extends Vue {
@@ -234,6 +238,8 @@ enum Details {
                 // TODO: Search other accounts
                 if (foundContact) {
                     recipient.label = foundContact.label;
+                } else {
+                    this.displayedDetails = Details.RECIPIENT;
                 }
             }
 
@@ -241,11 +247,13 @@ enum Details {
             this.liveRecipient = recipient;
 
             if (this.liveSender) {
-                if (!this.value) {
-                    await Vue.nextTick(); // Await updated DOM
+                await Vue.nextTick(); // Await updated DOM
+
+                if (!recipient.label) {
+                    (this.$refs.accountDetails as AccountDetails).focus();
+                } else if (!this.value) {
                     (this.$refs.valueInput as AmountInput).focus();
                 } else if (!this.message) {
-                    await Vue.nextTick(); // Await updated DOM
                     (this.$refs.messageInput as LabelInput).focus();
                 }
             }
@@ -367,6 +375,10 @@ enum Details {
                 : this.isLoading
                     ? 'Sending Transaction...'
                     : 'Send Transaction';
+        }
+
+        private get showButtonLoader(): boolean {
+            return !this.validityStartHeight || this.isLoading;
         }
 
         private get recipientValid(): boolean {
@@ -596,6 +608,11 @@ enum Details {
     .scan-qr svg {
         width: 5rem;
         height: 5rem;
+    }
+
+    .nq-button >>> .circle-spinner {
+        margin-right: 1.5rem;
+        margin-bottom: -0.375rem;
     }
 
     .options-button {
