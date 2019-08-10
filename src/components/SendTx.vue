@@ -283,6 +283,7 @@ enum Details {
                 value: this.liveValue,
                 fee: this.fee,
                 extraData: this.liveExtraData,
+                validityStartHeight: this.validityStartHeight,
             });
         }
 
