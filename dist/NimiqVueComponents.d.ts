@@ -169,17 +169,18 @@ declare module 'NimiqVueComponents/src/components/SendTx.vue' {
             label: string;
         }>;
         wallets: WalletInfo[];
-        preselectedSender?: {
+        sender?: {
             walletId: string;
             address: string;
         };
-        preselectedRecipient?: {
+        recipient?: {
             address: string;
-            label: string;
+            label?: string;
         };
-        isLoading: any;
-        preselectedValue: number;
-        preselectedMessage: string;
+        isLoading: boolean;
+        value: number;
+        message: string;
+        validityStartHeight: number;
     }
 }
 
