@@ -1,39 +1,39 @@
 <template>
-    <SmallPage v-if="!sender" class="send-tx">
+    <SmallPage v-if="!liveSender" class="send-tx">
         <PageHeader>
             Choose Sender
         </PageHeader>
-        <AccountSelector :wallets="wallets" :minBalance="1" @account-selected="setSender" @login="login" />
+        <AccountSelector :wallets="wallets" :minBalance="1" @account-selected="updateSender" @login="login" />
     </SmallPage>
 
-    <SmallPage v-else-if="!recipient" class="send-tx" :class="{'overlay-open': contactsOpened}">
+    <SmallPage v-else-if="!liveRecipient" class="send-tx" :class="{'overlay-open': contactsOpened}">
         <transition name="transition-fade">
             <SmallPage class="overlay" v-if="contactsOpened">
                 <PageHeader :backArrow="true" @back="contactsOpened = false">
                     Select a contact
                 </PageHeader>
                 <PageBody class="contacts">
-                    <ContactList :contacts="contacts" @select-contact="setRecipient"/>
+                    <ContactList :contacts="contacts" @select-contact="updateRecipient"/>
                 </PageBody>
             </SmallPage>
         </transition>
 
-        <PageHeader :backArrow="!preselectedSender" @back="sender = null" class="blur-target">
+        <PageHeader :backArrow="!sender" @back="liveSender = null" class="blur-target">
             Send Transaction
         </PageHeader>
 
         <PageBody class="blur-target">
             <ContactShortcuts
                 :contacts="contacts"
-                @contact-selected="setRecipient"
+                @contact-selected="updateRecipient"
                 @contacts-opened="contacts.length > 0 ? contactsOpened = true : false"/>
             <label class="nq-label">Enter address</label>
-            <AddressInput class="address-input" @address-entered="setRecipient" />
+            <AddressInput class="address-input" @address-entered="updateRecipient" />
         </PageBody>
 
         <PageFooter class="blur-target">
             <p class="nq-text">Address unavailable?</p>
-            <button class="nq-button-s" @click="createCashlink(sender)">Create a Cashlink</button>
+            <button class="nq-button-s" @click="createCashlink(liveSender)">Create a Cashlink</button>
             <a href="javascript:void(0)" class="scan-qr nq-blue" @click="scanQr">
                 <ScanQrCodeIcon />
             </a>
@@ -44,11 +44,11 @@
         <transition name="transition-fade">
             <SmallPage class="overlay" v-if="displayedDetails">
                 <AccountDetails
-                    :address="displayedDetails === Details.SENDER ? sender.address : recipient.address"
+                    :address="displayedDetails === Details.SENDER ? liveSender.address : liveRecipient.address"
                     :editable="displayedDetails === Details.RECIPIENT"
-                    :label="displayedDetails === Details.SENDER ? sender.label : recipient.label"
-                    :walletLabel="displayedDetails === Details.SENDER ? sender.walletLabel : null"
-                    :balance="displayedDetails === Details.SENDER ? sender.balance : null"
+                    :label="displayedDetails === Details.SENDER ? liveSender.label : liveRecipient.label"
+                    :walletLabel="displayedDetails === Details.SENDER ? liveSender.walletLabel : null"
+                    :balance="displayedDetails === Details.SENDER ? liveSender.balance : null"
                     @close="displayedDetails = Details.NONE"
                     @changed="setLabel"
                 />
@@ -75,7 +75,7 @@
             </SmallPage>
         </transition>
 
-        <PageHeader :backArrow="true" class="blur-target" @back="recipient = null; detailsClosed = Details.NONE; contactsOpened = false;">
+        <PageHeader :backArrow="true" class="blur-target" @back="liveRecipient = null; detailsClosed = Details.NONE; contactsOpened = false;">
             Set Amount
             <a href="javascript:void(0)" class="nq-blue options-button" @click="optionsOpened = true" title="Open settings">
                 <SettingsIcon/>
@@ -85,11 +85,11 @@
         <PageBody class="blur-target">
             <div class="sender-and-recipient">
                 <a href="javascript:void(0);"  @click="displayedDetails = Details.SENDER">
-                    <Account layout="column" :address="sender.address" :label="sender.label"/>
+                    <Account layout="column" :address="liveSender.address" :label="liveSender.label"/>
                 </a>
                 <div class="arrow-wrapper"><ArrowRightIcon class="nq-light-blue" /></div>
                 <a href="javascript:void(0);" @click="displayedDetails = Details.RECIPIENT">
-                    <Account layout="column" :address="recipient.address" :label="recipient.label || 'Unnamed Contact'" :class="{invalid: !recipientValid}"/>
+                    <Account layout="column" :address="liveRecipient.address" :label="liveRecipient.label || 'Unnamed Contact'" :class="{invalid: !recipientValid}"/>
                 </a>
             </div>
             <AmountInput class="value" :class="{invalid: !balanceValid}" v-model="liveValue" ref="valueInput" />
@@ -153,16 +153,16 @@ enum Details {
     export default class SendTx extends Vue {
         @Prop(Array) public contacts!: Array<{ address: string, label: string }>;
         @Prop(Array) public wallets!: WalletInfo[];
-        @Prop(Object) public preselectedSender?: {walletId: string, address: string};
-        @Prop(Object) public preselectedRecipient?: {address: string, label: string};
+        @Prop(Object) public sender?: {walletId: string, address: string};
+        @Prop(Object) public recipient?: {address: string, label?: string};
         @Prop({type: Boolean, default: false}) public isLoading!: boolean;
         @Prop({type: Number, default: 0}) public value!: number;
         @Prop({type: String, default: ''}) public message!: string;
         @Prop({type: Number, default: 0}) public validityStartHeight!: number;
 
 
-        private sender: {address: string, label: string, walletId: string, walletLabel: string, balance: number} | null = null;
-        private recipient: {address: string, label?: string} | null = null;
+        private liveSender: {address: string, label: string, walletId: string, walletLabel: string, balance: number} | null = null;
+        private liveRecipient: {address: string, label?: string} | null = null;
         private displayedDetails = Details.NONE;
         private contactsOpened = false;
         private optionsOpened = false;
@@ -172,21 +172,22 @@ enum Details {
         private liveExtraData = '';
         private liveContactLabel = '';
 
-        private async mounted() {
-            if (this.preselectedSender) {
-                this.setSender(this.preselectedSender.walletId, this.preselectedSender.address);
+        @Watch('sender', {immediate: true})
+        private setSender(sender: {walletId: string, address: string}) {
+            if (!sender) {
+                this.liveSender = null;
+                return;
             }
-            if (this.preselectedRecipient) {
-                this.setRecipient(this.preselectedRecipient.address, this.preselectedRecipient.label);
-            }
-        }
 
-        private setSender(walletId: string, address: string) {
+            const walletId = sender.walletId;
+            const address = sender.address;
+
             const wallet = this.wallets.find((walletToCheck) => walletToCheck.id === walletId);
             if (!wallet) return;
             const foundAddress = wallet.accounts.get(address);
             if (!foundAddress) return;
-            this.sender = {
+
+            this.liveSender = {
                 address,
                 label: foundAddress.label,
                 walletId,
@@ -195,7 +196,20 @@ enum Details {
             };
         }
 
-        private async setRecipient(address: string, label?: string) {
+        private updateSender(walletId: string, address: string) {
+            this.setSender({walletId, address});
+        }
+
+        @Watch('recipient', {immediate: true})
+        private async setRecipient(recipient: {address: string, label?: string}) {
+            if (!recipient) {
+                this.liveRecipient = null;
+                return;
+            }
+
+            const address = recipient.address;
+            let label = recipient.label;
+
             if (!label) {
                 const foundContact = this.contacts.find((contact) => contact.address === address);
                 if (foundContact) {
@@ -204,12 +218,21 @@ enum Details {
                     this.displayedDetails = Details.RECIPIENT;
                 }
             }
+
             this.liveContactLabel = label || '';
-            this.recipient = {address, label};
+            this.liveRecipient = {
+                address,
+                label,
+            };
+
             if (label) {
                 await Vue.nextTick(); // Await updated DOM
                 (this.$refs.valueInput as AmountInput).focus();
             }
+        }
+
+        private updateRecipient(address: string, label?: string) {
+            this.setRecipient({address, label});
         }
 
         private updateFeePreview(fee: number) {
@@ -229,7 +252,7 @@ enum Details {
 
         @Watch('sender.balance')
         private checkBalance() {
-            if (this.sender && this.sender.balance && this.liveValue + this.fee > this.sender.balance) {
+            if (this.liveSender && this.liveSender.balance && this.liveValue + this.fee > this.liveSender.balance) {
                 console.log('Insufficient Balance');
             }
         }
@@ -246,16 +269,16 @@ enum Details {
         }
 
         private storeContactAndCloseOverlay() {
-            this.recipient!.label = this.liveContactLabel;
-            this.$emit('contact-added', this.recipient);
+            this.liveRecipient!.label = this.liveContactLabel;
+            this.$emit('contact-added', this.liveRecipient);
             this.displayedDetails = Details.NONE;
         }
 
         private sendTransaction() {
             // needs to be SendTransactionRequest
             this.$emit('send-tx', {
-                sender: this.sender!.address,
-                recipient: this.recipient!.address,
+                sender: this.liveSender!.address,
+                recipient: this.liveRecipient!.address,
                 recipientType: 0, // Nimiq.Account.Type.BASIC
                 value: this.liveValue,
                 fee: this.fee,
@@ -308,14 +331,14 @@ enum Details {
         }
 
         private get recipientValid(): boolean {
-            if (!this.sender || !this.recipient) return false;
-            const normalizedSender = this.sender.address.replace(/[\+ ]/g, '').toUpperCase();
-            const normalizedRecipient = this.recipient.address.replace(/[\+ ]/g, '').toUpperCase();
+            if (!this.liveSender || !this.liveRecipient) return false;
+            const normalizedSender = this.liveSender.address.replace(/[\+ ]/g, '').toUpperCase();
+            const normalizedRecipient = this.liveRecipient.address.replace(/[\+ ]/g, '').toUpperCase();
             return normalizedSender !== normalizedRecipient;
         }
 
         private get balanceValid(): boolean {
-            return !this.sender || this.liveValue + this.feeLunaPerByte <= this.sender.balance;
+            return !this.liveSender || this.liveValue + this.feeLunaPerByte <= this.liveSender.balance;
         }
 
         private get isValid(): boolean {
