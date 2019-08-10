@@ -57,6 +57,7 @@ export default class AccountDetails extends Vue {
         width: 100%;
         height: 100%;
         z-index: 2;
+        box-sizing: border-box;
     }
 
     .cancel-circle {
