@@ -944,6 +944,9 @@ storiesOf('Pages', module)
     .add('SendTx', () => {
         const valueIsReadonly = boolean('Value is readonly', false);
         const messageIsReadonly = boolean('Message is readonly', false);
+        const value = number('Value', 1000009);
+        const message = text('Message', '');
+        const isLoading = boolean('Loading?', false);
         const contacts = object('Contacts', [{
             label: 'Nimiq Bar',
             address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
@@ -1013,8 +1016,6 @@ storiesOf('Pages', module)
                 contracts: [],
             },
         ]);
-        const value = number('Value', 1000009);
-        const message = text('Message', '');
         return {
             components: { SendTx },
             data: () => ({
@@ -1024,6 +1025,7 @@ storiesOf('Pages', module)
                 valueIsReadonly,
                 message,
                 messageIsReadonly,
+                isLoading,
             }),
             methods: {
                 contactAdded: action('contactAdded'),
@@ -1040,6 +1042,7 @@ storiesOf('Pages', module)
                 :valueIsReadonly="valueIsReadonly"
                 :message="message"
                 :messageIsReadonly="messageIsReadonly"
+                :is-loading="isLoading"
                 @login="login"
                 @scan-qr="scanQr"
                 @send-tx="sendTx"
