@@ -39,6 +39,7 @@ declare module 'NimiqVueComponents/src/components/Account.vue' {
 declare module 'NimiqVueComponents/src/components/AccountDetails.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class AccountDetails extends Vue {
+        focus(): void;
     }
 }
 
@@ -135,6 +136,7 @@ declare module 'NimiqVueComponents/src/components/QrCode.vue' {
         fill: string | QrEncoder.LinearGradient | QrEncoder.RadialGradient;
         background: string | null;
         size: number;
+        toDataUrl(type?: string): Promise<string>;
     }
 }
 
