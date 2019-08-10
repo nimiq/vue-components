@@ -77,7 +77,7 @@
             </SmallPage>
         </transition>
 
-        <PageHeader :backArrow="!sender || !recipient" class="blur-target" @back="backFromAmount">
+        <PageHeader :backArrow="!sender || !recipient || !recipientIsReadonly" class="blur-target" @back="backFromAmount">
             Set Amount
             <a href="javascript:void(0)" class="nq-blue options-button" @click="optionsOpened = true" title="Open settings">
                 <SettingsIcon/>
@@ -94,12 +94,12 @@
                     <Account layout="column" :address="liveRecipient.address" :label="liveRecipient.label || 'Unnamed Contact'" :class="{invalid: !recipientValid}"/>
                 </a>
             </div>
-            <Amount v-if="valueIsReadonly" :class="{invalid: !balanceValid}" :amount="value" :minDecimals="2" :maxDecimals="5" />
+            <Amount v-if="value" :class="{invalid: !balanceValid}" :amount="value" :minDecimals="2" :maxDecimals="5" />
             <AmountInput v-else class="value" :class="{invalid: !balanceValid}" v-model="liveValue" ref="valueInput" />
             <div v-if="fee" class="fee-section nq-text-s">
                 + <Amount :amount="fee" :minDecimals="2" :maxDecimals="5" /> fee
             </div>
-            <div v-if="messageIsReadonly" class="label">{{liveExtraData}}</div>
+            <div v-if="message" class="label">{{liveExtraData}}</div>
             <LabelInput v-else :vanishing="true" placeholder="Add a public message..." :maxBytes="64" v-model="liveExtraData" ref="messageInput" />
         </PageBody>
 
@@ -159,8 +159,7 @@ enum Details {
         @Prop(Array) public wallets!: WalletInfo[];
         @Prop(Object) public sender?: {walletId: string, address: string};
         @Prop(Object) public recipient?: {address: string, label?: string};
-        @Prop({type: Boolean, default: false}) public valueIsReadonly!: boolean;
-        @Prop({type: Boolean, default: false}) public messageIsReadonly!: boolean;
+        @Prop({type: Boolean, default: false}) public recipientIsReadonly!: boolean;
         @Prop({type: Boolean, default: false}) public isLoading!: boolean;
         @Prop({type: Number, default: 0}) public value!: number;
         @Prop({type: String, default: ''}) public message!: string;
@@ -198,7 +197,7 @@ enum Details {
         @Watch('sender', {immediate: true})
         private setSender(sender: {walletId: string, address: string} | null) {
             if (!sender) {
-                this.liveSender = null;
+                // this.liveSender = null;
                 return;
             }
 
@@ -226,7 +225,7 @@ enum Details {
         @Watch('recipient', {immediate: true})
         private async setRecipient(recipient: {address: string, label?: string} | null) {
             if (!recipient) {
-                this.liveRecipient = null;
+                // this.liveRecipient = null;
                 return;
             }
 
@@ -249,10 +248,10 @@ enum Details {
             };
 
             if (this.liveSender) {
-                if (label && !this.valueIsReadonly) {
+                if (label && !this.value) {
                     await Vue.nextTick(); // Await updated DOM
                     (this.$refs.valueInput as AmountInput).focus();
-                } else if(!this.messageIsReadonly) {
+                } else if (!this.message) {
                     await Vue.nextTick(); // Await updated DOM
                     (this.$refs.accountDetails as AccountDetails).focus();
                 }
@@ -281,6 +280,7 @@ enum Details {
 
         @Watch('value', { immediate: true })
         private setValue(value: number) {
+            if (!value) return;
             this.liveValue = value;
             this.checkBalance();
         }
@@ -294,15 +294,16 @@ enum Details {
 
         @Watch('message', { immediate: true })
         private setMessage(message: string) {
+            if (!message) return;
             this.liveExtraData = message;
         }
 
         private async setLabel(label: string) {
             this.liveContactLabel = label;
             await Vue.nextTick(); // Await updated DOM
-            if (!this.valueIsReadonly) {
+            if (!this.value) {
                 (this.$refs.valueInput as AmountInput).focus();
-            } else if (!this.messageIsReadonly) {
+            } else if (!this.message) {
                 (this.$refs.messageInput as LabelInput).focus();
             }
         }
@@ -432,7 +433,7 @@ enum Details {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: space-around;
+        justify-content: space-between;
     }
 
     .send-tx .blur-target {
@@ -534,13 +535,13 @@ enum Details {
 
     .sender-and-recipient {
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         width: 100%;
     }
 
     .arrow-wrapper {
         font-size: 3rem;
-        margin-top: -3.25rem;
+        margin-top: 5.25rem;
     }
 
     .sender-and-recipient a {
