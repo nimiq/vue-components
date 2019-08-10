@@ -84,7 +84,7 @@
             </a>
         </PageHeader>
 
-        <PageBody class="blur-target">
+        <PageBody class="blur-target amount-page">
             <div class="sender-and-recipient">
                 <a href="javascript:void(0);"  @click="displayedDetails = Details.SENDER">
                     <Account layout="column" :address="liveSender.address" :label="liveSender.label"/>
@@ -422,11 +422,16 @@ enum Details {
         transition: opacity .3s;
         opacity: 1;
     }
+
     .send-tx .page-body {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
+    }
+
+    .amount-page {
+        padding-top: 0;
     }
 
     .send-tx .blur-target {
