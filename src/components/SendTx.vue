@@ -94,11 +94,13 @@
                     <Account layout="column" :address="liveRecipient.address" :label="liveRecipient.label || 'Unnamed Contact'" :class="{invalid: !recipientValid}"/>
                 </a>
             </div>
-            <AmountInput class="value" :class="{invalid: !balanceValid}" v-model="liveValue" ref="valueInput" />
+            <Amount v-if="liveValueIsReadonly" :class="{invalid: !balanceValid}" :amount="value" :minDecimals="2" :maxDecimals="5" />
+            <AmountInput v-else class="value" :class="{invalid: !balanceValid}" v-model="liveValue" ref="valueInput" />
             <div v-if="fee" class="fee-section nq-text-s">
                 + <Amount :amount="fee" :minDecimals="2" :maxDecimals="5" /> fee
             </div>
-            <LabelInput :vanishing="true" placeholder="Add a public message..." :maxBytes="64" v-model="liveExtraData" />
+            <div v-if="liveMessageIsReadonly" class="label">{{liveExtraData}}</div>
+            <LabelInput v-else :vanishing="true" placeholder="Add a public message..." :maxBytes="64" v-model="liveExtraData" ref="messageInput" />
         </PageBody>
 
         <PageFooter class="blur-target">
@@ -157,6 +159,8 @@ enum Details {
         @Prop(Array) public wallets!: WalletInfo[];
         @Prop(Object) public sender?: {walletId: string, address: string};
         @Prop(Object) public recipient?: {address: string, label?: string};
+        @Prop({type: Boolean, default: false}) public valueIsReadonly!: boolean;
+        @Prop({type: Boolean, default: false}) public messageIsReadonly!: boolean;
         @Prop({type: Boolean, default: false}) public isLoading!: boolean;
         @Prop({type: Number, default: 0}) public value!: number;
         @Prop({type: String, default: ''}) public message!: string;
@@ -177,7 +181,9 @@ enum Details {
         private feeLunaPerByte = 0;
         private feeLunaPerBytePreview = 0;
         private liveValue: number = 0;
+        private liveValueIsReadonly: boolean = false;
         private liveExtraData = '';
+        private liveMessageIsReadonly: boolean = false;
         private liveContactLabel = '';
 
         @Watch('sender', {immediate: true})
@@ -234,10 +240,10 @@ enum Details {
             };
 
             if (this.liveSender) {
-                if (label) {
+                if (label && !this.valueIsReadonly) {
                     await Vue.nextTick(); // Await updated DOM
                     (this.$refs.valueInput as AmountInput).focus();
-                } else {
+                } else if(!this.messageIsReadonly) {
                     await Vue.nextTick(); // Await updated DOM
                     (this.$refs.accountDetails as AccountDetails).focus();
                 }
@@ -263,6 +269,11 @@ enum Details {
             this.checkBalance();
         }
 
+        @Watch('valueIsReadonly', {immediate: true})
+        private setValueIsReadonly(value: boolean) {
+            this.liveValueIsReadonly = value;
+        }
+
         @Watch('sender.balance')
         private checkBalance() {
             if (this.liveSender && this.liveSender.balance && this.liveValue + this.fee > this.liveSender.balance) {
@@ -275,10 +286,19 @@ enum Details {
             this.liveExtraData = message;
         }
 
+        @Watch('messageIsReadonly', {immediate: true})
+        private setMessageIsReadonly(value: boolean) {
+            this.liveMessageIsReadonly = value;
+        }
+
         private async setLabel(label: string) {
             this.liveContactLabel = label;
             await Vue.nextTick(); // Await updated DOM
-            (this.$refs.valueInput as AmountInput).focus();
+            if (!this.valueIsReadonly) {
+                (this.$refs.valueInput as AmountInput).focus();
+            } else if (!this.messageIsReadonly) {
+                (this.$refs.messageInput as LabelInput).focus();
+            }
         }
 
         private storeContactAndCloseOverlay() {
