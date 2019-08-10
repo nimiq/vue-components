@@ -185,6 +185,7 @@ declare module 'NimiqVueComponents/src/components/SendTx.vue' {
         value: number;
         message: string;
         validityStartHeight: number;
+        clear(): void;
     }
 }
 
