@@ -256,7 +256,7 @@ enum Details {
         }
 
         private backFromAmount() {
-            if (!this.recipient) this.liveRecipient = null;
+            if (!this.recipient || !this.recipientIsReadonly) this.liveRecipient = null;
             else if (!this.sender) this.liveSender = null;
 
             this.contactsOpened = false;
