@@ -84,7 +84,7 @@
                     <Account layout="column" :address="recipient.address" :label="recipient.label || 'Unnamed Contact'"/>
                 </a>
             </div>
-            <AmountInput class="value" @changed="setValue" ref="valueInput" />
+            <AmountInput class="value" v-model="liveValue" ref="valueInput" />
             <div v-if="fee" class="fee-section nq-text-s">
                 + <Amount :amount="fee" :minDecimals="2" :maxDecimals="5" /> fee
             </div>
@@ -148,7 +148,7 @@ enum Details {
         @Prop(Object) public preselectedSender?: {walletId: string, address: string};
         @Prop(Object) public preselectedRecipient?: {address: string, label: string};
         @Prop({type: Boolean, default: false}) public isLoading;
-        @Prop({type: Number, default: 0}) public preselectedValue!: number;
+        @Prop({type: Number, default: 0}) public value!: number;
         @Prop({type: String, default: ''}) public preselectedMessage!: string;
 
 
@@ -159,7 +159,7 @@ enum Details {
         private optionsOpened = false;
         private feeLunaPerByte = 0;
         private feeLunaPerBytePreview = 0;
-        private value: number = 0;
+        private liveValue: number = 0;
         private extraData = '';
         private label = '';
 
@@ -170,7 +170,6 @@ enum Details {
             if (this.preselectedRecipient) {
                 this.setRecipient(this.preselectedRecipient.address, this.preselectedRecipient.label);
             }
-            this.value = this.preselectedValue;
             this.extraData = this.preselectedMessage;
         }
 
@@ -213,14 +212,15 @@ enum Details {
             this.feeLunaPerByte = (this.$refs.feeSetter as SelectBar).value;
         }
 
+        @Watch('value', { immediate: true })
         private setValue(value: number) {
-            this.value = value;
+            this.liveValue = value;
             this.checkBalance();
         }
 
         @Watch('sender.balance')
         private checkBalance() {
-            if (this.sender && this.sender.balance && this.value + this.fee > this.sender.balance) {
+            if (this.sender && this.sender.balance && this.liveValue + this.fee > this.sender.balance) {
                 console.log('Insufficient Balance');
             }
         }
@@ -247,7 +247,7 @@ enum Details {
                 sender: this.sender.address,
                 recipient: this.recipient.address,
                 recipientType: 0, // Nimiq.Account.Type.BASIC
-                value: this.value,
+                value: this.liveValue,
                 fee: this.fee,
                 extraData: this.extraData,
             });
