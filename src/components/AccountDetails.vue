@@ -4,7 +4,8 @@
             <CloseIcon/>
         </a>
         <Account layout="column" :address="address" :image="image" :label="label !== address ? label : ''"
-             :walletLabel="walletLabel" :balance="balance" :editable="editable" @changed="changed" ></Account>
+             :walletLabel="walletLabel" :balance="balance" :editable="editable" :placeholder="placeholder"
+             @changed="changed" ref="account"/>
         <Copyable :text="address">
             <AddressDisplay :address="address"/>
         </Copyable>
@@ -27,6 +28,13 @@ export default class AccountDetails extends Vue {
     @Prop(String) private walletLabel?: string;
     @Prop(Number) private balance?: number;
     @Prop(Boolean) private editable?: boolean;
+    @Prop(String) private placeholder?: string;
+
+    public focus() {
+        if (this.editable) {
+            (this.$refs.account as Account).focus();
+        }
+    }
 
     @Emit()
     // tslint:disable-next-line no-empty
