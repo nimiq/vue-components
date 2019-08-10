@@ -84,7 +84,7 @@
             </a>
         </PageHeader>
 
-        <PageBody class="blur-target">
+        <PageBody class="blur-target amount-page">
             <div class="sender-and-recipient">
                 <a href="javascript:void(0);"  @click="displayedDetails = Details.SENDER">
                     <Account layout="column" :address="liveSender.address" :label="liveSender.label"/>
@@ -94,7 +94,7 @@
                     <Account layout="column" :address="liveRecipient.address" :label="liveRecipient.label || 'Unnamed Contact'" :class="{invalid: !recipientValid}"/>
                 </a>
             </div>
-            <Amount v-if="value" :class="{invalid: !balanceValid}" :amount="value" :minDecimals="2" :maxDecimals="5" />
+            <Amount v-if="value" class="value readonly" :class="{invalid: !balanceValid}" :amount="value" :minDecimals="2" :maxDecimals="5" />
             <AmountInput v-else class="value" :class="{invalid: !balanceValid}" v-model="liveValue" ref="valueInput" />
             <div v-if="fee" class="fee-section nq-text-s">
                 + <Amount :amount="fee" :minDecimals="2" :maxDecimals="5" /> fee
@@ -229,31 +229,24 @@ enum Details {
                 return;
             }
 
-            const address = recipient.address;
-            let label = recipient.label;
-
-            if (!label) {
-                const foundContact = this.contacts.find((contact) => contact.address === address);
+            if (!recipient.label) {
+                const foundContact = this.contacts.find((contact) => contact.address === recipient.address);
+                // TODO: Search other accounts
                 if (foundContact) {
-                    label = foundContact.label;
-                } else {
-                    this.displayedDetails = Details.RECIPIENT;
+                    recipient.label = foundContact.label;
                 }
             }
 
-            this.liveContactLabel = label || '';
-            this.liveRecipient = {
-                address,
-                label,
-            };
+            this.liveContactLabel = recipient.label || '';
+            this.liveRecipient = recipient;
 
             if (this.liveSender) {
-                if (label && !this.value) {
+                if (!this.value) {
                     await Vue.nextTick(); // Await updated DOM
                     (this.$refs.valueInput as AmountInput).focus();
                 } else if (!this.message) {
                     await Vue.nextTick(); // Await updated DOM
-                    (this.$refs.accountDetails as AccountDetails).focus();
+                    (this.$refs.messageInput as LabelInput).focus();
                 }
             }
         }
@@ -429,11 +422,16 @@ enum Details {
         transition: opacity .3s;
         opacity: 1;
     }
+
     .send-tx .page-body {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
+    }
+
+    .amount-page {
+        padding-top: 0;
     }
 
     .send-tx .blur-target {
@@ -463,6 +461,19 @@ enum Details {
         border-top: .125rem solid var(--nimiq-highlight-bg);
         margin-top: 1rem;
         padding-top: 2rem;
+    }
+
+    .value.readonly {
+        font-size: 8rem;
+        color: var(--nimiq-light-blue);
+        height: 12rem;
+    }
+
+    .value.readonly >>> .nim {
+        padding-left: 1rem;
+        font-size: 0.5em;
+        font-weight: 700;
+        line-height: 4.5rem;
     }
 
     .address-input {
