@@ -163,7 +163,13 @@ enum Details {
         @Prop({type: Number, default: 0}) public validityStartHeight!: number;
 
 
-        private liveSender: {address: string, label: string, walletId: string, walletLabel: string, balance: number} | null = null;
+        private liveSender: {
+            address: string,
+            label: string,
+            walletId: string,
+            walletLabel: string,
+            balance: number,
+        } | null = null;
         private liveRecipient: {address: string, label?: string} | null = null;
         private displayedDetails = Details.NONE;
         private contactsOpened = false;
@@ -227,12 +233,14 @@ enum Details {
                 label,
             };
 
-            if (label) {
-                await Vue.nextTick(); // Await updated DOM
-                (this.$refs.valueInput as AmountInput).focus();
-            } else {
-                await Vue.nextTick(); // Await updated DOM
-                (this.$refs.accountDetails as AccountDetails).focus();
+            if (this.liveSender) {
+                if (label) {
+                    await Vue.nextTick(); // Await updated DOM
+                    (this.$refs.valueInput as AmountInput).focus();
+                } else {
+                    await Vue.nextTick(); // Await updated DOM
+                    (this.$refs.accountDetails as AccountDetails).focus();
+                }
             }
         }
 
@@ -315,17 +323,18 @@ enum Details {
         }
 
         private get fee(): number {
-            if (this.liveExtraData) {
-                return this.feeLunaPerByte * (166 + Utf8Tools.stringToUtf8ByteArray(this.liveExtraData).byteLength);
-            }
-            return this.feeLunaPerByte * 138;
+            return this.computeFee(this.feeLunaPerByte);
         }
 
         private get feePreview(): number {
+            return this.computeFee(this.feeLunaPerBytePreview);
+        }
+
+        private computeFee(lunaPerByte: number): number {
             if (this.liveExtraData) {
-                return this.feeLunaPerBytePreview * (166 + Utf8Tools.stringToUtf8ByteArray(this.liveExtraData).byteLength);
+                return lunaPerByte * (166 + Utf8Tools.stringToUtf8ByteArray(this.liveExtraData).byteLength);
             }
-            return this.feeLunaPerBytePreview * 138;
+            return lunaPerByte * 138;
         }
 
         private get buttonText(): string {
