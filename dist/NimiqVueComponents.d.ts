@@ -179,6 +179,8 @@ declare module 'NimiqVueComponents/src/components/SendTx.vue' {
             address: string;
             label?: string;
         };
+        valueIsReadonly: boolean;
+        messageIsReadonly: boolean;
         isLoading: boolean;
         value: number;
         message: string;
