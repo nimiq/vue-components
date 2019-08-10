@@ -32,7 +32,7 @@
         </PageBody>
 
         <PageFooter class="blur-target">
-            <p class="nq-text">Address unavailable?</p>
+            <p class="nq-text">If recipient has no Account yet:</p>
             <button class="nq-button-s" @click="createCashlink(liveSender)">Create a Cashlink</button>
             <a href="javascript:void(0)" class="scan-qr nq-blue" @click="scanQr">
                 <ScanQrCodeIcon />
