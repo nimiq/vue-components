@@ -290,6 +290,10 @@ enum Details {
         }
 
         private storeContactAndCloseOverlay() {
+            if (!this.liveContactLabel) {
+                this.displayedDetails = Details.NONE;
+                return;
+            }
             this.liveRecipient!.label = this.liveContactLabel;
             this.$emit('contact-added', this.liveRecipient);
             this.displayedDetails = Details.NONE;
