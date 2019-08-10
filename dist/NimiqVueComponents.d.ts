@@ -11,6 +11,7 @@ declare module 'NimiqVueComponents' {
     export { default as AccountRing } from 'NimiqVueComponents/src/components/AccountRing.vue';
     export { default as AccountSelector } from 'NimiqVueComponents/src/components/AccountSelector.vue';
     export { default as AddressDisplay } from 'NimiqVueComponents/src/components/AddressDisplay.vue';
+    export { default as AddressInput } from 'NimiqVueComponents/src/components/AddressInput.vue';
     export { default as Amount } from 'NimiqVueComponents/src/components/Amount.vue';
     export { default as AmountWithDetails } from 'NimiqVueComponents/src/components/AmountWithDetails.vue';
     export { default as Contact } from 'NimiqVueComponents/src/components/Contact.vue';
@@ -50,6 +51,7 @@ declare module 'NimiqVueComponents/src/components/Account.vue' {
 declare module 'NimiqVueComponents/src/components/AccountDetails.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class AccountDetails extends Vue {
+        focus(): void;
     }
 }
 
@@ -100,6 +102,16 @@ declare module 'NimiqVueComponents/src/components/AccountSelector.vue' {
 declare module 'NimiqVueComponents/src/components/AddressDisplay.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class AddressDisplay extends Vue {
+    }
+}
+
+declare module 'NimiqVueComponents/src/components/AddressInput.vue' {
+    import { Vue } from 'vue-property-decorator';
+    export default class AddressInput extends Vue {
+        value: string;
+        $refs: {
+            textarea: HTMLTextAreaElement;
+        };
     }
 }
 
@@ -232,6 +244,7 @@ declare module 'NimiqVueComponents/src/components/QrCode.vue' {
         fill: string | QrEncoder.LinearGradient | QrEncoder.RadialGradient;
         background: string | null;
         size: number;
+        toDataUrl(type?: string): Promise<string>;
     }
 }
 
