@@ -46,11 +46,13 @@
                 <AccountDetails
                     :address="displayedDetails === Details.SENDER ? liveSender.address : liveRecipient.address"
                     :editable="displayedDetails === Details.RECIPIENT"
+                    placeholder="Name this contact..."
                     :label="displayedDetails === Details.SENDER ? liveSender.label : liveRecipient.label"
                     :walletLabel="displayedDetails === Details.SENDER ? liveSender.walletLabel : null"
                     :balance="displayedDetails === Details.SENDER ? liveSender.balance : null"
                     @close="displayedDetails = Details.NONE"
                     @changed="setLabel"
+                    ref="accountDetails"
                 />
                 <PageFooter v-if="displayedDetails === Details.RECIPIENT">
                     <button class="nq-button light-blue" @click="storeContactAndCloseOverlay()">Save Contact</button>
@@ -228,6 +230,9 @@ enum Details {
             if (label) {
                 await Vue.nextTick(); // Await updated DOM
                 (this.$refs.valueInput as AmountInput).focus();
+            } else {
+                await Vue.nextTick(); // Await updated DOM
+                (this.$refs.accountDetails as AccountDetails).focus();
             }
         }
 
