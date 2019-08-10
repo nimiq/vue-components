@@ -23,9 +23,9 @@ export default class LabelInput extends Vue {
     @Prop({type: String, default: 'Name your address'}) private placeholder!: string;
     @Prop({type: Boolean, default: false}) private vanishing!: boolean;
 
-    private liveValue = this.value;
-    private lastValue = this.value;
-    private lastEmittedValue = this.value;
+    private liveValue: string = '';
+    private lastValue: string = '';
+    private lastEmittedValue: string = '';
     private width = 50;
 
     public focus() {
@@ -41,7 +41,7 @@ export default class LabelInput extends Vue {
             }
             this.lastValue = this.liveValue;
         }
-        this.$emit('changed', this.liveValue);
+        this.$emit('input', this.liveValue);
     }
 
     private onBlur() {
@@ -49,6 +49,13 @@ export default class LabelInput extends Vue {
         this.$emit('changed', this.liveValue);
         this.lastEmittedValue = this.liveValue;
         (this.$refs.input as HTMLInputElement).blur();
+    }
+
+    @Watch('value', {immediate: true})
+    private updateValue(newValue: string) {
+        this.liveValue = newValue;
+        this.lastValue = this.liveValue;
+        this.lastEmittedValue = this.lastValue;
     }
 
     @Watch('liveValue', {immediate: true})

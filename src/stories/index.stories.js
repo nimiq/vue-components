@@ -148,8 +148,9 @@ storiesOf('Basic', module)
             components: {LabelInput},
             methods: {
                 changed: action('changed'),
+                input: action('input'),
             },
-            template: `<LabelInput placeholder="Name this account..." @changed="changed"/>`,
+            template: `<LabelInput placeholder="Name this account..." @changed="changed" @input="input"/>`,
         };
     })
     .add('LabelInput (restricted to 63 bytes)', () => {
@@ -157,13 +158,14 @@ storiesOf('Basic', module)
             components: {LabelInput},
             methods: {
                 changed: action('changed'),
+                input: action('input'),
             },
             data() {
                 return {
                     value: "Standard Address"
                 };
             },
-            template: `<LabelInput :value="value" :maxBytes="63" @changed="changed"/>`,
+            template: `<LabelInput :value="value" :maxBytes="63" @changed="changed" @input="input"/>`,
         };
     })
     .add('LoadingSpinner', () => {
@@ -1118,12 +1120,13 @@ storiesOf('Pages', module)
             template:  windowTemplate(`<SendTx
                 :contacts="contacts"
                 :wallets="wallets"
+                :validityStartHeight="987654"
+                :value="value"
                 @login="login"
                 @scan-qr="scanQr"
                 @send-tx="sendTx"
                 @contact-added="contactAdded"
                 @create-cashlink="createCashlink"
-                :preselectedValue="value"
                 />`),
         };
     });
