@@ -238,6 +238,8 @@ enum Details {
                 // TODO: Search other accounts
                 if (foundContact) {
                     recipient.label = foundContact.label;
+                } else {
+                    this.displayedDetails = Details.RECIPIENT;
                 }
             }
 
@@ -245,11 +247,13 @@ enum Details {
             this.liveRecipient = recipient;
 
             if (this.liveSender) {
-                if (!this.value) {
-                    await Vue.nextTick(); // Await updated DOM
+                await Vue.nextTick(); // Await updated DOM
+
+                if (!recipient.label) {
+                    (this.$refs.accountDetails as AccountDetails).focus();
+                } else if (!this.value) {
                     (this.$refs.valueInput as AmountInput).focus();
                 } else if (!this.message) {
-                    await Vue.nextTick(); // Await updated DOM
                     (this.$refs.messageInput as LabelInput).focus();
                 }
             }
