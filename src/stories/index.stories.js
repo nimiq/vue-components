@@ -65,12 +65,18 @@ storiesOf('Basic', module)
         };
     })
     .add('AmountInput', () => {
+        const value = number('Value', 0);
         return {
             components: { AmountInput },
-            methods: {
-                changed: action('changed'),
+            data() {
+                return {
+                    value,
+                };
             },
-            template: `<AmountInput @changed="changed"/>`,
+            methods: {
+                input: action('input'),
+            },
+            template: `<AmountInput :value="value" @input="input"/>`,
         };
     })
     .add('FiatAmount', () => {

@@ -20,8 +20,8 @@ import { Utf8Tools } from '@nimiq/utils';
 
 @Component
 export default class AmountInput extends Vue {
+    @Prop({type: Number}) private value?: number;
     @Prop({type: Number, default: 8}) private maxFontSize!: number;
-    @Prop({type: Number}) private amount?: number;
     @Prop({type: String, default: '0.00'}) private placeholder!: string;
 
     private liveValue: string = '';
@@ -35,12 +35,16 @@ export default class AmountInput extends Vue {
         if (this.maxFontSize) {
             this.maxWidth = (this.$refs.fullWidth as HTMLElement).offsetWidth;
         }
-        this.formattedValue = this.amount ? (this.amount / 1e5).toString() : '';
-        if (!this.formattedValue) this.updateWidth();
     }
 
     public focus() {
         (this.$refs.input as HTMLInputElement).focus();
+    }
+
+    @Watch('value', { immediate: true })
+    private updateValue(newValue: number) {
+        this.formattedValue = newValue ? (newValue / 1e5).toString() : '';
+        this.updateWidth();
     }
 
     @Watch('formattedValue')
@@ -63,11 +67,12 @@ export default class AmountInput extends Vue {
     public set formattedValue(value: string) {
         if (!value) {
             this.liveValue = '';
-            this.$emit('changed', 0);
             this.lastEmittedValue = 0;
             this.valueInLuna = 0;
+            this.$emit('input', this.valueInLuna);
             return;
         }
+
         value = value.replace(/\,/, '.');
         const regExp = new RegExp(/(\d*)(\.(\d{0,5}))?/g);
         const regExpResult = regExp.exec(value)!;
@@ -79,7 +84,7 @@ export default class AmountInput extends Vue {
         }
 
         if (this.lastEmittedValue !== this.valueInLuna) {
-            this.$emit('changed', this.valueInLuna);
+            this.$emit('input', this.valueInLuna);
             this.lastEmittedValue = this.valueInLuna;
         }
 
