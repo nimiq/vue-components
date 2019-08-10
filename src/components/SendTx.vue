@@ -77,7 +77,7 @@
             </SmallPage>
         </transition>
 
-        <PageHeader :backArrow="true" class="blur-target" @back="liveRecipient = null; detailsClosed = Details.NONE; contactsOpened = false;">
+        <PageHeader :backArrow="!sender || !recipient" class="blur-target" @back="backFromAmount">
             Set Amount
             <a href="javascript:void(0)" class="nq-blue options-button" @click="optionsOpened = true" title="Open settings">
                 <SettingsIcon/>
@@ -94,12 +94,12 @@
                     <Account layout="column" :address="liveRecipient.address" :label="liveRecipient.label || 'Unnamed Contact'" :class="{invalid: !recipientValid}"/>
                 </a>
             </div>
-            <Amount v-if="liveValueIsReadonly" :class="{invalid: !balanceValid}" :amount="value" :minDecimals="2" :maxDecimals="5" />
+            <Amount v-if="valueIsReadonly" :class="{invalid: !balanceValid}" :amount="value" :minDecimals="2" :maxDecimals="5" />
             <AmountInput v-else class="value" :class="{invalid: !balanceValid}" v-model="liveValue" ref="valueInput" />
             <div v-if="fee" class="fee-section nq-text-s">
                 + <Amount :amount="fee" :minDecimals="2" :maxDecimals="5" /> fee
             </div>
-            <div v-if="liveMessageIsReadonly" class="label">{{liveExtraData}}</div>
+            <div v-if="messageIsReadonly" class="label">{{liveExtraData}}</div>
             <LabelInput v-else :vanishing="true" placeholder="Add a public message..." :maxBytes="64" v-model="liveExtraData" ref="messageInput" />
         </PageBody>
 
@@ -166,7 +166,6 @@ enum Details {
         @Prop({type: String, default: ''}) public message!: string;
         @Prop({type: Number, default: 0}) public validityStartHeight!: number;
 
-
         private liveSender: {
             address: string,
             label: string,
@@ -181,13 +180,23 @@ enum Details {
         private feeLunaPerByte = 0;
         private feeLunaPerBytePreview = 0;
         private liveValue: number = 0;
-        private liveValueIsReadonly: boolean = false;
         private liveExtraData = '';
-        private liveMessageIsReadonly: boolean = false;
         private liveContactLabel = '';
 
+        public clear() {
+            this.liveSender = null;
+            this.liveRecipient = null;
+            this.displayedDetails = Details.NONE;
+            this.contactsOpened = false;
+            this.optionsOpened = false;
+            this.feeLunaPerByte = 0;
+            this.liveValue = 0;
+            this.liveExtraData = '';
+            this.liveContactLabel = '';
+        }
+
         @Watch('sender', {immediate: true})
-        private setSender(sender: {walletId: string, address: string}) {
+        private setSender(sender: {walletId: string, address: string} | null) {
             if (!sender) {
                 this.liveSender = null;
                 return;
@@ -215,7 +224,7 @@ enum Details {
         }
 
         @Watch('recipient', {immediate: true})
-        private async setRecipient(recipient: {address: string, label?: string}) {
+        private async setRecipient(recipient: {address: string, label?: string} | null) {
             if (!recipient) {
                 this.liveRecipient = null;
                 return;
@@ -254,6 +263,13 @@ enum Details {
             this.setRecipient({address, label});
         }
 
+        private backFromAmount() {
+            if (!this.recipient) this.liveRecipient = null;
+            else if (!this.sender) this.liveSender = null;
+
+            this.contactsOpened = false;
+        }
+
         private updateFeePreview(fee: number) {
             this.feeLunaPerBytePreview = fee;
         }
@@ -269,11 +285,6 @@ enum Details {
             this.checkBalance();
         }
 
-        @Watch('valueIsReadonly', {immediate: true})
-        private setValueIsReadonly(value: boolean) {
-            this.liveValueIsReadonly = value;
-        }
-
         @Watch('sender.balance')
         private checkBalance() {
             if (this.liveSender && this.liveSender.balance && this.liveValue + this.fee > this.liveSender.balance) {
@@ -284,11 +295,6 @@ enum Details {
         @Watch('message', { immediate: true })
         private setMessage(message: string) {
             this.liveExtraData = message;
-        }
-
-        @Watch('messageIsReadonly', {immediate: true})
-        private setMessageIsReadonly(value: boolean) {
-            this.liveMessageIsReadonly = value;
         }
 
         private async setLabel(label: string) {
@@ -302,6 +308,10 @@ enum Details {
         }
 
         private storeContactAndCloseOverlay() {
+            if (!this.liveContactLabel) {
+                this.displayedDetails = Details.NONE;
+                return;
+            }
             this.liveRecipient!.label = this.liveContactLabel;
             this.$emit('contact-added', this.liveRecipient);
             this.displayedDetails = Details.NONE;
