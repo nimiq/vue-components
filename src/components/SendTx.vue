@@ -18,7 +18,7 @@
             </SmallPage>
         </transition>
 
-        <PageHeader :backArrow="!sender" @back="liveSender = null" class="blur-target">
+        <PageHeader :backArrow="true" @back="backFromRecipient" class="blur-target">
             Send Transaction
         </PageHeader>
 
@@ -269,6 +269,11 @@ enum Details {
             else if (!this.sender) this.liveSender = null;
 
             this.contactsOpened = false;
+        }
+
+        private backFromRecipient() {
+            if (!this.sender) this.liveSender = null;
+            else this.$emit('back');
         }
 
         private updateFeePreview(fee: number) {
