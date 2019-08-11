@@ -101,6 +101,7 @@
             </div>
             <div v-if="message" class="label">{{liveExtraData}}</div>
             <LabelInput v-else :vanishing="true" placeholder="Add a public message..." :maxBytes="64" v-model="liveExtraData" ref="messageInput" />
+            <div class="bottom-spacer"><!-- flex spacer --></div>
         </PageBody>
 
         <PageFooter class="blur-target">
@@ -444,6 +445,11 @@ enum Details {
 
     .amount-page {
         padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .bottom-spacer {
+        height: 2rem;
     }
 
     .send-tx .blur-target {
@@ -469,9 +475,7 @@ enum Details {
     .send-tx .value {
         display: flex;
         align-items: baseline;
-        height: 14.5rem; /* 12.5rem height + 2rem padding */
         border-top: .125rem solid var(--nimiq-highlight-bg);
-        margin-top: 1rem;
         padding-top: 2rem;
     }
 
