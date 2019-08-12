@@ -91,7 +91,7 @@ export default class AccountList extends Vue {
 
     .account-entry {
         display: block;
-        transition: background-color .3s cubic-bezier(0.25, 0, 0, 1);
+        transition: background-color .3s var(--nimiq-ease);
         border-radius: 0.5rem;
         margin: 0.5rem 2rem;
         position: relative;
@@ -117,17 +117,17 @@ export default class AccountList extends Vue {
     }
 
     .account-entry .account {
-        transition: opacity .3s cubic-bezier(0.25, 0, 0, 1);
+        transition: opacity .3s var(--nimiq-ease);
     }
 
     .account-entry >>> .identicon img {
         transform: scale(0.9);
-        transition: transform .45s cubic-bezier(0.25, 0, 0, 1);
+        transition: transform .45s var(--nimiq-ease);
     }
 
     .account-entry >>> .label,
     .account-entry >>> .balance {
-        transition: opacity .3s cubic-bezier(0.25, 0, 0, 1), color .3s cubic-bezier(0.25, 0, 0, 1), margin-right .45s cubic-bezier(0.25, 0, 0, 1);
+        transition: opacity .3s var(--nimiq-ease), color .3s var(--nimiq-ease), margin-right .45s var(--nimiq-ease);
     }
 
     .account-entry .nq-icon {
@@ -137,7 +137,7 @@ export default class AccountList extends Vue {
         font-size: 2rem;
         transform: translateX(3rem);
         opacity: 0;
-        transition: transform .45s cubic-bezier(0.25, 0, 0, 1), opacity .35s .1s cubic-bezier(0.25, 0, 0, 1);
+        transition: transform .45s var(--nimiq-ease), opacity .35s .1s var(--nimiq-ease);
     }
 
     a.account-entry:focus {
@@ -200,7 +200,7 @@ export default class AccountList extends Vue {
         justify-content: center;
         text-align: center;
         color: var(--nimiq-red);
-        transition: opacity .3s cubic-bezier(0.25, 0, 0, 1);
+        transition: opacity .3s var(--nimiq-ease);
         opacity: 0;
     }
 

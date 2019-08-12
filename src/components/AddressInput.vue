@@ -330,7 +330,7 @@ export default class AddressInput extends Vue {
 
     .block,
     .block-connector {
-        transition: opacity .2s cubic-bezier(0.25, 0, 0, 1);
+        transition: opacity .2s var(--nimiq-ease);
     }
 
     .invisible {
