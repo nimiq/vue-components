@@ -15,6 +15,7 @@ import AmountWithDetails from '../components/AmountWithDetails.vue';
 import CircleSpinner from '../components/CircleSpinner.vue';
 import Contact from '../components/Contact.vue';
 import ContactList from '../components/ContactList.vue';
+import Copyable from '../components/Copyable.vue';
 import CopyableField from '../components/CopyableField.vue';
 import FiatAmount from '../components/FiatAmount.vue';
 import Identicon from '../components/Identicon.vue';
@@ -503,6 +504,18 @@ storiesOf('Components', module)
             `
         };
     })
+    .add('Copyable', () => ({
+        components: { Copyable },
+        template: `
+            <div>
+                <Copyable>I'm a text you can copy.</Copyable>
+                <Copyable>
+                    I'm a copyable text<br>with <b>child nodes</b>.
+                </Copyable>
+                <Copyable text="Surprise!!!" style="margin-top: 7rem">When you click me you get a surprise!</Copyable>
+            </div>
+        `,
+    }))
     .add('CopyableField', () => {
         const label = text('label', '');
         const value = object('value (number, json string or json object)', {

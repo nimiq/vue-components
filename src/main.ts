@@ -12,6 +12,7 @@ export { default as AmountWithDetails } from './components/AmountWithDetails.vue
 export { default as CircleSpinner } from './components/CircleSpinner.vue';
 export { default as Contact } from './components/Contact.vue';
 export { default as ContactList } from './components/ContactList.vue';
+export { default as Copyable } from './components/Copyable.vue';
 export { default as CopyableField } from './components/CopyableField.vue';
 export { default as FiatAmount } from './components/FiatAmount.vue';
 export { default as Identicon } from './components/Identicon.vue';
