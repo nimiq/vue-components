@@ -960,67 +960,37 @@ storiesOf('Pages', module)
             label: 'Nimiq Charity',
             address: 'NQ19 YG54 46TX EHGQ D2R2 V8XA JX84 UFG0 S0MC',
         }]);
-        const wallets = object('Wallets', [
-            {
-                id: 'helloworld',
-                label: 'Keyguard Wallet',
-                type: 2, // BIP39
-                accounts: new Map([
-                    ['NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM', {
-                        userFriendlyAddress: 'NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM',
-                        label: 'Primary account',
-                        balance: 12023110,
-                        path: "44'/242'/0'/0'",
-                    }],
-                    ['NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1', {
-                        userFriendlyAddress: 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1',
-                        label: 'HODL account',
-                        balance: 2712415141213,
-                        path: "44'/242'/0'/1'",
-                    }],
-                ]),
-                contracts: [
-                    {
-                        userFriendlyAddress: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE',
-                        label: 'My Vesting Contract',
-                        balance: 777777777,
-                    },
-                ],
-            },
-            {
-                id: 'helloword2',
-                label: 'Ledger Wallet',
-                type: 3, // LEDGER
-                accounts: new Map([
-                    ['NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK', {
-                        userFriendlyAddress: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
-                        label: 'My Ledger Account',
-                        balance: 9876543210,
-                        path: "44'/242'/0'/0'",
-                    }]
-                ]),
-                contracts: [],
-            },
-            {
-                id: 'helloword3',
-                label: 'Ledger Wallet',
-                type: 3, // LEDGER
-                accounts: new Map([
-                    ['NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK', {
-                        userFriendlyAddress: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
-                        label: 'My second Ledger Account',
-                        balance: 98765210,
-                        path: "44'/242'/0'/0'",
-                    }]
-                ]),
-                contracts: [],
-            },
-        ]);
+        const wallet = object('Wallet', {
+            id: 'helloworld',
+            label: 'Keyguard Wallet',
+            type: 2, // BIP39
+            accounts: new Map([
+                ['NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM', {
+                    userFriendlyAddress: 'NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM',
+                    label: 'Primary account',
+                    balance: 12023110,
+                    path: "44'/242'/0'/0'",
+                }],
+                ['NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1', {
+                    userFriendlyAddress: 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1',
+                    label: 'HODL account',
+                    balance: 2712415141213,
+                    path: "44'/242'/0'/1'",
+                }],
+            ]),
+            contracts: [
+                {
+                    userFriendlyAddress: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE',
+                    label: 'My Vesting Contract',
+                    balance: 777777777,
+                },
+            ],
+        });
         return {
             components: { SendTx },
             data: () => ({
                 contacts,
-                wallets,
+                wallet,
                 value,
                 valueIsReadonly,
                 message,
@@ -1036,7 +1006,7 @@ storiesOf('Pages', module)
             },
             template:  windowTemplate(`<SendTx
                 :contacts="contacts"
-                :wallets="wallets"
+                :wallet="wallet"
                 :validityStartHeight="987654"
                 :value="value"
                 :valueIsReadonly="valueIsReadonly"

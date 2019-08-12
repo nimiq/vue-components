@@ -61,7 +61,7 @@ export interface WalletInfo {
     id: string;
     label: string;
     accounts: Map<string, AccountInfo>;
-    contracts: any[];
+    contracts: ContractInfo[];
     type: number;
     keyMissing: boolean;
 }
