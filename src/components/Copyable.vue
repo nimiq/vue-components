@@ -1,5 +1,5 @@
 <template>
-    <div class="copyable" :class="{ copied }" @click="_copy">
+    <div class="copyable" :class="{ copied }" @click="copy">
         <div class="background"></div>
         <slot></slot>
     </div>
@@ -30,7 +30,7 @@ export default class Copyable extends Vue {
     private copied: boolean = false;
     private _copiedResetTimeout: number | null = null;
 
-    private _copy() {
+    public copy() {
         const text = this.text || (this.$el as HTMLElement).innerText;
         Clipboard.copy(text);
 
@@ -63,7 +63,8 @@ export default class Copyable extends Vue {
         transition: opacity .3s var(--nimiq-ease);
     }
 
-    .copyable:hover .background {
+    .copyable:hover .background,
+    .copyable.copied .background {
         opacity: .05;
     }
 
@@ -101,7 +102,7 @@ export default class Copyable extends Vue {
     }
 
     .copyable.copied::after {
-        animation: copied .75s .75s var(--nimiq-ease) forwards;
+        animation: copied .85s .85s var(--nimiq-ease) forwards;
     }
 
     @keyframes copied {
