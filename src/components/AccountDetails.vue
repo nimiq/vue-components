@@ -72,7 +72,7 @@ export default class AccountDetails extends Vue {
 
     .cancel-circle .nq-icon {
         opacity: .2;
-        transition: opacity .3s cubic-bezier(0.25, 0, 0, 1);
+        transition: opacity .3s var(--nimiq-ease);
     }
 
     .cancel-circle:hover .nq-icon,
