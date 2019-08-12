@@ -14,6 +14,7 @@ import Amount from '../components/Amount.vue';
 import AmountWithDetails from '../components/AmountWithDetails.vue';
 import Contact from '../components/Contact.vue';
 import ContactList from '../components/ContactList.vue';
+import Copyable from '../components/Copyable.vue';
 import Identicon from '../components/Identicon.vue';
 import LabelInput from '../components/LabelInput.vue';
 import Wallet from '../components/Wallet.vue';
@@ -483,6 +484,15 @@ storiesOf('Components', module)
             `
         };
     })
+    .add('Copyable', () => ({
+        components: { Copyable },
+        template: `
+            <div>
+                <Copyable>I'm a text you can copy.</Copyable>
+                <Copyable text="Surprise!!!" style="margin-top: 7rem">When you click me you get a surprise!</Copyable>
+            </div>
+        `,
+    }))
     .add('Wallet', () => {
         const label = text('label', 'Main Wallet');
         const id = text('id', '47ee824fc910');
