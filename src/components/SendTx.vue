@@ -17,10 +17,8 @@
                 <PageHeader>
                     Select a contact
                 </PageHeader>
+                <ContactList :contacts="contacts" @select-contact="updateRecipient"/>
                 <CloseButton class="top-right" @click="contactsOpened = false"/>
-                <PageBody class="contacts">
-                    <ContactList :contacts="contacts" @select-contact="updateRecipient"/>
-                </PageBody>
             </SmallPage>
         </transition>
 
@@ -491,12 +489,9 @@ enum Details {
         margin-bottom: 3rem;
     }
 
-    .send-tx .contacts {
-        justify-content: flex-start;
-    }
-
     .send-tx .contact-list {
-        width: 100%;
+        /* width: 100%; */
+        min-height: 0;
     }
 
     .send-tx .value {

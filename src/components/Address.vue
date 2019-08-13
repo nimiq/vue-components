@@ -48,7 +48,8 @@
         white-space: nowrap;
         cursor: pointer;
         border-radius: 0.375rem;
-        font-family: "Source Code Pro", "Menlo", "Roboto Mono", "Droid Sans Mono", monospace;
+        font-family: "Fira Mono", monospace;
+        word-spacing: -0.2em;
     }
 
     .address:hover {
