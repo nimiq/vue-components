@@ -11,7 +11,8 @@ import { CloseIcon } from './Icons';
 @Component({components: {CloseIcon}})
 export default class CloseButton extends Vue {
     @Emit()
-    public click(event: MouseEvent) {};
+    // tslint:disable-next-line no-empty
+    public click(event: MouseEvent) {}
 }
 
 </script>
