@@ -193,12 +193,12 @@ import NewContact from './NewContact.vue';
     }
 </script>
 
-<style>
+<style scoped>
     .contact-list {
         position: relative;
     }
 
-    .contact-list .search-field {
+    .search-field {
         width: 100%;
         border: none !important;
         padding: 1.5rem 5rem;
@@ -207,26 +207,26 @@ import NewContact from './NewContact.vue';
         text-align: left;
     }
 
-    .contact-list .search-field:focus {
+    .search-field:focus {
         background: rgba(0, 0, 0, 0.075);
     }
 
-    .contact-list .search-field::placeholder {
+    .search-field::placeholder {
         text-align: left;
     }
 
-    .contact-list .search-icon {
+    .search-icon {
         position: absolute;
         left: 1rem;
         top: 1.5rem;
         opacity: 0.4;
     }
 
-    .contact-list .search-field:focus ~ .search-icon {
+    .search-field:focus ~ .search-icon {
         opacity: 0.8;
     }
 
-    .contact-list .search-clear {
+    .search-clear {
         position: absolute;
         right: 0.5rem;
         top: 1rem;
@@ -236,37 +236,37 @@ import NewContact from './NewContact.vue';
         cursor: pointer;
     }
 
-    .contact-list .search-clear:hover,
-    .contact-list .search-clear:focus {
+    .search-clear:hover,
+    .search-clear:focus {
         background: rgba(0, 0, 0, 0.1);
         opacity: 0.8;
     }
 
-    .contact-list .list {
+    .list {
         margin-top: 2rem;
     }
 
-    .contact-list .contact {
+    .contact {
         padding: 1rem;
     }
 
-    .contact-list .contact:hover {
+    .contact:hover {
         background-color: rgba(0, 0, 0, 0.075);
     }
 
-    .contact-list .no-contacts {
+    .no-contacts {
         text-align: center;
         opacity: 0.6;
     }
 
-    .contact-list .no-contacts .material-icons {
+    .no-contacts .material-icons {
         display: block;
         font-size: 10rem;
         line-height: 1.1;
         opacity: 0.3;
     }
 
-    .contact-list .file-import {
+    .file-import {
         width: 0;
         height: 0;
         opacity: 0;
