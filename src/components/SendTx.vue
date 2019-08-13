@@ -29,7 +29,7 @@
             </a>
         </PageHeader>
 
-        <PageBody class="blur-target">
+        <PageBody class="blur-target recipient-page">
             <ContactShortcuts
                 :contacts="contacts"
                 @contact-selected="updateRecipient"
@@ -444,14 +444,13 @@ enum Details {
         mask-image: linear-gradient(0deg , rgba(255,255,255,0), rgba(255,255,255, 1) 4rem, rgba(255,255,255,1) calc(100% - 4rem), rgba(255,255,255,0));
     }
 
-    .send-tx .page-footer {
+    .recipient-page + .page-footer {
         align-items: center;
         padding: 0 4rem 3rem;
     }
 
     .send-tx .page-footer .nq-button {
-        margin: 0 0 1rem;
-        width: 100%;
+        margin-top: 0;
     }
 
     .send-tx .page-header,
