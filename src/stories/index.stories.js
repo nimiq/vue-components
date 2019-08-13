@@ -977,6 +977,30 @@ storiesOf('Pages', module)
                     balance: 2712415141213,
                     path: "44'/242'/0'/1'",
                 }],
+                ['NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM_1', {
+                    userFriendlyAddress: 'NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM',
+                    label: 'Primary account',
+                    balance: 12023110,
+                    path: "44'/242'/0'/0'",
+                }],
+                ['NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1_!', {
+                    userFriendlyAddress: 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1',
+                    label: 'HODL account',
+                    balance: 2712415141213,
+                    path: "44'/242'/0'/1'",
+                }],
+                ['NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM_2', {
+                    userFriendlyAddress: 'NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM',
+                    label: 'Primary account',
+                    balance: 12023110,
+                    path: "44'/242'/0'/0'",
+                }],
+                ['NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1_2', {
+                    userFriendlyAddress: 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1',
+                    label: 'HODL account',
+                    balance: 2712415141213,
+                    path: "44'/242'/0'/1'",
+                }],
             ]),
             contracts: [
                 {
