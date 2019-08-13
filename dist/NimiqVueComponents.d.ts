@@ -14,6 +14,8 @@ declare module 'NimiqVueComponents' {
     export { default as AddressInput } from 'NimiqVueComponents/src/components/AddressInput.vue';
     export { default as Amount } from 'NimiqVueComponents/src/components/Amount.vue';
     export { default as AmountWithDetails } from 'NimiqVueComponents/src/components/AmountWithDetails.vue';
+    export { default as CircleSpinner } from 'NimiqVueComponents/src/components/CircleSpinner.vue';
+    export { default as CloseButton } from 'NimiqVueComponents/src/components/CloseButton.vue';
     export { default as Contact } from 'NimiqVueComponents/src/components/Contact.vue';
     export { default as ContactList } from 'NimiqVueComponents/src/components/ContactList.vue';
     export { default as AmountInput } from 'NimiqVueComponents/src/components/AmountInput.vue';
@@ -91,7 +93,7 @@ declare module 'NimiqVueComponents/src/components/AccountSelector.vue' {
         id: string;
         label: string;
         accounts: Map<string, AccountInfo>;
-        contracts: any[];
+        contracts: ContractInfo[];
         type: number;
         keyMissing: boolean;
     }
@@ -137,6 +139,19 @@ declare module 'NimiqVueComponents/src/components/AmountWithDetails.vue' {
     }
 }
 
+declare module 'NimiqVueComponents/src/components/CircleSpinner.vue' {
+    import { Vue } from 'vue-property-decorator';
+    export default class CircleSpinner extends Vue {
+    }
+}
+
+declare module 'NimiqVueComponents/src/components/CloseButton.vue' {
+    import { Vue } from 'vue-property-decorator';
+    export default class CloseButton extends Vue {
+        click(event: MouseEvent): void;
+    }
+}
+
 declare module 'NimiqVueComponents/src/components/Contact.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class Contact extends Vue {
@@ -172,6 +187,7 @@ declare module 'NimiqVueComponents/src/components/Identicon.vue' {
         static formatAddress(str: string): string;
         static isUserFriendlyAddress(str: string): boolean;
         address: string;
+        readonly placeholderDataUrl: string;
     }
 }
 
@@ -302,7 +318,9 @@ declare module 'NimiqVueComponents/src/components/Icons' {
     export const ArrowRightSmallIcon: any;
     export const ArrowRightIcon: any;
     export const CaretRightSmallIcon: any;
+    export const CashlinkIcon: any;
     export const CheckmarkIcon: any;
+    export const CheckmarkSmallIcon: any;
     export const CloseIcon: any;
     export const ContactsIcon: any;
     export const FaceNeutralIcon: any;
