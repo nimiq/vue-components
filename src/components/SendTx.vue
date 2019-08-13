@@ -35,8 +35,10 @@
                 :contacts="contacts"
                 @contact-selected="updateRecipient"
                 @contacts-opened="contacts.length > 0 ? contactsOpened = true : false"/>
-            <label class="nq-label">Enter address</label>
-            <AddressInput @address="updateRecipient" />
+            <div>
+                <label class="nq-label">Enter address</label>
+                <AddressInput @address="updateRecipient" />
+            </div>
         </PageBody>
 
         <PageFooter class="blur-target">
@@ -483,8 +485,9 @@ enum Details {
 
     }
 
-    .send-tx .page-body > .nq-label {
-        margin-top: 6rem;
+    .send-tx .page-body .nq-label {
+        display: block;
+        text-align: center;
         margin-bottom: 3rem;
     }
 
