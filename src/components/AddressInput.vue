@@ -89,7 +89,8 @@ export default class AddressInput extends Vue {
         }
         return {
             text: value,
-            template: 'xxxx xxxx xxxx\nxxxx xxxx xxxx\nxxxx xxxx xxxx', // used by input-format to position caret
+            template: 'wwww wwww wwww\nwwww wwww wwww\nwwww wwww wwww', // used by input-format to position caret. Using
+            // w as placeholder instead of default x as w is not in our address alphabet.
         };
     }
 
