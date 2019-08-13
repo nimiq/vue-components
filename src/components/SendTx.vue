@@ -24,7 +24,10 @@
         </transition>
 
         <PageHeader :backArrow="true" @back="backFromRecipient" class="blur-target">
-            Send Transaction
+            Send a transaction
+            <a href="javascript:void(0)" class="scan-qr nq-blue" @click="scanQr">
+                <ScanQrCodeIcon />
+            </a>
         </PageHeader>
 
         <PageBody class="blur-target">
@@ -39,9 +42,6 @@
         <PageFooter class="blur-target">
             <p class="nq-text">If recipient has no Account yet:</p>
             <button class="nq-button-s" @click="createCashlink(liveSender)">Create a Cashlink</button>
-            <a href="javascript:void(0)" class="scan-qr nq-blue" @click="scanQr">
-                <ScanQrCodeIcon />
-            </a>
         </PageFooter>
     </SmallPage>
 
@@ -622,8 +622,8 @@ enum Details {
 
     .scan-qr {
         position: absolute;
-        bottom: 3rem;
-        right: 3rem;
+        right: 4rem;
+        top: 4rem;
         opacity: .4;
         transition: opacity .2s ease;
     }
@@ -634,8 +634,8 @@ enum Details {
     }
 
     .scan-qr svg {
-        width: 5rem;
-        height: 5rem;
+        width: 4rem;
+        height: 4rem;
     }
 
     .nq-button >>> .circle-spinner {
