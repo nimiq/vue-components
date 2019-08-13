@@ -219,6 +219,14 @@ enum Details {
             this.liveContactLabel = '';
         }
 
+        @Watch('wallet')
+        private checkLiveSenderInWallet() {
+            if (!this.liveSender || this.sender) return;
+            if (!this.wallet.accounts.has(this.liveSender.address)) {
+                this.liveSender = null;
+            }
+        }
+
         @Watch('sender', {immediate: true})
         private setSender(sender: {walletId: string, address: string} | null) {
             if (!sender) {
@@ -230,7 +238,12 @@ enum Details {
             const address = sender.address;
 
             const foundAddress = this.wallet.accounts.get(address) || this.wallet.contracts.find(
-                (c) => c.userFriendlyAddress === address)!;
+                (c) => c.userFriendlyAddress === address);
+
+            if (!foundAddress) {
+                this.liveSender = null;
+                return;
+            }
 
             this.liveSender = {
                 address,
@@ -630,5 +643,19 @@ enum Details {
         right: 4rem;
         opacity: .25;
         font-size: 3.625rem;
+    }
+
+    @media (max-width: 450px) {
+        .scan-qr,
+        .options-button {
+            right: 3rem;
+            top: 3rem;
+        }
+    }
+
+    @media (max-width: 409px) {
+        .contact-shortcuts >>> .account:nth-child(3) {
+            display: none;
+        }
     }
 </style>
