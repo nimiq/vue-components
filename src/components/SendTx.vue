@@ -36,7 +36,7 @@
                 @contacts-opened="contacts.length > 0 ? contactsOpened = true : false"/>
             <div>
                 <label class="nq-label">Enter address</label>
-                <AddressInput @address="updateRecipient" />
+                <AddressInput @address="updateRecipient" autofocus />
             </div>
         </PageBody>
 
@@ -522,11 +522,6 @@ enum Details {
         font-size: 0.5em;
         font-weight: 700;
         line-height: 4.5rem;
-    }
-
-    .address-input {
-        width: 28rem;
-        height: 14.5rem;
     }
 
     .transition-fade-enter,

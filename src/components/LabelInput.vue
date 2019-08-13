@@ -84,6 +84,7 @@ export default class LabelInput extends Vue {
         position: relative;
         overflow: hidden; /* limit width-finder width to parent available width */
         max-width: 100%;
+        box-sizing: border-box;
     }
 
     .width-finder {
