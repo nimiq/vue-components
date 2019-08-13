@@ -3,7 +3,12 @@
         <PageHeader>
             Choose Sender
         </PageHeader>
-        <AccountSelector :wallets="wallets" :minBalance="1" @account-selected="updateSender" @login="login" />
+        <AccountList
+            :accounts="wallet | listAccountsAndContracts"
+            :walletId="wallet.id"
+            :minBalance="1"
+            @account-selected="updateSender"
+        />
     </SmallPage>
 
     <SmallPage v-else-if="!liveRecipient" class="send-tx" :class="{'overlay-open': contactsOpened}">
@@ -121,7 +126,8 @@ import PageFooter from './PageFooter.vue';
 import Account from './Account.vue';
 import AccountDetails from './AccountDetails.vue';
 import AddressInput from './AddressInput.vue';
-import AccountSelector, { WalletInfo } from './AccountSelector.vue';
+import { WalletInfo, AccountInfo, ContractInfo } from './AccountSelector.vue';
+import AccountList from './AccountList.vue';
 import ContactList from './ContactList.vue';
 import ContactShortcuts from './ContactShortcuts.vue';
 import LabelInput from './LabelInput.vue';
@@ -138,30 +144,37 @@ enum Details {
     RECIPIENT,
 }
 
-@Component({components: {
-    SmallPage,
-    PageHeader,
-    PageBody,
-    PageFooter,
-    Account,
-    AccountDetails,
-    AccountSelector,
-    AddressInput,
-    Amount,
-    AmountInput,
-    ContactList,
-    ContactShortcuts,
-    LabelInput,
-    ArrowRightIcon,
-    CloseIcon,
-    ScanQrCodeIcon,
-    SelectBar,
-    CircleSpinner,
-    SettingsIcon,
-}})
+@Component({
+    components: {
+        SmallPage,
+        PageHeader,
+        PageBody,
+        PageFooter,
+        Account,
+        AccountDetails,
+        AccountList,
+        AddressInput,
+        Amount,
+        AmountInput,
+        ContactList,
+        ContactShortcuts,
+        LabelInput,
+        ArrowRightIcon,
+        CloseIcon,
+        ScanQrCodeIcon,
+        SelectBar,
+        CircleSpinner,
+        SettingsIcon,
+    },
+    filters: {
+        listAccountsAndContracts(wallet: WalletInfo): Array<AccountInfo|ContractInfo> {
+            return [ ...wallet.accounts.values(), ...wallet.contracts ];
+        },
+    },
+})
     export default class SendTx extends Vue {
         @Prop(Array) public contacts!: Array<{ address: string, label: string }>;
-        @Prop(Array) public wallets!: WalletInfo[];
+        @Prop(Object) public wallet!: WalletInfo;
         @Prop(Object) public sender?: {walletId: string, address: string};
         @Prop(Object) public recipient?: {address: string, label?: string};
         @Prop({type: Boolean, default: false}) public recipientIsReadonly!: boolean;
@@ -209,16 +222,14 @@ enum Details {
             const walletId = sender.walletId;
             const address = sender.address;
 
-            const wallet = this.wallets.find((walletToCheck) => walletToCheck.id === walletId);
-            if (!wallet) return;
-            const foundAddress = wallet.accounts.get(address);
-            if (!foundAddress) return;
+            const foundAddress = this.wallet.accounts.get(address) || this.wallet.contracts.find(
+                (c) => c.userFriendlyAddress === address)!;
 
             this.liveSender = {
                 address,
                 label: foundAddress.label,
                 walletId,
-                walletLabel: wallet.label,
+                walletLabel: this.wallet.label,
                 balance: foundAddress.balance || 0,
             };
         }
@@ -552,7 +563,7 @@ enum Details {
 
     .cancel-circle .nq-icon {
         opacity: .2;
-        transition: opacity .3s cubic-bezier(0.25, 0, 0, 1);
+        transition: opacity .3s var(--nimiq-ease);
     }
 
     .cancel-circle:hover .nq-icon,
