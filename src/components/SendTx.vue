@@ -436,6 +436,14 @@ enum Details {
         position: relative;
     }
 
+    .account-list {
+        /* Scrolling fade styling */
+        overflow-y: auto;
+        padding: 4rem 0;
+        margin-top: -4rem;
+        mask-image: linear-gradient(0deg , rgba(255,255,255,0), rgba(255,255,255, 1) 4rem, rgba(255,255,255,1) calc(100% - 4rem), rgba(255,255,255,0));
+    }
+
     .send-tx .page-footer {
         align-items: center;
         padding: 0 4rem 3rem;
