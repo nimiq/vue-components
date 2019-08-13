@@ -13,12 +13,13 @@ declare module 'NimiqVueComponents' {
     export { default as AddressDisplay } from 'NimiqVueComponents/src/components/AddressDisplay.vue';
     export { default as AddressInput } from 'NimiqVueComponents/src/components/AddressInput.vue';
     export { default as Amount } from 'NimiqVueComponents/src/components/Amount.vue';
+    export { default as AmountInput } from 'NimiqVueComponents/src/components/AmountInput.vue';
     export { default as AmountWithDetails } from 'NimiqVueComponents/src/components/AmountWithDetails.vue';
     export { default as CircleSpinner } from 'NimiqVueComponents/src/components/CircleSpinner.vue';
     export { default as CloseButton } from 'NimiqVueComponents/src/components/CloseButton.vue';
     export { default as Contact } from 'NimiqVueComponents/src/components/Contact.vue';
     export { default as ContactList } from 'NimiqVueComponents/src/components/ContactList.vue';
-    export { default as AmountInput } from 'NimiqVueComponents/src/components/AmountInput.vue';
+    export { default as Copyable } from 'NimiqVueComponents/src/components/Copyable.vue';
     export { default as Identicon } from 'NimiqVueComponents/src/components/Identicon.vue';
     export { default as LabelInput } from 'NimiqVueComponents/src/components/LabelInput.vue';
     export { default as LoadingSpinner } from 'NimiqVueComponents/src/components/LoadingSpinner.vue';
@@ -111,9 +112,11 @@ declare module 'NimiqVueComponents/src/components/AddressInput.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class AddressInput extends Vue {
         value: string;
+        autofocus?: string;
         $refs: {
             textarea: HTMLTextAreaElement;
         };
+        focus(scrollIntoView?: boolean): void;
     }
 }
 
@@ -125,6 +128,15 @@ declare module 'NimiqVueComponents/src/components/Amount.vue' {
         minDecimals: number;
         maxDecimals: number;
         showApprox: boolean;
+    }
+}
+
+declare module 'NimiqVueComponents/src/components/AmountInput.vue' {
+    import { Vue } from 'vue-property-decorator';
+    export default class AmountInput extends Vue {
+        mounted(): Promise<void>;
+        focus(): void;
+        formattedValue: string;
     }
 }
 
@@ -172,12 +184,21 @@ declare module 'NimiqVueComponents/src/components/ContactList.vue' {
     }
 }
 
-declare module 'NimiqVueComponents/src/components/AmountInput.vue' {
+declare module 'NimiqVueComponents/src/components/Copyable.vue' {
     import { Vue } from 'vue-property-decorator';
-    export default class AmountInput extends Vue {
-        mounted(): Promise<void>;
-        focus(): void;
-        formattedValue: string;
+    /**
+      * **Copyable**
+      *
+      * Copyable can be used to make a click on one or more elements copy content to the Clipboard with visual feedback.
+      * By default the children's contents are copied to the Clipboard. Alternatively, a specific text to be copied can be
+      * provided.
+      *
+      * Props:
+      *
+      * **text** {string} [optional] - A specific text to be copied to the clipboard
+      */
+    export default class Copyable extends Vue {
+        text?: string;
     }
 }
 
