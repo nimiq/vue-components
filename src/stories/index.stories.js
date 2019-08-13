@@ -14,6 +14,7 @@ import Amount from '../components/Amount.vue';
 import AmountInput from '../components/AmountInput.vue';
 import AmountWithDetails from '../components/AmountWithDetails.vue';
 import CircleSpinner from '../components/CircleSpinner.vue';
+import CloseButton from '../components/CloseButton.vue';
 import Contact from '../components/Contact.vue';
 import ContactList from '../components/ContactList.vue';
 import ContactShortcuts from '../components/ContactShortcuts.vue';
@@ -468,6 +469,15 @@ storiesOf('Components', module)
         return {
             components: {AmountWithDetails},
             template: `<div style="padding-left: 20rem"><AmountWithDetails :decimals="${digits}" :amount="${amount}" :networkFee="${networkFee}" :networkFeeEditable="${networkFeeEditable}"/></div>`,
+        };
+    })
+    .add('CloseButton', () => {
+        return {
+            components: {CloseButton},
+            methods: {
+                click: action('click'),
+            },
+            template: `<CloseButton class="top-right" @click="click"/>`,
         };
     })
     .add('Contact', () => {

@@ -11,6 +11,7 @@ export { default as Amount } from './components/Amount.vue';
 export { default as AmountInput } from './components/AmountInput.vue';
 export { default as AmountWithDetails } from './components/AmountWithDetails.vue';
 export { default as CircleSpinner } from './components/CircleSpinner.vue';
+export { default as CloseButton } from './components/CloseButton.vue';
 export { default as Contact } from './components/Contact.vue';
 export { default as ContactList } from './components/ContactList.vue';
 export { default as Copyable } from './components/Copyable.vue';

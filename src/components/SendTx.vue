@@ -14,9 +14,10 @@
     <SmallPage v-else-if="!liveRecipient" class="send-tx" :class="{'overlay-open': contactsOpened}">
         <transition name="transition-fade">
             <SmallPage class="overlay" v-if="contactsOpened">
-                <PageHeader :backArrow="true" @back="contactsOpened = false">
+                <PageHeader>
                     Select a contact
                 </PageHeader>
+                <CloseButton class="top-right" @click="contactsOpened = false"/>
                 <PageBody class="contacts">
                     <ContactList :contacts="contacts" @select-contact="updateRecipient"/>
                 </PageBody>
@@ -69,9 +70,7 @@
 
         <transition name="transition-fade">
             <SmallPage class="overlay fee" v-if="optionsOpened">
-                <a href="javascript:void(0)" class="nq-button-s cancel-circle" @click="optionsOpened = false">
-                    <CloseIcon/>
-                </a>
+                <CloseButton class="top-right" @click="optionsOpened = false"/>
                 <PageBody>
                     <h1 class="nq-h1">Speed up your transaction</h1>
                     <p class="nq-text">By adding a transation fee, you can influence how fast your transaction will be processed.</p>
@@ -137,7 +136,8 @@ import Amount from './Amount.vue';
 import AmountInput from './AmountInput.vue';
 import SelectBar, { SelectBarOption } from './SelectBar.vue';
 import CircleSpinner from './CircleSpinner.vue';
-import { ArrowRightIcon, CloseIcon, ScanQrCodeIcon, SettingsIcon } from './Icons';
+import CloseButton from './CloseButton.vue';
+import { ArrowRightIcon, ScanQrCodeIcon, SettingsIcon } from './Icons';
 import { Utf8Tools } from '@nimiq/utils';
 
 enum Details {
@@ -162,11 +162,11 @@ enum Details {
         ContactShortcuts,
         LabelInput,
         ArrowRightIcon,
-        CloseIcon,
         ScanQrCodeIcon,
         SelectBar,
         CircleSpinner,
         SettingsIcon,
+        CloseButton,
     },
     filters: {
         listAccountsAndContracts(wallet: WalletInfo): Array<AccountInfo|ContractInfo> {
@@ -556,31 +556,9 @@ enum Details {
         margin-top: 3rem;
     }
 
-    .overlay .cancel-circle {
-        font-size: 3rem;
-        position: absolute;
-        z-index: 1;
-        top: 2rem;
-        right: 2rem;
-        padding: 0;
-        height: unset;
-        background: none;
-    }
-
     .send-tx.overlay-open .blur-target {
         opacity: .5;
         filter: blur(20px);
-    }
-
-    .cancel-circle .nq-icon {
-        opacity: .2;
-        transition: opacity .3s var(--nimiq-ease);
-    }
-
-    .cancel-circle:hover .nq-icon,
-    .cancel-circle:active .nq-icon,
-    .cancel-circle:focus .nq-icon {
-        opacity: .4;
     }
 
     .address-display {
