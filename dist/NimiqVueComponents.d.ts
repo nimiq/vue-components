@@ -71,7 +71,7 @@ declare module 'NimiqVueComponents/src/components/AccountSelector.vue' {
         id: string;
         label: string;
         accounts: Map<string, AccountInfo>;
-        contracts: any[];
+        contracts: ContractInfo[];
         type: number;
         keyMissing: boolean;
     }
@@ -170,7 +170,7 @@ declare module 'NimiqVueComponents/src/components/SendTx.vue' {
             address: string;
             label: string;
         }>;
-        wallets: WalletInfo[];
+        wallet: WalletInfo;
         sender?: {
             walletId: string;
             address: string;
