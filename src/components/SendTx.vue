@@ -54,7 +54,6 @@
                     :editable="displayedDetails === Details.RECIPIENT"
                     placeholder="Name this contact..."
                     :label="displayedDetails === Details.SENDER ? liveSender.label : liveRecipient.label"
-                    :walletLabel="displayedDetails === Details.SENDER ? liveSender.walletLabel : null"
                     :balance="displayedDetails === Details.SENDER ? liveSender.balance : null"
                     @close="displayedDetails = Details.NONE"
                     @changed="setLabel"
@@ -187,7 +186,6 @@ enum Details {
             address: string,
             label: string,
             walletId: string,
-            walletLabel: string,
             balance: number,
         } | null = null;
         private liveRecipient: {address: string, label?: string} | null = null;
@@ -229,7 +227,6 @@ enum Details {
                 address,
                 label: foundAddress.label,
                 walletId,
-                walletLabel: this.wallet.label,
                 balance: foundAddress.balance || 0,
             };
         }
@@ -342,6 +339,7 @@ enum Details {
                 sender: this.liveSender!.address,
                 recipient: this.liveRecipient!.address,
                 recipientType: 0, // Nimiq.Account.Type.BASIC
+                recipientlabel: this.liveRecipient!.label,
                 value: this.liveValue,
                 fee: this.fee,
                 extraData: this.liveExtraData,
