@@ -5,51 +5,14 @@
 //   ../qr-scanner
 
 declare module 'NimiqVueComponents' {
-    export { default as Account } from 'NimiqVueComponents/src/components/Account.vue';
-    export { default as AccountDetails } from 'NimiqVueComponents/src/components/AccountDetails.vue';
-    export { default as AccountList } from 'NimiqVueComponents/src/components/AccountList.vue';
     export { default as AccountSelector } from 'NimiqVueComponents/src/components/AccountSelector.vue';
     export { default as ContactList } from 'NimiqVueComponents/src/components/ContactList.vue';
-    export { default as Identicon } from 'NimiqVueComponents/src/components/Identicon.vue';
     export { default as MigrationWelcome } from 'NimiqVueComponents/src/components/MigrationWelcome.vue';
     export { default as QrCode } from 'NimiqVueComponents/src/components/QrCode.vue';
     export { default as QrScanner } from 'NimiqVueComponents/src/components/QrScanner.vue';
     export { default as SendTx } from 'NimiqVueComponents/src/components/SendTx.vue';
     export { default as WalletMenu } from 'NimiqVueComponents/src/components/WalletMenu.vue';
     export * from 'NimiqVueComponents/src/components/Icons';
-}
-
-declare module 'NimiqVueComponents/src/components/Account.vue' {
-    import { Vue } from 'vue-property-decorator';
-    export default class Account extends Vue {
-        address: string;
-        image?: string;
-        displayAsCashlink: boolean;
-        label: string;
-        placeholder?: string;
-        walletLabel?: string;
-        balance?: number;
-        decimals: number;
-        editable?: boolean;
-        layout: string;
-        focus(): void;
-    }
-}
-
-declare module 'NimiqVueComponents/src/components/AccountDetails.vue' {
-    import { Vue } from 'vue-property-decorator';
-    export default class AccountDetails extends Vue {
-        focus(): void;
-    }
-}
-
-declare module 'NimiqVueComponents/src/components/AccountList.vue' {
-    import { Vue } from 'vue-property-decorator';
-    import { AccountInfo } from 'NimiqVueComponents/src/components/AccountSelector.vue';
-    export default class AccountList extends Vue {
-        accounts: AccountInfo[];
-        focus(address: string): void;
-    }
 }
 
 declare module 'NimiqVueComponents/src/components/AccountSelector.vue' {
@@ -86,15 +49,6 @@ declare module 'NimiqVueComponents/src/components/ContactList.vue' {
             address: string;
             label: string;
         }>;
-    }
-}
-
-declare module 'NimiqVueComponents/src/components/Identicon.vue' {
-    import { Vue } from 'vue-property-decorator';
-    export default class Identicon extends Vue {
-        static formatAddress(str: string): string;
-        static isUserFriendlyAddress(str: string): boolean;
-        address: string;
     }
 }
 
@@ -184,6 +138,7 @@ declare module 'NimiqVueComponents/src/components/SendTx.vue' {
         value: number;
         message: string;
         validityStartHeight: number;
+        created(): void;
         clear(): void;
     }
 }
