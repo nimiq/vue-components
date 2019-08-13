@@ -75,7 +75,7 @@
                     <h1 class="nq-h1">Speed up your transaction</h1>
                     <p class="nq-text">By adding a transation fee, you can influence how fast your transaction will be processed.</p>
                     <SelectBar ref="feeSetter" :options="FEE_OPTIONS" name="fee" :selectedValue="feeLunaPerByte" @changed="updateFeePreview" />
-                    <Amount :amount="feePreview" :minDecimals="2" :maxDecimals="5" />
+                    <Amount :amount="feePreview" :minDecimals="0" :maxDecimals="5" />
                 </PageBody>
                 <PageFooter>
                     <button class="nq-button light-blue" @click="setFee">Set fee</button>
@@ -100,10 +100,10 @@
                     <Account layout="column" :address="liveRecipient.address" :label="liveRecipient.label || 'Unnamed Contact'" :class="{invalid: !recipientValid}"/>
                 </a>
             </div>
-            <Amount v-if="value" class="value readonly" :class="{invalid: !balanceValid}" :amount="value" :minDecimals="2" :maxDecimals="5" />
+            <Amount v-if="value" class="value readonly" :class="{invalid: !balanceValid}" :amount="value" :minDecimals="0" :maxDecimals="5" />
             <AmountInput v-else class="value" :class="{invalid: !balanceValid}" v-model="liveValue" ref="valueInput" />
             <div v-if="fee" class="fee-section nq-text-s">
-                + <Amount :amount="fee" :minDecimals="2" :maxDecimals="5" /> fee
+                + <Amount :amount="fee" :minDecimals="0" :maxDecimals="5" /> fee
             </div>
             <div v-if="message" class="label">{{liveExtraData}}</div>
             <LabelInput v-else :vanishing="true" placeholder="Add a public message..." :maxBytes="64" v-model="liveExtraData" ref="messageInput" />
