@@ -108,7 +108,7 @@
     }
 
     .identicon {
-        width: 10rem;
+        width: 8rem;
         min-width: 6.25rem;
         height: 8.875rem;
     }
@@ -121,14 +121,15 @@
         text-align: left;
         width: 100%;
         padding-left: 2rem;
-        --width-subtraction: 11rem;
+        --width-subtraction: 8rem;
         max-width: calc(100% - var(--width-subtraction));
     }
 
     .label {
+        font-size: 2rem;
         display: block;
         font-weight: 600;
-        margin-bottom: 0.25rem;
+        margin-bottom: 0.5rem;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -136,12 +137,13 @@
 
     .address {
         overflow: hidden;
-        text-overflow: ellipsis;
+        /* text-overflow: ellipsis; */
         pointer-events: none;
         padding: 0;
         min-width: auto;
         font-weight: normal;
-        opacity: 0.6;
+        opacity: 0.4;
+        mask-image: linear-gradient(90deg , rgba(255,255,255,1), rgba(255,255,255,1) calc(100% - 4rem), rgba(255,255,255,0));
     }
 
     input {

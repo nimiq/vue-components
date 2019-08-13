@@ -1,10 +1,7 @@
 <template>
     <div class="contact-list">
         <template v-if="contacts.length > 3">
-            <input type="text" class="search-field" placeholder="Search..." v-model="searchTerm" ref="search">
-            <i class="material-icons search-icon">search</i>
-            <a href="#" class="material-icons search-clear" title="Clear search" v-if="searchTerm"
-               @click.prevent="clearSearch">clear</a>
+            <input type="text" class="nq-input search-field" placeholder="Search..." v-model="searchTerm" ref="search">
         </template>
 
         <div class="list">
@@ -196,29 +193,19 @@ import NewContact from './NewContact.vue';
 <style scoped>
     .contact-list {
         position: relative;
+        padding: 1rem 0;
     }
 
     .search-field {
-        width: 100%;
-        border: none !important;
-        padding: 1.5rem 5rem;
-        background: rgba(0, 0, 0, 0.05);
-        border-radius: 0.5rem;
-        text-align: left;
-    }
-
-    .search-field:focus {
-        background: rgba(0, 0, 0, 0.075);
-    }
-
-    .search-field::placeholder {
-        text-align: left;
+        width: calc(100% - 8rem);
+        /* height: 5rem; */
+        margin: 0 4rem;
     }
 
     .search-icon {
         position: absolute;
-        left: 1rem;
-        top: 1.5rem;
+        left: 3rem;
+        top: 2rem;
         opacity: 0.4;
     }
 
@@ -243,7 +230,11 @@ import NewContact from './NewContact.vue';
     }
 
     .list {
-        margin-top: 2rem;
+        overflow-y: auto;
+        margin-top: 1rem;
+        padding: 4rem 2rem;
+        mask-image: linear-gradient(0deg , rgba(255,255,255,0), rgba(255,255,255, 1) 4rem, rgba(255,255,255,1) calc(100% - 4rem), rgba(255,255,255,0));
+        max-height: calc(100% - 5.5rem); /* Sadly, I found no other way of making the list only grow to the container size */
     }
 
     .contact {
