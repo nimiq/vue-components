@@ -198,15 +198,6 @@ enum Details {
         private liveExtraData = '';
         private liveContactLabel = '';
 
-        public created() {
-            if (this.addressCount === 1) {
-                this.setSender({
-                    walletId: this.wallet.id,
-                    address: this.wallet.accounts.values().next().value.userFriendlyAddress,
-                });
-            }
-        }
-
         public clear() {
             this.liveSender = null;
             this.liveRecipient = null;
@@ -219,8 +210,16 @@ enum Details {
             this.liveContactLabel = '';
         }
 
-        @Watch('wallet')
+        @Watch('wallet', {immediate: true})
         private checkLiveSenderInWallet() {
+            if (this.addressCount === 1) {
+                this.setSender({
+                    walletId: this.wallet.id,
+                    address: this.wallet.accounts.values().next().value.userFriendlyAddress,
+                });
+                return;
+            }
+
             if (!this.liveSender || this.sender) return;
             if (!this.wallet.accounts.has(this.liveSender.address)) {
                 this.liveSender = null;
