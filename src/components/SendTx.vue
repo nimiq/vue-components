@@ -631,4 +631,18 @@ enum Details {
         opacity: .25;
         font-size: 3.625rem;
     }
+
+    @media (max-width: 450px) {
+        .scan-qr,
+        .options-button {
+            right: 3rem;
+            top: 3rem;
+        }
+    }
+
+    @media (max-width: 409px) {
+        .contact-shortcuts >>> .account:nth-child(3) {
+            display: none;
+        }
+    }
 </style>
