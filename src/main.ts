@@ -13,6 +13,7 @@ export { default as AccountSelector } from './components/AccountSelector.vue';
 // export { default as CloseButton } from './components/CloseButton.vue';
 // export { default as Contact } from './components/Contact.vue';
 export { default as ContactList } from './components/ContactList.vue';
+// export { default as Copyable } from './components/Copyable.vue';
 // export { default as Identicon } from './components/Identicon.vue';
 // export { default as LabelInput } from './components/LabelInput.vue';
 // export { default as LoadingSpinner } from './components/LoadingSpinner.vue';
