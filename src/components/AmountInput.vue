@@ -22,7 +22,7 @@ import { Utf8Tools } from '@nimiq/utils';
 export default class AmountInput extends Vue {
     @Prop({type: Number}) private value?: number;
     @Prop({type: Number, default: 8}) private maxFontSize!: number;
-    @Prop({type: String, default: '0.00'}) private placeholder!: string;
+    @Prop({type: String, default: '0'}) private placeholder!: string;
 
     private liveValue: string = '';
     private lastEmittedValue = 0;
