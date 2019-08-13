@@ -108,7 +108,15 @@ export default class AddressInput extends Vue {
     })
     public value!: string;
 
+    @Prop(Boolean)
+    public autofocus?: string;
+
     public $refs: { textarea: HTMLTextAreaElement };
+
+    public focus(scrollIntoView = true) {
+        this.$refs.textarea.focus();
+        if (scrollIntoView) this.$refs.textarea.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
 
     private currentValue: string = '';
     private selectionStartBlock: number = -1;
@@ -123,6 +131,8 @@ export default class AddressInput extends Vue {
         // selections in textareas in Firefox. Therefore we also bind the listener to focus, blur, select, click.
         this._updateSelection = this._updateSelection.bind(this);
         document.addEventListener('selectionchange', this._updateSelection);
+
+        if (this.autofocus) this.focus();
     }
 
     private destroyed() {
