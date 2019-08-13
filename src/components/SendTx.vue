@@ -14,34 +14,35 @@
     <SmallPage v-else-if="!liveRecipient" class="send-tx" :class="{'overlay-open': contactsOpened}">
         <transition name="transition-fade">
             <SmallPage class="overlay" v-if="contactsOpened">
-                <PageHeader :backArrow="true" @back="contactsOpened = false">
+                <PageHeader>
                     Select a contact
                 </PageHeader>
-                <PageBody class="contacts">
-                    <ContactList :contacts="contacts" @select-contact="updateRecipient"/>
-                </PageBody>
+                <ContactList :contacts="contacts" @select-contact="updateRecipient"/>
+                <CloseButton class="top-right" @click="contactsOpened = false"/>
             </SmallPage>
         </transition>
 
-        <PageHeader :backArrow="true" @back="backFromRecipient" class="blur-target">
-            Send Transaction
+        <PageHeader :backArrow="addressCount > 1" @back="backFromRecipient" class="blur-target">
+            Send a transaction
+            <a href="javascript:void(0)" class="scan-qr nq-blue" @click="scanQr">
+                <ScanQrCodeIcon />
+            </a>
         </PageHeader>
 
-        <PageBody class="blur-target">
+        <PageBody class="blur-target recipient-page">
             <ContactShortcuts
                 :contacts="contacts"
                 @contact-selected="updateRecipient"
                 @contacts-opened="contacts.length > 0 ? contactsOpened = true : false"/>
-            <label class="nq-label">Enter address</label>
-            <AddressInput @address="updateRecipient" />
+            <div>
+                <label class="nq-label">Enter address</label>
+                <AddressInput @address="updateRecipient" />
+            </div>
         </PageBody>
 
         <PageFooter class="blur-target">
             <p class="nq-text">If recipient has no Account yet:</p>
             <button class="nq-button-s" @click="createCashlink(liveSender)">Create a Cashlink</button>
-            <a href="javascript:void(0)" class="scan-qr nq-blue" @click="scanQr">
-                <ScanQrCodeIcon />
-            </a>
         </PageFooter>
     </SmallPage>
 
@@ -53,7 +54,6 @@
                     :editable="displayedDetails === Details.RECIPIENT"
                     placeholder="Name this contact..."
                     :label="displayedDetails === Details.SENDER ? liveSender.label : liveRecipient.label"
-                    :walletLabel="displayedDetails === Details.SENDER ? liveSender.walletLabel : null"
                     :balance="displayedDetails === Details.SENDER ? liveSender.balance : null"
                     @close="displayedDetails = Details.NONE"
                     @changed="setLabel"
@@ -67,14 +67,12 @@
 
         <transition name="transition-fade">
             <SmallPage class="overlay fee" v-if="optionsOpened">
-                <a href="javascript:void(0)" class="nq-button-s cancel-circle" @click="optionsOpened = false">
-                    <CloseIcon/>
-                </a>
+                <CloseButton class="top-right" @click="optionsOpened = false"/>
                 <PageBody>
                     <h1 class="nq-h1">Speed up your transaction</h1>
                     <p class="nq-text">By adding a transation fee, you can influence how fast your transaction will be processed.</p>
                     <SelectBar ref="feeSetter" :options="FEE_OPTIONS" name="fee" :selectedValue="feeLunaPerByte" @changed="updateFeePreview" />
-                    <Amount :amount="feePreview" :minDecimals="2" :maxDecimals="5" />
+                    <Amount :amount="feePreview" :minDecimals="0" :maxDecimals="5" />
                 </PageBody>
                 <PageFooter>
                     <button class="nq-button light-blue" @click="setFee">Set fee</button>
@@ -99,10 +97,10 @@
                     <Account layout="column" :address="liveRecipient.address" :label="liveRecipient.label || 'Unnamed Contact'" :class="{invalid: !recipientValid}"/>
                 </a>
             </div>
-            <Amount v-if="value" class="value readonly" :class="{invalid: !balanceValid}" :amount="value" :minDecimals="2" :maxDecimals="5" />
+            <Amount v-if="value" class="value readonly" :class="{invalid: !balanceValid}" :amount="value" :minDecimals="0" :maxDecimals="5" />
             <AmountInput v-else class="value" :class="{invalid: !balanceValid}" v-model="liveValue" ref="valueInput" />
             <div v-if="fee" class="fee-section nq-text-s">
-                + <Amount :amount="fee" :minDecimals="2" :maxDecimals="5" /> fee
+                + <Amount :amount="fee" :minDecimals="0" :maxDecimals="5" /> fee
             </div>
             <div v-if="message" class="label">{{liveExtraData}}</div>
             <LabelInput v-else :vanishing="true" placeholder="Add a public message..." :maxBytes="64" v-model="liveExtraData" ref="messageInput" />
@@ -135,7 +133,8 @@ import Amount from './Amount.vue';
 import AmountInput from './AmountInput.vue';
 import SelectBar, { SelectBarOption } from './SelectBar.vue';
 import CircleSpinner from './CircleSpinner.vue';
-import { ArrowRightIcon, CloseIcon, ScanQrCodeIcon, SettingsIcon } from './Icons';
+import CloseButton from './CloseButton.vue';
+import { ArrowRightIcon, ScanQrCodeIcon, SettingsIcon } from './Icons';
 import { Utf8Tools } from '@nimiq/utils';
 
 enum Details {
@@ -160,11 +159,11 @@ enum Details {
         ContactShortcuts,
         LabelInput,
         ArrowRightIcon,
-        CloseIcon,
         ScanQrCodeIcon,
         SelectBar,
         CircleSpinner,
         SettingsIcon,
+        CloseButton,
     },
     filters: {
         listAccountsAndContracts(wallet: WalletInfo): Array<AccountInfo|ContractInfo> {
@@ -187,7 +186,6 @@ enum Details {
             address: string,
             label: string,
             walletId: string,
-            walletLabel: string,
             balance: number,
         } | null = null;
         private liveRecipient: {address: string, label?: string} | null = null;
@@ -199,6 +197,15 @@ enum Details {
         private liveValue: number = 0;
         private liveExtraData = '';
         private liveContactLabel = '';
+
+        public created() {
+            if (this.addressCount === 1) {
+                this.setSender({
+                    walletId: this.wallet.id,
+                    address: this.wallet.accounts.values().next().value.userFriendlyAddress,
+                });
+            }
+        }
 
         public clear() {
             this.liveSender = null;
@@ -229,7 +236,6 @@ enum Details {
                 address,
                 label: foundAddress.label,
                 walletId,
-                walletLabel: this.wallet.label,
                 balance: foundAddress.balance || 0,
             };
         }
@@ -342,6 +348,7 @@ enum Details {
                 sender: this.liveSender!.address,
                 recipient: this.liveRecipient!.address,
                 recipientType: 0, // Nimiq.Account.Type.BASIC
+                recipientlabel: this.liveRecipient!.label,
                 value: this.liveValue,
                 fee: this.fee,
                 extraData: this.liveExtraData,
@@ -369,6 +376,10 @@ enum Details {
                 }] as SelectBarOption[],
                 Details,
             };
+        }
+
+        private get addressCount(): number {
+            return this.wallet.accounts.size + this.wallet.contracts.length;
         }
 
         private get fee(): number {
@@ -436,14 +447,21 @@ enum Details {
         position: relative;
     }
 
-    .send-tx .page-footer {
+    .account-list {
+        /* Scrolling fade styling */
+        overflow-y: auto;
+        padding: 4rem 0;
+        margin-top: -4rem;
+        mask-image: linear-gradient(0deg , rgba(255,255,255,0), rgba(255,255,255, 1) 4rem, rgba(255,255,255,1) calc(100% - 4rem), rgba(255,255,255,0));
+    }
+
+    .recipient-page + .page-footer {
         align-items: center;
         padding: 0 4rem 3rem;
     }
 
     .send-tx .page-footer .nq-button {
-        margin: 0 0 1rem;
-        width: 100%;
+        margin-top: 0;
     }
 
     .send-tx .page-header,
@@ -475,17 +493,15 @@ enum Details {
 
     }
 
-    .send-tx .page-body > .nq-label {
-        margin-top: 6rem;
+    .send-tx .page-body .nq-label {
+        display: block;
+        text-align: center;
         margin-bottom: 3rem;
     }
 
-    .send-tx .contacts {
-        justify-content: flex-start;
-    }
-
     .send-tx .contact-list {
-        width: 100%;
+        /* width: 100%; */
+        min-height: 0;
     }
 
     .send-tx .value {
@@ -545,31 +561,9 @@ enum Details {
         margin-top: 3rem;
     }
 
-    .overlay .cancel-circle {
-        font-size: 3rem;
-        position: absolute;
-        z-index: 1;
-        top: 2rem;
-        right: 2rem;
-        padding: 0;
-        height: unset;
-        background: none;
-    }
-
     .send-tx.overlay-open .blur-target {
         opacity: .5;
         filter: blur(20px);
-    }
-
-    .cancel-circle .nq-icon {
-        opacity: .2;
-        transition: opacity .3s var(--nimiq-ease);
-    }
-
-    .cancel-circle:hover .nq-icon,
-    .cancel-circle:active .nq-icon,
-    .cancel-circle:focus .nq-icon {
-        opacity: .4;
     }
 
     .address-display {
@@ -614,8 +608,8 @@ enum Details {
 
     .scan-qr {
         position: absolute;
-        bottom: 3rem;
-        right: 3rem;
+        right: 4rem;
+        top: 4rem;
         opacity: .4;
         transition: opacity .2s ease;
     }
@@ -626,8 +620,8 @@ enum Details {
     }
 
     .scan-qr svg {
-        width: 5rem;
-        height: 5rem;
+        width: 4rem;
+        height: 4rem;
     }
 
     .nq-button >>> .circle-spinner {

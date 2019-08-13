@@ -5,7 +5,7 @@
                 <img class="account-image" :src="image" @error="showImage = false">
                 <div class="outline"></div>
             </div>
-            <div class="identicon" div v-else-if="displayAsCashlink">
+            <div v-else-if="displayAsCashlink" class="identicon">
                 <div class="nq-blue-bg">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="white" stroke-linecap="round" stroke-width="2.5"><path d="M40.25 23.25v-.5a6.5 6.5 0 0 0-6.5-6.5h-3.5a6.5 6.5 0 0 0-6.5 6.5v6.5a6.5 6.5 0 0 0 6.5 6.5h2"/><path d="M23.75 40.75v.5a6.5 6.5 0 0 0 6.5 6.5h3.5a6.5 6.5 0 0 0 6.5-6.5v-6.5a6.5 6.5 0 0 0-6.5-6.5h-2"/><path d="M32 11.25v4M32 48.75v4"/></svg>
                 </div>

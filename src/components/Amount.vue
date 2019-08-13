@@ -18,7 +18,7 @@ export default class Amount extends Vue {
     @Prop({type: Number, default: 5, validator: Amount._validateDecimals }) public maxDecimals!: number;
     @Prop({type: Boolean, default: false}) public showApprox!: boolean;
 
-    private static _validateDecimals(decimals) {
+    private static _validateDecimals(decimals: number) {
         return decimals >= 0 && decimals <= 5 && Number.isInteger(decimals);
     }
 

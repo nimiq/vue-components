@@ -13,6 +13,7 @@ import AccountRing from '../components/AccountRing.vue';
 import Amount from '../components/Amount.vue';
 import AmountInput from '../components/AmountInput.vue';
 import AmountWithDetails from '../components/AmountWithDetails.vue';
+import CloseButton from '../components/CloseButton.vue';
 import Contact from '../components/Contact.vue';
 import ContactList from '../components/ContactList.vue';
 import ContactShortcuts from '../components/ContactShortcuts.vue';
@@ -446,6 +447,15 @@ storiesOf('Components', module)
         return {
             components: {AmountWithDetails},
             template: `<div style="padding-left: 20rem"><AmountWithDetails :decimals="${digits}" :amount="${amount}" :networkFee="${networkFee}" :networkFeeEditable="${networkFeeEditable}"/></div>`,
+        };
+    })
+    .add('CloseButton', () => {
+        return {
+            components: {CloseButton},
+            methods: {
+                click: action('click'),
+            },
+            template: `<CloseButton class="top-right" @click="click"/>`,
         };
     })
     .add('Contact', () => {
@@ -944,7 +954,7 @@ storiesOf('Pages', module)
     .add('SendTx', () => {
         const valueIsReadonly = boolean('Value is readonly', false);
         const messageIsReadonly = boolean('Message is readonly', false);
-        const value = number('Value', 1000009);
+        const value = number('Value', 0);
         const message = text('Message', '');
         const isLoading = boolean('Loading?', false);
         const contacts = object('Contacts', [{

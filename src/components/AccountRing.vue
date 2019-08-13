@@ -1,8 +1,7 @@
 <template>
     <div class="account-ring">
         <div v-for="n in 6" class="account" :key="n">
-            <Identicon v-if="n <= addresses.length" :address="addresses[n - 1]" :class="{ 'pop-in': animate }"></Identicon>
-            <HexagonIcon v-else/>
+            <Identicon :address="addresses[n - 1]" :class="{ 'pop-in': animate && addresses.length >= n }"></Identicon>
         </div>
     </div>
 </template>
@@ -10,9 +9,8 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import Identicon from './Identicon.vue';
-import { HexagonIcon } from './Icons';
 
-@Component({components: { Identicon, HexagonIcon }})
+@Component({components: { Identicon }})
 export default class AccountRing extends Vue {
     @Prop({ default: () => [], type: Array })
     public addresses!: string[];
@@ -49,13 +47,6 @@ export default class AccountRing extends Vue {
         width: 100%;
         height: 100%;
         z-index: 1;
-    }
-
-    .account .nq-icon {
-        width: 100%;
-        height: 100%;
-        opacity: 0.1;
-        padding: calc(var(--hex-size) / 30) calc(var(--hex-size) / 22.5);
     }
 
     .pop-in {
