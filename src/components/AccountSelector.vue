@@ -1,7 +1,5 @@
 <template>
     <div class="account-selector">
-        <div class="header"></div>
-
         <div class="container" :class="{'extra-spacing': wallets.length === 1}">
             <div v-for="wallet in sortedWallets" :key="wallet.id"
                 :class="{
@@ -61,7 +59,7 @@ export interface WalletInfo {
     id: string;
     label: string;
     accounts: Map<string, AccountInfo>;
-    contracts: any[];
+    contracts: ContractInfo[];
     type: number;
     keyMissing: boolean;
 }
@@ -162,6 +160,7 @@ export default class AccountSelector extends Vue {
         display: flex;
         flex-direction: column;
         flex-grow: 1;
+        height: 400px;
     }
 
     .container {
@@ -169,6 +168,7 @@ export default class AccountSelector extends Vue {
         padding-top: 0.5rem;
         padding-bottom: 4rem;
         flex-grow: 1;
+        mask-image: linear-gradient(0deg , rgba(255,255,255,0), rgba(255,255,255, 1) 4rem, rgba(255,255,255,1) calc(100% - 4rem), rgba(255,255,255,0));
     }
 
     .container.extra-spacing {
@@ -211,29 +211,10 @@ export default class AccountSelector extends Vue {
         background: rgba(31, 35, 72, 0.1);
     }
 
-    .header {
-        height: 4rem;
-        margin-bottom: -4rem;
-        flex-shrink: 0;
-        background: linear-gradient(
-            white 0,
-            rgba(255, 255, 255, 0) 4rem
-        );
-        z-index: 1;
-        pointer-events: none;
-    }
-
     .footer {
         padding: 4rem 0 3rem;
         margin-top: -4rem;
         text-align: center;
-        background: linear-gradient(
-            rgba(255, 255, 255, 0) 0,
-            white 4rem,
-            rgba(255, 255, 255, 0) 4rem
-        );
-        position: relative;
-        pointer-events: none;
     }
 
     .nq-button-s {

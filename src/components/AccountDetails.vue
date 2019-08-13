@@ -1,8 +1,6 @@
 <template>
     <div class="account-details">
-        <a href="javascript:void(0)" class="nq-button-s cancel-circle" @click="close">
-            <CloseIcon/>
-        </a>
+        <CloseButton class="top-right" @click="close"/>
         <Account layout="column" :address="address" :image="image" :label="label !== address ? label : ''"
              :walletLabel="walletLabel" :balance="balance" :editable="editable" :placeholder="placeholder"
              @changed="changed" ref="account" ></Account>
@@ -15,9 +13,9 @@ import { Component, Prop, Emit, Vue } from 'vue-property-decorator';
 import Account from './Account.vue';
 import Amount from './Amount.vue';
 import AddressDisplay from './AddressDisplay.vue';
-import { CloseIcon } from './Icons';
+import CloseButton from './CloseButton.vue';
 
-@Component({components: {Account, Amount, AddressDisplay, CloseIcon}})
+@Component({components: {Account, Amount, AddressDisplay, CloseButton}})
 export default class AccountDetails extends Vue {
     @Prop(String) private address!: string;
     @Prop(String) private image?: string;
@@ -58,27 +56,6 @@ export default class AccountDetails extends Vue {
         height: 100%;
         z-index: 2;
         box-sizing: border-box;
-    }
-
-    .cancel-circle {
-        font-size: 3rem;
-        position: absolute;
-        top: 2rem;
-        right: 2rem;
-        padding: 0;
-        height: unset;
-        background: none;
-    }
-
-    .cancel-circle .nq-icon {
-        opacity: .2;
-        transition: opacity .3s cubic-bezier(0.25, 0, 0, 1);
-    }
-
-    .cancel-circle:hover .nq-icon,
-    .cancel-circle:active .nq-icon,
-    .cancel-circle:focus .nq-icon {
-        opacity: .4;
     }
 
     .account {

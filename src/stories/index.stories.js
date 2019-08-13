@@ -13,6 +13,7 @@ import AccountRing from '../components/AccountRing.vue';
 import Amount from '../components/Amount.vue';
 import AmountInput from '../components/AmountInput.vue';
 import AmountWithDetails from '../components/AmountWithDetails.vue';
+import CloseButton from '../components/CloseButton.vue';
 import Contact from '../components/Contact.vue';
 import ContactList from '../components/ContactList.vue';
 import ContactShortcuts from '../components/ContactShortcuts.vue';
@@ -446,6 +447,15 @@ storiesOf('Components', module)
         return {
             components: {AmountWithDetails},
             template: `<div style="padding-left: 20rem"><AmountWithDetails :decimals="${digits}" :amount="${amount}" :networkFee="${networkFee}" :networkFeeEditable="${networkFeeEditable}"/></div>`,
+        };
+    })
+    .add('CloseButton', () => {
+        return {
+            components: {CloseButton},
+            methods: {
+                click: action('click'),
+            },
+            template: `<CloseButton class="top-right" @click="click"/>`,
         };
     })
     .add('Contact', () => {
@@ -944,6 +954,9 @@ storiesOf('Pages', module)
     .add('SendTx', () => {
         const valueIsReadonly = boolean('Value is readonly', false);
         const messageIsReadonly = boolean('Message is readonly', false);
+        const value = number('Value', 0);
+        const message = text('Message', '');
+        const isLoading = boolean('Loading?', false);
         const contacts = object('Contacts', [{
             label: 'Nimiq Bar',
             address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
@@ -957,73 +970,42 @@ storiesOf('Pages', module)
             label: 'Nimiq Charity',
             address: 'NQ19 YG54 46TX EHGQ D2R2 V8XA JX84 UFG0 S0MC',
         }]);
-        const wallets = object('Wallets', [
-            {
-                id: 'helloworld',
-                label: 'Keyguard Wallet',
-                type: 2, // BIP39
-                accounts: new Map([
-                    ['NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM', {
-                        userFriendlyAddress: 'NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM',
-                        label: 'Primary account',
-                        balance: 12023110,
-                        path: "44'/242'/0'/0'",
-                    }],
-                    ['NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1', {
-                        userFriendlyAddress: 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1',
-                        label: 'HODL account',
-                        balance: 2712415141213,
-                        path: "44'/242'/0'/1'",
-                    }],
-                ]),
-                contracts: [
-                    {
-                        userFriendlyAddress: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE',
-                        label: 'My Vesting Contract',
-                        balance: 777777777,
-                    },
-                ],
-            },
-            {
-                id: 'helloword2',
-                label: 'Ledger Wallet',
-                type: 3, // LEDGER
-                accounts: new Map([
-                    ['NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK', {
-                        userFriendlyAddress: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
-                        label: 'My Ledger Account',
-                        balance: 9876543210,
-                        path: "44'/242'/0'/0'",
-                    }]
-                ]),
-                contracts: [],
-            },
-            {
-                id: 'helloword3',
-                label: 'Ledger Wallet',
-                type: 3, // LEDGER
-                accounts: new Map([
-                    ['NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK', {
-                        userFriendlyAddress: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
-                        label: 'My second Ledger Account',
-                        balance: 98765210,
-                        path: "44'/242'/0'/0'",
-                    }]
-                ]),
-                contracts: [],
-            },
-        ]);
-        const value = number('Value', 1000009);
-        const message = text('Message', '');
+        const wallet = object('Wallet', {
+            id: 'helloworld',
+            label: 'Keyguard Wallet',
+            type: 2, // BIP39
+            accounts: new Map([
+                ['NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM', {
+                    userFriendlyAddress: 'NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM',
+                    label: 'Primary account',
+                    balance: 12023110,
+                    path: "44'/242'/0'/0'",
+                }],
+                ['NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1', {
+                    userFriendlyAddress: 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1',
+                    label: 'HODL account',
+                    balance: 2712415141213,
+                    path: "44'/242'/0'/1'",
+                }],
+            ]),
+            contracts: [
+                {
+                    userFriendlyAddress: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE',
+                    label: 'My Vesting Contract',
+                    balance: 777777777,
+                },
+            ],
+        });
         return {
             components: { SendTx },
             data: () => ({
                 contacts,
-                wallets,
+                wallet,
                 value,
                 valueIsReadonly,
                 message,
                 messageIsReadonly,
+                isLoading,
             }),
             methods: {
                 contactAdded: action('contactAdded'),
@@ -1034,12 +1016,13 @@ storiesOf('Pages', module)
             },
             template:  windowTemplate(`<SendTx
                 :contacts="contacts"
-                :wallets="wallets"
+                :wallet="wallet"
                 :validityStartHeight="987654"
                 :value="value"
                 :valueIsReadonly="valueIsReadonly"
                 :message="message"
                 :messageIsReadonly="messageIsReadonly"
+                :is-loading="isLoading"
                 @login="login"
                 @scan-qr="scanQr"
                 @send-tx="sendTx"
