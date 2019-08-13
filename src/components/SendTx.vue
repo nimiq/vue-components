@@ -22,7 +22,7 @@
             </SmallPage>
         </transition>
 
-        <PageHeader :backArrow="true" @back="backFromRecipient" class="blur-target">
+        <PageHeader :backArrow="addressCount > 1" @back="backFromRecipient" class="blur-target">
             Send a transaction
             <a href="javascript:void(0)" class="scan-qr nq-blue" @click="scanQr">
                 <ScanQrCodeIcon />
@@ -198,6 +198,15 @@ enum Details {
         private liveExtraData = '';
         private liveContactLabel = '';
 
+        public created() {
+            if (this.addressCount === 1) {
+                this.setSender({
+                    walletId: this.wallet.id,
+                    address: this.wallet.accounts.values().next().value.userFriendlyAddress,
+                });
+            }
+        }
+
         public clear() {
             this.liveSender = null;
             this.liveRecipient = null;
@@ -367,6 +376,10 @@ enum Details {
                 }] as SelectBarOption[],
                 Details,
             };
+        }
+
+        private get addressCount(): number {
+            return this.wallet.accounts.size + this.wallet.contracts.length;
         }
 
         private get fee(): number {
