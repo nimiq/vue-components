@@ -13,6 +13,7 @@ import AccountRing from '../components/AccountRing.vue';
 import Amount from '../components/Amount.vue';
 import AmountInput from '../components/AmountInput.vue';
 import AmountWithDetails from '../components/AmountWithDetails.vue';
+import AmountWithFee from '../components/AmountWithFee.vue';
 import CircleSpinner from '../components/CircleSpinner.vue';
 import CloseButton from '../components/CloseButton.vue';
 import Contact from '../components/Contact.vue';
@@ -470,6 +471,21 @@ storiesOf('Components', module)
             components: {AmountWithDetails},
             template: `<div style="padding-left: 20rem"><AmountWithDetails :decimals="${digits}" :amount="${amount}" :networkFee="${networkFee}" :networkFeeEditable="${networkFeeEditable}"/></div>`,
         };
+    })
+    .add('AmountWithFee',() => {
+        const maxBalance = number('Maximum balance', 102000000);
+        const amountAndFee = object('Amount and Fee', {amount: 100000, fee: 0, isValid: true});
+
+        return {
+            data() {
+                return {
+                    maxBalance,
+                    amountAndFee,
+                }
+            },
+            components: {AmountWithFee},
+            template: `<div style="padding-left: 20rem"><AmountWithFee :available-balance="maxBalance" v-model="amountAndFee" /></div>`,
+        }
     })
     .add('CloseButton', () => {
         return {
@@ -1055,7 +1071,7 @@ storiesOf('Pages', module)
             label: 'Nimiq Shop',
             address: 'NQ26 XM1G BFAD PACE R5L0 C85L 6143 FD8L 82U9',
         }, {
-            label: 'Nimiq Foundation',
+            label: 'Nimiq Charity Foundation',
             address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF',
         }, {
             label: 'Nimiq Charity',
