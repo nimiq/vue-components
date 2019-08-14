@@ -197,9 +197,9 @@ import NewContact from './NewContact.vue';
     }
 
     .search-field {
-        width: calc(100% - 8rem);
-        /* height: 5rem; */
         margin: 0 4rem;
+        width: calc(100% - 8rem);
+        box-sizing: border-box;
     }
 
     .search-icon {
