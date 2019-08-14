@@ -67,21 +67,14 @@ export default class AmountWithFee extends Vue {
         align-items: baseline;
     }
 
-    .value.readonly {
-        font-size: 8rem;
-        color: var(--nimiq-light-blue);
-        height: 12rem;
-    }
-
-    .value.readonly >>> .nim {
-        padding-left: 1rem;
-        font-size: 0.5em;
-        font-weight: 700;
-        line-height: 4.5rem;
+    .amount-input >>> input {
+        padding-top: 0;
+        padding-bottom: 0;
     }
 
     .amount-input.invalid >>> input,
     .amount-input.invalid >>> .nim {
+        border-color: rgb(216, 65, 51, 0.2); /* Based on Nimiq Red */
         color: var(--nimiq-red) !important;
     }
 

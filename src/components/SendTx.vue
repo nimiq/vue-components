@@ -115,7 +115,7 @@
                 </a>
             </div>
             <AmountWithFee v-model="liveAmountAndFee" :available-balance="liveSender.balance" ref="amountWithFee"/>
-            <LabelInput :vanishing="true" placeholder="Add a public message..." :maxBytes="64" v-model="liveExtraData" ref="messageInput" />
+            <LabelInput class="message" :vanishing="true" placeholder="Add a public message..." :maxBytes="64" v-model="liveExtraData" ref="messageInput" />
         </PageBody>
 
         <PageFooter class="blur-target">
@@ -341,8 +341,9 @@ enum RecipientType {
             if (!this.recipient || !this.recipientIsReadonly) {
                 this.liveRecipient = null;
                 this.liveAddress = '';
+            } else if (!this.sender && this.addressCount > 1) {
+                this.liveSender = null;
             }
-            else if (!this.sender && this.addressCount > 1) this.liveSender = null;
 
             this.contactsOpened = false;
         }
@@ -640,8 +641,9 @@ enum RecipientType {
         height: 9rem;
     }
 
-    .label-input {
+    .message {
         flex-grow: 1;
+        font-size: 2.5rem;
     }
 
     .amount-with-fee {
