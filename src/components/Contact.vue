@@ -21,7 +21,7 @@
             <input type="text" class="nq-input address-input" placeholder="Address" v-model="workingAddress">
 
             <div class="bottom">
-                <button class="nq-button-s" @click.stop="save" :disabled="!isInputValid()"
+                <button class="nq-button-s light-blue" @click.stop="save" :disabled="!isInputValid()"
                         title="Save changes">
                     <i class="material-icons">check</i>
                 </button>
@@ -173,17 +173,14 @@
     }
 
     .contact .bottom button {
-        padding: 0 0.875rem;
+        padding: 0;
         height: 3.625rem;
         width: 3.625rem;
-        margin-left: 0.5rem;
+        margin-right: 1rem;
     }
 
     .contact .bottom button .material-icons {
-        font-size: 2.625rem;
-        position: relative;
-        left: -0.5rem;
-        top: -0.75rem;
+        font-size: 2.5rem;
     }
 
     @media (max-width: 480px) {
