@@ -11,7 +11,24 @@
         />
     </SmallPage>
 
-    <SmallPage v-else-if="!liveRecipient" class="send-tx" :class="{'overlay-open': contactsOpened}">
+    <SmallPage v-else-if="!liveRecipient || addContactOpened" class="send-tx" :class="{'overlay-open': contactsOpened || addContactOpened}">
+        <transition name="transition-fade">
+            <SmallPage class="overlay" v-if="addContactOpened">
+                <AccountDetails
+                    :address="liveRecipient.address"
+                    :editable="true"
+                    placeholder="Name this contact..."
+                    :label="liveRecipient.label"
+                    @close="closeAddContact"
+                    @changed="setLabel"
+                    ref="accountDetails"
+                />
+                <PageFooter>
+                    <button class="nq-button light-blue" @click="proceedToSetAmount">{{addContactButtonText}}</button>
+                </PageFooter>
+            </SmallPage>
+        </transition>
+
         <transition name="transition-fade">
             <SmallPage class="overlay" v-if="contactsOpened">
                 <PageHeader>
@@ -36,7 +53,7 @@
                 @contacts-opened="contacts.length > 0 ? contactsOpened = true : false"/>
             <div>
                 <label class="nq-label">Enter address</label>
-                <AddressInput @address="updateRecipient" autofocus />
+                <AddressInput @address="updateRecipient" autofocus ref="address"/>
             </div>
         </PageBody>
 
@@ -186,6 +203,7 @@ enum Details {
         private displayedDetails = Details.NONE;
         private contactsOpened = false;
         private optionsOpened = false;
+        private addContactOpened = false;
         private feeLunaPerByte = 0;
         private feeLunaPerBytePreview = 0;
         private liveExtraData = '';
@@ -270,29 +288,35 @@ enum Details {
                 // TODO: Search other accounts
                 if (foundContact) {
                     recipient.label = foundContact.label;
-                } else {
-                    this.displayedDetails = Details.RECIPIENT;
                 }
             }
 
             this.liveContactLabel = recipient.label || '';
             this.liveRecipient = recipient;
-
-            if (this.liveSender) {
-                await Vue.nextTick(); // Await updated DOM
-
-                if (!recipient.label) {
-                    (this.$refs.accountDetails as AccountDetails).focus();
-                } else if (!this.value) {
-                    (this.$refs.amountWithFee as AmountWithFee).focus();
-                } else if (!this.message) {
-                    (this.$refs.messageInput as LabelInput).focus();
-                }
-            }
+            this.addContactOpened = true;
+            Vue.nextTick( () => (this.$refs.accountDetails as AccountDetails).focus());
         }
 
         private updateRecipient(address: string, label?: string) {
             this.setRecipient({address, label});
+        }
+
+        private proceedToSetAmount() {
+            if (this.liveContactLabel && this.liveContactLabel !== this.liveRecipient!.label) {
+                this.liveRecipient!.label = this.liveContactLabel;
+                this.$emit('contact-added', this.liveRecipient!);
+            }
+            this.addContactOpened = false;
+
+            if (this.liveSender) {
+                Vue.nextTick(() => { // Await updated DOM
+                    if (!this.value) {
+                        (this.$refs.amountWithFee as AmountWithFee).focus();
+                    } else if (!this.message) {
+                        (this.$refs.messageInput as LabelInput).focus();
+                    }
+                });
+            }
         }
 
         private backFromAmount() {
@@ -331,13 +355,8 @@ enum Details {
         }
 
         private async setLabel(label: string) {
+            console.log(label);
             this.liveContactLabel = label;
-            await Vue.nextTick(); // Await updated DOM
-            if (!this.value) {
-                (this.$refs.amountWithFee as AmountWithFee).focus();
-            } else if (!this.message) {
-                (this.$refs.messageInput as LabelInput).focus();
-            }
         }
 
         private closeDetails() {
@@ -348,6 +367,12 @@ enum Details {
         private closeOptions() {
             this.optionsOpened = false;
             Vue.nextTick(() => (this.$refs.amountWithFee as AmountWithFee).focus());
+        }
+
+        private closeAddContact() {
+            this.addContactOpened = false;
+            this.liveRecipient = null;
+            Vue.nextTick( () => (this.$refs.address as AddressInput).focus());
         }
 
         private storeContactAndCloseOverlay() {
@@ -421,6 +446,12 @@ enum Details {
                 : this.isLoading
                     ? 'Sending Transaction...'
                     : 'Send Transaction';
+        }
+
+        private get addContactButtonText() {
+            return this.liveContactLabel !== this.liveRecipient.label
+                ? 'Save & Set Amount'
+                : 'Set Amount';
         }
 
         private get showButtonLoader(): boolean {
