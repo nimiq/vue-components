@@ -15,6 +15,7 @@ declare module 'NimiqVueComponents' {
     export { default as Amount } from 'NimiqVueComponents/src/components/Amount.vue';
     export { default as AmountInput } from 'NimiqVueComponents/src/components/AmountInput.vue';
     export { default as AmountWithDetails } from 'NimiqVueComponents/src/components/AmountWithDetails.vue';
+    export { default as AmountWithFee } from 'NimiqVueComponents/src/components/AmountWithFee.vue';
     export { default as CircleSpinner } from 'NimiqVueComponents/src/components/CircleSpinner.vue';
     export { default as CloseButton } from 'NimiqVueComponents/src/components/CloseButton.vue';
     export { default as Contact } from 'NimiqVueComponents/src/components/Contact.vue';
@@ -148,6 +149,14 @@ declare module 'NimiqVueComponents/src/components/AmountWithDetails.vue' {
         networkFeeEditable: boolean;
         decimals: number;
         toggleDetails(): void;
+    }
+}
+
+declare module 'NimiqVueComponents/src/components/AmountWithFee.vue' {
+    import { Vue } from 'vue-property-decorator';
+    export default class AmountWithFee extends Vue {
+        mounted(): void;
+        focus(): void;
     }
 }
 
