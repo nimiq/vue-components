@@ -1110,6 +1110,13 @@ __webpack_require__("214f")('search', 1, function (defined, SEARCH, $search) {
 
 /***/ }),
 
+/***/ "38e5":
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
 /***/ "38fd":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2021,6 +2028,17 @@ exports.f = __webpack_require__("9e1e") ? Object.defineProperty : function defin
   return O;
 };
 
+
+/***/ }),
+
+/***/ "87cc":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_9c1ba0b4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("38e5");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_9c1ba0b4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_9c1ba0b4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+ /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_9c1ba0b4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -10095,6 +10113,180 @@ var SmallPage_component = normalizeComponent(
 
 SmallPage_component.options.__file = "SmallPage.vue"
 /* harmony default export */ var components_SmallPage = (SmallPage_component.exports);
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"46064dad-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Tooltip.vue?vue&type=template&id=9c1ba0b4&scoped=true&
+var Tooltipvue_type_template_id_9c1ba0b4_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"tooltip",class:{active: _vm.tooltipActive}},[_c('a',{class:{top: _vm.tooltipPosition === 'top', bottom: _vm.tooltipPosition === 'bottom'},attrs:{"href":"javascript:void(0);"},on:{"click":_vm.toggleTooltip}},[_vm._t("icon",[_c('AlertTriangleIcon',{staticClass:"nq-orange"})])],2),_c('div',{ref:"tooltipBox",staticClass:"tooltip-box",style:(_vm.styles)},[_vm._t("default")],2)])}
+var Tooltipvue_type_template_id_9c1ba0b4_scoped_true_staticRenderFns = []
+
+
+// CONCATENATED MODULE: ./src/components/Tooltip.vue?vue&type=template&id=9c1ba0b4&scoped=true&
+
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--13-1!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Tooltip.vue?vue&type=script&lang=ts&
+
+
+
+
+
+
+
+
+var Tooltip_1;
+
+
+
+var Tooltipvue_type_script_lang_ts_Tooltip = Tooltip_1 =
+/*#__PURE__*/
+function (_Vue) {
+  function Tooltip() {
+    var _this;
+
+    _classCallCheck(this, Tooltip);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Tooltip).apply(this, arguments));
+    _this.tooltipActive = false;
+    _this.height = 0;
+    _this.width = 0;
+    _this.left = 0;
+    _this.top = 0;
+    _this.immutableTop = 0;
+    _this.tooltipPosition = 'top';
+    return _this;
+  }
+
+  _createClass(Tooltip, [{
+    key: "setReference",
+    value: function () {
+      var _setReference = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee() {
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                if (this.reference) {
+                  _context.next = 2;
+                  break;
+                }
+
+                return _context.abrupt("return");
+
+              case 2:
+                // Wait for the reference to get passed on
+                console.log(this.reference);
+                _context.next = 5;
+                return external_vue_property_decorator_["Vue"].nextTick();
+
+              case 5:
+                this.width = this.reference.$el.offsetWidth * 2 / 3;
+                this.left = this.reference.$el.offsetLeft + this.reference.$el.offsetWidth / 6 - this.$el.offsetLeft - this.$el.offsetWidth / 2;
+                _context.next = 9;
+                return external_vue_property_decorator_["Vue"].nextTick();
+
+              case 9:
+                this.height = this.$refs.tooltipBox.offsetHeight;
+                this.immutableTop = this.reference.$el.offsetTop + this.height + Tooltip_1.CARET_SIZE - this.$el.offsetTop;
+                this.calculateBoundingBox();
+
+                if (this.reference.$el.scrollHeight !== this.reference.$el.offsetHeight) {
+                  this.reference.$el.addEventListener('scroll', this.calculateBoundingBox.bind(this));
+                }
+
+              case 13:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      return function setReference() {
+        return _setReference.apply(this, arguments);
+      };
+    }()
+  }, {
+    key: "calculateBoundingBox",
+    value: function calculateBoundingBox() {
+      if (this.immutableTop + this.reference.$el.scrollTop < 0) {
+        this.top = -this.height - Tooltip_1.CARET_SIZE;
+        this.tooltipPosition = 'top';
+      } else {
+        this.top = this.$el.offsetHeight + Tooltip_1.CARET_SIZE;
+        this.tooltipPosition = 'bottom';
+      }
+    }
+  }, {
+    key: "toggleTooltip",
+    value: function toggleTooltip() {
+      if (!this.height) this.setReference();
+      this.tooltipActive = !this.tooltipActive;
+    }
+  }, {
+    key: "styles",
+    get: function get() {
+      if (this.width && this.top) {
+        return {
+          height: this.height + 'px',
+          top: this.top + 'px',
+          left: this.left + 'px',
+          width: this.width + 'px'
+        };
+      }
+
+      if (this.width) {
+        return {
+          width: this.width + 'px'
+        };
+      }
+
+      return {};
+    }
+  }]);
+
+  _inherits(Tooltip, _Vue);
+
+  return Tooltip;
+}(external_vue_property_decorator_["Vue"]);
+
+Tooltipvue_type_script_lang_ts_Tooltip.CARET_SIZE = 10;
+
+__decorate([Object(external_vue_property_decorator_["Prop"])(Object)], Tooltipvue_type_script_lang_ts_Tooltip.prototype, "reference", void 0);
+
+__decorate([Object(external_vue_property_decorator_["Watch"])('reference', {
+  immediate: true
+})], Tooltipvue_type_script_lang_ts_Tooltip.prototype, "setReference", null);
+
+Tooltipvue_type_script_lang_ts_Tooltip = Tooltip_1 = __decorate([Object(external_vue_property_decorator_["Component"])({
+  components: {
+    AlertTriangleIcon: AlertTriangleIcon
+  }
+})], Tooltipvue_type_script_lang_ts_Tooltip);
+/* harmony default export */ var Tooltipvue_type_script_lang_ts_ = (Tooltipvue_type_script_lang_ts_Tooltip);
+// CONCATENATED MODULE: ./src/components/Tooltip.vue?vue&type=script&lang=ts&
+ /* harmony default export */ var components_Tooltipvue_type_script_lang_ts_ = (Tooltipvue_type_script_lang_ts_); 
+// EXTERNAL MODULE: ./src/components/Tooltip.vue?vue&type=style&index=0&id=9c1ba0b4&scoped=true&lang=css&
+var Tooltipvue_type_style_index_0_id_9c1ba0b4_scoped_true_lang_css_ = __webpack_require__("87cc");
+
+// CONCATENATED MODULE: ./src/components/Tooltip.vue
+
+
+
+
+
+
+/* normalize component */
+
+var Tooltip_component = normalizeComponent(
+  components_Tooltipvue_type_script_lang_ts_,
+  Tooltipvue_type_template_id_9c1ba0b4_scoped_true_render,
+  Tooltipvue_type_template_id_9c1ba0b4_scoped_true_staticRenderFns,
+  false,
+  null,
+  "9c1ba0b4",
+  null
+  
+)
+
+Tooltip_component.options.__file = "Tooltip.vue"
+/* harmony default export */ var components_Tooltip = (Tooltip_component.exports);
 // CONCATENATED MODULE: ./src/main.ts
 
 
@@ -10117,6 +10309,7 @@ SmallPage_component.options.__file = "SmallPage.vue"
 
  // export { default as MigrationWelcome } from './components/MigrationWelcome.vue';
 // export { default as NewContact } from './components/NewContact.vue';
+
 
 
 
@@ -10159,6 +10352,7 @@ SmallPage_component.options.__file = "SmallPage.vue"
 /* concated harmony reexport QrScanner */__webpack_require__.d(__webpack_exports__, "QrScanner", function() { return components_QrScanner; });
 /* concated harmony reexport SelectBar */__webpack_require__.d(__webpack_exports__, "SelectBar", function() { return components_SelectBar; });
 /* concated harmony reexport SmallPage */__webpack_require__.d(__webpack_exports__, "SmallPage", function() { return components_SmallPage; });
+/* concated harmony reexport Tooltip */__webpack_require__.d(__webpack_exports__, "Tooltip", function() { return components_Tooltip; });
 /* concated harmony reexport AlertTriangleIcon */__webpack_require__.d(__webpack_exports__, "AlertTriangleIcon", function() { return AlertTriangleIcon; });
 /* concated harmony reexport ArrowLeftSmallIcon */__webpack_require__.d(__webpack_exports__, "ArrowLeftSmallIcon", function() { return ArrowLeftSmallIcon; });
 /* concated harmony reexport ArrowLeftIcon */__webpack_require__.d(__webpack_exports__, "ArrowLeftIcon", function() { return ArrowLeftIcon; });

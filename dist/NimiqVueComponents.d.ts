@@ -32,6 +32,7 @@ declare module 'NimiqVueComponents' {
     export { default as QrScanner } from 'NimiqVueComponents/src/components/QrScanner.vue';
     export { default as SelectBar } from 'NimiqVueComponents/src/components/SelectBar.vue';
     export { default as SmallPage } from 'NimiqVueComponents/src/components/SmallPage.vue';
+    export { default as Tooltip } from 'NimiqVueComponents/src/components/Tooltip.vue';
     export * from 'NimiqVueComponents/src/components/Icons';
 }
 
@@ -335,6 +336,15 @@ declare module 'NimiqVueComponents/src/components/SelectBar.vue' {
 declare module 'NimiqVueComponents/src/components/SmallPage.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class SmallPage extends Vue {
+    }
+}
+
+declare module 'NimiqVueComponents/src/components/Tooltip.vue' {
+    import { Vue } from 'vue-property-decorator';
+    export default class Tooltip extends Vue {
+        reference?: any;
+        setReference(): Promise<void>;
+        calculateBoundingBox(): void;
     }
 }
 
