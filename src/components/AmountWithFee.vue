@@ -86,7 +86,7 @@ export default class AmountWithFee extends Vue {
     }
 
     .fee-section {
-        opacity: 0.5;
+        color: rgba(31, 35, 72, 0.5);
         min-height: 2rem;
     }
 </style>
