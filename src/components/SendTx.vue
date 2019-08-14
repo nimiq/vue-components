@@ -360,7 +360,7 @@ enum Details {
                 sender: this.liveSender!.address,
                 recipient: this.liveRecipient!.address,
                 recipientType: 0, // Nimiq.Account.Type.BASIC
-                recipientlabel: this.liveRecipient!.label,
+                recipientLabel: this.liveRecipient!.label,
                 value: this.liveValue,
                 fee: this.fee,
                 extraData: this.liveExtraData,
