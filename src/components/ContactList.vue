@@ -197,9 +197,9 @@ import NewContact from './NewContact.vue';
     }
 
     .search-field {
-        width: calc(100% - 8rem);
-        /* height: 5rem; */
         margin: 0 4rem;
+        width: calc(100% - 8rem);
+        box-sizing: border-box;
     }
 
     .search-icon {
@@ -239,10 +239,11 @@ import NewContact from './NewContact.vue';
 
     .contact {
         padding: 1rem;
+        transition: background-color .3s var(--nimiq-ease);
     }
 
     .contact:hover {
-        background-color: rgba(0, 0, 0, 0.075);
+        background-color: rgba(31, 35, 72, 0.06); /* Based on Nimiq Blue */
     }
 
     .no-contacts {
