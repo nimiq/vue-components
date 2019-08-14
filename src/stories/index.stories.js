@@ -1001,14 +1001,14 @@ storiesOf('Pages', module)
             label: 'Keyguard Wallet',
             type: 2, // BIP39
             accounts: new Map([
-                ['NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM', {
-                    userFriendlyAddress: 'NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM',
+                ['NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM', {
+                    userFriendlyAddress: 'NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM',
                     label: 'Primary account',
                     balance: 12023110,
                     path: "44'/242'/0'/0'",
                 }],
-                ['NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1', {
-                    userFriendlyAddress: 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1',
+                ['NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1', {
+                    userFriendlyAddress: 'NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1',
                     label: 'HODL account',
                     balance: 2712415141213,
                     path: "44'/242'/0'/1'",
@@ -1022,11 +1022,15 @@ storiesOf('Pages', module)
                 },
             ],
         });
+        const addresses = [...wallet.accounts.values()]
+            .map(addr => ({address: addr.userFriendlyAddress, label: addr.label}))
+            .concat(wallet.contracts.map(contr => ({address: contr.userFriendlyAddress, label: contr.label})));
         return {
             components: { SendTx },
             data: () => ({
                 contacts,
                 wallet,
+                addresses,
                 value,
                 valueIsReadonly,
                 message,
@@ -1043,6 +1047,7 @@ storiesOf('Pages', module)
             template:  windowTemplate(`<SendTx
                 :contacts="contacts"
                 :wallet="wallet"
+                :addresses="addresses"
                 :validityStartHeight="987654"
                 :value="value"
                 :valueIsReadonly="valueIsReadonly"
