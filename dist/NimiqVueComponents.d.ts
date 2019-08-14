@@ -124,6 +124,10 @@ declare module 'NimiqVueComponents/src/components/SendTx.vue' {
             address: string;
             label: string;
         }>;
+        addresses: Array<{
+            address: string;
+            label: string;
+        }>;
         wallet: WalletInfo;
         sender?: {
             walletId: string;
