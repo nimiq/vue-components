@@ -31,6 +31,7 @@ import PaymentInfoLine from '../components/PaymentInfoLine.vue';
 import QrCode from '../components/QrCode.vue';
 import QrScanner from '../components/QrScanner.vue';
 import SelectBar from '../components/SelectBar.vue';
+import Tooltip from '../components/Tooltip.vue';
 import SmallPage from '../components/SmallPage.vue';
 import Timer from '../components/Timer.vue';
 import PageHeader from '../components/PageHeader.vue';
@@ -210,6 +211,37 @@ storiesOf('Basic', module)
             },
             template: `<SelectBar :options="options" @changed="changed"/>`
         }
+    })
+    .add('Tooltip', () => {
+        return {
+            data() {
+                return {
+                    refsLoaded: false,
+                };
+            },
+            computed: {
+                target() {
+                    if(this.refsLoaded)
+                        return this.$refs.target;
+                    else return null;
+                },
+            },
+            mounted() {
+                this.refsLoaded = true;
+            },
+            components: { SmallPage, PageHeader, PageBody, Tooltip, Icons, Account },
+            template: windowTemplate`<SmallPage>
+                            <PageHeader>Test</PageHeader>
+                            <PageBody style="overflow-y: scroll;" ref="target">
+                                <div style="height:300px">&nbsp;</div>
+                                Look and <Tooltip :reference="target">
+                                    This is the Tooltip I was talking about.
+                                    <Account address="NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM" />
+                                </Tooltip>
+                                <div style="height:3000px">&nbsp;</div>
+                            </PageBody>
+                        </SmallPage>`,
+        };
     });
 
 storiesOf('Components', module)
