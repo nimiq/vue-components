@@ -7,7 +7,7 @@
             <input type="text" class="nq-input address-input" placeholder="Address" v-model="workingAddress">
 
             <div class="bottom">
-                <button class="nq-button-s" @click.stop="save" :disabled="!isInputValid" title="Save changes">
+                <button class="nq-button-s light-blue" @click.stop="save" :disabled="!isInputValid" title="Save changes">
                     <i class="material-icons">check</i>
                 </button>
                 <button class="nq-button-s" @click.stop="abort" title="Abort">
