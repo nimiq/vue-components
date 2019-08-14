@@ -63,6 +63,11 @@ export default class AccountDetails extends Vue {
 
     .account {
         padding: 0;
+        width: 100%;
+    }
+
+    .account >>> .identicon-and-label {
+        width: 100%;
     }
 
     .account >>> .identicon {

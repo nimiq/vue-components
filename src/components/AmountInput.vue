@@ -135,7 +135,7 @@ export default class AmountInput extends Vue {
     }
 
     .amount-input .nim {
-        padding-left: 1rem;
+        margin-left: 1rem;
         font-size: 4rem;
         font-weight: 700;
         line-height: 4.5rem;
