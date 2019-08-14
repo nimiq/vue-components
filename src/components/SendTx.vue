@@ -67,7 +67,7 @@
 
         <transition name="transition-fade">
             <SmallPage class="overlay fee" v-if="optionsOpened">
-                <CloseButton class="top-right" @click="optionsOpened = false"/>
+                <CloseButton class="top-right" @click="closeOptions"/>
                 <PageBody>
                     <h1 class="nq-h1">Speed up your transaction</h1>
                     <p class="nq-text">By adding a transation fee, you can influence how fast your transaction will be processed.</p>
@@ -342,6 +342,11 @@ enum Details {
 
         private closeDetails() {
             this.displayedDetails = Details.NONE;
+            Vue.nextTick(() => (this.$refs.amountWithFee as AmountWithFee).focus());
+        }
+
+        private closeOptions() {
+            this.optionsOpened = false;
             Vue.nextTick(() => (this.$refs.amountWithFee as AmountWithFee).focus());
         }
 
