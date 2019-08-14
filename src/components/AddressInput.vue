@@ -261,15 +261,15 @@ export default class AddressInput extends Vue {
         animation: shake .4s;
     }
 
-    /* Copied from @nimiq/style as the animations are not included in the package */
+    /* Copied from Keyguard */
     @keyframes shake {
         from { transform: none; }
-        15% { transform: translate3d(-21%,0,0) rotate(-5deg); }
-        30% { transform: translate3d(13%,0,0) rotate(3deg); }
-        45% { transform: translate3d(-8%,0,0) rotate(-3deg); }
-        60% { transform: translate3d(5%,0,0) rotate(2deg); }
-        75% { transform: translate3d(-3%,0,0) rotate(-1deg); }
-        to { transform: none; }
+        10%  { transform: translate3d(-0.25rem, 0, 0) rotate(-0.15deg); }
+        20%  { transform: translate3d(0.5rem, 0, 0) rotate(0.15deg); }
+        30%  { transform: translate3d(-0.5rem, 0, 0) rotate(-0.15deg); }
+        40%  { transform: translate3d(0.5rem, 0, 0) rotate(0.15deg); }
+        50%  { transform: translate3d(-0.25rem, 0, 0) rotate(-0.15deg); }
+        to   { transform: none; }
     }
 
     textarea {
