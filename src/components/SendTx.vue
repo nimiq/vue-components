@@ -55,7 +55,7 @@
                     placeholder="Name this contact..."
                     :label="displayedDetails === Details.SENDER ? liveSender.label : liveRecipient.label"
                     :balance="displayedDetails === Details.SENDER ? liveSender.balance : null"
-                    @close="displayedDetails = Details.NONE"
+                    @close="closeDetails"
                     @changed="setLabel"
                     ref="accountDetails"
                 />
@@ -67,7 +67,7 @@
 
         <transition name="transition-fade">
             <SmallPage class="overlay fee" v-if="optionsOpened">
-                <CloseButton class="top-right" @click="optionsOpened = false"/>
+                <CloseButton class="top-right" @click="closeOptions"/>
                 <PageBody>
                     <h1 class="nq-h1">Speed up your transaction</h1>
                     <p class="nq-text">By adding a transation fee, you can influence how fast your transaction will be processed.</p>
@@ -97,18 +97,12 @@
                     <Account layout="column" :address="liveRecipient.address" :label="liveRecipient.label || 'Unnamed Contact'" :class="{invalid: !recipientValid}"/>
                 </a>
             </div>
-            <Amount v-if="value" class="value readonly" :class="{invalid: !balanceValid}" :amount="value" :minDecimals="0" :maxDecimals="5" />
-            <AmountInput v-else class="value" :class="{invalid: !balanceValid}" v-model="liveValue" ref="valueInput" />
-            <div v-if="fee" class="fee-section nq-text-s">
-                + <Amount :amount="fee" :minDecimals="0" :maxDecimals="5" /> fee
-            </div>
-            <div v-if="message" class="label">{{liveExtraData}}</div>
-            <LabelInput v-else :vanishing="true" placeholder="Add a public message..." :maxBytes="64" v-model="liveExtraData" ref="messageInput" />
-            <div class="bottom-spacer"><!-- flex spacer --></div>
+            <AmountWithFee v-model="liveAmountAndFee" :available-balance="liveSender.balance" ref="amountWithFee"/>
+            <LabelInput :vanishing="true" placeholder="Add a public message..." :maxBytes="64" v-model="liveExtraData" ref="messageInput" />
         </PageBody>
 
         <PageFooter class="blur-target">
-            <button class="nq-button light-blue" :disabled="!isValid || isLoading" @click="sendTransaction">
+            <button class="nq-button light-blue" :disabled="!liveAmountAndFee.isValid || isLoading" @click="sendTransaction">
                 <CircleSpinner v-if="showButtonLoader"/>{{buttonText}}
             </button>
         </PageFooter>
@@ -130,7 +124,7 @@ import ContactList from './ContactList.vue';
 import ContactShortcuts from './ContactShortcuts.vue';
 import LabelInput from './LabelInput.vue';
 import Amount from './Amount.vue';
-import AmountInput from './AmountInput.vue';
+import AmountWithFee from './AmountWithFee.vue';
 import SelectBar, { SelectBarOption } from './SelectBar.vue';
 import CircleSpinner from './CircleSpinner.vue';
 import CloseButton from './CloseButton.vue';
@@ -154,7 +148,7 @@ enum Details {
         AccountList,
         AddressInput,
         Amount,
-        AmountInput,
+        AmountWithFee,
         ContactList,
         ContactShortcuts,
         LabelInput,
@@ -194,9 +188,13 @@ enum Details {
         private optionsOpened = false;
         private feeLunaPerByte = 0;
         private feeLunaPerBytePreview = 0;
-        private liveValue: number = 0;
         private liveExtraData = '';
         private liveContactLabel = '';
+        private liveAmountAndFee: {amount: number, fee: number, isValid: boolean} = {
+            amount: 0,
+            fee: this.fee,
+            isValid: false,
+        };
 
         public clear() {
             this.liveSender = null;
@@ -205,9 +203,13 @@ enum Details {
             this.contactsOpened = false;
             this.optionsOpened = false;
             this.feeLunaPerByte = 0;
-            this.liveValue = 0;
             this.liveExtraData = '';
             this.liveContactLabel = '';
+            this.liveAmountAndFee = {
+                amount: 0,
+                fee: this.fee,
+                isValid: false,
+            };
         }
 
         @Watch('wallet', {immediate: true})
@@ -282,7 +284,7 @@ enum Details {
                 if (!recipient.label) {
                     (this.$refs.accountDetails as AccountDetails).focus();
                 } else if (!this.value) {
-                    (this.$refs.valueInput as AmountInput).focus();
+                    (this.$refs.amountWithFee as AmountWithFee).focus();
                 } else if (!this.message) {
                     (this.$refs.messageInput as LabelInput).focus();
                 }
@@ -312,20 +314,14 @@ enum Details {
         private setFee() {
             this.optionsOpened = false;
             this.feeLunaPerByte = (this.$refs.feeSetter as SelectBar).value;
+            this.liveAmountAndFee.fee = this.fee;
+            Vue.nextTick(() => (this.$refs.amountWithFee as AmountWithFee).focus());
         }
 
         @Watch('value', { immediate: true })
         private setValue(value: number) {
             if (!value) return;
-            this.liveValue = value;
-            this.checkBalance();
-        }
-
-        @Watch('sender.balance')
-        private checkBalance() {
-            if (this.liveSender && this.liveSender.balance && this.liveValue + this.fee > this.liveSender.balance) {
-                console.log('Insufficient Balance');
-            }
+            this.liveAmountAndFee.amount = value;
         }
 
         @Watch('message', { immediate: true })
@@ -338,10 +334,20 @@ enum Details {
             this.liveContactLabel = label;
             await Vue.nextTick(); // Await updated DOM
             if (!this.value) {
-                (this.$refs.valueInput as AmountInput).focus();
+                (this.$refs.amountWithFee as AmountWithFee).focus();
             } else if (!this.message) {
                 (this.$refs.messageInput as LabelInput).focus();
             }
+        }
+
+        private closeDetails() {
+            this.displayedDetails = Details.NONE;
+            Vue.nextTick(() => (this.$refs.amountWithFee as AmountWithFee).focus());
+        }
+
+        private closeOptions() {
+            this.optionsOpened = false;
+            Vue.nextTick(() => (this.$refs.amountWithFee as AmountWithFee).focus());
         }
 
         private storeContactAndCloseOverlay() {
@@ -351,7 +357,7 @@ enum Details {
             }
             this.liveRecipient!.label = this.liveContactLabel;
             this.$emit('contact-added', this.liveRecipient);
-            this.displayedDetails = Details.NONE;
+            this.closeDetails();
         }
 
         private sendTransaction() {
@@ -361,7 +367,7 @@ enum Details {
                 recipient: this.liveRecipient!.address,
                 recipientType: 0, // Nimiq.Account.Type.BASIC
                 recipientLabel: this.liveRecipient!.label,
-                value: this.liveValue,
+                value: this.liveAmountAndFee.amount,
                 fee: this.fee,
                 extraData: this.liveExtraData,
                 validityStartHeight: this.validityStartHeight,
@@ -428,14 +434,10 @@ enum Details {
             return normalizedSender !== normalizedRecipient;
         }
 
-        private get balanceValid(): boolean {
-            return !this.liveSender || this.liveValue + this.feeLunaPerByte <= this.liveSender.balance;
-        }
-
         private get isValid(): boolean {
-            return this.liveValue > 0
+            return this.liveAmountAndFee.amount > 0
                 && this.recipientValid
-                && this.balanceValid
+                && this.liveAmountAndFee.isValid
                 && this.validityStartHeight > 0;
         }
 
@@ -487,6 +489,7 @@ enum Details {
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
+        padding-bottom: 2rem;
     }
 
     .amount-page {
@@ -514,26 +517,6 @@ enum Details {
     .send-tx .contact-list {
         /* width: 100%; */
         min-height: 0;
-    }
-
-    .send-tx .value {
-        display: flex;
-        align-items: baseline;
-        border-top: .125rem solid var(--nimiq-highlight-bg);
-        padding-top: 2rem;
-    }
-
-    .value.readonly {
-        font-size: 8rem;
-        color: var(--nimiq-light-blue);
-        height: 12rem;
-    }
-
-    .value.readonly >>> .nim {
-        padding-left: 1rem;
-        font-size: 0.5em;
-        font-weight: 700;
-        line-height: 4.5rem;
     }
 
     .transition-fade-enter,
@@ -581,6 +564,7 @@ enum Details {
         display: flex;
         align-items: flex-start;
         width: 100%;
+        flex-grow: 0;
     }
 
     .arrow-wrapper {
@@ -604,13 +588,15 @@ enum Details {
         height: 9rem;
     }
 
-    .amount-input.invalid >>> input,
-    .amount-input.invalid >>> .nim {
-        color: var(--nimiq-red) !important;
+    .label-input {
+        flex-grow: 1;
     }
 
-    .fee-section {
-        opacity: 0.5;
+    .amount-with-fee {
+        flex-grow: 1;
+        border-top: .125rem solid var(--nimiq-highlight-bg);
+        padding-top: 2rem;
+        justify-content: center;
     }
 
     .scan-qr {
