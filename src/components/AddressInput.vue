@@ -136,7 +136,7 @@ export default class AddressInput extends Vue {
         // could also be using format-input's parse and format helpers that preserve caret position but as we're not
         // interested in that, we calculate the formatted value manually
         const parsedValue = this.value.split('').reduce((parsed, char) =>
-            parsed + AddressInput._parse(char, parsed) || '', '');
+            parsed + (AddressInput._parse(char, parsed) || ''), '');
         this.$refs.textarea.value = AddressInput._format(parsedValue).text; // moves the caret to the end
 
         this._afterChange(parsedValue);
