@@ -322,17 +322,6 @@ exports.f = __webpack_require__("9e1e") ? gOPD : function getOwnPropertyDescript
 
 /***/ }),
 
-/***/ "142b":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SendTx_vue_vue_type_style_index_0_id_8eec7f92_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("51ab");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SendTx_vue_vue_type_style_index_0_id_8eec7f92_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SendTx_vue_vue_type_style_index_0_id_8eec7f92_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
- /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SendTx_vue_vue_type_style_index_0_id_8eec7f92_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
 /***/ "1495":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1057,6 +1046,17 @@ module.exports = function fill(value /* , start = 0, end = @length */) {
 
 /***/ }),
 
+/***/ "37a6":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SendTx_vue_vue_type_style_index_0_id_6cc25c57_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("b0d4");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SendTx_vue_vue_type_style_index_0_id_6cc25c57_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SendTx_vue_vue_type_style_index_0_id_6cc25c57_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+ /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SendTx_vue_vue_type_style_index_0_id_6cc25c57_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
 /***/ "37c8":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1339,13 +1339,6 @@ module.exports = function (KEY) {
   } return true;
 };
 
-
-/***/ }),
-
-/***/ "51ab":
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
 
 /***/ }),
 
@@ -4116,6 +4109,13 @@ $export($export.P + $export.F * __webpack_require__("5147")(ENDS_WITH), 'String'
   }
 });
 
+
+/***/ }),
+
+/***/ "b0d4":
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
 
 /***/ }),
 
@@ -8720,12 +8720,12 @@ var QrScanner_component = normalizeComponent(
 
 QrScanner_component.options.__file = "QrScanner.vue"
 /* harmony default export */ var components_QrScanner = (QrScanner_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6ce9ed87-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SendTx.vue?vue&type=template&id=8eec7f92&scoped=true&
-var SendTxvue_type_template_id_8eec7f92_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (!_vm.liveSender)?_c('SmallPage',{staticClass:"send-tx"},[_c('PageHeader',[_vm._v("\n        Choose Sender\n    ")]),_c('AccountList',{attrs:{"accounts":_vm._f("listAccountsAndContracts")(_vm.wallet),"walletId":_vm.wallet.id,"minBalance":1},on:{"account-selected":_vm.updateSender}})],1):(!_vm.liveRecipient)?_c('SmallPage',{staticClass:"send-tx",class:{'overlay-open': _vm.contactsOpened}},[_c('transition',{attrs:{"name":"transition-fade"}},[(_vm.contactsOpened)?_c('SmallPage',{staticClass:"overlay"},[_c('PageHeader',[_vm._v("\n                Select a contact\n            ")]),_c('ContactList',{attrs:{"contacts":_vm.contacts},on:{"select-contact":_vm.updateRecipient}}),_c('CloseButton',{staticClass:"top-right",on:{"click":function($event){_vm.contactsOpened = false}}})],1):_vm._e()],1),_c('PageHeader',{staticClass:"blur-target",attrs:{"backArrow":_vm.addressCount > 1},on:{"back":_vm.backFromRecipient}},[_vm._v("\n        Send a transaction\n        "),_c('a',{staticClass:"scan-qr nq-blue",attrs:{"href":"javascript:void(0)"},on:{"click":_vm.scanQr}},[_c('ScanQrCodeIcon')],1)]),_c('PageBody',{staticClass:"blur-target recipient-page"},[_c('ContactShortcuts',{attrs:{"contacts":_vm.contacts},on:{"contact-selected":_vm.updateRecipient,"contacts-opened":function($event){_vm.contacts.length > 0 ? _vm.contactsOpened = true : false}}}),_c('div',[_c('label',{staticClass:"nq-label"},[_vm._v("Enter address")]),_c('AddressInput',{attrs:{"autofocus":""},on:{"address":_vm.updateRecipient}})],1)],1),_c('PageFooter',{staticClass:"blur-target"},[_c('p',{staticClass:"nq-text"},[_vm._v("If recipient has no Account yet:")]),_c('button',{staticClass:"nq-button-s",on:{"click":function($event){return _vm.createCashlink(_vm.liveSender)}}},[_vm._v("Create a Cashlink")])])],1):_c('SmallPage',{staticClass:"send-tx",class:{'overlay-open': _vm.displayedDetails || _vm.optionsOpened}},[_c('transition',{attrs:{"name":"transition-fade"}},[(_vm.displayedDetails)?_c('SmallPage',{staticClass:"overlay"},[_c('AccountDetails',{ref:"accountDetails",attrs:{"address":_vm.displayedDetails === _vm.Details.SENDER ? _vm.liveSender.address : _vm.liveRecipient.address,"editable":_vm.displayedDetails === _vm.Details.RECIPIENT,"placeholder":"Name this contact...","label":_vm.displayedDetails === _vm.Details.SENDER ? _vm.liveSender.label : _vm.liveRecipient.label,"balance":_vm.displayedDetails === _vm.Details.SENDER ? _vm.liveSender.balance : null},on:{"close":function($event){_vm.displayedDetails = _vm.Details.NONE},"changed":_vm.setLabel}}),(_vm.displayedDetails === _vm.Details.RECIPIENT)?_c('PageFooter',[_c('button',{staticClass:"nq-button light-blue",on:{"click":function($event){return _vm.storeContactAndCloseOverlay()}}},[_vm._v("Save Contact")])]):_vm._e()],1):_vm._e()],1),_c('transition',{attrs:{"name":"transition-fade"}},[(_vm.optionsOpened)?_c('SmallPage',{staticClass:"overlay fee"},[_c('CloseButton',{staticClass:"top-right",on:{"click":function($event){_vm.optionsOpened = false}}}),_c('PageBody',[_c('h1',{staticClass:"nq-h1"},[_vm._v("Speed up your transaction")]),_c('p',{staticClass:"nq-text"},[_vm._v("By adding a transation fee, you can influence how fast your transaction will be processed.")]),_c('SelectBar',{ref:"feeSetter",attrs:{"options":_vm.FEE_OPTIONS,"name":"fee","selectedValue":_vm.feeLunaPerByte},on:{"changed":_vm.updateFeePreview}}),_c('Amount',{attrs:{"amount":_vm.feePreview,"minDecimals":0,"maxDecimals":5}})],1),_c('PageFooter',[_c('button',{staticClass:"nq-button light-blue",on:{"click":_vm.setFee}},[_vm._v("Set fee")])])],1):_vm._e()],1),_c('PageHeader',{staticClass:"blur-target",attrs:{"backArrow":!_vm.sender || !_vm.recipient || !_vm.recipientIsReadonly},on:{"back":_vm.backFromAmount}},[_vm._v("\n        Set Amount\n        "),_c('a',{staticClass:"nq-blue options-button",attrs:{"href":"javascript:void(0)","title":"Open settings"},on:{"click":function($event){_vm.optionsOpened = true}}},[_c('SettingsIcon')],1)]),_c('PageBody',{staticClass:"blur-target amount-page"},[_c('div',{staticClass:"sender-and-recipient"},[_c('a',{attrs:{"href":"javascript:void(0);"},on:{"click":function($event){_vm.displayedDetails = _vm.Details.SENDER}}},[_c('Account',{attrs:{"layout":"column","address":_vm.liveSender.address,"label":_vm.liveSender.label}})],1),_c('div',{staticClass:"arrow-wrapper"},[_c('ArrowRightIcon',{staticClass:"nq-light-blue"})],1),_c('a',{attrs:{"href":"javascript:void(0);"},on:{"click":function($event){_vm.displayedDetails = _vm.Details.RECIPIENT}}},[_c('Account',{class:{invalid: !_vm.recipientValid},attrs:{"layout":"column","address":_vm.liveRecipient.address,"label":_vm.liveRecipient.label || 'Unnamed Contact'}})],1)]),(_vm.value)?_c('Amount',{staticClass:"value readonly",class:{invalid: !_vm.balanceValid},attrs:{"amount":_vm.value,"minDecimals":0,"maxDecimals":5}}):_c('AmountInput',{ref:"valueInput",staticClass:"value",class:{invalid: !_vm.balanceValid},model:{value:(_vm.liveValue),callback:function ($$v) {_vm.liveValue=$$v},expression:"liveValue"}}),(_vm.fee)?_c('div',{staticClass:"fee-section nq-text-s"},[_vm._v("\n            + "),_c('Amount',{attrs:{"amount":_vm.fee,"minDecimals":0,"maxDecimals":5}}),_vm._v(" fee\n        ")],1):_vm._e(),(_vm.message)?_c('div',{staticClass:"label"},[_vm._v(_vm._s(_vm.liveExtraData))]):_c('LabelInput',{ref:"messageInput",attrs:{"vanishing":true,"placeholder":"Add a public message...","maxBytes":64},model:{value:(_vm.liveExtraData),callback:function ($$v) {_vm.liveExtraData=$$v},expression:"liveExtraData"}}),_c('div',{staticClass:"bottom-spacer"})],1),_c('PageFooter',{staticClass:"blur-target"},[_c('button',{staticClass:"nq-button light-blue",attrs:{"disabled":!_vm.isValid || _vm.isLoading},on:{"click":_vm.sendTransaction}},[(_vm.showButtonLoader)?_c('CircleSpinner'):_vm._e(),_vm._v(_vm._s(_vm.buttonText)+"\n        ")],1)])],1)}
-var SendTxvue_type_template_id_8eec7f92_scoped_true_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6ce9ed87-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SendTx.vue?vue&type=template&id=6cc25c57&scoped=true&
+var SendTxvue_type_template_id_6cc25c57_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (!_vm.liveSender)?_c('SmallPage',{staticClass:"send-tx"},[_c('PageHeader',[_vm._v("\n        Choose Sender\n    ")]),_c('AccountList',{attrs:{"accounts":_vm._f("listAccountsAndContracts")(_vm.wallet),"walletId":_vm.wallet.id,"minBalance":1},on:{"account-selected":_vm.updateSender}})],1):(!_vm.liveRecipient)?_c('SmallPage',{staticClass:"send-tx",class:{'overlay-open': _vm.contactsOpened}},[_c('transition',{attrs:{"name":"transition-fade"}},[(_vm.contactsOpened)?_c('SmallPage',{staticClass:"overlay"},[_c('PageHeader',[_vm._v("\n                Select a contact\n            ")]),_c('ContactList',{attrs:{"contacts":_vm.contacts},on:{"select-contact":_vm.updateRecipient}}),_c('CloseButton',{staticClass:"top-right",on:{"click":function($event){_vm.contactsOpened = false}}})],1):_vm._e()],1),_c('PageHeader',{staticClass:"blur-target",attrs:{"backArrow":_vm.addressCount > 1},on:{"back":_vm.backFromRecipient}},[_vm._v("\n        Send a transaction\n        "),_c('a',{staticClass:"scan-qr nq-blue",attrs:{"href":"javascript:void(0)"},on:{"click":_vm.scanQr}},[_c('ScanQrCodeIcon')],1)]),_c('PageBody',{staticClass:"blur-target recipient-page"},[_c('ContactShortcuts',{attrs:{"contacts":_vm.contacts},on:{"contact-selected":_vm.updateRecipient,"contacts-opened":function($event){_vm.contacts.length > 0 ? _vm.contactsOpened = true : false}}}),_c('div',[_c('label',{staticClass:"nq-label"},[_vm._v("Enter address")]),_c('AddressInput',{attrs:{"autofocus":""},on:{"address":_vm.updateRecipient}})],1)],1),_c('PageFooter',{staticClass:"blur-target"},[_c('p',{staticClass:"nq-text"},[_vm._v("If recipient has no Account yet:")]),_c('button',{staticClass:"nq-button-s",on:{"click":function($event){return _vm.createCashlink(_vm.liveSender)}}},[_vm._v("Create a Cashlink")])])],1):_c('SmallPage',{staticClass:"send-tx",class:{'overlay-open': _vm.displayedDetails || _vm.optionsOpened}},[_c('transition',{attrs:{"name":"transition-fade"}},[(_vm.displayedDetails)?_c('SmallPage',{staticClass:"overlay"},[_c('AccountDetails',{ref:"accountDetails",attrs:{"address":_vm.displayedDetails === _vm.Details.SENDER ? _vm.liveSender.address : _vm.liveRecipient.address,"editable":_vm.displayedDetails === _vm.Details.RECIPIENT,"placeholder":"Name this contact...","label":_vm.displayedDetails === _vm.Details.SENDER ? _vm.liveSender.label : _vm.liveRecipient.label,"balance":_vm.displayedDetails === _vm.Details.SENDER ? _vm.liveSender.balance : null},on:{"close":function($event){_vm.displayedDetails = _vm.Details.NONE},"changed":_vm.setLabel}}),(_vm.displayedDetails === _vm.Details.RECIPIENT)?_c('PageFooter',[_c('button',{staticClass:"nq-button light-blue",on:{"click":function($event){return _vm.storeContactAndCloseOverlay()}}},[_vm._v("Save Contact")])]):_vm._e()],1):_vm._e()],1),_c('transition',{attrs:{"name":"transition-fade"}},[(_vm.optionsOpened)?_c('SmallPage',{staticClass:"overlay fee"},[_c('CloseButton',{staticClass:"top-right",on:{"click":function($event){_vm.optionsOpened = false}}}),_c('PageBody',[_c('h1',{staticClass:"nq-h1"},[_vm._v("Speed up your transaction")]),_c('p',{staticClass:"nq-text"},[_vm._v("By adding a transation fee, you can influence how fast your transaction will be processed.")]),_c('SelectBar',{ref:"feeSetter",attrs:{"options":_vm.FEE_OPTIONS,"name":"fee","selectedValue":_vm.feeLunaPerByte},on:{"changed":_vm.updateFeePreview}}),_c('Amount',{attrs:{"amount":_vm.feePreview,"minDecimals":0,"maxDecimals":5}})],1),_c('PageFooter',[_c('button',{staticClass:"nq-button light-blue",on:{"click":_vm.setFee}},[_vm._v("Set fee")])])],1):_vm._e()],1),_c('PageHeader',{staticClass:"blur-target",attrs:{"backArrow":!_vm.sender || !_vm.recipient || !_vm.recipientIsReadonly},on:{"back":_vm.backFromAmount}},[_vm._v("\n        Set Amount\n        "),_c('a',{staticClass:"nq-blue options-button",attrs:{"href":"javascript:void(0)","title":"Open settings"},on:{"click":function($event){_vm.optionsOpened = true}}},[_c('SettingsIcon')],1)]),_c('PageBody',{staticClass:"blur-target amount-page"},[_c('div',{staticClass:"sender-and-recipient"},[_c('a',{attrs:{"href":"javascript:void(0);"},on:{"click":function($event){_vm.displayedDetails = _vm.Details.SENDER}}},[_c('Account',{attrs:{"layout":"column","address":_vm.liveSender.address,"label":_vm.liveSender.label}})],1),_c('div',{staticClass:"arrow-wrapper"},[_c('ArrowRightIcon',{staticClass:"nq-light-blue"})],1),_c('a',{attrs:{"href":"javascript:void(0);"},on:{"click":function($event){_vm.displayedDetails = _vm.Details.RECIPIENT}}},[_c('Account',{class:{invalid: !_vm.recipientValid},attrs:{"layout":"column","address":_vm.liveRecipient.address,"label":_vm.liveRecipient.label || 'Unnamed Contact'}})],1)]),(_vm.value)?_c('Amount',{staticClass:"value readonly",class:{invalid: !_vm.balanceValid},attrs:{"amount":_vm.value,"minDecimals":0,"maxDecimals":5}}):_c('AmountInput',{ref:"valueInput",staticClass:"value",class:{invalid: !_vm.balanceValid},model:{value:(_vm.liveValue),callback:function ($$v) {_vm.liveValue=$$v},expression:"liveValue"}}),(_vm.fee)?_c('div',{staticClass:"fee-section nq-text-s"},[_vm._v("\n            + "),_c('Amount',{attrs:{"amount":_vm.fee,"minDecimals":0,"maxDecimals":5}}),_vm._v(" fee\n        ")],1):_vm._e(),(_vm.message)?_c('div',{staticClass:"label"},[_vm._v(_vm._s(_vm.liveExtraData))]):_c('LabelInput',{ref:"messageInput",attrs:{"vanishing":true,"placeholder":"Add a public message...","maxBytes":64},model:{value:(_vm.liveExtraData),callback:function ($$v) {_vm.liveExtraData=$$v},expression:"liveExtraData"}}),_c('div',{staticClass:"bottom-spacer"})],1),_c('PageFooter',{staticClass:"blur-target"},[_c('button',{staticClass:"nq-button light-blue",attrs:{"disabled":!_vm.isValid || _vm.isLoading},on:{"click":_vm.sendTransaction}},[(_vm.showButtonLoader)?_c('CircleSpinner'):_vm._e(),_vm._v(_vm._s(_vm.buttonText)+"\n        ")],1)])],1)}
+var SendTxvue_type_template_id_6cc25c57_scoped_true_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/SendTx.vue?vue&type=template&id=8eec7f92&scoped=true&
+// CONCATENATED MODULE: ./src/components/SendTx.vue?vue&type=template&id=6cc25c57&scoped=true&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.array.find.js
 var es6_array_find = __webpack_require__("7514");
@@ -10238,7 +10238,7 @@ function (_Vue) {
         sender: this.liveSender.address,
         recipient: this.liveRecipient.address,
         recipientType: 0,
-        recipientlabel: this.liveRecipient.label,
+        recipientLabel: this.liveRecipient.label,
         value: this.liveValue,
         fee: this.fee,
         extraData: this.liveExtraData,
@@ -10428,8 +10428,8 @@ SendTxvue_type_script_lang_ts_SendTx = __decorate([vue_class_component_common_de
 /* harmony default export */ var SendTxvue_type_script_lang_ts_ = (SendTxvue_type_script_lang_ts_SendTx);
 // CONCATENATED MODULE: ./src/components/SendTx.vue?vue&type=script&lang=ts&
  /* harmony default export */ var components_SendTxvue_type_script_lang_ts_ = (SendTxvue_type_script_lang_ts_); 
-// EXTERNAL MODULE: ./src/components/SendTx.vue?vue&type=style&index=0&id=8eec7f92&scoped=true&lang=css&
-var SendTxvue_type_style_index_0_id_8eec7f92_scoped_true_lang_css_ = __webpack_require__("142b");
+// EXTERNAL MODULE: ./src/components/SendTx.vue?vue&type=style&index=0&id=6cc25c57&scoped=true&lang=css&
+var SendTxvue_type_style_index_0_id_6cc25c57_scoped_true_lang_css_ = __webpack_require__("37a6");
 
 // CONCATENATED MODULE: ./src/components/SendTx.vue
 
@@ -10442,11 +10442,11 @@ var SendTxvue_type_style_index_0_id_8eec7f92_scoped_true_lang_css_ = __webpack_r
 
 var SendTx_component = normalizeComponent(
   components_SendTxvue_type_script_lang_ts_,
-  SendTxvue_type_template_id_8eec7f92_scoped_true_render,
-  SendTxvue_type_template_id_8eec7f92_scoped_true_staticRenderFns,
+  SendTxvue_type_template_id_6cc25c57_scoped_true_render,
+  SendTxvue_type_template_id_6cc25c57_scoped_true_staticRenderFns,
   false,
   null,
-  "8eec7f92",
+  "6cc25c57",
   null
   
 )
