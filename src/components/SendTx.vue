@@ -341,8 +341,9 @@ enum RecipientType {
             if (!this.recipient || !this.recipientIsReadonly) {
                 this.liveRecipient = null;
                 this.liveAddress = '';
+            } else if (!this.sender && this.addressCount > 1) {
+                this.liveSender = null;
             }
-            else if (!this.sender && this.addressCount > 1) this.liveSender = null;
 
             this.contactsOpened = false;
         }
