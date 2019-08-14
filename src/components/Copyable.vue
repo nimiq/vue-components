@@ -1,5 +1,5 @@
 <template>
-    <div class="copyable" :class="{ copied }" @click="_copy">
+    <div class="copyable" :class="{ copied }" @click="copy">
         <div class="background"></div>
         <slot></slot>
     </div>
@@ -25,12 +25,9 @@ export default class Copyable extends Vue {
     @Prop(String)
     public text?: string;
 
-    private copied: boolean = false;
-    private _copiedResetTimeout: number | null = null;
-
-    private _copy() {
+    public copy() {
         // Note that when iterating over childNodes, pseudo elements are excluded.
-        const text = this.text || [ ...this.$el.childNodes ].reduce((text, node) => {
+        const text = this.text || [ ...this.$el.childNodes ].reduce((concatenated, node) => {
             let nodeText = '';
             if (node.nodeType === Node.TEXT_NODE) {
                 nodeText = node.textContent.trim();
@@ -39,11 +36,11 @@ export default class Copyable extends Vue {
                 nodeText = (node as HTMLElement).innerText;
             }
 
-            if (text && nodeText) {
-                text += '\n';
+            if (concatenated && nodeText) {
+                concatenated += '\n';
             }
-            text += nodeText;
-            return text;
+            concatenated += nodeText;
+            return concatenated;
         }, '');
         Clipboard.copy(text);
 
@@ -51,8 +48,11 @@ export default class Copyable extends Vue {
         this.copied = true;
         this._copiedResetTimeout = window.setTimeout(() => {
             this.copied = false;
-        }, 2000);
+        }, 1800);
     }
+
+    private copied: boolean = false;
+    private _copiedResetTimeout: number | null = null;
 }
 </script>
 
@@ -76,7 +76,8 @@ export default class Copyable extends Vue {
         transition: opacity .3s var(--nimiq-ease);
     }
 
-    .copyable:hover .background {
+    .copyable:hover .background,
+    .copyable.copied .background {
         opacity: .05;
     }
 
@@ -122,7 +123,7 @@ export default class Copyable extends Vue {
     }
 
     .copyable.copied::after {
-        animation: copied .75s .75s var(--nimiq-ease) forwards;
+        animation: copied .85s .85s var(--nimiq-ease) forwards;
     }
 
     @keyframes copied {
