@@ -239,10 +239,11 @@ import NewContact from './NewContact.vue';
 
     .contact {
         padding: 1rem;
+        transition: background-color .3s var(--nimiq-ease);
     }
 
     .contact:hover {
-        background-color: rgba(0, 0, 0, 0.075);
+        background-color: rgba(31, 35, 72, 0.06); /* Based on Nimiq Blue */
     }
 
     .no-contacts {
