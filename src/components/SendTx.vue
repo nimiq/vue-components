@@ -146,7 +146,7 @@ import SelectBar, { SelectBarOption } from './SelectBar.vue';
 import CircleSpinner from './CircleSpinner.vue';
 import CloseButton from './CloseButton.vue';
 import { ArrowRightIcon, ScanQrCodeIcon, SettingsIcon } from './Icons';
-import { Utf8Tools } from '@nimiq/utils';
+import { Utf8Tools, BrowserDetection } from '@nimiq/utils';
 
 enum Details {
     NONE,
@@ -208,7 +208,8 @@ enum RecipientType {
             address?: AddressInput,
         };
 
-        public focus() {
+        public focus(dontFocusOnMobile = false) {
+            if (dontFocusOnMobile && BrowserDetection.isMobile()) return;
             Vue.nextTick(() => { // Await updated DOM
                 if (this.$refs.accountDetails) {
                     this.$refs.accountDetails.focus();
@@ -301,7 +302,7 @@ enum RecipientType {
                 balance: foundAddress.balance || 0,
             };
 
-            this.focus();
+            this.focus(true);
         }
 
         private updateSender(walletId: string, address: string) {
@@ -336,7 +337,7 @@ enum RecipientType {
             };
 
             this.addContactOpened = true;
-            this.focus();
+            this.focus(true);
         }
 
         private updateRecipient(address: string, label?: string) {
@@ -351,7 +352,7 @@ enum RecipientType {
             this.addContactOpened = false;
 
             if (this.liveSender) {
-                this.focus();
+                this.focus(true);
             }
         }
 
@@ -379,7 +380,7 @@ enum RecipientType {
             this.optionsOpened = false;
             this.feeLunaPerByte = this.$refs!.feeSetter.value;
             this.liveAmountAndFee.fee = this.fee;
-            this.focus();
+            this.focus(true);
         }
 
         @Watch('value', { immediate: true })
@@ -400,19 +401,19 @@ enum RecipientType {
 
         private closeDetails() {
             this.displayedDetails = Details.NONE;
-            this.focus();
+            this.focus(true);
         }
 
         private closeOptions() {
             this.optionsOpened = false;
-            this.focus();
+            this.focus(true);
         }
 
         private closeAddContact() {
             this.addContactOpened = false;
             this.liveRecipient = null;
             this.liveAddress = '';
-            this.focus();
+            this.focus(true);
         }
 
         private storeContactAndCloseOverlay() {
