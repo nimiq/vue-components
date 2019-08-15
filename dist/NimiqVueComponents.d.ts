@@ -343,8 +343,7 @@ declare module 'NimiqVueComponents/src/components/Tooltip.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class Tooltip extends Vue {
         reference?: any;
-        setReference(): Promise<void>;
-        calculateBoundingBox(): void;
+        update(): void;
     }
 }
 

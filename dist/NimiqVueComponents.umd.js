@@ -194,6 +194,13 @@ module.exports = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCE
 
 /***/ }),
 
+/***/ "0537":
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
 /***/ "0878":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1119,13 +1126,6 @@ __webpack_require__("214f")('search', 1, function (defined, SEARCH, $search) {
 
 /***/ }),
 
-/***/ "38e5":
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-
 /***/ "38fd":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2040,17 +2040,6 @@ exports.f = __webpack_require__("9e1e") ? Object.defineProperty : function defin
 
 /***/ }),
 
-/***/ "87cc":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_9c1ba0b4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("38e5");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_9c1ba0b4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_9c1ba0b4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
- /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_9c1ba0b4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
 /***/ "8a81":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2503,6 +2492,17 @@ exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
   return $keys(O, hiddenKeys);
 };
 
+
+/***/ }),
+
+/***/ "9347":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_dd2b846e_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("0537");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_dd2b846e_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_dd2b846e_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+ /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_dd2b846e_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -10122,12 +10122,12 @@ var SmallPage_component = normalizeComponent(
 
 SmallPage_component.options.__file = "SmallPage.vue"
 /* harmony default export */ var components_SmallPage = (SmallPage_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"46064dad-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Tooltip.vue?vue&type=template&id=9c1ba0b4&scoped=true&
-var Tooltipvue_type_template_id_9c1ba0b4_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"tooltip",class:{active: _vm.tooltipActive}},[_c('a',{class:{top: _vm.tooltipPosition === 'top', bottom: _vm.tooltipPosition === 'bottom'},attrs:{"href":"javascript:void(0);"},on:{"click":_vm.toggleTooltip}},[_vm._t("icon",[_c('AlertTriangleIcon',{staticClass:"nq-orange"})])],2),_c('div',{ref:"tooltipBox",staticClass:"tooltip-box",style:(_vm.styles)},[_vm._t("default")],2)])}
-var Tooltipvue_type_template_id_9c1ba0b4_scoped_true_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"46064dad-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Tooltip.vue?vue&type=template&id=dd2b846e&scoped=true&
+var Tooltipvue_type_template_id_dd2b846e_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"tooltip",class:{active: _vm.tooltipActive}},[_c('a',{class:{top: _vm.tooltipPosition === 'top', bottom: _vm.tooltipPosition === 'bottom'},attrs:{"href":"javascript:void(0);"},on:{"click":_vm.toggleTooltip,"mouseenter":function($event){return _vm.mousOver(true)},"mouseleave":function($event){return _vm.mousOver(false)}}},[_vm._t("icon",[_c('AlertTriangleIcon',{staticClass:"nq-orange"})])],2),_c('div',{ref:"tooltipBox",staticClass:"tooltip-box",class:{active: _vm.tooltipActive, top: _vm.tooltipPosition === 'top', bottom: _vm.tooltipPosition === 'bottom'},style:(_vm.styles)},[_vm._t("default")],2)])}
+var Tooltipvue_type_template_id_dd2b846e_scoped_true_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Tooltip.vue?vue&type=template&id=9c1ba0b4&scoped=true&
+// CONCATENATED MODULE: ./src/components/Tooltip.vue?vue&type=template&id=dd2b846e&scoped=true&
 
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--13-1!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Tooltip.vue?vue&type=script&lang=ts&
 
@@ -10138,11 +10138,10 @@ var Tooltipvue_type_template_id_9c1ba0b4_scoped_true_staticRenderFns = []
 
 
 
-var Tooltip_1;
 
 
 
-var Tooltipvue_type_script_lang_ts_Tooltip = Tooltip_1 =
+var Tooltipvue_type_script_lang_ts_Tooltip =
 /*#__PURE__*/
 function (_Vue) {
   function Tooltip() {
@@ -10151,17 +10150,38 @@ function (_Vue) {
     _classCallCheck(this, Tooltip);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Tooltip).apply(this, arguments));
-    _this.tooltipActive = false;
+    _this.tooltipPosition = 'top'; // 'top' | 'bottom'
+
+    _this.isInSrollableContainer = false;
+    _this.tooltipToggled = false;
+    _this.mousedOver = false;
+    _this.iconHeight = 0;
     _this.height = 0;
     _this.width = 0;
     _this.left = 0;
     _this.top = 0;
-    _this.immutableTop = 0;
-    _this.tooltipPosition = 'top';
     return _this;
   }
 
   _createClass(Tooltip, [{
+    key: "update",
+    value: function update() {
+      if (!this.height) {
+        // skip if setReference hasn't run yet.
+        console.warn('Trying to update tooltip before reference is set.');
+        return;
+      }
+
+      this.top = this.$el.offsetTop - this.height;
+
+      if (this.reference.$el.scrollTop < this.top) {
+        this.tooltipPosition = 'top';
+      } else {
+        this.tooltipPosition = 'bottom';
+        this.top += this.iconHeight;
+      }
+    }
+  }, {
     key: "setReference",
     value: function () {
       var _setReference = _asyncToGenerator(
@@ -10171,7 +10191,7 @@ function (_Vue) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                if (this.reference) {
+                if (!(!this.reference || this.height)) {
                   _context.next = 2;
                   break;
                 }
@@ -10179,27 +10199,28 @@ function (_Vue) {
                 return _context.abrupt("return");
 
               case 2:
-                // Wait for the reference to get passed on
-                console.log(this.reference);
-                _context.next = 5;
-                return external_vue_property_decorator_["Vue"].nextTick();
+                // Move the element
+                this.$refs.tooltipBox.parentElement.removeChild(this.$refs.tooltipBox);
+                this.reference.$el.appendChild(this.$refs.tooltipBox); // Compute fixed positions
 
-              case 5:
-                this.width = this.reference.$el.offsetWidth * 2 / 3;
-                this.left = this.reference.$el.offsetLeft + this.reference.$el.offsetWidth / 6 - this.$el.offsetLeft - this.$el.offsetWidth / 2;
+                this.left = parseInt(window.getComputedStyle(this.reference.$el, null).getPropertyValue('padding-left'), 10);
+                this.width = this.reference.$el.offsetWidth - this.left - parseInt(window.getComputedStyle(this.reference.$el, null).getPropertyValue('padding-right'), 10);
+                this.iconHeight = this.$el.offsetHeight;
                 _context.next = 9;
                 return external_vue_property_decorator_["Vue"].nextTick();
 
               case 9:
-                this.height = this.$refs.tooltipBox.offsetHeight;
-                this.immutableTop = this.reference.$el.offsetTop + this.height + Tooltip_1.CARET_SIZE - this.$el.offsetTop;
-                this.calculateBoundingBox();
+                // Height depends on width, soo calculate in vues next tick
+                this.height = this.$refs.tooltipBox.offsetHeight; // calculate variable positions.
+
+                this.update(); // In case the reference container is scrollable add a listener
 
                 if (this.reference.$el.scrollHeight !== this.reference.$el.offsetHeight) {
-                  this.reference.$el.addEventListener('scroll', this.calculateBoundingBox.bind(this));
+                  this.reference.$el.addEventListener('scroll', this.update.bind(this));
+                  this.isInSrollableContainer = true;
                 }
 
-              case 13:
+              case 12:
               case "end":
                 return _context.stop();
             }
@@ -10212,21 +10233,44 @@ function (_Vue) {
       };
     }()
   }, {
-    key: "calculateBoundingBox",
-    value: function calculateBoundingBox() {
-      if (this.immutableTop + this.reference.$el.scrollTop < 0) {
-        this.top = -this.height - Tooltip_1.CARET_SIZE;
-        this.tooltipPosition = 'top';
-      } else {
-        this.top = this.$el.offsetHeight + Tooltip_1.CARET_SIZE;
-        this.tooltipPosition = 'bottom';
-      }
-    }
-  }, {
     key: "toggleTooltip",
-    value: function toggleTooltip() {
-      if (!this.height) this.setReference();
-      this.tooltipActive = !this.tooltipActive;
+    value: function () {
+      var _toggleTooltip = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee2() {
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                if (this.height) {
+                  _context2.next = 3;
+                  break;
+                }
+
+                console.warn('Trying to toggle tooltip before reference is set.');
+                return _context2.abrupt("return");
+
+              case 3:
+                this.update();
+                this.tooltipToggled = !this.tooltipToggled;
+
+              case 5:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      return function toggleTooltip() {
+        return _toggleTooltip.apply(this, arguments);
+      };
+    }()
+  }, {
+    key: "mousOver",
+    value: function mousOver(mouseOverTooltip) {
+      this.update();
+      this.mousedOver = mouseOverTooltip;
     }
   }, {
     key: "styles",
@@ -10248,6 +10292,11 @@ function (_Vue) {
 
       return {};
     }
+  }, {
+    key: "tooltipActive",
+    get: function get() {
+      return this.tooltipToggled || this.mousedOver;
+    }
   }]);
 
   _inherits(Tooltip, _Vue);
@@ -10255,15 +10304,13 @@ function (_Vue) {
   return Tooltip;
 }(external_vue_property_decorator_["Vue"]);
 
-Tooltipvue_type_script_lang_ts_Tooltip.CARET_SIZE = 10;
-
 __decorate([Object(external_vue_property_decorator_["Prop"])(Object)], Tooltipvue_type_script_lang_ts_Tooltip.prototype, "reference", void 0);
 
 __decorate([Object(external_vue_property_decorator_["Watch"])('reference', {
   immediate: true
 })], Tooltipvue_type_script_lang_ts_Tooltip.prototype, "setReference", null);
 
-Tooltipvue_type_script_lang_ts_Tooltip = Tooltip_1 = __decorate([Object(external_vue_property_decorator_["Component"])({
+Tooltipvue_type_script_lang_ts_Tooltip = __decorate([Object(external_vue_property_decorator_["Component"])({
   components: {
     AlertTriangleIcon: AlertTriangleIcon
   }
@@ -10271,8 +10318,8 @@ Tooltipvue_type_script_lang_ts_Tooltip = Tooltip_1 = __decorate([Object(external
 /* harmony default export */ var Tooltipvue_type_script_lang_ts_ = (Tooltipvue_type_script_lang_ts_Tooltip);
 // CONCATENATED MODULE: ./src/components/Tooltip.vue?vue&type=script&lang=ts&
  /* harmony default export */ var components_Tooltipvue_type_script_lang_ts_ = (Tooltipvue_type_script_lang_ts_); 
-// EXTERNAL MODULE: ./src/components/Tooltip.vue?vue&type=style&index=0&id=9c1ba0b4&scoped=true&lang=css&
-var Tooltipvue_type_style_index_0_id_9c1ba0b4_scoped_true_lang_css_ = __webpack_require__("87cc");
+// EXTERNAL MODULE: ./src/components/Tooltip.vue?vue&type=style&index=0&id=dd2b846e&scoped=true&lang=css&
+var Tooltipvue_type_style_index_0_id_dd2b846e_scoped_true_lang_css_ = __webpack_require__("9347");
 
 // CONCATENATED MODULE: ./src/components/Tooltip.vue
 
@@ -10285,11 +10332,11 @@ var Tooltipvue_type_style_index_0_id_9c1ba0b4_scoped_true_lang_css_ = __webpack_
 
 var Tooltip_component = normalizeComponent(
   components_Tooltipvue_type_script_lang_ts_,
-  Tooltipvue_type_template_id_9c1ba0b4_scoped_true_render,
-  Tooltipvue_type_template_id_9c1ba0b4_scoped_true_staticRenderFns,
+  Tooltipvue_type_template_id_dd2b846e_scoped_true_render,
+  Tooltipvue_type_template_id_dd2b846e_scoped_true_staticRenderFns,
   false,
   null,
-  "9c1ba0b4",
+  "dd2b846e",
   null
   
 )
