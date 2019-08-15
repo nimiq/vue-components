@@ -53,7 +53,7 @@
                 @contacts-opened="contacts.length > 0 ? contactsOpened = true : false"/>
             <div>
                 <label class="nq-label">Enter address</label>
-                <AddressInput v-model="liveAddress" @address="updateRecipient" autofocus ref="address"/>
+                <AddressInput v-model="liveAddress" @address="updateRecipient" ref="address"/>
             </div>
         </PageBody>
 
@@ -200,6 +200,44 @@ enum RecipientType {
         @Prop({type: String, default: ''}) public message!: string;
         @Prop({type: Number, default: 0}) public validityStartHeight!: number;
 
+        public $refs: {
+            accountDetails?: AccountDetails,
+            amountWithFee?: AmountWithFee,
+            messageInput?: LabelInput,
+            feeSetter?: SelectBar,
+            address?: AddressInput,
+        };
+
+        public focus() {
+            Vue.nextTick(() => { // Await updated DOM
+                if (this.$refs.accountDetails) {
+                    this.$refs.accountDetails.focus();
+                } else if (this.$refs.address) {
+                    this.$refs.address.focus();
+                } else if (this.$refs.amountWithFee && (!this.liveAmountAndFee.amount || this.liveExtraData)) {
+                    this.$refs.amountWithFee.focus();
+                } else if (this.$refs.messageInput) {
+                    this.$refs.messageInput.focus();
+                }
+            });
+        }
+
+        public clear() {
+            this.liveSender = null;
+            this.liveRecipient = null;
+            this.displayedDetails = Details.NONE;
+            this.contactsOpened = false;
+            this.optionsOpened = false;
+            this.feeLunaPerByte = 0;
+            this.liveExtraData = '';
+            this.liveContactLabel = '';
+            this.liveAmountAndFee = {
+                amount: 0,
+                fee: this.fee,
+                isValid: false,
+            };
+        }
+
         private liveSender: {
             address: string,
             label: string,
@@ -221,22 +259,6 @@ enum RecipientType {
             fee: this.fee,
             isValid: false,
         };
-
-        public clear() {
-            this.liveSender = null;
-            this.liveRecipient = null;
-            this.displayedDetails = Details.NONE;
-            this.contactsOpened = false;
-            this.optionsOpened = false;
-            this.feeLunaPerByte = 0;
-            this.liveExtraData = '';
-            this.liveContactLabel = '';
-            this.liveAmountAndFee = {
-                amount: 0,
-                fee: this.fee,
-                isValid: false,
-            };
-        }
 
         @Watch('wallet', {immediate: true})
         private checkLiveSenderInWallet() {
@@ -278,6 +300,8 @@ enum RecipientType {
                 walletId,
                 balance: foundAddress.balance || 0,
             };
+
+            this.focus();
         }
 
         private updateSender(walletId: string, address: string) {
@@ -312,7 +336,7 @@ enum RecipientType {
             };
 
             this.addContactOpened = true;
-            Vue.nextTick(() => (this.$refs.accountDetails as AccountDetails).focus());
+            this.focus();
         }
 
         private updateRecipient(address: string, label?: string) {
@@ -327,13 +351,7 @@ enum RecipientType {
             this.addContactOpened = false;
 
             if (this.liveSender) {
-                Vue.nextTick(() => { // Await updated DOM
-                    if (!this.value) {
-                        (this.$refs.amountWithFee as AmountWithFee).focus();
-                    } else if (!this.message) {
-                        (this.$refs.messageInput as LabelInput).focus();
-                    }
-                });
+                this.focus();
             }
         }
 
@@ -359,9 +377,9 @@ enum RecipientType {
 
         private setFee() {
             this.optionsOpened = false;
-            this.feeLunaPerByte = (this.$refs.feeSetter as SelectBar).value;
+            this.feeLunaPerByte = this.$refs!.feeSetter.value;
             this.liveAmountAndFee.fee = this.fee;
-            Vue.nextTick(() => (this.$refs.amountWithFee as AmountWithFee).focus());
+            this.focus();
         }
 
         @Watch('value', { immediate: true })
@@ -382,19 +400,19 @@ enum RecipientType {
 
         private closeDetails() {
             this.displayedDetails = Details.NONE;
-            Vue.nextTick(() => (this.$refs.amountWithFee as AmountWithFee).focus());
+            this.focus();
         }
 
         private closeOptions() {
             this.optionsOpened = false;
-            Vue.nextTick(() => (this.$refs.amountWithFee as AmountWithFee).focus());
+            this.focus();
         }
 
         private closeAddContact() {
             this.addContactOpened = false;
             this.liveRecipient = null;
             this.liveAddress = '';
-            Vue.nextTick( () => (this.$refs.address as AddressInput).focus());
+            this.focus();
         }
 
         private storeContactAndCloseOverlay() {
