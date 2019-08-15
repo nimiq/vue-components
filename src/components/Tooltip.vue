@@ -2,12 +2,17 @@
     <span class="tooltip" :class="{active: tooltipActive}">
         <a href="javascript:void(0);"
             @click="toggleTooltip"
+            @mouseenter="mousOver(true)"
+            @mouseleave="mousOver(false)"
             :class="{top: tooltipPosition === 'top', bottom: tooltipPosition === 'bottom'}">
             <slot name="icon">
                 <AlertTriangleIcon class="nq-orange" />
             </slot>
         </a>
-        <div :style="styles" ref="tooltipBox" class="tooltip-box">
+        <div :style="styles"
+            ref="tooltipBox"
+            class="tooltip-box"
+            :class="{active: tooltipActive, top: tooltipPosition === 'top', bottom: tooltipPosition === 'bottom'}">
             <slot></slot>
         </div>
     </span>
@@ -19,17 +24,19 @@ import { AlertTriangleIcon } from './Icons';
 
 @Component({components: { AlertTriangleIcon }})
 export default class Tooltip extends Vue {
-    private static CARET_SIZE = 10;
-
     @Prop(Object) public reference?: any;
 
-    private tooltipActive: boolean = false;
+    private tooltipPosition: string = 'top'; // 'top' | 'bottom'
+    private isInSrollableContainer: boolean = false;
+
+    private tooltipToggled: boolean = false;
+    private mousedOver: boolean = false;
+
+    private iconHeight: number = 0;
     private height: number = 0;
     private width: number = 0;
     private left: number = 0;
     private top: number = 0;
-    private immutableTop: number = 0;
-    private tooltipPosition: string = 'top';
 
     private get styles() {
         if (this.width && this.top) {
@@ -48,45 +55,73 @@ export default class Tooltip extends Vue {
         return {};
     }
 
-    @Watch('reference', {immediate: true})
-    public async setReference() {
-        if (!this.reference) return; // Wait for the reference to get passed on
-        console.log(this.reference);
-        await Vue.nextTick();
-        this.width = (this.reference.$el as HTMLElement).offsetWidth * 2 / 3;
-        this.left = (this.reference.$el as HTMLElement).offsetLeft
-                + (this.reference.$el as HTMLElement).offsetWidth / 6
-                - (this.$el as HTMLElement).offsetLeft
-                - (this.$el as HTMLElement).offsetWidth / 2;
-
-        await Vue.nextTick();
-        this.height = (this.$refs.tooltipBox as HTMLDivElement).offsetHeight;
-        this.immutableTop = (this.reference.$el as HTMLElement).offsetTop
-                        + this.height
-                        + Tooltip.CARET_SIZE
-                        - (this.$el as HTMLElement).offsetTop;
-
-        this.calculateBoundingBox();
-
-        if ((this.reference.$el as HTMLElement).scrollHeight !== (this.reference.$el as HTMLElement).offsetHeight) {
-            (this.reference.$el as HTMLElement).addEventListener('scroll', this.calculateBoundingBox.bind(this));
-        }
-
+    private get tooltipActive() {
+        return this.tooltipToggled || this.mousedOver;
     }
 
-    public calculateBoundingBox() {
-        if (this.immutableTop + (this.reference.$el as HTMLElement).scrollTop < 0) {
-            this.top = -this.height - Tooltip.CARET_SIZE;
+    public update() {
+        if (!this.height) { // skip if setReference hasn't run yet.
+            console.warn('Trying to update tooltip before reference is set.');
+            return;
+        }
+
+        this.top = (this.$el as HTMLElement).offsetTop - this.height;
+
+        if ((this.reference.$el as HTMLElement).scrollTop < this.top) {
             this.tooltipPosition = 'top';
         } else {
-            this.top = (this.$el as HTMLElement).offsetHeight + Tooltip.CARET_SIZE;
             this.tooltipPosition = 'bottom';
+            this.top += this.iconHeight;
         }
     }
 
-    private toggleTooltip() {
-        if (!this.height) this.setReference();
-        this.tooltipActive = !this.tooltipActive;
+    @Watch('reference', {immediate: true})
+    private async setReference() {
+        if (!this.reference || this.height) {
+             // Wait for the reference to get passed on
+             // Skip if already set up.
+            return;
+        }
+
+        // Move the element
+        (this.$refs.tooltipBox as HTMLElement).parentElement.removeChild(this.$refs.tooltipBox as HTMLElement);
+        (this.reference.$el as HTMLElement).appendChild(this.$refs.tooltipBox as HTMLElement);
+
+        // Compute fixed positions
+        this.left = parseInt(
+            window.getComputedStyle(this.reference.$el as HTMLElement, null).getPropertyValue('padding-left'),10);
+
+        this.width = (this.reference.$el as HTMLElement).offsetWidth - this.left - parseInt(
+            window.getComputedStyle(this.reference.$el as HTMLElement, null).getPropertyValue('padding-right'), 10);
+
+        this.iconHeight = (this.$el as HTMLElement).offsetHeight;
+        await Vue.nextTick();
+        // Height depends on width, soo calculate in vues next tick
+
+        this.height = (this.$refs.tooltipBox as HTMLDivElement).offsetHeight;
+
+        // calculate variable positions.
+        this.update();
+
+        // In case the reference container is scrollable add a listener
+        if ((this.reference.$el as HTMLElement).scrollHeight !== (this.reference.$el as HTMLElement).offsetHeight) {
+            (this.reference.$el as HTMLElement).addEventListener('scroll', this.update.bind(this));
+            this.isInSrollableContainer = true;
+        }
+    }
+
+    private async toggleTooltip() {
+        if (!this.height) {
+            console.warn('Trying to toggle tooltip before reference is set.');
+            return;
+        }
+        this.update();
+        this.tooltipToggled = !this.tooltipToggled;
+    }
+
+    private mousOver(mouseOverTooltip: boolean) {
+        this.update();
+        this.mousedOver = mouseOverTooltip;
     }
 }
 </script>
@@ -95,6 +130,7 @@ export default class Tooltip extends Vue {
     .tooltip {
         display: inline-block;
         position: relative;
+        line-height: 1;
     }
 
     .tooltip > a {
@@ -110,45 +146,50 @@ export default class Tooltip extends Vue {
         left: calc(50% - .625rem);
         border-width: .625rem;
         border-style: solid;
-        transition: bottom .3s ease, opacity .3s ease;
+        transition: bottom .2s ease, top .2s ease, opacity .3s ease;
         border-color: var(--nimiq-blue) transparent transparent transparent;
         visibility: hidden;
         pointer-events: visible;
     }
 
-    .tooltip:hover > a::after,
+    .tooltip > a.top::after {
+        border-color: var(--nimiq-blue) transparent transparent transparent;
+        top: -2rem;
+        bottom: 0;
+    }
+
+    .tooltip > a.bottom::after {
+        border-color: transparent transparent var(--nimiq-blue) transparent;
+        top: 0;
+        bottom: -2rem;
+    }
+
     .tooltip.active > a::after {
-        transition: bottom .3s ease, opacity .3s ease;
         opacity: 1;
         visibility: visible;
     }
 
-    .tooltip:hover > a.top::after,
-    .tooltip.active > a.top::after {
-        transform: rotateX(0deg);
-        bottom: 2.875rem;
-    }
-
-    .tooltip:hover > a.bottom::after,
-    .tooltip.active > a.bottom::after {
-        transform: rotateX(180deg);
-        bottom: -1.25rem;
-    }
-
-    .tooltip > .tooltip-box {
+    .tooltip-box {
         position: absolute;
         visibility: hidden;
         pointer-events: visible;
         color: white;
         background: var(--nimiq-blue-bg);
-        padding: 1rem;
+        padding: 1.5rem;
         border-radius: .5rem;
-        transition: top .3s ease, opacity .3s ease;
+        transition: opacity .3s ease, transform .2s ease, top .2s ease;
         opacity: 0;
     }
 
-    .tooltip:hover > .tooltip-box,
-    .tooltip.active > .tooltip-box {
+    .tooltip-box.bottom {
+        transform: translateY(calc(100% + 2rem));
+    }
+
+    .tooltip-box.top {
+        transform: translateY(-2rem);
+    }
+
+    .tooltip-box.active {
         visibility: visible;
         opacity: 1;
     }
