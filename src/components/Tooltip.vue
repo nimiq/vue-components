@@ -89,7 +89,7 @@ export default class Tooltip extends Vue {
 
         // Compute fixed positions
         this.left = parseInt(
-            window.getComputedStyle(this.reference.$el as HTMLElement, null).getPropertyValue('padding-left'),10);
+            window.getComputedStyle(this.reference.$el as HTMLElement, null).getPropertyValue('padding-left'), 10);
 
         this.width = (this.reference.$el as HTMLElement).offsetWidth - this.left - parseInt(
             window.getComputedStyle(this.reference.$el as HTMLElement, null).getPropertyValue('padding-right'), 10);
@@ -143,23 +143,22 @@ export default class Tooltip extends Vue {
         content: '';
         display: block;
         position: absolute;
-        left: calc(50% - .625rem);
-        border-width: .625rem;
+        left: calc(50% - 1rem);
+        border-width: 1rem;
         border-style: solid;
         transition: bottom .2s ease, top .2s ease, opacity .3s ease;
-        border-color: var(--nimiq-blue) transparent transparent transparent;
         visibility: hidden;
         pointer-events: visible;
     }
 
     .tooltip > a.top::after {
-        border-color: var(--nimiq-blue) transparent transparent transparent;
+        border-color: var(--nimiq-blue-darkened) transparent transparent transparent;
         top: -2rem;
         bottom: 0;
     }
 
     .tooltip > a.bottom::after {
-        border-color: transparent transparent var(--nimiq-blue) transparent;
+        border-color: transparent transparent var(--nimiq-blue-darkened) transparent;
         top: 0;
         bottom: -2rem;
     }
@@ -179,6 +178,7 @@ export default class Tooltip extends Vue {
         border-radius: .5rem;
         transition: opacity .3s ease, transform .2s ease, top .2s ease;
         opacity: 0;
+        box-shadow: 0 1.125rem 2.275rem rgba(0, 0, 0, 0.11);
     }
 
     .tooltip-box.bottom {
