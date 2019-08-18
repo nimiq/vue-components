@@ -209,6 +209,7 @@ declare module 'NimiqVueComponents/src/components/Copyable.vue' {
       */
     export default class Copyable extends Vue {
         text?: string;
+        copy(): void;
     }
 }
 
