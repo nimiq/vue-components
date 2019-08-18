@@ -128,14 +128,18 @@ export default class Tooltip extends Vue {
 
 <style scoped>
     .tooltip {
-        display: inline-block;
+        display: block;
         position: relative;
         line-height: 1;
     }
 
     .tooltip > a {
         position: relative;
-        display: inline-block;
+        display: block;
+    }
+
+    .tooltip > a >>> svg {
+        display: block;
     }
 
     .tooltip > a::after {
