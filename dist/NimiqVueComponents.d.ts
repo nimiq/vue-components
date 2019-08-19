@@ -118,7 +118,12 @@ declare module 'NimiqVueComponents/src/components/QrScanner.vue' {
 
 declare module 'NimiqVueComponents/src/components/SendTx.vue' {
     import { Vue } from 'vue-property-decorator';
+    import AccountDetails from 'NimiqVueComponents/src/components/AccountDetails.vue';
+    import AddressInput from 'NimiqVueComponents/src/components/AddressInput.vue';
     import { WalletInfo } from 'NimiqVueComponents/src/components/AccountSelector.vue';
+    import LabelInput from 'NimiqVueComponents/src/components/LabelInput.vue';
+    import AmountWithFee from 'NimiqVueComponents/src/components/AmountWithFee.vue';
+    import SelectBar from 'NimiqVueComponents/src/components/SelectBar.vue';
     export default class SendTx extends Vue {
         contacts: Array<{
             address: string;
@@ -142,6 +147,14 @@ declare module 'NimiqVueComponents/src/components/SendTx.vue' {
         value: number;
         message: string;
         validityStartHeight: number;
+        $refs: {
+            accountDetails?: AccountDetails;
+            amountWithFee?: AmountWithFee;
+            messageInput?: LabelInput;
+            feeSetter?: SelectBar;
+            address?: AddressInput;
+        };
+        focus(dontFocusOnMobile?: boolean): void;
         clear(): void;
     }
 }
@@ -170,5 +183,55 @@ declare module 'NimiqVueComponents/src/components/Icons' {
     export const QrCodeIcon: any;
     export const ScanQrCodeIcon: any;
     export const SettingsIcon: any;
+}
+
+declare module 'NimiqVueComponents/src/components/AccountDetails.vue' {
+    import { Vue } from 'vue-property-decorator';
+    export default class AccountDetails extends Vue {
+        focus(): void;
+    }
+}
+
+declare module 'NimiqVueComponents/src/components/AddressInput.vue' {
+    import { Vue } from 'vue-property-decorator';
+    export default class AddressInput extends Vue {
+        value: string;
+        autofocus?: string;
+        $refs: {
+            textarea: HTMLTextAreaElement;
+        };
+        focus(scrollIntoView?: boolean): void;
+    }
+}
+
+declare module 'NimiqVueComponents/src/components/LabelInput.vue' {
+    import { Vue } from 'vue-property-decorator';
+    export default class LabelInput extends Vue {
+        focus(): void;
+    }
+}
+
+declare module 'NimiqVueComponents/src/components/AmountWithFee.vue' {
+    import { Vue } from 'vue-property-decorator';
+    export default class AmountWithFee extends Vue {
+        mounted(): void;
+        focus(): void;
+    }
+}
+
+declare module 'NimiqVueComponents/src/components/SelectBar.vue' {
+    import { Vue } from 'vue-property-decorator';
+    export interface SelectBarOption {
+        color: string;
+        value: number;
+        text: string;
+        index: number;
+    }
+    export default class SelectBar extends Vue {
+        name: string;
+        options: SelectBarOption[];
+        selectedValue?: number;
+        readonly value: number;
+    }
 }
 
