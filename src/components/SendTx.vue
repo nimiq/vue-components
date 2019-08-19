@@ -30,7 +30,7 @@
         </transition>
 
         <transition name="transition-fade">
-            <SmallPage class="overlay" v-if="contactsOpened">
+            <SmallPage class="overlay" v-if="contactsOpened && !addContactOpened">
                 <PageHeader>
                     Select a contact
                 </PageHeader>
