@@ -28,6 +28,7 @@ import PaymentInfoLine from '../components/PaymentInfoLine.vue';
 import QrCode from '../components/QrCode.vue';
 import QrScanner from '../components/QrScanner.vue';
 import SelectBar from '../components/SelectBar.vue';
+import Tooltip from '../components/Tooltip.vue';
 import SmallPage from '../components/SmallPage.vue';
 import PageHeader from '../components/PageHeader.vue';
 import PageBody from '../components/PageBody.vue';
@@ -189,6 +190,50 @@ storiesOf('Basic', module)
             },
             template: `<SelectBar :options="options" @changed="changed"/>`
         }
+    })
+    .add('Tooltip', () => {
+        const fontSize = number('Font size (rem)', 3);
+        return {
+            data() {
+                return {
+                    refsLoaded: false,
+                    message: '',
+                    fontSize,
+                };
+            },
+            computed: {
+                target() {
+                    if(this.refsLoaded)
+                        return this.$refs.target;
+                    else return null;
+                },
+                style() {
+                    return {
+                        fontSize: this.fontSize + 'rem',
+                    };
+                }
+            },
+            mounted() {
+                this.refsLoaded = true;
+            },
+            components: { SmallPage, PageHeader, PageBody, Tooltip, Icons, Account, LabelInput },
+            template: windowTemplate`<SmallPage>
+                            <PageHeader>Test</PageHeader>
+                            <PageBody style="overflow-y: scroll; position:relative;" ref="target">
+                                <div style="height:300px"></div>
+                                <div style="max-width: 100%; display: flex; align-items: center;">
+                                    <LabelInput v-model="message" style="display: inline;"/>
+                                    <Tooltip :reference="target" :calculation-trigger="message" :style="style">
+                                        <div style="font-size: 2rem;">
+                                            This is the Tooltip I was talking about.
+                                            <Account address="NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM" />
+                                        </div>
+                                    </Tooltip>
+                                </div>
+                                <div style="height:3000px"></div>
+                            </PageBody>
+                        </SmallPage>`,
+        };
     });
 
 storiesOf('Components', module)
@@ -593,8 +638,11 @@ storiesOf('Components', module)
         components: { Copyable },
         template: `
             <div>
-                <Copyable>I'm a text you can copy.</Copyable>
+                <Copyable ref="copyable">I'm a text you can copy.</Copyable>
                 <Copyable text="Surprise!!!" style="margin-top: 7rem">When you click me you get a surprise!</Copyable>
+                <button class="nq-button" style="margin-top: 7rem" @click="$refs.copyable.copy()">
+                    Click me to trigger a copy via code
+                </button>
             </div>
         `,
     }))
