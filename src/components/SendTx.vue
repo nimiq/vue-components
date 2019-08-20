@@ -59,11 +59,7 @@
 
         <PageFooter class="blur-target">
             <p class="nq-text">If recipient has no Account yet:</p>
-            <button class="nq-button-s"
-                :title="wallet.type === 3 /* LEDGER */ ? 'Ledgers cannot create Cashlinks yet, we are working on it!' : ''"
-                :disabled="wallet.type === 3 /* LEDGER */"
-                @click="createCashlink(liveSender)"
-            >Create a Cashlink</button>
+            <button class="nq-button-s" @click="createCashlink(liveSender)">Create a Cashlink</button>
         </PageFooter>
     </SmallPage>
 
