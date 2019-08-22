@@ -9,6 +9,7 @@ declare module 'NimiqVueComponents' {
     export { default as AccountRing } from 'NimiqVueComponents/src/components/AccountRing.vue';
     export { default as AccountSelector } from 'NimiqVueComponents/src/components/AccountSelector.vue';
     export { default as AddressDisplay } from 'NimiqVueComponents/src/components/AddressDisplay.vue';
+    export { default as AddressInput } from 'NimiqVueComponents/src/components/AddressInput.vue';
     export { default as Amount } from 'NimiqVueComponents/src/components/Amount.vue';
     export { default as Identicon } from 'NimiqVueComponents/src/components/Identicon.vue';
     export { default as LabelInput } from 'NimiqVueComponents/src/components/LabelInput.vue';
@@ -93,6 +94,16 @@ declare module 'NimiqVueComponents/src/components/AddressDisplay.vue' {
     }
 }
 
+declare module 'NimiqVueComponents/src/components/AddressInput.vue' {
+    import { Vue } from 'vue-property-decorator';
+    export default class AddressInput extends Vue {
+        value: string;
+        $refs: {
+            textarea: HTMLTextAreaElement;
+        };
+    }
+}
+
 declare module 'NimiqVueComponents/src/components/Amount.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class Amount extends Vue {
@@ -163,6 +174,7 @@ declare module 'NimiqVueComponents/src/components/Icons' {
     /**
       * Comment out any unused icons here
       */
+    export const AlertTriangleIcon: any;
     export const ArrowLeftSmallIcon: any;
     export const ArrowLeftIcon: any;
     export const ArrowRightSmallIcon: any;
@@ -172,11 +184,14 @@ declare module 'NimiqVueComponents/src/components/Icons' {
     export const CloseIcon: any;
     export const FaceNeutralIcon: any;
     export const FaceSadIcon: any;
+    export const GearIcon: any;
     export const HexagonIcon: any;
     export const InfoCircleIcon: any;
     export const LedgerIcon: any;
     export const LoginIcon: any;
+    export const MenuDotsIcon: any;
     export const PlusCircleIcon: any;
+    export const QrCodeIcon: any;
     export const ScanQrCodeIcon: any;
     export const TransferIcon: any;
 }

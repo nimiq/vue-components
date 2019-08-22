@@ -53,7 +53,7 @@ import View from '@nimiq/style/src/icons/view.svg';
  * Comment out any unused icons here
  */
 // tslint:disable:variable-name
-// export const AlertTriangleIcon = IconBase(AlertTriangle);
+export const AlertTriangleIcon = IconBase(AlertTriangle);
 export const ArrowLeftSmallIcon = IconBase(ArrowLeftSmall);
 export const ArrowLeftIcon = IconBase(ArrowLeft);
 export const ArrowRightSmallIcon = IconBase(ArrowRightSmall);
@@ -68,7 +68,7 @@ export const CloseIcon = IconBase(Close);
 export const FaceNeutralIcon = IconBase(FaceNeutral);
 export const FaceSadIcon = IconBase(FaceSad);
 // export const FireIcon = IconBase(Fire);
-// export const GearIcon = IconBase(Gear);
+export const GearIcon = IconBase(Gear);
 export const HexagonIcon = IconBase(Hexagon);
 export const InfoCircleIcon = IconBase(InfoCircle);
 // export const KeysIcon = IconBase(Keys);
@@ -76,10 +76,10 @@ export const LedgerIcon = IconBase(Ledger);
 // export const LockLockedIcon = IconBase(LockLocked);
 // export const LockUnlockedIcon = IconBase(LockUnlocked);
 export const LoginIcon = IconBase(Login);
-// export const MenuDotsIcon = IconBase(MenuDots);
+export const MenuDotsIcon = IconBase(MenuDots);
 // export const PaperEditIcon = IconBase(PaperEdit);
 export const PlusCircleIcon = IconBase(PlusCircle);
-// export const QrCodeIcon = IconBase(QrCode);
+export const QrCodeIcon = IconBase(QrCode);
 // export const QuestionmarkIcon = IconBase(Questionmark);
 export const ScanQrCodeIcon = IconBase(ScanQrCode);
 // export const SettingsIcon = IconBase(Settings);
