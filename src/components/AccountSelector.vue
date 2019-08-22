@@ -167,6 +167,7 @@ export default class AccountSelector extends Vue {
     .container {
         overflow-y: auto;
         padding-top: 0.5rem;
+        padding-bottom: 4rem;
         flex-grow: 1;
     }
 

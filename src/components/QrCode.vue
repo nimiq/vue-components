@@ -84,10 +84,10 @@
         })
         public size!: number;
 
-        private mounted() {
-            const $canvas = this.$el as HTMLCanvasElement;
-            $canvas.width = this.size;
-            $canvas.height = this.size;
+        public async toDataUrl(type = 'image/png') {
+            if (!this.data) return 'data:,';
+            await Vue.nextTick(); // Make sure the canvas is in the DOM (it depends on !!data)
+            return (this.$el as HTMLCanvasElement).toDataURL(type);
         }
 
         @Watch('data', { immediate: true })

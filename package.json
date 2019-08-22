@@ -16,7 +16,8 @@
     "storybook": "start-storybook -p 6006 -c .storybook -s ."
   },
   "dependencies": {
-    "@nimiq/style": "^0.7.2",
+    "@nimiq/style": "^0.7.3",
+    "input-format": "^0.2.4",
     "qr-code": "github:nimiq/qr-encoder",
     "qr-scanner": "^1.1.1",
     "vue": "^2.6.10",
@@ -24,7 +25,7 @@
   },
   "devDependencies": {
     "@nimiq/iqons": "^1.1.1",
-    "@nimiq/utils": "^0.2.0",
+    "@nimiq/utils": "^0.4.1",
     "@storybook/addon-actions": "^4.0.0-alpha.14",
     "@storybook/addon-knobs": "^4.0.0-alpha.14",
     "@storybook/addon-links": "^4.0.0-alpha.14",
