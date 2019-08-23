@@ -1,8 +1,9 @@
 <template>
     <div class="carousel" :class="{ disabled }">
         <div v-for="entry in entries" :ref="entry"
+            :class="{ selected: effectiveSelectedEntry === entry }"
             @click="effectiveSelectedEntry = disabled ? effectiveSelectedEntry : entry"
-            :class="{ selected: effectiveSelectedEntry === entry }">
+            @focusin="effectiveSelectedEntry = disabled ? effectiveSelectedEntry : entry">
             <slot :name="entry"></slot>
         </div>
     </div>
@@ -106,11 +107,14 @@ export default class Carousel extends Vue {
     }
 
     private mounted() {
+        this._onKeydown = this._onKeydown.bind(this);
+        document.addEventListener('keydown', this._onKeydown);
         this._updateDimensions(false);
         this._updateRotations(false);
     }
 
     private destroyed() {
+        document.removeEventListener('keydown', this._onKeydown);
         if (this.requestAnimationFrameId === null) return;
         cancelAnimationFrame(this.requestAnimationFrameId);
     }
@@ -252,6 +256,27 @@ export default class Carousel extends Vue {
             const threshold = Math.PI / 2 + stepSize / (this._totalPositionCount - 1); // just a heuristic but works ok
             return absoluteRotation > threshold;
         }
+    }
+
+    private _onKeydown(event) {
+        const target = event.path[0] as HTMLElement;
+        if (this.disabled
+            || target.tagName === 'INPUT'
+            || target.tagName === 'TEXTAREA'
+            || this.rotations.values().next().value.progress < .5 // block if previous change not animated far enough
+        ) return;
+        const currentIndex = this.entries.indexOf(this.effectiveSelectedEntry);
+        let newIndex;
+        if (event.which === 37) {
+            // left arrow key
+            newIndex = (currentIndex - 1 + this.entries.length) % this.entries.length;
+        } else if (event.which === 39) {
+            // right arrow key
+            newIndex = (currentIndex + 1) % this.entries.length;
+        } else {
+            return;
+        }
+        this.effectiveSelectedEntry = this.entries[newIndex];
     }
 }
 </script>
