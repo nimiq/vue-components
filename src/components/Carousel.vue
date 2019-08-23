@@ -99,7 +99,7 @@ export default class Carousel extends Vue {
     }
 
     private mounted() {
-        this._updateRadius(false);
+        this._updateDimensions(false);
         this._updateRotations(false);
     }
 
@@ -124,21 +124,24 @@ export default class Carousel extends Vue {
     @Watch('entries')
     @Watch('entries.length')
     @Watch('entryMargin')
-    private async _updateRadius(tween = true) {
+    private async _updateDimensions(tween = true) {
         await Vue.nextTick(); // let Vue render new entries
-        // calculate radius big enough such that two items can be rendered side by side without overlapping
+        let largestHeight = 0;
         let largestMinDistance = 0;
         for (let i = 0; i < this.entries.length; ++i) {
             const [ el1 ] = this.$refs[this.entries[i]];
             const [ el2 ] = this.$refs[this.entries[(i + 1) % this.entries.length]];
+            largestHeight = Math.max(largestHeight, el1.offsetHeight);
             const minDistance = el1.offsetWidth / 2 + el2.offsetWidth / 2 + this.entryMargin;
             largestMinDistance = Math.max(largestMinDistance, minDistance);
         }
-        // calculate radius on a right triangle formed by radius, half distance and perpendicular from center point
+        // Choose radius big enough such that two items can be rendered side by side without overlapping.
+        // Calculate on a right triangle formed by radius, half distance and perpendicular from center point
         // to distance line.
         const centerAngle = 2 * Math.PI / this._totalPositionCount / 2; // angle at circle center point
         const radius = (largestMinDistance / 2) / Math.sin(centerAngle);
         this.radius.tweenTo(radius, tween ? this.animationDuration : 0);
+        (this.$el as HTMLElement).style.minHeight = `${largestHeight}px`;
         this._rerender();
     }
 
@@ -232,8 +235,8 @@ export default class Carousel extends Vue {
 <style scoped>
     .carousel {
         position: relative;
-        height: 70rem;
-        margin: 4rem;
+        padding: 4rem;
+        box-sizing: content-box;
         perspective: 1500px;
         /* perspective-origin: center 150%; */ /* useful for debugging */
     }
