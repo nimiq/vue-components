@@ -16,6 +16,7 @@ import AmountInput from '../components/AmountInput.vue';
 import AmountWithDetails from '../components/AmountWithDetails.vue';
 import AmountWithFee from '../components/AmountWithFee.vue';
 import BottomOverlay from '../components/BottomOverlay.vue';
+import Carousel from '../components/Carousel.vue';
 import CircleSpinner from '../components/CircleSpinner.vue';
 import CloseButton from '../components/CloseButton.vue';
 import Contact from '../components/Contact.vue';
@@ -570,6 +571,45 @@ storiesOf('Components', module)
             `,
         }
     })
+    .add('Carousel', () => ({
+        components: {Carousel,SmallPage},
+        data: () => ({
+            currencies: {
+                nim: true,
+                btc: true,
+                eth: true,
+                ltc: false,
+            },
+        }),
+        computed: {
+            enabledCurrencies() {
+                return Object.keys(this.currencies).filter((currency) => this.currencies[currency]);
+            }
+        },
+        template: `
+            <div>
+                <Carousel :entries="enabledCurrencies">
+                    <template v-for="currency in enabledCurrencies" v-slot:[currency]>
+                        <SmallPage style="margin: 0; width: 50rem; text-transform: uppercase">{{ currency }}</SmallPage>
+                    </template>
+                </Carousel>
+                <div style="text-align: center; margin-top: 8rem;">
+                    <label>
+                        <input type="checkbox" v-model="currencies.nim"> NIM
+                    </label>
+                    <label>
+                        <input type="checkbox" v-model="currencies.btc"> BTC
+                    </label>
+                    <label>
+                        <input type="checkbox" v-model="currencies.eth"> ETH
+                    </label>
+                    <label>
+                        <input type="checkbox" v-model="currencies.ltc"> LTC
+                    </label>
+                </div>
+            </div>
+            `,
+    }))
     .add('CloseButton', () => {
         return {
             components: {CloseButton},

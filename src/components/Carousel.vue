@@ -1,0 +1,234 @@
+<template>
+    <div class="carousel">
+        <div v-for="entry in entries" :ref="entry" @click="effectiveSelectedEntry = entry"
+            :class="{ selected: effectiveSelectedEntry === entry }">
+            <slot :name="entry"></slot>
+        </div>
+    </div>
+</template>
+
+<script lang="ts">
+import { Component, Prop, Watch, Vue } from 'vue-property-decorator';
+import SmallPage from './SmallPage.vue';
+
+class Tweenable {
+    public constructor(
+        public targetValue: number = 0,
+        public startValue: number = targetValue,
+        public tweenTime: number = 0,
+        public startTime: number = Date.now(),
+        public easing: (progress: number) => number = Tweenable.Easing.EASE_IN_OUT_CUBIC,
+    ) {}
+
+    public get currentValue(): number {
+        const easedProgress = this.easing(this.progress);
+        return this.startValue + (this.targetValue - this.startValue) * easedProgress;
+    }
+
+    public get progress(): number {
+        if (this.tweenTime === 0) return 1;
+        return Math.min(1, (Date.now() - this.startTime) / this.tweenTime);
+    }
+
+    public get finished(): boolean {
+        return this.progress === 1;
+    }
+
+    public tweenTo(targetValue, tweenTime = this.tweenTime) {
+        if (targetValue === this.targetValue) return;
+        this.startValue = this.currentValue;
+        this.targetValue = targetValue;
+        this.startTime = Date.now();
+        this.tweenTime = tweenTime;
+    }
+}
+namespace Tweenable { // tslint:disable-line no-namespace
+    // see https://gist.github.com/gre/1650294 for more easing functions
+    export let Easing = { // tslint:disable-line variable-name
+        LINEAR: (t: number) => t,
+        EASE_IN_OUT_CUBIC: (t: number) => t < .5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1,
+    };
+}
+
+@Component({components: {SmallPage}})
+export default class Carousel extends Vue {
+    @Prop({
+        type: Array,
+        default: () => [],
+        validator: (entries: any) => Array.isArray(entries)
+            && entries.length > 0
+            && !entries.some((entry) => typeof entry !== 'string'),
+    })
+    public entries!: string[];
+
+    @Prop(String)
+    public selectedEntry?: string;
+
+    @Prop({
+        type: Number,
+        default: 16,
+    })
+    public entryMargin!: number;
+
+    @Prop({
+        type: Number,
+        default: 1000,
+    })
+    public animationDuration!: number; // in ms
+
+    public $refs: { [ref: string]: HTMLElement[] }; // these are arrays because of v-for
+
+    private effectiveSelectedEntry: string = '';
+    private radius: Tweenable = new Tweenable();
+    private rotations: Map<string, Tweenable> = new Map(); // map entry -> rotation
+    private requestAnimationFrameId: number | null = null;
+
+    private get _hasDummyPosition(): boolean {
+        // add dummy to avoid that second entry is hidden exactly behind selected item on opposite side of circle.
+        return this.entries.length <= 2;
+    }
+
+    private get _totalPositionCount(): number {
+        return this.entries.length + (this._hasDummyPosition ? 1 : 0);
+    }
+
+    private mounted() {
+        this._updateRadius(false);
+        this._updateRotations(false);
+    }
+
+    private destroyed() {
+        if (this.requestAnimationFrameId === null) return;
+        cancelAnimationFrame(this.requestAnimationFrameId);
+    }
+
+    @Watch('entries', { immediate: true })
+    @Watch('entries.length', { immediate: true })
+    @Watch('selectedEntry', { immediate: true })
+    private _onExternalSelection() {
+        const isNewSelectionValid = this.entries.indexOf(this.selectedEntry) !== -1;
+        const isOldSelectionValid = this.entries.indexOf(this.effectiveSelectedEntry) !== -1;
+        if (isNewSelectionValid) {
+            this.effectiveSelectedEntry = this.selectedEntry;
+        } else if (!isOldSelectionValid) {
+            this.effectiveSelectedEntry = this.entries[0];
+        } // else keep the old selection
+    }
+
+    @Watch('entries')
+    @Watch('entries.length')
+    @Watch('entryMargin')
+    private async _updateRadius(tween = true) {
+        await Vue.nextTick(); // let Vue render new entries
+        // calculate radius big enough such that two items can be rendered side by side without overlapping
+        let largestMinDistance = 0;
+        for (let i = 0; i < this.entries.length; ++i) {
+            const [ el1 ] = this.$refs[this.entries[i]];
+            const [ el2 ] = this.$refs[this.entries[(i + 1) % this.entries.length]];
+            const minDistance = el1.offsetWidth / 2 + el2.offsetWidth / 2 + this.entryMargin;
+            largestMinDistance = Math.max(largestMinDistance, minDistance);
+        }
+        // calculate radius on a right triangle formed by radius, half distance and perpendicular from center point
+        // to distance line.
+        const centerAngle = 2 * Math.PI / this._totalPositionCount / 2; // angle at circle center point
+        const radius = (largestMinDistance / 2) / Math.sin(centerAngle);
+        this.radius.tweenTo(radius, tween ? this.animationDuration : 0);
+        this._animate();
+    }
+
+    @Watch('entries')
+    @Watch('effectiveSelectedEntry')
+    private _updateRotations(tween = true) {
+        // clean up removed entries
+        for (const entry of this.rotations.keys()) {
+            if (this.entries.indexOf(entry) !== -1) continue;
+            this.rotations.delete(entry);
+        }
+        // update rotations
+        for (const entry of this.entries) {
+            const rotation = this.rotations.get(entry) || new Tweenable();
+            const tweenTime = tween ? this.animationDuration : 0;
+            rotation.tweenTo(this._calculateTargetRotation(entry, rotation.currentValue), tweenTime);
+            this.rotations.set(entry, rotation);
+        }
+        this._animate();
+    }
+
+    private _calculateTargetRotation(entry, currentRotation): number { // rotation in radians
+        const stepSize = 2 * Math.PI / this._totalPositionCount;
+        const entryIndex = this.entries.indexOf(entry);
+        const selectedEntryIndex = this.entries.indexOf(this.effectiveSelectedEntry);
+        let offset = entryIndex - selectedEntryIndex;
+        if (this._hasDummyPosition && offset > this._totalPositionCount / 2) {
+            // skip dummy position
+            offset += 1;
+        }
+        const newAngle = offset * stepSize;
+        // determine angle offset modulo full rotations
+        const angleOffset = (newAngle - currentRotation) % (2 * Math.PI);
+        // determine angle offset in opposite direction (subtracting or adding a full circle depending on direction
+        // (sign) of angleOffset)
+        const angleOffsetOppositeDirection = angleOffset - Math.sign(angleOffset) * 2 * Math.PI;
+        if (Math.abs(Math.abs(angleOffset) - Math.abs(angleOffsetOppositeDirection)) < 1e-10) {
+            // in case of ambiguity chose a default direction for all entries
+            return currentRotation + Math.min(angleOffset, angleOffsetOppositeDirection);
+        } else if (Math.abs(angleOffset) < Math.abs(angleOffsetOppositeDirection)) {
+            return currentRotation + angleOffset;
+        } else {
+            return currentRotation + angleOffsetOppositeDirection;
+        }
+    }
+
+    private _animate() {
+        if (this.requestAnimationFrameId !== null) return;
+        this.requestAnimationFrameId = requestAnimationFrame(() => {
+            const zCoordinatesForEntries: Array<[string, number]> = [];
+            let finished = this.radius.finished;
+            for (const [entry, rotation] of this.rotations) {
+                const currentRotation = rotation.currentValue;
+                const currentRadius = this.radius.currentValue;
+                const x = Math.sin(currentRotation) * currentRadius;
+                const z = Math.cos(currentRotation) * currentRadius - currentRadius;
+                const [ el ] = this.$refs[entry];
+                el.style.transform = `translate3d(calc(${x}px - 50%),-50%,${z}px)`;
+                zCoordinatesForEntries.push([entry, z]);
+                finished = finished && rotation.finished;
+            }
+
+            zCoordinatesForEntries.sort(([, z1], [, z2]) => z1 - z2);
+            for (let i = 0; i < zCoordinatesForEntries.length; ++i) {
+                const [ el ] = this.$refs[zCoordinatesForEntries[i][0]];
+                el.style.zIndex = `${i}`;
+            }
+
+            this.requestAnimationFrameId = null;
+            if (!finished) this._animate();
+        });
+    }
+}
+</script>
+
+<style scoped>
+    .carousel {
+        position: relative;
+        height: 70rem;
+        margin: 4rem;
+        perspective: 1500px;
+        /* perspective-origin: center 150%; */ /* useful for debugging */
+    }
+
+    .carousel > * {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+    }
+
+    .carousel > :not(.selected) {
+        cursor: pointer;
+    }
+
+    .carousel > :not(.selected) >>> * {
+        pointer-events: none !important;
+    }
+</style>
+
