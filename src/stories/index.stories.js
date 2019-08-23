@@ -399,38 +399,22 @@ storiesOf('Components', module)
     })
     .add('Carousel', () => ({
         components: {Carousel,SmallPage},
-        data: () => ({
-            currencies: {
-                nim: true,
-                btc: true,
-                eth: true,
-                ltc: false,
-            },
-        }),
+        data: () => ({ entryCount: 3 }),
         computed: {
-            enabledCurrencies() {
-                return Object.keys(this.currencies).filter((currency) => this.currencies[currency]);
+            entries() {
+                return new Array(parseInt(this.entryCount)).fill('Card-').map((v, i) => `${v}${i}`);
             }
         },
         template: `
             <div>
-                <Carousel :entries="enabledCurrencies">
-                    <template v-for="currency in enabledCurrencies" v-slot:[currency]>
-                        <SmallPage style="margin: 0; width: 50rem; text-transform: uppercase">{{ currency }}</SmallPage>
+                <Carousel :entries="entries">
+                    <template v-for="entry in entries" v-slot:[entry]>
+                        <SmallPage style="margin: 0; width: 50rem">{{ entry }}</SmallPage>
                     </template>
                 </Carousel>
                 <div style="text-align: center; margin-top: 8rem;">
                     <label>
-                        <input type="checkbox" v-model="currencies.nim"> NIM
-                    </label>
-                    <label>
-                        <input type="checkbox" v-model="currencies.btc"> BTC
-                    </label>
-                    <label>
-                        <input type="checkbox" v-model="currencies.eth"> ETH
-                    </label>
-                    <label>
-                        <input type="checkbox" v-model="currencies.ltc"> LTC
+                        <input type="number" min="1" step="1" v-model="entryCount"> Items
                     </label>
                 </div>
             </div>
