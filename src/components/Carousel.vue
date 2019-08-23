@@ -1,6 +1,7 @@
 <template>
     <div class="carousel">
-        <div v-for="entry in entries" :ref="entry" @click="effectiveSelectedEntry = entry"
+        <div v-for="entry in entries" :ref="entry"
+            @click="effectiveSelectedEntry = disabled ? effectiveSelectedEntry : entry"
             :class="{ selected: effectiveSelectedEntry === entry }">
             <slot :name="entry"></slot>
         </div>
@@ -82,6 +83,12 @@ export default class Carousel extends Vue {
     })
     public hideBackgroundEntries!: boolean;
 
+    @Prop({
+        type: Boolean,
+        default: false,
+    })
+    public disabled!: boolean;
+
     public $refs: { [ref: string]: HTMLElement[] }; // these are arrays because of v-for
 
     private effectiveSelectedEntry: string = '';
@@ -124,7 +131,10 @@ export default class Carousel extends Vue {
     @Watch('entries')
     @Watch('entries.length')
     @Watch('entryMargin')
-    private async _updateDimensions(tween = true) {
+    private async _updateDimensions(newWatcherValueOrTween, previousWatcherValue?) {
+        const tween = typeof newWatcherValueOrTween === 'boolean' && typeof previousWatcherValue === 'undefined'
+            ? newWatcherValueOrTween // specified whether to tween
+            : true; // did not specify whether to tween or method was called as a watcher (default to true)
         await Vue.nextTick(); // let Vue render new entries
         let largestHeight = 0;
         let largestMinDistance = 0;
@@ -147,7 +157,11 @@ export default class Carousel extends Vue {
 
     @Watch('entries')
     @Watch('effectiveSelectedEntry')
-    private _updateRotations(tween = true) {
+    @Watch('disabled')
+    private _updateRotations(newWatcherValueOrTween, previousWatcherValue?) {
+        const tween = typeof newWatcherValueOrTween === 'boolean' && typeof previousWatcherValue === 'undefined'
+            ? newWatcherValueOrTween // specified whether to tween
+            : true; // did not specify whether to tween or method was called as a watcher (default to true)
         // clean up removed entries
         for (const entry of this.rotations.keys()) {
             if (this.entries.indexOf(entry) !== -1) continue;
@@ -164,6 +178,10 @@ export default class Carousel extends Vue {
     }
 
     private _calculateTargetRotation(entry, currentRotation): number { // rotation in radians
+        if (this.disabled && entry !== this.effectiveSelectedEntry) {
+            // hide not selected entries at other end of circle
+            return currentRotation + this._calculateRotationInClosestDirection(currentRotation, Math.PI);
+        }
         const stepSize = 2 * Math.PI / this._totalPositionCount;
         const entryIndex = this.entries.indexOf(entry);
         const selectedEntryIndex = this.entries.indexOf(this.effectiveSelectedEntry);
@@ -188,9 +206,7 @@ export default class Carousel extends Vue {
                 const z = Math.cos(currentRotation) * currentRadius - currentRadius;
                 const [ el ] = this.$refs[entry];
                 el.style.transform = `translate3d(calc(${x}px - 50%),-50%,${z}px)`;
-                el.style.display = this.hideBackgroundEntries && !this._isInFront(entry)
-                    ? 'none'
-                    : '';
+                el.style.display = this._shouldHide(entry) ? 'none' : '';
                 zCoordinatesForEntries.push([entry, z]);
                 finished = finished && rotation.finished;
             }
@@ -221,13 +237,21 @@ export default class Carousel extends Vue {
         }
     }
 
-    private _isInFront(entry): boolean {
+    private _shouldHide(entry): boolean {
         const rotation = this.rotations.get(entry);
         if (!rotation) return false;
         const absoluteRotation = Math.abs(this._calculateRotationInClosestDirection(0, rotation.currentValue));
-        const stepSize = 2 * Math.PI / this._totalPositionCount;
-        const threshold = Math.PI / 2 + stepSize / (this._totalPositionCount - 1); // just a heuristic but works ok
-        return absoluteRotation < threshold;
+        if (this.disabled) {
+            // Hide disabled elements once they reached the opposite end of the circle, also to avoid that they are
+            // still reachable via tab. While they're animating to get there, display them even when they're in the
+            // back part of the circle.
+            return Math.abs(absoluteRotation - Math.PI) < 1e-10;
+        } else if (this.hideBackgroundEntries) {
+            // Hide entries in the back part of the circle as these will not be visible behind the front entries
+            const stepSize = 2 * Math.PI / this._totalPositionCount;
+            const threshold = Math.PI / 2 + stepSize / (this._totalPositionCount - 1); // just a heuristic but works ok
+            return absoluteRotation > threshold;
+        }
     }
 }
 </script>

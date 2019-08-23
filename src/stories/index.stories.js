@@ -398,12 +398,12 @@ storiesOf('Components', module)
         };
     })
     .add('Carousel', () => {
-        const hideBackgroundEntries = boolean('hideBackgroundEntries', false);
         return {
             components: {Carousel, SmallPage},
             data: () => ({
                 entryCount: 3,
-                hideBackgroundEntries,
+                hideBackgroundEntries: false,
+                disabled: false,
             }),
             computed: {
                 entries() {
@@ -412,14 +412,20 @@ storiesOf('Components', module)
             },
             template: `
                 <div>
-                    <Carousel :entries="entries" :hideBackgroundEntries="hideBackgroundEntries">
+                    <Carousel :entries="entries" :hideBackgroundEntries="hideBackgroundEntries" :disabled="disabled">
                         <template v-for="entry in entries" v-slot:[entry]>
                             <SmallPage style="margin: 0; width: 50rem">{{ entry }}</SmallPage>
                         </template>
                     </Carousel>
                     <div style="text-align: center; margin-top: 8rem;">
                         <label>
-                            <input type="number" min="1" step="1" v-model="entryCount"> Items
+                            <input type="number" min="1" step="1" v-model="entryCount" style="width: 5.5rem"> Items
+                        </label>
+                        <label>
+                            <input type="checkbox" v-model="disabled"> Disabled
+                        </label>
+                        <label>
+                            <input type="checkbox" v-model="hideBackgroundEntries"> Hide Background Entries
                         </label>
                     </div>
                 </div>
