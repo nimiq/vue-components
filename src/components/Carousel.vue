@@ -76,6 +76,12 @@ export default class Carousel extends Vue {
     })
     public animationDuration!: number; // in ms
 
+    @Prop({
+        type: Boolean,
+        default: false,
+    })
+    public hideBackgroundEntries!: boolean;
+
     public $refs: { [ref: string]: HTMLElement[] }; // these are arrays because of v-for
 
     private effectiveSelectedEntry: string = '';
@@ -133,7 +139,7 @@ export default class Carousel extends Vue {
         const centerAngle = 2 * Math.PI / this._totalPositionCount / 2; // angle at circle center point
         const radius = (largestMinDistance / 2) / Math.sin(centerAngle);
         this.radius.tweenTo(radius, tween ? this.animationDuration : 0);
-        this._animate();
+        this._rerender();
     }
 
     @Watch('entries')
@@ -151,7 +157,7 @@ export default class Carousel extends Vue {
             rotation.tweenTo(this._calculateTargetRotation(entry, rotation.currentValue), tweenTime);
             this.rotations.set(entry, rotation);
         }
-        this._animate();
+        this._rerender();
     }
 
     private _calculateTargetRotation(entry, currentRotation): number { // rotation in radians
@@ -163,23 +169,11 @@ export default class Carousel extends Vue {
             // skip dummy position
             offset += 1;
         }
-        const newAngle = offset * stepSize;
-        // determine angle offset modulo full rotations
-        const angleOffset = (newAngle - currentRotation) % (2 * Math.PI);
-        // determine angle offset in opposite direction (subtracting or adding a full circle depending on direction
-        // (sign) of angleOffset)
-        const angleOffsetOppositeDirection = angleOffset - Math.sign(angleOffset) * 2 * Math.PI;
-        if (Math.abs(Math.abs(angleOffset) - Math.abs(angleOffsetOppositeDirection)) < 1e-10) {
-            // in case of ambiguity chose a default direction for all entries
-            return currentRotation + Math.min(angleOffset, angleOffsetOppositeDirection);
-        } else if (Math.abs(angleOffset) < Math.abs(angleOffsetOppositeDirection)) {
-            return currentRotation + angleOffset;
-        } else {
-            return currentRotation + angleOffsetOppositeDirection;
-        }
+        return currentRotation + this._calculateRotationInClosestDirection(currentRotation, offset * stepSize);
     }
 
-    private _animate() {
+    @Watch('hideBackgroundEntries')
+    private _rerender() {
         if (this.requestAnimationFrameId !== null) return;
         this.requestAnimationFrameId = requestAnimationFrame(() => {
             const zCoordinatesForEntries: Array<[string, number]> = [];
@@ -191,6 +185,9 @@ export default class Carousel extends Vue {
                 const z = Math.cos(currentRotation) * currentRadius - currentRadius;
                 const [ el ] = this.$refs[entry];
                 el.style.transform = `translate3d(calc(${x}px - 50%),-50%,${z}px)`;
+                el.style.display = this.hideBackgroundEntries && !this._isInFront(entry)
+                    ? 'none'
+                    : '';
                 zCoordinatesForEntries.push([entry, z]);
                 finished = finished && rotation.finished;
             }
@@ -202,8 +199,32 @@ export default class Carousel extends Vue {
             }
 
             this.requestAnimationFrameId = null;
-            if (!finished) this._animate();
+            if (!finished) this._rerender();
         });
+    }
+
+    private _calculateRotationInClosestDirection(fromAngle, toAngle): number {
+        // angle offset modulo full rotations
+        const rotation = (toAngle - fromAngle) % (2 * Math.PI);
+        // determine rotation in opposite direction (subtracting or adding a full circle depending on direction (sign))
+        const rotationOppositeDirection = rotation - Math.sign(rotation) * 2 * Math.PI;
+        if (Math.abs(Math.abs(rotation) - Math.abs(rotationOppositeDirection)) < 1e-10) {
+            // in case of ambiguity chose a default direction
+            return Math.min(rotation, rotationOppositeDirection);
+        } else if (Math.abs(rotation) < Math.abs(rotationOppositeDirection)) {
+            return rotation;
+        } else {
+            return rotationOppositeDirection;
+        }
+    }
+
+    private _isInFront(entry): boolean {
+        const rotation = this.rotations.get(entry);
+        if (!rotation) return false;
+        const absoluteRotation = Math.abs(this._calculateRotationInClosestDirection(0, rotation.currentValue));
+        const stepSize = 2 * Math.PI / this._totalPositionCount;
+        const threshold = Math.PI / 2 + stepSize / (this._totalPositionCount - 1); // just a heuristic but works ok
+        return absoluteRotation < threshold;
     }
 }
 </script>

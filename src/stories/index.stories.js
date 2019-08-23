@@ -397,29 +397,35 @@ storiesOf('Components', module)
             template: `<div style="padding-left: 20rem"><AmountWithDetails :decimals="${digits}" :amount="${amount}" :networkFee="${networkFee}" :networkFeeEditable="${networkFeeEditable}"/></div>`,
         };
     })
-    .add('Carousel', () => ({
-        components: {Carousel,SmallPage},
-        data: () => ({ entryCount: 3 }),
-        computed: {
-            entries() {
-                return new Array(parseInt(this.entryCount)).fill('Card-').map((v, i) => `${v}${i}`);
-            }
-        },
-        template: `
-            <div>
-                <Carousel :entries="entries">
-                    <template v-for="entry in entries" v-slot:[entry]>
-                        <SmallPage style="margin: 0; width: 50rem">{{ entry }}</SmallPage>
-                    </template>
-                </Carousel>
-                <div style="text-align: center; margin-top: 8rem;">
-                    <label>
-                        <input type="number" min="1" step="1" v-model="entryCount"> Items
-                    </label>
+    .add('Carousel', () => {
+        const hideBackgroundEntries = boolean('hideBackgroundEntries', false);
+        return {
+            components: {Carousel, SmallPage},
+            data: () => ({
+                entryCount: 3,
+                hideBackgroundEntries,
+            }),
+            computed: {
+                entries() {
+                    return new Array(parseInt(this.entryCount)).fill('Card-').map((v, i) => `${v}${i}`);
+                }
+            },
+            template: `
+                <div>
+                    <Carousel :entries="entries" :hideBackgroundEntries="hideBackgroundEntries">
+                        <template v-for="entry in entries" v-slot:[entry]>
+                            <SmallPage style="margin: 0; width: 50rem">{{ entry }}</SmallPage>
+                        </template>
+                    </Carousel>
+                    <div style="text-align: center; margin-top: 8rem;">
+                        <label>
+                            <input type="number" min="1" step="1" v-model="entryCount"> Items
+                        </label>
+                    </div>
                 </div>
-            </div>
-            `,
-    }))
+                `,
+        };
+    })
     .add('Contact', () => {
         const label = text('label', 'Burn address');
         const address = text('address', 'NQ07 0000 00000000 0000 0000 0000 0000 0000');
