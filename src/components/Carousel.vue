@@ -2,8 +2,8 @@
     <div class="carousel" :class="{ disabled }">
         <div v-for="entry in entries" :ref="entry"
             :class="{ selected: effectiveSelectedEntry === entry }"
-            @click="effectiveSelectedEntry = disabled ? effectiveSelectedEntry : entry"
-            @focusin="effectiveSelectedEntry = disabled ? effectiveSelectedEntry : entry">
+            @click="!disabled && _updateSelection(entry)"
+            @focusin="!disabled && _updateSelection(entry)">
             <slot :name="entry"></slot>
         </div>
     </div>
@@ -106,10 +106,12 @@ export default class Carousel extends Vue {
         return this.entries.length + (this._hasDummyPosition ? 1 : 0);
     }
 
-    private mounted() {
+    private async mounted() {
         this._onKeydown = this._onKeydown.bind(this);
         document.addEventListener('keydown', this._onKeydown);
-        this._updateDimensions(false);
+        // trigger these manually instead of via immediate watcher to avoid animating on first render
+        await this._updateDimensions(false);
+        this._updateSelection(this.selectedEntry);
         this._updateRotations(false);
     }
 
@@ -119,26 +121,28 @@ export default class Carousel extends Vue {
         cancelAnimationFrame(this.requestAnimationFrameId);
     }
 
-    @Watch('entries', { immediate: true })
-    @Watch('entries.length', { immediate: true })
-    @Watch('selectedEntry', { immediate: true })
-    private _onExternalSelection() {
-        const isNewSelectionValid = this.entries.indexOf(this.selectedEntry) !== -1;
-        const isOldSelectionValid = this.entries.indexOf(this.effectiveSelectedEntry) !== -1;
+    @Watch('entries')
+    private async _onEntriesChange() {
+        await this._updateDimensions();
+        this._updateSelection(this.effectiveSelectedEntry); // revalidate
+        this._updateRotations();
+    }
+
+    @Watch('selectedEntry')
+    private _updateSelection(newSelection) {
+        const oldSelection = this.effectiveSelectedEntry;
+        const isNewSelectionValid = this.entries.indexOf(newSelection) !== -1;
+        const isOldSelectionValid = this.entries.indexOf(oldSelection) !== -1;
         if (isNewSelectionValid) {
-            this.effectiveSelectedEntry = this.selectedEntry;
+            this.effectiveSelectedEntry = newSelection;
         } else if (!isOldSelectionValid) {
             this.effectiveSelectedEntry = this.entries[0];
         } // else keep the old selection
     }
 
-    @Watch('entries')
-    @Watch('entries.length')
     @Watch('entryMargin')
-    private async _updateDimensions(newWatcherValueOrTween, previousWatcherValue?) {
-        const tween = typeof newWatcherValueOrTween === 'boolean' && typeof previousWatcherValue === 'undefined'
-            ? newWatcherValueOrTween // specified whether to tween
-            : true; // did not specify whether to tween or method was called as a watcher (default to true)
+    private async _updateDimensions(newWatcherValueOrTween = true) {
+        const tween = typeof newWatcherValueOrTween === 'boolean' ? newWatcherValueOrTween : true;
         await Vue.nextTick(); // let Vue render new entries
         let largestHeight = 0;
         let largestMinDistance = 0;
@@ -159,10 +163,9 @@ export default class Carousel extends Vue {
         this._rerender();
     }
 
-    @Watch('entries')
     @Watch('effectiveSelectedEntry')
     @Watch('disabled')
-    private _updateRotations(newWatcherValueOrTween, previousWatcherValue?) {
+    private _updateRotations(newWatcherValueOrTween = true, previousWatcherValue?) {
         const tween = typeof newWatcherValueOrTween === 'boolean' && typeof previousWatcherValue === 'undefined'
             ? newWatcherValueOrTween // specified whether to tween
             : true; // did not specify whether to tween or method was called as a watcher (default to true)
@@ -276,7 +279,7 @@ export default class Carousel extends Vue {
         } else {
             return;
         }
-        this.effectiveSelectedEntry = this.entries[newIndex];
+        this._updateSelection(this.entries[newIndex]);
     }
 }
 </script>
