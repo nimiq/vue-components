@@ -1,7 +1,7 @@
 <template>
     <div class="carousel" :class="{ disabled }">
         <div v-for="entry in entries" :ref="entry"
-            :class="{ selected: effectiveSelectedEntry === entry }"
+            :class="{ selected: effectiveSelected === entry }"
             @click="!disabled && _updateSelection(entry)"
             @focusin="!disabled && _updateSelection(entry)">
             <slot :name="entry"></slot>
@@ -64,7 +64,7 @@ export default class Carousel extends Vue {
     public entries!: string[];
 
     @Prop(String)
-    public selectedEntry?: string;
+    public selected?: string;
 
     @Prop({
         type: Number,
@@ -92,7 +92,7 @@ export default class Carousel extends Vue {
 
     public $refs: { [ref: string]: HTMLElement[] }; // these are arrays because of v-for
 
-    private effectiveSelectedEntry: string = '';
+    private effectiveSelected: string = '';
     private radius: Tweenable = new Tweenable();
     private rotations: Map<string, Tweenable> = new Map(); // map entry -> rotation
     private requestAnimationFrameId: number | null = null;
@@ -111,7 +111,7 @@ export default class Carousel extends Vue {
         document.addEventListener('keydown', this._onKeydown);
         // trigger these manually instead of via immediate watcher to avoid animating on first render
         await this._updateDimensions(false);
-        this._updateSelection(this.selectedEntry);
+        this._updateSelection(this.selected);
         this._updateRotations(false);
     }
 
@@ -124,20 +124,24 @@ export default class Carousel extends Vue {
     @Watch('entries')
     private async _onEntriesChange() {
         await this._updateDimensions();
-        this._updateSelection(this.effectiveSelectedEntry); // revalidate
+        this._updateSelection(this.effectiveSelected); // revalidate
         this._updateRotations();
     }
 
-    @Watch('selectedEntry')
+    @Watch('selected')
     private _updateSelection(newSelection) {
-        const oldSelection = this.effectiveSelectedEntry;
+        const oldSelection = this.effectiveSelected;
         const isNewSelectionValid = this.entries.indexOf(newSelection) !== -1;
         const isOldSelectionValid = this.entries.indexOf(oldSelection) !== -1;
         if (isNewSelectionValid) {
-            this.effectiveSelectedEntry = newSelection;
+            this.effectiveSelected = newSelection;
         } else if (!isOldSelectionValid) {
-            this.effectiveSelectedEntry = this.entries[0];
+            this.effectiveSelected = this.entries[0];
         } // else keep the old selection
+
+        if (this.effectiveSelected !== oldSelection) {
+            this.$emit('select', this.effectiveSelected);
+        }
     }
 
     @Watch('entryMargin')
@@ -163,7 +167,7 @@ export default class Carousel extends Vue {
         this._rerender();
     }
 
-    @Watch('effectiveSelectedEntry')
+    @Watch('effectiveSelected')
     @Watch('disabled')
     private _updateRotations(newWatcherValueOrTween = true, previousWatcherValue?) {
         const tween = typeof newWatcherValueOrTween === 'boolean' && typeof previousWatcherValue === 'undefined'
@@ -185,14 +189,14 @@ export default class Carousel extends Vue {
     }
 
     private _calculateTargetRotation(entry, currentRotation): number { // rotation in radians
-        if (this.disabled && entry !== this.effectiveSelectedEntry) {
+        if (this.disabled && entry !== this.effectiveSelected) {
             // hide not selected entries at other end of circle
             return currentRotation + this._calculateRotationInClosestDirection(currentRotation, Math.PI);
         }
         const stepSize = 2 * Math.PI / this._totalPositionCount;
         const entryIndex = this.entries.indexOf(entry);
-        const selectedEntryIndex = this.entries.indexOf(this.effectiveSelectedEntry);
-        let offset = entryIndex - selectedEntryIndex;
+        const selectedIndex = this.entries.indexOf(this.effectiveSelected);
+        let offset = entryIndex - selectedIndex;
         if (this._hasDummyPosition && offset > this._totalPositionCount / 2) {
             // skip dummy position
             offset += 1;
@@ -268,7 +272,7 @@ export default class Carousel extends Vue {
             || target.tagName === 'TEXTAREA'
             || this.rotations.values().next().value.progress < .5 // block if previous change not animated far enough
         ) return;
-        const currentIndex = this.entries.indexOf(this.effectiveSelectedEntry);
+        const currentIndex = this.entries.indexOf(this.effectiveSelected);
         let newIndex;
         if (event.which === 37) {
             // left arrow key

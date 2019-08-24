@@ -578,6 +578,7 @@ storiesOf('Components', module)
                 entryCount: 3,
                 hideBackgroundEntries: false,
                 disabled: false,
+                selected: 'Card-1',
             }),
             computed: {
                 entries() {
@@ -586,7 +587,8 @@ storiesOf('Components', module)
             },
             template: `
                 <div>
-                    <Carousel :entries="entries" :hideBackgroundEntries="hideBackgroundEntries" :disabled="disabled">
+                    <Carousel :entries="entries" :selected="selected" @select="selected = $event"
+                        :hideBackgroundEntries="hideBackgroundEntries" :disabled="disabled">
                         <template v-for="entry in entries" v-slot:[entry]>
                             <SmallPage style="margin: 0; width: 50rem">{{ entry }}</SmallPage>
                         </template>
@@ -601,6 +603,9 @@ storiesOf('Components', module)
                         <label>
                             <input type="checkbox" v-model="hideBackgroundEntries"> Hide Background Entries
                         </label>
+                        <div>
+                            Selected: <input v-model="selected">
+                        </div>
                     </div>
                 </div>
                 `,
