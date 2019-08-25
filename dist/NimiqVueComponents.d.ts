@@ -11,6 +11,7 @@ declare module 'NimiqVueComponents' {
     export { default as AddressDisplay } from 'NimiqVueComponents/src/components/AddressDisplay.vue';
     export { default as AddressInput } from 'NimiqVueComponents/src/components/AddressInput.vue';
     export { default as Amount } from 'NimiqVueComponents/src/components/Amount.vue';
+    export { default as Carousel } from 'NimiqVueComponents/src/components/Carousel.vue';
     export { default as Identicon } from 'NimiqVueComponents/src/components/Identicon.vue';
     export { default as LabelInput } from 'NimiqVueComponents/src/components/LabelInput.vue';
     export { default as LoadingSpinner } from 'NimiqVueComponents/src/components/LoadingSpinner.vue';
@@ -112,6 +113,21 @@ declare module 'NimiqVueComponents/src/components/Amount.vue' {
         minDecimals: number;
         maxDecimals: number;
         showApprox: boolean;
+    }
+}
+
+declare module 'NimiqVueComponents/src/components/Carousel.vue' {
+    import { Vue } from 'vue-property-decorator';
+    export default class Carousel extends Vue {
+        entries: string[];
+        selected?: string;
+        entryMargin: number;
+        animationDuration: number;
+        hideBackgroundEntries: boolean;
+        disabled: boolean;
+        $refs: {
+            [ref: string]: HTMLElement[];
+        };
     }
 }
 
