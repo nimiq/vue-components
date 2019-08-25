@@ -105,7 +105,15 @@ export default class PaymentInfoLine extends Vue {
         height: 3.375rem;
         margin-top: -0.25rem;
         margin-bottom: -0.125rem;
-        margin-right: 1rem;
+        margin-right: 0;
+    }
+
+    .account >>> .account-image {
+        border-radius: .5rem;
+        width: 3rem;
+        height: 3rem;
+        margin-top: 0;
+        margin-bottom: 0;
     }
 
     .account >>> .label {
