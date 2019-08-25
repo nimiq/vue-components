@@ -12,6 +12,7 @@ import AddressInput from '../components/AddressInput.vue';
 import AccountRing from '../components/AccountRing.vue';
 import Amount from '../components/Amount.vue';
 import AmountWithDetails from '../components/AmountWithDetails.vue';
+import Carousel from '../components/Carousel.vue';
 import Contact from '../components/Contact.vue';
 import ContactList from '../components/ContactList.vue';
 import Identicon from '../components/Identicon.vue';
@@ -394,6 +395,46 @@ storiesOf('Components', module)
         return {
             components: {AmountWithDetails},
             template: `<div style="padding-left: 20rem"><AmountWithDetails :decimals="${digits}" :amount="${amount}" :networkFee="${networkFee}" :networkFeeEditable="${networkFeeEditable}"/></div>`,
+        };
+    })
+    .add('Carousel', () => {
+        return {
+            components: {Carousel, SmallPage},
+            data: () => ({
+                entryCount: 3,
+                hideBackgroundEntries: false,
+                disabled: false,
+                selected: 'Card-1',
+            }),
+            computed: {
+                entries() {
+                    return new Array(parseInt(this.entryCount)).fill('Card-').map((v, i) => `${v}${i}`);
+                }
+            },
+            template: `
+                <div>
+                    <Carousel :entries="entries" :selected="selected" @select="selected = $event"
+                        :hideBackgroundEntries="hideBackgroundEntries" :disabled="disabled">
+                        <template v-for="entry in entries" v-slot:[entry]>
+                            <SmallPage style="margin: 0; width: 50rem">{{ entry }}</SmallPage>
+                        </template>
+                    </Carousel>
+                    <div style="text-align: center; margin-top: 8rem;">
+                        <label>
+                            <input type="number" min="1" step="1" v-model="entryCount" style="width: 5.5rem"> Items
+                        </label>
+                        <label>
+                            <input type="checkbox" v-model="disabled"> Disabled
+                        </label>
+                        <label>
+                            <input type="checkbox" v-model="hideBackgroundEntries"> Hide Background Entries
+                        </label>
+                        <div>
+                            Selected: <input v-model="selected">
+                        </div>
+                    </div>
+                </div>
+                `,
         };
     })
     .add('Contact', () => {

@@ -9,6 +9,7 @@ export { default as AddressDisplay } from './components/AddressDisplay.vue';
 export { default as AddressInput } from './components/AddressInput.vue';
 export { default as Amount } from './components/Amount.vue';
 // export { default as AmountWithDetails } from './components/AmountWithDetails.vue';
+export { default as Carousel } from './components/Carousel.vue';
 // export { default as Contact } from './components/Contact.vue';
 // export { default as ContactList } from './components/ContactList.vue';
 export { default as Identicon } from './components/Identicon.vue';
