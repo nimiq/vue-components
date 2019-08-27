@@ -311,6 +311,17 @@ module.exports = __webpack_require__("9e1e") ? Object.defineProperties : functio
 
 /***/ }),
 
+/***/ "1545":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Copyable_vue_vue_type_style_index_0_id_5b8f619a_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("674f");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Copyable_vue_vue_type_style_index_0_id_5b8f619a_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Copyable_vue_vue_type_style_index_0_id_5b8f619a_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+ /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Copyable_vue_vue_type_style_index_0_id_5b8f619a_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
 /***/ "1625":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -925,17 +936,6 @@ function setCaretPosition(element, caret_position) {
 
 /***/ }),
 
-/***/ "34bf":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AccountDetails_vue_vue_type_style_index_0_id_61fa1638_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("ec1a");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AccountDetails_vue_vue_type_style_index_0_id_61fa1638_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AccountDetails_vue_vue_type_style_index_0_id_61fa1638_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
- /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AccountDetails_vue_vue_type_style_index_0_id_61fa1638_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
 /***/ "36bd":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1430,6 +1430,13 @@ module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
 
 /***/ }),
 
+/***/ "674f":
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
 /***/ "67ab":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1663,6 +1670,13 @@ module.exports = function (index, length) {
   return index < 0 ? max(index + length, 0) : min(index, length);
 };
 
+
+/***/ }),
+
+/***/ "78c6":
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
 
 /***/ }),
 
@@ -4009,6 +4023,17 @@ module.exports = function (object, names) {
 
 /***/ }),
 
+/***/ "cff5":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AccountDetails_vue_vue_type_style_index_0_id_983138fc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("78c6");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AccountDetails_vue_vue_type_style_index_0_id_983138fc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AccountDetails_vue_vue_type_style_index_0_id_983138fc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+ /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AccountDetails_vue_vue_type_style_index_0_id_983138fc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
 /***/ "d26c":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4256,13 +4281,6 @@ module.exports = (
 /***/ }),
 
 /***/ "ead8":
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-
-/***/ "ec1a":
 /***/ (function(module, exports, __webpack_require__) {
 
 // extracted by mini-css-extract-plugin
@@ -5614,12 +5632,12 @@ var Account_component = normalizeComponent(
 
 Account_component.options.__file = "Account.vue"
 /* harmony default export */ var components_Account = (Account_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"46064dad-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/AccountDetails.vue?vue&type=template&id=61fa1638&scoped=true&
-var AccountDetailsvue_type_template_id_61fa1638_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"account-details"},[_c('a',{staticClass:"nq-button-s cancel-circle",attrs:{"href":"javascript:void(0)"},on:{"click":_vm.close}},[_c('CloseIcon')],1),_c('Account',{attrs:{"layout":"column","address":_vm.address,"image":_vm.image,"label":_vm.label !== _vm.address ? _vm.label : '',"walletLabel":_vm.walletLabel,"balance":_vm.balance}}),_c('AddressDisplay',{attrs:{"address":_vm.address}})],1)}
-var AccountDetailsvue_type_template_id_61fa1638_scoped_true_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"46064dad-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/AccountDetails.vue?vue&type=template&id=983138fc&scoped=true&
+var AccountDetailsvue_type_template_id_983138fc_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"account-details"},[_c('a',{staticClass:"nq-button-s cancel-circle",attrs:{"href":"javascript:void(0)"},on:{"click":_vm.close}},[_c('CloseIcon')],1),_c('Account',{attrs:{"layout":"column","address":_vm.address,"image":_vm.image,"label":_vm.label !== _vm.address ? _vm.label : '',"walletLabel":_vm.walletLabel,"balance":_vm.balance}}),_c('Copyable',{attrs:{"text":_vm.address}},[_c('AddressDisplay',{attrs:{"address":_vm.address}})],1)],1)}
+var AccountDetailsvue_type_template_id_983138fc_scoped_true_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/AccountDetails.vue?vue&type=template&id=61fa1638&scoped=true&
+// CONCATENATED MODULE: ./src/components/AccountDetails.vue?vue&type=template&id=983138fc&scoped=true&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"46064dad-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/AddressDisplay.vue?vue&type=template&id=2e20ff27&scoped=true&
 var AddressDisplayvue_type_template_id_2e20ff27_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"address-display"},_vm._l((_vm.chunks),function(chunk){return _c('span',{key:chunk,staticClass:"chunk"},[_vm._v(_vm._s(chunk)),_c('span',{staticClass:"space"},[_vm._v(" ")])])}),0)}
@@ -5696,6 +5714,201 @@ var AddressDisplay_component = normalizeComponent(
 
 AddressDisplay_component.options.__file = "AddressDisplay.vue"
 /* harmony default export */ var components_AddressDisplay = (AddressDisplay_component.exports);
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"46064dad-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Copyable.vue?vue&type=template&id=5b8f619a&scoped=true&
+var Copyablevue_type_template_id_5b8f619a_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"copyable",class:{ copied: _vm.copied },on:{"click":_vm.copy}},[_c('div',{staticClass:"background"}),_vm._t("default")],2)}
+var Copyablevue_type_template_id_5b8f619a_scoped_true_staticRenderFns = []
+
+
+// CONCATENATED MODULE: ./src/components/Copyable.vue?vue&type=template&id=5b8f619a&scoped=true&
+
+// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/builtin/es6/arrayWithoutHoles.js
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) {
+    for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {
+      arr2[i] = arr[i];
+    }
+
+    return arr2;
+  }
+}
+// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/builtin/es6/iterableToArray.js
+function _iterableToArray(iter) {
+  if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
+}
+// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/builtin/es6/nonIterableSpread.js
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance");
+}
+// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/builtin/es6/toConsumableArray.js
+
+
+
+function _toConsumableArray(arr) {
+  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread();
+}
+// CONCATENATED MODULE: ./node_modules/@nimiq/utils/dist/module/Clipboard.js
+class Clipboard {
+    static copy(text) {
+        // Simplified and typed version of https://github.com/sindresorhus/copy-text-to-clipboard
+        // Additionally added a fix for correctly restoring selections in input fields.
+        const element = document.createElement('textarea');
+        element.value = text;
+        // Prevent keyboard from showing on mobile
+        element.setAttribute('readonly', '');
+        // @ts-ignore: css property contain not known to current ts version
+        element.style.contain = 'strict';
+        element.style.position = 'absolute';
+        element.style.left = '-9999px';
+        element.style.fontSize = '12pt'; // Prevent zooming on iOS
+        // store selection to be restored later
+        const selection = document.getSelection();
+        const originalRange = selection.rangeCount > 0 ? selection.getRangeAt(0) : null;
+        const activeInput = document.activeElement
+            && (document.activeElement.nodeName === 'INPUT' || document.activeElement.nodeName === 'TEXTAREA')
+            ? document.activeElement
+            : null;
+        document.body.append(element);
+        element.select();
+        // Explicit selection workaround for iOS
+        element.selectionStart = 0;
+        element.selectionEnd = text.length;
+        let isSuccess = false;
+        try {
+            isSuccess = document.execCommand('copy');
+        }
+        catch (e) { }
+        element.remove();
+        if (activeInput) {
+            // Inputs retain their selection on blur. We just have to refocus again.
+            activeInput.focus();
+        }
+        else if (originalRange) {
+            selection.removeAllRanges();
+            selection.addRange(originalRange);
+        }
+        return isSuccess;
+    }
+}
+
+
+//# sourceMappingURL=Clipboard.js.map
+
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--13-1!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Copyable.vue?vue&type=script&lang=ts&
+
+
+
+
+
+
+
+
+
+/**
+ * **Copyable**
+ *
+ * Copyable can be used to make a click on one or more elements copy content to the Clipboard with visual feedback.
+ * By default the children's contents are copied to the Clipboard. Alternatively, a specific text to be copied can be
+ * provided.
+ *
+ * Props:
+ *
+ * **text** {string} [optional] - A specific text to be copied to the clipboard
+ */
+
+var Copyablevue_type_script_lang_ts_Copyable =
+/*#__PURE__*/
+function (_Vue) {
+  /**
+   * **Copyable**
+   *
+   * Copyable can be used to make a click on one or more elements copy content to the Clipboard with visual feedback.
+   * By default the children's contents are copied to the Clipboard. Alternatively, a specific text to be copied can be
+   * provided.
+   *
+   * Props:
+   *
+   * **text** {string} [optional] - A specific text to be copied to the clipboard
+   */
+  function Copyable() {
+    var _this;
+
+    _classCallCheck(this, Copyable);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Copyable).apply(this, arguments));
+    _this.copied = false;
+    _this._copiedResetTimeout = null;
+    return _this;
+  }
+
+  _createClass(Copyable, [{
+    key: "copy",
+    value: function copy() {
+      var _this2 = this;
+
+      // Note that when iterating over childNodes, pseudo elements are excluded.
+      var text = this.text || _toConsumableArray(this.$el.childNodes).reduce(function (concatenated, node) {
+        var nodeText = '';
+
+        if (node.nodeType === Node.TEXT_NODE) {
+          nodeText = node.textContent.trim();
+        } else if (node.nodeType === Node.ELEMENT_NODE) {
+          // use innerText as it better represents the visible content than textContent
+          nodeText = node.innerText;
+        }
+
+        if (concatenated && nodeText) {
+          concatenated += '\n';
+        }
+
+        concatenated += nodeText;
+        return concatenated;
+      }, '');
+
+      Clipboard.copy(text);
+      window.clearTimeout(this._copiedResetTimeout);
+      this.copied = true;
+      this._copiedResetTimeout = window.setTimeout(function () {
+        _this2.copied = false;
+      }, 1800);
+    }
+  }]);
+
+  _inherits(Copyable, _Vue);
+
+  return Copyable;
+}(external_vue_property_decorator_["Vue"]);
+
+__decorate([Object(external_vue_property_decorator_["Prop"])(String)], Copyablevue_type_script_lang_ts_Copyable.prototype, "text", void 0);
+
+Copyablevue_type_script_lang_ts_Copyable = __decorate([external_vue_property_decorator_["Component"]], Copyablevue_type_script_lang_ts_Copyable);
+/* harmony default export */ var Copyablevue_type_script_lang_ts_ = (Copyablevue_type_script_lang_ts_Copyable);
+// CONCATENATED MODULE: ./src/components/Copyable.vue?vue&type=script&lang=ts&
+ /* harmony default export */ var components_Copyablevue_type_script_lang_ts_ = (Copyablevue_type_script_lang_ts_); 
+// EXTERNAL MODULE: ./src/components/Copyable.vue?vue&type=style&index=0&id=5b8f619a&scoped=true&lang=css&
+var Copyablevue_type_style_index_0_id_5b8f619a_scoped_true_lang_css_ = __webpack_require__("1545");
+
+// CONCATENATED MODULE: ./src/components/Copyable.vue
+
+
+
+
+
+
+/* normalize component */
+
+var Copyable_component = normalizeComponent(
+  components_Copyablevue_type_script_lang_ts_,
+  Copyablevue_type_template_id_5b8f619a_scoped_true_render,
+  Copyablevue_type_template_id_5b8f619a_scoped_true_staticRenderFns,
+  false,
+  null,
+  "5b8f619a",
+  null
+  
+)
+
+Copyable_component.options.__file = "Copyable.vue"
+/* harmony default export */ var components_Copyable = (Copyable_component.exports);
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.object.assign.js
 var es6_object_assign = __webpack_require__("f751");
 
@@ -6375,6 +6588,7 @@ var TransferIcon = IconBase(transfer); // export const ViewOffIcon = IconBase(Vi
 
 
 
+
 var AccountDetailsvue_type_script_lang_ts_AccountDetails =
 /*#__PURE__*/
 function (_Vue) {
@@ -6411,14 +6625,15 @@ AccountDetailsvue_type_script_lang_ts_AccountDetails = __decorate([Object(extern
     Account: components_Account,
     Amount: components_Amount,
     AddressDisplay: components_AddressDisplay,
+    Copyable: components_Copyable,
     CloseIcon: CloseIcon
   }
 })], AccountDetailsvue_type_script_lang_ts_AccountDetails);
 /* harmony default export */ var AccountDetailsvue_type_script_lang_ts_ = (AccountDetailsvue_type_script_lang_ts_AccountDetails);
 // CONCATENATED MODULE: ./src/components/AccountDetails.vue?vue&type=script&lang=ts&
  /* harmony default export */ var components_AccountDetailsvue_type_script_lang_ts_ = (AccountDetailsvue_type_script_lang_ts_); 
-// EXTERNAL MODULE: ./src/components/AccountDetails.vue?vue&type=style&index=0&id=61fa1638&scoped=true&lang=css&
-var AccountDetailsvue_type_style_index_0_id_61fa1638_scoped_true_lang_css_ = __webpack_require__("34bf");
+// EXTERNAL MODULE: ./src/components/AccountDetails.vue?vue&type=style&index=0&id=983138fc&scoped=true&lang=css&
+var AccountDetailsvue_type_style_index_0_id_983138fc_scoped_true_lang_css_ = __webpack_require__("cff5");
 
 // CONCATENATED MODULE: ./src/components/AccountDetails.vue
 
@@ -6431,11 +6646,11 @@ var AccountDetailsvue_type_style_index_0_id_61fa1638_scoped_true_lang_css_ = __w
 
 var AccountDetails_component = normalizeComponent(
   components_AccountDetailsvue_type_script_lang_ts_,
-  AccountDetailsvue_type_template_id_61fa1638_scoped_true_render,
-  AccountDetailsvue_type_template_id_61fa1638_scoped_true_staticRenderFns,
+  AccountDetailsvue_type_template_id_983138fc_scoped_true_render,
+  AccountDetailsvue_type_template_id_983138fc_scoped_true_staticRenderFns,
   false,
   null,
-  "61fa1638",
+  "983138fc",
   null
   
 )
@@ -6670,31 +6885,6 @@ var AccountSelectorvue_type_template_id_304ae700_scoped_true_staticRenderFns = [
 
 // CONCATENATED MODULE: ./src/components/AccountSelector.vue?vue&type=template&id=304ae700&scoped=true&
 
-// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/builtin/es6/arrayWithoutHoles.js
-function _arrayWithoutHoles(arr) {
-  if (Array.isArray(arr)) {
-    for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {
-      arr2[i] = arr[i];
-    }
-
-    return arr2;
-  }
-}
-// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/builtin/es6/iterableToArray.js
-function _iterableToArray(iter) {
-  if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
-}
-// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/builtin/es6/nonIterableSpread.js
-function _nonIterableSpread() {
-  throw new TypeError("Invalid attempt to spread non-iterable instance");
-}
-// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/builtin/es6/toConsumableArray.js
-
-
-
-function _toConsumableArray(arr) {
-  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread();
-}
 // EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom.iterable.js
 var web_dom_iterable = __webpack_require__("ac6a");
 
@@ -6909,53 +7099,6 @@ var es6_regexp_split = __webpack_require__("28a5");
 
 // EXTERNAL MODULE: ./node_modules/input-format/modules/input control.js
 var input_control = __webpack_require__("a1f0");
-
-// CONCATENATED MODULE: ./node_modules/@nimiq/utils/dist/module/Clipboard.js
-class Clipboard {
-    static copy(text) {
-        // Simplified and typed version of https://github.com/sindresorhus/copy-text-to-clipboard
-        // Additionally added a fix for correctly restoring selections in input fields.
-        const element = document.createElement('textarea');
-        element.value = text;
-        // Prevent keyboard from showing on mobile
-        element.setAttribute('readonly', '');
-        // @ts-ignore: css property contain not known to current ts version
-        element.style.contain = 'strict';
-        element.style.position = 'absolute';
-        element.style.left = '-9999px';
-        element.style.fontSize = '12pt'; // Prevent zooming on iOS
-        // store selection to be restored later
-        const selection = document.getSelection();
-        const originalRange = selection.rangeCount > 0 ? selection.getRangeAt(0) : null;
-        const activeInput = document.activeElement
-            && (document.activeElement.nodeName === 'INPUT' || document.activeElement.nodeName === 'TEXTAREA')
-            ? document.activeElement
-            : null;
-        document.body.append(element);
-        element.select();
-        // Explicit selection workaround for iOS
-        element.selectionStart = 0;
-        element.selectionEnd = text.length;
-        let isSuccess = false;
-        try {
-            isSuccess = document.execCommand('copy');
-        }
-        catch (e) { }
-        element.remove();
-        if (activeInput) {
-            // Inputs retain their selection on blur. We just have to refocus again.
-            activeInput.focus();
-        }
-        else if (originalRange) {
-            selection.removeAllRanges();
-            selection.addRange(originalRange);
-        }
-        return isSuccess;
-    }
-}
-
-
-//# sourceMappingURL=Clipboard.js.map
 
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--13-1!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/AddressInput.vue?vue&type=script&lang=ts&
 
@@ -8305,6 +8448,7 @@ PaymentInfoLine_component.options.__file = "PaymentInfoLine.vue"
 
 
 
+
  // export { default as MigrationWelcome } from './components/MigrationWelcome.vue';
 // export { default as NewContact } from './components/NewContact.vue';
 
@@ -8330,6 +8474,7 @@ PaymentInfoLine_component.options.__file = "PaymentInfoLine.vue"
 /* concated harmony reexport AddressInput */__webpack_require__.d(__webpack_exports__, "AddressInput", function() { return components_AddressInput; });
 /* concated harmony reexport Amount */__webpack_require__.d(__webpack_exports__, "Amount", function() { return components_Amount; });
 /* concated harmony reexport Carousel */__webpack_require__.d(__webpack_exports__, "Carousel", function() { return components_Carousel; });
+/* concated harmony reexport Copyable */__webpack_require__.d(__webpack_exports__, "Copyable", function() { return components_Copyable; });
 /* concated harmony reexport Identicon */__webpack_require__.d(__webpack_exports__, "Identicon", function() { return components_Identicon; });
 /* concated harmony reexport LabelInput */__webpack_require__.d(__webpack_exports__, "LabelInput", function() { return components_LabelInput; });
 /* concated harmony reexport LoadingSpinner */__webpack_require__.d(__webpack_exports__, "LoadingSpinner", function() { return components_LoadingSpinner; });

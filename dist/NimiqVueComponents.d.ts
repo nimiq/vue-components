@@ -12,6 +12,7 @@ declare module 'NimiqVueComponents' {
     export { default as AddressInput } from 'NimiqVueComponents/src/components/AddressInput.vue';
     export { default as Amount } from 'NimiqVueComponents/src/components/Amount.vue';
     export { default as Carousel } from 'NimiqVueComponents/src/components/Carousel.vue';
+    export { default as Copyable } from 'NimiqVueComponents/src/components/Copyable.vue';
     export { default as Identicon } from 'NimiqVueComponents/src/components/Identicon.vue';
     export { default as LabelInput } from 'NimiqVueComponents/src/components/LabelInput.vue';
     export { default as LoadingSpinner } from 'NimiqVueComponents/src/components/LoadingSpinner.vue';
@@ -128,6 +129,25 @@ declare module 'NimiqVueComponents/src/components/Carousel.vue' {
         $refs: {
             [ref: string]: HTMLElement[];
         };
+    }
+}
+
+declare module 'NimiqVueComponents/src/components/Copyable.vue' {
+    import { Vue } from 'vue-property-decorator';
+    /**
+      * **Copyable**
+      *
+      * Copyable can be used to make a click on one or more elements copy content to the Clipboard with visual feedback.
+      * By default the children's contents are copied to the Clipboard. Alternatively, a specific text to be copied can be
+      * provided.
+      *
+      * Props:
+      *
+      * **text** {string} [optional] - A specific text to be copied to the clipboard
+      */
+    export default class Copyable extends Vue {
+        text?: string;
+        copy(): void;
     }
 }
 
