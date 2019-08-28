@@ -817,8 +817,8 @@ storiesOf('Components', module)
                     <button class="nq-button" @click="startTimer(60 * 1000)">Start 60s Timer</button>
                     <button class="nq-button" @click="startTimer(90 * 1000)">Start 90s Timer</button>
                     <button class="nq-button" @click="startTimer(3 * 60 * 1000)">Start 3m Timer</button>
+                    <button class="nq-button" @click="startTimer(15 * 60 * 1000)">Start 15m Timer</button>
                     <button class="nq-button" @click="startTimer(60 * 60 * 1000)">Start 1h Timer</button>
-                    <button class="nq-button" @click="startTimer(24 * 60 * 60 * 1000)">Start 1d Timer</button>
                 </div>
             </div>
         `,
