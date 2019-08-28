@@ -4,11 +4,11 @@
         @blur="detailsShown = false" @mouseleave="!_isFocused() && (detailsShown = false)"
         :class="{ 'details-shown': detailsShown, 'little-time-left': _progress >= .75 }">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26">
-            <circle class="time-circle" cx="50%" cy="50%" :r="_radius"
+            <circle ref="time-circle" class="time-circle" cx="50%" cy="50%" :r="radius.currentValue"
                     :stroke-dasharray="`${_timeCircleInfo.length} ${_timeCircleInfo.gap}`"
                     :stroke-dashoffset="_timeCircleInfo.offset"
                     :stroke-width="_timeCircleInfo.strokeWidth"></circle>
-            <circle class="filler-circle" cx="50%" cy="50%" :r="_radius"
+            <circle class="filler-circle" cx="50%" cy="50%" :r="radius.currentValue"
                     :stroke-dasharray="`${_fillerCircleInfo.length} ${_fillerCircleInfo.gap}`"
                     :stroke-dashoffset="_fillerCircleInfo.offset"
                     :stroke-width="_fillerCircleInfo.strokeWidth"></circle>
@@ -36,6 +36,7 @@
 
 <script lang="ts">
 import { Component, Prop, Watch, Vue } from 'vue-property-decorator';
+import { Tweenable } from '@nimiq/utils';
 
 interface CircleInfo {
     length: number;
@@ -95,80 +96,109 @@ export default class Timer extends Vue {
 
     private timeOffset: number = 0;
     private sampledTime: number = 0;
-    private timerInterval: number | null = null;
     private detailsShown: boolean = false;
+    // While the radius r of the circle and the values stroke-dasharray, stroke-dashoffset and stroke-width that depend
+    // on the radius can be transitioned via css, the behavior on value update during an ongoing transition is not
+    // consistent (e.g. time update while animating on user hover or quick hover and unhover). Therefore animate via JS.
+    private radius: Tweenable = new Tweenable(8);
+    private fullCircleLength: number = 0;
+    private requestAnimationFrameId: number | null = null;
 
     private destroyed() {
-        clearInterval(this.timerInterval);
+        cancelAnimationFrame(this.requestAnimationFrameId);
+    }
+
+    private get _totalTime(): number {
+        if (this.startTime === undefined || this.endTime === undefined) {
+            return 0;
+        } else {
+            return Math.max(0, this.endTime - this.startTime);
+        }
     }
 
     private get _timeLeft(): number {
         if (this.startTime === undefined || this.endTime === undefined) {
             return 0;
         } else {
-            return Math.max(0, Math.min(this.endTime - this.startTime, this.endTime - this.sampledTime));
+            return Math.max(0, Math.min(this._totalTime, this.endTime - this.sampledTime));
         }
     }
 
     private get _progress(): number {
-        const totalTime = this.endTime - this.startTime;
-        if (this.startTime === undefined || this.endTime === undefined || totalTime === 0) {
+        if (this.startTime === undefined || this.endTime === undefined || this._totalTime === 0) {
             return 0;
         } else {
-            return 1 - this._timeLeft / totalTime;
+            return 1 - this._timeLeft / this._totalTime;
         }
-    }
-
-    private get _radius(): number {
-        return this.detailsShown ? 12 : 8;
-    }
-
-    private get _fullCircleLength(): number {
-        return 2 * Math.PI * this._radius * 0.9936; // the calculated circumference differs slightly from the generated
-        // path's length returned by the browser by getTotalLength. Therefore we apply a correction factor.
     }
 
     private get _timeCircleInfo(): CircleInfo {
         // Have a max length to make it more recognizable that this is a timer by never rendering a full circle.
         // The rounded stroke ending rendered with radius strokeWidth/2 does not count towards the stroke length,
         // therefore to get the desired gap of 1.5 strokeWidths, we use 2.5 strokeWidths.
-        const maxLength = this._fullCircleLength - 2.5 * this.strokeWidth;
-        const length = Math.min(maxLength, (1 - this._progress) * this._fullCircleLength);
+        const maxLength = this.fullCircleLength - 2.5 * this.strokeWidth;
+        const length = Math.min(maxLength, (1 - this._progress) * this.fullCircleLength);
         const lengthWithLineCaps = length + this.strokeWidth; // add line caps with strokeWidth/2 radius
-        const gap = this._fullCircleLength - length;
+        const gap = this.fullCircleLength - length;
         // The path grows clockwise starting on the right side. Offset by 90 degrees and gap to let path start with gap
         // and end on top.
-        const offset = this._fullCircleLength / 4 - gap;
+        const offset = this.fullCircleLength / 4 - gap;
         return { length, lengthWithLineCaps, gap, offset, strokeWidth: this.strokeWidth };
     }
 
     private get _fillerCircleInfo(): CircleInfo {
         // Filler circle should be rendered in the gap left by the time circle with a margin of strokeWidth. If there
         // is not enough space, compensate by reducing the filler circle stroke width.
-        const availableSpace = this._fullCircleLength - this._timeCircleInfo.lengthWithLineCaps - 2 * this.strokeWidth;
+        const availableSpace = this.fullCircleLength - this._timeCircleInfo.lengthWithLineCaps - 2 * this.strokeWidth;
         const lengthWithLineCaps = Math.max(0, availableSpace);
         const strokeWidth = Math.min(this.strokeWidth, lengthWithLineCaps);
         const length = Math.max(0, lengthWithLineCaps - strokeWidth); // subtract rounded line caps
-        const gap = this._fullCircleLength - length;
-        const offset = this._fullCircleLength / 4 // rotate by 90 degrees
+        const gap = this.fullCircleLength - length;
+        const offset = this.fullCircleLength / 4 // rotate by 90 degrees
             - this.strokeWidth / 2 // skip rounded line cap of time circle
             - this.strokeWidth // margin
             - strokeWidth / 2; // account for our own line cap
         return { length, lengthWithLineCaps, gap, offset, strokeWidth };
     }
 
+    private get _updateInterval(): number {
+        const baseSize = 26;
+        const timerSize = (this.$el as HTMLAnchorElement).offsetWidth || baseSize;
+        const scaleFactor = timerSize / baseSize;
+        const circleLengthPixels = this.fullCircleLength * scaleFactor;
+        const steps = circleLengthPixels * 3; // update every .33 pixel change for smooth transitions
+        const minInterval = 1000 / 60; // up to 60 fps
+        const maxInterval = this.detailsShown && this._timeLeft < 60000
+            ? 500 // when counting down seconds update more regularly
+            : Number.POSITIVE_INFINITY;
+        return Math.max(minInterval, Math.min(maxInterval, this._totalTime / steps));
+    }
+
+    @Watch('detailsShown', { immediate: true })
+    private _setRadius() {
+        this.radius.tweenTo(this.detailsShown ? 12 : 8, 300);
+        this._rerender();
+    }
+
     @Watch('startTime', { immediate: true })
     @Watch('endTime', { immediate: true })
     @Watch('timeOffset', { immediate: true })
-    private _startTimer() {
-        if (this.timerInterval !== null) return;
-        this.timerInterval = window.setInterval(() => {
-            this.sampledTime = Date.now() + this.timeOffset;
-            if (this._timeLeft === 0) {
-                clearInterval(this.timerInterval);
-                this.timerInterval = null;
+    private _rerender() {
+        if (this.requestAnimationFrameId !== null) return;
+        this.requestAnimationFrameId = requestAnimationFrame(() => {
+            const sampledTime = Date.now() + this.timeOffset;
+
+            // update values if necessary
+            if (!this.sampledTime || sampledTime - this.sampledTime >= this._updateInterval
+                || !this.radius.finished) { // animating radius
+                this.sampledTime = sampledTime;
+                this.fullCircleLength = 2 * Math.PI * this.radius.currentValue;
             }
-        }, 300);
+
+            this.requestAnimationFrameId = null;
+            if (this._timeLeft === 0 && this.radius.finished) return;
+            this._rerender();
+        });
     }
 
     private _isFocused(): boolean {
@@ -205,8 +235,7 @@ export default class Timer extends Vue {
 
     circle {
         stroke: var(--nimiq-blue);
-        transition: r .3s linear, stroke-dasharray .3s linear, stroke-dashoffset .3s linear, stroke-width .3s linear,
-            stroke .3s var(--nimiq-ease), opacity .3s var(--nimiq-ease);
+        transition: stroke .3s var(--nimiq-ease), opacity .3s var(--nimiq-ease);
     }
 
     .filler-circle {
