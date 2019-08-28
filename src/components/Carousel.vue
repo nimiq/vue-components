@@ -12,45 +12,7 @@
 <script lang="ts">
 import { Component, Prop, Watch, Vue } from 'vue-property-decorator';
 import SmallPage from './SmallPage.vue';
-
-class Tweenable {
-    public constructor(
-        public targetValue: number = 0,
-        public startValue: number = targetValue,
-        public tweenTime: number = 0,
-        public startTime: number = Date.now(),
-        public easing: (progress: number) => number = Tweenable.Easing.EASE_IN_OUT_CUBIC,
-    ) {}
-
-    public get currentValue(): number {
-        const easedProgress = this.easing(this.progress);
-        return this.startValue + (this.targetValue - this.startValue) * easedProgress;
-    }
-
-    public get progress(): number {
-        if (this.tweenTime === 0) return 1;
-        return Math.min(1, (Date.now() - this.startTime) / this.tweenTime);
-    }
-
-    public get finished(): boolean {
-        return this.progress === 1;
-    }
-
-    public tweenTo(targetValue, tweenTime = this.tweenTime) {
-        if (targetValue === this.targetValue) return;
-        this.startValue = this.currentValue;
-        this.targetValue = targetValue;
-        this.startTime = Date.now();
-        this.tweenTime = tweenTime;
-    }
-}
-namespace Tweenable { // tslint:disable-line no-namespace
-    // see https://gist.github.com/gre/1650294 for more easing functions
-    export let Easing = { // tslint:disable-line variable-name
-        LINEAR: (t: number) => t,
-        EASE_IN_OUT_CUBIC: (t: number) => t < .5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1,
-    };
-}
+import { Tweenable } from '@nimiq/utils';
 
 @Component({components: {SmallPage}})
 export default class Carousel extends Vue {
