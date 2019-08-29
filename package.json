@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@nimiq/style": "^0.7.3",
+    "big-integer": "^1.6.44",
     "input-format": "^0.2.4",
     "qr-code": "github:nimiq/qr-encoder",
     "qr-scanner": "^1.1.1",

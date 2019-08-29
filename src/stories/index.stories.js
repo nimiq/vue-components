@@ -1,6 +1,7 @@
 import {storiesOf} from '@storybook/vue';
 import {action} from '@storybook/addon-actions';
 import {boolean, number, text, object, select, withKnobs} from '@storybook/addon-knobs';
+import bigInt from 'big-integer';
 
 import Account from '../components/Account.vue';
 import AccountDetails from '../components/AccountDetails.vue';
@@ -26,6 +27,7 @@ import SmallPage from '../components/SmallPage.vue';
 import PageHeader from '../components/PageHeader.vue';
 import PageBody from '../components/PageBody.vue';
 import PageFooter from '../components/PageFooter.vue';
+import UniversalAmount from '../components/UniversalAmount.vue';
 import LoadingSpinner from '../components/LoadingSpinner.vue';
 import MigrationWelcome from '../components/MigrationWelcome.vue';
 import * as Icons from '../components/Icons';
@@ -52,6 +54,23 @@ storiesOf('Basic', module)
             components: {Amount},
             data: () => ({ amount, minDecimals, maxDecimals, decimals, showApprox }),
             template: `<Amount :amount="amount" :minDecimals="minDecimals" :maxDecimals="maxDecimals"
+                :decimals="decimals" :showApprox="showApprox" />`,
+        };
+    })
+    .add('UniversalAmount', () => {
+        const amount = number('amount', 654621);
+        const bigIntAmount = bigInt(text('bigIntAmount', ''));
+        const minDecimals = number('minDecimals', 1);
+        const maxDecimals = number('maxDecimals', 2);
+        let decimals = number('decimals', 5);
+        const currency = text('Currency', 'nim');
+        if (Number.isNaN(decimals)) decimals = undefined;
+        const showApprox = boolean('showApprox', false);
+
+        return {
+            components: {UniversalAmount},
+            data: () => ({ currency, amount, bigIntAmount, minDecimals, maxDecimals, decimals, showApprox, bigInt }),
+            template: `<UniversalAmount :currency="currency" :amount="bigIntAmount.isZero() ? amount : bigIntAmount" :minDecimals="minDecimals" :maxDecimals="maxDecimals"
                 :decimals="decimals" :showApprox="showApprox" />`,
         };
     })
