@@ -25,6 +25,7 @@ import PaymentInfoLine from '../components/PaymentInfoLine.vue';
 import QrCode from '../components/QrCode.vue';
 import QrScanner from '../components/QrScanner.vue';
 import SmallPage from '../components/SmallPage.vue';
+import Timer from '../components/Timer.vue';
 import PageHeader from '../components/PageHeader.vue';
 import PageBody from '../components/PageBody.vue';
 import PageFooter from '../components/PageFooter.vue';
@@ -851,7 +852,38 @@ storiesOf('Components', module)
 </small-page>
 `),
         };
-    });
+    })
+    .add('Timer', () => ({
+        components: {Timer},
+        data: () => ({
+            startTime: 0,
+            endTime: 0,
+        }),
+        template: `
+            <div>
+                <div style="display: flex; align-items: center;">
+                    <Timer :startTime="startTime" :endTime="endTime" style="margin: 2rem"/>
+                    <Timer :startTime="startTime" :endTime="endTime" style="width: 10rem; margin: 2rem"/>
+                    <Timer :startTime="startTime" :endTime="endTime" style="width: 20rem; margin: 2rem"/>
+                </div>
+                <div style="display: flex; flex-wrap: wrap; max-width: 95rem;">
+                    <button class="nq-button" @click="startTimer(15 * 1000)">Start 15s Timer</button>
+                    <button class="nq-button" @click="startTimer(60 * 1000)">Start 60s Timer</button>
+                    <button class="nq-button" @click="startTimer(90 * 1000)">Start 90s Timer</button>
+                    <button class="nq-button" @click="startTimer(3 * 60 * 1000)">Start 3m Timer</button>
+                    <button class="nq-button" @click="startTimer(15 * 60 * 1000)">Start 15m Timer</button>
+                    <button class="nq-button" @click="startTimer(60 * 60 * 1000)">Start 1h Timer</button>
+                </div>
+            </div>
+        `,
+        methods: {
+            startTimer(time) {
+                const now = Date.now();
+                this.startTime = now;
+                this.endTime = now + time;
+            },
+        },
+    }));
 
 storiesOf('Pages', module)
     .addDecorator(withKnobs)
