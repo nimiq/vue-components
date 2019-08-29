@@ -26,6 +26,7 @@ export { default as PaymentInfoLine } from './components/PaymentInfoLine.vue';
 // export { default as QrScanner } from './components/QrScanner.vue';
 export { default as SmallPage } from './components/SmallPage.vue';
 export { default as Timer } from './components/Timer.vue';
+export { default as UniversalAmount } from './components/UniversalAmount.vue';
 // export { default as Wallet } from './components/Wallet.vue';
 // export { default as WalletList } from './components/WalletList.vue';
 // export { default as WalletMenu } from './components/WalletMenu.vue';
