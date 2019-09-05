@@ -859,14 +859,16 @@ storiesOf('Components', module)
         data: () => ({
             startTime: 0,
             endTime: 0,
+            timerEnded: false,
         }),
         template: `
             <div>
                 <div style="display: flex; align-items: center;">
-                    <Timer :startTime="startTime" :endTime="endTime" style="margin: 2rem"/>
+                    <Timer :startTime="startTime" :endTime="endTime" @end="timerEnded = true" style="margin: 2rem"/>
                     <Timer :startTime="startTime" :endTime="endTime" style="width: 10rem; margin: 2rem"/>
                     <Timer :startTime="startTime" :endTime="endTime" style="width: 20rem; margin: 2rem"/>
                 </div>
+                <div v-if="startTime" style="margin: 1rem 2rem">Timer {{ timerEnded ? 'ended' : 'running' }}</div>
                 <div style="display: flex; flex-wrap: wrap; max-width: 95rem;">
                     <button class="nq-button" @click="startTimer(15 * 1000)">Start 15s Timer</button>
                     <button class="nq-button" @click="startTimer(60 * 1000)">Start 60s Timer</button>
@@ -882,6 +884,7 @@ storiesOf('Components', module)
                 const now = Date.now();
                 this.startTime = now;
                 this.endTime = now + time;
+                this.timerEnded = false;
             },
         },
     }));
