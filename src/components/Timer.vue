@@ -77,7 +77,7 @@ function _toSimplifiedTime(millis: number, includeUnit: boolean = true): number 
 @Component({
     filters: { _toSimplifiedTime },
 })
-export default class Timer extends Vue {
+class Timer extends Vue {
     @Prop(Number)
     public startTime?: number;
 
@@ -101,10 +101,12 @@ export default class Timer extends Vue {
     // on the radius can be transitioned via css, the behavior on value update during an ongoing transition is not
     // consistent (e.g. time update while animating on user hover or quick hover and unhover). Therefore animate via JS.
     private radius: Tweenable = new Tweenable(8);
-    private fullCircleLength: number = 0;
+    private fullCircleLength: number = 2 * Math.PI * this.radius.currentValue;
     private requestAnimationFrameId: number | null = null;
+    private timeout: number | null = null;
 
     private destroyed() {
+        clearTimeout(this.timeout);
         cancelAnimationFrame(this.requestAnimationFrameId);
     }
 
@@ -183,6 +185,16 @@ export default class Timer extends Vue {
     @Watch('startTime', { immediate: true })
     @Watch('endTime', { immediate: true })
     @Watch('timeOffset', { immediate: true })
+    private _setTimer() {
+        this.sampledTime = Date.now() + this.timeOffset;
+        clearTimeout(this.timeout);
+        if (this.startTime && this.endTime) {
+            this.timeout = window.setTimeout(() => this.$emit(Timer.Events.END, this.endTime),
+                this.endTime - this.sampledTime);
+        }
+        this._rerender();
+    }
+
     private _rerender() {
         if (this.requestAnimationFrameId !== null) return;
         this.requestAnimationFrameId = requestAnimationFrame(() => {
@@ -205,6 +217,14 @@ export default class Timer extends Vue {
         return document.activeElement === this.$el;
     }
 }
+
+namespace Timer { // tslint:disable-line no-namespace
+    export enum Events {
+        END = 'end',
+    }
+}
+
+export default Timer;
 </script>
 
 <style scoped>
