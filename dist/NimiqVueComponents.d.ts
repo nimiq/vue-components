@@ -197,10 +197,19 @@ declare module 'NimiqVueComponents/src/components/PageHeader.vue' {
 }
 
 declare module 'NimiqVueComponents/src/components/PaymentInfoLine.vue' {
+    type BigInteger = import('big-integer').BigInteger;
     import { Vue } from 'vue-property-decorator';
-    export default class PaymentInfoLine extends Vue {
-        decimals: number;
+    interface AmountInfo {
+        amount: number | bigint | BigInteger;
+        currency: string;
+        digits: number;
     }
+    export default class PaymentInfoLine extends Vue {
+        cryptoAmount: AmountInfo;
+        fiatAmount?: AmountInfo;
+        setTime(time: number): Promise<void>;
+    }
+    export {};
 }
 
 declare module 'NimiqVueComponents/src/components/SmallPage.vue' {
@@ -211,12 +220,18 @@ declare module 'NimiqVueComponents/src/components/SmallPage.vue' {
 
 declare module 'NimiqVueComponents/src/components/Timer.vue' {
     import { Vue } from 'vue-property-decorator';
-    export default class Timer extends Vue {
+    class Timer extends Vue {
         startTime?: number;
         endTime?: number;
         strokeWidth: number;
         synchronize(referenceTime: number): void;
     }
+    namespace Timer {
+        enum Events {
+            END = "end"
+        }
+    }
+    export default Timer;
 }
 
 declare module 'NimiqVueComponents/src/components/UniversalAmount.vue' {
