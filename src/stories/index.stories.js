@@ -697,18 +697,35 @@ storiesOf('Components', module)
         };
     })
     .add('PaymentInfoLine', () => {
-        const address = text('address', 'NQ07 0000 00000000 0000 0000 0000 0000 0000');
+        const cryptoAmount = {
+            amount: number('cryptoAmount.amount', 199862),
+            currency: text('cryptoAmount.currency', 'NIM'),
+            digits: number('cryptoAmoun.digits', 5),
+        };
+        let fiatAmount = {
+            amount: number('fiatAmount.amount (-1 for unset)', -1),
+            currency: text('fiatAmount.currency', 'EUR'),
+            digits: number('fiatAmount.digits', 2),
+        };
+        if (fiatAmount.amount < 0) fiatAmount = null;
         const origin = text('origin', 'https://shop.nimiq.com');
+        const address = text('address', 'NQ07 0000 00000000 0000 0000 0000 0000 0000');
         const shopLogo = text('shopLogo', 'https://www.decsa.com/wp-content/uploads/2016/10/mcds.png');
-        const amount = number('amount', 199862);
-        const fee = number('fee', 138);
+        let startTime = number('startTime', Date.now());
+        let expires = number('expires (-1 for unset)', -1);
+        if (expires < 0) expires = null;
+
         return {
             components: {PaymentInfoLine},
+            data: () => ({ cryptoAmount, fiatAmount, origin, address, shopLogo, startTime, expires }),
             methods: {
                 merchantInfoClicked: action('merchant-info-clicked'),
             },
-            template: `<div style="width: 400px"><PaymentInfoLine address="${address}" :amount="${amount}" :fee="${fee}"
-                origin="${origin}" shopLogoUrl="${shopLogo}" @merchant-info-clicked="merchantInfoClicked"/></div>`,
+            template: `<div style="max-width: 400px">
+                <PaymentInfoLine :cryptoAmount="cryptoAmount" :fiatAmount="fiatAmount"
+                :origin="origin" :address="address" :shopLogoUrl="shopLogo" :startTime="startTime" :expires="expires"
+                @merchant-info-clicked="merchantInfoClicked"/>
+            </div>`,
         };
     })
     .add('QrCode', () => {
