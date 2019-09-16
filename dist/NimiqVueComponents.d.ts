@@ -3,6 +3,7 @@
 //   ../vue-property-decorator
 //   ../qr-code
 //   ../qr-scanner
+//   ../big-integer
 
 declare module 'NimiqVueComponents' {
     export { default as Account } from 'NimiqVueComponents/src/components/Account.vue';
@@ -21,6 +22,7 @@ declare module 'NimiqVueComponents' {
     export { default as Contact } from 'NimiqVueComponents/src/components/Contact.vue';
     export { default as ContactList } from 'NimiqVueComponents/src/components/ContactList.vue';
     export { default as Copyable } from 'NimiqVueComponents/src/components/Copyable.vue';
+    export { default as Carousel } from 'NimiqVueComponents/src/components/Carousel.vue';
     export { default as Identicon } from 'NimiqVueComponents/src/components/Identicon.vue';
     export { default as LabelInput } from 'NimiqVueComponents/src/components/LabelInput.vue';
     export { default as LoadingSpinner } from 'NimiqVueComponents/src/components/LoadingSpinner.vue';
@@ -33,16 +35,18 @@ declare module 'NimiqVueComponents' {
     export { default as SelectBar } from 'NimiqVueComponents/src/components/SelectBar.vue';
     export { default as SmallPage } from 'NimiqVueComponents/src/components/SmallPage.vue';
     export { default as Tooltip } from 'NimiqVueComponents/src/components/Tooltip.vue';
+    export { default as Timer } from 'NimiqVueComponents/src/components/Timer.vue';
+    export { default as UniversalAmount } from 'NimiqVueComponents/src/components/UniversalAmount.vue';
     export * from 'NimiqVueComponents/src/components/Icons';
 }
 
 declare module 'NimiqVueComponents/src/components/Account.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class Account extends Vue {
-        address: string;
-        image?: string;
         displayAsCashlink: boolean;
         label: string;
+        address?: string;
+        image?: string;
         placeholder?: string;
         walletLabel?: string;
         balance?: number;
@@ -213,6 +217,21 @@ declare module 'NimiqVueComponents/src/components/Copyable.vue' {
     }
 }
 
+declare module 'NimiqVueComponents/src/components/Carousel.vue' {
+    import { Vue } from 'vue-property-decorator';
+    export default class Carousel extends Vue {
+        entries: string[];
+        selected?: string;
+        entryMargin: number;
+        animationDuration: number;
+        hideBackgroundEntries: boolean;
+        disabled: boolean;
+        $refs: {
+            [ref: string]: HTMLElement[];
+        };
+    }
+}
+
 declare module 'NimiqVueComponents/src/components/Identicon.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class Identicon extends Vue {
@@ -256,10 +275,19 @@ declare module 'NimiqVueComponents/src/components/PageHeader.vue' {
 }
 
 declare module 'NimiqVueComponents/src/components/PaymentInfoLine.vue' {
+    type BigInteger = import('big-integer').BigInteger;
     import { Vue } from 'vue-property-decorator';
-    export default class PaymentInfoLine extends Vue {
-        decimals: number;
+    interface AmountInfo {
+        amount: number | bigint | BigInteger;
+        currency: string;
+        digits: number;
     }
+    export default class PaymentInfoLine extends Vue {
+        cryptoAmount: AmountInfo;
+        fiatAmount?: AmountInfo;
+        setTime(time: number): Promise<void>;
+    }
+    export {};
 }
 
 declare module 'NimiqVueComponents/src/components/QrCode.vue' {
@@ -345,6 +373,41 @@ declare module 'NimiqVueComponents/src/components/Tooltip.vue' {
     export default class Tooltip extends Vue {
         reference?: any;
         update(): void;
+    }
+}
+
+declare module 'NimiqVueComponents/src/components/Timer.vue' {
+    import { Vue } from 'vue-property-decorator';
+    class Timer extends Vue {
+        startTime?: number;
+        endTime?: number;
+        strokeWidth: number;
+        synchronize(referenceTime: number): void;
+    }
+    namespace Timer {
+        enum Events {
+            END = "end"
+        }
+    }
+    export default Timer;
+}
+
+declare module 'NimiqVueComponents/src/components/UniversalAmount.vue' {
+    import { Vue } from 'vue-property-decorator';
+    import bigInt from 'big-integer';
+    export default class UniversalAmount extends Vue {
+            /**
+                * Amount in smallest unit
+                */
+            amount: number | bigInt.BigInteger;
+            /**
+                * Actual decimal count of the currency being displayed
+                */
+            decimals: number;
+            minDecimals: number;
+            maxDecimals: number;
+            showApprox: boolean;
+            currency: any;
     }
 }
 

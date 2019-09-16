@@ -1,6 +1,7 @@
 import {storiesOf} from '@storybook/vue';
 import {action} from '@storybook/addon-actions';
 import {boolean, number, text, object, select, withKnobs} from '@storybook/addon-knobs';
+import bigInt from 'big-integer';
 
 import Account from '../components/Account.vue';
 import AccountDetails from '../components/AccountDetails.vue';
@@ -15,6 +16,7 @@ import AmountInput from '../components/AmountInput.vue';
 import AmountWithDetails from '../components/AmountWithDetails.vue';
 import AmountWithFee from '../components/AmountWithFee.vue';
 import CloseButton from '../components/CloseButton.vue';
+import Carousel from '../components/Carousel.vue';
 import Contact from '../components/Contact.vue';
 import ContactList from '../components/ContactList.vue';
 import ContactShortcuts from '../components/ContactShortcuts.vue';
@@ -30,9 +32,11 @@ import QrScanner from '../components/QrScanner.vue';
 import SelectBar from '../components/SelectBar.vue';
 import Tooltip from '../components/Tooltip.vue';
 import SmallPage from '../components/SmallPage.vue';
+import Timer from '../components/Timer.vue';
 import PageHeader from '../components/PageHeader.vue';
 import PageBody from '../components/PageBody.vue';
 import PageFooter from '../components/PageFooter.vue';
+import UniversalAmount from '../components/UniversalAmount.vue';
 import LoadingSpinner from '../components/LoadingSpinner.vue';
 import MigrationWelcome from '../components/MigrationWelcome.vue';
 import SendTx from '../components/SendTx.vue';
@@ -76,6 +80,23 @@ storiesOf('Basic', module)
                 input: action('input'),
             },
             template: `<AmountInput :value="value" @input="input"/>`,
+        };
+    })
+    .add('UniversalAmount', () => {
+        const amount = number('amount', 654621);
+        const bigIntAmount = bigInt(text('bigIntAmount', ''));
+        const minDecimals = number('minDecimals', 1);
+        const maxDecimals = number('maxDecimals', 2);
+        let decimals = number('decimals', 5);
+        const currency = text('Currency', 'nim');
+        if (Number.isNaN(decimals)) decimals = undefined;
+        const showApprox = boolean('showApprox', false);
+
+        return {
+            components: {UniversalAmount},
+            data: () => ({ currency, amount, bigIntAmount, minDecimals, maxDecimals, decimals, showApprox, bigInt }),
+            template: `<UniversalAmount :currency="currency" :amount="bigIntAmount.isZero() ? amount : bigIntAmount" :minDecimals="minDecimals" :maxDecimals="maxDecimals"
+                :decimals="decimals" :showApprox="showApprox" />`,
         };
     })
     .add('Icons', () => {
@@ -245,7 +266,7 @@ storiesOf('Components', module)
         const walletLabel = text('Wallet Label', '');
         const image = select('Image Url', {
             'None': '',
-            'Restaurant Golden Swallow': 'https://www.decsa.com/wp-content/uploads/2016/10/mcds.png',
+            'Restaurant Golden Swallow': 'https://pbs.twimg.com/profile_images/1150268408287698945/x4f3ITmx_400x400.png',
             'Invalid Image': 'javascript:alert(1)',
         }, '');
         const balance = number('Balance (can be empty)', 12023110);
@@ -518,6 +539,46 @@ storiesOf('Components', module)
                 click: action('click'),
             },
             template: `<CloseButton class="top-right" @click="click"/>`,
+        };
+    })
+    .add('Carousel', () => {
+        return {
+            components: {Carousel, SmallPage},
+            data: () => ({
+                entryCount: 3,
+                hideBackgroundEntries: false,
+                disabled: false,
+                selected: 'Card-1',
+            }),
+            computed: {
+                entries() {
+                    return new Array(parseInt(this.entryCount)).fill('Card-').map((v, i) => `${v}${i}`);
+                }
+            },
+            template: `
+                <div>
+                    <Carousel :entries="entries" :selected="selected" @select="selected = $event"
+                        :hideBackgroundEntries="hideBackgroundEntries" :disabled="disabled">
+                        <template v-for="entry in entries" v-slot:[entry]>
+                            <SmallPage style="margin: 0; width: 50rem">{{ entry }}</SmallPage>
+                        </template>
+                    </Carousel>
+                    <div style="text-align: center; margin-top: 8rem;">
+                        <label>
+                            <input type="number" min="1" step="1" v-model="entryCount" style="width: 5.5rem"> Items
+                        </label>
+                        <label>
+                            <input type="checkbox" v-model="disabled"> Disabled
+                        </label>
+                        <label>
+                            <input type="checkbox" v-model="hideBackgroundEntries"> Hide Background Entries
+                        </label>
+                        <div>
+                            Selected: <input v-model="selected">
+                        </div>
+                    </div>
+                </div>
+                `,
         };
     })
     .add('Contact', () => {
@@ -860,18 +921,30 @@ storiesOf('Components', module)
         };
     })
     .add('PaymentInfoLine', () => {
-        const address = text('address', 'NQ07 0000 00000000 0000 0000 0000 0000 0000');
+        const cryptoAmount = {
+            amount: number('cryptoAmount.amount', 199862),
+            currency: text('cryptoAmount.currency', 'NIM'),
+            digits: number('cryptoAmoun.digits', 5),
+        };
+        let fiatAmount = {
+            amount: number('fiatAmount.amount (-1 for unset)', -1),
+            currency: text('fiatAmount.currency', 'EUR'),
+            digits: number('fiatAmount.digits', 2),
+        };
+        if (fiatAmount.amount < 0) fiatAmount = null;
         const origin = text('origin', 'https://shop.nimiq.com');
-        const shopLogo = text('shopLogo', 'https://www.decsa.com/wp-content/uploads/2016/10/mcds.png');
-        const amount = number('amount', 199862);
-        const fee = number('fee', 138);
+        const address = text('address', 'NQ07 0000 00000000 0000 0000 0000 0000 0000');
+        const shopLogo = text('shopLogo', 'https://pbs.twimg.com/profile_images/1150268408287698945/x4f3ITmx_400x400.png');
+        let startTime = number('startTime', Date.now());
+        let expires = number('expires (-1 for unset)', -1);
+        if (expires < 0) expires = null;
         return {
             components: {PaymentInfoLine},
-            methods: {
-                merchantInfoClicked: action('merchant-info-clicked'),
-            },
-            template: `<div style="width: 400px"><PaymentInfoLine address="${address}" :amount="${amount}" :fee="${fee}"
-                origin="${origin}" shopLogoUrl="${shopLogo}" @merchant-info-clicked="merchantInfoClicked"/></div>`,
+            data: () => ({ cryptoAmount, fiatAmount, origin, address, shopLogo, startTime, expires }),
+            template: `<div style="max-width: 400px">
+                <PaymentInfoLine :cryptoAmount="cryptoAmount" :fiatAmount="fiatAmount"
+                :origin="origin" :address="address" :shopLogoUrl="shopLogo" :startTime="startTime" :expires="expires" />
+            </div>`,
         };
     })
     .add('QrCode', () => {
@@ -960,7 +1033,41 @@ storiesOf('Components', module)
 </small-page>
 `),
         };
-    });
+    })
+    .add('Timer', () => ({
+        components: {Timer},
+        data: () => ({
+            startTime: 0,
+            endTime: 0,
+            timerEnded: false,
+        }),
+        template: `
+            <div>
+                <div style="display: flex; align-items: center;">
+                    <Timer :startTime="startTime" :endTime="endTime" @end="timerEnded = true" style="margin: 2rem"/>
+                    <Timer :startTime="startTime" :endTime="endTime" style="width: 10rem; margin: 2rem"/>
+                    <Timer :startTime="startTime" :endTime="endTime" style="width: 20rem; margin: 2rem"/>
+                </div>
+                <div v-if="startTime" style="margin: 1rem 2rem">Timer {{ timerEnded ? 'ended' : 'running' }}</div>
+                <div style="display: flex; flex-wrap: wrap; max-width: 95rem;">
+                    <button class="nq-button" @click="startTimer(15 * 1000)">Start 15s Timer</button>
+                    <button class="nq-button" @click="startTimer(60 * 1000)">Start 60s Timer</button>
+                    <button class="nq-button" @click="startTimer(90 * 1000)">Start 90s Timer</button>
+                    <button class="nq-button" @click="startTimer(3 * 60 * 1000)">Start 3m Timer</button>
+                    <button class="nq-button" @click="startTimer(15 * 60 * 1000)">Start 15m Timer</button>
+                    <button class="nq-button" @click="startTimer(60 * 60 * 1000)">Start 1h Timer</button>
+                </div>
+            </div>
+        `,
+        methods: {
+            startTimer(time) {
+                const now = Date.now();
+                this.startTime = now;
+                this.endTime = now + time;
+                this.timerEnded = false;
+            },
+        },
+    }));
 
 storiesOf('Pages', module)
     .addDecorator(withKnobs)
@@ -988,7 +1095,7 @@ storiesOf('Pages', module)
                 },
                 origin: 'https://macces.com',
                 // shopLogoUrl: 'https://shop.nimiq.com/wp-content/uploads/2018/10/nimiq_signet_rgb_base_size.576px.png',
-                shopLogoUrl: 'https://www.decsa.com/wp-content/uploads/2016/10/mcds.png',
+                shopLogoUrl: 'https://pbs.twimg.com/profile_images/1150268408287698945/x4f3ITmx_400x400.png',
             },
         }[demoType];
 

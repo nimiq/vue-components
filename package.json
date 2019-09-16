@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@nimiq/style": "^0.7.5",
+    "big-integer": "^1.6.44",
     "input-format": "^0.2.4",
     "qr-code": "github:nimiq/qr-encoder",
     "qr-scanner": "^1.1.1",
@@ -25,7 +26,7 @@
   },
   "devDependencies": {
     "@nimiq/iqons": "^1.1.1",
-    "@nimiq/utils": "^0.4.1",
+    "@nimiq/utils": "link:../nimiq.github.io/libraries/nimiq-utils",
     "@storybook/addon-actions": "^4.0.0-alpha.14",
     "@storybook/addon-knobs": "^4.0.0-alpha.14",
     "@storybook/addon-links": "^4.0.0-alpha.14",
