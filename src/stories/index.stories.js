@@ -788,7 +788,6 @@ storiesOf('Components', module)
         let startTime = number('startTime', Date.now());
         let expires = number('expires (-1 for unset)', -1);
         if (expires < 0) expires = null;
-
         return {
             components: {PaymentInfoLine},
             data: () => ({ cryptoAmount, fiatAmount, origin, address, shopLogo, startTime, expires }),

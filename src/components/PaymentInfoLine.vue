@@ -18,7 +18,7 @@
             <ArrowRightSmallIcon/>
         </div>
         <Account :address="address" :image="shopLogoUrl" :label="originDomain" />
-        <Timer v-if="startTime && expires" ref="timer" :startTime="startTime" :endTime="expires" />
+        <Timer v-if="startTime && endTime" ref="timer" :startTime="startTime" :endTime="endTime" />
     </div>
 </template>
 
@@ -58,7 +58,7 @@ export default class PaymentInfoLine extends Vue {
     @Prop(String) private address?: string;
     @Prop(String) private shopLogoUrl?: string;
     @Prop(Number) private startTime?: number;
-    @Prop(Number) private expires?: number;
+    @Prop(Number) private endTime?: number;
 
     public async setTime(time: number) {
         await this.$nextTick(); // let vue update in case the timer was just added

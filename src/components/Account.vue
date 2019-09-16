@@ -25,9 +25,9 @@
 
     @Component({components: {Amount, Identicon, LabelInput}})
     export default class Account extends Vue {
-        @Prop(String) public address!: string;
-        @Prop(String) public image?: string;
         @Prop(String) public label!: string;
+        @Prop(String) public address?: string;
+        @Prop(String) public image?: string;
         @Prop(String) public placeholder?: string;
         @Prop(String) public walletLabel?: string;
         @Prop(Number) public balance?: number;
