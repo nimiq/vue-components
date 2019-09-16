@@ -30,9 +30,9 @@ declare module 'NimiqVueComponents' {
 declare module 'NimiqVueComponents/src/components/Account.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class Account extends Vue {
-        address: string;
-        image?: string;
         label: string;
+        address?: string;
+        image?: string;
         placeholder?: string;
         walletLabel?: string;
         balance?: number;
