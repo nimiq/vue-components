@@ -718,13 +718,9 @@ storiesOf('Components', module)
         return {
             components: {PaymentInfoLine},
             data: () => ({ cryptoAmount, fiatAmount, origin, address, shopLogo, startTime, expires }),
-            methods: {
-                merchantInfoClicked: action('merchant-info-clicked'),
-            },
             template: `<div style="max-width: 400px">
                 <PaymentInfoLine :cryptoAmount="cryptoAmount" :fiatAmount="fiatAmount"
-                :origin="origin" :address="address" :shopLogoUrl="shopLogo" :startTime="startTime" :expires="expires"
-                @merchant-info-clicked="merchantInfoClicked"/>
+                :origin="origin" :address="address" :shopLogoUrl="shopLogo" :startTime="startTime" :expires="expires" />
             </div>`,
         };
     })
