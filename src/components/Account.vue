@@ -5,10 +5,10 @@
                 <img class="account-image" :src="image" @error="showImage = false">
                 <div class="outline"></div>
             </div>
-            <Identicon v-else :address="address"/>
+            <Identicon v-else-if="_isNimiqAddress" :address="address"/>
 
-            <div v-if="!editable" class="label" :class="{ 'address-font': _isLabelAddress }">{{ label }}</div>
-            <div v-else class="label editable" :class="{ 'address-font': _isLabelAddress }">
+            <div v-if="!editable" class="label" :class="{ 'address-font': _isLabelNimiqAddress }">{{ label }}</div>
+            <div v-else class="label editable" :class="{ 'address-font': _isLabelNimiqAddress }">
                 <LabelInput :maxBytes="63" :value="label" :placeholder="placeholder" @changed="changed" ref="label"/>
             </div>
 
@@ -76,7 +76,11 @@
             (document.body.lastElementChild as SVGElement).style.display = 'block';
         }
 
-        private get _isLabelAddress() {
+        private get _isNimiqAddress() {
+            return ValidationUtils.isValidAddress(this.address);
+        }
+
+        private get _isLabelNimiqAddress() {
             return ValidationUtils.isValidAddress(this.label);
         }
     }
