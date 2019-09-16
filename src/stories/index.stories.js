@@ -169,7 +169,7 @@ storiesOf('Components', module)
         const walletLabel = text('Wallet Label', '');
         const image = select('Image Url', {
             'None': '',
-            'Restaurant Golden Swallow': 'https://www.decsa.com/wp-content/uploads/2016/10/mcds.png',
+            'Restaurant Golden Swallow': 'https://pbs.twimg.com/profile_images/1150268408287698945/x4f3ITmx_400x400.png',
             'Invalid Image': 'javascript:alert(1)',
         }, '');
         const balance = number('Balance (can be empty)', 12023110);
@@ -784,7 +784,7 @@ storiesOf('Components', module)
         if (fiatAmount.amount < 0) fiatAmount = null;
         const origin = text('origin', 'https://shop.nimiq.com');
         const address = text('address', 'NQ07 0000 00000000 0000 0000 0000 0000 0000');
-        const shopLogo = text('shopLogo', 'https://www.decsa.com/wp-content/uploads/2016/10/mcds.png');
+        const shopLogo = text('shopLogo', 'https://pbs.twimg.com/profile_images/1150268408287698945/x4f3ITmx_400x400.png');
         let startTime = number('startTime', Date.now());
         let expires = number('expires (-1 for unset)', -1);
         if (expires < 0) expires = null;
@@ -946,7 +946,7 @@ storiesOf('Pages', module)
                 },
                 origin: 'https://macces.com',
                 // shopLogoUrl: 'https://shop.nimiq.com/wp-content/uploads/2018/10/nimiq_signet_rgb_base_size.576px.png',
-                shopLogoUrl: 'https://www.decsa.com/wp-content/uploads/2016/10/mcds.png',
+                shopLogoUrl: 'https://pbs.twimg.com/profile_images/1150268408287698945/x4f3ITmx_400x400.png',
             },
         }[demoType];
 
