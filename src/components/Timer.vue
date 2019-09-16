@@ -1,7 +1,7 @@
 <template>
-    <a class="timer" href="javascript:void(0)"
+    <div class="timer" tabindex="0"
         @focus="detailsShown = true" @mouseenter="detailsShown = true"
-        @blur="detailsShown = false" @mouseleave="!_isFocused() && (detailsShown = false)"
+        @blur="detailsShown = false" @mouseleave="detailsShown = false"
         :class="{ 'details-shown': detailsShown, 'little-time-left': _progress >= .75 }">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26">
             <circle ref="time-circle" class="time-circle" cx="50%" cy="50%" :r="radius.currentValue"
@@ -31,7 +31,7 @@
                 This offer expires in {{ _timeLeft | _toSimplifiedTime(true) }}.
             </div>
         </transition>
-    </a>
+    </div>
 </template>
 
 <script lang="ts">
@@ -212,10 +212,6 @@ class Timer extends Vue {
             this._rerender();
         });
     }
-
-    private _isFocused(): boolean {
-        return document.activeElement === this.$el;
-    }
 }
 
 namespace Timer { // tslint:disable-line no-namespace
@@ -229,10 +225,10 @@ export default Timer;
 
 <style scoped>
     .timer {
-        display: block;
         width: 3.25rem;
         position: relative;
         outline: none;
+        cursor: default;
     }
 
     /* for setting height automatically depending on width */
