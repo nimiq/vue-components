@@ -1,7 +1,7 @@
 <template>
-    <a class="timer" href="javascript:void(0)"
+    <div class="timer" tabindex="0"
         @focus="detailsShown = true" @mouseenter="detailsShown = true"
-        @blur="detailsShown = false" @mouseleave="!_isFocused() && (detailsShown = false)"
+        @blur="detailsShown = false" @mouseleave="detailsShown = false"
         :class="{ 'details-shown': detailsShown, 'little-time-left': _progress >= .75 }">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26">
             <circle ref="time-circle" class="time-circle" cx="50%" cy="50%" :r="radius.currentValue"
@@ -26,7 +26,12 @@
                 </text>
             </transition>
         </svg>
-    </a>
+        <transition>
+            <div v-if="detailsShown" class="tooltip">
+                This offer expires in {{ _timeLeft | _toSimplifiedTime(true) }}.
+            </div>
+        </transition>
+    </div>
 </template>
 
 <script lang="ts">
@@ -72,7 +77,7 @@ function _toSimplifiedTime(millis: number, includeUnit: boolean = true): number 
 @Component({
     filters: { _toSimplifiedTime },
 })
-export default class Timer extends Vue {
+class Timer extends Vue {
     @Prop(Number)
     public startTime?: number;
 
@@ -96,10 +101,12 @@ export default class Timer extends Vue {
     // on the radius can be transitioned via css, the behavior on value update during an ongoing transition is not
     // consistent (e.g. time update while animating on user hover or quick hover and unhover). Therefore animate via JS.
     private radius: Tweenable = new Tweenable(8);
-    private fullCircleLength: number = 0;
+    private fullCircleLength: number = 2 * Math.PI * this.radius.currentValue;
     private requestAnimationFrameId: number | null = null;
+    private timeout: number | null = null;
 
     private destroyed() {
+        clearTimeout(this.timeout);
         cancelAnimationFrame(this.requestAnimationFrameId);
     }
 
@@ -157,8 +164,9 @@ export default class Timer extends Vue {
     }
 
     private get _updateInterval(): number {
-        const timerSize = (this.$el as HTMLAnchorElement).offsetWidth;
-        const scaleFactor = timerSize / 26; // 26 is the base svg size
+        const baseSize = 26;
+        const timerSize = (this.$el as HTMLAnchorElement).offsetWidth || baseSize;
+        const scaleFactor = timerSize / baseSize;
         const circleLengthPixels = this.fullCircleLength * scaleFactor;
         const steps = circleLengthPixels * 3; // update every .33 pixel change for smooth transitions
         const minInterval = 1000 / 60; // up to 60 fps
@@ -177,6 +185,16 @@ export default class Timer extends Vue {
     @Watch('startTime', { immediate: true })
     @Watch('endTime', { immediate: true })
     @Watch('timeOffset', { immediate: true })
+    private _setTimer() {
+        this.sampledTime = Date.now() + this.timeOffset;
+        clearTimeout(this.timeout);
+        if (this.startTime && this.endTime) {
+            this.timeout = window.setTimeout(() => this.$emit(Timer.Events.END, this.endTime),
+                this.endTime - this.sampledTime);
+        }
+        this._rerender();
+    }
+
     private _rerender() {
         if (this.requestAnimationFrameId !== null) return;
         this.requestAnimationFrameId = requestAnimationFrame(() => {
@@ -194,19 +212,23 @@ export default class Timer extends Vue {
             this._rerender();
         });
     }
+}
 
-    private _isFocused(): boolean {
-        return document.activeElement === this.$el;
+namespace Timer { // tslint:disable-line no-namespace
+    export enum Events {
+        END = 'end',
     }
 }
+
+export default Timer;
 </script>
 
 <style scoped>
     .timer {
-        display: block;
         width: 3.25rem;
         position: relative;
         outline: none;
+        cursor: default;
     }
 
     /* for setting height automatically depending on width */
@@ -252,14 +274,14 @@ export default class Timer extends Vue {
 
     .info-exclamation-icon {
         fill: var(--nimiq-blue);
-        fill-opacity: .4; /* using fill-opacity as opacity is already used for transition-fade */
+        opacity: .4;
         transform-origin: center;
-        transition: fill .3s var(--nimiq-ease), fill-opacity .3s var(--nimiq-ease), transform .3s var(--nimiq-ease);
+        transition: fill .3s var(--nimiq-ease), opacity .3s var(--nimiq-ease), transform .3s var(--nimiq-ease);
     }
 
     .little-time-left .info-exclamation-icon {
         fill: var(--nimiq-orange);
-        fill-opacity: 1;
+        opacity: 1;
         transform: rotate(180deg); /* turn info icon into an exclamation mark */
     }
 
@@ -283,6 +305,27 @@ export default class Timer extends Vue {
 
     .transition-fade-enter,
     .transition-fade-leave-to {
+        opacity: 0 !important;
+    }
+
+    .tooltip {
+        position: absolute;
+        top: calc(100% + 1rem);
+        right: calc(50% - 3rem);
+        width: 17rem;
+        height: 8rem;
+        padding: 2.125rem 1.25rem .75rem 1.5rem;
+        font-size: 1.75rem;
+        color: white;
+        z-index: 1;
+        pointer-events: none;
+        background-image: url('data:image/svg+xml,<svg viewBox="0 0 136 63.9" xmlns="http://www.w3.org/2000/svg"><path d="M136 59.9a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4v-47a4 4 0 0 1 4-4h99a4 4 0 0 0 3.2-1.7l4.6-6.6c.6-.8 1.8-.8 2.4 0l4.6 6.6a4 4 0 0 0 3.3 1.7H132a4 4 0 0 1 4 4z" fill="url(%23a)"/><defs><radialGradient id="a" cx="0" cy="0" r="1" gradientTransform="matrix(-190 0 0 -64.999 136 70.9)" gradientUnits="userSpaceOnUse"><stop stop-color="%23260133" offset="0"/><stop stop-color="%231F2348" offset="1"/></radialGradient></defs></svg>');
+        transition: opacity .3s var(--nimiq-ease), transform .3s var(--nimiq-ease);
+    }
+
+    .tooltip.v-enter,
+    .tooltip.v-leave-to {
         opacity: 0;
+        transform: translateY(-.5rem);
     }
 </style>
