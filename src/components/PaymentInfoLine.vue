@@ -1,36 +1,75 @@
 <template>
     <div class="info-line">
-        <Amount :amount="amount + fee" :decimals="decimals" />
+        <div class="amounts">
+            <UniversalAmount class="amount nq-light-blue"
+                :amount="cryptoAmount.amount"
+                :decimals="cryptoAmount.digits"
+                :minDecimals="0"
+                :maxDecimals="4"
+                :currency="cryptoAmount.currency"/>
+            <UniversalAmount v-if="fiatAmount" class="fiat-amount nq-blue"
+                :amount="fiatAmount.amount"
+                :decimals="fiatAmount.digits"
+                :minDecimals="fiatAmount.digits"
+                :maxDecimals="fiatAmount.digits"
+                :currency="fiatAmount.currency"/>
+        </div>
         <div class="arrow-runway">
             <ArrowRightSmallIcon/>
         </div>
         <a href="javascript:void(0)" class="description" @click="merchantInfoClicked">
             <Account :address="address" :image="shopLogoUrl" :label="originDomain" />
-            <div class="info-circle-container">
+            <div v-if="!startTime || !endTime" class="info-circle-container">
                 <InfoCircleIcon class="info-circle"/>
             </div>
         </a>
+        <Timer v-if="startTime && endTime" ref="timer" :startTime="startTime" :endTime="endTime" />
     </div>
 </template>
 
 <script lang="ts">
+// this imports only the type without bundling the library
+type BigInteger = import ('big-integer').BigInteger;
+
 import {Component, Prop, Emit, Vue} from 'vue-property-decorator';
-import Amount from './Amount.vue';
 import Account from './Account.vue';
+import Timer from './Timer.vue';
+import UniversalAmount from './UniversalAmount.vue';
 import { InfoCircleIcon, ArrowRightSmallIcon } from './Icons';
 
-@Component({components: {Amount, Account, InfoCircleIcon, ArrowRightSmallIcon}})
-export default class PaymentInfoLine extends Vue {
+interface AmountInfo {
+    amount: number | bigint | BigInteger; // in the smallest unit
+    currency: string;
+    digits: number;
+}
 
+function amountInfoValidator(value: any) {
+    return 'amount' in value && 'currency' in value && 'digits' in value
+        && (typeof value.amount === 'number' || typeof value.amount === 'bigint'
+            || (value.amount && value.amount.constructor && value.amount.constructor.name.endsWith('Integer')))
+        && typeof value.currency === 'string'
+        && typeof value.digits === 'number' && Number.isInteger(value.digits);
+}
+
+@Component({components: {Account, Timer, UniversalAmount, InfoCircleIcon, ArrowRightSmallIcon}})
+export default class PaymentInfoLine extends Vue {
     private get originDomain() {
         return this.origin.split('://')[1];
     }
-    @Prop({type: Number, default: 2}) public decimals!: number;
-    @Prop(Number) private amount!: number;
-    @Prop(Number) private fee!: number;
+
+    @Prop({type: Object, validator: amountInfoValidator}) public cryptoAmount!: AmountInfo;
+    @Prop({type: Object, validator: amountInfoValidator}) public fiatAmount?: AmountInfo;
     @Prop(String) private origin!: string;
     @Prop(String) private address?: string;
     @Prop(String) private shopLogoUrl?: string;
+    @Prop(Number) private startTime?: number;
+    @Prop(Number) private endTime?: number;
+
+    public async setTime(time: number) {
+        await this.$nextTick(); // let vue update in case the timer was just added
+        if (!this.$refs.timer) return;
+        (this.$refs.timer as Timer).synchronize(time);
+    }
 
     @Emit()
     // tslint:disable-next-line no-empty
@@ -51,9 +90,22 @@ export default class PaymentInfoLine extends Vue {
         font-weight: normal;
     }
 
+    .amounts {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-bottom: .125rem;
+    }
+
     .amount {
         font-weight: bold;
-        color: var(--nimiq-light-blue);
+    }
+
+    .fiat-amount {
+        font-size: 1.625rem;
+        line-height: 1;
+        font-weight: 600;
+        opacity: .6;
     }
 
     .arrow-runway {
@@ -103,17 +155,19 @@ export default class PaymentInfoLine extends Vue {
         min-width: unset;
         width: 3.375rem;
         height: 3.375rem;
-        margin-top: -0.25rem;
-        margin-bottom: -0.125rem;
-        margin-right: 1rem;
+        margin-right: 0;
     }
 
     .account >>> .label {
-        padding-left: 0;
+        margin-bottom: .25rem;
         transition: opacity .3s ease;
         font-weight: unset;
-        opacity: 1;
-        mask-image: unset; /* Remove gradient-fade-out */
+        opacity: 1 !important;
+        /* Remove gradient-fade-out and use text-overflow instead */
+        mask-image: unset;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: fade;
     }
 
     .info-circle-container {
@@ -153,4 +207,7 @@ export default class PaymentInfoLine extends Vue {
         opacity: 1;
     }
 
+    .timer {
+        margin-left: .5rem;
+    }
 </style>
