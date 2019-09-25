@@ -155,6 +155,6 @@ export default class PaymentInfoLine extends Vue {
     }
 
     .timer {
-        margin-left: .5rem;
+        margin: auto -.5rem auto 1rem;
     }
 </style>
