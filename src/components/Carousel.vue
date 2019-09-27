@@ -1,5 +1,5 @@
 <template>
-    <div class="carousel">
+    <div class="carousel" :class="{ disabled }">
         <div v-for="entry in entries" :ref="entry"
             :class="{ selected: effectiveSelected === entry }"
             @click="!disabled && _updateSelection(entry)"
@@ -301,6 +301,10 @@ export default class Carousel extends Vue {
         position: absolute;
         left: 50%;
         top: 50%;
+    }
+
+    .carousel:not(.disabled) > :not(.selected) {
+        cursor: pointer;
     }
 
     .carousel > :not(.selected) >>> * {
