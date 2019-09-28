@@ -26,7 +26,7 @@
 // this imports only the type without bundling the library
 type BigInteger = import ('big-integer').BigInteger;
 
-import {Component, Prop, Emit, Vue} from 'vue-property-decorator';
+import { Component, Prop, Vue } from 'vue-property-decorator';
 import Account from './Account.vue';
 import Timer from './Timer.vue';
 import UniversalAmount from './UniversalAmount.vue';
@@ -101,6 +101,7 @@ export default class PaymentInfoLine extends Vue {
 
     .arrow-runway {
         flex-grow: 1;
+        min-width: 3rem;
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -126,6 +127,7 @@ export default class PaymentInfoLine extends Vue {
     .account {
         padding: 0;
         width: auto !important;
+        flex-shrink: 1;
     }
 
     .account >>> .identicon {
@@ -156,5 +158,6 @@ export default class PaymentInfoLine extends Vue {
 
     .timer {
         margin: auto -.5rem auto 1rem;
+        flex-shrink: 0;
     }
 </style>

@@ -941,7 +941,7 @@ storiesOf('Components', module)
         return {
             components: {PaymentInfoLine},
             data: () => ({ cryptoAmount, fiatAmount, origin, address, shopLogo, startTime, expires }),
-            template: `<div style="max-width: 400px">
+            template: `<div style="max-width: 420px">
                 <PaymentInfoLine :cryptoAmount="cryptoAmount" :fiatAmount="fiatAmount"
                 :origin="origin" :address="address" :shopLogoUrl="shopLogo" :startTime="startTime" :expires="expires" />
             </div>`,
