@@ -438,6 +438,7 @@ declare module 'NimiqVueComponents/src/components/Icons' {
     export const QrCodeIcon: any;
     export const ScanQrCodeIcon: any;
     export const SettingsIcon: any;
+    export const StopwatchIcon: any;
     export const TransferIcon: any;
 }
 
