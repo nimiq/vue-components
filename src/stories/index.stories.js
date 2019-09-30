@@ -92,6 +92,7 @@ storiesOf('Basic', module)
                     <SettingsIcon/>
                     <ShredderIcon/>
                     <SkullIcon/>
+                    <StopwatchIcon/>
                     <TransferIcon/>
                     <ViewOffIcon/>
                     <ViewIcon/>
