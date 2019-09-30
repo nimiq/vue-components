@@ -147,7 +147,9 @@ storiesOf('Basic', module)
                     <SettingsIcon/>
                     <ShredderIcon/>
                     <SkullIcon/>
+                    <StopwatchIcon/>
                     <TransferIcon/>
+                    <UnderPaymentIcon/>
                     <ViewOffIcon/>
                     <ViewIcon/>
                 </div>`,
