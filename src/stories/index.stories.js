@@ -42,6 +42,7 @@ import PageBody from '../components/PageBody.vue';
 import PageFooter from '../components/PageFooter.vue';
 import LoadingSpinner from '../components/LoadingSpinner.vue';
 import MigrationWelcome from '../components/MigrationWelcome.vue';
+import TrackingConsent from '../components/TrackingConsent.vue';
 import * as Icons from '../components/Icons';
 
 import '@nimiq/style/nimiq-style.min.css';
@@ -1125,17 +1126,36 @@ storiesOf('Components', module)
         return {
             components: {SmallPage, PageHeader, PageBody, PageFooter},
             template: windowTemplate(`
-<small-page>
-    <page-header :backArrow="true">
-        Page header
-        <p slot="more" class="nq-notice info">I am an informative notice!</p>
-    </page-header>
-    <page-body>
-        <p>Some text in the page body.</p>
-    </page-body>
-    <page-footer>Page footer</page-footer>
-</small-page>
-`),
+                <small-page>
+                    <page-header :backArrow="true">
+                        Page header
+                        <p slot="more" class="nq-notice info">I am an informative notice!</p>
+                    </page-header>
+                    <page-body>
+                        <p>Some text in the page body.</p>
+                    </page-body>
+                    <page-footer>Page footer</page-footer>
+                </small-page>
+            `),
+        };
+    })
+    .add('TrackingConsent', () => {
+        return {
+            components: { TrackingConsent },
+            data: () => ({
+                theme: 'dark'
+            }),
+            template: windowTemplate(`
+                <label>
+                    Dark theme
+                    <input type="radio" v-model="theme" value="dark"/>
+                </label>
+                <label>
+                    Light theme
+                    <input type="radio" v-model="theme" value="light"/>
+                </label>
+                <TrackingConsent :theme="theme"/>
+            `)
         };
     })
     .add('Timer', () => ({

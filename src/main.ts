@@ -36,6 +36,7 @@ export { default as SendTx } from './components/SendTx.vue';
 export { default as SelectBar } from './components/SelectBar.vue';
 export { default as SmallPage } from './components/SmallPage.vue';
 export { default as Timer } from './components/Timer.vue';
+export { default as TrackingConsent } from './components/TrackingConsent.vue';
 export { default as Tooltip } from './components/Tooltip.vue';
 export { default as Wallet } from './components/Wallet.vue';
 export { default as WalletList } from './components/WalletList.vue';
