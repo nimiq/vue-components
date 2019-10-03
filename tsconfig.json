@@ -29,7 +29,7 @@
     },
     "include": [
         "types/svg.d.ts",
-        "src/main.ts" // Must be included for TSLint to work
+        "src/main.ts", // Must be included for TSLint to work
         // "src/**/*.ts",
         // "src/**/*.tsx",
         // "src/**/*.vue",
