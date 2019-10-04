@@ -66,12 +66,6 @@ class TrackingConsent extends Vue {
     private theme: string;
 
     @Prop({
-        type: String,
-        default: 'nimiq.com',
-    })
-    private domain: string;
-
-    @Prop({
         type: Object,
         default: () => ({
             setTrackerUrl: TrackingConsent.MATOMO_URL + 'nimiq.php',
@@ -93,17 +87,18 @@ class TrackingConsent extends Vue {
     private tagManagerScript: string;
 
     private consentKnown: boolean = false;
-    private _storage: Consents;
+    public static _storage: Consents;
 
     private async mounted() {
         if (!window.startTime) {
             window.startTime = (new Date().getTime());
         }
 
-        if (this.consents.allowsBrowserData || this.consents.allowsUsageData) {
+        if (TrackingConsent.consents.allowsBrowserData || TrackingConsent.consents.allowsUsageData) {
             this._initMatomo();
         }
 
+        /* Automatically track stats if user is not in the EU continent  */
         const geoIpResponse = await fetch(TrackingConsent.GEOIP_SERVER);
         if (geoIpResponse.status !== 200) {
             throw new Error('Failed to contact geoip server');
@@ -112,51 +107,6 @@ class TrackingConsent extends Vue {
         if (geoIpInfo.continent !== 'EU') {
             this.allowsConsent();
         }
-    }
-
-    public get consents(): Consents {
-        if (this._storage) {
-            return this._storage;
-        }
-
-        const cookie = this._getCookie(TrackingConsent.STORAGE_KEYS.MAIN);
-        if (cookie) {
-            this._storage = JSON.parse(cookie);
-            return this._storage;
-        }
-
-        const localStoredConsent =
-            localStorage.getItem(TrackingConsent.STORAGE_KEYS.MAIN) ||
-            localStorage.getItem(TrackingConsent.STORAGE_KEYS.SECOND);
-
-        if (localStoredConsent) {
-            this._storage = JSON.parse(localStoredConsent);
-            this._setCookie(TrackingConsent.STORAGE_KEYS.MAIN, localStoredConsent);
-            localStorage.removeItem(TrackingConsent.STORAGE_KEYS.MAIN);
-            localStorage.removeItem(TrackingConsent.STORAGE_KEYS.SECOND);
-            return this._storage;
-        }
-
-        return {};
-    }
-
-    public trackEvent(
-        category: string,
-        action: string,
-        name?: string,
-        value?: string | number,
-    ): void {
-        const _paq = window.paq || [];
-        const obj: Array<string | number> = [category, action];
-
-        if (name) {
-            obj.push(name);
-        }
-        if (value) {
-            obj.push(value);
-        }
-
-        _paq.push(obj);
     }
 
     private denyConsent(): void {
@@ -174,7 +124,7 @@ class TrackingConsent extends Vue {
     }
 
     private _setConsent(consent: Consents): void {
-        this._setCookie(TrackingConsent.STORAGE_KEYS.MAIN, JSON.stringify(consent));
+        TrackingConsent._setCookie(TrackingConsent.STORAGE_KEYS.MAIN, JSON.stringify(consent));
         this.consentKnown = true;
     }
 
@@ -215,7 +165,7 @@ class TrackingConsent extends Vue {
         })();
     }
 
-    private _setCookie(
+    private static _setCookie(
         cookieName: string,
         cookieValue: string,
         expirationDays?: number,
@@ -230,19 +180,64 @@ class TrackingConsent extends Vue {
         }
 
         cookie.push('path=/');
-        cookie.push('domain=' + this.domain);
+        cookie.push('domain=' + TrackingConsent.COOKIE_DOMAIN);
 
         document.cookie = cookie.join(';');
     }
 
-    private _getCookie(cookieName: string): string {
+    private static _getCookie(cookieName: string): string | null {
         return document.cookie.split('; ').map((c) => {
             const i = c.indexOf('=');
             const key = c.substring(0, i);
             const value = c.substring(i);
 
             return [key, value];
-        }).reduce((acc, cur) => (acc[cur[0]] = cur[1], acc), {})[cookieName] || '';
+        }).reduce((acc, cur) => (acc[cur[0]] = cur[1], acc), {})[cookieName];
+    }
+
+    public static get consents(): Consents {
+        if (TrackingConsent._storage) {
+            return TrackingConsent._storage;
+        }
+
+        const cookie = TrackingConsent._getCookie(TrackingConsent.STORAGE_KEYS.MAIN);
+        if (cookie) {
+            TrackingConsent._storage = JSON.parse(cookie);
+            return TrackingConsent._storage;
+        }
+
+        const localStoredConsent =
+            localStorage.getItem(TrackingConsent.STORAGE_KEYS.MAIN) ||
+            localStorage.getItem(TrackingConsent.STORAGE_KEYS.SECOND);
+
+        if (localStoredConsent) {
+            TrackingConsent._storage = JSON.parse(localStoredConsent);
+            TrackingConsent._setCookie(TrackingConsent.STORAGE_KEYS.MAIN, localStoredConsent);
+            localStorage.removeItem(TrackingConsent.STORAGE_KEYS.MAIN);
+            localStorage.removeItem(TrackingConsent.STORAGE_KEYS.SECOND);
+            return TrackingConsent._storage;
+        }
+
+        return {};
+    }
+
+    public static trackEvent(
+        category: string,
+        action: string,
+        name?: string,
+        value?: string | number,
+    ): void {
+        const _paq = window._paq || [];
+        const obj: Array<string | number> = ['trackEvent', category, action];
+
+        if (name) {
+            obj.push(name);
+        }
+        if (value) {
+            obj.push(value);
+        }
+
+        _paq.push(obj);
     }
 }
 
@@ -254,6 +249,7 @@ namespace TrackingConsent { // tslint:disable-line:no-namespace
 
     export const GEOIP_SERVER = 'https://geoip.nimiq-network.com:8443/v1/locate';
     export const MATOMO_URL = '//stats.nimiq-network.com/';
+    export const COOKIE_DOMAIN = 'nimiq.com';
 }
 
 export default TrackingConsent;
