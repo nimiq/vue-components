@@ -1,18 +1,22 @@
 <template>
     <div class="copyable-field">
         <span class="nq-label" v-if="label">{{label}}</span>
-        <div class="copyable-field-content" :class="{ 'single-value': hasSingleValue, copied }" @click="copy">
+        <div class="copyable-field-content" :class="{ 'simple-value': !isKeyedValue, copied }" @click="copy">
             <div ref="value-container" class="value-container" :style="{ fontSize: fontSize+'rem' }">
                 <span ref="value" class="value">
-                    {{values[currentKey]}}
+                    {{ isKeyedValue ? value[currentKey] : value }}
                 </span>
             </div>
             <button
                 class="nq-button-s"
-                v-if="!hasSingleValue"
-                v-for="key in Object.keys(values)"
+                v-if="isKeyedValue"
+                v-for="key in Object.keys(value)"
                 @click.stop="currentKey = key"
-                :class="{ inverse: currentKey === key }"
+                :class="{
+                    inverse: currentKey === key,
+                    'single-key': hasSingleKey,
+                }"
+                :tabindex="hasSingleKey ? -1 : 0"
             >{{key}}</button>
         </div>
     </div>
@@ -28,10 +32,10 @@ export default class CopyableField extends Vue {
 
     @Prop({
         required: true,
-        type: Object,
-        validator: (values: object) => typeof values === 'object' && Object.keys(values).length > 0,
+        validator: (value: string | object) => typeof value === 'string' || typeof value === 'number'
+            || (typeof value === 'object' && Object.keys(value).length > 0),
     })
-    public values!: { [key: string]: any };
+    public value!: string | number | { [key: string]: any };
 
     @Prop(String)
     public label?: string;
@@ -51,14 +55,18 @@ export default class CopyableField extends Vue {
         window.removeEventListener('resize', this._updateFontSize);
     }
 
-    private get hasSingleValue() {
-        return Object.keys(this.values).length === 1;
+    private get isKeyedValue() {
+        return typeof this.value !== 'string' && typeof this.value !== 'number';
     }
 
-    @Watch('values', { immediate: true })
-    private _onValuesChange() {
-        const keys = Object.keys(this.values);
-        if (!this.currentKey || !keys.includes(this.currentKey)) {
+    private get hasSingleKey() {
+        return this.isKeyedValue && Object.keys(this.value).length === 1;
+    }
+
+    @Watch('value', { immediate: true })
+    private _onValueChange() {
+        const keys = this.isKeyedValue ? Object.keys(this.value) : [];
+        if (keys.length > 0 && (!this.currentKey || !keys.includes(this.currentKey))) {
             this.currentKey = keys[0]; // will also trigger _updateFontSize
         } else {
             this._updateFontSize(); // trigger manually
@@ -79,7 +87,7 @@ export default class CopyableField extends Vue {
     }
 
     private copy() {
-        Clipboard.copy(this.values[this.currentKey].toString());
+        Clipboard.copy(this.isKeyedValue ? this.value[this.currentKey].toString() : this.value.toString());
         this.copied = true;
 
         window.clearTimeout(this._copiedResetTimeout);
@@ -94,7 +102,7 @@ export default class CopyableField extends Vue {
     .copyable-field-content,
     .copyable-field-content::after,
     button,
-    .single-value .value-container {
+    .simple-value .value-container {
         transition-duration: .25s;
         transition-timing-function: var(--nimiq-ease);
     }
@@ -169,6 +177,11 @@ export default class CopyableField extends Vue {
         color: white;
     }
 
+    button.single-key {
+        pointer-events: none;
+        background: transparent;
+    }
+
     .copied button {
         opacity: 0;
     }
@@ -181,13 +194,13 @@ export default class CopyableField extends Vue {
         white-space: nowrap;
     }
 
-    .single-value .value-container {
+    .simple-value .value-container {
         mask-image: linear-gradient(90deg, black 60%, transparent 80%);
         mask-size: 160%;
         transition-property: mask-size;
     }
 
-    .single-value.copied .value-container {
+    .simple-value.copied .value-container {
         mask-size: 100%;
     }
 
