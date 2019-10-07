@@ -21,6 +21,7 @@ import Contact from '../components/Contact.vue';
 import ContactList from '../components/ContactList.vue';
 import ContactShortcuts from '../components/ContactShortcuts.vue';
 import Copyable from '../components/Copyable.vue';
+import CopyableField from '../components/CopyableField.vue';
 import Identicon from '../components/Identicon.vue';
 import LabelInput from '../components/LabelInput.vue';
 import Wallet from '../components/Wallet.vue';
@@ -708,6 +709,25 @@ storiesOf('Components', module)
             </div>
         `,
     }))
+    .add('CopyableField', () => {
+        const label = text('label', '');
+        const value = object('value (number, json string or json object)', {
+            a: 'Value a',
+            b: 'Lorem ipsum dolor sit amet, consectetur adipiscing',
+        });
+
+        return {
+            components: {CopyableField},
+            data: () => ({ label, value }),
+            template: `
+                <CopyableField
+                    :label="label"
+                    :value="value"
+                    style="color: white; background: var(--nimiq-blue-bg); width: 50rem"
+                />
+            `,
+        };
+    })
     .add('Wallet', () => {
         const label = text('label', 'Main Wallet');
         const id = text('id', '47ee824fc910');

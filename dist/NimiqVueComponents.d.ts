@@ -22,6 +22,7 @@ declare module 'NimiqVueComponents' {
     export { default as Contact } from 'NimiqVueComponents/src/components/Contact.vue';
     export { default as ContactList } from 'NimiqVueComponents/src/components/ContactList.vue';
     export { default as Copyable } from 'NimiqVueComponents/src/components/Copyable.vue';
+    export { default as CopyableField } from 'NimiqVueComponents/src/components/CopyableField.vue';
     export { default as Carousel } from 'NimiqVueComponents/src/components/Carousel.vue';
     export { default as Identicon } from 'NimiqVueComponents/src/components/Identicon.vue';
     export { default as LabelInput } from 'NimiqVueComponents/src/components/LabelInput.vue';
@@ -214,6 +215,16 @@ declare module 'NimiqVueComponents/src/components/Copyable.vue' {
     export default class Copyable extends Vue {
         text?: string;
         copy(): void;
+    }
+}
+
+declare module 'NimiqVueComponents/src/components/CopyableField.vue' {
+    import { Vue } from 'vue-property-decorator';
+    export default class CopyableField extends Vue {
+        value: string | number | {
+            [key: string]: any;
+        };
+        label?: string;
     }
 }
 

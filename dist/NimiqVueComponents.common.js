@@ -1042,6 +1042,13 @@ $export($export.P + $export.F * __webpack_require__("5147")(INCLUDES), 'String',
 
 /***/ }),
 
+/***/ "306a":
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
 /***/ "306b":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1454,6 +1461,22 @@ module.exports = function (Constructor, NAME, next) {
 /* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AccountDetails_vue_vue_type_style_index_0_id_56988aea_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AccountDetails_vue_vue_type_style_index_0_id_56988aea_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
 /* unused harmony reexport * */
  /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AccountDetails_vue_vue_type_style_index_0_id_56988aea_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "456d":
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.2.14 Object.keys(O)
+var toObject = __webpack_require__("4bf8");
+var $keys = __webpack_require__("0d58");
+
+__webpack_require__("5eda")('keys', function () {
+  return function keys(it) {
+    return $keys(toObject(it));
+  };
+});
+
 
 /***/ }),
 
@@ -2069,6 +2092,23 @@ var $export = __webpack_require__("5ca1");
 var $parseFloat = __webpack_require__("d752");
 // 20.1.2.12 Number.parseFloat(string)
 $export($export.S + $export.F * (Number.parseFloat != $parseFloat), 'Number', { parseFloat: $parseFloat });
+
+
+/***/ }),
+
+/***/ "5eda":
+/***/ (function(module, exports, __webpack_require__) {
+
+// most Object methods by ES6 should accept primitives
+var $export = __webpack_require__("5ca1");
+var core = __webpack_require__("8378");
+var fails = __webpack_require__("79e5");
+module.exports = function (KEY, exec) {
+  var fn = (core.Object || {})[KEY] || Object[KEY];
+  var exp = {};
+  exp[KEY] = exec(fn);
+  $export($export.S + $export.F * fails(function () { fn(1); }), 'Object', exp);
+};
 
 
 /***/ }),
@@ -6538,6 +6578,17 @@ module.exports = function (it) {
   return it;
 };
 
+
+/***/ }),
+
+/***/ "cc9d":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CopyableField_vue_vue_type_style_index_0_id_3da747e3_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("306a");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CopyableField_vue_vue_type_style_index_0_id_3da747e3_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CopyableField_vue_vue_type_style_index_0_id_3da747e3_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+ /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CopyableField_vue_vue_type_style_index_0_id_3da747e3_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -12260,6 +12311,191 @@ var ContactList_component = normalizeComponent(
 
 ContactList_component.options.__file = "ContactList.vue"
 /* harmony default export */ var components_ContactList = (ContactList_component.exports);
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"46064dad-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CopyableField.vue?vue&type=template&id=3da747e3&scoped=true&
+var CopyableFieldvue_type_template_id_3da747e3_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"copyable-field"},[(_vm.label)?_c('span',{staticClass:"nq-label"},[_vm._v(_vm._s(_vm.label))]):_vm._e(),_c('div',{staticClass:"copyable-field-content",class:{ 'simple-value': !_vm.isKeyedValue, copied: _vm.copied },on:{"click":_vm.copy}},[_c('div',{ref:"value-container",staticClass:"value-container",style:({ fontSize: _vm.fontSize+'rem' })},[_c('span',{ref:"value",staticClass:"value"},[_vm._v("\n                "+_vm._s(_vm.isKeyedValue ? _vm.value[_vm.currentKey] : _vm.value)+"\n            ")])]),_vm._l((Object.keys(_vm.value)),function(key){return (_vm.isKeyedValue)?_c('button',{staticClass:"nq-button-s",class:{
+                inverse: _vm.currentKey === key,
+                'single-key': _vm.hasSingleKey,
+            },attrs:{"tabindex":_vm.hasSingleKey ? -1 : 0},on:{"click":function($event){$event.stopPropagation();_vm.currentKey = key}}},[_vm._v(_vm._s(key))]):_vm._e()})],2)])}
+var CopyableFieldvue_type_template_id_3da747e3_scoped_true_staticRenderFns = []
+
+
+// CONCATENATED MODULE: ./src/components/CopyableField.vue?vue&type=template&id=3da747e3&scoped=true&
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.object.keys.js
+var es6_object_keys = __webpack_require__("456d");
+
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--13-1!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CopyableField.vue?vue&type=script&lang=ts&
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var CopyableField_1;
+
+
+
+var CopyableFieldvue_type_script_lang_ts_CopyableField = CopyableField_1 =
+/*#__PURE__*/
+function (_Vue) {
+  function CopyableField() {
+    var _this;
+
+    _classCallCheck(this, CopyableField);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(CopyableField).apply(this, arguments));
+    _this.currentKey = '';
+    _this.fontSize = CopyableField_1.DEFAULT_FONT_SIZE;
+    _this.copied = false;
+    return _this;
+  }
+
+  _createClass(CopyableField, [{
+    key: "mounted",
+    value: function mounted() {
+      this._updateFontSize = this._updateFontSize.bind(this);
+      window.addEventListener('resize', this._updateFontSize);
+
+      this._updateFontSize();
+    }
+  }, {
+    key: "destroyed",
+    value: function destroyed() {
+      window.removeEventListener('resize', this._updateFontSize);
+    }
+  }, {
+    key: "_onValueChange",
+    value: function _onValueChange() {
+      var keys = this.isKeyedValue ? Object.keys(this.value) : [];
+
+      if (keys.length > 0 && (!this.currentKey || !keys.includes(this.currentKey))) {
+        this.currentKey = keys[0]; // will also trigger _updateFontSize
+      } else {
+        this._updateFontSize(); // trigger manually
+
+      }
+    }
+  }, {
+    key: "_updateFontSize",
+    value: function () {
+      var _updateFontSize2 = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee() {
+        var valueContainer, valueElement, availableWidth, referenceWidth, scaleFactor;
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return external_vue_property_decorator_["Vue"].nextTick();
+
+              case 2:
+                // let Vue render the component first
+                valueContainer = this.$refs['value-container'];
+                valueElement = this.$refs.value;
+                valueElement.style.fontSize = "".concat(CopyableField_1.DEFAULT_FONT_SIZE, "rem");
+                availableWidth = valueContainer.offsetWidth;
+                referenceWidth = valueElement.offsetWidth;
+                scaleFactor = availableWidth / referenceWidth;
+                valueElement.style.fontSize = '';
+                this.fontSize = Math.min(CopyableField_1.DEFAULT_FONT_SIZE, CopyableField_1.DEFAULT_FONT_SIZE * scaleFactor);
+
+              case 10:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      return function _updateFontSize() {
+        return _updateFontSize2.apply(this, arguments);
+      };
+    }()
+  }, {
+    key: "copy",
+    value: function copy() {
+      var _this2 = this;
+
+      Clipboard_Clipboard.copy(this.isKeyedValue ? this.value[this.currentKey].toString() : this.value.toString());
+      this.copied = true;
+      window.clearTimeout(this._copiedResetTimeout);
+      this._copiedResetTimeout = window.setTimeout(function () {
+        _this2.copied = false;
+      }, 500);
+    }
+  }, {
+    key: "isKeyedValue",
+    get: function get() {
+      return typeof this.value !== 'string' && typeof this.value !== 'number';
+    }
+  }, {
+    key: "hasSingleKey",
+    get: function get() {
+      return this.isKeyedValue && Object.keys(this.value).length === 1;
+    }
+  }]);
+
+  _inherits(CopyableField, _Vue);
+
+  return CopyableField;
+}(external_vue_property_decorator_["Vue"]);
+
+CopyableFieldvue_type_script_lang_ts_CopyableField.DEFAULT_FONT_SIZE = 3; // in rem
+
+__decorate([Object(external_vue_property_decorator_["Prop"])({
+  required: true,
+  validator: function validator(value) {
+    return typeof value === 'string' || typeof value === 'number' || _typeof(value) === 'object' && Object.keys(value).length > 0;
+  }
+})], CopyableFieldvue_type_script_lang_ts_CopyableField.prototype, "value", void 0);
+
+__decorate([Object(external_vue_property_decorator_["Prop"])(String)], CopyableFieldvue_type_script_lang_ts_CopyableField.prototype, "label", void 0);
+
+__decorate([Object(external_vue_property_decorator_["Watch"])('value', {
+  immediate: true
+})], CopyableFieldvue_type_script_lang_ts_CopyableField.prototype, "_onValueChange", null);
+
+__decorate([Object(external_vue_property_decorator_["Watch"])('currentKey')], CopyableFieldvue_type_script_lang_ts_CopyableField.prototype, "_updateFontSize", null);
+
+CopyableFieldvue_type_script_lang_ts_CopyableField = CopyableField_1 = __decorate([external_vue_property_decorator_["Component"]], CopyableFieldvue_type_script_lang_ts_CopyableField);
+/* harmony default export */ var CopyableFieldvue_type_script_lang_ts_ = (CopyableFieldvue_type_script_lang_ts_CopyableField);
+// CONCATENATED MODULE: ./src/components/CopyableField.vue?vue&type=script&lang=ts&
+ /* harmony default export */ var components_CopyableFieldvue_type_script_lang_ts_ = (CopyableFieldvue_type_script_lang_ts_); 
+// EXTERNAL MODULE: ./src/components/CopyableField.vue?vue&type=style&index=0&id=3da747e3&scoped=true&lang=css&
+var CopyableFieldvue_type_style_index_0_id_3da747e3_scoped_true_lang_css_ = __webpack_require__("cc9d");
+
+// CONCATENATED MODULE: ./src/components/CopyableField.vue
+
+
+
+
+
+
+/* normalize component */
+
+var CopyableField_component = normalizeComponent(
+  components_CopyableFieldvue_type_script_lang_ts_,
+  CopyableFieldvue_type_template_id_3da747e3_scoped_true_render,
+  CopyableFieldvue_type_template_id_3da747e3_scoped_true_staticRenderFns,
+  false,
+  null,
+  "3da747e3",
+  null
+  
+)
+
+CopyableField_component.options.__file = "CopyableField.vue"
+/* harmony default export */ var components_CopyableField = (CopyableField_component.exports);
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"46064dad-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Carousel.vue?vue&type=template&id=63b0ea62&scoped=true&
 var Carouselvue_type_template_id_63b0ea62_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"carousel",class:{ disabled: _vm.disabled }},_vm._l((_vm.entries),function(entry){return _c('div',{ref:entry,refInFor:true,class:{ selected: _vm.effectiveSelected === entry },on:{"click":function($event){!_vm.disabled && _vm._updateSelection(entry)},"focusin":function($event){!_vm.disabled && _vm._updateSelection(entry)}}},[_vm._t(entry)],2)}),0)}
 var Carouselvue_type_template_id_63b0ea62_scoped_true_staticRenderFns = []
@@ -14995,6 +15231,7 @@ Tooltip_component.options.__file = "Tooltip.vue"
 
 
 
+
  // export { default as MigrationWelcome } from './components/MigrationWelcome.vue';
 // export { default as NewContact } from './components/NewContact.vue';
 
@@ -15031,6 +15268,7 @@ Tooltip_component.options.__file = "Tooltip.vue"
 /* concated harmony reexport Contact */__webpack_require__.d(__webpack_exports__, "Contact", function() { return components_Contact; });
 /* concated harmony reexport ContactList */__webpack_require__.d(__webpack_exports__, "ContactList", function() { return components_ContactList; });
 /* concated harmony reexport Copyable */__webpack_require__.d(__webpack_exports__, "Copyable", function() { return components_Copyable; });
+/* concated harmony reexport CopyableField */__webpack_require__.d(__webpack_exports__, "CopyableField", function() { return components_CopyableField; });
 /* concated harmony reexport Carousel */__webpack_require__.d(__webpack_exports__, "Carousel", function() { return components_Carousel; });
 /* concated harmony reexport Identicon */__webpack_require__.d(__webpack_exports__, "Identicon", function() { return components_Identicon; });
 /* concated harmony reexport LabelInput */__webpack_require__.d(__webpack_exports__, "LabelInput", function() { return components_LabelInput; });
