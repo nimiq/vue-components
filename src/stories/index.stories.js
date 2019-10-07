@@ -505,19 +505,19 @@ storiesOf('Components', module)
     })
     .add('CopyableField', () => {
         const label = text('label', '');
-        const values = object('values', {
+        const value = object('value (number, json string or json object)', {
             a: 'Value a',
             b: 'Lorem ipsum dolor sit amet, consectetur adipiscing',
         });
 
         return {
             components: {CopyableField},
-            data: () => ({ label, values }),
+            data: () => ({ label, value }),
             template: `
                 <CopyableField
                     :label="label"
-                    :values="values"
-                    style="color: white; background: var(--nimiq-blue-bg); width: 30rem"
+                    :value="value"
+                    style="color: white; background: var(--nimiq-blue-bg); width: 50rem"
                 />
             `,
         };
