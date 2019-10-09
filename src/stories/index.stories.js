@@ -12,6 +12,7 @@ import AddressInput from '../components/AddressInput.vue';
 import AccountRing from '../components/AccountRing.vue';
 import Amount from '../components/Amount.vue';
 import AmountWithDetails from '../components/AmountWithDetails.vue';
+import BottomOverlay from '../components/BottomOverlay.vue';
 import Contact from '../components/Contact.vue';
 import ContactList from '../components/ContactList.vue';
 import Identicon from '../components/Identicon.vue';
@@ -395,6 +396,22 @@ storiesOf('Components', module)
             components: {AmountWithDetails},
             template: `<div style="padding-left: 20rem"><AmountWithDetails :decimals="${digits}" :amount="${amount}" :networkFee="${networkFee}" :networkFeeEditable="${networkFeeEditable}"/></div>`,
         };
+    })
+    .add('BottomOverlay', () => {
+        const showCloseButton = boolean('Show Close Button', true);
+        return {
+            components: {BottomOverlay},
+            data: () => ({ showCloseButton }),
+            methods: {
+                close: action('close'),
+            },
+            template: `
+                <BottomOverlay v-on="showCloseButton ? { close } : {}">
+                    I'm a BottomOverlay and can contain arbitrary content.
+                    Test me on different screen sizes.
+                </BottomOverlay>
+            `,
+        }
     })
     .add('Contact', () => {
         const label = text('label', 'Burn address');
