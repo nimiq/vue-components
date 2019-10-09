@@ -17,6 +17,7 @@ declare module 'NimiqVueComponents' {
     export { default as AmountInput } from 'NimiqVueComponents/src/components/AmountInput.vue';
     export { default as AmountWithDetails } from 'NimiqVueComponents/src/components/AmountWithDetails.vue';
     export { default as AmountWithFee } from 'NimiqVueComponents/src/components/AmountWithFee.vue';
+    export { default as BottomOverlay } from 'NimiqVueComponents/src/components/BottomOverlay.vue';
     export { default as CircleSpinner } from 'NimiqVueComponents/src/components/CircleSpinner.vue';
     export { default as CloseButton } from 'NimiqVueComponents/src/components/CloseButton.vue';
     export { default as Contact } from 'NimiqVueComponents/src/components/Contact.vue';
@@ -164,6 +165,18 @@ declare module 'NimiqVueComponents/src/components/AmountWithFee.vue' {
         mounted(): void;
         focus(): void;
     }
+}
+
+declare module 'NimiqVueComponents/src/components/BottomOverlay.vue' {
+    import { Vue } from 'vue-property-decorator';
+    class BottomOverlay extends Vue {
+    }
+    namespace BottomOverlay {
+        enum Events {
+            CLOSE = "close"
+        }
+    }
+    export default BottomOverlay;
 }
 
 declare module 'NimiqVueComponents/src/components/CircleSpinner.vue' {
