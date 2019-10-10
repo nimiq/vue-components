@@ -170,6 +170,7 @@ declare module 'NimiqVueComponents/src/components/AmountWithFee.vue' {
 declare module 'NimiqVueComponents/src/components/BottomOverlay.vue' {
     import { Vue } from 'vue-property-decorator';
     class BottomOverlay extends Vue {
+        theme: string;
     }
     namespace BottomOverlay {
         enum Events {

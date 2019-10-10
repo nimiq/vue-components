@@ -536,15 +536,16 @@ storiesOf('Components', module)
         }
     })
     .add('BottomOverlay', () => {
+        const theme = select('theme', ['dark', 'light'], 'dark');
         const showCloseButton = boolean('Show Close Button', true);
         return {
             components: {BottomOverlay},
-            data: () => ({ showCloseButton }),
+            data: () => ({ theme, showCloseButton }),
             methods: {
                 close: action('close'),
             },
             template: `
-                <BottomOverlay v-on="showCloseButton ? { close } : {}">
+                <BottomOverlay :theme="theme" v-on="showCloseButton ? { close } : {}">
                     I'm a BottomOverlay and can contain arbitrary content.
                     Test me on different screen sizes.
                 </BottomOverlay>
