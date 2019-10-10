@@ -1,16 +1,23 @@
 <template>
-    <div class="bottom-overlay" :class="{ 'has-close-button': hasCloseButton }">
+    <div class="bottom-overlay" :class="[theme, { 'has-close-button': hasCloseButton }]">
         <slot></slot>
         <CloseButton v-if="hasCloseButton" class="close-button" @click="$emit(constructor.Events.CLOSE)" />
     </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch  } from 'vue-property-decorator';
+import { Component, Prop, Vue, Watch  } from 'vue-property-decorator';
 import CloseButton from './CloseButton.vue';
 
 @Component({components: {CloseButton}})
 class BottomOverlay extends Vue {
+    @Prop({
+        type: String,
+        default: 'dark',
+        validator: (theme) => ['dark', 'light'].includes(theme),
+    })
+    public theme!: string;
+
     private hasCloseButton = false;
 
     @Watch('$listeners.close', { immediate: true })
@@ -34,12 +41,20 @@ export default BottomOverlay;
         max-width: 110rem;
         padding: 1.5rem 2rem 1.75rem 2rem;
         border-radius: 1rem;
-        background: var(--nimiq-blue);
         box-shadow: 0 0 2.5rem rgba(0, 0, 0, 0.111158);
         font-size: 2rem;
         line-height: 1.3;
-        color: white;
         transform: translateX(-50%);
+    }
+
+    .dark {
+        background: var(--nimiq-blue);
+        color: white;
+    }
+
+    .light {
+        background: white;
+        color: var(--nimiq-blue);
     }
 
     .has-close-button {
@@ -50,6 +65,9 @@ export default BottomOverlay;
         position: absolute;
         top: 1.5rem;
         right: 1.5rem;
+    }
+
+    .dark .close-button {
         color: white;
     }
 
