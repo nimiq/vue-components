@@ -140,6 +140,7 @@ storiesOf('Basic', module)
                     <SkullIcon/>
                     <StopwatchIcon/>
                     <TransferIcon/>
+                    <UnderPaymentIcon/>
                     <ViewOffIcon/>
                     <ViewIcon/>
                 </div>`,

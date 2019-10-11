@@ -51,6 +51,7 @@ import Shredder from '@nimiq/style/src/icons/shredder.svg';
 import Skull from '@nimiq/style/src/icons/skull.svg';
 import Stopwatch from '@nimiq/style/src/icons/stopwatch.svg';
 import Transfer from '@nimiq/style/src/icons/transfer.svg';
+import UnderPayment from '@nimiq/style/src/icons/under-payment.svg';
 import ViewOff from '@nimiq/style/src/icons/view-off.svg';
 import View from '@nimiq/style/src/icons/view.svg';
 
@@ -96,6 +97,7 @@ export const SettingsIcon = IconBase(Settings);
 // export const SkullIcon = IconBase(Skull);
 export const StopwatchIcon = IconBase(Stopwatch);
 export const TransferIcon = IconBase(Transfer);
+export const UnderPaymentIcon = IconBase(UnderPayment);
 // export const ViewOffIcon = IconBase(ViewOff);
 // export const ViewIcon = IconBase(View);
 // tslint:enable:variable-name

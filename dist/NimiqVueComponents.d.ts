@@ -465,5 +465,6 @@ declare module 'NimiqVueComponents/src/components/Icons' {
     export const SettingsIcon: any;
     export const StopwatchIcon: any;
     export const TransferIcon: any;
+    export const UnderPaymentIcon: any;
 }
 

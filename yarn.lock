@@ -756,9 +756,10 @@
   resolved "https://registry.yarnpkg.com/@nimiq/iqons/-/iqons-1.1.1.tgz#9ec533ce285e334f58ee857557b47605c2863305"
   integrity sha512-Z7/i/s6C1X1u4iBGBRkdas0jP9gTgHCUB1DH2NAvzXscGgbmrxU7RE8dABLxlNYwQVXEZKcKyPUz5FQTGNDKvg==
 
-"@nimiq/style@link:../nimiq.github.io/libraries/nimiq-style":
-  version "0.0.0"
-  uid ""
+"@nimiq/style@^0.7.6":
+  version "0.7.6"
+  resolved "https://registry.yarnpkg.com/@nimiq/style/-/style-0.7.6.tgz#b8a128d8fb6208554883158b8c2fa7f11d9e8333"
+  integrity sha512-qFeIbv/xOCxHjYGfuB5U8Pb1xnRhrvetrdjtLK6zGU7tLWCuyQCOErvAKayVUpvpKyTWsXaG+I2YP2djcNo4kQ==
 
 "@nimiq/utils@link:../nimiq.github.io/libraries/nimiq-utils":
   version "0.0.0"

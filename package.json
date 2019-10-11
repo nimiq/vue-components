@@ -16,7 +16,7 @@
     "storybook": "start-storybook -p 6006 -c .storybook -s ."
   },
   "dependencies": {
-    "@nimiq/style": "link:../nimiq.github.io/libraries/nimiq-style",
+    "@nimiq/style": "^0.7.6",
     "big-integer": "^1.6.44",
     "input-format": "^0.2.4",
     "qr-code": "github:nimiq/qr-encoder",

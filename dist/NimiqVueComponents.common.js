@@ -9297,7 +9297,7 @@ var CloseButtonvue_type_template_id_20cd296e_scoped_true_staticRenderFns = []
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.object.assign.js
 var es6_object_assign = __webpack_require__("f751");
 
-// CONCATENATED MODULE: ../nimiq.github.io/libraries/nimiq-style/src/icons/alert-triangle.svg
+// CONCATENATED MODULE: ./node_modules/@nimiq/style/src/icons/alert-triangle.svg
 
       /* harmony default export */ var alert_triangle = ({
         functional: true,
@@ -9326,7 +9326,7 @@ var es6_object_assign = __webpack_require__("f751");
         }
       });
     
-// CONCATENATED MODULE: ../nimiq.github.io/libraries/nimiq-style/src/icons/arrow-left-small.svg
+// CONCATENATED MODULE: ./node_modules/@nimiq/style/src/icons/arrow-left-small.svg
 
       /* harmony default export */ var arrow_left_small = ({
         functional: true,
@@ -9355,7 +9355,7 @@ var es6_object_assign = __webpack_require__("f751");
         }
       });
     
-// CONCATENATED MODULE: ../nimiq.github.io/libraries/nimiq-style/src/icons/arrow-left.svg
+// CONCATENATED MODULE: ./node_modules/@nimiq/style/src/icons/arrow-left.svg
 
       /* harmony default export */ var arrow_left = ({
         functional: true,
@@ -9384,7 +9384,7 @@ var es6_object_assign = __webpack_require__("f751");
         }
       });
     
-// CONCATENATED MODULE: ../nimiq.github.io/libraries/nimiq-style/src/icons/arrow-right-small.svg
+// CONCATENATED MODULE: ./node_modules/@nimiq/style/src/icons/arrow-right-small.svg
 
       /* harmony default export */ var arrow_right_small = ({
         functional: true,
@@ -9413,7 +9413,7 @@ var es6_object_assign = __webpack_require__("f751");
         }
       });
     
-// CONCATENATED MODULE: ../nimiq.github.io/libraries/nimiq-style/src/icons/arrow-right.svg
+// CONCATENATED MODULE: ./node_modules/@nimiq/style/src/icons/arrow-right.svg
 
       /* harmony default export */ var arrow_right = ({
         functional: true,
@@ -9442,7 +9442,7 @@ var es6_object_assign = __webpack_require__("f751");
         }
       });
     
-// CONCATENATED MODULE: ../nimiq.github.io/libraries/nimiq-style/src/icons/caret-right-small.svg
+// CONCATENATED MODULE: ./node_modules/@nimiq/style/src/icons/caret-right-small.svg
 
       /* harmony default export */ var caret_right_small = ({
         functional: true,
@@ -9471,7 +9471,7 @@ var es6_object_assign = __webpack_require__("f751");
         }
       });
     
-// CONCATENATED MODULE: ../nimiq.github.io/libraries/nimiq-style/src/icons/cashlink.svg
+// CONCATENATED MODULE: ./node_modules/@nimiq/style/src/icons/cashlink.svg
 
       /* harmony default export */ var cashlink = ({
         functional: true,
@@ -9500,7 +9500,7 @@ var es6_object_assign = __webpack_require__("f751");
         }
       });
     
-// CONCATENATED MODULE: ../nimiq.github.io/libraries/nimiq-style/src/icons/checkmark.svg
+// CONCATENATED MODULE: ./node_modules/@nimiq/style/src/icons/checkmark.svg
 
       /* harmony default export */ var checkmark = ({
         functional: true,
@@ -9529,7 +9529,7 @@ var es6_object_assign = __webpack_require__("f751");
         }
       });
     
-// CONCATENATED MODULE: ../nimiq.github.io/libraries/nimiq-style/src/icons/checkmark-small.svg
+// CONCATENATED MODULE: ./node_modules/@nimiq/style/src/icons/checkmark-small.svg
 
       /* harmony default export */ var checkmark_small = ({
         functional: true,
@@ -9558,7 +9558,7 @@ var es6_object_assign = __webpack_require__("f751");
         }
       });
     
-// CONCATENATED MODULE: ../nimiq.github.io/libraries/nimiq-style/src/icons/close.svg
+// CONCATENATED MODULE: ./node_modules/@nimiq/style/src/icons/close.svg
 
       /* harmony default export */ var icons_close = ({
         functional: true,
@@ -9587,7 +9587,7 @@ var es6_object_assign = __webpack_require__("f751");
         }
       });
     
-// CONCATENATED MODULE: ../nimiq.github.io/libraries/nimiq-style/src/icons/contacts.svg
+// CONCATENATED MODULE: ./node_modules/@nimiq/style/src/icons/contacts.svg
 
       /* harmony default export */ var contacts = ({
         functional: true,
@@ -9616,7 +9616,7 @@ var es6_object_assign = __webpack_require__("f751");
         }
       });
     
-// CONCATENATED MODULE: ../nimiq.github.io/libraries/nimiq-style/src/icons/face-neutral.svg
+// CONCATENATED MODULE: ./node_modules/@nimiq/style/src/icons/face-neutral.svg
 
       /* harmony default export */ var face_neutral = ({
         functional: true,
@@ -9645,7 +9645,7 @@ var es6_object_assign = __webpack_require__("f751");
         }
       });
     
-// CONCATENATED MODULE: ../nimiq.github.io/libraries/nimiq-style/src/icons/face-sad.svg
+// CONCATENATED MODULE: ./node_modules/@nimiq/style/src/icons/face-sad.svg
 
       /* harmony default export */ var face_sad = ({
         functional: true,
@@ -9674,7 +9674,7 @@ var es6_object_assign = __webpack_require__("f751");
         }
       });
     
-// CONCATENATED MODULE: ../nimiq.github.io/libraries/nimiq-style/src/icons/gear.svg
+// CONCATENATED MODULE: ./node_modules/@nimiq/style/src/icons/gear.svg
 
       /* harmony default export */ var gear = ({
         functional: true,
@@ -9703,7 +9703,7 @@ var es6_object_assign = __webpack_require__("f751");
         }
       });
     
-// CONCATENATED MODULE: ../nimiq.github.io/libraries/nimiq-style/src/icons/hexagon.svg
+// CONCATENATED MODULE: ./node_modules/@nimiq/style/src/icons/hexagon.svg
 
       /* harmony default export */ var hexagon = ({
         functional: true,
@@ -9732,7 +9732,7 @@ var es6_object_assign = __webpack_require__("f751");
         }
       });
     
-// CONCATENATED MODULE: ../nimiq.github.io/libraries/nimiq-style/src/icons/info-circle.svg
+// CONCATENATED MODULE: ./node_modules/@nimiq/style/src/icons/info-circle.svg
 
       /* harmony default export */ var info_circle = ({
         functional: true,
@@ -9761,7 +9761,7 @@ var es6_object_assign = __webpack_require__("f751");
         }
       });
     
-// CONCATENATED MODULE: ../nimiq.github.io/libraries/nimiq-style/src/icons/ledger.svg
+// CONCATENATED MODULE: ./node_modules/@nimiq/style/src/icons/ledger.svg
 
       /* harmony default export */ var ledger = ({
         functional: true,
@@ -9790,7 +9790,7 @@ var es6_object_assign = __webpack_require__("f751");
         }
       });
     
-// CONCATENATED MODULE: ../nimiq.github.io/libraries/nimiq-style/src/icons/login.svg
+// CONCATENATED MODULE: ./node_modules/@nimiq/style/src/icons/login.svg
 
       /* harmony default export */ var login = ({
         functional: true,
@@ -9819,7 +9819,7 @@ var es6_object_assign = __webpack_require__("f751");
         }
       });
     
-// CONCATENATED MODULE: ../nimiq.github.io/libraries/nimiq-style/src/icons/menu-dots.svg
+// CONCATENATED MODULE: ./node_modules/@nimiq/style/src/icons/menu-dots.svg
 
       /* harmony default export */ var menu_dots = ({
         functional: true,
@@ -9848,7 +9848,7 @@ var es6_object_assign = __webpack_require__("f751");
         }
       });
     
-// CONCATENATED MODULE: ../nimiq.github.io/libraries/nimiq-style/src/icons/plus-circle.svg
+// CONCATENATED MODULE: ./node_modules/@nimiq/style/src/icons/plus-circle.svg
 
       /* harmony default export */ var plus_circle = ({
         functional: true,
@@ -9877,7 +9877,7 @@ var es6_object_assign = __webpack_require__("f751");
         }
       });
     
-// CONCATENATED MODULE: ../nimiq.github.io/libraries/nimiq-style/src/icons/qr-code.svg
+// CONCATENATED MODULE: ./node_modules/@nimiq/style/src/icons/qr-code.svg
 
       /* harmony default export */ var qr_code = ({
         functional: true,
@@ -9906,7 +9906,7 @@ var es6_object_assign = __webpack_require__("f751");
         }
       });
     
-// CONCATENATED MODULE: ../nimiq.github.io/libraries/nimiq-style/src/icons/scan-qr-code.svg
+// CONCATENATED MODULE: ./node_modules/@nimiq/style/src/icons/scan-qr-code.svg
 
       /* harmony default export */ var scan_qr_code = ({
         functional: true,
@@ -9935,7 +9935,7 @@ var es6_object_assign = __webpack_require__("f751");
         }
       });
     
-// CONCATENATED MODULE: ../nimiq.github.io/libraries/nimiq-style/src/icons/settings.svg
+// CONCATENATED MODULE: ./node_modules/@nimiq/style/src/icons/settings.svg
 
       /* harmony default export */ var settings = ({
         functional: true,
@@ -9964,7 +9964,7 @@ var es6_object_assign = __webpack_require__("f751");
         }
       });
     
-// CONCATENATED MODULE: ../nimiq.github.io/libraries/nimiq-style/src/icons/stopwatch.svg
+// CONCATENATED MODULE: ./node_modules/@nimiq/style/src/icons/stopwatch.svg
 
       /* harmony default export */ var stopwatch = ({
         functional: true,
@@ -9993,7 +9993,7 @@ var es6_object_assign = __webpack_require__("f751");
         }
       });
     
-// CONCATENATED MODULE: ../nimiq.github.io/libraries/nimiq-style/src/icons/transfer.svg
+// CONCATENATED MODULE: ./node_modules/@nimiq/style/src/icons/transfer.svg
 
       /* harmony default export */ var transfer = ({
         functional: true,
@@ -10022,6 +10022,35 @@ var es6_object_assign = __webpack_require__("f751");
         }
       });
     
+// CONCATENATED MODULE: ./node_modules/@nimiq/style/src/icons/under-payment.svg
+
+      /* harmony default export */ var under_payment = ({
+        functional: true,
+        render(_h, _vm) {
+          const { _c, _v, data, children = [] } = _vm;
+
+          const {
+            class: classNames,
+            staticClass,
+            style,
+            staticStyle,
+            attrs = {},
+            ...rest
+          } = data;
+
+          return _c(
+            'svg',
+            {
+              class: [classNames,staticClass],
+              style: [style,staticStyle],
+              attrs: Object.assign({"width":"150","height":"149","viewBox":"0 0 150 149","xmlns":"http://www.w3.org/2000/svg"}, attrs),
+              ...rest,
+            },
+            children.concat([_c('path',{attrs:{"d":"M81 103a26 26 0 100-52 26 26 0 000 52zM3 97h15c1 0 2 1 2 3v35c0 2-1 3-2 3H3c-2 0-3-1-3-3v-35c0-2 1-3 3-3zm60 17h-1c-5-7-13-11-21-11H28l-2 1v30l1 1c26 9 37 14 47 14 11 0 21-7 54-24 3-1 4-5 2-8-1-2-3-3-6-3l-5 1-19 6-1 1c-1 6-6 10-12 10H64c-2 0-3-1-3-3s1-3 3-3h23c3 0 6-3 6-6s-3-6-6-6H63zm61-61.8h-.3a24 24 0 01-6.4-1c-1.6-.3-2.5-2-2-3.5.3-1.5 2-2.4 3.5-2 1.6.5 3.3.6 5 .7h.2a22 22 0 005-.6c1.6-.5 3.2.5 3.6 2a3 3 0 01-2.1 3.6 31 31 0 01-6.5.8zm15.8-6.3a3 3 0 01-2-5 21 21 0 003.2-4 3 3 0 014-.9 3 3 0 01.9 4 23 23 0 01-4.2 5c-.5.6-1.2.9-2 .9zm-31.9-.2c-.7 0-1.4-.3-2-.8a28 28 0 01-4.1-5 3 3 0 011-4 3 3 0 014 .8c.8 1.5 2 2.8 3.1 4a3 3 0 01.2 4.1 3 3 0 01-2.2.9zM147 30.5h-.2a2.9 2.9 0 01-2.7-3.1V26c0-1.3 0-2.6-.3-3.8a2.9 2.9 0 015.7-1c.3 1.5.5 3.2.5 4.8v1.7a3 3 0 01-3 2.7zm-46.2-.3a3 3 0 01-2.9-2.7V26c0-1.7.1-3.4.4-5a3 3 0 013.4-2.3 3 3 0 012.4 3.4c-.3 1.3-.4 2.6-.4 4v1a3 3 0 01-2.8 3.1zm41-16a3 3 0 01-2.3-1 20.7 20.7 0 00-3.6-3.5 3 3 0 01-.7-4 3 3 0 014.1-.7c1.7 1.3 3.3 2.8 4.7 4.5 1 1.2.9 3-.4 4-.5.6-1.1.7-1.8.7zm-35.6-.1c-.7 0-1.4-.3-1.9-.7a2.9 2.9 0 01-.3-4.1c1.3-1.7 3-3.1 4.7-4.4a3 3 0 014 .6 3 3 0 01-.5 4 21 21 0 00-3.8 3.5 3 3 0 01-2.2 1zM126.9 6h-.4c-1.7-.2-3.4-.2-5 0a3 3 0 11-.7-5.8c2.1-.3 4.3-.3 6.5 0a3 3 0 012.5 3.2 2.8 2.8 0 01-2.9 2.6z","fill":"currentColor"}})])
+          )
+        }
+      });
+    
 // CONCATENATED MODULE: ./src/components/Icons.ts
 
 
@@ -10042,6 +10071,7 @@ var IconBase = function IconBase(component) {
  * SVG files in an /icons/ directory are automatically loaded as Vue components
  * via the vue-svg-loader.
  */
+
 
 
 
@@ -10111,7 +10141,8 @@ var SettingsIcon = IconBase(settings); // export const ShredderIcon = IconBase(S
 // export const SkullIcon = IconBase(Skull);
 
 var StopwatchIcon = IconBase(stopwatch);
-var TransferIcon = IconBase(transfer); // export const ViewOffIcon = IconBase(ViewOff);
+var TransferIcon = IconBase(transfer);
+var UnderPaymentIcon = IconBase(under_payment); // export const ViewOffIcon = IconBase(ViewOff);
 // export const ViewIcon = IconBase(View);
 // tslint:enable:variable-name
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--13-1!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CloseButton.vue?vue&type=script&lang=ts&
@@ -15427,6 +15458,7 @@ Tooltip_component.options.__file = "Tooltip.vue"
 /* concated harmony reexport SettingsIcon */__webpack_require__.d(__webpack_exports__, "SettingsIcon", function() { return SettingsIcon; });
 /* concated harmony reexport StopwatchIcon */__webpack_require__.d(__webpack_exports__, "StopwatchIcon", function() { return StopwatchIcon; });
 /* concated harmony reexport TransferIcon */__webpack_require__.d(__webpack_exports__, "TransferIcon", function() { return TransferIcon; });
+/* concated harmony reexport UnderPaymentIcon */__webpack_require__.d(__webpack_exports__, "UnderPaymentIcon", function() { return UnderPaymentIcon; });
 
 
 
