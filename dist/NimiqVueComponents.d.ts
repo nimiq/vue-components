@@ -307,12 +307,24 @@ declare module 'NimiqVueComponents/src/components/PaymentInfoLine.vue' {
         currency: string;
         digits: number;
     }
-    export default class PaymentInfoLine extends Vue {
+    class PaymentInfoLine extends Vue {
         cryptoAmount: AmountInfo;
         fiatAmount?: AmountInfo;
+        origin: string;
+        address?: string;
+        shopLogoUrl?: string;
+        startTime?: number;
+        endTime?: number;
+        theme: string;
         setTime(time: number): Promise<void>;
     }
-    export {};
+    namespace PaymentInfoLine {
+        enum Themes {
+            NORMAL = "normal",
+            INVERSE = "inverse"
+        }
+    }
+    export default PaymentInfoLine;
 }
 
 declare module 'NimiqVueComponents/src/components/QrCode.vue' {
@@ -406,12 +418,17 @@ declare module 'NimiqVueComponents/src/components/Timer.vue' {
     class Timer extends Vue {
         startTime?: number;
         endTime?: number;
+        theme: string;
         strokeWidth: number;
         synchronize(referenceTime: number): void;
     }
     namespace Timer {
         enum Events {
             END = "end"
+        }
+        enum Themes {
+            NORMAL = "normal",
+            INVERSE = "inverse"
         }
     }
     export default Timer;

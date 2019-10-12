@@ -961,6 +961,7 @@ storiesOf('Components', module)
         };
     })
     .add('PaymentInfoLine', () => {
+        const theme = select('theme', Object.values(PaymentInfoLine.Themes), PaymentInfoLine.Themes.NORMAL);
         const cryptoAmount = {
             amount: number('cryptoAmount.amount', 199862),
             currency: text('cryptoAmount.currency', 'NIM'),
@@ -980,10 +981,11 @@ storiesOf('Components', module)
         if (expires < 0) expires = null;
         return {
             components: {PaymentInfoLine},
-            data: () => ({ cryptoAmount, fiatAmount, origin, address, shopLogo, startTime, expires }),
-            template: `<div style="max-width: 420px">
+            data: () => ({ cryptoAmount, fiatAmount, origin, address, shopLogo, startTime, expires, theme }),
+            template: `<div style="max-width: 420px" :class="{ 'nq-blue-bg': theme === 'inverse' }">
                 <PaymentInfoLine :cryptoAmount="cryptoAmount" :fiatAmount="fiatAmount"
-                :origin="origin" :address="address" :shopLogoUrl="shopLogo" :startTime="startTime" :expires="expires" />
+                :origin="origin" :address="address" :shopLogoUrl="shopLogo" :startTime="startTime" :expires="expires"
+                :theme="theme"/>
             </div>`,
         };
     })
@@ -1080,13 +1082,14 @@ storiesOf('Components', module)
             startTime: 0,
             endTime: 0,
             timerEnded: false,
+            theme: select('theme', Object.values(Timer.Themes), Timer.Themes.NORMAL),
         }),
         template: `
             <div>
-                <div style="display: flex; align-items: center;">
-                    <Timer :startTime="startTime" :endTime="endTime" @end="timerEnded = true" style="margin: 2rem"/>
-                    <Timer :startTime="startTime" :endTime="endTime" style="width: 10rem; margin: 2rem"/>
-                    <Timer :startTime="startTime" :endTime="endTime" style="width: 20rem; margin: 2rem"/>
+                <div :class="{ 'nq-blue-bg': theme === 'inverse' }" style="display: flex; align-items: center; padding: 7rem 3rem 10rem 12rem">
+                    <Timer :startTime="startTime" :endTime="endTime" :theme="theme" @end="timerEnded = true" style="margin: 2rem"/>
+                    <Timer :startTime="startTime" :endTime="endTime" :theme="theme" style="width: 10rem; margin: 2rem"/>
+                    <Timer :startTime="startTime" :endTime="endTime" :theme="theme" style="width: 20rem; margin: 2rem"/>
                 </div>
                 <div v-if="startTime" style="margin: 1rem 2rem">Timer {{ timerEnded ? 'ended' : 'running' }}</div>
                 <div style="display: flex; flex-wrap: wrap; max-width: 95rem;">

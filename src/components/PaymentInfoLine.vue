@@ -1,13 +1,13 @@
 <template>
-    <div class="info-line">
+    <div class="info-line" :class="{ 'inverse-theme': theme === constructor.Themes.INVERSE }">
         <div class="amounts">
-            <UniversalAmount class="amount nq-light-blue"
+            <UniversalAmount class="amount"
                 :amount="cryptoAmount.amount"
                 :decimals="cryptoAmount.digits"
                 :minDecimals="0"
                 :maxDecimals="4"
                 :currency="cryptoAmount.currency"/>
-            <UniversalAmount v-if="fiatAmount" class="fiat-amount nq-blue"
+            <UniversalAmount v-if="fiatAmount" class="fiat-amount"
                 :amount="fiatAmount.amount"
                 :decimals="fiatAmount.digits"
                 :minDecimals="fiatAmount.digits"
@@ -18,7 +18,7 @@
             <ArrowRightSmallIcon/>
         </div>
         <Account :address="address" :image="shopLogoUrl" :label="originDomain" />
-        <Timer v-if="startTime && endTime" ref="timer" :startTime="startTime" :endTime="endTime" />
+        <Timer v-if="startTime && endTime" ref="timer" :startTime="startTime" :endTime="endTime" :theme="theme" />
     </div>
 </template>
 
@@ -47,18 +47,24 @@ function amountInfoValidator(value: any) {
 }
 
 @Component({components: {Account, Timer, UniversalAmount, ArrowRightSmallIcon}})
-export default class PaymentInfoLine extends Vue {
+class PaymentInfoLine extends Vue {
     private get originDomain() {
         return this.origin.split('://')[1];
     }
 
     @Prop({type: Object, validator: amountInfoValidator}) public cryptoAmount!: AmountInfo;
     @Prop({type: Object, validator: amountInfoValidator}) public fiatAmount?: AmountInfo;
-    @Prop(String) private origin!: string;
-    @Prop(String) private address?: string;
-    @Prop(String) private shopLogoUrl?: string;
-    @Prop(Number) private startTime?: number;
-    @Prop(Number) private endTime?: number;
+    @Prop(String) public origin!: string;
+    @Prop(String) public address?: string;
+    @Prop(String) public shopLogoUrl?: string;
+    @Prop(Number) public startTime?: number;
+    @Prop(Number) public endTime?: number;
+    @Prop({
+        type: String,
+        validator: (value: any) => Object.values(PaymentInfoLine.Themes).includes(value),
+        default: 'normal',
+    })
+    public theme!: string;
 
     public async setTime(time: number) {
         await this.$nextTick(); // let vue update in case the timer was just added
@@ -66,6 +72,15 @@ export default class PaymentInfoLine extends Vue {
         (this.$refs.timer as Timer).synchronize(time);
     }
 }
+
+namespace PaymentInfoLine { // tslint:disable-line no-namespace
+    export enum Themes {
+        NORMAL = 'normal',
+        INVERSE = 'inverse',
+    }
+}
+
+export default PaymentInfoLine;
 </script>
 
 <style scoped>
@@ -74,7 +89,7 @@ export default class PaymentInfoLine extends Vue {
         flex-direction: row;
         justify-content: space-between;
         box-sizing: border-box;
-        margin: 2rem 2.5rem 1rem 2.5rem;
+        margin: 1.75rem 2.5rem 1rem 2.375rem;
         flex-shrink: 0;
         font-size: 2rem;
         line-height: 1.5;
@@ -89,10 +104,17 @@ export default class PaymentInfoLine extends Vue {
     }
 
     .amount {
+        color: var(--nimiq-light-blue);
         font-weight: bold;
     }
 
+    .inverse-theme .amount {
+        color: var(--nimiq-light-blue-on-dark, var(--nimiq-light-blue));
+    }
+
     .fiat-amount {
+        margin-top: .25rem;
+        color: var(--nimiq-blue);
         font-size: 1.625rem;
         line-height: 1;
         font-weight: 600;
@@ -146,12 +168,12 @@ export default class PaymentInfoLine extends Vue {
     }
 
     .account >>> .label {
+        padding-left: .75rem;
         margin-bottom: .25rem;
         font-weight: unset;
         opacity: 1 !important;
         /* Remove gradient-fade-out and use text-overflow instead */
         mask-image: unset;
-        overflow: hidden;
         white-space: nowrap;
         text-overflow: fade;
     }
@@ -159,5 +181,11 @@ export default class PaymentInfoLine extends Vue {
     .timer {
         margin: auto -.5rem auto 1rem;
         flex-shrink: 0;
+    }
+
+    .inverse-theme .fiat-amount,
+    .inverse-theme .arrow-runway .nq-icon,
+    .inverse-theme .account >>> .label {
+        color: white;
     }
 </style>

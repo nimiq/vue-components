@@ -2,7 +2,12 @@
     <div class="timer" tabindex="0"
         @focus="detailsShown = true" @mouseenter="detailsShown = true"
         @blur="detailsShown = false" @mouseleave="detailsShown = false"
-        :class="{ 'details-shown': detailsShown, 'little-time-left': _progress >= .75 }">
+        :class="{
+            'details-shown': detailsShown,
+            'little-time-left': _progress >= .75,
+            'inverse-theme': theme === constructor.Themes.INVERSE,
+        }"
+    >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26">
             <circle ref="time-circle" class="time-circle" cx="50%" cy="50%" :r="radius.currentValue"
                     :stroke-dasharray="`${_timeCircleInfo.length} ${_timeCircleInfo.gap}`"
@@ -18,10 +23,7 @@
                     <rect x="12" y="9" width="2" height="2" rx="1" />
                     <rect x="12" y="12.5" width="2" height="4.5" rx="1" />
                 </g>
-            </transition>
-
-            <transition name="transition-fade">
-                <text v-if="detailsShown" class="countdown" x="50%" y="50%">
+                <text v-else class="countdown" x="50%" y="50%">
                     {{ _timeLeft | _toSimplifiedTime(false) }}
                 </text>
             </transition>
@@ -83,6 +85,13 @@ class Timer extends Vue {
 
     @Prop(Number)
     public endTime?: number;
+
+    @Prop({
+        type: String,
+        default: 'normal',
+        validator: (value: any) => Object.values(Timer.Themes).includes(value),
+    })
+    public theme!: string;
 
     @Prop({
         type: Number,
@@ -218,6 +227,11 @@ namespace Timer { // tslint:disable-line no-namespace
     export enum Events {
         END = 'end',
     }
+
+    export enum Themes {
+        NORMAL = 'normal',
+        INVERSE = 'inverse',
+    }
 }
 
 export default Timer;
@@ -254,6 +268,10 @@ export default Timer;
         transition: stroke .3s var(--nimiq-ease), opacity .3s var(--nimiq-ease);
     }
 
+    .inverse-theme circle {
+        stroke: white;
+    }
+
     .filler-circle {
         opacity: .2;
     }
@@ -267,6 +285,14 @@ export default Timer;
         opacity: 1;
     }
 
+    .inverse-theme.details-shown:not(.little-time-left) .time-circle {
+        stroke: var(--nimiq-light-blue-on-dark, var(--nimiq-light-blue));
+    }
+
+    .inverse-theme.details-shown .filler-circle {
+        opacity: 0;
+    }
+
     .little-time-left .time-circle {
         stroke: var(--nimiq-orange);
         opacity: 1;
@@ -277,6 +303,10 @@ export default Timer;
         opacity: .4;
         transform-origin: center;
         transition: fill .3s var(--nimiq-ease), opacity .3s var(--nimiq-ease), transform .3s var(--nimiq-ease);
+    }
+
+    .inverse-theme .info-exclamation-icon {
+        fill: white;
     }
 
     .little-time-left .info-exclamation-icon {
@@ -292,6 +322,10 @@ export default Timer;
         dominant-baseline: central;
         fill: var(--nimiq-light-blue);
         transition: fill .3s var(--nimiq-ease);
+    }
+
+    .inverse-theme .countdown {
+        fill: var(--nimiq-light-blue-on-dark, var(--nimiq-light-blue));
     }
 
     .little-time-left .countdown {
@@ -314,13 +348,21 @@ export default Timer;
         right: calc(50% - 3rem);
         width: 17rem;
         height: 8rem;
-        padding: 2.125rem 1.25rem .75rem 1.5rem;
+        padding: 2rem 1.25rem .875rem 1.5rem;
         font-size: 1.75rem;
+        line-height: 1.5;
+        font-weight: 600;
         color: white;
         z-index: 1;
         pointer-events: none;
-        background-image: url('data:image/svg+xml,<svg viewBox="0 0 136 63.9" xmlns="http://www.w3.org/2000/svg"><path d="M136 59.9a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4v-47a4 4 0 0 1 4-4h99a4 4 0 0 0 3.2-1.7l4.6-6.6c.6-.8 1.8-.8 2.4 0l4.6 6.6a4 4 0 0 0 3.3 1.7H132a4 4 0 0 1 4 4z" fill="url(%23a)"/><defs><radialGradient id="a" cx="0" cy="0" r="1" gradientTransform="matrix(-190 0 0 -64.999 136 70.9)" gradientUnits="userSpaceOnUse"><stop stop-color="%23260133" offset="0"/><stop stop-color="%231F2348" offset="1"/></radialGradient></defs></svg>');
+        background: var(--nimiq-blue-bg);
+        mask-image: url('data:image/svg+xml,<svg viewBox="0 0 136 63.9" xmlns="http://www.w3.org/2000/svg"><path d="M136 59.9a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4v-47a4 4 0 0 1 4-4h99a4 4 0 0 0 3.2-1.7l4.6-6.6c.6-.8 1.8-.8 2.4 0l4.6 6.6a4 4 0 0 0 3.3 1.7H132a4 4 0 0 1 4 4z" fill="white"/></svg>');
         transition: opacity .3s var(--nimiq-ease), transform .3s var(--nimiq-ease);
+    }
+
+    .inverse-theme .tooltip {
+        color: var(--nimiq-blue);
+        background: white;
     }
 
     .tooltip.v-enter,
