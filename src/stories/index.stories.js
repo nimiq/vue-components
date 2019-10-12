@@ -112,7 +112,7 @@ storiesOf('Basic', module)
     })
     .add('Icons', () => {
         return {
-            components: Icons,
+            components: { ...Icons },
             template: `
                 <div style="font-size: 40px; color: var(--nimiq-blue); padding: 16px;">
                     <AlertTriangleIcon/>
