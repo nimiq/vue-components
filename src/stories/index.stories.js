@@ -697,6 +697,7 @@ storiesOf('Components', module)
         };
     })
     .add('PaymentInfoLine', () => {
+        const theme = select('theme', Object.values(PaymentInfoLine.Themes), PaymentInfoLine.Themes.NORMAL);
         const cryptoAmount = {
             amount: number('cryptoAmount.amount', 199862),
             currency: text('cryptoAmount.currency', 'NIM'),
@@ -717,10 +718,11 @@ storiesOf('Components', module)
 
         return {
             components: {PaymentInfoLine},
-            data: () => ({ cryptoAmount, fiatAmount, origin, address, shopLogo, startTime, expires }),
-            template: `<div style="max-width: 420px">
+            data: () => ({ cryptoAmount, fiatAmount, origin, address, shopLogo, startTime, expires, theme }),
+            template: `<div style="max-width: 420px" :class="{ 'nq-blue-bg': theme === 'inverse' }">
                 <PaymentInfoLine :cryptoAmount="cryptoAmount" :fiatAmount="fiatAmount"
-                :origin="origin" :address="address" :shopLogoUrl="shopLogo" :startTime="startTime" :expires="expires" />
+                :origin="origin" :address="address" :shopLogoUrl="shopLogo" :startTime="startTime" :expires="expires"
+                :theme="theme"/>
             </div>`,
         };
     })

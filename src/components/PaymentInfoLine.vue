@@ -1,14 +1,14 @@
 <template>
-    <div class="info-line">
+    <div class="info-line" :class="{ 'inverse-theme': theme === constructor.Themes.INVERSE }">
         <div class="amounts">
-            <Amount class="nq-light-blue"
+            <Amount
                 :currency="cryptoAmount.currency"
                 :amount="cryptoAmount.amount"
                 :totalDecimals="cryptoAmount.decimals"
                 :minDecimals="0"
                 :maxDecimals="Math.min(4, cryptoAmount.decimals)"
             />
-            <Amount v-if="fiatAmount" class="fiat-amount nq-blue"
+            <Amount v-if="fiatAmount" class="fiat-amount"
                 :currency="fiatAmount.currency"
                 :amount="fiatAmount.amount"
                 :totalDecimals="fiatAmount.decimals"
@@ -19,7 +19,7 @@
             <ArrowRightSmallIcon/>
         </div>
         <Account :address="address" :image="shopLogoUrl" :label="originDomain" />
-        <Timer v-if="startTime && endTime" ref="timer" :startTime="startTime" :endTime="endTime" />
+        <Timer v-if="startTime && endTime" ref="timer" :startTime="startTime" :endTime="endTime" :theme="theme" />
     </div>
 </template>
 
@@ -48,7 +48,7 @@ function amountInfoValidator(value: any) {
 }
 
 @Component({components: {Account, Timer, Amount, ArrowRightSmallIcon}})
-export default class PaymentInfoLine extends Vue {
+class PaymentInfoLine extends Vue {
     private get originDomain() {
         return this.origin.split('://')[1];
     }
@@ -60,6 +60,12 @@ export default class PaymentInfoLine extends Vue {
     @Prop(String) public shopLogoUrl?: string;
     @Prop(Number) public startTime?: number;
     @Prop(Number) public endTime?: number;
+    @Prop({
+        type: String,
+        validator: (value: any) => Object.values(PaymentInfoLine.Themes).includes(value),
+        default: 'normal',
+    })
+    public theme!: string;
 
     public async setTime(time: number) {
         await this.$nextTick(); // let vue update in case the timer was just added
@@ -67,6 +73,15 @@ export default class PaymentInfoLine extends Vue {
         (this.$refs.timer as Timer).synchronize(time);
     }
 }
+
+namespace PaymentInfoLine { // tslint:disable-line no-namespace
+    export enum Themes {
+        NORMAL = 'normal',
+        INVERSE = 'inverse',
+    }
+}
+
+export default PaymentInfoLine;
 </script>
 
 <style scoped>
@@ -90,11 +105,17 @@ export default class PaymentInfoLine extends Vue {
     }
 
     .amount {
+        color: var(--nimiq-light-blue);
         font-weight: bold;
+    }
+
+    .inverse-theme .amount {
+        color: var(--nimiq-light-blue-on-dark, var(--nimiq-light-blue));
     }
 
     .fiat-amount {
         margin-top: .25rem;
+        color: var(--nimiq-blue);
         font-size: 1.625rem;
         line-height: 1;
         font-weight: 600;
@@ -153,5 +174,11 @@ export default class PaymentInfoLine extends Vue {
     .timer {
         margin: auto -.5rem auto 1rem;
         flex-shrink: 0;
+    }
+
+    .inverse-theme .fiat-amount,
+    .inverse-theme .arrow-runway .nq-icon,
+    .inverse-theme .account >>> .label {
+        color: white;
     }
 </style>
