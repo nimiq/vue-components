@@ -860,13 +860,14 @@ storiesOf('Components', module)
             startTime: 0,
             endTime: 0,
             timerEnded: false,
+            theme: select('theme', Object.values(Timer.Themes), Timer.Themes.NORMAL),
         }),
         template: `
             <div>
-                <div style="display: flex; align-items: center;">
-                    <Timer :startTime="startTime" :endTime="endTime" @end="timerEnded = true" style="margin: 2rem"/>
-                    <Timer :startTime="startTime" :endTime="endTime" style="width: 10rem; margin: 2rem"/>
-                    <Timer :startTime="startTime" :endTime="endTime" style="width: 20rem; margin: 2rem"/>
+                <div :class="{ 'nq-blue-bg': theme === 'inverse' }" style="display: flex; align-items: center; padding: 7rem 3rem 10rem 12rem">
+                    <Timer :startTime="startTime" :endTime="endTime" :theme="theme" @end="timerEnded = true" style="margin: 2rem"/>
+                    <Timer :startTime="startTime" :endTime="endTime" :theme="theme" style="width: 10rem; margin: 2rem"/>
+                    <Timer :startTime="startTime" :endTime="endTime" :theme="theme" style="width: 20rem; margin: 2rem"/>
                 </div>
                 <div v-if="startTime" style="margin: 1rem 2rem">Timer {{ timerEnded ? 'ended' : 'running' }}</div>
                 <div style="display: flex; flex-wrap: wrap; max-width: 95rem;">
