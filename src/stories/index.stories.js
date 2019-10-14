@@ -39,7 +39,6 @@ import Tooltip from '../components/Tooltip.vue';
 import PageHeader from '../components/PageHeader.vue';
 import PageBody from '../components/PageBody.vue';
 import PageFooter from '../components/PageFooter.vue';
-import UniversalAmount from '../components/UniversalAmount.vue';
 import LoadingSpinner from '../components/LoadingSpinner.vue';
 import MigrationWelcome from '../components/MigrationWelcome.vue';
 import * as Icons from '../components/Icons';
@@ -55,18 +54,30 @@ function windowTemplate(slot) {
 storiesOf('Basic', module)
     .addDecorator(withKnobs)
     .add('Amount', () => {
-        const amount = number('amount', 6.54321) * 1e5;
-        const minDecimals = number('minDecimals', 2);
-        const maxDecimals = number('maxDecimals', 5);
+        const amount = number('amount (smallest unit)', 654321);
+
+        let minDecimals = parseInt(text('minDecimals', '2'));
+        if (Number.isNaN(minDecimals)) minDecimals = undefined;
+
+        let maxDecimals = parseInt(text('maxDecimals', '5'));
+        if (Number.isNaN(maxDecimals)) maxDecimals = undefined;
+
         let decimals = parseFloat(text('decimals', ''));
         if (Number.isNaN(decimals)) decimals = undefined;
+
+        let currencyDecimalCount = parseInt(text('Currency decimal count', ''));
+        if (Number.isNaN(currencyDecimalCount)) currencyDecimalCount = undefined;
+
+        let currency = text('Currency', '');
+        if (currency === '') currency = undefined;
+
         const showApprox = boolean('showApprox', false);
 
         return {
             components: {Amount},
-            data: () => ({ amount, minDecimals, maxDecimals, decimals, showApprox }),
+            data: () => ({ amount, minDecimals, maxDecimals, decimals, currency, currencyDecimalCount, showApprox }),
             template: `<Amount :amount="amount" :minDecimals="minDecimals" :maxDecimals="maxDecimals"
-                :decimals="decimals" :showApprox="showApprox" />`,
+                :decimals="decimals" :showApprox="showApprox" :currency="currency" :totalDecimals="currencyDecimalCount" />`,
         };
     })
     .add('AmountInput', () => {
@@ -93,23 +104,6 @@ storiesOf('Basic', module)
             components: {FiatAmount},
             data: () => ({ amount, currency, locale }),
             template: `<FiatAmount :amount="amount" :currency="currency" :locale="locale" />`,
-        };
-    })
-    .add('UniversalAmount', () => {
-        const amount = number('amount', 654621);
-        const bigIntAmount = bigInt(text('bigIntAmount', ''));
-        const minDecimals = number('minDecimals', 1);
-        const maxDecimals = number('maxDecimals', 2);
-        let decimals = number('decimals', 5);
-        const currency = text('Currency', 'nim');
-        if (Number.isNaN(decimals)) decimals = undefined;
-        const showApprox = boolean('showApprox', false);
-
-        return {
-            components: {UniversalAmount},
-            data: () => ({ currency, amount, bigIntAmount, minDecimals, maxDecimals, decimals, showApprox, bigInt }),
-            template: `<UniversalAmount :currency="currency" :amount="bigIntAmount.isZero() ? amount : bigIntAmount" :minDecimals="minDecimals" :maxDecimals="maxDecimals"
-                :decimals="decimals" :showApprox="showApprox" />`,
         };
     })
     .add('Icons', () => {
