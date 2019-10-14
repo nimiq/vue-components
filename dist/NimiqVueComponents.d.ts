@@ -130,13 +130,17 @@ declare module 'NimiqVueComponents/src/components/AddressInput.vue' {
 
 declare module 'NimiqVueComponents/src/components/Amount.vue' {
     import { Vue } from 'vue-property-decorator';
+    type BigInteger = import('big-integer').BigInteger;
     export default class Amount extends Vue {
-        amount: number;
+        amount: number | BigInteger;
         decimals?: number;
         minDecimals: number;
         maxDecimals: number;
+        totalDecimals: number;
         showApprox: boolean;
+        currency: string;
     }
+    export {};
 }
 
 declare module 'NimiqVueComponents/src/components/AmountInput.vue' {

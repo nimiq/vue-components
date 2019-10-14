@@ -280,13 +280,6 @@ $export($export.S, 'Math', { sign: __webpack_require__("96fb") });
 
 /***/ }),
 
-/***/ "0ba8":
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-
 /***/ "0bfb":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1455,17 +1448,6 @@ module.exports = function (Constructor, NAME, next) {
 
 /***/ }),
 
-/***/ "4329":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentInfoLine_vue_vue_type_style_index_0_id_4f183a6a_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("767f");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentInfoLine_vue_vue_type_style_index_0_id_4f183a6a_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentInfoLine_vue_vue_type_style_index_0_id_4f183a6a_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
- /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentInfoLine_vue_vue_type_style_index_0_id_4f183a6a_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
 /***/ "44b8":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1532,17 +1514,6 @@ module.exports = function (bitmap, value) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "qr-scanner-worker.min.js";
-
-/***/ }),
-
-/***/ "483a":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Amount_vue_vue_type_style_index_0_id_6fea4aa4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("0ba8");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Amount_vue_vue_type_style_index_0_id_6fea4aa4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Amount_vue_vue_type_style_index_0_id_6fea4aa4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
- /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Amount_vue_vue_type_style_index_0_id_6fea4aa4_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -2117,17 +2088,6 @@ module.exports = function (that, target, C) {
     setPrototypeOf(that, P);
   } return that;
 };
-
-
-/***/ }),
-
-/***/ "5df2":
-/***/ (function(module, exports, __webpack_require__) {
-
-var $export = __webpack_require__("5ca1");
-var $parseFloat = __webpack_require__("d752");
-// 20.1.2.12 Number.parseFloat(string)
-$export($export.S + $export.F * (Number.parseFloat != $parseFloat), 'Number', { parseFloat: $parseFloat });
 
 
 /***/ }),
@@ -3955,13 +3915,6 @@ __webpack_require__("9c6c")(KEY);
 
 /***/ }),
 
-/***/ "767f":
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-
 /***/ "7726":
 /***/ (function(module, exports) {
 
@@ -4198,6 +4151,13 @@ module.exports = function () {
 var core = module.exports = { version: '2.5.7' };
 if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 
+
+/***/ }),
+
+/***/ "84c8":
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
 
 /***/ }),
 
@@ -6571,6 +6531,17 @@ module.exports = !__webpack_require__("9e1e") && !__webpack_require__("79e5")(fu
 
 /***/ }),
 
+/***/ "c924":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Amount_vue_vue_type_style_index_0_id_2c3562fe_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("84c8");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Amount_vue_vue_type_style_index_0_id_2c3562fe_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Amount_vue_vue_type_style_index_0_id_2c3562fe_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+ /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Amount_vue_vue_type_style_index_0_id_2c3562fe_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
 /***/ "c999":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6717,6 +6688,17 @@ module.exports = function (object, names) {
 
 /***/ }),
 
+/***/ "d071":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentInfoLine_vue_vue_type_style_index_0_id_0f29cc2f_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("feed");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentInfoLine_vue_vue_type_style_index_0_id_0f29cc2f_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentInfoLine_vue_vue_type_style_index_0_id_0f29cc2f_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+ /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentInfoLine_vue_vue_type_style_index_0_id_0f29cc2f_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
 /***/ "d2c8":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6770,21 +6752,6 @@ module.exports = function (it) {
 module.exports = function (done, value) {
   return { value: value, done: !!done };
 };
-
-
-/***/ }),
-
-/***/ "d752":
-/***/ (function(module, exports, __webpack_require__) {
-
-var $parseFloat = __webpack_require__("7726").parseFloat;
-var $trim = __webpack_require__("aa77").trim;
-
-module.exports = 1 / $parseFloat(__webpack_require__("fdef") + '-0') !== -Infinity ? function parseFloat(str) {
-  var string = $trim(String(str), 3);
-  var result = $parseFloat(string);
-  return result === 0 && string.charAt(0) == '-' ? -0 : result;
-} : $parseFloat;
 
 
 /***/ }),
@@ -8588,19 +8555,234 @@ var component = normalizeComponent(
 
 component.options.__file = "Identicon.vue"
 /* harmony default export */ var components_Identicon = (component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"46064dad-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Amount.vue?vue&type=template&id=6fea4aa4&scoped=true&
-var Amountvue_type_template_id_6fea4aa4_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"amount",class:{ approx: _vm.showApprox && _vm.isApprox }},[_vm._v("\n    "+_vm._s(_vm.formattedAmount)+"\n    "),_c('span',{staticClass:"nim"},[_vm._v("NIM")])])}
-var Amountvue_type_template_id_6fea4aa4_scoped_true_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"46064dad-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Amount.vue?vue&type=template&id=2c3562fe&scoped=true&
+var Amountvue_type_template_id_2c3562fe_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"amount",class:{ approx: _vm.showApprox && _vm.isApprox }},[_vm._v("\n    "+_vm._s(_vm.formattedAmount)+"\n    "),_c('span',{staticClass:"currency",class:_vm.currency},[_vm._v(_vm._s(_vm.currency))])])}
+var Amountvue_type_template_id_2c3562fe_scoped_true_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Amount.vue?vue&type=template&id=6fea4aa4&scoped=true&
+// CONCATENATED MODULE: ./src/components/Amount.vue?vue&type=template&id=2c3562fe&scoped=true&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.number.is-integer.js
 var es6_number_is_integer = __webpack_require__("7cdf");
 
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.number.parse-float.js
-var es6_number_parse_float = __webpack_require__("5df2");
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es7.string.pad-start.js
+var es7_string_pad_start = __webpack_require__("f576");
 
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es7.string.pad-end.js
+var es7_string_pad_end = __webpack_require__("ed50");
+
+// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/builtin/es6/arrayWithHoles.js
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/builtin/es6/iterableToArrayLimit.js
+function _iterableToArrayLimit(arr, i) {
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/builtin/es6/nonIterableRest.js
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance");
+}
+// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/builtin/es6/slicedToArray.js
+
+
+
+function _slicedToArray(arr, i) {
+  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest();
+}
+// CONCATENATED MODULE: ../nimiq.github.io/libraries/nimiq-utils/dist/module/NumberFormattingUtils.js
+
+
+
+
+
+
+
+var NUMBER_REGEX = /^(-?)(\d*)\.?(\d*)(e(-?\d+))?$/;
+
+function toNonScientificNumberString(value) {
+  if (typeof value === 'string') {
+    var numberMatch = value.match(NUMBER_REGEX);
+    if (!numberMatch) throw new Error("".concat(value, " is not a valid number"));
+
+    var _numberMatch = _slicedToArray(numberMatch, 6),
+        sign = _numberMatch[1],
+        integerPart = _numberMatch[2],
+        decimalPart = _numberMatch[3],
+        moveCommaBy = _numberMatch[5]; // manual disassembly to avoid recursion
+
+
+    if (!integerPart && !decimalPart) throw new Error("".concat(value, " is not a valid number"));
+    value = _assembleNumber(sign, integerPart, decimalPart); // normalizes and trims the number
+
+    if (moveCommaBy) {
+      // remove scientific notation
+      return moveComma(value, parseInt(moveCommaBy));
+    } else {
+      return value;
+    }
+  }
+
+  var valueString = '';
+
+  if (typeof value === 'number' || typeof value === 'bigint') {
+    // Use toLocalString to render a string without scientific notation. Note that 20 is the maximum allowed number
+    // of fraction digits.
+    valueString = value.toLocaleString('en-US', {
+      useGrouping: false,
+      maximumFractionDigits: 20
+    });
+  }
+
+  if (typeof value !== 'number' && !/^\d+$/.test(valueString)) {
+    // Non-native BigInteger or incomplete bigint toLocaleString support (e.g. Chrome 67-75, Firefox 68-?) which
+    // potentially let to a rendering that is not a plain number. Fallback to toString, which seems to be generating
+    // strings without scientific notation although there is no guarantee.
+    valueString = value.toString();
+  }
+
+  return valueString;
+}
+
+function formatNumber(value, maxDecimals, minDecimals) {
+  var groupSeparator = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : "\u202F";
+
+  if (maxDecimals !== undefined && minDecimals !== undefined) {
+    minDecimals = Math.min(minDecimals, maxDecimals);
+  }
+
+  if (maxDecimals !== undefined) {
+    value = round(value, maxDecimals);
+  }
+
+  var _disassembleNumber2 = _disassembleNumber(value),
+      sign = _disassembleNumber2.sign,
+      integerPart = _disassembleNumber2.integerPart,
+      decimalPart = _disassembleNumber2.decimalPart;
+
+  if (minDecimals !== undefined) {
+    decimalPart = decimalPart.padEnd(minDecimals, '0');
+  } // Apply grouping for values with more than 4 integer digits.
+
+
+  if (integerPart.length > 4) {
+    integerPart = integerPart.replace(/(\d)(?=(\d{3})+$)/g, "$1".concat(groupSeparator));
+  }
+
+  return _assembleNumber(sign, integerPart, decimalPart, false);
+} // moves comma and returns a string without precision loss
+
+
+function moveComma(value, moveBy) {
+  var _disassembleNumber3 = _disassembleNumber(value),
+      sign = _disassembleNumber3.sign,
+      integerPart = _disassembleNumber3.integerPart,
+      dotPosition = _disassembleNumber3.dotPosition,
+      decimalPart = _disassembleNumber3.decimalPart;
+
+  var digits = "".concat(integerPart).concat(decimalPart);
+  var newDotPosition = dotPosition + moveBy;
+
+  if (newDotPosition > digits.length) {
+    digits = digits.padEnd(newDotPosition, '0');
+  } else if (newDotPosition < 0) {
+    digits = digits.padStart(digits.length - newDotPosition, '0');
+    newDotPosition = 0;
+  }
+
+  var newIntegerPart = digits.substring(0, newDotPosition);
+  var newDecimalPart = digits.substring(newDotPosition);
+  return _assembleNumber(sign, newIntegerPart, newDecimalPart);
+}
+
+function round(value, decimals) {
+  var _disassembleNumber4 = _disassembleNumber(value),
+      sign = _disassembleNumber4.sign,
+      integerPart = _disassembleNumber4.integerPart,
+      dotPosition = _disassembleNumber4.dotPosition,
+      decimalPart = _disassembleNumber4.decimalPart;
+
+  var decimalsToKeep = decimalPart.substring(0, decimals);
+  var decimalsToRemove = decimalPart.substring(decimals);
+
+  if (!decimalsToRemove || parseInt(decimalsToRemove[0]) < 5) {
+    // rounding down, can just use the trimmed decimals
+    return _assembleNumber(sign, integerPart, decimalsToKeep);
+  } // round up
+
+
+  var digits = "0".concat(integerPart).concat(decimalsToKeep).split(''); // add a leading 0 for easier handling of carry
+
+  var newDotPosition = dotPosition + 1; // account for added leading 0
+
+  for (var i = digits.length - 1; i >= 0; --i) {
+    var newDigit = parseInt(digits[i]) + 1;
+
+    if (newDigit < 10) {
+      digits[i] = newDigit.toString();
+      break; // no carry over, break
+    } else {
+      digits[i] = '0'; // continue loop to handle carry over
+    }
+  }
+
+  var newIntegerPart = digits.slice(0, newDotPosition).join('');
+  var newDecimalPart = digits.slice(newDotPosition).join('');
+  return _assembleNumber(sign, newIntegerPart, newDecimalPart); // trims the leading 0 if it was not necessary
+}
+
+function _disassembleNumber(value) {
+  value = toNonScientificNumberString(value);
+
+  var _value$match = value.match(NUMBER_REGEX),
+      _value$match2 = _slicedToArray(_value$match, 4),
+      sign = _value$match2[1],
+      integerPart = _value$match2[2],
+      decimalPart = _value$match2[3];
+
+  return {
+    sign: sign,
+    integerPart: integerPart,
+    dotPosition: integerPart.length,
+    decimalPart: decimalPart
+  };
+}
+
+function _assembleNumber(sign, integerPart, decimalPart) {
+  var trim = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
+
+  if (trim) {
+    integerPart = integerPart.replace(/^0+/, ''); // trim leading zeros
+
+    decimalPart = decimalPart.replace(/0+$/, ''); // trim trailing zeros
+  }
+
+  return "".concat(sign).concat(integerPart || '0').concat(decimalPart ? ".".concat(decimalPart) : '');
+}
+
+ //# sourceMappingURL=NumberFormattingUtils.js.map
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--13-1!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Amount.vue?vue&type=script&lang=ts&
 
 
@@ -8613,10 +8795,7 @@ var es6_number_parse_float = __webpack_require__("5df2");
 
 
 
-var Amount_1;
-
-
-var Amountvue_type_script_lang_ts_Amount = Amount_1 =
+var Amountvue_type_script_lang_ts_Amount =
 /*#__PURE__*/
 function (_Vue) {
   function Amount() {
@@ -8626,6 +8805,13 @@ function (_Vue) {
   }
 
   _createClass(Amount, [{
+    key: "_validateDecimals",
+    value: function _validateDecimals(decimals) {
+      if (decimals !== undefined && (decimals < 0 || decimals > this.totalDecimals || !Number.isInteger(decimals))) {
+        throw new Error('Amount: decimals is not in range');
+      }
+    }
+  }, {
     key: "formattedAmount",
     get: function get() {
       var minDecimals;
@@ -8638,24 +8824,14 @@ function (_Vue) {
         maxDecimals = this.maxDecimals;
       }
 
-      var roundingFactor = Math.pow(10, maxDecimals);
-      var value = Math.floor(this.amount / 1e5 * roundingFactor) / roundingFactor;
-      var result = parseFloat(value.toFixed(minDecimals)) === value ? value.toFixed(minDecimals) : value.toString();
-      if (Math.abs(value) < 10000) return result; // add thin spaces (U+202F) every 3 digits. Stop at the decimal separator if there is one
-
-      var regexp = minDecimals > 0 ? /(\d)(?=(\d{3})+\.)/g : /(\d)(?=(\d{3})+$)/g;
-      return result.replace(regexp, "$1\u202F");
+      var amount = moveComma(this.amount, -this.totalDecimals);
+      return formatNumber(amount, maxDecimals, minDecimals);
     }
   }, {
     key: "isApprox",
     get: function get() {
-      var roundedNum = Number.parseFloat((this.amount / 1e5).toFixed(this.decimals));
-      return roundedNum.toFixed(5) !== (this.amount / 1e5).toFixed(5);
-    }
-  }], [{
-    key: "_validateDecimals",
-    value: function _validateDecimals(decimals) {
-      return decimals >= 0 && decimals <= 5 && Number.isInteger(decimals);
+      var converted = moveComma(this.amount, -this.totalDecimals);
+      return converted !== round(converted, this.decimals !== undefined ? this.decimals : this.maxDecimals);
     }
   }]);
 
@@ -8664,36 +8840,51 @@ function (_Vue) {
   return Amount;
 }(external_vue_property_decorator_["Vue"]);
 
-__decorate([Object(external_vue_property_decorator_["Prop"])(Number)], Amountvue_type_script_lang_ts_Amount.prototype, "amount", void 0);
+__decorate([Object(external_vue_property_decorator_["Prop"])({
+  type: [Number, Object]
+})], Amountvue_type_script_lang_ts_Amount.prototype, "amount", void 0);
+
+__decorate([Object(external_vue_property_decorator_["Prop"])(Number)], Amountvue_type_script_lang_ts_Amount.prototype, "decimals", void 0);
 
 __decorate([Object(external_vue_property_decorator_["Prop"])({
   type: Number,
-  validator: Amount_1._validateDecimals
-})], Amountvue_type_script_lang_ts_Amount.prototype, "decimals", void 0);
-
-__decorate([Object(external_vue_property_decorator_["Prop"])({
-  type: Number,
-  default: 2,
-  validator: Amount_1._validateDecimals
+  default: 2
 })], Amountvue_type_script_lang_ts_Amount.prototype, "minDecimals", void 0);
 
 __decorate([Object(external_vue_property_decorator_["Prop"])({
   type: Number,
-  default: 5,
-  validator: Amount_1._validateDecimals
+  default: 5
 })], Amountvue_type_script_lang_ts_Amount.prototype, "maxDecimals", void 0);
+
+__decorate([Object(external_vue_property_decorator_["Prop"])({
+  type: Number,
+  default: 5
+})], Amountvue_type_script_lang_ts_Amount.prototype, "totalDecimals", void 0);
 
 __decorate([Object(external_vue_property_decorator_["Prop"])({
   type: Boolean,
   default: false
 })], Amountvue_type_script_lang_ts_Amount.prototype, "showApprox", void 0);
 
-Amountvue_type_script_lang_ts_Amount = Amount_1 = __decorate([external_vue_property_decorator_["Component"]], Amountvue_type_script_lang_ts_Amount);
+__decorate([Object(external_vue_property_decorator_["Prop"])({
+  type: String,
+  default: 'nim'
+})], Amountvue_type_script_lang_ts_Amount.prototype, "currency", void 0);
+
+__decorate([Object(external_vue_property_decorator_["Watch"])('minDecimals', {
+  immediate: true
+}), Object(external_vue_property_decorator_["Watch"])('maxDecimals', {
+  immediate: true
+}), Object(external_vue_property_decorator_["Watch"])('decimals', {
+  immediate: true
+})], Amountvue_type_script_lang_ts_Amount.prototype, "_validateDecimals", null);
+
+Amountvue_type_script_lang_ts_Amount = __decorate([external_vue_property_decorator_["Component"]], Amountvue_type_script_lang_ts_Amount);
 /* harmony default export */ var Amountvue_type_script_lang_ts_ = (Amountvue_type_script_lang_ts_Amount);
 // CONCATENATED MODULE: ./src/components/Amount.vue?vue&type=script&lang=ts&
  /* harmony default export */ var components_Amountvue_type_script_lang_ts_ = (Amountvue_type_script_lang_ts_); 
-// EXTERNAL MODULE: ./src/components/Amount.vue?vue&type=style&index=0&id=6fea4aa4&scoped=true&lang=css&
-var Amountvue_type_style_index_0_id_6fea4aa4_scoped_true_lang_css_ = __webpack_require__("483a");
+// EXTERNAL MODULE: ./src/components/Amount.vue?vue&type=style&index=0&id=2c3562fe&scoped=true&lang=css&
+var Amountvue_type_style_index_0_id_2c3562fe_scoped_true_lang_css_ = __webpack_require__("c924");
 
 // CONCATENATED MODULE: ./src/components/Amount.vue
 
@@ -8706,11 +8897,11 @@ var Amountvue_type_style_index_0_id_6fea4aa4_scoped_true_lang_css_ = __webpack_r
 
 var Amount_component = normalizeComponent(
   components_Amountvue_type_script_lang_ts_,
-  Amountvue_type_template_id_6fea4aa4_scoped_true_render,
-  Amountvue_type_template_id_6fea4aa4_scoped_true_staticRenderFns,
+  Amountvue_type_template_id_2c3562fe_scoped_true_render,
+  Amountvue_type_template_id_2c3562fe_scoped_true_staticRenderFns,
   false,
   null,
-  "6fea4aa4",
+  "2c3562fe",
   null
   
 )
@@ -11306,9 +11497,6 @@ var AmountInputvue_type_template_id_32b6c97e_scoped_true_staticRenderFns = []
 
 // CONCATENATED MODULE: ./src/components/AmountInput.vue?vue&type=template&id=32b6c97e&scoped=true&
 
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es7.string.pad-end.js
-var es7_string_pad_end = __webpack_require__("ed50");
-
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--13-1!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/AmountInput.vue?vue&type=script&lang=ts&
 
 
@@ -12701,47 +12889,6 @@ var Carouselvue_type_template_id_63b0ea62_scoped_true_staticRenderFns = []
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.math.sign.js
 var es6_math_sign = __webpack_require__("0b21");
 
-// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/builtin/es6/arrayWithHoles.js
-function _arrayWithHoles(arr) {
-  if (Array.isArray(arr)) return arr;
-}
-// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/builtin/es6/iterableToArrayLimit.js
-function _iterableToArrayLimit(arr, i) {
-  var _arr = [];
-  var _n = true;
-  var _d = false;
-  var _e = undefined;
-
-  try {
-    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
-      _arr.push(_s.value);
-
-      if (i && _arr.length === i) break;
-    }
-  } catch (err) {
-    _d = true;
-    _e = err;
-  } finally {
-    try {
-      if (!_n && _i["return"] != null) _i["return"]();
-    } finally {
-      if (_d) throw _e;
-    }
-  }
-
-  return _arr;
-}
-// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/builtin/es6/nonIterableRest.js
-function _nonIterableRest() {
-  throw new TypeError("Invalid attempt to destructure non-iterable instance");
-}
-// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/builtin/es6/slicedToArray.js
-
-
-
-function _slicedToArray(arr, i) {
-  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest();
-}
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.map.js
 var es6_map = __webpack_require__("f400");
 
@@ -13633,12 +13780,12 @@ var PageHeader_component = normalizeComponent(
 
 PageHeader_component.options.__file = "PageHeader.vue"
 /* harmony default export */ var components_PageHeader = (PageHeader_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"46064dad-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/PaymentInfoLine.vue?vue&type=template&id=4f183a6a&scoped=true&
-var PaymentInfoLinevue_type_template_id_4f183a6a_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"info-line",class:{ 'inverse-theme': _vm.theme === _vm.constructor.Themes.INVERSE }},[_c('div',{staticClass:"amounts"},[_c('UniversalAmount',{staticClass:"amount",attrs:{"amount":_vm.cryptoAmount.amount,"decimals":_vm.cryptoAmount.digits,"minDecimals":0,"maxDecimals":4,"currency":_vm.cryptoAmount.currency}}),(_vm.fiatAmount)?_c('UniversalAmount',{staticClass:"fiat-amount",attrs:{"amount":_vm.fiatAmount.amount,"decimals":_vm.fiatAmount.digits,"minDecimals":_vm.fiatAmount.digits,"maxDecimals":_vm.fiatAmount.digits,"currency":_vm.fiatAmount.currency}}):_vm._e()],1),_c('div',{staticClass:"arrow-runway"},[_c('ArrowRightSmallIcon')],1),_c('Account',{attrs:{"address":_vm.address,"image":_vm.shopLogoUrl,"label":_vm.originDomain}}),(_vm.startTime && _vm.endTime)?_c('Timer',{ref:"timer",attrs:{"startTime":_vm.startTime,"endTime":_vm.endTime,"theme":_vm.theme}}):_vm._e()],1)}
-var PaymentInfoLinevue_type_template_id_4f183a6a_scoped_true_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"46064dad-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/PaymentInfoLine.vue?vue&type=template&id=0f29cc2f&scoped=true&
+var PaymentInfoLinevue_type_template_id_0f29cc2f_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"info-line",class:{ 'inverse-theme': _vm.theme === _vm.constructor.Themes.INVERSE }},[_c('div',{staticClass:"amounts"},[_c('Amount',{attrs:{"currency":_vm.cryptoAmount.currency,"amount":_vm.cryptoAmount.amount,"totalDecimals":_vm.cryptoAmount.digits,"minDecimals":0,"maxDecimals":Math.min(4, _vm.cryptoAmount.digits)}}),(_vm.fiatAmount)?_c('Amount',{staticClass:"fiat-amount",attrs:{"currency":_vm.fiatAmount.currency,"amount":_vm.fiatAmount.amount,"totalDecimals":_vm.fiatAmount.digits,"decimals":_vm.fiatAmount.digits}}):_vm._e()],1),_c('div',{staticClass:"arrow-runway"},[_c('ArrowRightSmallIcon')],1),_c('Account',{attrs:{"address":_vm.address,"image":_vm.shopLogoUrl,"label":_vm.originDomain}}),(_vm.startTime && _vm.endTime)?_c('Timer',{ref:"timer",attrs:{"startTime":_vm.startTime,"endTime":_vm.endTime,"theme":_vm.theme}}):_vm._e()],1)}
+var PaymentInfoLinevue_type_template_id_0f29cc2f_scoped_true_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/PaymentInfoLine.vue?vue&type=template&id=4f183a6a&scoped=true&
+// CONCATENATED MODULE: ./src/components/PaymentInfoLine.vue?vue&type=template&id=0f29cc2f&scoped=true&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es7.object.values.js
 var es7_object_values = __webpack_require__("8615");
@@ -14032,146 +14179,6 @@ var Timer_component = normalizeComponent(
 
 Timer_component.options.__file = "Timer.vue"
 /* harmony default export */ var components_Timer = (Timer_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"46064dad-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/UniversalAmount.vue?vue&type=template&id=97065cf8&scoped=true&
-var UniversalAmountvue_type_template_id_97065cf8_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"amount",class:{ approx: _vm.showApprox && _vm.isApprox }},[_vm._v("\n    "+_vm._s(_vm.formattedAmount)+"\n    "),_c('span',{staticClass:"currency",class:_vm.currency},[_vm._v(_vm._s(_vm.currency))])])}
-var UniversalAmountvue_type_template_id_97065cf8_scoped_true_staticRenderFns = []
-
-
-// CONCATENATED MODULE: ./src/components/UniversalAmount.vue?vue&type=template&id=97065cf8&scoped=true&
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es7.string.pad-start.js
-var es7_string_pad_start = __webpack_require__("f576");
-
-// EXTERNAL MODULE: ./node_modules/big-integer/BigInteger.js
-var BigInteger = __webpack_require__("7409");
-var BigInteger_default = /*#__PURE__*/__webpack_require__.n(BigInteger);
-
-// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--13-1!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/UniversalAmount.vue?vue&type=script&lang=ts&
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var UniversalAmountvue_type_script_lang_ts_UniversalAmount =
-/*#__PURE__*/
-function (_Vue) {
-  function UniversalAmount() {
-    var _this;
-
-    _classCallCheck(this, UniversalAmount);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(UniversalAmount).apply(this, arguments));
-    _this.isApprox = false;
-    return _this;
-  }
-
-  _createClass(UniversalAmount, [{
-    key: "formattedAmount",
-    get: function get() {
-      var result;
-
-      if (typeof this.amount === 'number') {
-        var value = Math.round(this.amount * Math.pow(10, this.maxDecimals) / Math.pow(10, this.decimals)) / Math.pow(10, this.maxDecimals);
-        result = parseFloat(value.toFixed(this.minDecimals)) === value ? value.toFixed(this.minDecimals) : value.toString();
-        this.isApprox = (this.amount / Math.pow(10, this.decimals)).toFixed(this.decimals) !== value.toFixed(this.decimals);
-        if (Math.abs(value) < Math.pow(10, this.decimals)) return result;
-      } else {
-        // typeof this.amount === bigInt.BigInteger
-        var powerOfTen = function powerOfTen(n) {
-          return BigInteger_default()(10).pow(BigInteger_default()(n));
-        };
-
-        var divisionResult = BigInteger_default()(this.amount).times(powerOfTen(this.maxDecimals)).divmod(powerOfTen(this.decimals));
-        var remainder = divisionResult.remainder.divide(powerOfTen(this.maxDecimals));
-        this.isApprox = !remainder.isZero();
-
-        var _value = divisionResult.quotient.add( // quotiont + potential carry
-        this.maxDecimals !== this.decimals ? remainder.greaterOrEquals(powerOfTen(this.decimals - this.maxDecimals).divide(BigInteger_default()(2))) ? BigInteger_default()(1) : BigInteger_default()(0) : BigInteger_default()(0));
-
-        divisionResult = _value.divmod(powerOfTen(this.maxDecimals));
-        var decimals = "".concat(divisionResult.remainder.toString().padStart(this.maxDecimals, '0').match(/^(\d*?[1-9]?)0*?$/)[1]).padEnd(this.minDecimals, '0');
-        result = "".concat(divisionResult.quotient.toString()).concat(decimals.length > 0 ? '.' + decimals : '');
-      } // add thin spaces (U+202F) every 3 digits. Stop at the decimal separator if there is one
-
-
-      var regexp = this.minDecimals > 0 ? /(\d)(?=(\d{3})+\.)/g : /(\d)(?=(\d{3})+$)/g;
-      return result.replace(regexp, "$1\u202F");
-    }
-  }]);
-
-  _inherits(UniversalAmount, _Vue);
-
-  return UniversalAmount;
-}(external_vue_property_decorator_["Vue"]);
-
-__decorate([Object(external_vue_property_decorator_["Prop"])({
-  type: [Number, Object]
-})], UniversalAmountvue_type_script_lang_ts_UniversalAmount.prototype, "amount", void 0);
-
-__decorate([Object(external_vue_property_decorator_["Prop"])({
-  type: Number,
-  default: 5
-})], UniversalAmountvue_type_script_lang_ts_UniversalAmount.prototype, "decimals", void 0);
-
-__decorate([Object(external_vue_property_decorator_["Prop"])({
-  type: Number,
-  default: 2
-})], UniversalAmountvue_type_script_lang_ts_UniversalAmount.prototype, "minDecimals", void 0);
-
-__decorate([Object(external_vue_property_decorator_["Prop"])({
-  type: Number,
-  default: 5
-})], UniversalAmountvue_type_script_lang_ts_UniversalAmount.prototype, "maxDecimals", void 0);
-
-__decorate([Object(external_vue_property_decorator_["Prop"])({
-  type: Boolean,
-  default: false
-})], UniversalAmountvue_type_script_lang_ts_UniversalAmount.prototype, "showApprox", void 0);
-
-__decorate([Object(external_vue_property_decorator_["Prop"])({
-  type: String,
-  default: 'nim'
-})], UniversalAmountvue_type_script_lang_ts_UniversalAmount.prototype, "currency", void 0);
-
-UniversalAmountvue_type_script_lang_ts_UniversalAmount = __decorate([external_vue_property_decorator_["Component"]], UniversalAmountvue_type_script_lang_ts_UniversalAmount);
-/* harmony default export */ var UniversalAmountvue_type_script_lang_ts_ = (UniversalAmountvue_type_script_lang_ts_UniversalAmount);
-// CONCATENATED MODULE: ./src/components/UniversalAmount.vue?vue&type=script&lang=ts&
- /* harmony default export */ var components_UniversalAmountvue_type_script_lang_ts_ = (UniversalAmountvue_type_script_lang_ts_); 
-// EXTERNAL MODULE: ./src/components/UniversalAmount.vue?vue&type=style&index=0&id=97065cf8&scoped=true&lang=css&
-var UniversalAmountvue_type_style_index_0_id_97065cf8_scoped_true_lang_css_ = __webpack_require__("f993");
-
-// CONCATENATED MODULE: ./src/components/UniversalAmount.vue
-
-
-
-
-
-
-/* normalize component */
-
-var UniversalAmount_component = normalizeComponent(
-  components_UniversalAmountvue_type_script_lang_ts_,
-  UniversalAmountvue_type_template_id_97065cf8_scoped_true_render,
-  UniversalAmountvue_type_template_id_97065cf8_scoped_true_staticRenderFns,
-  false,
-  null,
-  "97065cf8",
-  null
-  
-)
-
-UniversalAmount_component.options.__file = "UniversalAmount.vue"
-/* harmony default export */ var components_UniversalAmount = (UniversalAmount_component.exports);
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--13-1!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/PaymentInfoLine.vue?vue&type=script&lang=ts&
 
 
@@ -14291,7 +14298,7 @@ PaymentInfoLinevue_type_script_lang_ts_PaymentInfoLine = PaymentInfoLine_1 = __d
   components: {
     Account: components_Account,
     Timer: components_Timer,
-    UniversalAmount: components_UniversalAmount,
+    Amount: components_Amount,
     ArrowRightSmallIcon: ArrowRightSmallIcon
   }
 })], PaymentInfoLinevue_type_script_lang_ts_PaymentInfoLine);
@@ -14308,8 +14315,8 @@ PaymentInfoLinevue_type_script_lang_ts_PaymentInfoLine = PaymentInfoLine_1 = __d
 /* harmony default export */ var PaymentInfoLinevue_type_script_lang_ts_ = (PaymentInfoLinevue_type_script_lang_ts_PaymentInfoLine);
 // CONCATENATED MODULE: ./src/components/PaymentInfoLine.vue?vue&type=script&lang=ts&
  /* harmony default export */ var components_PaymentInfoLinevue_type_script_lang_ts_ = (PaymentInfoLinevue_type_script_lang_ts_); 
-// EXTERNAL MODULE: ./src/components/PaymentInfoLine.vue?vue&type=style&index=0&id=4f183a6a&scoped=true&lang=css&
-var PaymentInfoLinevue_type_style_index_0_id_4f183a6a_scoped_true_lang_css_ = __webpack_require__("4329");
+// EXTERNAL MODULE: ./src/components/PaymentInfoLine.vue?vue&type=style&index=0&id=0f29cc2f&scoped=true&lang=css&
+var PaymentInfoLinevue_type_style_index_0_id_0f29cc2f_scoped_true_lang_css_ = __webpack_require__("d071");
 
 // CONCATENATED MODULE: ./src/components/PaymentInfoLine.vue
 
@@ -14322,11 +14329,11 @@ var PaymentInfoLinevue_type_style_index_0_id_4f183a6a_scoped_true_lang_css_ = __
 
 var PaymentInfoLine_component = normalizeComponent(
   components_PaymentInfoLinevue_type_script_lang_ts_,
-  PaymentInfoLinevue_type_template_id_4f183a6a_scoped_true_render,
-  PaymentInfoLinevue_type_template_id_4f183a6a_scoped_true_staticRenderFns,
+  PaymentInfoLinevue_type_template_id_0f29cc2f_scoped_true_render,
+  PaymentInfoLinevue_type_template_id_0f29cc2f_scoped_true_staticRenderFns,
   false,
   null,
-  "4f183a6a",
+  "0f29cc2f",
   null
   
 )
@@ -15456,6 +15463,143 @@ var Tooltip_component = normalizeComponent(
 
 Tooltip_component.options.__file = "Tooltip.vue"
 /* harmony default export */ var components_Tooltip = (Tooltip_component.exports);
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"46064dad-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/UniversalAmount.vue?vue&type=template&id=97065cf8&scoped=true&
+var UniversalAmountvue_type_template_id_97065cf8_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"amount",class:{ approx: _vm.showApprox && _vm.isApprox }},[_vm._v("\n    "+_vm._s(_vm.formattedAmount)+"\n    "),_c('span',{staticClass:"currency",class:_vm.currency},[_vm._v(_vm._s(_vm.currency))])])}
+var UniversalAmountvue_type_template_id_97065cf8_scoped_true_staticRenderFns = []
+
+
+// CONCATENATED MODULE: ./src/components/UniversalAmount.vue?vue&type=template&id=97065cf8&scoped=true&
+
+// EXTERNAL MODULE: ./node_modules/big-integer/BigInteger.js
+var BigInteger = __webpack_require__("7409");
+var BigInteger_default = /*#__PURE__*/__webpack_require__.n(BigInteger);
+
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--13-1!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/UniversalAmount.vue?vue&type=script&lang=ts&
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var UniversalAmountvue_type_script_lang_ts_UniversalAmount =
+/*#__PURE__*/
+function (_Vue) {
+  function UniversalAmount() {
+    var _this;
+
+    _classCallCheck(this, UniversalAmount);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(UniversalAmount).apply(this, arguments));
+    _this.isApprox = false;
+    return _this;
+  }
+
+  _createClass(UniversalAmount, [{
+    key: "formattedAmount",
+    get: function get() {
+      var result;
+
+      if (typeof this.amount === 'number') {
+        var value = Math.round(this.amount * Math.pow(10, this.maxDecimals) / Math.pow(10, this.decimals)) / Math.pow(10, this.maxDecimals);
+        result = parseFloat(value.toFixed(this.minDecimals)) === value ? value.toFixed(this.minDecimals) : value.toString();
+        this.isApprox = (this.amount / Math.pow(10, this.decimals)).toFixed(this.decimals) !== value.toFixed(this.decimals);
+        if (Math.abs(value) < Math.pow(10, this.decimals)) return result;
+      } else {
+        // typeof this.amount === bigInt.BigInteger
+        var powerOfTen = function powerOfTen(n) {
+          return BigInteger_default()(10).pow(BigInteger_default()(n));
+        };
+
+        var divisionResult = BigInteger_default()(this.amount).times(powerOfTen(this.maxDecimals)).divmod(powerOfTen(this.decimals));
+        var remainder = divisionResult.remainder.divide(powerOfTen(this.maxDecimals));
+        this.isApprox = !remainder.isZero();
+
+        var _value = divisionResult.quotient.add( // quotiont + potential carry
+        this.maxDecimals !== this.decimals ? remainder.greaterOrEquals(powerOfTen(this.decimals - this.maxDecimals).divide(BigInteger_default()(2))) ? BigInteger_default()(1) : BigInteger_default()(0) : BigInteger_default()(0));
+
+        divisionResult = _value.divmod(powerOfTen(this.maxDecimals));
+        var decimals = "".concat(divisionResult.remainder.toString().padStart(this.maxDecimals, '0').match(/^(\d*?[1-9]?)0*?$/)[1]).padEnd(this.minDecimals, '0');
+        result = "".concat(divisionResult.quotient.toString()).concat(decimals.length > 0 ? '.' + decimals : '');
+      } // add thin spaces (U+202F) every 3 digits. Stop at the decimal separator if there is one
+
+
+      var regexp = this.minDecimals > 0 ? /(\d)(?=(\d{3})+\.)/g : /(\d)(?=(\d{3})+$)/g;
+      return result.replace(regexp, "$1\u202F");
+    }
+  }]);
+
+  _inherits(UniversalAmount, _Vue);
+
+  return UniversalAmount;
+}(external_vue_property_decorator_["Vue"]);
+
+__decorate([Object(external_vue_property_decorator_["Prop"])({
+  type: [Number, Object]
+})], UniversalAmountvue_type_script_lang_ts_UniversalAmount.prototype, "amount", void 0);
+
+__decorate([Object(external_vue_property_decorator_["Prop"])({
+  type: Number,
+  default: 5
+})], UniversalAmountvue_type_script_lang_ts_UniversalAmount.prototype, "decimals", void 0);
+
+__decorate([Object(external_vue_property_decorator_["Prop"])({
+  type: Number,
+  default: 2
+})], UniversalAmountvue_type_script_lang_ts_UniversalAmount.prototype, "minDecimals", void 0);
+
+__decorate([Object(external_vue_property_decorator_["Prop"])({
+  type: Number,
+  default: 5
+})], UniversalAmountvue_type_script_lang_ts_UniversalAmount.prototype, "maxDecimals", void 0);
+
+__decorate([Object(external_vue_property_decorator_["Prop"])({
+  type: Boolean,
+  default: false
+})], UniversalAmountvue_type_script_lang_ts_UniversalAmount.prototype, "showApprox", void 0);
+
+__decorate([Object(external_vue_property_decorator_["Prop"])({
+  type: String,
+  default: 'nim'
+})], UniversalAmountvue_type_script_lang_ts_UniversalAmount.prototype, "currency", void 0);
+
+UniversalAmountvue_type_script_lang_ts_UniversalAmount = __decorate([external_vue_property_decorator_["Component"]], UniversalAmountvue_type_script_lang_ts_UniversalAmount);
+/* harmony default export */ var UniversalAmountvue_type_script_lang_ts_ = (UniversalAmountvue_type_script_lang_ts_UniversalAmount);
+// CONCATENATED MODULE: ./src/components/UniversalAmount.vue?vue&type=script&lang=ts&
+ /* harmony default export */ var components_UniversalAmountvue_type_script_lang_ts_ = (UniversalAmountvue_type_script_lang_ts_); 
+// EXTERNAL MODULE: ./src/components/UniversalAmount.vue?vue&type=style&index=0&id=97065cf8&scoped=true&lang=css&
+var UniversalAmountvue_type_style_index_0_id_97065cf8_scoped_true_lang_css_ = __webpack_require__("f993");
+
+// CONCATENATED MODULE: ./src/components/UniversalAmount.vue
+
+
+
+
+
+
+/* normalize component */
+
+var UniversalAmount_component = normalizeComponent(
+  components_UniversalAmountvue_type_script_lang_ts_,
+  UniversalAmountvue_type_template_id_97065cf8_scoped_true_render,
+  UniversalAmountvue_type_template_id_97065cf8_scoped_true_staticRenderFns,
+  false,
+  null,
+  "97065cf8",
+  null
+  
+)
+
+UniversalAmount_component.options.__file = "UniversalAmount.vue"
+/* harmony default export */ var components_UniversalAmount = (UniversalAmount_component.exports);
 // CONCATENATED MODULE: ./src/main.ts
 
 
@@ -15570,6 +15714,13 @@ Tooltip_component.options.__file = "Tooltip.vue"
 module.exports = '\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003' +
   '\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF';
 
+
+/***/ }),
+
+/***/ "feed":
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
 
 /***/ })
 

@@ -1,18 +1,19 @@
 <template>
     <div class="info-line" :class="{ 'inverse-theme': theme === constructor.Themes.INVERSE }">
         <div class="amounts">
-            <UniversalAmount class="amount"
+            <Amount
+                :currency="cryptoAmount.currency"
                 :amount="cryptoAmount.amount"
-                :decimals="cryptoAmount.digits"
+                :totalDecimals="cryptoAmount.digits"
                 :minDecimals="0"
-                :maxDecimals="4"
-                :currency="cryptoAmount.currency"/>
-            <UniversalAmount v-if="fiatAmount" class="fiat-amount"
+                :maxDecimals="Math.min(4, cryptoAmount.digits)"
+            />
+            <Amount v-if="fiatAmount" class="fiat-amount"
+                :currency="fiatAmount.currency"
                 :amount="fiatAmount.amount"
+                :totalDecimals="fiatAmount.digits"
                 :decimals="fiatAmount.digits"
-                :minDecimals="fiatAmount.digits"
-                :maxDecimals="fiatAmount.digits"
-                :currency="fiatAmount.currency"/>
+            />
         </div>
         <div class="arrow-runway">
             <ArrowRightSmallIcon/>
@@ -29,7 +30,7 @@ type BigInteger = import ('big-integer').BigInteger;
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import Account from './Account.vue';
 import Timer from './Timer.vue';
-import UniversalAmount from './UniversalAmount.vue';
+import Amount from './Amount.vue';
 import { ArrowRightSmallIcon } from './Icons';
 
 interface AmountInfo {
@@ -46,7 +47,7 @@ function amountInfoValidator(value: any) {
         && typeof value.digits === 'number' && Number.isInteger(value.digits);
 }
 
-@Component({components: {Account, Timer, UniversalAmount, ArrowRightSmallIcon}})
+@Component({components: {Account, Timer, Amount, ArrowRightSmallIcon}})
 class PaymentInfoLine extends Vue {
     private get originDomain() {
         return this.origin.split('://')[1];

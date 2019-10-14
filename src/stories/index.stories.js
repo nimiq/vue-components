@@ -55,18 +55,30 @@ function windowTemplate(slot) {
 storiesOf('Basic', module)
     .addDecorator(withKnobs)
     .add('Amount', () => {
-        const amount = number('amount', 6.54321) * 1e5;
-        const minDecimals = number('minDecimals', 2);
-        const maxDecimals = number('maxDecimals', 5);
+        const amount = number('amount (smallest unit)', 654321);
+
+        let minDecimals = parseInt(text('minDecimals', '2'));
+        if (Number.isNaN(minDecimals)) minDecimals = undefined;
+
+        let maxDecimals = parseInt(text('maxDecimals', '5'));
+        if (Number.isNaN(maxDecimals)) maxDecimals = undefined;
+
         let decimals = parseFloat(text('decimals', ''));
         if (Number.isNaN(decimals)) decimals = undefined;
+
+        let currencyDecimalCount = parseInt(text('Currency decimal count', ''));
+        if (Number.isNaN(currencyDecimalCount)) currencyDecimalCount = undefined;
+
+        let currency = text('Currency', '');
+        if (currency === '') currency = undefined;
+
         const showApprox = boolean('showApprox', false);
 
         return {
             components: {Amount},
-            data: () => ({ amount, minDecimals, maxDecimals, decimals, showApprox }),
+            data: () => ({ amount, minDecimals, maxDecimals, decimals, currency, currencyDecimalCount, showApprox }),
             template: `<Amount :amount="amount" :minDecimals="minDecimals" :maxDecimals="maxDecimals"
-                :decimals="decimals" :showApprox="showApprox" />`,
+                :decimals="decimals" :showApprox="showApprox" :currency="currency" :totalDecimals="currencyDecimalCount" />`,
         };
     })
     .add('AmountInput', () => {
