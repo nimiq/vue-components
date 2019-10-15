@@ -49,9 +49,6 @@ import Transfer from '@nimiq/style/src/icons/transfer.svg';
 import ViewOff from '@nimiq/style/src/icons/view-off.svg';
 import View from '@nimiq/style/src/icons/view.svg';
 
-/**
- * Comment out any unused icons here
- */
 // tslint:disable:variable-name
 export const AlertTriangleIcon = IconBase(AlertTriangle);
 export const ArrowLeftSmallIcon = IconBase(ArrowLeftSmall);
