@@ -8,7 +8,7 @@
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { formatNumber, moveComma, round } from '@nimiq/utils';
-type BigInteger = import('big-integer').BigInteger;
+type BigInteger = import ('big-integer').BigInteger;
 
 @Component
 export default class Amount extends Vue {
@@ -26,6 +26,10 @@ export default class Amount extends Vue {
     @Watch('maxDecimals', {immediate: true})
     @Watch('decimals', {immediate: true})
     private _validateDecimals(decimals: number) {
+        if (this.decimals !== undefined && decimals !== this.decimals) {
+            // skip validation for minDecimals and maxDecimals if they're overwritten by decimals
+            return;
+        }
         if (decimals !== undefined && (decimals < 0 || decimals > this.totalDecimals || !Number.isInteger(decimals))) {
             throw new Error('Amount: decimals is not in range');
         }
