@@ -831,7 +831,8 @@ storiesOf('Components', module)
         return {
             components: { TrackingConsent },
             data: () => ({
-                theme: 'dark'
+                theme: 'dark',
+                uiallowed: true
             }),
             template: windowTemplate(`
                 <label>
@@ -842,7 +843,16 @@ storiesOf('Components', module)
                     Light theme
                     <input type="radio" v-model="theme" value="light"/>
                 </label>
-                <TrackingConsent :theme="theme"/>
+                <br />
+                <label>
+                    Ui Allowed
+                    <input type="radio" v-model="uiallowed" :value="true"/>
+                </label>
+                <label>
+                    Ui Not Allowed
+                    <input type="radio" v-model="uiallowed" :value="false"/>
+                </label>
+                <TrackingConsent :theme="theme" :uiAllowed="uiallowed"/>
             `)
         };
     })

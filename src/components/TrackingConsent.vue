@@ -1,34 +1,33 @@
 <template>
     <div
-        id="tracking-consent"
-        class="tracking-consent-banner nq-shadow"
+        class="tracking-consent nq-shadow"
         :class="theme"
-        v-if="!consentKnown"
+        v-if="uiRequired && uiAllowed"
     >
         {{ text.main }} ❤️
         <div class="button-group">
             <button
                 class="nq-button-pill light-blue"
-                @click="allowsConsent"
+                @click="allowUsageData"
             >{{ text.yes }}</button>
             <button
                 class="nq-button-s"
                 @click="denyConsent"
-                :class="{ inverse: theme === 'dark' }"
+                :class="{ inverse: theme === constructor.Themes.DARK }"
             >{{ text.no }}</button>
             <button
                 class="nq-button-s"
-                @click="allowsBrowserData"
-                :class="{ inverse: theme === 'dark' }"
+                @click="allowBrowserData"
+                :class="{ inverse: theme === constructor.Themes.DARK }"
             >{{ text.browserOnly }}</button>
         </div>
     </div>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 
-interface Consents {
+interface Consent {
     allowsBrowserData?: boolean;
     allowsUsageData?: boolean;
 }
@@ -51,7 +50,7 @@ class TrackingConsent extends Vue {
             value.browserOnly && typeof value.browserOnly === 'string' && value.browserOnly.length
         ),
     })
-    private text: {
+    public text: {
         main: string,
         yes: string,
         no: string,
@@ -61,18 +60,18 @@ class TrackingConsent extends Vue {
     @Prop({
         type: String,
         default: 'light',
-        validator: (theme) => ['dark', 'light'].includes(theme),
+        validator: (theme) => Object.values(TrackingConsent.Themes).includes(theme),
     })
-    private theme: string;
+    public theme: string;
 
     @Prop({
         type: Object,
         default: () => ({
-            setTrackerUrl: TrackingConsent.MATOMO_URL + 'nimiq.php',
+            setTrackerUrl: TrackingConsent.DEFAULT_MATOMO_URL + 'nimiq.php',
         }),
     })
-    private options: {
-        setSiteId: string, // 3 for safe.nimiq.com ?
+    public options: {
+        setSiteId: string, /* 3 for safe.nimiq.com ? */
         setTrackerUrl: string
         addDownloadExtensions?: string,
         trackPageView?: boolean,
@@ -82,143 +81,73 @@ class TrackingConsent extends Vue {
 
     @Prop({
         type: String,
-        default: 'nimiq.js',
+        default: () => TrackingConsent.DEFAULT_MATOMO_URL + 'nimiq.js',
     })
-    private tagManagerScript: string;
+    public trackingScriptUrl: string;
 
-    private consentKnown: boolean = false;
-    public static _storage: Consents;
+    @Prop({
+        type: Boolean,
+        default: true,
+    })
+    public uiAllowed: boolean;
 
-    private async mounted() {
-        if (!window.startTime) {
-            window.startTime = (new Date().getTime());
+    @Prop({
+        type: Boolean,
+        default: false,
+    })
+    public ignoreDoNotTrack: boolean;
+
+    @Prop({
+        type: Object,
+        default: () => ({
+            domain: document.location.hostname,
+            expirationDays: 365 * 20,
+        }),
+        validator: ({ expirationDays }) => expirationDays >= 0,
+    })
+    public cookieOptions: {
+        domain: string,
+        expirationDays: number,
+    };
+
+    @Prop({
+        type: String,
+        default: 'https://geoip.nimiq-network.com:8443/v1/locate',
+    })
+    private geoIpServer: string;
+
+    private static _instances: Set<TrackingConsent> = new Set();
+    private uiRequired: boolean = false;
+
+    public static get _paq() {
+        if (!window._paq || !Array.isArray(window._paq)) {
+            window._paq = [];
         }
+        return window._paq;
+    }
 
-        if (TrackingConsent.consents.allowsBrowserData || TrackingConsent.consents.allowsUsageData) {
-            this._initMatomo();
+    public static get _mtm() {
+        if (!window._mtm || !Array.isArray(window._mtm)) {
+            window._mtm = [];
         }
-
-        /* Automatically track stats if user is not in the EU continent  */
-        const geoIpResponse = await fetch(TrackingConsent.GEOIP_SERVER);
-        if (geoIpResponse.status !== 200) {
-            throw new Error('Failed to contact geoip server');
-        }
-        const geoIpInfo = await geoIpResponse.json();
-        if (geoIpInfo.continent !== 'EU') {
-            this.allowsConsent();
-        }
+        return window._mtm;
     }
 
-    private denyConsent(): void {
-        this._setConsent({ allowsUsageData: false, allowsBrowserData: false });
-    }
-
-    private allowsConsent(): void {
-        this._setConsent({ allowsUsageData: true, allowsBrowserData: true });
-        this._initMatomo();
-    }
-
-    private allowsBrowserData(): void {
-        this._setConsent({ allowsBrowserData: true });
-        this._initMatomo();
-    }
-
-    private _setConsent(consent: Consents): void {
-        TrackingConsent._setCookie(TrackingConsent.STORAGE_KEYS.MAIN, JSON.stringify(consent));
-        this.consentKnown = true;
-    }
-
-    private _initMatomo() {
-        // initialize matomo
-        const _paq = window._paq || [];
-        const _mtm = window._mtm || [];
-
-        // set mtm start
-        _mtm.push({
-            'mtm.startTime': window.startTime,
-            'event': 'mtm.Start',
-        });
-
-        // Get referrer from localstorage
-        const referrer = localStorage.getItem('referrer');
-        if (referrer) {
-            _paq.push(['setReferrerUrl', decodeURIComponent(referrer)]);
-            localStorage.removeItem('referrer');
-        }
-
-        // Cycle through options and set them
-        Object.keys(this.options).forEach((k) => {
-            const option = this.options[k];
-
-            if (option) {
-                _paq.push(typeof option === 'boolean' ? [k] : [k, option]);
-            }
-        });
-
-        // append script
-        (function() {
-            const g = document.createElement('script');
-            const s = document.getElementsByTagName('script')[0];
-            g.type = 'text/javascript'; g.async = true; g.defer = true;
-            g.src = TrackingConsent.MATOMO_URL + this.tagManagerScript;
-            s.parentNode.insertBefore(g, s);
-        })();
-    }
-
-    private static _setCookie(
-        cookieName: string,
-        cookieValue: string,
-        expirationDays?: number,
-    ): void {
-        const cookie = [cookieName + '=' + cookieValue];
-
-        if (expirationDays) {
-            const date = new Date();
-            date.setTime(date.getTime() + (expirationDays * 24 * 60 * 60 * 1000));
-
-            cookie.push(';expires=' + date.toUTCString());
-        }
-
-        cookie.push('path=/');
-        cookie.push('domain=' + TrackingConsent.COOKIE_DOMAIN);
-
-        document.cookie = cookie.join(';');
-    }
-
-    private static _getCookie(cookieName: string): string | null {
-        return document.cookie.split('; ').map((c) => {
-            const i = c.indexOf('=');
-            const key = c.substring(0, i);
-            const value = c.substring(i);
-
-            return [key, value];
-        }).reduce((acc, cur) => (acc[cur[0]] = cur[1], acc), {})[cookieName];
-    }
-
-    public static get consents(): Consents {
-        if (TrackingConsent._storage) {
-            return TrackingConsent._storage;
-        }
-
-        const cookie = TrackingConsent._getCookie(TrackingConsent.STORAGE_KEYS.MAIN);
+    public static get consent(): Consent {
+        const cookie = TrackingConsent._getCookie(TrackingConsent.COOKIE_STORAGE_KEY);
         if (cookie) {
-            TrackingConsent._storage = JSON.parse(cookie);
-            return TrackingConsent._storage;
-        }
-
-        const localStoredConsent =
-            localStorage.getItem(TrackingConsent.STORAGE_KEYS.MAIN) ||
-            localStorage.getItem(TrackingConsent.STORAGE_KEYS.SECOND);
-
-        if (localStoredConsent) {
-            TrackingConsent._storage = JSON.parse(localStoredConsent);
-            TrackingConsent._setCookie(TrackingConsent.STORAGE_KEYS.MAIN, localStoredConsent);
-            localStorage.removeItem(TrackingConsent.STORAGE_KEYS.MAIN);
-            localStorage.removeItem(TrackingConsent.STORAGE_KEYS.SECOND);
-            return TrackingConsent._storage;
+            return JSON.parse(cookie);
         }
 
         return {};
+    }
+
+    public static get allowsUsageData() {
+        return TrackingConsent.consent.allowsUsageData;
+    }
+
+    public static get allowsBrowserData() {
+        return TrackingConsent.consent.allowsBrowserData;
     }
 
     public static trackEvent(
@@ -226,8 +155,9 @@ class TrackingConsent extends Vue {
         action: string,
         name?: string,
         value?: string | number,
-    ): void {
-        const _paq = window._paq || [];
+    ) {
+        if (!TrackingConsent.allowsUsageData) return;
+
         const obj: Array<string | number> = ['trackEvent', category, action];
 
         if (name) {
@@ -237,26 +167,208 @@ class TrackingConsent extends Vue {
             obj.push(value);
         }
 
-        _paq.push(obj);
+        TrackingConsent._paq.push(obj);
+    }
+
+    private static _setCookie(
+        cookieName: string,
+        cookieValue: string,
+        options: {
+            expirationDays: number,
+            domain: string,
+        },
+    ) {
+        const cookie = [cookieName + '=' + cookieValue];
+
+        if (options) {
+            if (options.expirationDays) {
+                cookie.push('max-age=' + options.expirationDays * 24 * 60 * 60);
+            }
+            if (options.domain) {
+                cookie.push('domain=' + options.domain);
+            }
+        }
+
+        cookie.push('path=/');
+        document.cookie = cookie.join(';');
+    }
+
+    private static _getCookie(cookieName: string): string | null {
+        const match = document.cookie.match(new RegExp(`(^| )${cookieName}=([^;]+)`));
+        return match && match[2];
+    }
+
+    public denyConsent() {
+        TrackingConsent._paq.push(['optUserOut']);
+        this._setConsent({ allowsUsageData: false, allowsBrowserData: false });
+    }
+
+    public allowUsageData() {
+        TrackingConsent._paq.push(['forgetUserOptOut']);
+        this._setConsent({ allowsUsageData: true, allowsBrowserData: true });
+        this._initMatomo();
+    }
+
+    public allowBrowserData() {
+        TrackingConsent._paq.push(['forgetUserOptOut']);
+        this._setConsent({ allowsBrowserData: true, allowsUsageData: false });
+        this._initMatomo();
+    }
+
+    private created() {
+        /* initialize startTime for the tracking script */
+        if (!window.startTime) {
+            window.startTime = (new Date().getTime());
+        }
+
+        /* Check for consent changes on tab / window focus */
+        document.addEventListener('visibilitychange', this._onVisibilityChange);
+
+        /* Add to the TrackingConsent instances list */
+        TrackingConsent._instances.add(this);
+
+        /* Check old consent preferences if there's any */
+        const localStoredConsent =
+            localStorage.getItem(TrackingConsent.localstorageKeys[0]) ||
+            localStorage.getItem(TrackingConsent.localstorageKeys[1]);
+
+        if (localStoredConsent) {
+            localStorage.removeItem(TrackingConsent.localstorageKeys[0]);
+            localStorage.removeItem(TrackingConsent.localstorageKeys[1]);
+
+            this._setConsent(JSON.parse(localStoredConsent));
+        }
+
+        /* check if the UI is required */
+        this._checkUiRequired();
+    }
+
+    private destroyed() {
+        /* Remove the event watching for consent changes on tab / window focus */
+        document.removeEventListener('visibilitychange', this._onVisibilityChange);
+
+        /* Remove from the TrackingConsent instances list */
+        TrackingConsent._instances.delete(this);
+    }
+
+    private async _checkUiRequired() {
+        /* check whether the user has the "do not track" browser option enabled or not  */
+        if (navigator.doNotTrack === '1' && !this.ignoreDoNotTrack) {
+            this.uiRequired = false;
+            return;
+        }
+
+        /* Check consent preferences if there's any */
+        if (TrackingConsent.allowsBrowserData || TrackingConsent.allowsUsageData) {
+            this.uiRequired = false;
+            this._initMatomo();
+            return;
+        } else if (
+            TrackingConsent.allowsBrowserData === false &&
+            TrackingConsent.allowsUsageData === false
+        ) {
+            this.uiRequired = false;
+            return;
+        }
+
+        /* Automatically track stats if user is not in the EU continent  */
+        const geoIpResponse = await fetch(this.geoIpServer);
+        if (geoIpResponse.status !== 200) {
+            console.warn('TrackingConsent: Failed to contact geoip server');
+            return;
+        }
+        const geoIpInfo = await geoIpResponse.json();
+        if (geoIpInfo.continent !== 'EU' && !['NO', 'LI', 'IS'].includes(geoIpInfo.country)) { /* EU / EEA */
+            this.uiRequired = false;
+            this._initMatomo();
+            return;
+        }
+
+        this.uiRequired = true;
+    }
+
+    private _onVisibilityChange() {
+        if (document.visibilityState === 'visible') {
+            this._checkUiRequired();
+        }
+    }
+
+    private _setConsent(consent: Consent) {
+        TrackingConsent._setCookie(
+            TrackingConsent.COOKIE_STORAGE_KEY,
+            JSON.stringify(consent),
+            this.cookieOptions,
+        );
+        this.uiRequired = false;
+
+        /* update other TrackingConsent instances */
+        TrackingConsent._instances.forEach((instance) => {
+            instance.uiRequired = false;
+        });
+    }
+
+    private _initMatomo() {
+        /* Check whether matomo is already initialized */
+        if (document.querySelector('script[matomo]')) {
+            console.warn('TrackingConsent: Matomo already initialized.');
+            return;
+        }
+
+        /* set mtm startTime */
+        TrackingConsent._mtm.push({
+            'mtm.startTime': window.startTime,
+            'event': 'mtm.Start',
+        });
+
+        /* Get referrer from localstorage */
+        const referrer = localStorage.getItem('referrer');
+        if (referrer) {
+            TrackingConsent._paq.push(['setReferrerUrl', decodeURIComponent(referrer)]);
+            localStorage.removeItem('referrer');
+        }
+
+        /* Cycle through options and set them */
+        Object.keys(this.options).forEach((k) => {
+            const option = this.options[k];
+
+            if (option) {
+                TrackingConsent._paq.push(typeof option === 'boolean' ? [k] : [k, option]);
+            }
+        });
+
+        /* append script */
+        const script = document.createElement('script');
+        const nextScript = document.getElementsByTagName('script')[0];
+        script.type = 'text/javascript';
+        script.async = script.defer = true;
+        script.src = this.trackingScriptUrl;
+        script.setAttribute('matomo', '');
+        nextScript.parentNode.insertBefore(script, nextScript);
+
+        console.log('TrackingConsent: Matomo initialized and script added');
     }
 }
 
 namespace TrackingConsent { // tslint:disable-line:no-namespace
-    export enum STORAGE_KEYS {
-        MAIN = 'tracking-consent',
-        SECOND = 'tracking-consensus',
+    export enum Themes {
+        LIGHT = 'light',
+        DARK = 'dark',
     }
 
-    export const GEOIP_SERVER = 'https://geoip.nimiq-network.com:8443/v1/locate';
-    export const MATOMO_URL = '//stats.nimiq-network.com/';
-    export const COOKIE_DOMAIN = 'nimiq.com';
+    export const localstorageKeys = [
+        'tracking-consent',
+        'tracking-consensus',
+    ];
+
+    export const COOKIE_STORAGE_KEY = 'tracking-consent';
+    export const DEFAULT_MATOMO_URL = '//stats.nimiq-network.com/';
 }
 
 export default TrackingConsent;
 </script>
 
 <style scoped>
-    .tracking-consent-banner {
+    .tracking-consent {
         position: fixed;
         bottom: 2rem;
         z-index: 900;
@@ -271,12 +383,12 @@ export default TrackingConsent;
         font-size: 2rem;
     }
 
-    .tracking-consent-banner.light {
+    .tracking-consent.light {
         background: white;
         color: var(--nimiq-blue);
     }
 
-    .tracking-consent-banner.dark {
+    .tracking-consent.dark {
         background: var(--nimiq-blue);
         color: white;
     }
@@ -291,7 +403,7 @@ export default TrackingConsent;
     }
 
     @media (max-width: 860px) {
-        .tracking-consent-banner {
+        .tracking-consent {
             flex-direction: column;
             align-items: flex-start;
             width: 100%;
