@@ -30,6 +30,7 @@
     "include": [
         "types/svg.d.ts",
         "src/main.ts", // Must be included for TSLint to work
+        "types/TrackingConsent.d.ts",
         // "src/**/*.ts",
         // "src/**/*.tsx",
         // "src/**/*.vue",
