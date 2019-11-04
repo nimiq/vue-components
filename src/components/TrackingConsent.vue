@@ -1,7 +1,7 @@
 <template>
     <div
         class="tracking-consent nq-shadow"
-        :class="theme"
+        :class="[ theme, safariFix ]"
         v-if="uiRequired && uiAllowed"
     >
         {{ text.main }} ❤️
@@ -118,6 +118,7 @@ class TrackingConsent extends Vue {
 
     private static _instances: Set<TrackingConsent> = new Set();
     private uiRequired: boolean = false;
+    private safariFix: string = '';
 
     public static get _paq() {
         if (!window._paq || !Array.isArray(window._paq)) {
@@ -241,6 +242,29 @@ class TrackingConsent extends Vue {
 
         /* check if the UI is required */
         this._checkUiRequired();
+    }
+
+    private mounted() {
+        /* Safari IOS style fix */
+        const ua = window.navigator.userAgent;
+        const iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
+        const webkit = !!ua.match(/WebKit/i);
+        const iOSSafari = iOS && webkit && !ua.match(/CriOS/i);
+
+        if (iOSSafari) {
+            let majorVersion = null;
+
+            if (/iP(hone|od|ad)/.test(navigator.platform)) {
+                const match = (navigator.appVersion).match(/OS (\d+)_(\d+)_?(\d+)?/);
+                majorVersion = parseInt(match[1], 10);
+            }
+
+            if (majorVersion >= 13) {
+                this.safariFix = 'ios-safari-13-fix';
+            } else if (majorVersion >= 12) {
+                this.safariFix = 'ios-safari-12-fix';
+            }
+        }
     }
 
     private destroyed() {
@@ -411,6 +435,14 @@ export default TrackingConsent;
             border-bottom-left-radius: 0;
             border-bottom-right-radius: 0;
             padding: 2.5rem;
+        }
+
+        .tracking-consent.ios-safari-13-fix {
+            bottom: 74px;
+        }
+
+        .tracking-consent.ios-safari-12-fix {
+            bottom: 34px;
         }
 
         .button-group {
