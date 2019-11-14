@@ -8,7 +8,6 @@ declare module 'NimiqVueComponents' {
     export { default as AddressInput } from 'NimiqVueComponents/src/components/AddressInput.vue';
     export { default as Identicon } from 'NimiqVueComponents/src/components/Identicon.vue';
     export { default as LabelInput } from 'NimiqVueComponents/src/components/LabelInput.vue';
-    export { default as PageHeader } from 'NimiqVueComponents/src/components/PageHeader.vue';
     export { default as QrCode } from 'NimiqVueComponents/src/components/QrCode.vue';
     export { default as SmallPage } from 'NimiqVueComponents/src/components/SmallPage.vue';
     export * from 'NimiqVueComponents/src/components/Icons';
@@ -23,6 +22,8 @@ declare module 'NimiqVueComponents/src/components/AddressDisplay.vue' {
 declare module 'NimiqVueComponents/src/components/AddressInput.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class AddressInput extends Vue {
+        static readonly ADDRESS_MAX_LENGTH_WITHOUT_SPACES: number;
+        static readonly ADDRESS_MAX_LENGTH: number;
         value: string;
         $refs: {
             textarea: HTMLTextAreaElement;
@@ -44,13 +45,6 @@ declare module 'NimiqVueComponents/src/components/LabelInput.vue' {
     export default class LabelInput extends Vue {
         protected maxBytes?: number;
         focus(): void;
-    }
-}
-
-declare module 'NimiqVueComponents/src/components/PageHeader.vue' {
-    import { Vue } from 'vue-property-decorator';
-    export default class PageHeader extends Vue {
-        readonly progressSteps: any[];
     }
 }
 
@@ -84,7 +78,7 @@ declare module 'NimiqVueComponents/src/components/QrCode.vue' {
         fill: string | QrEncoder.LinearGradient | QrEncoder.RadialGradient;
         background: string | null;
         size: number;
-        toDataUrl(type: 'image/png'): Promise<string>;
+        toDataUrl(type?: string): Promise<string>;
     }
 }
 

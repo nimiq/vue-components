@@ -1,7 +1,7 @@
 import { Vue } from 'vue-property-decorator';
 export default class AddressInput extends Vue {
-    private static readonly ADDRESS_MAX_LENGTH_WITHOUT_SPACES;
-    private static readonly ADDRESS_MAX_LENGTH;
+    static readonly ADDRESS_MAX_LENGTH_WITHOUT_SPACES: number;
+    static readonly ADDRESS_MAX_LENGTH: number;
     private static _parse;
     private static _format;
     private static _stripWhitespace;
