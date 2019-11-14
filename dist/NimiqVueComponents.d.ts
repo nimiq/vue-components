@@ -309,7 +309,7 @@ declare module 'NimiqVueComponents/src/components/PaymentInfoLine.vue' {
     interface AmountInfo {
         amount: number | bigint | BigInteger;
         currency: string;
-        digits: number;
+        decimals: number;
     }
     class PaymentInfoLine extends Vue {
         cryptoAmount: AmountInfo;

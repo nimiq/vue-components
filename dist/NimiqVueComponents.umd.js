@@ -187,6 +187,17 @@ module.exports = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCE
 
 /***/ }),
 
+/***/ "04ff":
+/***/ (function(module, exports, __webpack_require__) {
+
+var $export = __webpack_require__("5ca1");
+var $parseInt = __webpack_require__("3ca5");
+// 20.1.2.13 Number.parseInt(string, radix)
+$export($export.S + $export.F * (Number.parseInt != $parseInt), 'Number', { parseInt: $parseInt });
+
+
+/***/ }),
+
 /***/ "0878":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -449,13 +460,6 @@ module.exports = __webpack_require__.p + "img/iqons.min.72f3b689.svg";
 /* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_34f6cfb0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_34f6cfb0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
 /* unused harmony reexport * */
  /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_34f6cfb0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
-/***/ "197a":
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
 
 /***/ }),
 
@@ -1423,6 +1427,22 @@ __webpack_require__("7a56")('RegExp');
 
 /***/ }),
 
+/***/ "3ca5":
+/***/ (function(module, exports, __webpack_require__) {
+
+var $parseInt = __webpack_require__("7726").parseInt;
+var $trim = __webpack_require__("aa77").trim;
+var ws = __webpack_require__("fdef");
+var hex = /^[-+]?0[xX]/;
+
+module.exports = $parseInt(ws + '08') !== 8 || $parseInt(ws + '0x16') !== 22 ? function parseInt(str, radix) {
+  var string = $trim(String(str), 3);
+  return $parseInt(string, (radix >>> 0) || (hex.test(string) ? 16 : 10));
+} : $parseInt;
+
+
+/***/ }),
+
 /***/ "3e17":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1585,6 +1605,17 @@ module.exports = function (it) {
 
 /***/ }),
 
+/***/ "4ede":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentInfoLine_vue_vue_type_style_index_0_id_780c7d1f_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("77bd");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentInfoLine_vue_vue_type_style_index_0_id_780c7d1f_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentInfoLine_vue_vue_type_style_index_0_id_780c7d1f_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+ /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentInfoLine_vue_vue_type_style_index_0_id_780c7d1f_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
 /***/ "504c":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1605,17 +1636,6 @@ module.exports = function (isEntries) {
   };
 };
 
-
-/***/ }),
-
-/***/ "509e":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Amount_vue_vue_type_style_index_0_id_34ec82f1_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("197a");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Amount_vue_vue_type_style_index_0_id_34ec82f1_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Amount_vue_vue_type_style_index_0_id_34ec82f1_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
- /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Amount_vue_vue_type_style_index_0_id_34ec82f1_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -1642,6 +1662,17 @@ module.exports = function (KEY) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "5210":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Amount_vue_vue_type_style_index_0_id_d5e0133a_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("5f18");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Amount_vue_vue_type_style_index_0_id_d5e0133a_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Amount_vue_vue_type_style_index_0_id_d5e0133a_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+ /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Amount_vue_vue_type_style_index_0_id_d5e0133a_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -2124,6 +2155,13 @@ module.exports = function (KEY, exec) {
   $export($export.S + $export.F * fails(function () { fn(1); }), 'Object', exp);
 };
 
+
+/***/ }),
+
+/***/ "5f18":
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
 
 /***/ }),
 
@@ -3954,6 +3992,13 @@ if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
 /* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SelectBar_vue_vue_type_style_index_0_id_2c3d01a0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SelectBar_vue_vue_type_style_index_0_id_2c3d01a0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
 /* unused harmony reexport * */
  /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SelectBar_vue_vue_type_style_index_0_id_2c3d01a0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "77bd":
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
 
 /***/ }),
 
@@ -6688,17 +6733,6 @@ module.exports = function (object, names) {
 
 /***/ }),
 
-/***/ "d071":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentInfoLine_vue_vue_type_style_index_0_id_0f29cc2f_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("feed");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentInfoLine_vue_vue_type_style_index_0_id_0f29cc2f_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentInfoLine_vue_vue_type_style_index_0_id_0f29cc2f_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
- /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentInfoLine_vue_vue_type_style_index_0_id_0f29cc2f_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
 /***/ "d2c8":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8555,12 +8589,12 @@ var component = normalizeComponent(
 
 component.options.__file = "Identicon.vue"
 /* harmony default export */ var components_Identicon = (component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"46064dad-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Amount.vue?vue&type=template&id=34ec82f1&scoped=true&
-var Amountvue_type_template_id_34ec82f1_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"amount",class:{ approx: _vm.showApprox && _vm.isApprox }},[_vm._v("\n    "+_vm._s(_vm.formattedAmount)+"\n    "),_c('span',{staticClass:"currency",class:_vm.currency},[_vm._v(_vm._s(_vm.currency))])])}
-var Amountvue_type_template_id_34ec82f1_scoped_true_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"46064dad-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Amount.vue?vue&type=template&id=d5e0133a&scoped=true&
+var Amountvue_type_template_id_d5e0133a_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"amount",class:{ approx: _vm.showApprox && _vm.isApprox }},[_vm._v("\n    "+_vm._s(_vm.formattedAmount)+"\n    "),_c('span',{staticClass:"currency",class:_vm.currency},[_vm._v(_vm._s(_vm.currency))])])}
+var Amountvue_type_template_id_d5e0133a_scoped_true_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Amount.vue?vue&type=template&id=34ec82f1&scoped=true&
+// CONCATENATED MODULE: ./src/components/Amount.vue?vue&type=template&id=d5e0133a&scoped=true&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.number.is-integer.js
 var es6_number_is_integer = __webpack_require__("7cdf");
@@ -8571,219 +8605,162 @@ var es7_string_pad_start = __webpack_require__("f576");
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es7.string.pad-end.js
 var es7_string_pad_end = __webpack_require__("ed50");
 
-// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/builtin/es6/arrayWithHoles.js
-function _arrayWithHoles(arr) {
-  if (Array.isArray(arr)) return arr;
-}
-// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/builtin/es6/iterableToArrayLimit.js
-function _iterableToArrayLimit(arr, i) {
-  var _arr = [];
-  var _n = true;
-  var _d = false;
-  var _e = undefined;
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.number.parse-int.js
+var es6_number_parse_int = __webpack_require__("04ff");
 
-  try {
-    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
-      _arr.push(_s.value);
+// CONCATENATED MODULE: ../nimiq.github.io/libraries/nimiq-utils/dist/module/FormattableNumber.js
 
-      if (i && _arr.length === i) break;
+
+
+
+
+
+
+
+
+
+
+
+// formats and converts numbers without precision loss
+var FormattableNumber_FormattableNumber =
+/*#__PURE__*/
+function () {
+  function FormattableNumber(value) {
+    _classCallCheck(this, FormattableNumber);
+
+    if (typeof value !== 'string') {
+      value = value.toString(); // work on strings in any case. Note that this might result in scientific notation
     }
-  } catch (err) {
-    _d = true;
-    _e = err;
-  } finally {
-    try {
-      if (!_n && _i["return"] != null) _i["return"]();
-    } finally {
-      if (_d) throw _e;
-    }
+
+    var numberMatch = value.match(FormattableNumber.NUMBER_REGEX);
+    if (!numberMatch) throw new Error("".concat(value, " is not a valid number"));
+    this._sign = numberMatch[1];
+    this._digits = "".concat(numberMatch[2]).concat(numberMatch[3]);
+    if (!this._digits) throw new Error("".concat(value, " is not a valid number"));
+    this._decimalSeparatorPosition = numberMatch[2].length;
+    var exponent = Number.parseInt(numberMatch[5], 10);
+    if (exponent) this.moveDecimalSeparator(exponent); // remove scientific notation
   }
 
-  return _arr;
-}
-// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/builtin/es6/nonIterableRest.js
-function _nonIterableRest() {
-  throw new TypeError("Invalid attempt to destructure non-iterable instance");
-}
-// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/builtin/es6/slicedToArray.js
+  _createClass(FormattableNumber, [{
+    key: "toString",
+    value: function toString(optionsOrUseGrouping) {
+      var _ref = _typeof(optionsOrUseGrouping) === 'object' ? optionsOrUseGrouping : {},
+          _ref$maxDecimals = _ref.maxDecimals,
+          maxDecimals = _ref$maxDecimals === void 0 ? undefined : _ref$maxDecimals,
+          _ref$minDecimals = _ref.minDecimals,
+          minDecimals = _ref$minDecimals === void 0 ? undefined : _ref$minDecimals,
+          _ref$useGrouping = _ref.useGrouping,
+          useGrouping = _ref$useGrouping === void 0 ? optionsOrUseGrouping === true : _ref$useGrouping,
+          _ref$groupSeparator = _ref.groupSeparator,
+          groupSeparator = _ref$groupSeparator === void 0 ? "\u202F" : _ref$groupSeparator;
+
+      if (maxDecimals !== undefined && minDecimals !== undefined) {
+        minDecimals = Math.min(minDecimals, maxDecimals);
+      }
+
+      if (maxDecimals !== undefined && maxDecimals < this._digits.length - this._decimalSeparatorPosition) {
+        this.round(maxDecimals);
+      }
+
+      var integers = this._digits.slice(0, this._decimalSeparatorPosition).replace(/^0+/, ''); // trim leading 0s
 
 
-
-function _slicedToArray(arr, i) {
-  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest();
-}
-// CONCATENATED MODULE: ../nimiq.github.io/libraries/nimiq-utils/dist/module/NumberFormattingUtils.js
+      var decimals = this._digits.slice(this._decimalSeparatorPosition).replace(/0+$/, ''); // trim trailing 0s
 
 
+      if (minDecimals !== undefined && minDecimals > decimals.length) {
+        decimals = decimals.padEnd(minDecimals, '0');
+      } // Apply grouping for values with more than 4 integer digits.
 
 
+      if (useGrouping && groupSeparator && integers.length > 4) {
+        integers = integers.replace(/(\d)(?=(\d{3})+$)/g, "$1".concat(groupSeparator));
+      }
+
+      return "".concat(this._sign).concat(integers || '0').concat(decimals ? ".".concat(decimals) : '');
+    }
+  }, {
+    key: "valueOf",
+    value: function valueOf() {
+      return this.toString();
+    }
+  }, {
+    key: "moveDecimalSeparator",
+    value: function moveDecimalSeparator(moveBy) {
+      this._decimalSeparatorPosition += moveBy;
+
+      if (this._decimalSeparatorPosition > this._digits.length) {
+        this._digits = this._digits.padEnd(this._decimalSeparatorPosition, '0');
+      } else if (this._decimalSeparatorPosition < 0) {
+        this._digits = this._digits.padStart(this._digits.length - this._decimalSeparatorPosition, '0');
+        this._decimalSeparatorPosition = 0;
+      }
+
+      return this;
+    }
+  }, {
+    key: "round",
+    value: function round(decimals) {
+      if (this._digits.length - this._decimalSeparatorPosition <= decimals) return this;
+
+      var digitsToKeep = this._digits.substring(0, this._decimalSeparatorPosition + decimals);
+
+      if (Number.parseInt(this._digits[this._decimalSeparatorPosition + decimals]) < 5) {
+        // rounding down, can just use the trimmed decimals
+        this._digits = digitsToKeep;
+        return this;
+      } // round up
 
 
+      var digits = "0".concat(digitsToKeep).split(''); // add a leading 0 for easier handling of carry
 
-var NUMBER_REGEX = /^(-?)(\d*)\.?(\d*)(e(-?\d+))?$/;
+      for (var i = digits.length - 1; i >= 0; --i) {
+        var newDigit = Number.parseInt(digits[i]) + 1;
+
+        if (newDigit < 10) {
+          digits[i] = newDigit.toString();
+          break; // no carry over, break
+        } else {
+          digits[i] = '0'; // continue loop to handle carry over
+        }
+      }
+
+      this._digits = digits.join('');
+      this._decimalSeparatorPosition += 1; // account for the added leading 0
+
+      return this;
+    }
+  }, {
+    key: "equals",
+    value: function equals(other) {
+      if (!(other instanceof FormattableNumber)) {
+        try {
+          other = new FormattableNumber(other);
+        } catch (e) {
+          // not convertable to a FormattableNumber
+          return false;
+        }
+      } // compare rendered results to benefit from normalizations done on rendering
+
+
+      return this.toString() === other.toString();
+    }
+  }]);
+
+  return FormattableNumber;
+}();
+
+FormattableNumber_FormattableNumber.NUMBER_REGEX = /^(-?)(\d*)\.?(\d*)(e(-?\d+))?$/;
 
 function toNonScientificNumberString(value) {
-  if (typeof value === 'string') {
-    var numberMatch = value.match(NUMBER_REGEX);
-    if (!numberMatch) throw new Error("".concat(value, " is not a valid number"));
-
-    var _numberMatch = _slicedToArray(numberMatch, 6),
-        sign = _numberMatch[1],
-        integerPart = _numberMatch[2],
-        decimalPart = _numberMatch[3],
-        moveCommaBy = _numberMatch[5]; // manual disassembly to avoid recursion
-
-
-    if (!integerPart && !decimalPart) throw new Error("".concat(value, " is not a valid number"));
-    value = _assembleNumber(sign, integerPart, decimalPart); // normalizes and trims the number
-
-    if (moveCommaBy) {
-      // remove scientific notation
-      return moveComma(value, parseInt(moveCommaBy));
-    } else {
-      return value;
-    }
-  }
-
-  var valueString = '';
-
-  if (typeof value === 'number' || typeof value === 'bigint') {
-    // Use toLocalString to render a string without scientific notation. Note that 20 is the maximum allowed number
-    // of fraction digits.
-    valueString = value.toLocaleString('en-US', {
-      useGrouping: false,
-      maximumFractionDigits: 20
-    });
-  }
-
-  if (typeof value !== 'number' && !/^\d+$/.test(valueString)) {
-    // Non-native BigInteger or incomplete bigint toLocaleString support (e.g. Chrome 67-75, Firefox 68-?) which
-    // potentially let to a rendering that is not a plain number. Fallback to toString, which seems to be generating
-    // strings without scientific notation although there is no guarantee.
-    valueString = value.toString();
-  }
-
-  return valueString;
+  return new FormattableNumber_FormattableNumber(value).toString();
 }
 
-function formatNumber(value, maxDecimals, minDecimals) {
-  var groupSeparator = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : "\u202F";
-
-  if (maxDecimals !== undefined && minDecimals !== undefined) {
-    minDecimals = Math.min(minDecimals, maxDecimals);
-  }
-
-  if (maxDecimals !== undefined) {
-    value = round(value, maxDecimals);
-  }
-
-  var _disassembleNumber2 = _disassembleNumber(value),
-      sign = _disassembleNumber2.sign,
-      integerPart = _disassembleNumber2.integerPart,
-      decimalPart = _disassembleNumber2.decimalPart;
-
-  if (minDecimals !== undefined) {
-    decimalPart = decimalPart.padEnd(minDecimals, '0');
-  } // Apply grouping for values with more than 4 integer digits.
-
-
-  if (integerPart.length > 4) {
-    integerPart = integerPart.replace(/(\d)(?=(\d{3})+$)/g, "$1".concat(groupSeparator));
-  }
-
-  return _assembleNumber(sign, integerPart, decimalPart, false);
-} // moves comma and returns a string without precision loss
-
-
-function moveComma(value, moveBy) {
-  var _disassembleNumber3 = _disassembleNumber(value),
-      sign = _disassembleNumber3.sign,
-      integerPart = _disassembleNumber3.integerPart,
-      dotPosition = _disassembleNumber3.dotPosition,
-      decimalPart = _disassembleNumber3.decimalPart;
-
-  var digits = "".concat(integerPart).concat(decimalPart);
-  var newDotPosition = dotPosition + moveBy;
-
-  if (newDotPosition > digits.length) {
-    digits = digits.padEnd(newDotPosition, '0');
-  } else if (newDotPosition < 0) {
-    digits = digits.padStart(digits.length - newDotPosition, '0');
-    newDotPosition = 0;
-  }
-
-  var newIntegerPart = digits.substring(0, newDotPosition);
-  var newDecimalPart = digits.substring(newDotPosition);
-  return _assembleNumber(sign, newIntegerPart, newDecimalPart);
-}
-
-function round(value, decimals) {
-  var _disassembleNumber4 = _disassembleNumber(value),
-      sign = _disassembleNumber4.sign,
-      integerPart = _disassembleNumber4.integerPart,
-      dotPosition = _disassembleNumber4.dotPosition,
-      decimalPart = _disassembleNumber4.decimalPart;
-
-  var decimalsToKeep = decimalPart.substring(0, decimals);
-  var decimalsToRemove = decimalPart.substring(decimals);
-
-  if (!decimalsToRemove || parseInt(decimalsToRemove[0]) < 5) {
-    // rounding down, can just use the trimmed decimals
-    return _assembleNumber(sign, integerPart, decimalsToKeep);
-  } // round up
-
-
-  var digits = "0".concat(integerPart).concat(decimalsToKeep).split(''); // add a leading 0 for easier handling of carry
-
-  var newDotPosition = dotPosition + 1; // account for added leading 0
-
-  for (var i = digits.length - 1; i >= 0; --i) {
-    var newDigit = parseInt(digits[i]) + 1;
-
-    if (newDigit < 10) {
-      digits[i] = newDigit.toString();
-      break; // no carry over, break
-    } else {
-      digits[i] = '0'; // continue loop to handle carry over
-    }
-  }
-
-  var newIntegerPart = digits.slice(0, newDotPosition).join('');
-  var newDecimalPart = digits.slice(newDotPosition).join('');
-  return _assembleNumber(sign, newIntegerPart, newDecimalPart); // trims the leading 0 if it was not necessary
-}
-
-function _disassembleNumber(value) {
-  value = toNonScientificNumberString(value);
-
-  var _value$match = value.match(NUMBER_REGEX),
-      _value$match2 = _slicedToArray(_value$match, 4),
-      sign = _value$match2[1],
-      integerPart = _value$match2[2],
-      decimalPart = _value$match2[3];
-
-  return {
-    sign: sign,
-    integerPart: integerPart,
-    dotPosition: integerPart.length,
-    decimalPart: decimalPart
-  };
-}
-
-function _assembleNumber(sign, integerPart, decimalPart) {
-  var trim = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
-
-  if (trim) {
-    integerPart = integerPart.replace(/^0+/, ''); // trim leading zeros
-
-    decimalPart = decimalPart.replace(/0+$/, ''); // trim trailing zeros
-  }
-
-  return "".concat(sign).concat(integerPart || '0').concat(decimalPart ? ".".concat(decimalPart) : '');
-}
-
- //# sourceMappingURL=NumberFormattingUtils.js.map
+ //# sourceMappingURL=FormattableNumber.js.map
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--13-1!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Amount.vue?vue&type=script&lang=ts&
+
+
 
 
 
@@ -8829,14 +8806,16 @@ function (_Vue) {
         maxDecimals = this.maxDecimals;
       }
 
-      var amount = moveComma(this.amount, -this.totalDecimals);
-      return formatNumber(amount, maxDecimals, minDecimals);
+      return new FormattableNumber_FormattableNumber(this.amount).moveDecimalSeparator(-this.totalDecimals).toString({
+        maxDecimals: maxDecimals,
+        minDecimals: minDecimals,
+        useGrouping: true
+      });
     }
   }, {
     key: "isApprox",
     get: function get() {
-      var converted = moveComma(this.amount, -this.totalDecimals);
-      return converted !== round(converted, this.decimals !== undefined ? this.decimals : this.maxDecimals);
+      return !new FormattableNumber_FormattableNumber(this.amount).moveDecimalSeparator(-this.totalDecimals).equals(this.formattedAmount.replace(/\s/g, ''));
     }
   }]);
 
@@ -8888,8 +8867,8 @@ Amountvue_type_script_lang_ts_Amount = __decorate([external_vue_property_decorat
 /* harmony default export */ var Amountvue_type_script_lang_ts_ = (Amountvue_type_script_lang_ts_Amount);
 // CONCATENATED MODULE: ./src/components/Amount.vue?vue&type=script&lang=ts&
  /* harmony default export */ var components_Amountvue_type_script_lang_ts_ = (Amountvue_type_script_lang_ts_); 
-// EXTERNAL MODULE: ./src/components/Amount.vue?vue&type=style&index=0&id=34ec82f1&scoped=true&lang=css&
-var Amountvue_type_style_index_0_id_34ec82f1_scoped_true_lang_css_ = __webpack_require__("509e");
+// EXTERNAL MODULE: ./src/components/Amount.vue?vue&type=style&index=0&id=d5e0133a&scoped=true&lang=css&
+var Amountvue_type_style_index_0_id_d5e0133a_scoped_true_lang_css_ = __webpack_require__("5210");
 
 // CONCATENATED MODULE: ./src/components/Amount.vue
 
@@ -8902,11 +8881,11 @@ var Amountvue_type_style_index_0_id_34ec82f1_scoped_true_lang_css_ = __webpack_r
 
 var Amount_component = normalizeComponent(
   components_Amountvue_type_script_lang_ts_,
-  Amountvue_type_template_id_34ec82f1_scoped_true_render,
-  Amountvue_type_template_id_34ec82f1_scoped_true_staticRenderFns,
+  Amountvue_type_template_id_d5e0133a_scoped_true_render,
+  Amountvue_type_template_id_d5e0133a_scoped_true_staticRenderFns,
   false,
   null,
-  "34ec82f1",
+  "d5e0133a",
   null
   
 )
@@ -12894,6 +12873,47 @@ var Carouselvue_type_template_id_63b0ea62_scoped_true_staticRenderFns = []
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.math.sign.js
 var es6_math_sign = __webpack_require__("0b21");
 
+// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/builtin/es6/arrayWithHoles.js
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/builtin/es6/iterableToArrayLimit.js
+function _iterableToArrayLimit(arr, i) {
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/builtin/es6/nonIterableRest.js
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance");
+}
+// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/builtin/es6/slicedToArray.js
+
+
+
+function _slicedToArray(arr, i) {
+  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest();
+}
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.map.js
 var es6_map = __webpack_require__("f400");
 
@@ -13785,12 +13805,12 @@ var PageHeader_component = normalizeComponent(
 
 PageHeader_component.options.__file = "PageHeader.vue"
 /* harmony default export */ var components_PageHeader = (PageHeader_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"46064dad-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/PaymentInfoLine.vue?vue&type=template&id=0f29cc2f&scoped=true&
-var PaymentInfoLinevue_type_template_id_0f29cc2f_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"info-line",class:{ 'inverse-theme': _vm.theme === _vm.constructor.Themes.INVERSE }},[_c('div',{staticClass:"amounts"},[_c('Amount',{attrs:{"currency":_vm.cryptoAmount.currency,"amount":_vm.cryptoAmount.amount,"totalDecimals":_vm.cryptoAmount.digits,"minDecimals":0,"maxDecimals":Math.min(4, _vm.cryptoAmount.digits)}}),(_vm.fiatAmount)?_c('Amount',{staticClass:"fiat-amount",attrs:{"currency":_vm.fiatAmount.currency,"amount":_vm.fiatAmount.amount,"totalDecimals":_vm.fiatAmount.digits,"decimals":_vm.fiatAmount.digits}}):_vm._e()],1),_c('div',{staticClass:"arrow-runway"},[_c('ArrowRightSmallIcon')],1),_c('Account',{attrs:{"address":_vm.address,"image":_vm.shopLogoUrl,"label":_vm.originDomain}}),(_vm.startTime && _vm.endTime)?_c('Timer',{ref:"timer",attrs:{"startTime":_vm.startTime,"endTime":_vm.endTime,"theme":_vm.theme}}):_vm._e()],1)}
-var PaymentInfoLinevue_type_template_id_0f29cc2f_scoped_true_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"46064dad-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/PaymentInfoLine.vue?vue&type=template&id=780c7d1f&scoped=true&
+var PaymentInfoLinevue_type_template_id_780c7d1f_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"info-line",class:{ 'inverse-theme': _vm.theme === _vm.constructor.Themes.INVERSE }},[_c('div',{staticClass:"amounts"},[_c('Amount',{attrs:{"currency":_vm.cryptoAmount.currency,"amount":_vm.cryptoAmount.amount,"totalDecimals":_vm.cryptoAmount.decimals,"minDecimals":0,"maxDecimals":Math.min(4, _vm.cryptoAmount.decimals)}}),(_vm.fiatAmount)?_c('Amount',{staticClass:"fiat-amount",attrs:{"currency":_vm.fiatAmount.currency,"amount":_vm.fiatAmount.amount,"totalDecimals":_vm.fiatAmount.decimals,"decimals":_vm.fiatAmount.decimals}}):_vm._e()],1),_c('div',{staticClass:"arrow-runway"},[_c('ArrowRightSmallIcon')],1),_c('Account',{attrs:{"address":_vm.address,"image":_vm.shopLogoUrl,"label":_vm.originDomain}}),(_vm.startTime && _vm.endTime)?_c('Timer',{ref:"timer",attrs:{"startTime":_vm.startTime,"endTime":_vm.endTime,"theme":_vm.theme}}):_vm._e()],1)}
+var PaymentInfoLinevue_type_template_id_780c7d1f_scoped_true_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/PaymentInfoLine.vue?vue&type=template&id=0f29cc2f&scoped=true&
+// CONCATENATED MODULE: ./src/components/PaymentInfoLine.vue?vue&type=template&id=780c7d1f&scoped=true&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es7.object.values.js
 var es7_object_values = __webpack_require__("8615");
@@ -14211,7 +14231,7 @@ var PaymentInfoLine_1;
 
 
 function amountInfoValidator(value) {
-  return 'amount' in value && 'currency' in value && 'digits' in value && (typeof value.amount === 'number' || typeof value.amount === 'bigint' || value.amount && value.amount.constructor && value.amount.constructor.name.endsWith('Integer')) && typeof value.currency === 'string' && typeof value.digits === 'number' && Number.isInteger(value.digits);
+  return 'amount' in value && 'currency' in value && 'decimals' in value && (typeof value.amount === 'number' || typeof value.amount === 'bigint' || value.amount && value.amount.constructor && value.amount.constructor.name.endsWith('Integer')) && typeof value.currency === 'string' && typeof value.decimals === 'number' && Number.isInteger(value.decimals);
 }
 
 var PaymentInfoLinevue_type_script_lang_ts_PaymentInfoLine = PaymentInfoLine_1 =
@@ -14320,8 +14340,8 @@ PaymentInfoLinevue_type_script_lang_ts_PaymentInfoLine = PaymentInfoLine_1 = __d
 /* harmony default export */ var PaymentInfoLinevue_type_script_lang_ts_ = (PaymentInfoLinevue_type_script_lang_ts_PaymentInfoLine);
 // CONCATENATED MODULE: ./src/components/PaymentInfoLine.vue?vue&type=script&lang=ts&
  /* harmony default export */ var components_PaymentInfoLinevue_type_script_lang_ts_ = (PaymentInfoLinevue_type_script_lang_ts_); 
-// EXTERNAL MODULE: ./src/components/PaymentInfoLine.vue?vue&type=style&index=0&id=0f29cc2f&scoped=true&lang=css&
-var PaymentInfoLinevue_type_style_index_0_id_0f29cc2f_scoped_true_lang_css_ = __webpack_require__("d071");
+// EXTERNAL MODULE: ./src/components/PaymentInfoLine.vue?vue&type=style&index=0&id=780c7d1f&scoped=true&lang=css&
+var PaymentInfoLinevue_type_style_index_0_id_780c7d1f_scoped_true_lang_css_ = __webpack_require__("4ede");
 
 // CONCATENATED MODULE: ./src/components/PaymentInfoLine.vue
 
@@ -14334,11 +14354,11 @@ var PaymentInfoLinevue_type_style_index_0_id_0f29cc2f_scoped_true_lang_css_ = __
 
 var PaymentInfoLine_component = normalizeComponent(
   components_PaymentInfoLinevue_type_script_lang_ts_,
-  PaymentInfoLinevue_type_template_id_0f29cc2f_scoped_true_render,
-  PaymentInfoLinevue_type_template_id_0f29cc2f_scoped_true_staticRenderFns,
+  PaymentInfoLinevue_type_template_id_780c7d1f_scoped_true_render,
+  PaymentInfoLinevue_type_template_id_780c7d1f_scoped_true_staticRenderFns,
   false,
   null,
-  "0f29cc2f",
+  "780c7d1f",
   null
   
 )
@@ -15719,13 +15739,6 @@ UniversalAmount_component.options.__file = "UniversalAmount.vue"
 module.exports = '\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003' +
   '\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF';
 
-
-/***/ }),
-
-/***/ "feed":
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
 
 /***/ })
 

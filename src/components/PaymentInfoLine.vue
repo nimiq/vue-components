@@ -4,15 +4,15 @@
             <Amount
                 :currency="cryptoAmount.currency"
                 :amount="cryptoAmount.amount"
-                :totalDecimals="cryptoAmount.digits"
+                :totalDecimals="cryptoAmount.decimals"
                 :minDecimals="0"
-                :maxDecimals="Math.min(4, cryptoAmount.digits)"
+                :maxDecimals="Math.min(4, cryptoAmount.decimals)"
             />
             <Amount v-if="fiatAmount" class="fiat-amount"
                 :currency="fiatAmount.currency"
                 :amount="fiatAmount.amount"
-                :totalDecimals="fiatAmount.digits"
-                :decimals="fiatAmount.digits"
+                :totalDecimals="fiatAmount.decimals"
+                :decimals="fiatAmount.decimals"
             />
         </div>
         <div class="arrow-runway">
@@ -36,15 +36,15 @@ import { ArrowRightSmallIcon } from './Icons';
 interface AmountInfo {
     amount: number | bigint | BigInteger; // in the smallest unit
     currency: string;
-    digits: number;
+    decimals: number;
 }
 
 function amountInfoValidator(value: any) {
-    return 'amount' in value && 'currency' in value && 'digits' in value
+    return 'amount' in value && 'currency' in value && 'decimals' in value
         && (typeof value.amount === 'number' || typeof value.amount === 'bigint'
             || (value.amount && value.amount.constructor && value.amount.constructor.name.endsWith('Integer')))
         && typeof value.currency === 'string'
-        && typeof value.digits === 'number' && Number.isInteger(value.digits);
+        && typeof value.decimals === 'number' && Number.isInteger(value.decimals);
 }
 
 @Component({components: {Account, Timer, Amount, ArrowRightSmallIcon}})

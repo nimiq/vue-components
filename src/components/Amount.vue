@@ -7,7 +7,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
-import { formatNumber, moveComma, round } from '@nimiq/utils';
+import { FormattableNumber } from '@nimiq/utils';
 type BigInteger = import ('big-integer').BigInteger;
 
 @Component
@@ -45,13 +45,13 @@ export default class Amount extends Vue {
             maxDecimals = this.maxDecimals;
         }
 
-        const amount = moveComma(this.amount, -this.totalDecimals);
-        return formatNumber(amount, maxDecimals, minDecimals);
+        return new FormattableNumber(this.amount).moveDecimalSeparator(-this.totalDecimals)
+            .toString({ maxDecimals, minDecimals, useGrouping: true });
     }
 
     private get isApprox() {
-        const converted = moveComma(this.amount, -this.totalDecimals);
-        return converted !== round(converted, this.decimals !== undefined ? this.decimals : this.maxDecimals);
+        return !new FormattableNumber(this.amount).moveDecimalSeparator(-this.totalDecimals)
+            .equals(this.formattedAmount.replace(/\s/g, ''));
     }
 }
 </script>

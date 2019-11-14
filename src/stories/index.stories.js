@@ -977,12 +977,12 @@ storiesOf('Components', module)
         const cryptoAmount = {
             amount: number('cryptoAmount.amount', 199862),
             currency: text('cryptoAmount.currency', 'NIM'),
-            digits: number('cryptoAmoun.digits', 5),
+            decimals: number('cryptoAmount.decimals', 5),
         };
         let fiatAmount = {
             amount: number('fiatAmount.amount (-1 for unset)', -1),
             currency: text('fiatAmount.currency', 'EUR'),
-            digits: number('fiatAmount.digits', 2),
+            decimals: number('fiatAmount.decimals', 2),
         };
         if (fiatAmount.amount < 0) fiatAmount = null;
         const origin = text('origin', 'https://shop.nimiq.com');
