@@ -706,7 +706,6 @@ storiesOf('Components', module)
         let fiatAmount = {
             amount: number('fiatAmount.amount (-1 for unset)', -1),
             currency: text('fiatAmount.currency', 'EUR'),
-            decimals: number('fiatAmount.decimals', 2),
         };
         if (fiatAmount.amount < 0) fiatAmount = null;
         const origin = text('origin', 'https://shop.nimiq.com');

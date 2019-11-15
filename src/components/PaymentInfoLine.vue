@@ -8,11 +8,9 @@
                 :minDecimals="0"
                 :maxDecimals="Math.min(4, cryptoAmount.decimals)"
             />
-            <Amount v-if="fiatAmount" class="fiat-amount"
+            <FiatAmount v-if="fiatAmount" class="fiat-amount"
                 :currency="fiatAmount.currency"
                 :amount="fiatAmount.amount"
-                :totalDecimals="fiatAmount.decimals"
-                :decimals="fiatAmount.decimals"
             />
         </div>
         <div class="arrow-runway">
@@ -31,15 +29,21 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 import Account from './Account.vue';
 import Timer from './Timer.vue';
 import Amount from './Amount.vue';
+import FiatAmount from './FiatAmount.vue';
 import { ArrowRightSmallIcon } from './Icons';
 
-interface AmountInfo {
+interface CryptoAmountInfo {
     amount: number | bigint | BigInteger; // in the smallest unit
     currency: string;
     decimals: number;
 }
 
-function amountInfoValidator(value: any) {
+interface FiatAmountInfo {
+    amount: number; // in the base unit, e.g. Euro
+    currency: string;
+}
+
+function cryptoAmountInfoValidator(value: any) {
     return 'amount' in value && 'currency' in value && 'decimals' in value
         && (typeof value.amount === 'number' || typeof value.amount === 'bigint'
             || (value.amount && value.amount.constructor && value.amount.constructor.name.endsWith('Integer')))
@@ -47,15 +51,21 @@ function amountInfoValidator(value: any) {
         && typeof value.decimals === 'number' && Number.isInteger(value.decimals);
 }
 
-@Component({components: {Account, Timer, Amount, ArrowRightSmallIcon}})
+function fiatAmountInfoValidator(value: any) {
+    return 'amount' in value && 'currency' in value
+        && typeof value.amount === 'number'
+        && typeof value.currency === 'string';
+}
+
+@Component({components: {Account, Timer, Amount, FiatAmount, ArrowRightSmallIcon}})
 class PaymentInfoLine extends Vue {
     private get originDomain() {
         return this.origin.split('://')[1];
     }
 
-    @Prop({type: Object, validator: amountInfoValidator}) public cryptoAmount!: AmountInfo;
-    @Prop({type: Object, validator: amountInfoValidator}) public fiatAmount?: AmountInfo;
-    @Prop(String) public origin!: string;
+    @Prop({type: Object, required: true, validator: cryptoAmountInfoValidator}) public cryptoAmount!: CryptoAmountInfo;
+    @Prop({type: Object, validator: fiatAmountInfoValidator}) public fiatAmount?: FiatAmountInfo;
+    @Prop({type: String, required: true}) public origin!: string;
     @Prop(String) public address?: string;
     @Prop(String) public shopLogoUrl?: string;
     @Prop(Number) public startTime?: number;
