@@ -19,6 +19,7 @@ export { default as ContactList } from './components/ContactList.vue';
 export { default as Copyable } from './components/Copyable.vue';
 export { default as CopyableField } from './components/CopyableField.vue';
 export { default as Carousel } from './components/Carousel.vue';
+export { default as FiatAmount } from './components/FiatAmount.vue';
 export { default as Identicon } from './components/Identicon.vue';
 export { default as LabelInput } from './components/LabelInput.vue';
 export { default as LoadingSpinner } from './components/LoadingSpinner.vue';

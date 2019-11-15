@@ -23,6 +23,7 @@ import ContactList from '../components/ContactList.vue';
 import ContactShortcuts from '../components/ContactShortcuts.vue';
 import Copyable from '../components/Copyable.vue';
 import CopyableField from '../components/CopyableField.vue';
+import FiatAmount from '../components/FiatAmount.vue';
 import Identicon from '../components/Identicon.vue';
 import LabelInput from '../components/LabelInput.vue';
 import Wallet from '../components/Wallet.vue';
@@ -111,6 +112,17 @@ storiesOf('Basic', module)
             data: () => ({ currency, amount, bigIntAmount, minDecimals, maxDecimals, decimals, showApprox, bigInt }),
             template: `<UniversalAmount :currency="currency" :amount="bigIntAmount.isZero() ? amount : bigIntAmount" :minDecimals="minDecimals" :maxDecimals="maxDecimals"
                 :decimals="decimals" :showApprox="showApprox" />`,
+        };
+    })
+    .add('FiatAmount', () => {
+        const amount = number('amount', 12345.67);
+        const currency = text('currency', 'eur');
+        const locale = text('locale', navigator.language);
+
+        return {
+            components: {FiatAmount},
+            data: () => ({ amount, currency, locale }),
+            template: `<FiatAmount :amount="amount" :currency="currency" :locale="locale" />`,
         };
     })
     .add('Icons', () => {
@@ -982,7 +994,6 @@ storiesOf('Components', module)
         let fiatAmount = {
             amount: number('fiatAmount.amount (-1 for unset)', -1),
             currency: text('fiatAmount.currency', 'EUR'),
-            decimals: number('fiatAmount.decimals', 2),
         };
         if (fiatAmount.amount < 0) fiatAmount = null;
         const origin = text('origin', 'https://shop.nimiq.com');

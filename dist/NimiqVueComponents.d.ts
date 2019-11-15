@@ -25,6 +25,7 @@ declare module 'NimiqVueComponents' {
     export { default as Copyable } from 'NimiqVueComponents/src/components/Copyable.vue';
     export { default as CopyableField } from 'NimiqVueComponents/src/components/CopyableField.vue';
     export { default as Carousel } from 'NimiqVueComponents/src/components/Carousel.vue';
+    export { default as FiatAmount } from 'NimiqVueComponents/src/components/FiatAmount.vue';
     export { default as Identicon } from 'NimiqVueComponents/src/components/Identicon.vue';
     export { default as LabelInput } from 'NimiqVueComponents/src/components/LabelInput.vue';
     export { default as LoadingSpinner } from 'NimiqVueComponents/src/components/LoadingSpinner.vue';
@@ -261,6 +262,15 @@ declare module 'NimiqVueComponents/src/components/Carousel.vue' {
     }
 }
 
+declare module 'NimiqVueComponents/src/components/FiatAmount.vue' {
+    import { Vue } from 'vue-property-decorator';
+    export default class FiatAmount extends Vue {
+        amount: number;
+        currency: string;
+        locale: string;
+    }
+}
+
 declare module 'NimiqVueComponents/src/components/Identicon.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class Identicon extends Vue {
@@ -306,14 +316,18 @@ declare module 'NimiqVueComponents/src/components/PageHeader.vue' {
 declare module 'NimiqVueComponents/src/components/PaymentInfoLine.vue' {
     type BigInteger = import('big-integer').BigInteger;
     import { Vue } from 'vue-property-decorator';
-    interface AmountInfo {
+    interface CryptoAmountInfo {
         amount: number | bigint | BigInteger;
         currency: string;
         decimals: number;
     }
+    interface FiatAmountInfo {
+        amount: number;
+        currency: string;
+    }
     class PaymentInfoLine extends Vue {
-        cryptoAmount: AmountInfo;
-        fiatAmount?: AmountInfo;
+        cryptoAmount: CryptoAmountInfo;
+        fiatAmount?: FiatAmountInfo;
         origin: string;
         address?: string;
         shopLogoUrl?: string;

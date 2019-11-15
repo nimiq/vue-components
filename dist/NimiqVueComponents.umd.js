@@ -187,38 +187,10 @@ module.exports = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCE
 
 /***/ }),
 
-/***/ "04ff":
-/***/ (function(module, exports, __webpack_require__) {
-
-var $export = __webpack_require__("5ca1");
-var $parseInt = __webpack_require__("3ca5");
-// 20.1.2.13 Number.parseInt(string, radix)
-$export($export.S + $export.F * (Number.parseInt != $parseInt), 'Number', { parseInt: $parseInt });
-
-
-/***/ }),
-
 /***/ "0878":
 /***/ (function(module, exports, __webpack_require__) {
 
 // extracted by mini-css-extract-plugin
-
-/***/ }),
-
-/***/ "09fa":
-/***/ (function(module, exports, __webpack_require__) {
-
-// https://tc39.github.io/ecma262/#sec-toindex
-var toInteger = __webpack_require__("4588");
-var toLength = __webpack_require__("9def");
-module.exports = function (it) {
-  if (it === undefined) return 0;
-  var number = toInteger(it);
-  var length = toLength(number);
-  if (number !== length) throw RangeError('Wrong length!');
-  return length;
-};
-
 
 /***/ }),
 
@@ -333,41 +305,6 @@ module.exports = Object.keys || function keys(O) {
 
 /***/ }),
 
-/***/ "0f88":
-/***/ (function(module, exports, __webpack_require__) {
-
-var global = __webpack_require__("7726");
-var hide = __webpack_require__("32e9");
-var uid = __webpack_require__("ca5a");
-var TYPED = uid('typed_array');
-var VIEW = uid('view');
-var ABV = !!(global.ArrayBuffer && global.DataView);
-var CONSTR = ABV;
-var i = 0;
-var l = 9;
-var Typed;
-
-var TypedArrayConstructors = (
-  'Int8Array,Uint8Array,Uint8ClampedArray,Int16Array,Uint16Array,Int32Array,Uint32Array,Float32Array,Float64Array'
-).split(',');
-
-while (i < l) {
-  if (Typed = global[TypedArrayConstructors[i++]]) {
-    hide(Typed.prototype, TYPED, true);
-    hide(Typed.prototype, VIEW, true);
-  } else CONSTR = false;
-}
-
-module.exports = {
-  ABV: ABV,
-  CONSTR: CONSTR,
-  TYPED: TYPED,
-  VIEW: VIEW
-};
-
-
-/***/ }),
-
 /***/ "1169":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -460,97 +397,6 @@ module.exports = __webpack_require__.p + "img/iqons.min.72f3b689.svg";
 /* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_34f6cfb0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_34f6cfb0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
 /* unused harmony reexport * */
  /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_34f6cfb0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
-/***/ "1991":
-/***/ (function(module, exports, __webpack_require__) {
-
-var ctx = __webpack_require__("9b43");
-var invoke = __webpack_require__("31f4");
-var html = __webpack_require__("fab2");
-var cel = __webpack_require__("230e");
-var global = __webpack_require__("7726");
-var process = global.process;
-var setTask = global.setImmediate;
-var clearTask = global.clearImmediate;
-var MessageChannel = global.MessageChannel;
-var Dispatch = global.Dispatch;
-var counter = 0;
-var queue = {};
-var ONREADYSTATECHANGE = 'onreadystatechange';
-var defer, channel, port;
-var run = function () {
-  var id = +this;
-  // eslint-disable-next-line no-prototype-builtins
-  if (queue.hasOwnProperty(id)) {
-    var fn = queue[id];
-    delete queue[id];
-    fn();
-  }
-};
-var listener = function (event) {
-  run.call(event.data);
-};
-// Node.js 0.9+ & IE10+ has setImmediate, otherwise:
-if (!setTask || !clearTask) {
-  setTask = function setImmediate(fn) {
-    var args = [];
-    var i = 1;
-    while (arguments.length > i) args.push(arguments[i++]);
-    queue[++counter] = function () {
-      // eslint-disable-next-line no-new-func
-      invoke(typeof fn == 'function' ? fn : Function(fn), args);
-    };
-    defer(counter);
-    return counter;
-  };
-  clearTask = function clearImmediate(id) {
-    delete queue[id];
-  };
-  // Node.js 0.8-
-  if (__webpack_require__("2d95")(process) == 'process') {
-    defer = function (id) {
-      process.nextTick(ctx(run, id, 1));
-    };
-  // Sphere (JS game engine) Dispatch API
-  } else if (Dispatch && Dispatch.now) {
-    defer = function (id) {
-      Dispatch.now(ctx(run, id, 1));
-    };
-  // Browsers with MessageChannel, includes WebWorkers
-  } else if (MessageChannel) {
-    channel = new MessageChannel();
-    port = channel.port2;
-    channel.port1.onmessage = listener;
-    defer = ctx(port.postMessage, port, 1);
-  // Browsers with postMessage, skip WebWorkers
-  // IE8 has postMessage, but it's sync & typeof its postMessage is 'object'
-  } else if (global.addEventListener && typeof postMessage == 'function' && !global.importScripts) {
-    defer = function (id) {
-      global.postMessage(id + '', '*');
-    };
-    global.addEventListener('message', listener, false);
-  // IE8-
-  } else if (ONREADYSTATECHANGE in cel('script')) {
-    defer = function (id) {
-      html.appendChild(cel('script'))[ONREADYSTATECHANGE] = function () {
-        html.removeChild(this);
-        run.call(id);
-      };
-    };
-  // Rest old browsers
-  } else {
-    defer = function (id) {
-      setTimeout(ctx(run, id, 1), 0);
-    };
-  }
-}
-module.exports = {
-  set: setTask,
-  clear: clearTask
-};
-
 
 /***/ }),
 
@@ -1069,29 +915,6 @@ $export($export.P + $export.F * __webpack_require__("5147")(INCLUDES), 'String',
 
 /***/ }),
 
-/***/ "31f4":
-/***/ (function(module, exports) {
-
-// fast apply, http://jsperf.lnkit.com/fast-apply/5
-module.exports = function (fn, args, that) {
-  var un = that === undefined;
-  switch (args.length) {
-    case 0: return un ? fn()
-                      : fn.call(that);
-    case 1: return un ? fn(args[0])
-                      : fn.call(that, args[0]);
-    case 2: return un ? fn(args[0], args[1])
-                      : fn.call(that, args[0], args[1]);
-    case 3: return un ? fn(args[0], args[1], args[2])
-                      : fn.call(that, args[0], args[1], args[2]);
-    case 4: return un ? fn(args[0], args[1], args[2], args[3])
-                      : fn.call(that, args[0], args[1], args[2], args[3]);
-  } return fn.apply(that, args);
-};
-
-
-/***/ }),
-
 /***/ "32e9":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1269,18 +1092,6 @@ function setCaretPosition(element, caret_position) {
 
 /***/ }),
 
-/***/ "34ef":
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__("ec30")('Uint8', 1, function (init) {
-  return function Uint8Array(data, byteOffset, length) {
-    return init(this, data, byteOffset, length);
-  };
-});
-
-
-/***/ }),
-
 /***/ "36bd":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1361,6 +1172,13 @@ module.exports = Object.getPrototypeOf || function (O) {
 
 /***/ }),
 
+/***/ "3954":
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
 /***/ "3a72":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1423,22 +1241,6 @@ if (__webpack_require__("9e1e") && (!CORRECT_NEW || __webpack_require__("79e5")(
 }
 
 __webpack_require__("7a56")('RegExp');
-
-
-/***/ }),
-
-/***/ "3ca5":
-/***/ (function(module, exports, __webpack_require__) {
-
-var $parseInt = __webpack_require__("7726").parseInt;
-var $trim = __webpack_require__("aa77").trim;
-var ws = __webpack_require__("fdef");
-var hex = /^[-+]?0[xX]/;
-
-module.exports = $parseInt(ws + '08') !== 8 || $parseInt(ws + '0x16') !== 22 ? function parseInt(str, radix) {
-  var string = $trim(String(str), 3);
-  return $parseInt(string, (radix >>> 0) || (hex.test(string) ? 16 : 10));
-} : $parseInt;
 
 
 /***/ }),
@@ -1605,17 +1407,6 @@ module.exports = function (it) {
 
 /***/ }),
 
-/***/ "4ede":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentInfoLine_vue_vue_type_style_index_0_id_780c7d1f_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("77bd");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentInfoLine_vue_vue_type_style_index_0_id_780c7d1f_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentInfoLine_vue_vue_type_style_index_0_id_780c7d1f_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
- /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentInfoLine_vue_vue_type_style_index_0_id_780c7d1f_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
 /***/ "504c":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1680,300 +1471,6 @@ module.exports = function (KEY) {
 /***/ (function(module, exports) {
 
 exports.f = {}.propertyIsEnumerable;
-
-
-/***/ }),
-
-/***/ "551c":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var LIBRARY = __webpack_require__("2d00");
-var global = __webpack_require__("7726");
-var ctx = __webpack_require__("9b43");
-var classof = __webpack_require__("23c6");
-var $export = __webpack_require__("5ca1");
-var isObject = __webpack_require__("d3f4");
-var aFunction = __webpack_require__("d8e8");
-var anInstance = __webpack_require__("f605");
-var forOf = __webpack_require__("4a59");
-var speciesConstructor = __webpack_require__("ebd6");
-var task = __webpack_require__("1991").set;
-var microtask = __webpack_require__("8079")();
-var newPromiseCapabilityModule = __webpack_require__("a5b8");
-var perform = __webpack_require__("9c80");
-var userAgent = __webpack_require__("a25f");
-var promiseResolve = __webpack_require__("bcaa");
-var PROMISE = 'Promise';
-var TypeError = global.TypeError;
-var process = global.process;
-var versions = process && process.versions;
-var v8 = versions && versions.v8 || '';
-var $Promise = global[PROMISE];
-var isNode = classof(process) == 'process';
-var empty = function () { /* empty */ };
-var Internal, newGenericPromiseCapability, OwnPromiseCapability, Wrapper;
-var newPromiseCapability = newGenericPromiseCapability = newPromiseCapabilityModule.f;
-
-var USE_NATIVE = !!function () {
-  try {
-    // correct subclassing with @@species support
-    var promise = $Promise.resolve(1);
-    var FakePromise = (promise.constructor = {})[__webpack_require__("2b4c")('species')] = function (exec) {
-      exec(empty, empty);
-    };
-    // unhandled rejections tracking support, NodeJS Promise without it fails @@species test
-    return (isNode || typeof PromiseRejectionEvent == 'function')
-      && promise.then(empty) instanceof FakePromise
-      // v8 6.6 (Node 10 and Chrome 66) have a bug with resolving custom thenables
-      // https://bugs.chromium.org/p/chromium/issues/detail?id=830565
-      // we can't detect it synchronously, so just check versions
-      && v8.indexOf('6.6') !== 0
-      && userAgent.indexOf('Chrome/66') === -1;
-  } catch (e) { /* empty */ }
-}();
-
-// helpers
-var isThenable = function (it) {
-  var then;
-  return isObject(it) && typeof (then = it.then) == 'function' ? then : false;
-};
-var notify = function (promise, isReject) {
-  if (promise._n) return;
-  promise._n = true;
-  var chain = promise._c;
-  microtask(function () {
-    var value = promise._v;
-    var ok = promise._s == 1;
-    var i = 0;
-    var run = function (reaction) {
-      var handler = ok ? reaction.ok : reaction.fail;
-      var resolve = reaction.resolve;
-      var reject = reaction.reject;
-      var domain = reaction.domain;
-      var result, then, exited;
-      try {
-        if (handler) {
-          if (!ok) {
-            if (promise._h == 2) onHandleUnhandled(promise);
-            promise._h = 1;
-          }
-          if (handler === true) result = value;
-          else {
-            if (domain) domain.enter();
-            result = handler(value); // may throw
-            if (domain) {
-              domain.exit();
-              exited = true;
-            }
-          }
-          if (result === reaction.promise) {
-            reject(TypeError('Promise-chain cycle'));
-          } else if (then = isThenable(result)) {
-            then.call(result, resolve, reject);
-          } else resolve(result);
-        } else reject(value);
-      } catch (e) {
-        if (domain && !exited) domain.exit();
-        reject(e);
-      }
-    };
-    while (chain.length > i) run(chain[i++]); // variable length - can't use forEach
-    promise._c = [];
-    promise._n = false;
-    if (isReject && !promise._h) onUnhandled(promise);
-  });
-};
-var onUnhandled = function (promise) {
-  task.call(global, function () {
-    var value = promise._v;
-    var unhandled = isUnhandled(promise);
-    var result, handler, console;
-    if (unhandled) {
-      result = perform(function () {
-        if (isNode) {
-          process.emit('unhandledRejection', value, promise);
-        } else if (handler = global.onunhandledrejection) {
-          handler({ promise: promise, reason: value });
-        } else if ((console = global.console) && console.error) {
-          console.error('Unhandled promise rejection', value);
-        }
-      });
-      // Browsers should not trigger `rejectionHandled` event if it was handled here, NodeJS - should
-      promise._h = isNode || isUnhandled(promise) ? 2 : 1;
-    } promise._a = undefined;
-    if (unhandled && result.e) throw result.v;
-  });
-};
-var isUnhandled = function (promise) {
-  return promise._h !== 1 && (promise._a || promise._c).length === 0;
-};
-var onHandleUnhandled = function (promise) {
-  task.call(global, function () {
-    var handler;
-    if (isNode) {
-      process.emit('rejectionHandled', promise);
-    } else if (handler = global.onrejectionhandled) {
-      handler({ promise: promise, reason: promise._v });
-    }
-  });
-};
-var $reject = function (value) {
-  var promise = this;
-  if (promise._d) return;
-  promise._d = true;
-  promise = promise._w || promise; // unwrap
-  promise._v = value;
-  promise._s = 2;
-  if (!promise._a) promise._a = promise._c.slice();
-  notify(promise, true);
-};
-var $resolve = function (value) {
-  var promise = this;
-  var then;
-  if (promise._d) return;
-  promise._d = true;
-  promise = promise._w || promise; // unwrap
-  try {
-    if (promise === value) throw TypeError("Promise can't be resolved itself");
-    if (then = isThenable(value)) {
-      microtask(function () {
-        var wrapper = { _w: promise, _d: false }; // wrap
-        try {
-          then.call(value, ctx($resolve, wrapper, 1), ctx($reject, wrapper, 1));
-        } catch (e) {
-          $reject.call(wrapper, e);
-        }
-      });
-    } else {
-      promise._v = value;
-      promise._s = 1;
-      notify(promise, false);
-    }
-  } catch (e) {
-    $reject.call({ _w: promise, _d: false }, e); // wrap
-  }
-};
-
-// constructor polyfill
-if (!USE_NATIVE) {
-  // 25.4.3.1 Promise(executor)
-  $Promise = function Promise(executor) {
-    anInstance(this, $Promise, PROMISE, '_h');
-    aFunction(executor);
-    Internal.call(this);
-    try {
-      executor(ctx($resolve, this, 1), ctx($reject, this, 1));
-    } catch (err) {
-      $reject.call(this, err);
-    }
-  };
-  // eslint-disable-next-line no-unused-vars
-  Internal = function Promise(executor) {
-    this._c = [];             // <- awaiting reactions
-    this._a = undefined;      // <- checked in isUnhandled reactions
-    this._s = 0;              // <- state
-    this._d = false;          // <- done
-    this._v = undefined;      // <- value
-    this._h = 0;              // <- rejection state, 0 - default, 1 - handled, 2 - unhandled
-    this._n = false;          // <- notify
-  };
-  Internal.prototype = __webpack_require__("dcbc")($Promise.prototype, {
-    // 25.4.5.3 Promise.prototype.then(onFulfilled, onRejected)
-    then: function then(onFulfilled, onRejected) {
-      var reaction = newPromiseCapability(speciesConstructor(this, $Promise));
-      reaction.ok = typeof onFulfilled == 'function' ? onFulfilled : true;
-      reaction.fail = typeof onRejected == 'function' && onRejected;
-      reaction.domain = isNode ? process.domain : undefined;
-      this._c.push(reaction);
-      if (this._a) this._a.push(reaction);
-      if (this._s) notify(this, false);
-      return reaction.promise;
-    },
-    // 25.4.5.1 Promise.prototype.catch(onRejected)
-    'catch': function (onRejected) {
-      return this.then(undefined, onRejected);
-    }
-  });
-  OwnPromiseCapability = function () {
-    var promise = new Internal();
-    this.promise = promise;
-    this.resolve = ctx($resolve, promise, 1);
-    this.reject = ctx($reject, promise, 1);
-  };
-  newPromiseCapabilityModule.f = newPromiseCapability = function (C) {
-    return C === $Promise || C === Wrapper
-      ? new OwnPromiseCapability(C)
-      : newGenericPromiseCapability(C);
-  };
-}
-
-$export($export.G + $export.W + $export.F * !USE_NATIVE, { Promise: $Promise });
-__webpack_require__("7f20")($Promise, PROMISE);
-__webpack_require__("7a56")(PROMISE);
-Wrapper = __webpack_require__("8378")[PROMISE];
-
-// statics
-$export($export.S + $export.F * !USE_NATIVE, PROMISE, {
-  // 25.4.4.5 Promise.reject(r)
-  reject: function reject(r) {
-    var capability = newPromiseCapability(this);
-    var $$reject = capability.reject;
-    $$reject(r);
-    return capability.promise;
-  }
-});
-$export($export.S + $export.F * (LIBRARY || !USE_NATIVE), PROMISE, {
-  // 25.4.4.6 Promise.resolve(x)
-  resolve: function resolve(x) {
-    return promiseResolve(LIBRARY && this === Wrapper ? $Promise : this, x);
-  }
-});
-$export($export.S + $export.F * !(USE_NATIVE && __webpack_require__("5cc5")(function (iter) {
-  $Promise.all(iter)['catch'](empty);
-})), PROMISE, {
-  // 25.4.4.1 Promise.all(iterable)
-  all: function all(iterable) {
-    var C = this;
-    var capability = newPromiseCapability(C);
-    var resolve = capability.resolve;
-    var reject = capability.reject;
-    var result = perform(function () {
-      var values = [];
-      var index = 0;
-      var remaining = 1;
-      forOf(iterable, false, function (promise) {
-        var $index = index++;
-        var alreadyCalled = false;
-        values.push(undefined);
-        remaining++;
-        C.resolve(promise).then(function (value) {
-          if (alreadyCalled) return;
-          alreadyCalled = true;
-          values[$index] = value;
-          --remaining || resolve(values);
-        }, reject);
-      });
-      --remaining || resolve(values);
-    });
-    if (result.e) reject(result.v);
-    return capability.promise;
-  },
-  // 25.4.4.4 Promise.race(iterable)
-  race: function race(iterable) {
-    var C = this;
-    var capability = newPromiseCapability(C);
-    var reject = capability.reject;
-    var result = perform(function () {
-      forOf(iterable, false, function (promise) {
-        C.resolve(promise).then(capability.resolve, reject);
-      });
-    });
-    if (result.e) reject(result.v);
-    return capability.promise;
-  }
-});
 
 
 /***/ }),
@@ -2432,6 +1929,17 @@ $export($export.P, 'Array', { fill: __webpack_require__("36bd") });
 
 __webpack_require__("9c6c")('fill');
 
+
+/***/ }),
+
+/***/ "6ce7":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentInfoLine_vue_vue_type_style_index_0_id_5d90b8da_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("3954");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentInfoLine_vue_vue_type_style_index_0_id_5d90b8da_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentInfoLine_vue_vue_type_style_index_0_id_5d90b8da_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+ /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentInfoLine_vue_vue_type_style_index_0_id_5d90b8da_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -3995,13 +3503,6 @@ if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
 
 /***/ }),
 
-/***/ "77bd":
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-
 /***/ "77f1":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4121,82 +3622,6 @@ NAME in FProto || __webpack_require__("9e1e") && dP(FProto, NAME, {
     }
   }
 });
-
-
-/***/ }),
-
-/***/ "8079":
-/***/ (function(module, exports, __webpack_require__) {
-
-var global = __webpack_require__("7726");
-var macrotask = __webpack_require__("1991").set;
-var Observer = global.MutationObserver || global.WebKitMutationObserver;
-var process = global.process;
-var Promise = global.Promise;
-var isNode = __webpack_require__("2d95")(process) == 'process';
-
-module.exports = function () {
-  var head, last, notify;
-
-  var flush = function () {
-    var parent, fn;
-    if (isNode && (parent = process.domain)) parent.exit();
-    while (head) {
-      fn = head.fn;
-      head = head.next;
-      try {
-        fn();
-      } catch (e) {
-        if (head) notify();
-        else last = undefined;
-        throw e;
-      }
-    } last = undefined;
-    if (parent) parent.enter();
-  };
-
-  // Node.js
-  if (isNode) {
-    notify = function () {
-      process.nextTick(flush);
-    };
-  // browsers with MutationObserver, except iOS Safari - https://github.com/zloirock/core-js/issues/339
-  } else if (Observer && !(global.navigator && global.navigator.standalone)) {
-    var toggle = true;
-    var node = document.createTextNode('');
-    new Observer(flush).observe(node, { characterData: true }); // eslint-disable-line no-new
-    notify = function () {
-      node.data = toggle = !toggle;
-    };
-  // environments with maybe non-completely correct, but existent Promise
-  } else if (Promise && Promise.resolve) {
-    // Promise.resolve without an argument throws an error in LG WebOS 2
-    var promise = Promise.resolve(undefined);
-    notify = function () {
-      promise.then(flush);
-    };
-  // for other environments - macrotask based on:
-  // - setImmediate
-  // - MessageChannel
-  // - window.postMessag
-  // - onreadystatechange
-  // - setTimeout
-  } else {
-    notify = function () {
-      // strange IE + webpack dev server bug - use .call(global)
-      macrotask.call(global, flush);
-    };
-  }
-
-  return function (fn) {
-    var task = { fn: fn, next: undefined };
-    if (last) last.next = task;
-    if (!head) {
-      head = task;
-      notify();
-    } last = task;
-  };
-};
 
 
 /***/ }),
@@ -5579,20 +5004,6 @@ module.exports = function (key) {
 
 /***/ }),
 
-/***/ "9c80":
-/***/ (function(module, exports) {
-
-module.exports = function (exec) {
-  try {
-    return { e: false, v: exec() };
-  } catch (e) {
-    return { e: true, v: e };
-  }
-};
-
-
-/***/ }),
-
 /***/ "9def":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5897,32 +5308,6 @@ __webpack_require__("214f")('replace', 2, function (defined, REPLACE, $replace) 
 
 /***/ }),
 
-/***/ "a5b8":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-// 25.4.1.5 NewPromiseCapability(C)
-var aFunction = __webpack_require__("d8e8");
-
-function PromiseCapability(C) {
-  var resolve, reject;
-  this.promise = new C(function ($$resolve, $$reject) {
-    if (resolve !== undefined || reject !== undefined) throw TypeError('Bad Promise constructor');
-    resolve = $$resolve;
-    reject = $$reject;
-  });
-  this.resolve = aFunction(resolve);
-  this.reject = aFunction(reject);
-}
-
-module.exports.f = function (C) {
-  return new PromiseCapability(C);
-};
-
-
-/***/ }),
-
 /***/ "a8a1":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6195,40 +5580,6 @@ module.exports = function (it, TYPE) {
 
 /***/ }),
 
-/***/ "ba92":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-// 22.1.3.3 Array.prototype.copyWithin(target, start, end = this.length)
-
-var toObject = __webpack_require__("4bf8");
-var toAbsoluteIndex = __webpack_require__("77f1");
-var toLength = __webpack_require__("9def");
-
-module.exports = [].copyWithin || function copyWithin(target /* = 0 */, start /* = 0, end = @length */) {
-  var O = toObject(this);
-  var len = toLength(O.length);
-  var to = toAbsoluteIndex(target, len);
-  var from = toAbsoluteIndex(start, len);
-  var end = arguments.length > 2 ? arguments[2] : undefined;
-  var count = Math.min((end === undefined ? len : toAbsoluteIndex(end, len)) - from, len - to);
-  var inc = 1;
-  if (from < to && to < from + count) {
-    inc = -1;
-    from += count - 1;
-    to += count - 1;
-  }
-  while (count-- > 0) {
-    if (from in O) O[to] = O[from];
-    else delete O[to];
-    to += inc;
-    from += inc;
-  } return O;
-};
-
-
-/***/ }),
-
 /***/ "bc12":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -6248,25 +5599,6 @@ module.exports = [].copyWithin || function copyWithin(target /* = 0 */, start /*
 /* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ContactList_vue_vue_type_style_index_0_id_62deaed0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ContactList_vue_vue_type_style_index_0_id_62deaed0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
 /* unused harmony reexport * */
  /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ContactList_vue_vue_type_style_index_0_id_62deaed0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
-/***/ "bcaa":
-/***/ (function(module, exports, __webpack_require__) {
-
-var anObject = __webpack_require__("cb7c");
-var isObject = __webpack_require__("d3f4");
-var newPromiseCapability = __webpack_require__("a5b8");
-
-module.exports = function (C, x) {
-  anObject(C);
-  if (isObject(x) && x.constructor === C) return x;
-  var promiseCapability = newPromiseCapability.f(C);
-  var resolve = promiseCapability.resolve;
-  resolve(x);
-  return promiseCapability.promise;
-};
-
 
 /***/ }),
 
@@ -6998,794 +6330,6 @@ module.exports = function (original) {
 
 /***/ }),
 
-/***/ "ebd6":
-/***/ (function(module, exports, __webpack_require__) {
-
-// 7.3.20 SpeciesConstructor(O, defaultConstructor)
-var anObject = __webpack_require__("cb7c");
-var aFunction = __webpack_require__("d8e8");
-var SPECIES = __webpack_require__("2b4c")('species');
-module.exports = function (O, D) {
-  var C = anObject(O).constructor;
-  var S;
-  return C === undefined || (S = anObject(C)[SPECIES]) == undefined ? D : aFunction(S);
-};
-
-
-/***/ }),
-
-/***/ "ec30":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-if (__webpack_require__("9e1e")) {
-  var LIBRARY = __webpack_require__("2d00");
-  var global = __webpack_require__("7726");
-  var fails = __webpack_require__("79e5");
-  var $export = __webpack_require__("5ca1");
-  var $typed = __webpack_require__("0f88");
-  var $buffer = __webpack_require__("ed0b");
-  var ctx = __webpack_require__("9b43");
-  var anInstance = __webpack_require__("f605");
-  var propertyDesc = __webpack_require__("4630");
-  var hide = __webpack_require__("32e9");
-  var redefineAll = __webpack_require__("dcbc");
-  var toInteger = __webpack_require__("4588");
-  var toLength = __webpack_require__("9def");
-  var toIndex = __webpack_require__("09fa");
-  var toAbsoluteIndex = __webpack_require__("77f1");
-  var toPrimitive = __webpack_require__("6a99");
-  var has = __webpack_require__("69a8");
-  var classof = __webpack_require__("23c6");
-  var isObject = __webpack_require__("d3f4");
-  var toObject = __webpack_require__("4bf8");
-  var isArrayIter = __webpack_require__("33a4");
-  var create = __webpack_require__("2aeb");
-  var getPrototypeOf = __webpack_require__("38fd");
-  var gOPN = __webpack_require__("9093").f;
-  var getIterFn = __webpack_require__("27ee");
-  var uid = __webpack_require__("ca5a");
-  var wks = __webpack_require__("2b4c");
-  var createArrayMethod = __webpack_require__("0a49");
-  var createArrayIncludes = __webpack_require__("c366");
-  var speciesConstructor = __webpack_require__("ebd6");
-  var ArrayIterators = __webpack_require__("cadf");
-  var Iterators = __webpack_require__("84f2");
-  var $iterDetect = __webpack_require__("5cc5");
-  var setSpecies = __webpack_require__("7a56");
-  var arrayFill = __webpack_require__("36bd");
-  var arrayCopyWithin = __webpack_require__("ba92");
-  var $DP = __webpack_require__("86cc");
-  var $GOPD = __webpack_require__("11e9");
-  var dP = $DP.f;
-  var gOPD = $GOPD.f;
-  var RangeError = global.RangeError;
-  var TypeError = global.TypeError;
-  var Uint8Array = global.Uint8Array;
-  var ARRAY_BUFFER = 'ArrayBuffer';
-  var SHARED_BUFFER = 'Shared' + ARRAY_BUFFER;
-  var BYTES_PER_ELEMENT = 'BYTES_PER_ELEMENT';
-  var PROTOTYPE = 'prototype';
-  var ArrayProto = Array[PROTOTYPE];
-  var $ArrayBuffer = $buffer.ArrayBuffer;
-  var $DataView = $buffer.DataView;
-  var arrayForEach = createArrayMethod(0);
-  var arrayFilter = createArrayMethod(2);
-  var arraySome = createArrayMethod(3);
-  var arrayEvery = createArrayMethod(4);
-  var arrayFind = createArrayMethod(5);
-  var arrayFindIndex = createArrayMethod(6);
-  var arrayIncludes = createArrayIncludes(true);
-  var arrayIndexOf = createArrayIncludes(false);
-  var arrayValues = ArrayIterators.values;
-  var arrayKeys = ArrayIterators.keys;
-  var arrayEntries = ArrayIterators.entries;
-  var arrayLastIndexOf = ArrayProto.lastIndexOf;
-  var arrayReduce = ArrayProto.reduce;
-  var arrayReduceRight = ArrayProto.reduceRight;
-  var arrayJoin = ArrayProto.join;
-  var arraySort = ArrayProto.sort;
-  var arraySlice = ArrayProto.slice;
-  var arrayToString = ArrayProto.toString;
-  var arrayToLocaleString = ArrayProto.toLocaleString;
-  var ITERATOR = wks('iterator');
-  var TAG = wks('toStringTag');
-  var TYPED_CONSTRUCTOR = uid('typed_constructor');
-  var DEF_CONSTRUCTOR = uid('def_constructor');
-  var ALL_CONSTRUCTORS = $typed.CONSTR;
-  var TYPED_ARRAY = $typed.TYPED;
-  var VIEW = $typed.VIEW;
-  var WRONG_LENGTH = 'Wrong length!';
-
-  var $map = createArrayMethod(1, function (O, length) {
-    return allocate(speciesConstructor(O, O[DEF_CONSTRUCTOR]), length);
-  });
-
-  var LITTLE_ENDIAN = fails(function () {
-    // eslint-disable-next-line no-undef
-    return new Uint8Array(new Uint16Array([1]).buffer)[0] === 1;
-  });
-
-  var FORCED_SET = !!Uint8Array && !!Uint8Array[PROTOTYPE].set && fails(function () {
-    new Uint8Array(1).set({});
-  });
-
-  var toOffset = function (it, BYTES) {
-    var offset = toInteger(it);
-    if (offset < 0 || offset % BYTES) throw RangeError('Wrong offset!');
-    return offset;
-  };
-
-  var validate = function (it) {
-    if (isObject(it) && TYPED_ARRAY in it) return it;
-    throw TypeError(it + ' is not a typed array!');
-  };
-
-  var allocate = function (C, length) {
-    if (!(isObject(C) && TYPED_CONSTRUCTOR in C)) {
-      throw TypeError('It is not a typed array constructor!');
-    } return new C(length);
-  };
-
-  var speciesFromList = function (O, list) {
-    return fromList(speciesConstructor(O, O[DEF_CONSTRUCTOR]), list);
-  };
-
-  var fromList = function (C, list) {
-    var index = 0;
-    var length = list.length;
-    var result = allocate(C, length);
-    while (length > index) result[index] = list[index++];
-    return result;
-  };
-
-  var addGetter = function (it, key, internal) {
-    dP(it, key, { get: function () { return this._d[internal]; } });
-  };
-
-  var $from = function from(source /* , mapfn, thisArg */) {
-    var O = toObject(source);
-    var aLen = arguments.length;
-    var mapfn = aLen > 1 ? arguments[1] : undefined;
-    var mapping = mapfn !== undefined;
-    var iterFn = getIterFn(O);
-    var i, length, values, result, step, iterator;
-    if (iterFn != undefined && !isArrayIter(iterFn)) {
-      for (iterator = iterFn.call(O), values = [], i = 0; !(step = iterator.next()).done; i++) {
-        values.push(step.value);
-      } O = values;
-    }
-    if (mapping && aLen > 2) mapfn = ctx(mapfn, arguments[2], 2);
-    for (i = 0, length = toLength(O.length), result = allocate(this, length); length > i; i++) {
-      result[i] = mapping ? mapfn(O[i], i) : O[i];
-    }
-    return result;
-  };
-
-  var $of = function of(/* ...items */) {
-    var index = 0;
-    var length = arguments.length;
-    var result = allocate(this, length);
-    while (length > index) result[index] = arguments[index++];
-    return result;
-  };
-
-  // iOS Safari 6.x fails here
-  var TO_LOCALE_BUG = !!Uint8Array && fails(function () { arrayToLocaleString.call(new Uint8Array(1)); });
-
-  var $toLocaleString = function toLocaleString() {
-    return arrayToLocaleString.apply(TO_LOCALE_BUG ? arraySlice.call(validate(this)) : validate(this), arguments);
-  };
-
-  var proto = {
-    copyWithin: function copyWithin(target, start /* , end */) {
-      return arrayCopyWithin.call(validate(this), target, start, arguments.length > 2 ? arguments[2] : undefined);
-    },
-    every: function every(callbackfn /* , thisArg */) {
-      return arrayEvery(validate(this), callbackfn, arguments.length > 1 ? arguments[1] : undefined);
-    },
-    fill: function fill(value /* , start, end */) { // eslint-disable-line no-unused-vars
-      return arrayFill.apply(validate(this), arguments);
-    },
-    filter: function filter(callbackfn /* , thisArg */) {
-      return speciesFromList(this, arrayFilter(validate(this), callbackfn,
-        arguments.length > 1 ? arguments[1] : undefined));
-    },
-    find: function find(predicate /* , thisArg */) {
-      return arrayFind(validate(this), predicate, arguments.length > 1 ? arguments[1] : undefined);
-    },
-    findIndex: function findIndex(predicate /* , thisArg */) {
-      return arrayFindIndex(validate(this), predicate, arguments.length > 1 ? arguments[1] : undefined);
-    },
-    forEach: function forEach(callbackfn /* , thisArg */) {
-      arrayForEach(validate(this), callbackfn, arguments.length > 1 ? arguments[1] : undefined);
-    },
-    indexOf: function indexOf(searchElement /* , fromIndex */) {
-      return arrayIndexOf(validate(this), searchElement, arguments.length > 1 ? arguments[1] : undefined);
-    },
-    includes: function includes(searchElement /* , fromIndex */) {
-      return arrayIncludes(validate(this), searchElement, arguments.length > 1 ? arguments[1] : undefined);
-    },
-    join: function join(separator) { // eslint-disable-line no-unused-vars
-      return arrayJoin.apply(validate(this), arguments);
-    },
-    lastIndexOf: function lastIndexOf(searchElement /* , fromIndex */) { // eslint-disable-line no-unused-vars
-      return arrayLastIndexOf.apply(validate(this), arguments);
-    },
-    map: function map(mapfn /* , thisArg */) {
-      return $map(validate(this), mapfn, arguments.length > 1 ? arguments[1] : undefined);
-    },
-    reduce: function reduce(callbackfn /* , initialValue */) { // eslint-disable-line no-unused-vars
-      return arrayReduce.apply(validate(this), arguments);
-    },
-    reduceRight: function reduceRight(callbackfn /* , initialValue */) { // eslint-disable-line no-unused-vars
-      return arrayReduceRight.apply(validate(this), arguments);
-    },
-    reverse: function reverse() {
-      var that = this;
-      var length = validate(that).length;
-      var middle = Math.floor(length / 2);
-      var index = 0;
-      var value;
-      while (index < middle) {
-        value = that[index];
-        that[index++] = that[--length];
-        that[length] = value;
-      } return that;
-    },
-    some: function some(callbackfn /* , thisArg */) {
-      return arraySome(validate(this), callbackfn, arguments.length > 1 ? arguments[1] : undefined);
-    },
-    sort: function sort(comparefn) {
-      return arraySort.call(validate(this), comparefn);
-    },
-    subarray: function subarray(begin, end) {
-      var O = validate(this);
-      var length = O.length;
-      var $begin = toAbsoluteIndex(begin, length);
-      return new (speciesConstructor(O, O[DEF_CONSTRUCTOR]))(
-        O.buffer,
-        O.byteOffset + $begin * O.BYTES_PER_ELEMENT,
-        toLength((end === undefined ? length : toAbsoluteIndex(end, length)) - $begin)
-      );
-    }
-  };
-
-  var $slice = function slice(start, end) {
-    return speciesFromList(this, arraySlice.call(validate(this), start, end));
-  };
-
-  var $set = function set(arrayLike /* , offset */) {
-    validate(this);
-    var offset = toOffset(arguments[1], 1);
-    var length = this.length;
-    var src = toObject(arrayLike);
-    var len = toLength(src.length);
-    var index = 0;
-    if (len + offset > length) throw RangeError(WRONG_LENGTH);
-    while (index < len) this[offset + index] = src[index++];
-  };
-
-  var $iterators = {
-    entries: function entries() {
-      return arrayEntries.call(validate(this));
-    },
-    keys: function keys() {
-      return arrayKeys.call(validate(this));
-    },
-    values: function values() {
-      return arrayValues.call(validate(this));
-    }
-  };
-
-  var isTAIndex = function (target, key) {
-    return isObject(target)
-      && target[TYPED_ARRAY]
-      && typeof key != 'symbol'
-      && key in target
-      && String(+key) == String(key);
-  };
-  var $getDesc = function getOwnPropertyDescriptor(target, key) {
-    return isTAIndex(target, key = toPrimitive(key, true))
-      ? propertyDesc(2, target[key])
-      : gOPD(target, key);
-  };
-  var $setDesc = function defineProperty(target, key, desc) {
-    if (isTAIndex(target, key = toPrimitive(key, true))
-      && isObject(desc)
-      && has(desc, 'value')
-      && !has(desc, 'get')
-      && !has(desc, 'set')
-      // TODO: add validation descriptor w/o calling accessors
-      && !desc.configurable
-      && (!has(desc, 'writable') || desc.writable)
-      && (!has(desc, 'enumerable') || desc.enumerable)
-    ) {
-      target[key] = desc.value;
-      return target;
-    } return dP(target, key, desc);
-  };
-
-  if (!ALL_CONSTRUCTORS) {
-    $GOPD.f = $getDesc;
-    $DP.f = $setDesc;
-  }
-
-  $export($export.S + $export.F * !ALL_CONSTRUCTORS, 'Object', {
-    getOwnPropertyDescriptor: $getDesc,
-    defineProperty: $setDesc
-  });
-
-  if (fails(function () { arrayToString.call({}); })) {
-    arrayToString = arrayToLocaleString = function toString() {
-      return arrayJoin.call(this);
-    };
-  }
-
-  var $TypedArrayPrototype$ = redefineAll({}, proto);
-  redefineAll($TypedArrayPrototype$, $iterators);
-  hide($TypedArrayPrototype$, ITERATOR, $iterators.values);
-  redefineAll($TypedArrayPrototype$, {
-    slice: $slice,
-    set: $set,
-    constructor: function () { /* noop */ },
-    toString: arrayToString,
-    toLocaleString: $toLocaleString
-  });
-  addGetter($TypedArrayPrototype$, 'buffer', 'b');
-  addGetter($TypedArrayPrototype$, 'byteOffset', 'o');
-  addGetter($TypedArrayPrototype$, 'byteLength', 'l');
-  addGetter($TypedArrayPrototype$, 'length', 'e');
-  dP($TypedArrayPrototype$, TAG, {
-    get: function () { return this[TYPED_ARRAY]; }
-  });
-
-  // eslint-disable-next-line max-statements
-  module.exports = function (KEY, BYTES, wrapper, CLAMPED) {
-    CLAMPED = !!CLAMPED;
-    var NAME = KEY + (CLAMPED ? 'Clamped' : '') + 'Array';
-    var GETTER = 'get' + KEY;
-    var SETTER = 'set' + KEY;
-    var TypedArray = global[NAME];
-    var Base = TypedArray || {};
-    var TAC = TypedArray && getPrototypeOf(TypedArray);
-    var FORCED = !TypedArray || !$typed.ABV;
-    var O = {};
-    var TypedArrayPrototype = TypedArray && TypedArray[PROTOTYPE];
-    var getter = function (that, index) {
-      var data = that._d;
-      return data.v[GETTER](index * BYTES + data.o, LITTLE_ENDIAN);
-    };
-    var setter = function (that, index, value) {
-      var data = that._d;
-      if (CLAMPED) value = (value = Math.round(value)) < 0 ? 0 : value > 0xff ? 0xff : value & 0xff;
-      data.v[SETTER](index * BYTES + data.o, value, LITTLE_ENDIAN);
-    };
-    var addElement = function (that, index) {
-      dP(that, index, {
-        get: function () {
-          return getter(this, index);
-        },
-        set: function (value) {
-          return setter(this, index, value);
-        },
-        enumerable: true
-      });
-    };
-    if (FORCED) {
-      TypedArray = wrapper(function (that, data, $offset, $length) {
-        anInstance(that, TypedArray, NAME, '_d');
-        var index = 0;
-        var offset = 0;
-        var buffer, byteLength, length, klass;
-        if (!isObject(data)) {
-          length = toIndex(data);
-          byteLength = length * BYTES;
-          buffer = new $ArrayBuffer(byteLength);
-        } else if (data instanceof $ArrayBuffer || (klass = classof(data)) == ARRAY_BUFFER || klass == SHARED_BUFFER) {
-          buffer = data;
-          offset = toOffset($offset, BYTES);
-          var $len = data.byteLength;
-          if ($length === undefined) {
-            if ($len % BYTES) throw RangeError(WRONG_LENGTH);
-            byteLength = $len - offset;
-            if (byteLength < 0) throw RangeError(WRONG_LENGTH);
-          } else {
-            byteLength = toLength($length) * BYTES;
-            if (byteLength + offset > $len) throw RangeError(WRONG_LENGTH);
-          }
-          length = byteLength / BYTES;
-        } else if (TYPED_ARRAY in data) {
-          return fromList(TypedArray, data);
-        } else {
-          return $from.call(TypedArray, data);
-        }
-        hide(that, '_d', {
-          b: buffer,
-          o: offset,
-          l: byteLength,
-          e: length,
-          v: new $DataView(buffer)
-        });
-        while (index < length) addElement(that, index++);
-      });
-      TypedArrayPrototype = TypedArray[PROTOTYPE] = create($TypedArrayPrototype$);
-      hide(TypedArrayPrototype, 'constructor', TypedArray);
-    } else if (!fails(function () {
-      TypedArray(1);
-    }) || !fails(function () {
-      new TypedArray(-1); // eslint-disable-line no-new
-    }) || !$iterDetect(function (iter) {
-      new TypedArray(); // eslint-disable-line no-new
-      new TypedArray(null); // eslint-disable-line no-new
-      new TypedArray(1.5); // eslint-disable-line no-new
-      new TypedArray(iter); // eslint-disable-line no-new
-    }, true)) {
-      TypedArray = wrapper(function (that, data, $offset, $length) {
-        anInstance(that, TypedArray, NAME);
-        var klass;
-        // `ws` module bug, temporarily remove validation length for Uint8Array
-        // https://github.com/websockets/ws/pull/645
-        if (!isObject(data)) return new Base(toIndex(data));
-        if (data instanceof $ArrayBuffer || (klass = classof(data)) == ARRAY_BUFFER || klass == SHARED_BUFFER) {
-          return $length !== undefined
-            ? new Base(data, toOffset($offset, BYTES), $length)
-            : $offset !== undefined
-              ? new Base(data, toOffset($offset, BYTES))
-              : new Base(data);
-        }
-        if (TYPED_ARRAY in data) return fromList(TypedArray, data);
-        return $from.call(TypedArray, data);
-      });
-      arrayForEach(TAC !== Function.prototype ? gOPN(Base).concat(gOPN(TAC)) : gOPN(Base), function (key) {
-        if (!(key in TypedArray)) hide(TypedArray, key, Base[key]);
-      });
-      TypedArray[PROTOTYPE] = TypedArrayPrototype;
-      if (!LIBRARY) TypedArrayPrototype.constructor = TypedArray;
-    }
-    var $nativeIterator = TypedArrayPrototype[ITERATOR];
-    var CORRECT_ITER_NAME = !!$nativeIterator
-      && ($nativeIterator.name == 'values' || $nativeIterator.name == undefined);
-    var $iterator = $iterators.values;
-    hide(TypedArray, TYPED_CONSTRUCTOR, true);
-    hide(TypedArrayPrototype, TYPED_ARRAY, NAME);
-    hide(TypedArrayPrototype, VIEW, true);
-    hide(TypedArrayPrototype, DEF_CONSTRUCTOR, TypedArray);
-
-    if (CLAMPED ? new TypedArray(1)[TAG] != NAME : !(TAG in TypedArrayPrototype)) {
-      dP(TypedArrayPrototype, TAG, {
-        get: function () { return NAME; }
-      });
-    }
-
-    O[NAME] = TypedArray;
-
-    $export($export.G + $export.W + $export.F * (TypedArray != Base), O);
-
-    $export($export.S, NAME, {
-      BYTES_PER_ELEMENT: BYTES
-    });
-
-    $export($export.S + $export.F * fails(function () { Base.of.call(TypedArray, 1); }), NAME, {
-      from: $from,
-      of: $of
-    });
-
-    if (!(BYTES_PER_ELEMENT in TypedArrayPrototype)) hide(TypedArrayPrototype, BYTES_PER_ELEMENT, BYTES);
-
-    $export($export.P, NAME, proto);
-
-    setSpecies(NAME);
-
-    $export($export.P + $export.F * FORCED_SET, NAME, { set: $set });
-
-    $export($export.P + $export.F * !CORRECT_ITER_NAME, NAME, $iterators);
-
-    if (!LIBRARY && TypedArrayPrototype.toString != arrayToString) TypedArrayPrototype.toString = arrayToString;
-
-    $export($export.P + $export.F * fails(function () {
-      new TypedArray(1).slice();
-    }), NAME, { slice: $slice });
-
-    $export($export.P + $export.F * (fails(function () {
-      return [1, 2].toLocaleString() != new TypedArray([1, 2]).toLocaleString();
-    }) || !fails(function () {
-      TypedArrayPrototype.toLocaleString.call([1, 2]);
-    })), NAME, { toLocaleString: $toLocaleString });
-
-    Iterators[NAME] = CORRECT_ITER_NAME ? $nativeIterator : $iterator;
-    if (!LIBRARY && !CORRECT_ITER_NAME) hide(TypedArrayPrototype, ITERATOR, $iterator);
-  };
-} else module.exports = function () { /* empty */ };
-
-
-/***/ }),
-
-/***/ "ed0b":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var global = __webpack_require__("7726");
-var DESCRIPTORS = __webpack_require__("9e1e");
-var LIBRARY = __webpack_require__("2d00");
-var $typed = __webpack_require__("0f88");
-var hide = __webpack_require__("32e9");
-var redefineAll = __webpack_require__("dcbc");
-var fails = __webpack_require__("79e5");
-var anInstance = __webpack_require__("f605");
-var toInteger = __webpack_require__("4588");
-var toLength = __webpack_require__("9def");
-var toIndex = __webpack_require__("09fa");
-var gOPN = __webpack_require__("9093").f;
-var dP = __webpack_require__("86cc").f;
-var arrayFill = __webpack_require__("36bd");
-var setToStringTag = __webpack_require__("7f20");
-var ARRAY_BUFFER = 'ArrayBuffer';
-var DATA_VIEW = 'DataView';
-var PROTOTYPE = 'prototype';
-var WRONG_LENGTH = 'Wrong length!';
-var WRONG_INDEX = 'Wrong index!';
-var $ArrayBuffer = global[ARRAY_BUFFER];
-var $DataView = global[DATA_VIEW];
-var Math = global.Math;
-var RangeError = global.RangeError;
-// eslint-disable-next-line no-shadow-restricted-names
-var Infinity = global.Infinity;
-var BaseBuffer = $ArrayBuffer;
-var abs = Math.abs;
-var pow = Math.pow;
-var floor = Math.floor;
-var log = Math.log;
-var LN2 = Math.LN2;
-var BUFFER = 'buffer';
-var BYTE_LENGTH = 'byteLength';
-var BYTE_OFFSET = 'byteOffset';
-var $BUFFER = DESCRIPTORS ? '_b' : BUFFER;
-var $LENGTH = DESCRIPTORS ? '_l' : BYTE_LENGTH;
-var $OFFSET = DESCRIPTORS ? '_o' : BYTE_OFFSET;
-
-// IEEE754 conversions based on https://github.com/feross/ieee754
-function packIEEE754(value, mLen, nBytes) {
-  var buffer = new Array(nBytes);
-  var eLen = nBytes * 8 - mLen - 1;
-  var eMax = (1 << eLen) - 1;
-  var eBias = eMax >> 1;
-  var rt = mLen === 23 ? pow(2, -24) - pow(2, -77) : 0;
-  var i = 0;
-  var s = value < 0 || value === 0 && 1 / value < 0 ? 1 : 0;
-  var e, m, c;
-  value = abs(value);
-  // eslint-disable-next-line no-self-compare
-  if (value != value || value === Infinity) {
-    // eslint-disable-next-line no-self-compare
-    m = value != value ? 1 : 0;
-    e = eMax;
-  } else {
-    e = floor(log(value) / LN2);
-    if (value * (c = pow(2, -e)) < 1) {
-      e--;
-      c *= 2;
-    }
-    if (e + eBias >= 1) {
-      value += rt / c;
-    } else {
-      value += rt * pow(2, 1 - eBias);
-    }
-    if (value * c >= 2) {
-      e++;
-      c /= 2;
-    }
-    if (e + eBias >= eMax) {
-      m = 0;
-      e = eMax;
-    } else if (e + eBias >= 1) {
-      m = (value * c - 1) * pow(2, mLen);
-      e = e + eBias;
-    } else {
-      m = value * pow(2, eBias - 1) * pow(2, mLen);
-      e = 0;
-    }
-  }
-  for (; mLen >= 8; buffer[i++] = m & 255, m /= 256, mLen -= 8);
-  e = e << mLen | m;
-  eLen += mLen;
-  for (; eLen > 0; buffer[i++] = e & 255, e /= 256, eLen -= 8);
-  buffer[--i] |= s * 128;
-  return buffer;
-}
-function unpackIEEE754(buffer, mLen, nBytes) {
-  var eLen = nBytes * 8 - mLen - 1;
-  var eMax = (1 << eLen) - 1;
-  var eBias = eMax >> 1;
-  var nBits = eLen - 7;
-  var i = nBytes - 1;
-  var s = buffer[i--];
-  var e = s & 127;
-  var m;
-  s >>= 7;
-  for (; nBits > 0; e = e * 256 + buffer[i], i--, nBits -= 8);
-  m = e & (1 << -nBits) - 1;
-  e >>= -nBits;
-  nBits += mLen;
-  for (; nBits > 0; m = m * 256 + buffer[i], i--, nBits -= 8);
-  if (e === 0) {
-    e = 1 - eBias;
-  } else if (e === eMax) {
-    return m ? NaN : s ? -Infinity : Infinity;
-  } else {
-    m = m + pow(2, mLen);
-    e = e - eBias;
-  } return (s ? -1 : 1) * m * pow(2, e - mLen);
-}
-
-function unpackI32(bytes) {
-  return bytes[3] << 24 | bytes[2] << 16 | bytes[1] << 8 | bytes[0];
-}
-function packI8(it) {
-  return [it & 0xff];
-}
-function packI16(it) {
-  return [it & 0xff, it >> 8 & 0xff];
-}
-function packI32(it) {
-  return [it & 0xff, it >> 8 & 0xff, it >> 16 & 0xff, it >> 24 & 0xff];
-}
-function packF64(it) {
-  return packIEEE754(it, 52, 8);
-}
-function packF32(it) {
-  return packIEEE754(it, 23, 4);
-}
-
-function addGetter(C, key, internal) {
-  dP(C[PROTOTYPE], key, { get: function () { return this[internal]; } });
-}
-
-function get(view, bytes, index, isLittleEndian) {
-  var numIndex = +index;
-  var intIndex = toIndex(numIndex);
-  if (intIndex + bytes > view[$LENGTH]) throw RangeError(WRONG_INDEX);
-  var store = view[$BUFFER]._b;
-  var start = intIndex + view[$OFFSET];
-  var pack = store.slice(start, start + bytes);
-  return isLittleEndian ? pack : pack.reverse();
-}
-function set(view, bytes, index, conversion, value, isLittleEndian) {
-  var numIndex = +index;
-  var intIndex = toIndex(numIndex);
-  if (intIndex + bytes > view[$LENGTH]) throw RangeError(WRONG_INDEX);
-  var store = view[$BUFFER]._b;
-  var start = intIndex + view[$OFFSET];
-  var pack = conversion(+value);
-  for (var i = 0; i < bytes; i++) store[start + i] = pack[isLittleEndian ? i : bytes - i - 1];
-}
-
-if (!$typed.ABV) {
-  $ArrayBuffer = function ArrayBuffer(length) {
-    anInstance(this, $ArrayBuffer, ARRAY_BUFFER);
-    var byteLength = toIndex(length);
-    this._b = arrayFill.call(new Array(byteLength), 0);
-    this[$LENGTH] = byteLength;
-  };
-
-  $DataView = function DataView(buffer, byteOffset, byteLength) {
-    anInstance(this, $DataView, DATA_VIEW);
-    anInstance(buffer, $ArrayBuffer, DATA_VIEW);
-    var bufferLength = buffer[$LENGTH];
-    var offset = toInteger(byteOffset);
-    if (offset < 0 || offset > bufferLength) throw RangeError('Wrong offset!');
-    byteLength = byteLength === undefined ? bufferLength - offset : toLength(byteLength);
-    if (offset + byteLength > bufferLength) throw RangeError(WRONG_LENGTH);
-    this[$BUFFER] = buffer;
-    this[$OFFSET] = offset;
-    this[$LENGTH] = byteLength;
-  };
-
-  if (DESCRIPTORS) {
-    addGetter($ArrayBuffer, BYTE_LENGTH, '_l');
-    addGetter($DataView, BUFFER, '_b');
-    addGetter($DataView, BYTE_LENGTH, '_l');
-    addGetter($DataView, BYTE_OFFSET, '_o');
-  }
-
-  redefineAll($DataView[PROTOTYPE], {
-    getInt8: function getInt8(byteOffset) {
-      return get(this, 1, byteOffset)[0] << 24 >> 24;
-    },
-    getUint8: function getUint8(byteOffset) {
-      return get(this, 1, byteOffset)[0];
-    },
-    getInt16: function getInt16(byteOffset /* , littleEndian */) {
-      var bytes = get(this, 2, byteOffset, arguments[1]);
-      return (bytes[1] << 8 | bytes[0]) << 16 >> 16;
-    },
-    getUint16: function getUint16(byteOffset /* , littleEndian */) {
-      var bytes = get(this, 2, byteOffset, arguments[1]);
-      return bytes[1] << 8 | bytes[0];
-    },
-    getInt32: function getInt32(byteOffset /* , littleEndian */) {
-      return unpackI32(get(this, 4, byteOffset, arguments[1]));
-    },
-    getUint32: function getUint32(byteOffset /* , littleEndian */) {
-      return unpackI32(get(this, 4, byteOffset, arguments[1])) >>> 0;
-    },
-    getFloat32: function getFloat32(byteOffset /* , littleEndian */) {
-      return unpackIEEE754(get(this, 4, byteOffset, arguments[1]), 23, 4);
-    },
-    getFloat64: function getFloat64(byteOffset /* , littleEndian */) {
-      return unpackIEEE754(get(this, 8, byteOffset, arguments[1]), 52, 8);
-    },
-    setInt8: function setInt8(byteOffset, value) {
-      set(this, 1, byteOffset, packI8, value);
-    },
-    setUint8: function setUint8(byteOffset, value) {
-      set(this, 1, byteOffset, packI8, value);
-    },
-    setInt16: function setInt16(byteOffset, value /* , littleEndian */) {
-      set(this, 2, byteOffset, packI16, value, arguments[2]);
-    },
-    setUint16: function setUint16(byteOffset, value /* , littleEndian */) {
-      set(this, 2, byteOffset, packI16, value, arguments[2]);
-    },
-    setInt32: function setInt32(byteOffset, value /* , littleEndian */) {
-      set(this, 4, byteOffset, packI32, value, arguments[2]);
-    },
-    setUint32: function setUint32(byteOffset, value /* , littleEndian */) {
-      set(this, 4, byteOffset, packI32, value, arguments[2]);
-    },
-    setFloat32: function setFloat32(byteOffset, value /* , littleEndian */) {
-      set(this, 4, byteOffset, packF32, value, arguments[2]);
-    },
-    setFloat64: function setFloat64(byteOffset, value /* , littleEndian */) {
-      set(this, 8, byteOffset, packF64, value, arguments[2]);
-    }
-  });
-} else {
-  if (!fails(function () {
-    $ArrayBuffer(1);
-  }) || !fails(function () {
-    new $ArrayBuffer(-1); // eslint-disable-line no-new
-  }) || fails(function () {
-    new $ArrayBuffer(); // eslint-disable-line no-new
-    new $ArrayBuffer(1.5); // eslint-disable-line no-new
-    new $ArrayBuffer(NaN); // eslint-disable-line no-new
-    return $ArrayBuffer.name != ARRAY_BUFFER;
-  })) {
-    $ArrayBuffer = function ArrayBuffer(length) {
-      anInstance(this, $ArrayBuffer);
-      return new BaseBuffer(toIndex(length));
-    };
-    var ArrayBufferProto = $ArrayBuffer[PROTOTYPE] = BaseBuffer[PROTOTYPE];
-    for (var keys = gOPN(BaseBuffer), j = 0, key; keys.length > j;) {
-      if (!((key = keys[j++]) in $ArrayBuffer)) hide($ArrayBuffer, key, BaseBuffer[key]);
-    }
-    if (!LIBRARY) ArrayBufferProto.constructor = $ArrayBuffer;
-  }
-  // iOS Safari 7.x bug
-  var view = new $DataView(new $ArrayBuffer(2));
-  var $setInt8 = $DataView[PROTOTYPE].setInt8;
-  view.setInt8(0, 2147483648);
-  view.setInt8(1, 2147483649);
-  if (view.getInt8(0) || !view.getInt8(1)) redefineAll($DataView[PROTOTYPE], {
-    setInt8: function setInt8(byteOffset, value) {
-      $setInt8.call(this, byteOffset, value << 24 >> 24);
-    },
-    setUint8: function setUint8(byteOffset, value) {
-      $setInt8.call(this, byteOffset, value << 24 >> 24);
-    }
-  }, true);
-}
-setToStringTag($ArrayBuffer, ARRAY_BUFFER);
-setToStringTag($DataView, DATA_VIEW);
-hide($DataView[PROTOTYPE], $typed.VIEW, true);
-exports[ARRAY_BUFFER] = $ArrayBuffer;
-exports[DATA_VIEW] = $DataView;
-
-
-/***/ }),
-
 /***/ "ed50":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8265,117 +6809,74 @@ var es6_regexp_replace = __webpack_require__("a481");
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.regexp.match.js
 var es6_regexp_match = __webpack_require__("4917");
 
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.regexp.to-string.js
-var es6_regexp_to_string = __webpack_require__("6b54");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.regexp.split.js
-var es6_regexp_split = __webpack_require__("28a5");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es7.array.includes.js
-var es7_array_includes = __webpack_require__("6762");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.string.includes.js
-var es6_string_includes = __webpack_require__("2fdb");
-
-// CONCATENATED MODULE: ../nimiq.github.io/libraries/nimiq-utils/dist/module/ValidationUtils.js
-
-
-
-
-
-
-
-
-var ValidationUtils_ValidationUtils =
-/*#__PURE__*/
-function () {
-  function ValidationUtils() {
-    _classCallCheck(this, ValidationUtils);
-  }
-
-  _createClass(ValidationUtils, null, [{
-    key: "isValidAddress",
-    value: function isValidAddress(address) {
-      if (!address) return false;
-
-      try {
-        this.isUserFriendlyAddress(address);
+// CONCATENATED MODULE: ./node_modules/@nimiq/utils/dist/module/ValidationUtils.js
+class ValidationUtils {
+    static isValidAddress(address) {
+        if (!address)
+            return false;
+        try {
+            this.isUserFriendlyAddress(address);
+            return true;
+        }
+        catch (e) {
+            return false;
+        }
+    }
+    // Copied from: https://github.com/nimiq-network/core/blob/master/src/main/generic/consensus/base/account/Address.js
+    static isUserFriendlyAddress(str) {
+        if (!str)
+            return;
+        str = str.replace(/ /g, '');
+        if (str.substr(0, 2).toUpperCase() !== 'NQ') {
+            throw new Error('Addresses start with NQ');
+        }
+        if (str.length !== 36) {
+            throw new Error('Addresses are 36 chars (ignoring spaces)');
+        }
+        if (!this._alphabetCheck(str)) {
+            throw new Error('Address has invalid characters');
+        }
+        if (this._ibanCheck(str.substr(4) + str.substr(0, 4)) !== 1) {
+            throw new Error('Address Checksum invalid');
+        }
+    }
+    static _alphabetCheck(str) {
+        str = str.toUpperCase();
+        for (let i = 0; i < str.length; i++) {
+            if (!ValidationUtils.NIMIQ_ALPHABET.includes(str[i]))
+                return false;
+        }
         return true;
-      } catch (e) {
-        return false;
-      }
-    } // Copied from: https://github.com/nimiq-network/core/blob/master/src/main/generic/consensus/base/account/Address.js
-
-  }, {
-    key: "isUserFriendlyAddress",
-    value: function isUserFriendlyAddress(str) {
-      if (!str) return;
-      str = str.replace(/ /g, '');
-
-      if (str.substr(0, 2).toUpperCase() !== 'NQ') {
-        throw new Error('Addresses start with NQ');
-      }
-
-      if (str.length !== 36) {
-        throw new Error('Addresses are 36 chars (ignoring spaces)');
-      }
-
-      if (!this._alphabetCheck(str)) {
-        throw new Error('Address has invalid characters');
-      }
-
-      if (this._ibanCheck(str.substr(4) + str.substr(0, 4)) !== 1) {
-        throw new Error('Address Checksum invalid');
-      }
     }
-  }, {
-    key: "_alphabetCheck",
-    value: function _alphabetCheck(str) {
-      str = str.toUpperCase();
-
-      for (var i = 0; i < str.length; i++) {
-        if (!ValidationUtils.NIMIQ_ALPHABET.includes(str[i])) return false;
-      }
-
-      return true;
+    static _ibanCheck(str) {
+        const num = str.split('').map((c) => {
+            const code = c.toUpperCase().charCodeAt(0);
+            return code >= 48 && code <= 57 ? c : (code - 55).toString();
+        }).join('');
+        let tmp = '';
+        for (let i = 0; i < Math.ceil(num.length / 6); i++) {
+            tmp = (parseInt(tmp + num.substr(i * 6, 6)) % 97).toString();
+        }
+        return parseInt(tmp);
     }
-  }, {
-    key: "_ibanCheck",
-    value: function _ibanCheck(str) {
-      var num = str.split('').map(function (c) {
-        var code = c.toUpperCase().charCodeAt(0);
-        return code >= 48 && code <= 57 ? c : (code - 55).toString();
-      }).join('');
-      var tmp = '';
-
-      for (var i = 0; i < Math.ceil(num.length / 6); i++) {
-        tmp = (parseInt(tmp + num.substr(i * 6, 6)) % 97).toString();
-      }
-
-      return parseInt(tmp);
+    static isValidHash(hash) {
+        // not using Nimiq Api here to don't require it to be loaded already
+        try {
+            return atob(hash).length === 32;
+        }
+        catch (e) {
+            return false;
+        }
     }
-  }, {
-    key: "isValidHash",
-    value: function isValidHash(hash) {
-      // not using Nimiq Api here to don't require it to be loaded already
-      try {
-        return atob(hash).length === 32;
-      } catch (e) {
-        return false;
-      }
+    static get NIMIQ_ALPHABET() {
+        // From Nimiq.BufferUtils.BASE32_ALPHABET.NIMIQ
+        return '0123456789ABCDEFGHJKLMNPQRSTUVXY';
     }
-  }, {
-    key: "NIMIQ_ALPHABET",
-    get: function get() {
-      // From Nimiq.BufferUtils.BASE32_ALPHABET.NIMIQ
-      return '0123456789ABCDEFGHJKLMNPQRSTUVXY';
-    }
-  }]);
+}
 
-  return ValidationUtils;
-}();
 
- //# sourceMappingURL=ValidationUtils.js.map
+//# sourceMappingURL=ValidationUtils.js.map
+
 // CONCATENATED MODULE: ./node_modules/@nimiq/iqons/dist/iqons.min.js
 const IqonsCatalog={face:["face_01","face_02","face_03","face_04","face_05","face_06","face_07","face_08","face_09","face_10","face_11","face_12","face_13","face_14","face_15","face_16","face_17","face_18","face_19","face_20","face_21"],side:["side_01","side_02","side_03","side_04","side_05","side_06","side_07","side_08","side_09","side_10","side_11","side_12","side_13","side_14","side_15","side_16","side_17","side_18","side_19","side_20","side_21"],top:["top_01","top_02","top_03","top_04","top_05","top_06","top_07","top_08","top_09","top_10","top_11","top_12","top_13","top_14","top_15","top_16","top_17","top_18","top_19","top_20","top_21"],bottom:["bottom_01","bottom_02","bottom_03","bottom_04","bottom_05","bottom_06","bottom_07","bottom_08","bottom_09","bottom_10","bottom_11","bottom_12","bottom_13","bottom_14","bottom_15","bottom_16","bottom_17","bottom_18","bottom_19","bottom_20","bottom_21"]};
 class Iqons{static async svg(t,e=!1){const s=this._hash(t);return this._svgTemplate(s[0],s[2],s[3]+s[4],s[5]+s[6],s[7]+s[8],s[9]+s[10],s[11],s[12],e)}static async render(t,e){e.innerHTML=await this.svg(t)}static async toDataUrl(t){return`data:image/svg+xml;base64,${btoa(await this.svg(t,!0)).replace(/#/g,"%23")}`}static placeholder(t="#bbb",e=1){return`<svg viewBox="0 0 160 160" width="160" height="160" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/2000/xlink" >\n            <path fill="none" stroke="${t}" stroke-width="${2*e}" transform="translate(0, 8) scale(0.5)" d="M251.6 17.34l63.53 110.03c5.72 9.9 5.72 22.1 0 32L251.6 269.4c-5.7 9.9-16.27 16-27.7 16H96.83c-11.43 0-22-6.1-27.7-16L5.6 159.37c-5.7-9.9-5.7-22.1 0-32L69.14 17.34c5.72-9.9 16.28-16 27.7-16H223.9c11.43 0 22 6.1 27.7 16z"/>\n            <g transform="scale(0.9) translate(9, 8)">\n                <circle cx="80" cy="80" r="40" fill="none" stroke="${t}" stroke-width="${e}" opacity=".9"></circle>\n                <g opacity=".1" fill="#010101"><path d="M119.21,80a39.46,39.46,0,0,1-67.13,28.13c10.36,2.33,36,3,49.82-14.28,10.39-12.47,8.31-33.23,4.16-43.26A39.35,39.35,0,0,1,119.21,80Z"/></g>\`\n            </g>\n        </svg>`}static renderPlaceholder(t,e,s){t.innerHTML=this.placeholder(e,s)}static placeholderToDataUrl(t,e){return`data:image/svg+xml;base64,${btoa(this.placeholder(t,e))}`}static async image(t){const e=await this.toDataUrl(t),s=await this._loadImage(e);return s.style.width="100%",s.style.height="100%",s}static async _svgTemplate(t,e,s,a,n,r,i,c,o){return this._$svg(await this._$iqons(t,e,s,a,n,r,i,o),c)}static async _$iqons(t,e,s,a,n,r,i,c){for(t=parseInt(t),e=parseInt(e),i=parseInt(i),t===e&&++t>9&&(t=0);i===t||i===e;)++i>9&&(i=0);return t=this.colors[t],e=this.backgroundColors[e],`<g color="${t}" fill="${i=this.colors[i]}">\n            <rect fill="${e}" x="0" y="0" width="160" height="160"></rect>\n            <circle cx="80" cy="80" r="40" fill="${t}"></circle>\n            <g opacity=".1" fill="#010101"><path d="M119.21,80a39.46,39.46,0,0,1-67.13,28.13c10.36,2.33,36,3,49.82-14.28,10.39-12.47,8.31-33.23,4.16-43.26A39.35,39.35,0,0,1,119.21,80Z"/></g>\n            ${await this._generatePart("top",a,c)}\n            ${await this._generatePart("side",n,c)}\n            ${await this._generatePart("face",s,c)}\n            ${await this._generatePart("bottom",r,c)}\n        </g>`}static _$svg(t,e){const s=this._getRandomId();return`<svg viewBox="0 0 160 160" width="160" height="160" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/2000/xlink" >\n            <defs>\n                <clipPath id="hexagon-clip-${s}" transform="scale(0.5) translate(0, 16)">\n                    <path d="M251.6 17.34l63.53 110.03c5.72 9.9 5.72 22.1 0 32L251.6 269.4c-5.7 9.9-16.27 16-27.7 16H96.83c-11.43 0-22-6.1-27.7-16L5.6 159.37c-5.7-9.9-5.7-22.1 0-32L69.14 17.34c5.72-9.9 16.28-16 27.7-16H223.9c11.43 0 22 6.1 27.7 16z"/>\n                </clipPath>\n            </defs>\n            <g clip-path="url(#hexagon-clip-${s})">\n                ${t}\n            </g>\n        </svg>`}static async _generatePart(t,e,s=!1){if(s){const s=await this._getAssets(),a="#"+t+"_"+this._assetIndex(e,t);return s.querySelector(a).innerHTML}return`<use width="160" height="160" xlink:href="${this.svgPath}#${t}_${this._assetIndex(e,t)}"/>`}static _loadImage(t){return new Promise((e,s)=>{const a=document.createElement("img");a.addEventListener("load",t=>e(a),{once:!0}),a.src=t})}static async _getAssets(){return this._assetsPromise||(this._assetsPromise=fetch(self.NIMIQ_IQONS_SVG_PATH||Iqons.svgPath).then(t=>t.text()).then(t=>{return(new DOMParser).parseFromString(t,"image/svg+xml")}))}static get colors(){return["#FC8702","#D94432","#E9B213","#1A5493","#0582CA","#5961A8","#21bca5","#FA7268","#88B04B","#795548"]}static get backgroundColors(){return["#FC8702","#D94432","#E9B213","#1F2348","#0582CA","#5F4B8B","#21bca5","#FA7268","#88B04B","#795548"]}static get assetCounts(){return{face:IqonsCatalog.face.length,side:IqonsCatalog.side.length,top:IqonsCatalog.top.length,bottom:IqonsCatalog.bottom.length,gaze:2}}static _assetIndex(t,e){return(t=Number(t)%this.assetCounts[e]+1)<10&&(t="0"+t),t}static _hash(t){return(""+t.split("").map(t=>Number(t.charCodeAt(0))+3).reduce((t,e)=>t*(1-t)*this.__chaosHash(e),.5)).split("").reduce((t,e)=>e+t,"").substr(4,17)}static __chaosHash(t){let e=1/t;for(let t=0;t<100;t++)e=(1-e)*e*3.569956786876;return e}static _getRandomId(){let t=new Uint32Array(1);return crypto.getRandomValues(t),t[0]}}
@@ -8450,7 +6951,7 @@ function (_Vue) {
   }, {
     key: "isUserFriendlyAddress",
     value: function isUserFriendlyAddress(str) {
-      return ValidationUtils_ValidationUtils.isValidAddress(str);
+      return ValidationUtils.isValidAddress(str);
     }
   }]);
 
@@ -8596,168 +7097,112 @@ var Amountvue_type_template_id_d5e0133a_scoped_true_staticRenderFns = []
 
 // CONCATENATED MODULE: ./src/components/Amount.vue?vue&type=template&id=d5e0133a&scoped=true&
 
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.regexp.to-string.js
+var es6_regexp_to_string = __webpack_require__("6b54");
+
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.number.is-integer.js
 var es6_number_is_integer = __webpack_require__("7cdf");
 
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es7.string.pad-start.js
-var es7_string_pad_start = __webpack_require__("f576");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es7.string.pad-end.js
-var es7_string_pad_end = __webpack_require__("ed50");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.number.parse-int.js
-var es6_number_parse_int = __webpack_require__("04ff");
-
-// CONCATENATED MODULE: ../nimiq.github.io/libraries/nimiq-utils/dist/module/FormattableNumber.js
-
-
-
-
-
-
-
-
-
-
-
-
+// CONCATENATED MODULE: ./node_modules/@nimiq/utils/dist/module/FormattableNumber.js
 // formats and converts numbers without precision loss
-var FormattableNumber_FormattableNumber =
-/*#__PURE__*/
-function () {
-  function FormattableNumber(value) {
-    _classCallCheck(this, FormattableNumber);
-
-    if (typeof value !== 'string') {
-      value = value.toString(); // work on strings in any case. Note that this might result in scientific notation
+class FormattableNumber {
+    constructor(value) {
+        if (typeof value !== 'string') {
+            value = value.toString(); // work on strings in any case. Note that this might result in scientific notation
+        }
+        const numberMatch = value.match(FormattableNumber.NUMBER_REGEX);
+        if (!numberMatch)
+            throw new Error(`${value} is not a valid number`);
+        this._sign = numberMatch[1];
+        this._digits = `${numberMatch[2]}${numberMatch[3]}`;
+        if (!this._digits)
+            throw new Error(`${value} is not a valid number`);
+        this._decimalSeparatorPosition = numberMatch[2].length;
+        const exponent = Number.parseInt(numberMatch[5], 10);
+        if (exponent)
+            this.moveDecimalSeparator(exponent); // remove scientific notation
     }
-
-    var numberMatch = value.match(FormattableNumber.NUMBER_REGEX);
-    if (!numberMatch) throw new Error("".concat(value, " is not a valid number"));
-    this._sign = numberMatch[1];
-    this._digits = "".concat(numberMatch[2]).concat(numberMatch[3]);
-    if (!this._digits) throw new Error("".concat(value, " is not a valid number"));
-    this._decimalSeparatorPosition = numberMatch[2].length;
-    var exponent = Number.parseInt(numberMatch[5], 10);
-    if (exponent) this.moveDecimalSeparator(exponent); // remove scientific notation
-  }
-
-  _createClass(FormattableNumber, [{
-    key: "toString",
-    value: function toString(optionsOrUseGrouping) {
-      var _ref = _typeof(optionsOrUseGrouping) === 'object' ? optionsOrUseGrouping : {},
-          _ref$maxDecimals = _ref.maxDecimals,
-          maxDecimals = _ref$maxDecimals === void 0 ? undefined : _ref$maxDecimals,
-          _ref$minDecimals = _ref.minDecimals,
-          minDecimals = _ref$minDecimals === void 0 ? undefined : _ref$minDecimals,
-          _ref$useGrouping = _ref.useGrouping,
-          useGrouping = _ref$useGrouping === void 0 ? optionsOrUseGrouping === true : _ref$useGrouping,
-          _ref$groupSeparator = _ref.groupSeparator,
-          groupSeparator = _ref$groupSeparator === void 0 ? "\u202F" : _ref$groupSeparator;
-
-      if (maxDecimals !== undefined && minDecimals !== undefined) {
-        minDecimals = Math.min(minDecimals, maxDecimals);
-      }
-
-      if (maxDecimals !== undefined && maxDecimals < this._digits.length - this._decimalSeparatorPosition) {
-        this.round(maxDecimals);
-      }
-
-      var integers = this._digits.slice(0, this._decimalSeparatorPosition).replace(/^0+/, ''); // trim leading 0s
-
-
-      var decimals = this._digits.slice(this._decimalSeparatorPosition).replace(/0+$/, ''); // trim trailing 0s
-
-
-      if (minDecimals !== undefined && minDecimals > decimals.length) {
-        decimals = decimals.padEnd(minDecimals, '0');
-      } // Apply grouping for values with more than 4 integer digits.
-
-
-      if (useGrouping && groupSeparator && integers.length > 4) {
-        integers = integers.replace(/(\d)(?=(\d{3})+$)/g, "$1".concat(groupSeparator));
-      }
-
-      return "".concat(this._sign).concat(integers || '0').concat(decimals ? ".".concat(decimals) : '');
+    toString(optionsOrUseGrouping) {
+        let { maxDecimals = undefined, minDecimals = undefined, useGrouping = optionsOrUseGrouping === true, groupSeparator = '\u202F', } = typeof optionsOrUseGrouping === 'object' ? optionsOrUseGrouping : {};
+        if (maxDecimals !== undefined && minDecimals !== undefined) {
+            minDecimals = Math.min(minDecimals, maxDecimals);
+        }
+        if (maxDecimals !== undefined && maxDecimals < this._digits.length - this._decimalSeparatorPosition) {
+            this.round(maxDecimals);
+        }
+        let integers = this._digits.slice(0, this._decimalSeparatorPosition).replace(/^0+/, ''); // trim leading 0s
+        let decimals = this._digits.slice(this._decimalSeparatorPosition).replace(/0+$/, ''); // trim trailing 0s
+        if (minDecimals !== undefined && minDecimals > decimals.length) {
+            decimals = decimals.padEnd(minDecimals, '0');
+        }
+        // Apply grouping for values with more than 4 integer digits.
+        if (useGrouping && groupSeparator && integers.length > 4) {
+            integers = integers.replace(/(\d)(?=(\d{3})+$)/g, `$1${groupSeparator}`);
+        }
+        return `${this._sign}${integers || '0'}${decimals ? `.${decimals}` : ''}`;
     }
-  }, {
-    key: "valueOf",
-    value: function valueOf() {
-      return this.toString();
+    valueOf() {
+        return this.toString();
     }
-  }, {
-    key: "moveDecimalSeparator",
-    value: function moveDecimalSeparator(moveBy) {
-      this._decimalSeparatorPosition += moveBy;
-
-      if (this._decimalSeparatorPosition > this._digits.length) {
-        this._digits = this._digits.padEnd(this._decimalSeparatorPosition, '0');
-      } else if (this._decimalSeparatorPosition < 0) {
-        this._digits = this._digits.padStart(this._digits.length - this._decimalSeparatorPosition, '0');
-        this._decimalSeparatorPosition = 0;
-      }
-
-      return this;
-    }
-  }, {
-    key: "round",
-    value: function round(decimals) {
-      if (this._digits.length - this._decimalSeparatorPosition <= decimals) return this;
-
-      var digitsToKeep = this._digits.substring(0, this._decimalSeparatorPosition + decimals);
-
-      if (Number.parseInt(this._digits[this._decimalSeparatorPosition + decimals]) < 5) {
-        // rounding down, can just use the trimmed decimals
-        this._digits = digitsToKeep;
+    moveDecimalSeparator(moveBy) {
+        this._decimalSeparatorPosition += moveBy;
+        if (this._decimalSeparatorPosition > this._digits.length) {
+            this._digits = this._digits.padEnd(this._decimalSeparatorPosition, '0');
+        }
+        else if (this._decimalSeparatorPosition < 0) {
+            this._digits = this._digits.padStart(this._digits.length - this._decimalSeparatorPosition, '0');
+            this._decimalSeparatorPosition = 0;
+        }
         return this;
-      } // round up
-
-
-      var digits = "0".concat(digitsToKeep).split(''); // add a leading 0 for easier handling of carry
-
-      for (var i = digits.length - 1; i >= 0; --i) {
-        var newDigit = Number.parseInt(digits[i]) + 1;
-
-        if (newDigit < 10) {
-          digits[i] = newDigit.toString();
-          break; // no carry over, break
-        } else {
-          digits[i] = '0'; // continue loop to handle carry over
-        }
-      }
-
-      this._digits = digits.join('');
-      this._decimalSeparatorPosition += 1; // account for the added leading 0
-
-      return this;
     }
-  }, {
-    key: "equals",
-    value: function equals(other) {
-      if (!(other instanceof FormattableNumber)) {
-        try {
-          other = new FormattableNumber(other);
-        } catch (e) {
-          // not convertable to a FormattableNumber
-          return false;
+    round(decimals) {
+        if (this._digits.length - this._decimalSeparatorPosition <= decimals)
+            return this;
+        const digitsToKeep = this._digits.substring(0, this._decimalSeparatorPosition + decimals);
+        if (Number.parseInt(this._digits[this._decimalSeparatorPosition + decimals]) < 5) {
+            // rounding down, can just use the trimmed decimals
+            this._digits = digitsToKeep;
+            return this;
         }
-      } // compare rendered results to benefit from normalizations done on rendering
-
-
-      return this.toString() === other.toString();
+        // round up
+        const digits = `0${digitsToKeep}`.split(''); // add a leading 0 for easier handling of carry
+        for (let i = digits.length - 1; i >= 0; --i) {
+            const newDigit = Number.parseInt(digits[i]) + 1;
+            if (newDigit < 10) {
+                digits[i] = newDigit.toString();
+                break; // no carry over, break
+            }
+            else {
+                digits[i] = '0';
+                // continue loop to handle carry over
+            }
+        }
+        this._digits = digits.join('');
+        this._decimalSeparatorPosition += 1; // account for the added leading 0
+        return this;
     }
-  }]);
-
-  return FormattableNumber;
-}();
-
-FormattableNumber_FormattableNumber.NUMBER_REGEX = /^(-?)(\d*)\.?(\d*)(e(-?\d+))?$/;
-
+    equals(other) {
+        if (!(other instanceof FormattableNumber)) {
+            try {
+                other = new FormattableNumber(other);
+            }
+            catch (e) {
+                // not convertable to a FormattableNumber
+                return false;
+            }
+        }
+        // compare rendered results to benefit from normalizations done on rendering
+        return this.toString() === other.toString();
+    }
+}
+FormattableNumber.NUMBER_REGEX = /^(-?)(\d*)\.?(\d*)(e(-?\d+))?$/;
 function toNonScientificNumberString(value) {
-  return new FormattableNumber_FormattableNumber(value).toString();
+    return new FormattableNumber(value).toString();
 }
 
- //# sourceMappingURL=FormattableNumber.js.map
+
+//# sourceMappingURL=FormattableNumber.js.map
+
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--13-1!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Amount.vue?vue&type=script&lang=ts&
 
 
@@ -8806,7 +7251,7 @@ function (_Vue) {
         maxDecimals = this.maxDecimals;
       }
 
-      return new FormattableNumber_FormattableNumber(this.amount).moveDecimalSeparator(-this.totalDecimals).toString({
+      return new FormattableNumber(this.amount).moveDecimalSeparator(-this.totalDecimals).toString({
         maxDecimals: maxDecimals,
         minDecimals: minDecimals,
         useGrouping: true
@@ -8815,7 +7260,7 @@ function (_Vue) {
   }, {
     key: "isApprox",
     get: function get() {
-      return !new FormattableNumber_FormattableNumber(this.amount).moveDecimalSeparator(-this.totalDecimals).equals(this.formattedAmount.replace(/\s/g, ''));
+      return !new FormattableNumber(this.amount).moveDecimalSeparator(-this.totalDecimals).equals(this.formattedAmount.replace(/\s/g, ''));
     }
   }]);
 
@@ -8938,16 +7383,8 @@ function _asyncToGenerator(fn) {
     });
   };
 }
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.typed.uint8-array.js
-var es6_typed_uint8_array = __webpack_require__("34ef");
-
-// CONCATENATED MODULE: ../nimiq.github.io/libraries/nimiq-utils/dist/module/Utf8Tools.js
-
-
-
-
+// CONCATENATED MODULE: ./node_modules/@nimiq/utils/dist/module/Utf8Tools.js
 /* tslint:disable:no-bitwise one-line triple-equals */
-
 /**
  * Sources:
  *
@@ -8957,174 +7394,186 @@ var es6_typed_uint8_array = __webpack_require__("34ef");
  * UTF-8 validitiy limit values from
  * https://lemire.me/blog/2018/05/09/how-quickly-can-you-check-that-a-string-is-valid-unicode-utf-8/
  */
-var Utf8Tools_Utf8Tools =
-/*#__PURE__*/
-function () {
-  function Utf8Tools() {
-    _classCallCheck(this, Utf8Tools);
-  }
-
-  _createClass(Utf8Tools, null, [{
-    key: "stringToUtf8ByteArray",
-    value: function stringToUtf8ByteArray(str) {
-      if (typeof TextEncoder !== 'undefined') {
-        var encoder = new TextEncoder(); // utf-8 is the default
-
-        return encoder.encode(str);
-      } // Fallback for unsupported TextEncoder
-
-
-      var out = [];
-      var p = 0;
-
-      for (var i = 0; i < str.length; i++) {
-        var c = str.charCodeAt(i);
-
-        if (c < 128) {
-          out[p++] = c;
-        } else if (c < 2048) {
-          out[p++] = c >> 6 | 192;
-          out[p++] = c & 63 | 128;
-        } else if ((c & 0xFC00) == 0xD800 && i + 1 < str.length && (str.charCodeAt(i + 1) & 0xFC00) == 0xDC00) {
-          // Surrogate Pair
-          c = 0x10000 + ((c & 0x03FF) << 10) + (str.charCodeAt(++i) & 0x03FF);
-          out[p++] = c >> 18 | 240;
-          out[p++] = c >> 12 & 63 | 128;
-          out[p++] = c >> 6 & 63 | 128;
-          out[p++] = c & 63 | 128;
-        } else {
-          out[p++] = c >> 12 | 224;
-          out[p++] = c >> 6 & 63 | 128;
-          out[p++] = c & 63 | 128;
+class Utf8Tools {
+    static stringToUtf8ByteArray(str) {
+        if (typeof TextEncoder !== 'undefined') {
+            const encoder = new TextEncoder(); // utf-8 is the default
+            return encoder.encode(str);
         }
-      }
-
-      return new Uint8Array(out);
-    }
-  }, {
-    key: "utf8ByteArrayToString",
-    value: function utf8ByteArrayToString(bytes) {
-      if (typeof TextDecoder !== 'undefined') {
-        var decoder = new TextDecoder('utf-8');
-        return decoder.decode(bytes);
-      } // Fallback for unsupported TextDecoder
-
-
-      var out = [];
-      var pos = 0;
-      var c = 0;
-
-      while (pos < bytes.length) {
-        var c1 = bytes[pos++];
-
-        if (c1 < 128) {
-          out[c++] = String.fromCharCode(c1);
-        } else if (c1 > 191 && c1 < 224) {
-          var c2 = bytes[pos++];
-          out[c++] = String.fromCharCode((c1 & 31) << 6 | c2 & 63);
-        } else if (c1 > 239 && c1 < 365) {
-          // Surrogate Pair
-          var _c = bytes[pos++];
-          var c3 = bytes[pos++];
-          var c4 = bytes[pos++];
-          var u = ((c1 & 7) << 18 | (_c & 63) << 12 | (c3 & 63) << 6 | c4 & 63) - 0x10000;
-          out[c++] = String.fromCharCode(0xD800 + (u >> 10));
-          out[c++] = String.fromCharCode(0xDC00 + (u & 1023));
-        } else {
-          var _c2 = bytes[pos++];
-          var _c3 = bytes[pos++];
-          out[c++] = String.fromCharCode((c1 & 15) << 12 | (_c2 & 63) << 6 | _c3 & 63);
+        // Fallback for unsupported TextEncoder
+        const out = [];
+        let p = 0;
+        for (let i = 0; i < str.length; i++) {
+            let c = str.charCodeAt(i);
+            if (c < 128) {
+                out[p++] = c;
+            }
+            else if (c < 2048) {
+                out[p++] = (c >> 6) | 192;
+                out[p++] = (c & 63) | 128;
+            }
+            else if (((c & 0xFC00) == 0xD800) && (i + 1) < str.length
+                && ((str.charCodeAt(i + 1) & 0xFC00) == 0xDC00)) {
+                // Surrogate Pair
+                c = 0x10000 + ((c & 0x03FF) << 10) + (str.charCodeAt(++i) & 0x03FF);
+                out[p++] = (c >> 18) | 240;
+                out[p++] = ((c >> 12) & 63) | 128;
+                out[p++] = ((c >> 6) & 63) | 128;
+                out[p++] = (c & 63) | 128;
+            }
+            else {
+                out[p++] = (c >> 12) | 224;
+                out[p++] = ((c >> 6) & 63) | 128;
+                out[p++] = (c & 63) | 128;
+            }
         }
-      }
-
-      return out.join('');
+        return new Uint8Array(out);
     }
-  }, {
-    key: "isValidUtf8",
-    value: function isValidUtf8(bytes) {
-      var denyControlCharacters = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-      // We cannot use the build-in TextDecoder to check for validity, as we need to
-      // also filter out control characters, which are valid UTF8.
-      var i = 0;
-
-      while (i < bytes.length) {
-        var first = bytes[i]; // The byte
-
-        var controlCharsWhitelist = [0x09, 0x0A, 0x0D];
-
-        if (first <= 0x7F) {
-          // Possible one-byte
-          if (!denyControlCharacters) ++i; // Valid single-byte character (ASCII)
-          else if (controlCharsWhitelist.indexOf(first) > -1) ++i;else if (first >= 0x20
-            /* space */
-            && first <= 0x7E
-            /* tilde */
-            ) ++i; // Only allow non-control chars
-            else break;
-        } else if (first >= 0xC2 && first <= 0xDF) {
-          // Possible two-byte
-          var second = bytes[++i];
-          if (second >= 0x80 && second <= 0xBF) ++i; // Is valid two-byte
-          else break;
-        } else if (first === 0xE0) {
-          // Possible three-byte
-          var _second = bytes[++i];
-          var third = bytes[++i];
-          if (_second >= 0xA0 && _second <= 0xBF && third >= 0x80 && third <= 0xBF) ++i; // Is valid three-byte
-          else break;
-        } else if (first >= 0xE1 && first <= 0xEC) {
-          // Possible three-byte
-          var _second2 = bytes[++i];
-          var _third = bytes[++i];
-          if (_second2 >= 0x80 && _second2 <= 0xBF && _third >= 0x80 && _third <= 0xBF) ++i; // Is valid three-byte
-          else break;
-        } else if (first === 0xED) {
-          // Possible three-byte
-          var _second3 = bytes[++i];
-          var _third2 = bytes[++i];
-          if (_second3 >= 0x80 && _second3 <= 0x9F && _third2 >= 0x80 && _third2 <= 0xBF) ++i; // Is valid three-byte
-          else break;
-        } else if (first >= 0xEE && first <= 0xEF) {
-          // Possible three-byte
-          var _second4 = bytes[++i];
-          var _third3 = bytes[++i];
-          if (_second4 >= 0x80 && _second4 <= 0xBF && _third3 >= 0x80 && _third3 <= 0xBF) ++i; // Is valid three-byte
-          else break;
-        } else if (first === 0xF0) {
-          // Possible four-byte
-          var _second5 = bytes[++i];
-          var _third4 = bytes[++i];
-          var fourth = bytes[++i];
-          if (_second5 >= 0x90 && _second5 <= 0xBF && _third4 >= 0x80 && _third4 <= 0xBF && fourth >= 0x80 && fourth <= 0xBF) ++i; // Is valid four-byte
-          else break;
-        } else if (first >= 0xF1 && first <= 0xF3) {
-          // Possible four-byte
-          var _second6 = bytes[++i];
-          var _third5 = bytes[++i];
-          var _fourth = bytes[++i];
-          if (_second6 >= 0x80 && _second6 <= 0xBF && _third5 >= 0x80 && _third5 <= 0xBF && _fourth >= 0x80 && _fourth <= 0xBF) ++i; // Is valid four-byte
-          else break;
-        } else if (first === 0xF4) {
-          // Possible four-byte
-          var _second7 = bytes[++i];
-          var _third6 = bytes[++i];
-          var _fourth2 = bytes[++i];
-          if (_second7 >= 0x80 && _second7 <= 0x8F && _third6 >= 0x80 && _third6 <= 0xBF && _fourth2 >= 0x80 && _fourth2 <= 0xBF) ++i; // Is valid four-byte
-          else break;
-        } else break;
-      } // If the whole array was walked successfully, then the last check also increased the counter
-      // and the index i is equal to the length of the array.
-      // If the while loop was broken early, i is smaller and the array is not valid UTF-8.
-
-
-      return i === bytes.length;
+    static utf8ByteArrayToString(bytes) {
+        if (typeof TextDecoder !== 'undefined') {
+            const decoder = new TextDecoder('utf-8');
+            return decoder.decode(bytes);
+        }
+        // Fallback for unsupported TextDecoder
+        const out = [];
+        let pos = 0;
+        let c = 0;
+        while (pos < bytes.length) {
+            const c1 = bytes[pos++];
+            if (c1 < 128) {
+                out[c++] = String.fromCharCode(c1);
+            }
+            else if (c1 > 191 && c1 < 224) {
+                const c2 = bytes[pos++];
+                out[c++] = String.fromCharCode((c1 & 31) << 6 | c2 & 63);
+            }
+            else if (c1 > 239 && c1 < 365) {
+                // Surrogate Pair
+                const c2 = bytes[pos++];
+                const c3 = bytes[pos++];
+                const c4 = bytes[pos++];
+                const u = ((c1 & 7) << 18 | (c2 & 63) << 12 | (c3 & 63) << 6 | c4 & 63) - 0x10000;
+                out[c++] = String.fromCharCode(0xD800 + (u >> 10));
+                out[c++] = String.fromCharCode(0xDC00 + (u & 1023));
+            }
+            else {
+                const c2 = bytes[pos++];
+                const c3 = bytes[pos++];
+                out[c++] = String.fromCharCode((c1 & 15) << 12 | (c2 & 63) << 6 | c3 & 63);
+            }
+        }
+        return out.join('');
     }
-  }]);
+    static isValidUtf8(bytes, denyControlCharacters = false) {
+        // We cannot use the build-in TextDecoder to check for validity, as we need to
+        // also filter out control characters, which are valid UTF8.
+        let i = 0;
+        while (i < bytes.length) {
+            const first = bytes[i]; // The byte
+            const controlCharsWhitelist = [
+                0x09,
+                0x0A,
+                0x0D,
+            ];
+            if (first <= 0x7F) { // Possible one-byte
+                if (!denyControlCharacters)
+                    ++i; // Valid single-byte character (ASCII)
+                else if (controlCharsWhitelist.indexOf(first) > -1)
+                    ++i;
+                else if (first >= 0x20 /* space */ && first <= 0x7E /* tilde */)
+                    ++i; // Only allow non-control chars
+                else
+                    break;
+            }
+            else if (first >= 0xC2 && first <= 0xDF) { // Possible two-byte
+                const second = bytes[++i];
+                if (second >= 0x80 && second <= 0xBF)
+                    ++i; // Is valid two-byte
+                else
+                    break;
+            }
+            else if (first === 0xE0) { // Possible three-byte
+                const second = bytes[++i];
+                const third = bytes[++i];
+                if (second >= 0xA0 && second <= 0xBF
+                    && third >= 0x80 && third <= 0xBF)
+                    ++i; // Is valid three-byte
+                else
+                    break;
+            }
+            else if (first >= 0xE1 && first <= 0xEC) { // Possible three-byte
+                const second = bytes[++i];
+                const third = bytes[++i];
+                if (second >= 0x80 && second <= 0xBF
+                    && third >= 0x80 && third <= 0xBF)
+                    ++i; // Is valid three-byte
+                else
+                    break;
+            }
+            else if (first === 0xED) { // Possible three-byte
+                const second = bytes[++i];
+                const third = bytes[++i];
+                if (second >= 0x80 && second <= 0x9F
+                    && third >= 0x80 && third <= 0xBF)
+                    ++i; // Is valid three-byte
+                else
+                    break;
+            }
+            else if (first >= 0xEE && first <= 0xEF) { // Possible three-byte
+                const second = bytes[++i];
+                const third = bytes[++i];
+                if (second >= 0x80 && second <= 0xBF
+                    && third >= 0x80 && third <= 0xBF)
+                    ++i; // Is valid three-byte
+                else
+                    break;
+            }
+            else if (first === 0xF0) { // Possible four-byte
+                const second = bytes[++i];
+                const third = bytes[++i];
+                const fourth = bytes[++i];
+                if (second >= 0x90 && second <= 0xBF
+                    && third >= 0x80 && third <= 0xBF
+                    && fourth >= 0x80 && fourth <= 0xBF)
+                    ++i; // Is valid four-byte
+                else
+                    break;
+            }
+            else if (first >= 0xF1 && first <= 0xF3) { // Possible four-byte
+                const second = bytes[++i];
+                const third = bytes[++i];
+                const fourth = bytes[++i];
+                if (second >= 0x80 && second <= 0xBF
+                    && third >= 0x80 && third <= 0xBF
+                    && fourth >= 0x80 && fourth <= 0xBF)
+                    ++i; // Is valid four-byte
+                else
+                    break;
+            }
+            else if (first === 0xF4) { // Possible four-byte
+                const second = bytes[++i];
+                const third = bytes[++i];
+                const fourth = bytes[++i];
+                if (second >= 0x80 && second <= 0x8F
+                    && third >= 0x80 && third <= 0xBF
+                    && fourth >= 0x80 && fourth <= 0xBF)
+                    ++i; // Is valid four-byte
+                else
+                    break;
+            }
+            else
+                break;
+        }
+        // If the whole array was walked successfully, then the last check also increased the counter
+        // and the index i is equal to the length of the array.
+        // If the while loop was broken early, i is smaller and the array is not valid UTF-8.
+        return i === bytes.length;
+    }
+}
 
-  return Utf8Tools;
-}();
 
- //# sourceMappingURL=Utf8Tools.js.map
+//# sourceMappingURL=Utf8Tools.js.map
+
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--13-1!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/LabelInput.vue?vue&type=script&lang=ts&
 
 
@@ -9163,7 +7612,7 @@ function (_Vue) {
     key: "onInput",
     value: function onInput() {
       if (this.maxBytes) {
-        var lengthInBytes = Utf8Tools_Utf8Tools.stringToUtf8ByteArray(this.liveValue).byteLength;
+        var lengthInBytes = Utf8Tools.stringToUtf8ByteArray(this.liveValue).byteLength;
 
         if (lengthInBytes > this.maxBytes) {
           this.liveValue = this.lastValue;
@@ -9341,12 +7790,12 @@ function (_Vue) {
   }, {
     key: "_isNimiqAddress",
     get: function get() {
-      return ValidationUtils_ValidationUtils.isValidAddress(this.address);
+      return ValidationUtils.isValidAddress(this.address);
     }
   }, {
     key: "_isLabelNimiqAddress",
     get: function get() {
-      return ValidationUtils_ValidationUtils.isValidAddress(this.label);
+      return ValidationUtils.isValidAddress(this.label);
     }
   }]);
 
@@ -10464,65 +8913,53 @@ function _nonIterableSpread() {
 function _toConsumableArray(arr) {
   return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread();
 }
-// CONCATENATED MODULE: ../nimiq.github.io/libraries/nimiq-utils/dist/module/Clipboard.js
-
-
-
-var Clipboard_Clipboard =
-/*#__PURE__*/
-function () {
-  function Clipboard() {
-    _classCallCheck(this, Clipboard);
-  }
-
-  _createClass(Clipboard, null, [{
-    key: "copy",
-    value: function copy(text) {
-      // Simplified and typed version of https://github.com/sindresorhus/copy-text-to-clipboard
-      // Additionally added a fix for correctly restoring selections in input fields.
-      var element = document.createElement('textarea');
-      element.value = text; // Prevent keyboard from showing on mobile
-
-      element.setAttribute('readonly', ''); // @ts-ignore: css property contain not known to current ts version
-
-      element.style.contain = 'strict';
-      element.style.position = 'absolute';
-      element.style.left = '-9999px';
-      element.style.fontSize = '12pt'; // Prevent zooming on iOS
-      // store selection to be restored later
-
-      var selection = document.getSelection();
-      var originalRange = selection.rangeCount > 0 ? selection.getRangeAt(0) : null;
-      var activeInput = document.activeElement && (document.activeElement.nodeName === 'INPUT' || document.activeElement.nodeName === 'TEXTAREA') ? document.activeElement : null;
-      document.body.append(element);
-      element.select(); // Explicit selection workaround for iOS
-
-      element.selectionStart = 0;
-      element.selectionEnd = text.length;
-      var isSuccess = false;
-
-      try {
-        isSuccess = document.execCommand('copy');
-      } catch (e) {}
-
-      element.remove();
-
-      if (activeInput) {
-        // Inputs retain their selection on blur. We just have to refocus again.
-        activeInput.focus();
-      } else if (originalRange) {
-        selection.removeAllRanges();
-        selection.addRange(originalRange);
-      }
-
-      return isSuccess;
+// CONCATENATED MODULE: ./node_modules/@nimiq/utils/dist/module/Clipboard.js
+class Clipboard {
+    static copy(text) {
+        // Simplified and typed version of https://github.com/sindresorhus/copy-text-to-clipboard
+        // Additionally added a fix for correctly restoring selections in input fields.
+        const element = document.createElement('textarea');
+        element.value = text;
+        // Prevent keyboard from showing on mobile
+        element.setAttribute('readonly', '');
+        // @ts-ignore: css property contain not known to current ts version
+        element.style.contain = 'strict';
+        element.style.position = 'absolute';
+        element.style.left = '-9999px';
+        element.style.fontSize = '12pt'; // Prevent zooming on iOS
+        // store selection to be restored later
+        const selection = document.getSelection();
+        const originalRange = selection.rangeCount > 0 ? selection.getRangeAt(0) : null;
+        const activeInput = document.activeElement
+            && (document.activeElement.nodeName === 'INPUT' || document.activeElement.nodeName === 'TEXTAREA')
+            ? document.activeElement
+            : null;
+        document.body.append(element);
+        element.select();
+        // Explicit selection workaround for iOS
+        element.selectionStart = 0;
+        element.selectionEnd = text.length;
+        let isSuccess = false;
+        try {
+            isSuccess = document.execCommand('copy');
+        }
+        catch (e) { }
+        element.remove();
+        if (activeInput) {
+            // Inputs retain their selection on blur. We just have to refocus again.
+            activeInput.focus();
+        }
+        else if (originalRange) {
+            selection.removeAllRanges();
+            selection.addRange(originalRange);
+        }
+        return isSuccess;
     }
-  }]);
+}
 
-  return Clipboard;
-}();
 
- //# sourceMappingURL=Clipboard.js.map
+//# sourceMappingURL=Clipboard.js.map
+
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--13-1!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Copyable.vue?vue&type=script&lang=ts&
 
 
@@ -10594,7 +9031,7 @@ function (_Vue) {
         return concatenated;
       }, '');
 
-      Clipboard_Clipboard.copy(text);
+      Clipboard.copy(text);
       window.clearTimeout(this._copiedResetTimeout);
       this.copied = true;
       this._copiedResetTimeout = window.setTimeout(function () {
@@ -11173,6 +9610,9 @@ var es6_regexp_constructor = __webpack_require__("3b2b");
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.string.starts-with.js
 var es6_string_starts_with = __webpack_require__("f559");
 
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.regexp.split.js
+var es6_regexp_split = __webpack_require__("28a5");
+
 // EXTERNAL MODULE: ./node_modules/input-format/modules/input control.js
 var input_control = __webpack_require__("a1f0");
 
@@ -11308,7 +9748,7 @@ function (_Vue) {
       var text = AddressInput_1._exportValue(document.getSelection().toString());
 
       setTimeout(function () {
-        return Clipboard_Clipboard.copy(text);
+        return Clipboard.copy(text);
       });
     }
   }, {
@@ -11332,7 +9772,7 @@ function (_Vue) {
       this.currentValue = AddressInput_1._exportValue(this.$refs.textarea.value);
       this.$emit('input', this.currentValue); // emit event compatible with v-model
 
-      var isValid = ValidationUtils_ValidationUtils.isValidAddress(this.currentValue);
+      var isValid = ValidationUtils.isValidAddress(this.currentValue);
       if (isValid) this.$emit('address', this.currentValue); // if user entered a full address that is not valid give him a visual feedback
 
       this.$el.classList.toggle('invalid', this.currentValue.length === AddressInput_1.ADDRESS_MAX_LENGTH && !isValid);
@@ -11480,6 +9920,9 @@ var AmountInputvue_type_template_id_32b6c97e_scoped_true_staticRenderFns = []
 
 
 // CONCATENATED MODULE: ./src/components/AmountInput.vue?vue&type=template&id=32b6c97e&scoped=true&
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es7.string.pad-end.js
+var es7_string_pad_end = __webpack_require__("ed50");
 
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--13-1!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/AmountInput.vue?vue&type=script&lang=ts&
 
@@ -11911,6 +10354,12 @@ var BottomOverlayvue_type_template_id_39a37762_scoped_true_staticRenderFns = []
 
 // CONCATENATED MODULE: ./src/components/BottomOverlay.vue?vue&type=template&id=39a37762&scoped=true&
 
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es7.array.includes.js
+var es7_array_includes = __webpack_require__("6762");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.string.includes.js
+var es6_string_includes = __webpack_require__("2fdb");
+
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--13-1!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/BottomOverlay.vue?vue&type=script&lang=ts&
 
 
@@ -12189,7 +10638,7 @@ function (_Vue) {
   _createClass(Contact, [{
     key: "isInputValid",
     value: function isInputValid() {
-      return this.workingLabel && ValidationUtils_ValidationUtils.isValidAddress(this.workingAddress);
+      return this.workingLabel && ValidationUtils.isValidAddress(this.workingAddress);
     }
   }, {
     key: "select",
@@ -12357,7 +10806,7 @@ function (_Vue) {
   }, {
     key: "isInputValid",
     value: function isInputValid() {
-      return this.workingLabel && ValidationUtils_ValidationUtils.isValidAddress(this.workingAddress);
+      return this.workingLabel && ValidationUtils.isValidAddress(this.workingAddress);
     }
   }, {
     key: "save",
@@ -12793,7 +11242,7 @@ function (_Vue) {
     value: function copy() {
       var _this2 = this;
 
-      Clipboard_Clipboard.copy(this.isKeyedValue ? this.value[this.currentKey].toString() : this.value.toString());
+      Clipboard.copy(this.isKeyedValue ? this.value[this.currentKey].toString() : this.value.toString());
       this.copied = true;
       window.clearTimeout(this._copiedResetTimeout);
       this._copiedResetTimeout = window.setTimeout(function () {
@@ -13533,6 +11982,98 @@ var Carousel_component = normalizeComponent(
 
 Carousel_component.options.__file = "Carousel.vue"
 /* harmony default export */ var components_Carousel = (Carousel_component.exports);
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"46064dad-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/FiatAmount.vue?vue&type=template&id=b5409f08&
+var FiatAmountvue_type_template_id_b5409f08_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"fiat-amount"},[_vm._v("\n    "+_vm._s(_vm._currencyString)+"\n")])}
+var FiatAmountvue_type_template_id_b5409f08_staticRenderFns = []
+
+
+// CONCATENATED MODULE: ./src/components/FiatAmount.vue?vue&type=template&id=b5409f08&
+
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--13-1!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/FiatAmount.vue?vue&type=script&lang=ts&
+
+
+
+
+
+
+
+
+
+
+
+
+
+var FiatAmountvue_type_script_lang_ts_FiatAmount =
+/*#__PURE__*/
+function (_Vue) {
+  function FiatAmount() {
+    _classCallCheck(this, FiatAmount);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(FiatAmount).apply(this, arguments));
+  }
+
+  _createClass(FiatAmount, [{
+    key: "_currencyString",
+    get: function get() {
+      var localeWithLatinNumbers = "".concat(this.locale, "-u-nu-latn");
+      var formatted = this.amount.toLocaleString([localeWithLatinNumbers, 'en-US'], {
+        style: 'currency',
+        currency: this.currency,
+        currencyDisplay: 'symbol',
+        useGrouping: false
+      });
+      var integerPart = formatted.match(/\d+/)[0]; // first match is the integer part
+
+      return formatted.replace(/(?<=\d)\D(?=\d)/, '.') // enforce a dot as decimal separator for consistency
+      .replace(integerPart, new FormattableNumber(integerPart).toString(true));
+    }
+  }]);
+
+  _inherits(FiatAmount, _Vue);
+
+  return FiatAmount;
+}(external_vue_property_decorator_["Vue"]);
+
+__decorate([Object(external_vue_property_decorator_["Prop"])({
+  type: Number,
+  required: true
+})], FiatAmountvue_type_script_lang_ts_FiatAmount.prototype, "amount", void 0);
+
+__decorate([Object(external_vue_property_decorator_["Prop"])({
+  type: String,
+  required: true
+})], FiatAmountvue_type_script_lang_ts_FiatAmount.prototype, "currency", void 0);
+
+__decorate([Object(external_vue_property_decorator_["Prop"])({
+  type: String,
+  default: navigator.language
+})], FiatAmountvue_type_script_lang_ts_FiatAmount.prototype, "locale", void 0);
+
+FiatAmountvue_type_script_lang_ts_FiatAmount = __decorate([external_vue_property_decorator_["Component"]], FiatAmountvue_type_script_lang_ts_FiatAmount);
+/* harmony default export */ var FiatAmountvue_type_script_lang_ts_ = (FiatAmountvue_type_script_lang_ts_FiatAmount);
+// CONCATENATED MODULE: ./src/components/FiatAmount.vue?vue&type=script&lang=ts&
+ /* harmony default export */ var components_FiatAmountvue_type_script_lang_ts_ = (FiatAmountvue_type_script_lang_ts_); 
+// CONCATENATED MODULE: ./src/components/FiatAmount.vue
+
+
+
+
+
+/* normalize component */
+
+var FiatAmount_component = normalizeComponent(
+  components_FiatAmountvue_type_script_lang_ts_,
+  FiatAmountvue_type_template_id_b5409f08_render,
+  FiatAmountvue_type_template_id_b5409f08_staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+FiatAmount_component.options.__file = "FiatAmount.vue"
+/* harmony default export */ var components_FiatAmount = (FiatAmount_component.exports);
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"46064dad-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/LoadingSpinner.vue?vue&type=template&id=01b4df5e&scoped=true&
 var LoadingSpinnervue_type_template_id_01b4df5e_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('svg',{staticClass:"loading-spinner",attrs:{"height":"48","width":"54","color":"inherit"}},[_c('path',{attrs:{"id":"big-hex","d":"M51.9,21.9L41.3,3.6c-0.8-1.3-2.2-2.1-3.7-2.1H16.4c-1.5,0-2.9,0.8-3.7,2.1L2.1,21.9c-0.8,1.3-0.8,2.9,0,4.2 l10.6,18.3c0.8,1.3,2.2,2.1,3.7,2.1h21.3c1.5,0,2.9-0.8,3.7-2.1l10.6-18.3C52.7,24.8,52.7,23.2,51.9,21.9z","stroke":"currentColor","stroke-width":"3","fill":"none","stroke-linecap":"round","opacity":"0.4","stroke-dasharray":"92.5 60"}}),_c('path',{attrs:{"id":"small-hex","d":"M51.9,21.9L41.3,3.6c-0.8-1.3-2.2-2.1-3.7-2.1H16.4c-1.5,0-2.9,0.8-3.7,2.1L2.1,21.9c-0.8,1.3-0.8,2.9,0,4.2 l10.6,18.3c0.8,1.3,2.2,2.1,3.7,2.1h21.3c1.5,0,2.9-0.8,3.7-2.1l10.6-18.3C52.7,24.8,52.7,23.2,51.9,21.9z","stroke":"currentColor","stroke-width":"3","fill":"none","stroke-linecap":"round","stroke-dasharray":"47.5 105"}})])}
 var LoadingSpinnervue_type_template_id_01b4df5e_scoped_true_staticRenderFns = []
@@ -13805,12 +12346,12 @@ var PageHeader_component = normalizeComponent(
 
 PageHeader_component.options.__file = "PageHeader.vue"
 /* harmony default export */ var components_PageHeader = (PageHeader_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"46064dad-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/PaymentInfoLine.vue?vue&type=template&id=780c7d1f&scoped=true&
-var PaymentInfoLinevue_type_template_id_780c7d1f_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"info-line",class:{ 'inverse-theme': _vm.theme === _vm.constructor.Themes.INVERSE }},[_c('div',{staticClass:"amounts"},[_c('Amount',{attrs:{"currency":_vm.cryptoAmount.currency,"amount":_vm.cryptoAmount.amount,"totalDecimals":_vm.cryptoAmount.decimals,"minDecimals":0,"maxDecimals":Math.min(4, _vm.cryptoAmount.decimals)}}),(_vm.fiatAmount)?_c('Amount',{staticClass:"fiat-amount",attrs:{"currency":_vm.fiatAmount.currency,"amount":_vm.fiatAmount.amount,"totalDecimals":_vm.fiatAmount.decimals,"decimals":_vm.fiatAmount.decimals}}):_vm._e()],1),_c('div',{staticClass:"arrow-runway"},[_c('ArrowRightSmallIcon')],1),_c('Account',{attrs:{"address":_vm.address,"image":_vm.shopLogoUrl,"label":_vm.originDomain}}),(_vm.startTime && _vm.endTime)?_c('Timer',{ref:"timer",attrs:{"startTime":_vm.startTime,"endTime":_vm.endTime,"theme":_vm.theme}}):_vm._e()],1)}
-var PaymentInfoLinevue_type_template_id_780c7d1f_scoped_true_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"46064dad-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/PaymentInfoLine.vue?vue&type=template&id=5d90b8da&scoped=true&
+var PaymentInfoLinevue_type_template_id_5d90b8da_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"info-line",class:{ 'inverse-theme': _vm.theme === _vm.constructor.Themes.INVERSE }},[_c('div',{staticClass:"amounts"},[_c('Amount',{attrs:{"currency":_vm.cryptoAmount.currency,"amount":_vm.cryptoAmount.amount,"totalDecimals":_vm.cryptoAmount.decimals,"minDecimals":0,"maxDecimals":Math.min(4, _vm.cryptoAmount.decimals)}}),(_vm.fiatAmount)?_c('FiatAmount',{staticClass:"fiat-amount",attrs:{"currency":_vm.fiatAmount.currency,"amount":_vm.fiatAmount.amount}}):_vm._e()],1),_c('div',{staticClass:"arrow-runway"},[_c('ArrowRightSmallIcon')],1),_c('Account',{attrs:{"address":_vm.address,"image":_vm.shopLogoUrl,"label":_vm.originDomain}}),(_vm.startTime && _vm.endTime)?_c('Timer',{ref:"timer",attrs:{"startTime":_vm.startTime,"endTime":_vm.endTime,"theme":_vm.theme}}):_vm._e()],1)}
+var PaymentInfoLinevue_type_template_id_5d90b8da_scoped_true_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/PaymentInfoLine.vue?vue&type=template&id=780c7d1f&scoped=true&
+// CONCATENATED MODULE: ./src/components/PaymentInfoLine.vue?vue&type=template&id=5d90b8da&scoped=true&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es7.object.values.js
 var es7_object_values = __webpack_require__("8615");
@@ -13829,75 +12370,48 @@ var Timervue_type_template_id_97c93d62_scoped_true_staticRenderFns = []
 
 // CONCATENATED MODULE: ./src/components/Timer.vue?vue&type=template&id=97c93d62&scoped=true&
 
-// CONCATENATED MODULE: ../nimiq.github.io/libraries/nimiq-utils/dist/module/Tweenable.js
-
-
-
-var Tweenable_Tweenable =
-/*#__PURE__*/
-function () {
-  function Tweenable() {
-    var targetValue = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-    var startValue = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : targetValue;
-    var tweenTime = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-    var startTime = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : Date.now();
-    var easing = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : Tweenable.Easing.EASE_IN_OUT_CUBIC;
-
-    _classCallCheck(this, Tweenable);
-
-    this.targetValue = targetValue;
-    this.startValue = startValue;
-    this.tweenTime = tweenTime;
-    this.startTime = startTime;
-    this.easing = easing;
-  }
-
-  _createClass(Tweenable, [{
-    key: "tweenTo",
-    value: function tweenTo(targetValue) {
-      var tweenTime = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.tweenTime;
-      if (targetValue === this.targetValue) return;
-      this.startValue = this.currentValue;
-      this.targetValue = targetValue;
-      this.startTime = Date.now();
-      this.tweenTime = tweenTime;
+// CONCATENATED MODULE: ./node_modules/@nimiq/utils/dist/module/Tweenable.js
+class Tweenable_Tweenable {
+    constructor(targetValue = 0, startValue = targetValue, tweenTime = 0, startTime = Date.now(), easing = Tweenable_Tweenable.Easing.EASE_IN_OUT_CUBIC) {
+        this.targetValue = targetValue;
+        this.startValue = startValue;
+        this.tweenTime = tweenTime;
+        this.startTime = startTime;
+        this.easing = easing;
     }
-  }, {
-    key: "currentValue",
-    get: function get() {
-      var easedProgress = this.easing(this.progress);
-      return this.startValue + (this.targetValue - this.startValue) * easedProgress;
+    get currentValue() {
+        const easedProgress = this.easing(this.progress);
+        return this.startValue + (this.targetValue - this.startValue) * easedProgress;
     }
-  }, {
-    key: "progress",
-    get: function get() {
-      if (this.tweenTime === 0) return 1;
-      return Math.min(1, (Date.now() - this.startTime) / this.tweenTime);
+    get progress() {
+        if (this.tweenTime === 0)
+            return 1;
+        return Math.min(1, (Date.now() - this.startTime) / this.tweenTime);
     }
-  }, {
-    key: "finished",
-    get: function get() {
-      return this.progress === 1;
+    get finished() {
+        return this.progress === 1;
     }
-  }]);
-
-  return Tweenable;
-}();
-
+    tweenTo(targetValue, tweenTime = this.tweenTime) {
+        if (targetValue === this.targetValue)
+            return;
+        this.startValue = this.currentValue;
+        this.targetValue = targetValue;
+        this.startTime = Date.now();
+        this.tweenTime = tweenTime;
+    }
+}
 (function (Tweenable) {
-  // see https://gist.github.com/gre/1650294 for more easing functions
-  Tweenable.Easing = {
-    LINEAR: function LINEAR(t) {
-      return t;
-    },
-    EASE_IN_OUT_CUBIC: function EASE_IN_OUT_CUBIC(t) {
-      return t < .5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
-    }
-  };
+    // see https://gist.github.com/gre/1650294 for more easing functions
+    Tweenable.Easing = {
+        LINEAR: (t) => t,
+        EASE_IN_OUT_CUBIC: (t) => t < .5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1,
+    };
 })(Tweenable_Tweenable || (Tweenable_Tweenable = {}));
-
 var Tweenable$1 = Tweenable_Tweenable;
-/* harmony default export */ var module_Tweenable = (Tweenable$1); //# sourceMappingURL=Tweenable.js.map
+
+/* harmony default export */ var module_Tweenable = (Tweenable$1);
+//# sourceMappingURL=Tweenable.js.map
+
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--13-1!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Timer.vue?vue&type=script&lang=ts&
 
 
@@ -14230,8 +12744,13 @@ var PaymentInfoLine_1;
 
 
 
-function amountInfoValidator(value) {
+
+function cryptoAmountInfoValidator(value) {
   return 'amount' in value && 'currency' in value && 'decimals' in value && (typeof value.amount === 'number' || typeof value.amount === 'bigint' || value.amount && value.amount.constructor && value.amount.constructor.name.endsWith('Integer')) && typeof value.currency === 'string' && typeof value.decimals === 'number' && Number.isInteger(value.decimals);
+}
+
+function fiatAmountInfoValidator(value) {
+  return 'amount' in value && 'currency' in value && typeof value.amount === 'number' && typeof value.currency === 'string';
 }
 
 var PaymentInfoLinevue_type_script_lang_ts_PaymentInfoLine = PaymentInfoLine_1 =
@@ -14293,15 +12812,19 @@ function (_Vue) {
 
 __decorate([Object(external_vue_property_decorator_["Prop"])({
   type: Object,
-  validator: amountInfoValidator
+  required: true,
+  validator: cryptoAmountInfoValidator
 })], PaymentInfoLinevue_type_script_lang_ts_PaymentInfoLine.prototype, "cryptoAmount", void 0);
 
 __decorate([Object(external_vue_property_decorator_["Prop"])({
   type: Object,
-  validator: amountInfoValidator
+  validator: fiatAmountInfoValidator
 })], PaymentInfoLinevue_type_script_lang_ts_PaymentInfoLine.prototype, "fiatAmount", void 0);
 
-__decorate([Object(external_vue_property_decorator_["Prop"])(String)], PaymentInfoLinevue_type_script_lang_ts_PaymentInfoLine.prototype, "origin", void 0);
+__decorate([Object(external_vue_property_decorator_["Prop"])({
+  type: String,
+  required: true
+})], PaymentInfoLinevue_type_script_lang_ts_PaymentInfoLine.prototype, "origin", void 0);
 
 __decorate([Object(external_vue_property_decorator_["Prop"])(String)], PaymentInfoLinevue_type_script_lang_ts_PaymentInfoLine.prototype, "address", void 0);
 
@@ -14324,6 +12847,7 @@ PaymentInfoLinevue_type_script_lang_ts_PaymentInfoLine = PaymentInfoLine_1 = __d
     Account: components_Account,
     Timer: components_Timer,
     Amount: components_Amount,
+    FiatAmount: components_FiatAmount,
     ArrowRightSmallIcon: ArrowRightSmallIcon
   }
 })], PaymentInfoLinevue_type_script_lang_ts_PaymentInfoLine);
@@ -14340,8 +12864,8 @@ PaymentInfoLinevue_type_script_lang_ts_PaymentInfoLine = PaymentInfoLine_1 = __d
 /* harmony default export */ var PaymentInfoLinevue_type_script_lang_ts_ = (PaymentInfoLinevue_type_script_lang_ts_PaymentInfoLine);
 // CONCATENATED MODULE: ./src/components/PaymentInfoLine.vue?vue&type=script&lang=ts&
  /* harmony default export */ var components_PaymentInfoLinevue_type_script_lang_ts_ = (PaymentInfoLinevue_type_script_lang_ts_); 
-// EXTERNAL MODULE: ./src/components/PaymentInfoLine.vue?vue&type=style&index=0&id=780c7d1f&scoped=true&lang=css&
-var PaymentInfoLinevue_type_style_index_0_id_780c7d1f_scoped_true_lang_css_ = __webpack_require__("4ede");
+// EXTERNAL MODULE: ./src/components/PaymentInfoLine.vue?vue&type=style&index=0&id=5d90b8da&scoped=true&lang=css&
+var PaymentInfoLinevue_type_style_index_0_id_5d90b8da_scoped_true_lang_css_ = __webpack_require__("6ce7");
 
 // CONCATENATED MODULE: ./src/components/PaymentInfoLine.vue
 
@@ -14354,11 +12878,11 @@ var PaymentInfoLinevue_type_style_index_0_id_780c7d1f_scoped_true_lang_css_ = __
 
 var PaymentInfoLine_component = normalizeComponent(
   components_PaymentInfoLinevue_type_script_lang_ts_,
-  PaymentInfoLinevue_type_template_id_780c7d1f_scoped_true_render,
-  PaymentInfoLinevue_type_template_id_780c7d1f_scoped_true_staticRenderFns,
+  PaymentInfoLinevue_type_template_id_5d90b8da_scoped_true_render,
+  PaymentInfoLinevue_type_template_id_5d90b8da_scoped_true_staticRenderFns,
   false,
   null,
-  "780c7d1f",
+  "5d90b8da",
   null
   
 )
@@ -14652,44 +13176,24 @@ window.OffscreenCanvas&&a instanceof window.OffscreenCanvas)return Promise.resol
 else{let d,f;d=()=>{a.removeEventListener("load",d);a.removeEventListener("error",f);c()};f=()=>{a.removeEventListener("load",d);a.removeEventListener("error",f);b("Image load error")};a.addEventListener("load",d);a.addEventListener("error",f)}})}}qr_scanner_min_e.DEFAULT_CANVAS_SIZE=400;qr_scanner_min_e.WORKER_PATH="qr-scanner-worker.min.js";/* harmony default export */ var qr_scanner_min = (qr_scanner_min_e);
 //# sourceMappingURL=qr-scanner.min.js.map
 
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.promise.js
-var es6_promise = __webpack_require__("551c");
-
-// CONCATENATED MODULE: ../nimiq.github.io/libraries/nimiq-utils/dist/module/BrowserDetection.js
-
-
-
-
-
-
-
-
-var BrowserDetection_BrowserDetection =
-/*#__PURE__*/
-function () {
-  function BrowserDetection() {
-    _classCallCheck(this, BrowserDetection);
-  }
-
-  _createClass(BrowserDetection, null, [{
-    key: "getBrowserInfo",
-    value: function getBrowserInfo() {
-      return {
-        browser: BrowserDetection.detectBrowser(),
-        version: BrowserDetection.detectVersion(),
-        isMobile: BrowserDetection.isMobile()
-      };
-    } // Also includes tablets.
+// CONCATENATED MODULE: ./node_modules/@nimiq/utils/dist/module/BrowserDetection.js
+class BrowserDetection {
+    static getBrowserInfo() {
+        return {
+            browser: BrowserDetection.detectBrowser(),
+            version: BrowserDetection.detectVersion(),
+            isMobile: BrowserDetection.isMobile(),
+        };
+    }
+    // Also includes tablets.
     // Inspired by:
     // - https://stackoverflow.com/a/13819253
     // - https://developer.mozilla.org/en-US/docs/Web/HTTP/Browser_detection_using_the_user_agent#Mobile_Tablet_or_Desktop
     // - http://detectmobilebrowsers.com/about (tablets)
-
-  }, {
-    key: "isMobile",
-    value: function isMobile() {
-      return /i?Phone|iP(ad|od)|Android|BlackBerry|Opera Mini|WPDesktop|Mobi(le)?|Silk/i.test(navigator.userAgent);
-    } // Browser tests inspired by:
+    static isMobile() {
+        return /i?Phone|iP(ad|od)|Android|BlackBerry|Opera Mini|WPDesktop|Mobi(le)?|Silk/i.test(navigator.userAgent);
+    }
+    // Browser tests inspired by:
     // - https://developer.mozilla.org/en-US/docs/Web/HTTP/Browser_detection_using_the_user_agent#Browser_Name
     // - https://stackoverflow.com/a/26358856 (order is important)
     // Note that also this approach is very interesting: https://stackoverflow.com/a/40246491
@@ -14705,226 +13209,173 @@ function () {
     // - Safari iPhone: Mozilla/5.0 (iPhone; CPU iPhone OS 11_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.0 Mobile/15E148 Safari/604.1
     // - Safari iPad: Mozilla/5.0 (iPad; CPU OS 11_2_2 like Mac OS X) AppleWebKit/604.4.7 (KHTML, like Gecko) Version/11.0 Mobile/15C202 Safari/604.1
     // - Brave: is indistinguishable from Chrome user agents
-
-  }, {
-    key: "detectBrowser",
-    value: function detectBrowser() {
-      if (BrowserDetection._detectedBrowser) {
+    static detectBrowser() {
+        if (BrowserDetection._detectedBrowser) {
+            return BrowserDetection._detectedBrowser;
+        }
+        // note that the order is important as many browsers include the names of others in the ua.
+        const ua = navigator.userAgent;
+        if (/Edge\//i.test(ua)) {
+            BrowserDetection._detectedBrowser = BrowserDetection.Browser.EDGE;
+        }
+        else if (/(Opera|OPR)\//i.test(ua)) {
+            BrowserDetection._detectedBrowser = BrowserDetection.Browser.OPERA;
+        }
+        else if (/Firefox\//i.test(ua)) {
+            BrowserDetection._detectedBrowser = BrowserDetection.Browser.FIREFOX;
+        }
+        else if (/Chrome\//i.test(ua)) {
+            // Note that Brave is indistinguishable from Chrome by user agent. The additional check is taken from
+            // https://stackoverflow.com/a/53799770. Unfortunately this distinction is not possible on mobile.
+            BrowserDetection._detectedBrowser =
+                navigator.plugins.length === 0 && navigator.mimeTypes.length === 0 && !BrowserDetection.isMobile()
+                    ? BrowserDetection.Browser.BRAVE
+                    : BrowserDetection.Browser.CHROME;
+        }
+        else if (/^((?!chrome|android).)*safari/i.test(ua)) {
+            // see https://stackoverflow.com/a/23522755
+            // Note that Chrome iOS is also detected as Safari, see comments in stack overflow
+            BrowserDetection._detectedBrowser = BrowserDetection.Browser.SAFARI;
+        }
+        else {
+            BrowserDetection._detectedBrowser = BrowserDetection.Browser.UNKNOWN;
+        }
         return BrowserDetection._detectedBrowser;
-      } // note that the order is important as many browsers include the names of others in the ua.
-
-
-      var ua = navigator.userAgent;
-
-      if (/Edge\//i.test(ua)) {
-        BrowserDetection._detectedBrowser = BrowserDetection.Browser.EDGE;
-      } else if (/(Opera|OPR)\//i.test(ua)) {
-        BrowserDetection._detectedBrowser = BrowserDetection.Browser.OPERA;
-      } else if (/Firefox\//i.test(ua)) {
-        BrowserDetection._detectedBrowser = BrowserDetection.Browser.FIREFOX;
-      } else if (/Chrome\//i.test(ua)) {
-        // Note that Brave is indistinguishable from Chrome by user agent. The additional check is taken from
-        // https://stackoverflow.com/a/53799770. Unfortunately this distinction is not possible on mobile.
-        BrowserDetection._detectedBrowser = navigator.plugins.length === 0 && navigator.mimeTypes.length === 0 && !BrowserDetection.isMobile() ? BrowserDetection.Browser.BRAVE : BrowserDetection.Browser.CHROME;
-      } else if (/^((?!chrome|android).)*safari/i.test(ua)) {
-        // see https://stackoverflow.com/a/23522755
-        // Note that Chrome iOS is also detected as Safari, see comments in stack overflow
-        BrowserDetection._detectedBrowser = BrowserDetection.Browser.SAFARI;
-      } else {
-        BrowserDetection._detectedBrowser = BrowserDetection.Browser.UNKNOWN;
-      }
-
-      return BrowserDetection._detectedBrowser;
     }
-  }, {
-    key: "detectVersion",
-    value: function detectVersion() {
-      if (typeof BrowserDetection._detectedVersion !== 'undefined') {
+    static detectVersion() {
+        if (typeof BrowserDetection._detectedVersion !== 'undefined') {
+            return BrowserDetection._detectedVersion;
+        }
+        let regex;
+        switch (BrowserDetection.detectBrowser()) {
+            case BrowserDetection.Browser.EDGE:
+                regex = /Edge\/(\S+)/i;
+                break;
+            case BrowserDetection.Browser.OPERA:
+                regex = /(Opera|OPR)\/(\S+)/i;
+                break;
+            case BrowserDetection.Browser.FIREFOX:
+                regex = /Firefox\/(\S+)/i;
+                break;
+            case BrowserDetection.Browser.CHROME:
+                regex = /Chrome\/(\S+)/i;
+                break;
+            case BrowserDetection.Browser.SAFARI:
+                regex = /(iP(hone|ad|od).*?OS |Version\/)(\S+)/i;
+                break;
+            case BrowserDetection.Browser.BRAVE: // can't tell version for Brave
+            default:
+                BrowserDetection._detectedVersion = null;
+                return null;
+        }
+        const match = navigator.userAgent.match(regex);
+        if (!match) {
+            BrowserDetection._detectedVersion = null;
+            return null;
+        }
+        const versionString = match[match.length - 1].replace(/_/g, '.'); // replace _ in iOS version
+        const versionParts = versionString.split('.');
+        const parsedVersionParts = [];
+        for (let i = 0; i < 4; ++i) {
+            parsedVersionParts.push(parseInt(versionParts[i]) || 0);
+        }
+        const [major, minor, build, patch] = parsedVersionParts;
+        BrowserDetection._detectedVersion = { versionString, major, minor, build, patch };
         return BrowserDetection._detectedVersion;
-      }
-
-      var regex;
-
-      switch (BrowserDetection.detectBrowser()) {
-        case BrowserDetection.Browser.EDGE:
-          regex = /Edge\/(\S+)/i;
-          break;
-
-        case BrowserDetection.Browser.OPERA:
-          regex = /(Opera|OPR)\/(\S+)/i;
-          break;
-
-        case BrowserDetection.Browser.FIREFOX:
-          regex = /Firefox\/(\S+)/i;
-          break;
-
-        case BrowserDetection.Browser.CHROME:
-          regex = /Chrome\/(\S+)/i;
-          break;
-
-        case BrowserDetection.Browser.SAFARI:
-          regex = /(iP(hone|ad|od).*?OS |Version\/)(\S+)/i;
-          break;
-
-        case BrowserDetection.Browser.BRAVE: // can't tell version for Brave
-
-        default:
-          BrowserDetection._detectedVersion = null;
-          return null;
-      }
-
-      var match = navigator.userAgent.match(regex);
-
-      if (!match) {
-        BrowserDetection._detectedVersion = null;
-        return null;
-      }
-
-      var versionString = match[match.length - 1].replace(/_/g, '.'); // replace _ in iOS version
-
-      var versionParts = versionString.split('.');
-      var parsedVersionParts = [];
-
-      for (var i = 0; i < 4; ++i) {
-        parsedVersionParts.push(parseInt(versionParts[i]) || 0);
-      }
-
-      var major = parsedVersionParts[0],
-          minor = parsedVersionParts[1],
-          build = parsedVersionParts[2],
-          patch = parsedVersionParts[3];
-      BrowserDetection._detectedVersion = {
-        versionString: versionString,
-        major: major,
-        minor: minor,
-        build: build,
-        patch: patch
-      };
-      return BrowserDetection._detectedVersion;
     }
-  }, {
-    key: "isChrome",
-    value: function isChrome() {
-      return BrowserDetection.detectBrowser() === BrowserDetection.Browser.CHROME;
+    static isChrome() {
+        return BrowserDetection.detectBrowser() === BrowserDetection.Browser.CHROME;
     }
-  }, {
-    key: "isFirefox",
-    value: function isFirefox() {
-      return BrowserDetection.detectBrowser() === BrowserDetection.Browser.FIREFOX;
+    static isFirefox() {
+        return BrowserDetection.detectBrowser() === BrowserDetection.Browser.FIREFOX;
     }
-  }, {
-    key: "isOpera",
-    value: function isOpera() {
-      return BrowserDetection.detectBrowser() === BrowserDetection.Browser.OPERA;
+    static isOpera() {
+        return BrowserDetection.detectBrowser() === BrowserDetection.Browser.OPERA;
     }
-  }, {
-    key: "isEdge",
-    value: function isEdge() {
-      return BrowserDetection.detectBrowser() === BrowserDetection.Browser.EDGE;
+    static isEdge() {
+        return BrowserDetection.detectBrowser() === BrowserDetection.Browser.EDGE;
     }
-  }, {
-    key: "isSafari",
-    value: function isSafari() {
-      return BrowserDetection.detectBrowser() === BrowserDetection.Browser.SAFARI;
+    static isSafari() {
+        return BrowserDetection.detectBrowser() === BrowserDetection.Browser.SAFARI;
     }
-  }, {
-    key: "isBrave",
-    value: function isBrave() {
-      return BrowserDetection.detectBrowser() === BrowserDetection.Browser.BRAVE;
+    static isBrave() {
+        return BrowserDetection.detectBrowser() === BrowserDetection.Browser.BRAVE;
     }
-  }, {
-    key: "isIOS",
-    value: function isIOS() {
-      return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    static isIOS() {
+        return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
     }
-  }, {
-    key: "isBadIOS",
-    value: function isBadIOS() {
-      var browserInfo = BrowserDetection.getBrowserInfo(); // Check for iOS < 11 or 11.2 which has the WASM bug
-
-      return browserInfo.browser === BrowserDetection.Browser.SAFARI && browserInfo.isMobile && browserInfo.version && (browserInfo.version.major < 11 || browserInfo.version.major === 11 && browserInfo.version.minor === 2);
+    static isBadIOS() {
+        const browserInfo = BrowserDetection.getBrowserInfo();
+        // Check for iOS < 11 or 11.2 which has the WASM bug
+        return browserInfo.browser === BrowserDetection.Browser.SAFARI
+            && browserInfo.isMobile
+            && browserInfo.version
+            && (browserInfo.version.major < 11 || browserInfo.version.major === 11 && browserInfo.version.minor === 2);
     }
     /**
      * Detect if the browser is running in Private Browsing mode
      *
      * @returns {Promise}
      */
-
-  }, {
-    key: "isPrivateMode",
-    value: function isPrivateMode() {
-      return new Promise(function (resolve) {
-        var on = function on() {
-          resolve(true);
-        }; // is in private mode
-
-
-        var off = function off() {
-          resolve(false);
-        }; // not private mode
-        // using browser detection by feature detection here, also see https://stackoverflow.com/a/9851769
-        // These seem to be partly outdated though. Might want to consider using user agent based detection.
-
-
-        var isSafari = function isSafari() {
-          return /Constructor/.test(window.HTMLElement) || function (root) {
-            return (!root || root.pushNotification).toString() === '[object SafariRemoteNotification]';
-          }(window.safari);
-        }; // Chrome & Opera
-
-
-        if (window.webkitRequestFileSystem) {
-          return void window.webkitRequestFileSystem(0, 0, off, on);
-        } // Firefox
-
-
-        if (document.documentElement && 'MozAppearance' in document.documentElement.style) {
-          // @ts-ignore
-          var db = indexedDB.open(null);
-          db.onerror = on;
-          db.onsuccess = off;
-          return void 0;
-        } // Safari
-
-
-        if (isSafari()) {
-          try {
-            window.openDatabase(null, null, null, null);
-          } catch (_) {
-            return on();
-          }
-        } // IE10+ & Edge
-
-
-        if (!window.indexedDB && (window.PointerEvent || window.MSPointerEvent)) {
-          return on();
-        } // others
-
-
-        return off();
-      });
+    static isPrivateMode() {
+        return new Promise((resolve) => {
+            const on = () => { resolve(true); }; // is in private mode
+            const off = () => { resolve(false); }; // not private mode
+            // using browser detection by feature detection here, also see https://stackoverflow.com/a/9851769
+            // These seem to be partly outdated though. Might want to consider using user agent based detection.
+            const isSafari = () => {
+                return (/Constructor/.test(window.HTMLElement) ||
+                    (function (root) {
+                        return (!root || root.pushNotification).toString() === '[object SafariRemoteNotification]';
+                    })(window.safari));
+            };
+            // Chrome & Opera
+            if (window.webkitRequestFileSystem) {
+                return void window.webkitRequestFileSystem(0, 0, off, on);
+            }
+            // Firefox
+            if (document.documentElement && 'MozAppearance' in document.documentElement.style) {
+                // @ts-ignore
+                const db = indexedDB.open(null);
+                db.onerror = on;
+                db.onsuccess = off;
+                return void 0;
+            }
+            // Safari
+            if (isSafari()) {
+                try {
+                    window.openDatabase(null, null, null, null);
+                }
+                catch (_) {
+                    return on();
+                }
+            }
+            // IE10+ & Edge
+            if (!window.indexedDB && (window.PointerEvent || window.MSPointerEvent)) {
+                return on();
+            }
+            // others
+            return off();
+        });
     }
-  }]);
-
-  return BrowserDetection;
-}();
-
+}
 (function (BrowserDetection) {
-  var Browser;
+    let Browser;
+    (function (Browser) {
+        Browser["CHROME"] = "chrome";
+        Browser["FIREFOX"] = "firefox";
+        Browser["OPERA"] = "opera";
+        Browser["EDGE"] = "edge";
+        Browser["SAFARI"] = "safari";
+        Browser["BRAVE"] = "brave";
+        Browser["UNKNOWN"] = "unknown";
+    })(Browser = BrowserDetection.Browser || (BrowserDetection.Browser = {}));
+})(BrowserDetection || (BrowserDetection = {}));
+var BrowserDetection$1 = BrowserDetection;
 
-  (function (Browser) {
-    Browser["CHROME"] = "chrome";
-    Browser["FIREFOX"] = "firefox";
-    Browser["OPERA"] = "opera";
-    Browser["EDGE"] = "edge";
-    Browser["SAFARI"] = "safari";
-    Browser["BRAVE"] = "brave";
-    Browser["UNKNOWN"] = "unknown";
-  })(Browser = BrowserDetection.Browser || (BrowserDetection.Browser = {}));
-})(BrowserDetection_BrowserDetection || (BrowserDetection_BrowserDetection = {}));
+/* harmony default export */ var module_BrowserDetection = (BrowserDetection$1);
+//# sourceMappingURL=BrowserDetection.js.map
 
-var BrowserDetection$1 = BrowserDetection_BrowserDetection;
-/* harmony default export */ var module_BrowserDetection = (BrowserDetection$1); //# sourceMappingURL=BrowserDetection.js.map
 // EXTERNAL MODULE: ./node_modules/file-loader/dist/cjs.js?name=[name].[ext]!./node_modules/qr-scanner/qr-scanner-worker.min.js
 var qr_scanner_worker_min = __webpack_require__("46f5");
 var qr_scanner_worker_min_default = /*#__PURE__*/__webpack_require__.n(qr_scanner_worker_min);
@@ -15495,6 +13946,9 @@ var UniversalAmountvue_type_template_id_97065cf8_scoped_true_staticRenderFns = [
 
 // CONCATENATED MODULE: ./src/components/UniversalAmount.vue?vue&type=template&id=97065cf8&scoped=true&
 
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es7.string.pad-start.js
+var es7_string_pad_start = __webpack_require__("f576");
+
 // EXTERNAL MODULE: ./node_modules/big-integer/BigInteger.js
 var BigInteger = __webpack_require__("7409");
 var BigInteger_default = /*#__PURE__*/__webpack_require__.n(BigInteger);
@@ -15648,6 +14102,7 @@ UniversalAmount_component.options.__file = "UniversalAmount.vue"
 
 
 
+
  // export { default as MigrationWelcome } from './components/MigrationWelcome.vue';
 // export { default as NewContact } from './components/NewContact.vue';
 
@@ -15687,6 +14142,7 @@ UniversalAmount_component.options.__file = "UniversalAmount.vue"
 /* concated harmony reexport Copyable */__webpack_require__.d(__webpack_exports__, "Copyable", function() { return components_Copyable; });
 /* concated harmony reexport CopyableField */__webpack_require__.d(__webpack_exports__, "CopyableField", function() { return components_CopyableField; });
 /* concated harmony reexport Carousel */__webpack_require__.d(__webpack_exports__, "Carousel", function() { return components_Carousel; });
+/* concated harmony reexport FiatAmount */__webpack_require__.d(__webpack_exports__, "FiatAmount", function() { return components_FiatAmount; });
 /* concated harmony reexport Identicon */__webpack_require__.d(__webpack_exports__, "Identicon", function() { return components_Identicon; });
 /* concated harmony reexport LabelInput */__webpack_require__.d(__webpack_exports__, "LabelInput", function() { return components_LabelInput; });
 /* concated harmony reexport LoadingSpinner */__webpack_require__.d(__webpack_exports__, "LoadingSpinner", function() { return components_LoadingSpinner; });

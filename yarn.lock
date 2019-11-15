@@ -761,9 +761,10 @@
   resolved "https://registry.yarnpkg.com/@nimiq/style/-/style-0.7.6.tgz#b8a128d8fb6208554883158b8c2fa7f11d9e8333"
   integrity sha512-qFeIbv/xOCxHjYGfuB5U8Pb1xnRhrvetrdjtLK6zGU7tLWCuyQCOErvAKayVUpvpKyTWsXaG+I2YP2djcNo4kQ==
 
-"@nimiq/utils@link:../nimiq.github.io/libraries/nimiq-utils":
-  version "0.0.0"
-  uid ""
+"@nimiq/utils@^0.4.2":
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/@nimiq/utils/-/utils-0.4.2.tgz#973ccd7e84e8398694265fe2cbddf289ffdf7428"
+  integrity sha512-QUxLxVwfad/5xYKo/PQCnWIwiyyDONOnRyyr7l8MlB9B/z0rbFPmZZdRU5gkuRHW7EBQt7Q3262x49yidNVG4A==
 
 "@nodelib/fs.stat@^1.0.1":
   version "1.1.0"
