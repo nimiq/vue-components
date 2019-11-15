@@ -761,10 +761,10 @@
   resolved "https://registry.yarnpkg.com/@nimiq/style/-/style-0.7.3.tgz#4d867fa338242680c4ba9ffbe7ca0c4960bde7c3"
   integrity sha512-uwVVO1OepSb4GV/mbDvV06/zsMKiB3/+YWvKkgOHpHb+SvVvt4rTFBszoNTVN/rbdhDN25nI5sMSidsXZ9izPw==
 
-"@nimiq/utils@^0.4.1":
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/@nimiq/utils/-/utils-0.4.1.tgz#19b77441440d1fd8463315b2a98ffad23eeddb95"
-  integrity sha512-Zl/QfOA7/5EApkEAG7Di8sS/6jlvNhtX462iWot9RiC7tVeaeMk+5Q7WlT5g7dVXSCNyz5IFRYewFP5PlIojgw==
+"@nimiq/utils@^0.4.2":
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/@nimiq/utils/-/utils-0.4.2.tgz#973ccd7e84e8398694265fe2cbddf289ffdf7428"
+  integrity sha512-QUxLxVwfad/5xYKo/PQCnWIwiyyDONOnRyyr7l8MlB9B/z0rbFPmZZdRU5gkuRHW7EBQt7Q3262x49yidNVG4A==
 
 "@nodelib/fs.stat@^1.0.1":
   version "1.1.0"

@@ -15,6 +15,7 @@ import AmountWithDetails from '../components/AmountWithDetails.vue';
 import CircleSpinner from '../components/CircleSpinner.vue';
 import Contact from '../components/Contact.vue';
 import ContactList from '../components/ContactList.vue';
+import FiatAmount from '../components/FiatAmount.vue';
 import Identicon from '../components/Identicon.vue';
 import LabelInput from '../components/LabelInput.vue';
 import Wallet from '../components/Wallet.vue';
@@ -54,6 +55,17 @@ storiesOf('Basic', module)
             data: () => ({ amount, minDecimals, maxDecimals, decimals, showApprox }),
             template: `<Amount :amount="amount" :minDecimals="minDecimals" :maxDecimals="maxDecimals"
                 :decimals="decimals" :showApprox="showApprox" />`,
+        };
+    })
+    .add('FiatAmount', () => {
+        const amount = number('amount', 12345.67);
+        const currency = text('currency', 'eur');
+        const locale = text('locale', navigator.language);
+
+        return {
+            components: {FiatAmount},
+            data: () => ({ amount, currency, locale }),
+            template: `<FiatAmount :amount="amount" :currency="currency" :locale="locale" />`,
         };
     })
     .add('Icons', () => {
