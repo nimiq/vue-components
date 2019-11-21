@@ -38,7 +38,9 @@ export default class FiatAmount extends Vue {
         });
         const integerPart = formatted.match(/\d+/)![0]; // first match is the integer part
         return formatted
-            .replace(/(?<=\d)\D(?=\d)/, '.') // enforce a dot as decimal separator for consistency
+            // Enforce a dot as decimal separator for consistency. Using capturing groups instead of
+            // lookahead/lookbehind to avoid browser support limitations.
+            .replace(/(\d)\D(\d)/, '$1.$2')
             .replace(integerPart, new FormattableNumber(integerPart).toString(true));
     }
 }
