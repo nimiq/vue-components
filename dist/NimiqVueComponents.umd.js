@@ -11982,12 +11982,12 @@ var Carousel_component = normalizeComponent(
 
 Carousel_component.options.__file = "Carousel.vue"
 /* harmony default export */ var components_Carousel = (Carousel_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"46064dad-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/FiatAmount.vue?vue&type=template&id=b5409f08&
-var FiatAmountvue_type_template_id_b5409f08_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"fiat-amount"},[_vm._v("\n    "+_vm._s(_vm._currencyString)+"\n")])}
-var FiatAmountvue_type_template_id_b5409f08_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"46064dad-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/FiatAmount.vue?vue&type=template&id=5a2e1032&
+var FiatAmountvue_type_template_id_5a2e1032_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"fiat-amount"},[_vm._v("\n    "+_vm._s(_vm._currencyString)+"\n")])}
+var FiatAmountvue_type_template_id_5a2e1032_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/FiatAmount.vue?vue&type=template&id=b5409f08&
+// CONCATENATED MODULE: ./src/components/FiatAmount.vue?vue&type=template&id=5a2e1032&
 
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--13-1!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/FiatAmount.vue?vue&type=script&lang=ts&
 
@@ -12024,8 +12024,9 @@ function (_Vue) {
       });
       var integerPart = formatted.match(/\d+/)[0]; // first match is the integer part
 
-      return formatted.replace(/(?<=\d)\D(?=\d)/, '.') // enforce a dot as decimal separator for consistency
-      .replace(integerPart, new FormattableNumber(integerPart).toString(true));
+      return formatted // Enforce a dot as decimal separator for consistency. Using capturing groups instead of
+      // lookahead/lookbehind to avoid browser support limitations.
+      .replace(/(\d)\D(\d)/, '$1.$2').replace(integerPart, new FormattableNumber(integerPart).toString(true));
     }
   }]);
 
@@ -12063,8 +12064,8 @@ FiatAmountvue_type_script_lang_ts_FiatAmount = __decorate([external_vue_property
 
 var FiatAmount_component = normalizeComponent(
   components_FiatAmountvue_type_script_lang_ts_,
-  FiatAmountvue_type_template_id_b5409f08_render,
-  FiatAmountvue_type_template_id_b5409f08_staticRenderFns,
+  FiatAmountvue_type_template_id_5a2e1032_render,
+  FiatAmountvue_type_template_id_5a2e1032_staticRenderFns,
   false,
   null,
   null,
