@@ -12,6 +12,7 @@ import AddressInput from '../components/AddressInput.vue';
 import AccountRing from '../components/AccountRing.vue';
 import Amount from '../components/Amount.vue';
 import AmountWithDetails from '../components/AmountWithDetails.vue';
+import CircleSpinner from '../components/CircleSpinner.vue';
 import Contact from '../components/Contact.vue';
 import ContactList from '../components/ContactList.vue';
 import Identicon from '../components/Identicon.vue';
@@ -135,6 +136,12 @@ storiesOf('Basic', module)
         return {
             components: {LoadingSpinner},
             template: `<div style="color: #0582CA"><LoadingSpinner /></div>`,
+        };
+    })
+    .add('CircleSpinner', () => {
+        return {
+            components: { CircleSpinner },
+            template: `<CircleSpinner />`,
         };
     });
 
