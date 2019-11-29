@@ -18,6 +18,7 @@ import AmountWithFee from '../components/AmountWithFee.vue';
 import BottomOverlay from '../components/BottomOverlay.vue';
 import CloseButton from '../components/CloseButton.vue';
 import Carousel from '../components/Carousel.vue';
+import CircleSpinner from '../components/CircleSpinner.vue';
 import Contact from '../components/Contact.vue';
 import ContactList from '../components/ContactList.vue';
 import ContactShortcuts from '../components/ContactShortcuts.vue';
@@ -282,6 +283,12 @@ storiesOf('Basic', module)
                                 <div style="height:3000px"></div>
                             </PageBody>
                         </SmallPage>`,
+        };
+    })
+    .add('CircleSpinner', () => {
+        return {
+            components: { CircleSpinner },
+            template: `<CircleSpinner />`,
         };
     });
 
