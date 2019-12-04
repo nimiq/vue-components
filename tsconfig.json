@@ -4,6 +4,7 @@
         "module": "esnext",
         "jsx": "preserve",
         "importHelpers": true,
+        "incremental": false,
         "moduleResolution": "node",
         "experimentalDecorators": true,
         "esModuleInterop": true,
@@ -29,11 +30,11 @@
     },
     "include": [
         "types/svg.d.ts",
-        "src/**/*.ts",
-        "src/**/*.tsx",
-        "src/**/*.vue",
-        "tests/**/*.ts",
-        "tests/**/*.tsx"
+        // "src/**/*.ts",
+        // "src/**/*.tsx",
+        // "src/**/*.vue",
+        // "tests/**/*.ts",
+        // "tests/**/*.tsx"
     ],
     "exclude": [
         "node_modules"
