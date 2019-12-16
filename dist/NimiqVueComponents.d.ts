@@ -2,239 +2,20 @@
 // Dependencies for this module:
 //   ../vue-property-decorator
 //   ../qr-code
-//   ../qr-scanner
-//   ../big-integer
 
 declare module 'NimiqVueComponents' {
-    export { default as Account } from 'NimiqVueComponents/src/components/Account.vue';
-    export { default as AccountDetails } from 'NimiqVueComponents/src/components/AccountDetails.vue';
-    export { default as AccountList } from 'NimiqVueComponents/src/components/AccountList.vue';
-    export { default as AccountRing } from 'NimiqVueComponents/src/components/AccountRing.vue';
-    export { default as AccountSelector } from 'NimiqVueComponents/src/components/AccountSelector.vue';
-    export { default as AddressDisplay } from 'NimiqVueComponents/src/components/AddressDisplay.vue';
-    export { default as AddressInput } from 'NimiqVueComponents/src/components/AddressInput.vue';
-    export { default as Amount } from 'NimiqVueComponents/src/components/Amount.vue';
-    export { default as AmountInput } from 'NimiqVueComponents/src/components/AmountInput.vue';
-    export { default as AmountWithDetails } from 'NimiqVueComponents/src/components/AmountWithDetails.vue';
-    export { default as AmountWithFee } from 'NimiqVueComponents/src/components/AmountWithFee.vue';
-    export { default as BottomOverlay } from 'NimiqVueComponents/src/components/BottomOverlay.vue';
     export { default as CircleSpinner } from 'NimiqVueComponents/src/components/CircleSpinner.vue';
-    export { default as CloseButton } from 'NimiqVueComponents/src/components/CloseButton.vue';
-    export { default as Contact } from 'NimiqVueComponents/src/components/Contact.vue';
-    export { default as ContactList } from 'NimiqVueComponents/src/components/ContactList.vue';
-    export { default as Copyable } from 'NimiqVueComponents/src/components/Copyable.vue';
     export { default as CopyableField } from 'NimiqVueComponents/src/components/CopyableField.vue';
-    export { default as Carousel } from 'NimiqVueComponents/src/components/Carousel.vue';
     export { default as FiatAmount } from 'NimiqVueComponents/src/components/FiatAmount.vue';
-    export { default as Identicon } from 'NimiqVueComponents/src/components/Identicon.vue';
-    export { default as LabelInput } from 'NimiqVueComponents/src/components/LabelInput.vue';
-    export { default as LoadingSpinner } from 'NimiqVueComponents/src/components/LoadingSpinner.vue';
-    export { default as PageBody } from 'NimiqVueComponents/src/components/PageBody.vue';
-    export { default as PageFooter } from 'NimiqVueComponents/src/components/PageFooter.vue';
-    export { default as PageHeader } from 'NimiqVueComponents/src/components/PageHeader.vue';
-    export { default as PaymentInfoLine } from 'NimiqVueComponents/src/components/PaymentInfoLine.vue';
     export { default as QrCode } from 'NimiqVueComponents/src/components/QrCode.vue';
-    export { default as QrScanner } from 'NimiqVueComponents/src/components/QrScanner.vue';
-    export { default as SelectBar } from 'NimiqVueComponents/src/components/SelectBar.vue';
     export { default as SmallPage } from 'NimiqVueComponents/src/components/SmallPage.vue';
     export { default as Tooltip } from 'NimiqVueComponents/src/components/Tooltip.vue';
-    export { default as Timer } from 'NimiqVueComponents/src/components/Timer.vue';
-    export { default as UniversalAmount } from 'NimiqVueComponents/src/components/UniversalAmount.vue';
     export * from 'NimiqVueComponents/src/components/Icons';
 }
 
-declare module 'NimiqVueComponents/src/components/Account.vue' {
-    import { Vue } from 'vue-property-decorator';
-    export default class Account extends Vue {
-        displayAsCashlink: boolean;
-        label: string;
-        address?: string;
-        image?: string;
-        placeholder?: string;
-        walletLabel?: string;
-        balance?: number;
-        decimals: number;
-        editable?: boolean;
-        layout: string;
-        focus(): void;
-    }
-}
-
-declare module 'NimiqVueComponents/src/components/AccountDetails.vue' {
-    import { Vue } from 'vue-property-decorator';
-    export default class AccountDetails extends Vue {
-        focus(): void;
-    }
-}
-
-declare module 'NimiqVueComponents/src/components/AccountList.vue' {
-    import { Vue } from 'vue-property-decorator';
-    import { AccountInfo } from 'NimiqVueComponents/src/components/AccountSelector.vue';
-    export default class AccountList extends Vue {
-        accounts: AccountInfo[];
-        focus(address: string): void;
-    }
-}
-
-declare module 'NimiqVueComponents/src/components/AccountRing.vue' {
-    import { Vue } from 'vue-property-decorator';
-    export default class AccountRing extends Vue {
-        addresses: string[];
-        animate: boolean;
-    }
-}
-
-declare module 'NimiqVueComponents/src/components/AccountSelector.vue' {
-    import { Vue } from 'vue-property-decorator';
-    export interface ContractInfo {
-        label: string;
-        userFriendlyAddress: string;
-        balance?: number;
-        walletId?: string;
-    }
-    export interface AccountInfo {
-        path: string;
-        label: string;
-        userFriendlyAddress: string;
-        balance?: number;
-        walletId?: string;
-    }
-    export interface WalletInfo {
-        id: string;
-        label: string;
-        accounts: Map<string, AccountInfo>;
-        contracts: ContractInfo[];
-        type: number;
-        keyMissing: boolean;
-    }
-    export default class AccountSelector extends Vue {
-    }
-}
-
-declare module 'NimiqVueComponents/src/components/AddressDisplay.vue' {
-    import { Vue } from 'vue-property-decorator';
-    export default class AddressDisplay extends Vue {
-    }
-}
-
-declare module 'NimiqVueComponents/src/components/AddressInput.vue' {
-    import { Vue } from 'vue-property-decorator';
-    export default class AddressInput extends Vue {
-        value: string;
-        autofocus?: string;
-        $refs: {
-            textarea: HTMLTextAreaElement;
-        };
-        focus(scrollIntoView?: boolean): void;
-    }
-}
-
-declare module 'NimiqVueComponents/src/components/Amount.vue' {
-    import { Vue } from 'vue-property-decorator';
-    type BigInteger = import('big-integer').BigInteger;
-    export default class Amount extends Vue {
-        amount: number | BigInteger;
-        decimals?: number;
-        minDecimals: number;
-        maxDecimals: number;
-        totalDecimals: number;
-        showApprox: boolean;
-        currency: string;
-    }
-    export {};
-}
-
-declare module 'NimiqVueComponents/src/components/AmountInput.vue' {
-    import { Vue } from 'vue-property-decorator';
-    export default class AmountInput extends Vue {
-        mounted(): Promise<void>;
-        focus(): void;
-        formattedValue: string;
-    }
-}
-
-declare module 'NimiqVueComponents/src/components/AmountWithDetails.vue' {
-    import { Vue } from 'vue-property-decorator';
-    export default class AmountWithDetails extends Vue {
-        amount: number;
-        networkFee: number;
-        networkFeeEditable: boolean;
-        decimals: number;
-        toggleDetails(): void;
-    }
-}
-
-declare module 'NimiqVueComponents/src/components/AmountWithFee.vue' {
-    import { Vue } from 'vue-property-decorator';
-    export default class AmountWithFee extends Vue {
-        mounted(): void;
-        focus(): void;
-    }
-}
-
-declare module 'NimiqVueComponents/src/components/BottomOverlay.vue' {
-    import { Vue } from 'vue-property-decorator';
-    class BottomOverlay extends Vue {
-        theme: string;
-    }
-    namespace BottomOverlay {
-        enum Events {
-            CLOSE = "close"
-        }
-    }
-    export default BottomOverlay;
-}
-
 declare module 'NimiqVueComponents/src/components/CircleSpinner.vue' {
-    import { Vue } from 'vue-property-decorator';
-    export default class CircleSpinner extends Vue {
-    }
-}
-
-declare module 'NimiqVueComponents/src/components/CloseButton.vue' {
-    import { Vue } from 'vue-property-decorator';
-    export default class CloseButton extends Vue {
-        click(event: MouseEvent): void;
-    }
-}
-
-declare module 'NimiqVueComponents/src/components/Contact.vue' {
-    import { Vue } from 'vue-property-decorator';
-    export default class Contact extends Vue {
-        address: string;
-        label: string;
-        showOptions?: boolean;
-        abortTrigger?: number;
-    }
-}
-
-declare module 'NimiqVueComponents/src/components/ContactList.vue' {
-    import { Vue } from 'vue-property-decorator';
-    export default class ContactList extends Vue {
-        contacts: Array<{
-            address: string;
-            label: string;
-        }>;
-    }
-}
-
-declare module 'NimiqVueComponents/src/components/Copyable.vue' {
-    import { Vue } from 'vue-property-decorator';
-    /**
-      * **Copyable**
-      *
-      * Copyable can be used to make a click on one or more elements copy content to the Clipboard with visual feedback.
-      * By default the children's contents are copied to the Clipboard. Alternatively, a specific text to be copied can be
-      * provided.
-      *
-      * Props:
-      *
-      * **text** {string} [optional] - A specific text to be copied to the clipboard
-      */
-    export default class Copyable extends Vue {
-        text?: string;
-        copy(): void;
-    }
+    const _default: {};
+    export default _default;
 }
 
 declare module 'NimiqVueComponents/src/components/CopyableField.vue' {
@@ -247,21 +28,6 @@ declare module 'NimiqVueComponents/src/components/CopyableField.vue' {
     }
 }
 
-declare module 'NimiqVueComponents/src/components/Carousel.vue' {
-    import { Vue } from 'vue-property-decorator';
-    export default class Carousel extends Vue {
-        entries: string[];
-        selected?: string;
-        entryMargin: number;
-        animationDuration: number;
-        hideBackgroundEntries: boolean;
-        disabled: boolean;
-        $refs: {
-            [ref: string]: HTMLElement[];
-        };
-    }
-}
-
 declare module 'NimiqVueComponents/src/components/FiatAmount.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class FiatAmount extends Vue {
@@ -269,80 +35,6 @@ declare module 'NimiqVueComponents/src/components/FiatAmount.vue' {
         currency: string;
         locale: string;
     }
-}
-
-declare module 'NimiqVueComponents/src/components/Identicon.vue' {
-    import { Vue } from 'vue-property-decorator';
-    export default class Identicon extends Vue {
-        static formatAddress(str: string): string;
-        static isUserFriendlyAddress(str: string): boolean;
-        address: string;
-        readonly placeholderDataUrl: string;
-    }
-}
-
-declare module 'NimiqVueComponents/src/components/LabelInput.vue' {
-    import { Vue } from 'vue-property-decorator';
-    export default class LabelInput extends Vue {
-        focus(): void;
-    }
-}
-
-declare module 'NimiqVueComponents/src/components/LoadingSpinner.vue' {
-    import { Vue } from 'vue-property-decorator';
-    export default class LoadingSpinner extends Vue {
-    }
-}
-
-declare module 'NimiqVueComponents/src/components/PageBody.vue' {
-    import { Vue } from 'vue-property-decorator';
-    export default class PageBody extends Vue {
-    }
-}
-
-declare module 'NimiqVueComponents/src/components/PageFooter.vue' {
-    import { Vue } from 'vue-property-decorator';
-    export default class PageFooter extends Vue {
-    }
-}
-
-declare module 'NimiqVueComponents/src/components/PageHeader.vue' {
-    import { Vue } from 'vue-property-decorator';
-    export default class PageHeader extends Vue {
-        readonly progressSteps: any[];
-    }
-}
-
-declare module 'NimiqVueComponents/src/components/PaymentInfoLine.vue' {
-    type BigInteger = import('big-integer').BigInteger;
-    import { Vue } from 'vue-property-decorator';
-    interface CryptoAmountInfo {
-        amount: number | bigint | BigInteger;
-        currency: string;
-        decimals: number;
-    }
-    interface FiatAmountInfo {
-        amount: number;
-        currency: string;
-    }
-    class PaymentInfoLine extends Vue {
-        cryptoAmount: CryptoAmountInfo;
-        fiatAmount?: FiatAmountInfo;
-        origin: string;
-        address?: string;
-        shopLogoUrl?: string;
-        startTime?: number;
-        endTime?: number;
-        theme: string;
-        setTime(time: number): Promise<void>;
-    }
-    namespace PaymentInfoLine {
-        enum Themes {
-            NORMAL = "normal",
-            INVERSE = "inverse"
-        }
-    }
-    export default PaymentInfoLine;
 }
 
 declare module 'NimiqVueComponents/src/components/QrCode.vue' {
@@ -379,44 +71,6 @@ declare module 'NimiqVueComponents/src/components/QrCode.vue' {
     }
 }
 
-declare module 'NimiqVueComponents/src/components/QrScanner.vue' {
-    import { Vue } from 'vue-property-decorator';
-    import QrScannerLib from 'qr-scanner';
-    class QrScanner extends Vue {
-        reportFrequency: number;
-        validate?: (scanResult: string) => boolean;
-        start(): Promise<boolean>;
-        stop(): void;
-        setGrayscaleWeights(red: any, green: any, blue: any): void;
-        setInversionMode(inversionMode: QrScannerLib.InversionMode): void;
-        repositionOverlay(): void;
-    }
-    namespace QrScanner {
-        const enum Events {
-            RESULT = "result",
-            CANCEL = "cancel",
-            ERROR = "error"
-        }
-    }
-    export default QrScanner;
-}
-
-declare module 'NimiqVueComponents/src/components/SelectBar.vue' {
-    import { Vue } from 'vue-property-decorator';
-    export interface SelectBarOption {
-        color: string;
-        value: number;
-        text: string;
-        index: number;
-    }
-    export default class SelectBar extends Vue {
-        name: string;
-        options: SelectBarOption[];
-        selectedValue?: number;
-        readonly value: number;
-    }
-}
-
 declare module 'NimiqVueComponents/src/components/SmallPage.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class SmallPage extends Vue {
@@ -431,75 +85,16 @@ declare module 'NimiqVueComponents/src/components/Tooltip.vue' {
     }
 }
 
-declare module 'NimiqVueComponents/src/components/Timer.vue' {
-    import { Vue } from 'vue-property-decorator';
-    class Timer extends Vue {
-        startTime?: number;
-        endTime?: number;
-        theme: string;
-        strokeWidth: number;
-        synchronize(referenceTime: number): void;
-    }
-    namespace Timer {
-        enum Events {
-            END = "end"
-        }
-        enum Themes {
-            NORMAL = "normal",
-            INVERSE = "inverse"
-        }
-    }
-    export default Timer;
-}
-
-declare module 'NimiqVueComponents/src/components/UniversalAmount.vue' {
-    import { Vue } from 'vue-property-decorator';
-    import bigInt from 'big-integer';
-    export default class UniversalAmount extends Vue {
-            /**
-                * Amount in smallest unit
-                */
-            amount: number | bigInt.BigInteger;
-            /**
-                * Actual decimal count of the currency being displayed
-                */
-            decimals: number;
-            minDecimals: number;
-            maxDecimals: number;
-            showApprox: boolean;
-            currency: any;
-    }
-}
-
 declare module 'NimiqVueComponents/src/components/Icons' {
     /**
       * Comment out any unused icons here
       */
     export const AlertTriangleIcon: any;
     export const ArrowLeftSmallIcon: any;
-    export const ArrowLeftIcon: any;
     export const ArrowRightSmallIcon: any;
-    export const ArrowRightIcon: any;
-    export const CaretRightSmallIcon: any;
-    export const CashlinkIcon: any;
     export const CheckmarkIcon: any;
-    export const CheckmarkSmallIcon: any;
     export const CloseIcon: any;
-    export const ContactsIcon: any;
-    export const FaceNeutralIcon: any;
-    export const FaceSadIcon: any;
-    export const GearIcon: any;
-    export const HexagonIcon: any;
-    export const InfoCircleIcon: any;
-    export const LedgerIcon: any;
-    export const LoginIcon: any;
-    export const MenuDotsIcon: any;
-    export const PlusCircleIcon: any;
     export const QrCodeIcon: any;
-    export const ScanQrCodeIcon: any;
-    export const SettingsIcon: any;
-    export const StopwatchIcon: any;
-    export const TransferIcon: any;
-    export const UnderPaymentIcon: any;
+    export const QuestionmarkIcon: any;
 }
 

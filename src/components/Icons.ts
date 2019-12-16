@@ -13,18 +13,18 @@ const IconBase = (component: VueConstructor) => ({
  * SVG files in an /icons/ directory are automatically loaded as Vue components
  * via the vue-svg-loader.
  */
-// import AlertTriangle from '@nimiq/style/src/icons/alert-triangle.svg';
+import AlertTriangle from '@nimiq/style/src/icons/alert-triangle.svg';
 import ArrowLeftSmall from '@nimiq/style/src/icons/arrow-left-small.svg';
 // import ArrowLeft from '@nimiq/style/src/icons/arrow-left.svg';
 import ArrowRightSmall from '@nimiq/style/src/icons/arrow-right-small.svg';
 // import ArrowRight from '@nimiq/style/src/icons/arrow-right.svg';
 // import BrowserLogin from '@nimiq/style/src/icons/browser-login.svg';
 // import CaretRightSmall from '@nimiq/style/src/icons/caret-right-small.svg';
-import Cashlink from '@nimiq/style/src/icons/cashlink.svg';
-import CashlinkSmall from '@nimiq/style/src/icons/cashlink-small.svg';
-import CashlinkXSmall from '@nimiq/style/src/icons/cashlink-xsmall.svg';
+// import Cashlink from '@nimiq/style/src/icons/cashlink.svg';
+// import CashlinkSmall from '@nimiq/style/src/icons/cashlink-small.svg';
+// import CashlinkXSmall from '@nimiq/style/src/icons/cashlink-xsmall.svg';
 import Checkmark from '@nimiq/style/src/icons/checkmark.svg';
-import CheckmarkSmall from '@nimiq/style/src/icons/checkmark-small.svg';
+// import CheckmarkSmall from '@nimiq/style/src/icons/checkmark-small.svg';
 import Close from '@nimiq/style/src/icons/close.svg';
 // import Contacts from '@nimiq/style/src/icons/contacts.svg';
 // import Copy from '@nimiq/style/src/icons/copy.svg';
@@ -44,14 +44,14 @@ import Close from '@nimiq/style/src/icons/close.svg';
 // import PaperEdit from '@nimiq/style/src/icons/paper-edit.svg';
 // import PlusCircle from '@nimiq/style/src/icons/plus-circle.svg';
 import QrCode from '@nimiq/style/src/icons/qr-code.svg';
-// import Questionmark from '@nimiq/style/src/icons/questionmark.svg';
+import Questionmark from '@nimiq/style/src/icons/questionmark.svg';
 // import ScanQrCode from '@nimiq/style/src/icons/scan-qr-code.svg';
 // import Settings from '@nimiq/style/src/icons/settings.svg';
 // import Shredder from '@nimiq/style/src/icons/shredder.svg';
 // import Skull from '@nimiq/style/src/icons/skull.svg';
-import Stopwatch from '@nimiq/style/src/icons/stopwatch.svg';
+// import Stopwatch from '@nimiq/style/src/icons/stopwatch.svg';
 // import Transfer from '@nimiq/style/src/icons/transfer.svg';
-import UnderPayment from '@nimiq/style/src/icons/under-payment.svg';
+// import UnderPayment from '@nimiq/style/src/icons/under-payment.svg';
 // import ViewOff from '@nimiq/style/src/icons/view-off.svg';
 // import View from '@nimiq/style/src/icons/view.svg';
 
@@ -59,18 +59,18 @@ import UnderPayment from '@nimiq/style/src/icons/under-payment.svg';
  * Comment out any unused icons here
  */
 // tslint:disable:variable-name
-// export const AlertTriangleIcon = IconBase(AlertTriangle);
+export const AlertTriangleIcon = IconBase(AlertTriangle);
 export const ArrowLeftSmallIcon = IconBase(ArrowLeftSmall);
 // export const ArrowLeftIcon = IconBase(ArrowLeft);
 export const ArrowRightSmallIcon = IconBase(ArrowRightSmall);
 // export const ArrowRightIcon = IconBase(ArrowRight);
 // export const BrowserLoginIcon = IconBase(BrowserLogin);
-export const CaretRightSmallIcon = IconBase(CaretRightSmall);
-export const CashlinkIcon = IconBase(Cashlink);
+// export const CaretRightSmallIcon = IconBase(CaretRightSmall);
+// export const CashlinkIcon = IconBase(Cashlink);
 // export const CashlinkSmallIcon = IconBase(CashlinkSmall);
 // export const CashlinkXSmallIcon = IconBase(CashlinkXSmall);
 export const CheckmarkIcon = IconBase(Checkmark);
-export const CheckmarkSmallIcon = IconBase(CheckmarkSmall);
+// export const CheckmarkSmallIcon = IconBase(CheckmarkSmall);
 export const CloseIcon = IconBase(Close);
 // export const ContactsIcon = IconBase(Contacts);
 // export const CopyIcon = IconBase(Copy);
@@ -90,14 +90,14 @@ export const CloseIcon = IconBase(Close);
 // export const PaperEditIcon = IconBase(PaperEdit);
 // export const PlusCircleIcon = IconBase(PlusCircle);
 export const QrCodeIcon = IconBase(QrCode);
-// export const QuestionmarkIcon = IconBase(Questionmark);
+export const QuestionmarkIcon = IconBase(Questionmark);
 // export const ScanQrCodeIcon = IconBase(ScanQrCode);
 // export const SettingsIcon = IconBase(Settings);
 // export const ShredderIcon = IconBase(Shredder);
 // export const SkullIcon = IconBase(Skull);
-export const StopwatchIcon = IconBase(Stopwatch);
+// export const StopwatchIcon = IconBase(Stopwatch);
 // export const TransferIcon = IconBase(Transfer);
-export const UnderPaymentIcon = IconBase(UnderPayment);
+// export const UnderPaymentIcon = IconBase(UnderPayment);
 // export const ViewOffIcon = IconBase(ViewOff);
 // export const ViewIcon = IconBase(View);
 // tslint:enable:variable-name

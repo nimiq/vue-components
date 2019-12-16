@@ -4,7 +4,10 @@
             @click="toggleTooltip"
             @mouseenter="mousOver(true)"
             @mouseleave="mousOver(false)"
-            :class="{top: tooltipPosition === 'top', bottom: tooltipPosition === 'bottom'}">
+            :class="{
+                top: tooltipPosition === 'top',
+                bottom: tooltipPosition === 'bottom',
+            }">
             <slot name="icon">
                 <AlertTriangleIcon class="nq-orange" />
             </slot>
@@ -12,7 +15,11 @@
         <div :style="styles"
             ref="tooltipBox"
             class="tooltip-box"
-            :class="{active: tooltipActive, top: tooltipPosition === 'top', bottom: tooltipPosition === 'bottom'}">
+            :class="{
+                active: tooltipActive,
+                top: tooltipPosition === 'top',
+                bottom: tooltipPosition === 'bottom',
+            }">
             <slot></slot>
         </div>
     </span>
@@ -26,8 +33,8 @@ import { AlertTriangleIcon } from './Icons';
 export default class Tooltip extends Vue {
     @Prop(Object) public reference?: any;
 
-    private tooltipPosition: string = 'top'; // 'top' | 'bottom'
     private isInSrollableContainer: boolean = false;
+    private tooltipPosition: string = 'top'; // 'top' | 'bottom'
 
     private tooltipToggled: boolean = false;
     private mousedOver: boolean = false;
@@ -75,7 +82,7 @@ export default class Tooltip extends Vue {
         }
     }
 
-    @Watch('reference', {immediate: true})
+    @Watch('reference', { immediate: true })
     private async setReference() {
         if (!this.reference || this.height) {
              // Wait for the reference to get passed on
