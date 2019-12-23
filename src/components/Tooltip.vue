@@ -24,10 +24,16 @@ import { AlertTriangleIcon } from './Icons';
 
 @Component({components: { AlertTriangleIcon }})
 export default class Tooltip extends Vue {
-    @Prop(Object) public reference?: any;
+    // Only $el of the reference is of interest
+    @Prop(Object) public reference?: {$el : HTMLElement};
 
-    private tooltipPosition: string = 'top'; // 'top' | 'bottom'
-    private isInSrollableContainer: boolean = false;
+    // Typing of $refs and $el, in order to not having to cast it everywhere.
+    public $refs!: {
+        tooltipBox: HTMLElement,
+    }
+    public $el: HTMLElement;
+
+    private tooltipPosition: 'top' | 'bottom' = 'top';
 
     private tooltipToggled: boolean = false;
     private mousedOver: boolean = false;
@@ -47,6 +53,7 @@ export default class Tooltip extends Vue {
                 width: this.width + 'px',
             };
         }
+        // needed in setReference
         if (this.width) {
             return {
                 width: this.width + 'px',
@@ -60,59 +67,67 @@ export default class Tooltip extends Vue {
     }
 
     public update() {
-        if (!this.height) { // skip if setReference hasn't run yet.
-            console.warn('Trying to update tooltip before reference is set.');
+        if (!this.height) { // If setReference hasn't run yet position the tooltip centered on top
+            this.width = this.$refs.tooltipBox.offsetWidth;
+            this.height = this.$refs.tooltipBox.offsetHeight;
             return;
         }
-
-        this.top = (this.$el as HTMLElement).offsetTop - this.height;
-
-        if ((this.reference.$el as HTMLElement).scrollTop < this.top) {
+        if (this.$refs.tooltipBox.parentElement === this.$el) {
             this.tooltipPosition = 'top';
+            this.top = -this.height;
+            this.left = -this.width / 2 + this.$el.offsetWidth / 2;
         } else {
-            this.tooltipPosition = 'bottom';
-            this.top += this.iconHeight;
+            this.top = this.$el.offsetTop - this.height;
+
+            if (this.reference.$el.scrollTop < this.top) {
+                this.tooltipPosition = 'top';
+            } else {
+                this.tooltipPosition = 'bottom';
+                this.top += this.iconHeight;
+            }
         }
+
     }
 
     @Watch('reference', {immediate: true})
     private async setReference() {
-        if (!this.reference || this.height) {
-             // Wait for the reference to get passed on
-             // Skip if already set up.
+        if (!this.reference || this.$refs.tooltipBox.parentElement !== this.$el) {
+             // If this.reference is null wait for the reference to get passed on.
+             // Also skip if already set up indicated by the moved tooltipBox.
             return;
         }
 
         // Move the element
-        (this.$refs.tooltipBox as HTMLElement).parentElement.removeChild(this.$refs.tooltipBox as HTMLElement);
-        (this.reference.$el as HTMLElement).appendChild(this.$refs.tooltipBox as HTMLElement);
+        this.$refs.tooltipBox.parentElement.removeChild(this.$refs.tooltipBox);
+        this.reference.$el.appendChild(this.$refs.tooltipBox);
 
         // Compute fixed positions
         this.left = parseInt(
-            window.getComputedStyle(this.reference.$el as HTMLElement, null).getPropertyValue('padding-left'), 10);
+            window.getComputedStyle(this.reference.$el, null).getPropertyValue('padding-left'), 10);
 
-        this.width = (this.reference.$el as HTMLElement).offsetWidth - this.left - parseInt(
-            window.getComputedStyle(this.reference.$el as HTMLElement, null).getPropertyValue('padding-right'), 10);
+        this.width = this.reference.$el.offsetWidth - this.left - parseInt(
+            window.getComputedStyle(this.reference.$el, null).getPropertyValue('padding-right'), 10);
 
-        this.iconHeight = (this.$el as HTMLElement).offsetHeight;
+        this.iconHeight = this.$el.offsetHeight;
+        // reset height
+        this.height = 0;
         await Vue.nextTick();
-        // Height depends on width, soo calculate in vues next tick
+        // Height depends on width, soo wait a tick fot it to update
 
-        this.height = (this.$refs.tooltipBox as HTMLDivElement).offsetHeight;
+        this.height = this.$refs.tooltipBox.offsetHeight;
 
         // calculate variable positions.
         this.update();
 
         // In case the reference container is scrollable add a listener
-        if ((this.reference.$el as HTMLElement).scrollHeight !== (this.reference.$el as HTMLElement).offsetHeight) {
-            (this.reference.$el as HTMLElement).addEventListener('scroll', this.update.bind(this));
-            this.isInSrollableContainer = true;
+        if (this.reference.$el.scrollHeight !== this.reference.$el.offsetHeight) {
+            this.reference.$el.addEventListener('scroll', this.update.bind(this));
         }
     }
 
     private async toggleTooltip() {
         if (!this.height) {
-            console.warn('Trying to toggle tooltip before reference is set.');
+            console.warn('Trying to toggle tooltip before dimensions are set.');
             return;
         }
         this.update();
