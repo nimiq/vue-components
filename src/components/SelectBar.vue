@@ -10,20 +10,13 @@
 <script lang="ts">
 import {Component, Prop, Vue, Watch} from 'vue-property-decorator';
 
-export interface SelectBarOption {
-    color: string;
-    value: number;
-    text: string;
-    index: number;
-}
-
 @Component
-    export default class SelectBar extends Vue {
+    class SelectBar extends Vue {
         @Prop(String) public name!: string;
-        @Prop(Array) public options!: SelectBarOption[];
+        @Prop(Array) public options!: SelectBar.SelectBarOption[];
         @Prop(Number) public selectedValue?: number;
 
-        private selectedOption: SelectBarOption | null = null;
+        private selectedOption: SelectBar.SelectBarOption | null = null;
 
         private created() {
             this.options = this.options.sort((a, b) => a.index - b.index);
@@ -37,17 +30,28 @@ export interface SelectBarOption {
             return this.selectedOption!.value;
         }
 
-        private getColor(option: SelectBarOption) {
+        private getColor(option: SelectBar.SelectBarOption) {
             if (option.index <= this.selectedOption!.index) {
                 return this.selectedOption!.color;
             } else return 'nq-highlight-bg';
         }
 
         @Watch('selectedOption')
-        private onChanged(option: SelectBarOption) {
+        private onChanged(option: SelectBar.SelectBarOption) {
             this.$emit('changed', option.value);
         }
     }
+
+namespace SelectBar {
+    export interface SelectBarOption {
+        color: string;
+        value: number;
+        text: string;
+        index: number;
+    }
+}
+
+export default SelectBar;
 </script>
 
 <style scoped>

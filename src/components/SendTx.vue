@@ -1,128 +1,132 @@
 <template>
-    <SmallPage v-if="!liveSender" class="send-tx">
-        <PageHeader>
-            Choose Sender
-        </PageHeader>
-        <AccountList
-            :accounts="wallet | listAccountsAndContracts"
-            :walletId="wallet.id"
-            :minBalance="1"
-            @account-selected="updateSender"
-        />
-    </SmallPage>
-
-    <SmallPage v-else-if="!liveRecipient || addContactOpened" class="send-tx" :class="{'overlay-open': contactsOpened || addContactOpened}">
+    <SmallPage class="send-tx" :class="{'overlay-open': contactsOpened || addContactOpened || displayedDetails || optionsOpened}">
         <transition name="transition-fade">
-            <SmallPage class="overlay" v-if="liveRecipient && addContactOpened">
-                <AccountDetails
-                    :address="liveRecipient.address"
-                    :editable="liveRecipient.type !== RecipientType.OWN_ADDRESS"
-                    placeholder="Name this contact..."
-                    :label="liveRecipient.label"
-                    @close="closeAddContact"
-                    @changed="setLabel"
-                    ref="accountDetails"
-                />
-                <PageFooter>
-                    <button class="nq-button light-blue" @click="proceedToSetAmount">{{addContactButtonText}}</button>
-                </PageFooter>
-            </SmallPage>
-        </transition>
-
-        <transition name="transition-fade">
-            <SmallPage class="overlay" v-if="contactsOpened && !addContactOpened">
+            <div v-if="!liveSender" key="choose-sender">
                 <PageHeader>
-                    Select a contact
+                    Choose Sender
                 </PageHeader>
-                <ContactList :contacts="contacts" @select-contact="updateRecipient"/>
-                <CloseButton class="top-right" @click="contactsOpened = false"/>
-            </SmallPage>
-        </transition>
-
-        <PageHeader :backArrow="addressCount > 1" @back="backFromRecipient" class="blur-target">
-            Send a transaction
-            <a href="javascript:void(0)" class="scan-qr nq-blue" @click="scanQr">
-                <ScanQrCodeIcon />
-            </a>
-        </PageHeader>
-
-        <PageBody class="blur-target recipient-page">
-            <ContactShortcuts
-                :contacts="contacts"
-                @contact-selected="updateRecipient"
-                @contacts-opened="contacts.length > 0 ? contactsOpened = true : false"/>
-            <div>
-                <label class="nq-label">Enter address</label>
-                <AddressInput v-model="liveAddress" @address="updateRecipient" ref="address"/>
-            </div>
-        </PageBody>
-
-        <PageFooter class="blur-target">
-            <p class="nq-text">If recipient has no Account yet:</p>
-            <button class="nq-button-s" @click="createCashlink(liveSender)">Create a Cashlink</button>
-        </PageFooter>
-    </SmallPage>
-
-    <SmallPage v-else class="send-tx" :class="{'overlay-open': displayedDetails || optionsOpened}">
-        <transition name="transition-fade">
-            <SmallPage class="overlay" v-if="displayedDetails">
-                <AccountDetails
-                    :address="displayedDetails === Details.SENDER ? liveSender.address : liveRecipient.address"
-                    :editable="displayedDetails === Details.RECIPIENT && liveRecipient.type !== RecipientType.OWN_ADDRESS"
-                    placeholder="Name this contact..."
-                    :label="displayedDetails === Details.SENDER ? liveSender.label : liveRecipient.label"
-                    :balance="displayedDetails === Details.SENDER ? liveSender.balance : null"
-                    @close="closeDetails"
-                    @changed="setLabel"
-                    ref="accountDetails"
+                <AccountList
+                    :accounts="wallet | listAccountsAndContracts"
+                    :walletId="wallet.id"
+                    :minBalance="1"
+                    @account-selected="updateSender"
                 />
-                <PageFooter v-if="displayedDetails === Details.RECIPIENT && liveRecipient.type !== RecipientType.OWN_ADDRESS">
-                    <button class="nq-button light-blue" @click="storeContactAndCloseOverlay()">Save Contact</button>
-                </PageFooter>
-            </SmallPage>
-        </transition>
-
-        <transition name="transition-fade">
-            <SmallPage class="overlay fee" v-if="optionsOpened">
-                <CloseButton class="top-right" @click="closeOptions"/>
-                <PageBody>
-                    <h1 class="nq-h1">Speed up your transaction</h1>
-                    <p class="nq-text">By adding a transation fee, you can influence how fast your transaction will be processed.</p>
-                    <SelectBar ref="feeSetter" :options="FEE_OPTIONS" name="fee" :selectedValue="feeLunaPerByte" @changed="updateFeePreview" />
-                    <Amount :amount="feePreview" :minDecimals="0" :maxDecimals="5" />
-                </PageBody>
-                <PageFooter>
-                    <button class="nq-button light-blue" @click="setFee">Set fee</button>
-                </PageFooter>
-            </SmallPage>
-        </transition>
-
-        <PageHeader :backArrow="!sender || !recipient || !recipientIsReadonly" class="blur-target" @back="backFromAmount">
-            Set Amount
-            <a href="javascript:void(0)" class="nq-blue options-button" @click="optionsOpened = true" title="Open settings">
-                <SettingsIcon/>
-            </a>
-        </PageHeader>
-
-        <PageBody class="blur-target amount-page">
-            <div class="sender-and-recipient">
-                <a href="javascript:void(0);"  @click="displayedDetails = Details.SENDER">
-                    <Account layout="column" :address="liveSender.address" :label="liveSender.label"/>
-                </a>
-                <div class="arrow-wrapper"><ArrowRightIcon class="nq-light-blue" /></div>
-                <a href="javascript:void(0);" @click="displayedDetails = Details.RECIPIENT">
-                    <Account layout="column" :address="liveRecipient.address" :label="liveRecipient.label || 'Unnamed Contact'" :class="{invalid: !recipientValid}"/>
-                </a>
             </div>
-            <AmountWithFee v-model="liveAmountAndFee" :available-balance="liveSender.balance" ref="amountWithFee"/>
-            <LabelInput class="message" :vanishing="true" placeholder="Add a public message..." :maxBytes="64" v-model="liveExtraData" ref="messageInput" />
-        </PageBody>
 
-        <PageFooter class="blur-target">
-            <button class="nq-button light-blue" :disabled="!isValid || isLoading" @click="sendTransaction">
-                <CircleSpinner v-if="showButtonLoader"/>{{buttonText}}
-            </button>
-        </PageFooter>
+            <div v-else-if="!liveRecipient || addContactOpened" key="choose-recipient">
+                <transition name="transition-fade">
+                    <SmallPage class="overlay" v-if="liveRecipient && addContactOpened">
+                        <AccountDetails
+                            :address="liveRecipient.address"
+                            :editable="liveRecipient.type !== constructor.RecipientType.OWN_ADDRESS"
+                            placeholder="Name this contact..."
+                            :label="liveRecipient.label"
+                            @close="closeAddContact"
+                            @changed="setLabel"
+                            ref="accountDetails"
+                        />
+                        <PageFooter>
+                            <button class="nq-button light-blue" @click="proceedToSetAmount">{{addContactButtonText}}</button>
+                        </PageFooter>
+                    </SmallPage>
+                </transition>
+
+                <transition name="transition-fade">
+                    <SmallPage class="overlay" v-if="contactsOpened && !addContactOpened">
+                        <PageHeader>
+                            Select a contact
+                        </PageHeader>
+                        <ContactList :contacts="contacts" @select-contact="updateRecipient"/>
+                        <CloseButton class="top-right" @click="contactsOpened = false"/>
+                    </SmallPage>
+                </transition>
+
+                <PageHeader :backArrow="addressCount > 1" @back="backFromRecipient" class="blur-target">
+                    Send a transaction
+                    <a href="javascript:void(0)" class="scan-qr nq-blue" @click="scanQr">
+                        <ScanQrCodeIcon />
+                    </a>
+                </PageHeader>
+
+                <PageBody class="blur-target recipient-page">
+                    <ContactShortcuts
+                        :contacts="contacts"
+                        @contact-selected="updateRecipient"
+                        @contacts-opened="contacts.length > 0 ? contactsOpened = true : false"/>
+                    <div>
+                        <label class="nq-label">Enter address</label>
+                        <AddressInput v-model="liveAddress" @address="updateRecipient" ref="address"/>
+                    </div>
+                </PageBody>
+
+                <PageFooter class="blur-target">
+                    <p class="nq-text">If recipient has no Account yet:</p>
+                    <button class="nq-button-s" @click="createCashlink(liveSender)">Create a Cashlink</button>
+                </PageFooter>
+            </div>
+
+            <div v-else key="set-amount">
+                <transition name="transition-fade">
+                    <SmallPage class="overlay" v-if="displayedDetails">
+                        <AccountDetails
+                            :address="displayedDetails === constructor.Details.SENDER ? liveSender.address : liveRecipient.address"
+                            :editable="displayedDetails === constructor.Details.RECIPIENT && liveRecipient.type !== constructor.RecipientType.OWN_ADDRESS"
+                            placeholder="Name this contact..."
+                            :label="displayedDetails === constructor.Details.SENDER ? liveSender.label : liveRecipient.label"
+                            :balance="displayedDetails === constructor.Details.SENDER ? liveSender.balance : null"
+                            @close="closeDetails"
+                            @changed="setLabel"
+                            ref="accountDetails"
+                        />
+                        <PageFooter v-if="displayedDetails === constructor.Details.RECIPIENT && liveRecipient.type !== constructor.RecipientType.OWN_ADDRESS">
+                            <button class="nq-button light-blue" @click="storeContactAndCloseOverlay()">Save Contact</button>
+                        </PageFooter>
+                    </SmallPage>
+                </transition>
+
+                <transition name="transition-fade">
+                    <SmallPage class="overlay fee" v-if="optionsOpened">
+                        <CloseButton class="top-right" @click="closeOptions"/>
+                        <PageBody>
+                            <h1 class="nq-h1">Speed up your transaction</h1>
+                            <p class="nq-text">By adding a transation fee, you can influence how fast your transaction will be processed.</p>
+                            <SelectBar ref="feeSetter" :options="constructor.FEE_OPTIONS" name="fee" :selectedValue="feeLunaPerByte" @changed="updateFeePreview" />
+                            <Amount :amount="feePreview" :minDecimals="0" :maxDecimals="5" />
+                        </PageBody>
+                        <PageFooter>
+                            <button class="nq-button light-blue" @click="setFee">Set fee</button>
+                        </PageFooter>
+                    </SmallPage>
+                </transition>
+
+                <PageHeader :backArrow="!sender || !recipient || !recipientIsReadonly" class="blur-target" @back="backFromAmount">
+                    Set Amount
+                    <a href="javascript:void(0)" class="nq-blue options-button" @click="optionsOpened = true" title="Open settings">
+                        <SettingsIcon/>
+                    </a>
+                </PageHeader>
+
+                <PageBody class="blur-target amount-page">
+                    <div class="sender-and-recipient">
+                        <a href="javascript:void(0);"  @click="displayedDetails = constructor.Details.SENDER">
+                            <Account layout="column" :address="liveSender.address" :label="liveSender.label"/>
+                        </a>
+                        <div class="arrow-wrapper"><ArrowRightIcon class="nq-light-blue" /></div>
+                        <a href="javascript:void(0);" @click="displayedDetails = constructor.Details.RECIPIENT">
+                            <Account layout="column" :address="liveRecipient.address" :label="liveRecipient.label || 'Unnamed Contact'" :class="{invalid: !recipientValid}"/>
+                        </a>
+                    </div>
+                    <AmountWithFee v-model="liveAmountAndFee" :available-balance="liveSender.balance" ref="amountWithFee"/>
+                    <LabelInput class="message" :vanishing="true" placeholder="Add a public message..." :maxBytes="64" v-model="liveExtraData" ref="messageInput" />
+                </PageBody>
+
+                <PageFooter class="blur-target">
+                    <button class="nq-button light-blue" :disabled="!isValid || isLoading" @click="sendTransaction">
+                        <CircleSpinner v-if="showButtonLoader"/>{{buttonText}}
+                    </button>
+                </PageFooter>
+            </div>
+        </transition>
     </SmallPage>
 </template>
 
@@ -147,18 +151,6 @@ import CircleSpinner from './CircleSpinner.vue';
 import CloseButton from './CloseButton.vue';
 import { ArrowRightIcon, ScanQrCodeIcon, SettingsIcon } from './Icons';
 import { Utf8Tools, BrowserDetection } from '@nimiq/utils';
-
-enum Details {
-    NONE,
-    SENDER,
-    RECIPIENT,
-}
-
-enum RecipientType {
-    UNKOWN,
-    CONTACT,
-    OWN_ADDRESS,
-}
 
 @Component({
     components: {
@@ -188,7 +180,24 @@ enum RecipientType {
         },
     },
 })
-    export default class SendTx extends Vue {
+    class SendTx extends Vue {
+        private static FEE_OPTIONS:SelectBarOption[] = [{
+            color: 'nq-light-blue-bg',
+            value: 0,
+            text: 'free',
+            index: 0,
+        }, {
+            color: 'nq-green-bg',
+            value: 1,
+            text: 'standard',
+            index: 1,
+        }, {
+            color: 'nq-gold-bg',
+            value: 2,
+            text: 'express',
+            index: 2,
+        }];
+
         @Prop(Array) public contacts!: Array<{ address: string, label: string }>;
         @Prop(Array) public addresses!: Array<{ address: string, label: string }>;
         @Prop(Object) public wallet!: WalletInfo;
@@ -226,7 +235,7 @@ enum RecipientType {
         public clear() {
             this.liveSender = null;
             this.liveRecipient = null;
-            this.displayedDetails = Details.NONE;
+            this.displayedDetails = SendTx.Details.NONE;
             this.contactsOpened = false;
             this.optionsOpened = false;
             this.feeLunaPerByte = 0;
@@ -245,8 +254,8 @@ enum RecipientType {
             walletId: string,
             balance: number,
         } | null = null;
-        private liveRecipient: {address: string, label?: string, type: RecipientType} | null = null;
-        private displayedDetails = Details.NONE;
+        private liveRecipient: {address: string, label?: string, type: SendTx.RecipientType} | null = null;
+        private displayedDetails = SendTx.Details.NONE;
         private contactsOpened = false;
         private optionsOpened = false;
         private addContactOpened = false;
@@ -316,17 +325,17 @@ enum RecipientType {
                 return;
             }
 
-            let recipientType = RecipientType.UNKOWN;
+            let recipientType = SendTx.RecipientType.UNKOWN;
 
             if (!recipient.label) {
                 const foundContact = this.contacts.find((contact) => contact.address === recipient.address);
                 const foundAddress = this.addresses.find((address) => address.address === recipient.address);
                 if (foundContact) {
                     recipient.label = foundContact.label;
-                    recipientType = RecipientType.CONTACT;
+                    recipientType = SendTx.RecipientType.CONTACT;
                 } else if (foundAddress) {
                     recipient.label = foundAddress.label;
-                    recipientType = RecipientType.OWN_ADDRESS;
+                    recipientType = SendTx.RecipientType.OWN_ADDRESS;
                 }
             }
 
@@ -400,7 +409,7 @@ enum RecipientType {
         }
 
         private closeDetails() {
-            this.displayedDetails = Details.NONE;
+            this.displayedDetails = SendTx.Details.NONE;
             this.focus(true);
         }
 
@@ -418,7 +427,7 @@ enum RecipientType {
 
         private storeContactAndCloseOverlay() {
             if (!this.liveContactLabel) {
-                this.displayedDetails = Details.NONE;
+                this.displayedDetails = SendTx.Details.NONE;
                 return;
             }
             this.liveRecipient!.label = this.liveContactLabel;
@@ -438,29 +447,6 @@ enum RecipientType {
                 extraData: this.liveExtraData,
                 validityStartHeight: this.validityStartHeight,
             });
-        }
-
-        private data() {
-            return {
-                FEE_OPTIONS: [{
-                    color: 'nq-light-blue-bg',
-                    value: 0,
-                    text: 'free',
-                    index: 0,
-                }, {
-                    color: 'nq-green-bg',
-                    value: 1,
-                    text: 'standard',
-                    index: 1,
-                }, {
-                    color: 'nq-gold-bg',
-                    value: 2,
-                    text: 'express',
-                    index: 2,
-                }] as SelectBarOption[],
-                Details,
-                RecipientType,
-            };
         }
 
         private get addressCount(): number {
@@ -526,11 +512,37 @@ enum RecipientType {
         private createCashlink(sender: {address: string, label: string, walletId: string}) {}
 
     }
+
+namespace SendTx {
+    export enum Details {
+        NONE,
+        SENDER,
+        RECIPIENT,
+    }
+
+    export enum RecipientType {
+        UNKOWN,
+        CONTACT,
+        OWN_ADDRESS,
+    }
+}
+
+export default SendTx;
 </script>
 
 <style scoped>
     .send-tx {
         position: relative;
+        overflow: hidden;
+    }
+
+    .send-tx > div {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        transition: opacity .3s;
+        display: flex;
+        flex-direction: column;
     }
 
     .account-list {

@@ -20,6 +20,13 @@ import { Utf8Tools } from '@nimiq/utils';
 
 @Component
 export default class AmountInput extends Vue {
+    public $refs!: {
+        fullWidth: HTMLDivElement,
+        input: HTMLInputElement,
+        widthPlaceholder: HTMLSpanElement,
+        widthValue: HTMLSpanElement,
+    }
+
     @Prop({type: Number}) private value?: number;
     @Prop({type: Number, default: 8}) private maxFontSize!: number;
     @Prop({type: String, default: '0'}) private placeholder!: string;
@@ -33,12 +40,12 @@ export default class AmountInput extends Vue {
 
     public async mounted() {
         if (this.maxFontSize) {
-            this.maxWidth = (this.$refs.fullWidth as HTMLElement).offsetWidth;
+            this.maxWidth = this.$refs.fullWidth.offsetWidth;
         }
     }
 
     public focus() {
-        (this.$refs.input as HTMLInputElement).focus();
+        this.$refs.input.focus();
     }
 
     @Watch('value', { immediate: true })
@@ -52,8 +59,8 @@ export default class AmountInput extends Vue {
         await Vue.nextTick(); // Await updated DOM
         if (!this.$refs.widthPlaceholder) return;
 
-        const placeholderWidth = (this.$refs.widthPlaceholder as HTMLSpanElement).offsetWidth;
-        const valueWidth = (this.$refs.widthValue as HTMLSpanElement).offsetWidth;
+        const placeholderWidth = this.$refs.widthPlaceholder.offsetWidth;
+        const valueWidth = this.$refs.widthValue.offsetWidth;
         const fontSizeFactor = Math.min(1.0, Math.max(this.maxWidth / valueWidth, 1 / this.maxFontSize));
 
         this.fontSize = fontSizeFactor * this.maxFontSize;
