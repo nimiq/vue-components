@@ -1,9 +1,9 @@
 <template>
-    <span class="tooltip" :class="{active: tooltipActive}">
+    <span class="tooltip" :class="{ active: tooltipActive }">
         <a href="javascript:void(0);"
             @click="toggleTooltip"
-            @mouseenter="mousOver(true)"
-            @mouseleave="mousOver(false)"
+            @mouseenter="mouseOver(true)"
+            @mouseleave="mouseOver(false)"
             :class="{
                 top: tooltipPosition === 'top',
                 bottom: tooltipPosition === 'bottom',
@@ -12,9 +12,11 @@
                 <AlertTriangleIcon class="nq-orange" />
             </slot>
         </a>
-        <div :style="styles"
-            ref="tooltipBox"
+        <div ref="tooltipBox"
             class="tooltip-box"
+            @mouseenter="mouseOver(true)"
+            @mouseleave="mouseOver(false)"
+            :style="styles"
             :class="{
                 active: tooltipActive,
                 top: tooltipPosition === 'top',
@@ -28,8 +30,9 @@
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { AlertTriangleIcon } from './Icons';
+import { setTimeout, clearTimeout } from 'timers';
 
-@Component({components: { AlertTriangleIcon }})
+@Component({ components: { AlertTriangleIcon }})
 export default class Tooltip extends Vue {
     @Prop(Object) public reference?: any;
 
@@ -38,6 +41,7 @@ export default class Tooltip extends Vue {
 
     private tooltipToggled: boolean = false;
     private mousedOver: boolean = false;
+    private mouseOverTimeout: NodeJS.Timer;
 
     private iconHeight: number = 0;
     private height: number = 0;
@@ -126,7 +130,21 @@ export default class Tooltip extends Vue {
         this.tooltipToggled = !this.tooltipToggled;
     }
 
-    private mousOver(mouseOverTooltip: boolean) {
+    private mouseOver(mouseOverTooltip: boolean) {
+        if (this.tooltipToggled) return;
+
+        if (mouseOverTooltip === false) { // mouseleave
+            this.mouseOverTimeout = setTimeout(
+                () => this._updateMouseOverTooltip(mouseOverTooltip),
+                100
+            );
+        } else { // mouseenter
+            clearTimeout(this.mouseOverTimeout);
+            this._updateMouseOverTooltip(mouseOverTooltip);
+        }
+    }
+
+    private _updateMouseOverTooltip(mouseOverTooltip: boolean) {
         this.update();
         this.mousedOver = mouseOverTooltip;
     }
