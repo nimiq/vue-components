@@ -114,7 +114,7 @@ export default class AddressInput extends Vue {
 
     public $refs: { textarea: HTMLTextAreaElement };
 
-    public focus(scrollIntoView = true) {
+    public focus(scrollIntoView = false) {
         this.$refs.textarea.focus();
         if (scrollIntoView) this.$refs.textarea.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
