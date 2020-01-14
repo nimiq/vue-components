@@ -1,6 +1,7 @@
 <template>
     <span class="tooltip" :class="{ active: tooltipActive }">
         <a href="javascript:void(0);"
+            ref="tooltipIcon"
             @click="toggleTooltip"
             @mouseenter="mouseOver(true)"
             @mouseleave="mouseOver(false)"
@@ -38,20 +39,25 @@ export default class Tooltip extends Vue {
 
     // Typing of $refs and $el, in order to not having to cast it everywhere.
     public $refs!: {
-        tooltipBox: HTMLElement,
+        tooltipBox: HTMLDivElement,
+        tooltipIcon: HTMLAnchorElement,
     }
     public $el: HTMLElement;
 
     private tooltipPosition: 'top' | 'bottom' = 'top';
     private tooltipToggled: boolean = false;
     private mousedOver: boolean = false;
-    private mouseOverTimeout: NodeJS.Timer;
+    private mouseOverTimeout: number;
 
     private iconHeight: number = 0;
     private height: number = 0;
     private width: number = 0;
     private left: number = 0;
     private top: number = 0;
+
+    private mounted() {
+        document.body.addEventListener('touchstart', this.onClickOutsideTooltip);
+    }
 
     private get styles() {
         if (this.width && this.top) {
@@ -131,6 +137,16 @@ export default class Tooltip extends Vue {
         // In case the reference container is scrollable add a listener
         if (this.reference.$el.scrollHeight !== this.reference.$el.offsetHeight) {
             this.reference.$el.addEventListener('scroll', this.update.bind(this));
+        }
+    }
+
+    private onClickOutsideTooltip(e: MouseEvent) {
+        if (!this.tooltipToggled) return;
+        if (
+            !this.$refs.tooltipBox.contains(e.target as HTMLElement) &&
+            !this.$refs.tooltipIcon.contains(e.target as HTMLElement)
+        ) {
+            this.tooltipToggled = false;
         }
     }
 
