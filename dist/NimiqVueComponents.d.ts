@@ -80,7 +80,14 @@ declare module 'NimiqVueComponents/src/components/SmallPage.vue' {
 declare module 'NimiqVueComponents/src/components/Tooltip.vue' {
     import { Vue } from 'vue-property-decorator';
     export default class Tooltip extends Vue {
-        reference?: any;
+        reference?: {
+            $el: HTMLElement;
+        };
+        $refs: {
+            tooltipBox: HTMLDivElement;
+            tooltipIcon: HTMLAnchorElement;
+        };
+        $el: HTMLElement;
         update(): void;
     }
 }
