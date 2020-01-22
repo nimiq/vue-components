@@ -15,7 +15,7 @@
                 :address="account.userFriendlyAddress"
                 :label="account.label"
                 :placeholder="account.defaultLabel"
-                :balance="account.balance"
+                :balance="minBalance ? account.balance : undefined"
                 :decimals="decimals"
                 :editable="editable && !disabled"
                 @changed="accountChanged(account.userFriendlyAddress, $event)"
