@@ -17,6 +17,7 @@
                 </div>
                 <AccountList
                     :accounts="wallet | listAccountsAndContracts | sortAccountsAndContracts(minBalance, disableContracts)"
+                    :disabledAddresses="disabledAddresses"
                     :walletId="wallet.id"
                     :minBalance="minBalance"
                     :decimals="decimals"
@@ -95,6 +96,7 @@ export interface WalletInfo {
 })
 export default class AccountSelector extends Vue {
     @Prop(Array) private wallets!: WalletInfo[];
+    @Prop({type: Array, default: []}) public disabledAddresses!: string[];
     @Prop(Number) private decimals?: number;
     @Prop(Number) private minBalance?: number;
     @Prop(Boolean) private disableContracts?: boolean;

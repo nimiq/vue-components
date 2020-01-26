@@ -3,11 +3,15 @@
         <component :is="accountContainerTag" href="javascript:void(0)" class="account-entry"
             v-for="account in accounts"
             :class="{
-                'disabled': disabled || disableContracts && _isContract(account) || minBalance && account.balance < minBalance,
+                'disabled': disabled
+                    || disableContracts && _isContract(account)
+                    || minBalance && account.balance < minBalance
+                    || disabledAddresses.includes(account.userFriendlyAddress),
                 'disabled-contract': disableContracts && _isContract(account),
                 'good-balance': minBalance && (account.balance || 0) >= minBalance,
                 'bad-balance': minBalance && (account.balance || 0) < minBalance,
                 'highlight-disabled-address': highlightedDisabledAddress === account.userFriendlyAddress,
+                'disabled-address-not-viable': disabledAddresses.includes(account.userFriendlyAddress),
             }"
             @click="accountSelected(account)" :key="account.userFriendlyAddress"
         >
@@ -35,6 +39,7 @@ import { CaretRightSmallIcon } from './Icons';
 @Component({components: {Account, CaretRightSmallIcon}})
 export default class AccountList extends Vue {
     @Prop(Array) public accounts!: AccountInfo[];
+    @Prop({type: Array, default: []}) public disabledAddresses!: string[];
     @Prop(String) private walletId?: string;
     @Prop(Boolean) private editable?: boolean;
     @Prop(Number) private decimals?: number;
@@ -60,8 +65,11 @@ export default class AccountList extends Vue {
             this.highlightedDisabledAddressTimeout = null;
         }
         const isDisabledContract = this.disableContracts && this._isContract(account);
-        if (isDisabledContract || (this.minBalance && account.balance < this.minBalance)) {
-            const waitTime = isDisabledContract ? 1500 : 300;
+        const isDisabledAddress = this.disabledAddresses.includes(account.userFriendlyAddress);
+        if (isDisabledContract
+            || (this.minBalance && account.balance < this.minBalance)
+            || isDisabledAddress) {
+            const waitTime = isDisabledContract || isDisabledAddress ? 1500 : 300;
             this.highlightedDisabledAddress = account.userFriendlyAddress;
             this.highlightedDisabledAddressTimeout =
                 window.setTimeout(() => this.highlightedDisabledAddress = null, waitTime);
@@ -183,13 +191,13 @@ export default class AccountList extends Vue {
         opacity: 0.2;
     }
 
-    a.account-entry.bad-balance:not(.disabled-contract).highlight-disabled-address >>> .balance {
+    a.account-entry.bad-balance:not(.disabled-contract):not(.disabled-address-not-viable).highlight-disabled-address >>> .balance {
         color: var(--nimiq-red);
         opacity: 1;
     }
 
-    a.account-entry.disabled-contract::after {
-        content: 'Contracts are incompatible with this operation.';
+    a.account-entry.disabled-contract::after,
+    a.account-entry.disabled-address-not-viable::after {
         position: absolute;
         left: 0;
         top: 0;
@@ -204,11 +212,21 @@ export default class AccountList extends Vue {
         opacity: 0;
     }
 
-    a.account-entry.disabled-contract.highlight-disabled-address .account {
+    a.account-entry.disabled-contract::after {
+        content: 'Contracts are incompatible with this operation.';
+    }
+
+    a.account-entry.disabled-address-not-viable::after {
+        content: 'This address cannot be used in this operation.';
+    }
+
+    a.account-entry.disabled-contract.highlight-disabled-address .account,
+    a.account-entry.disabled-address-not-viable.highlight-disabled-address .account {
         opacity: .2;
     }
 
-    a.account-entry.disabled-contract.highlight-disabled-address::after {
+    a.account-entry.disabled-contract.highlight-disabled-address::after,
+    a.account-entry.disabled-address-not-viable.highlight-disabled-address::after {
         opacity: 1;
     }
 </style>
