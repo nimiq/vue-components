@@ -305,6 +305,7 @@ storiesOf('Components', module)
         const editable = boolean('editable', false);
         const disableContracts = boolean('disableContracts', false);
         const disabled = boolean('disabled', false);
+        const disabledAddress = text('blacklist address', 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1');
         return {
             components: {AccountList},
             methods: {
@@ -337,6 +338,7 @@ storiesOf('Components', module)
                             path: "44'/242'/0'/2'",
                         },
                     ],
+                    disabledAddress,
                     minBalance,
                     decimals,
                     editable,
@@ -346,7 +348,7 @@ storiesOf('Components', module)
             },
             template: `<AccountList @account-selected="accountSelected" :accounts="accounts" walletId="helloworld1"
                 :minBalance="minBalance" :decimals="decimals" :editable="editable" :disableContracts="disableContracts"
-                :disabled="disabled" />`
+                :disabled="disabled" :disabledAddresses="[disabledAddress]" />`
         };
     })
     .add('AccountSelector', () => {
@@ -361,6 +363,7 @@ storiesOf('Components', module)
         const disableBip39Accounts = boolean('disableBip39Accounts', false);
         const disableLedgerAccounts = boolean('disableLedgerAccounts', false);
         const allowLogin = boolean('allowLogin', true);
+        const disabledAddress = text('blacklist address', 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1');
 
         const demoData = {
             wallets: [
@@ -398,6 +401,7 @@ storiesOf('Components', module)
             disableBip39Accounts,
             disableLedgerAccounts,
             allowLogin,
+            disabledAddress
         };
 
         if (demoType === 'multiple-accounts') {
@@ -427,7 +431,8 @@ storiesOf('Components', module)
             template: `<AccountSelector @account-selected="accountSelected" @login="login" :wallets="wallets"
                 :minBalance="minBalance" :decimals="decimals" :disableContracts="disableContracts"
                 :disableLegacyAccounts="disableLegacyAccounts" :disableBip39Accounts="disableBip39Accounts"
-                :disableLedgerAccounts="disableLedgerAccounts" :allowLogin="allowLogin"/>`
+                :disableLedgerAccounts="disableLedgerAccounts" :allowLogin="allowLogin"
+                :disabledAddresses="[disabledAddress]" />`
         };
     })
     .add('Address', () => {
