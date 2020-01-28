@@ -18,19 +18,19 @@ export default class Amount extends Vue {
     @Prop(Number) public decimals?: number;
     @Prop({type: Number, default: 2}) public minDecimals!: number;
     @Prop({type: Number, default: 5}) public maxDecimals!: number;
-    @Prop({type: Number, default: 5}) public totalDecimals!: number;
     @Prop({type: Boolean, default: false}) public showApprox!: boolean;
     @Prop({type: String, default: 'nim'}) public currency!: string;
+    @Prop({type: Number, default: 5}) public currencyDecimals!: number;
 
     @Watch('minDecimals', {immediate: true})
     @Watch('maxDecimals', {immediate: true})
     @Watch('decimals', {immediate: true})
-    private _validateDecimals(decimals) {
+    private _validateDecimals(decimals: number) {
         if (this.decimals !== undefined && decimals !== this.decimals) {
             // skip validation for minDecimals and maxDecimals if they're overwritten by decimals
             return;
         }
-        if (decimals !== undefined && (decimals < 0 || decimals > this.totalDecimals || !Number.isInteger(decimals))) {
+        if (decimals !== undefined && (decimals < 0 || decimals > this.currencyDecimals || !Number.isInteger(decimals))) {
             throw new Error('Amount: decimals is not in range');
         }
     }
@@ -45,12 +45,12 @@ export default class Amount extends Vue {
             maxDecimals = this.maxDecimals;
         }
 
-        return new FormattableNumber(this.amount).moveDecimalSeparator(-this.totalDecimals)
+        return new FormattableNumber(this.amount).moveDecimalSeparator(-this.currencyDecimals)
             .toString({ maxDecimals, minDecimals, useGrouping: true });
     }
 
     private get isApprox() {
-        return !new FormattableNumber(this.amount).moveDecimalSeparator(-this.totalDecimals)
+        return !new FormattableNumber(this.amount).moveDecimalSeparator(-this.currencyDecimals)
             .equals(this.formattedAmount.replace(/\s/g, ''));
     }
 }
