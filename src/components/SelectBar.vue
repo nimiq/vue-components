@@ -11,36 +11,36 @@
 import {Component, Prop, Vue, Watch} from 'vue-property-decorator';
 
 @Component
-    class SelectBar extends Vue {
-        @Prop(String) public name!: string;
-        @Prop(Array) public options!: SelectBar.SelectBarOption[];
-        @Prop(Number) public selectedValue?: number;
+class SelectBar extends Vue {
+    @Prop(String) public name!: string;
+    @Prop(Array) public options!: SelectBar.SelectBarOption[];
+    @Prop(Number) public selectedValue?: number;
 
-        private selectedOption: SelectBar.SelectBarOption | null = null;
+    private selectedOption: SelectBar.SelectBarOption | null = null;
 
-        private created() {
-            this.options = this.options.sort((a, b) => a.index - b.index);
+    private created() {
+        this.options = this.options.sort((a, b) => a.index - b.index);
 
-            this.selectedOption = this.selectedValue
-                ? this.options.find((val) => val.value === this.selectedValue)!
-                : this.options[0];
-        }
-
-        public get value() {
-            return this.selectedOption!.value;
-        }
-
-        private getColor(option: SelectBar.SelectBarOption) {
-            if (option.index <= this.selectedOption!.index) {
-                return this.selectedOption!.color;
-            } else return 'nq-highlight-bg';
-        }
-
-        @Watch('selectedOption')
-        private onChanged(option: SelectBar.SelectBarOption) {
-            this.$emit('changed', option.value);
-        }
+        this.selectedOption = this.selectedValue
+            ? this.options.find((val) => val.value === this.selectedValue)!
+            : this.options[0];
     }
+
+    public get value() {
+        return this.selectedOption!.value;
+    }
+
+    private getColor(option: SelectBar.SelectBarOption) {
+        if (option.index <= this.selectedOption!.index) {
+            return this.selectedOption!.color;
+        } else return 'nq-highlight-bg';
+    }
+
+    @Watch('selectedOption')
+    private onChanged(option: SelectBar.SelectBarOption) {
+        this.$emit('changed', option.value);
+    }
+}
 
 namespace SelectBar {
     export interface SelectBarOption {

@@ -41,9 +41,6 @@ export default class Copyable extends Vue {
             this.copied = false;
         }, Copyable.DISPLAY_TIME);
     }
-
-    private copied: boolean = false;
-    private _copiedResetTimeout: number | null = null;
 }
 </script>
 

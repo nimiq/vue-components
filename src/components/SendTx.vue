@@ -146,7 +146,7 @@ import ContactShortcuts from './ContactShortcuts.vue';
 import LabelInput from './LabelInput.vue';
 import Amount from './Amount.vue';
 import AmountWithFee from './AmountWithFee.vue';
-import SelectBar, { SelectBarOption } from './SelectBar.vue';
+import SelectBar from './SelectBar.vue';
 import CircleSpinner from './CircleSpinner.vue';
 import CloseButton from './CloseButton.vue';
 import { ArrowRightIcon, ScanQrCodeIcon, SettingsIcon } from './Icons';
@@ -181,7 +181,7 @@ import { Utf8Tools, BrowserDetection } from '@nimiq/utils';
     },
 })
     class SendTx extends Vue {
-        private static FEE_OPTIONS:SelectBarOption[] = [{
+        private static FEE_OPTIONS: SelectBar.SelectBarOption[] = [{
             color: 'nq-light-blue-bg',
             value: 0,
             text: 'free',

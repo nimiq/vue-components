@@ -31,15 +31,15 @@ import PaymentInfoLine from '../components/PaymentInfoLine.vue';
 import QrCode from '../components/QrCode.vue';
 import QrScanner from '../components/QrScanner.vue';
 import SelectBar from '../components/SelectBar.vue';
-import Tooltip from '../components/Tooltip.vue';
+import SendTx from '../components/SendTx.vue';
 import SmallPage from '../components/SmallPage.vue';
 import Timer from '../components/Timer.vue';
+import Tooltip from '../components/Tooltip.vue';
 import PageHeader from '../components/PageHeader.vue';
 import PageBody from '../components/PageBody.vue';
 import PageFooter from '../components/PageFooter.vue';
 import LoadingSpinner from '../components/LoadingSpinner.vue';
 import MigrationWelcome from '../components/MigrationWelcome.vue';
-import SendTx from '../components/SendTx.vue';
 import * as Icons from '../components/Icons';
 
 function windowTemplate(slot) {
