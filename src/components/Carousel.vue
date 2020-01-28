@@ -226,8 +226,8 @@ export default class Carousel extends Vue {
         }
     }
 
-    private _onKeydown(event) {
-        const target = event.path[0] as HTMLElement;
+    private _onKeydown(event: KeyboardEvent) {
+        const target = event.target as HTMLElement;
         if (this.disabled
             || target.tagName === 'INPUT'
             || target.tagName === 'TEXTAREA'
@@ -235,11 +235,9 @@ export default class Carousel extends Vue {
         ) return;
         const currentIndex = this.entries.indexOf(this.effectiveSelected);
         let newIndex;
-        if (event.which === 37) {
-            // left arrow key
+        if (event.key === 'ArrowLeft') {
             newIndex = (currentIndex - 1 + this.entries.length) % this.entries.length;
-        } else if (event.which === 39) {
-            // right arrow key
+        } else if (event.key === 'ArrowRight') {
             newIndex = (currentIndex + 1) % this.entries.length;
         } else {
             return;
