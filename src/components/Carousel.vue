@@ -51,7 +51,8 @@ export default class Carousel extends Vue {
     })
     public disabled!: boolean;
 
-    public $refs: { [ref: string]: HTMLElement[] }; // these are arrays because of v-for
+    // The entry refs are arrays with a single element because of v-for
+    public $refs: { [ref: string]: HTMLElement[] };
 
     private effectiveSelected: string = '';
     private radius: Tweenable = new Tweenable();
@@ -85,15 +86,15 @@ export default class Carousel extends Vue {
     @Watch('entries')
     private async _onEntriesChange() {
         await this._updateDimensions();
-        this._updateSelection(this.effectiveSelected); // revalidate
+        this._updateSelection(this.effectiveSelected); // re-validate
         this._updateRotations();
     }
 
     @Watch('selected')
-    private _updateSelection(newSelection) {
+    private _updateSelection(newSelection: string) {
         const oldSelection = this.effectiveSelected;
-        const isNewSelectionValid = this.entries.indexOf(newSelection) !== -1;
-        const isOldSelectionValid = this.entries.indexOf(oldSelection) !== -1;
+        const isNewSelectionValid = this.entries.includes(newSelection);
+        const isOldSelectionValid = this.entries.includes(oldSelection);
         if (isNewSelectionValid) {
             this.effectiveSelected = newSelection;
         } else if (!isOldSelectionValid) {
@@ -106,7 +107,7 @@ export default class Carousel extends Vue {
     }
 
     @Watch('entryMargin')
-    private async _updateDimensions(newWatcherValueOrTween = true) {
+    private async _updateDimensions(newWatcherValueOrTween: number | boolean = true) {
         const tween = typeof newWatcherValueOrTween === 'boolean' ? newWatcherValueOrTween : true;
         await Vue.nextTick(); // let Vue render new entries
         let largestHeight = 0;
@@ -130,13 +131,13 @@ export default class Carousel extends Vue {
 
     @Watch('effectiveSelected')
     @Watch('disabled')
-    private _updateRotations(newWatcherValueOrTween = true, previousWatcherValue?) {
+    private _updateRotations(newWatcherValueOrTween: string | boolean = true, previousWatcherValue?: string | boolean) {
         const tween = typeof newWatcherValueOrTween === 'boolean' && typeof previousWatcherValue === 'undefined'
             ? newWatcherValueOrTween // specified whether to tween
             : true; // did not specify whether to tween or method was called as a watcher (default to true)
         // clean up removed entries
         for (const entry of this.rotations.keys()) {
-            if (this.entries.indexOf(entry) !== -1) continue;
+            if (this.entries.includes(entry)) continue;
             this.rotations.delete(entry);
         }
         // update rotations
@@ -149,7 +150,12 @@ export default class Carousel extends Vue {
         this._rerender();
     }
 
-    private _calculateTargetRotation(entry, currentRotation): number { // rotation in radians
+    /**
+     * @param entry
+     * @param currentRotation - Rotation in radians
+     * @private
+     */
+    private _calculateTargetRotation(entry: string, currentRotation: number): number {
         if (this.disabled && entry !== this.effectiveSelected) {
             // hide not selected entries at other end of circle
             return currentRotation + this._calculateRotationInClosestDirection(currentRotation, Math.PI);
@@ -183,6 +189,8 @@ export default class Carousel extends Vue {
                 finished = finished && rotation.finished;
             }
 
+            // Note that instead of setting z-index manually, we could use transform-style: preserve-3d to order
+            // automatically by z coordinate. But unfortunately, this makes the entries not clickable anymore.
             zCoordinatesForEntries.sort(([, z1], [, z2]) => z1 - z2);
             for (let i = 0; i < zCoordinatesForEntries.length; ++i) {
                 const [ el ] = this.$refs[zCoordinatesForEntries[i][0]];
@@ -194,7 +202,7 @@ export default class Carousel extends Vue {
         });
     }
 
-    private _calculateRotationInClosestDirection(fromAngle, toAngle): number {
+    private _calculateRotationInClosestDirection(fromAngle: number, toAngle: number): number {
         // angle offset modulo full rotations
         const rotation = (toAngle - fromAngle) % (2 * Math.PI);
         // determine rotation in opposite direction (subtracting or adding a full circle depending on direction (sign))
@@ -209,9 +217,9 @@ export default class Carousel extends Vue {
         }
     }
 
-    private _shouldHide(entry): boolean {
+    private _shouldHide(entry: string): boolean {
         const rotation = this.rotations.get(entry);
-        if (!rotation) return false;
+        if (!rotation || (!this.disabled && !this.hideBackgroundEntries)) return false;
         const absoluteRotation = Math.abs(this._calculateRotationInClosestDirection(0, rotation.currentValue));
         if (this.disabled) {
             // Hide disabled elements once they reached the opposite end of the circle, also to avoid that they are
