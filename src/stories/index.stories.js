@@ -15,6 +15,7 @@ import AmountWithDetails from '../components/AmountWithDetails.vue';
 import CircleSpinner from '../components/CircleSpinner.vue';
 import Contact from '../components/Contact.vue';
 import ContactList from '../components/ContactList.vue';
+import CopyableField from '../components/CopyableField.vue';
 import FiatAmount from '../components/FiatAmount.vue';
 import Identicon from '../components/Identicon.vue';
 import LabelInput from '../components/LabelInput.vue';
@@ -500,6 +501,25 @@ storiesOf('Components', module)
                     <button class="nq-button" @click="reset">Reset</button>
                 </div>
             `
+        };
+    })
+    .add('CopyableField', () => {
+        const label = text('label', '');
+        const value = object('value (number, json string or json object)', {
+            a: 'Value a',
+            b: 'Lorem ipsum dolor sit amet, consectetur adipiscing',
+        });
+
+        return {
+            components: {CopyableField},
+            data: () => ({ label, value }),
+            template: `
+                <CopyableField
+                    :label="label"
+                    :value="value"
+                    style="color: white; background: var(--nimiq-blue-bg); width: 50rem"
+                />
+            `,
         };
     })
     .add('Wallet', () => {
