@@ -1,6 +1,7 @@
 .DS_Store
 node_modules
-dist
+/dist
+storybook-static
 
 # local env files
 .env.local
@@ -18,5 +19,4 @@ yarn-error.log*
 *.ntvs*
 *.njsproj
 *.sln
-*.sw*
-*.iml
+*.sw?
