@@ -15,6 +15,7 @@ import Amount from '../components/Amount.vue';
 import AmountInput from '../components/AmountInput.vue';
 import AmountWithDetails from '../components/AmountWithDetails.vue';
 import AmountWithFee from '../components/AmountWithFee.vue';
+import BottomOverlay from '../components/BottomOverlay.vue';
 import CircleSpinner from '../components/CircleSpinner.vue';
 import CloseButton from '../components/CloseButton.vue';
 import Contact from '../components/Contact.vue';
@@ -550,6 +551,23 @@ storiesOf('Components', module)
             },
             components: {AmountWithFee},
             template: `<div style="padding-left: 20rem"><AmountWithFee :available-balance="maxBalance" v-model="amountAndFee" /></div>`,
+        }
+    })
+    .add('BottomOverlay', () => {
+        const theme = select('theme', ['dark', 'light'], 'dark');
+        const showCloseButton = boolean('Show Close Button', true);
+        return {
+            components: {BottomOverlay},
+            data: () => ({ theme, showCloseButton }),
+            methods: {
+                close: action('close'),
+            },
+            template: `
+                <BottomOverlay :theme="theme" v-on="showCloseButton ? { close } : {}">
+                    I'm a BottomOverlay and can contain arbitrary content.
+                    Test me on different screen sizes.
+                </BottomOverlay>
+            `,
         }
     })
     .add('CloseButton', () => {
