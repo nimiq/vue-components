@@ -941,18 +941,32 @@ storiesOf('Components', module)
         };
     })
     .add('PaymentInfoLine', () => {
-        const address = text('address', 'NQ07 0000 00000000 0000 0000 0000 0000 0000');
+        const theme = select('theme', Object.values(PaymentInfoLine.Themes), PaymentInfoLine.Themes.NORMAL);
+        const cryptoAmount = {
+            amount: number('cryptoAmount.amount', 199862),
+            currency: text('cryptoAmount.currency', 'NIM'),
+            decimals: number('cryptoAmount.decimals', 5),
+        };
+        let fiatAmount = {
+            amount: number('fiatAmount.amount (-1 for unset)', -1),
+            currency: text('fiatAmount.currency', 'EUR'),
+        };
+        if (fiatAmount.amount < 0) fiatAmount = null;
         const origin = text('origin', 'https://shop.nimiq.com');
+        const address = text('address', 'NQ07 0000 00000000 0000 0000 0000 0000 0000');
         const shopLogo = text('shopLogo', 'https://pbs.twimg.com/profile_images/1150268408287698945/x4f3ITmx_400x400.png');
-        const amount = number('amount', 199862);
-        const fee = number('fee', 138);
+        let startTime = number('startTime', Date.now());
+        let expires = number('expires (-1 for unset)', -1);
+        if (expires < 0) expires = null;
+
         return {
             components: {PaymentInfoLine},
-            methods: {
-                merchantInfoClicked: action('merchant-info-clicked'),
-            },
-            template: `<div style="width: 400px"><PaymentInfoLine address="${address}" :amount="${amount}" :fee="${fee}"
-                origin="${origin}" shopLogoUrl="${shopLogo}" @merchant-info-clicked="merchantInfoClicked"/></div>`,
+            data: () => ({ cryptoAmount, fiatAmount, origin, address, shopLogo, startTime, expires, theme }),
+            template: `<div style="max-width: 420px" :class="{ 'nq-blue-bg': theme === 'inverse' }">
+                <PaymentInfoLine :cryptoAmount="cryptoAmount" :fiatAmount="fiatAmount"
+                :origin="origin" :address="address" :shopLogoUrl="shopLogo" :startTime="startTime" :expires="expires"
+                :theme="theme"/>
+            </div>`,
         };
     })
     .add('QrCode', () => {

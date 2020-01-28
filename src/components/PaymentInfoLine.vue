@@ -1,41 +1,97 @@
 <template>
-    <div class="info-line">
-        <Amount :amount="amount + fee" :decimals="decimals" />
+    <div class="info-line" :class="{ 'inverse-theme': theme === constructor.Themes.INVERSE }">
+        <div class="amounts">
+            <Amount
+                :currency="cryptoAmount.currency"
+                :amount="cryptoAmount.amount"
+                :totalDecimals="cryptoAmount.decimals"
+                :minDecimals="0"
+                :maxDecimals="Math.min(4, cryptoAmount.decimals)"
+            />
+            <FiatAmount v-if="fiatAmount" class="fiat-amount"
+                :currency="fiatAmount.currency"
+                :amount="fiatAmount.amount"
+            />
+        </div>
         <div class="arrow-runway">
             <ArrowRightSmallIcon/>
         </div>
-        <a href="javascript:void(0)" class="description" @click="merchantInfoClicked">
-            <Account :address="address" :image="shopLogoUrl" :label="originDomain" />
-            <div class="info-circle-container">
-                <InfoCircleIcon class="info-circle"/>
-            </div>
-        </a>
+        <Account :address="address" :image="shopLogoUrl" :label="originDomain" />
+        <Timer v-if="startTime && endTime" ref="timer" :startTime="startTime" :endTime="endTime" :theme="theme" />
     </div>
 </template>
 
 <script lang="ts">
-import {Component, Prop, Emit, Vue} from 'vue-property-decorator';
-import Amount from './Amount.vue';
+// this imports only the type without bundling the library
+type BigInteger = import ('big-integer').BigInteger;
+
+import { Component, Prop, Vue } from 'vue-property-decorator';
 import Account from './Account.vue';
-import { InfoCircleIcon, ArrowRightSmallIcon } from './Icons';
+import Timer from './Timer.vue';
+import Amount from './Amount.vue';
+import FiatAmount from './FiatAmount.vue';
+import { ArrowRightSmallIcon } from './Icons';
 
-@Component({components: {Amount, Account, InfoCircleIcon, ArrowRightSmallIcon}})
-export default class PaymentInfoLine extends Vue {
+interface CryptoAmountInfo {
+    amount: number | bigint | BigInteger; // in the smallest unit
+    currency: string;
+    decimals: number;
+}
 
+interface FiatAmountInfo {
+    amount: number; // in the base unit, e.g. Euro
+    currency: string;
+}
+
+function cryptoAmountInfoValidator(value: any) {
+    return 'amount' in value && 'currency' in value && 'decimals' in value
+        && (typeof value.amount === 'number' || typeof value.amount === 'bigint'
+            || (value.amount && value.amount.constructor && value.amount.constructor.name.endsWith('Integer')))
+        && typeof value.currency === 'string'
+        && typeof value.decimals === 'number' && Number.isInteger(value.decimals);
+}
+
+function fiatAmountInfoValidator(value: any) {
+    return 'amount' in value && 'currency' in value
+        && typeof value.amount === 'number'
+        && typeof value.currency === 'string';
+}
+
+@Component({components: {Account, Timer, Amount, FiatAmount, ArrowRightSmallIcon}})
+class PaymentInfoLine extends Vue {
     private get originDomain() {
         return this.origin.split('://')[1];
     }
-    @Prop({type: Number, default: 2}) public decimals!: number;
-    @Prop(Number) private amount!: number;
-    @Prop(Number) private fee!: number;
-    @Prop(String) private origin!: string;
-    @Prop(String) private address?: string;
-    @Prop(String) private shopLogoUrl?: string;
 
-    @Emit()
-    // tslint:disable-next-line no-empty
-    private merchantInfoClicked() {}
+    @Prop({type: Object, required: true, validator: cryptoAmountInfoValidator}) public cryptoAmount!: CryptoAmountInfo;
+    @Prop({type: Object, validator: fiatAmountInfoValidator}) public fiatAmount?: FiatAmountInfo;
+    @Prop({type: String, required: true}) public origin!: string;
+    @Prop(String) public address?: string;
+    @Prop(String) public shopLogoUrl?: string;
+    @Prop(Number) public startTime?: number;
+    @Prop(Number) public endTime?: number;
+    @Prop({
+        type: String,
+        validator: (value: any) => Object.values(PaymentInfoLine.Themes).includes(value),
+        default: 'normal',
+    })
+    public theme!: string;
+
+    public async setTime(time: number) {
+        await this.$nextTick(); // let vue update in case the timer was just added
+        if (!this.$refs.timer) return;
+        (this.$refs.timer as Timer).synchronize(time);
+    }
 }
+
+namespace PaymentInfoLine { // tslint:disable-line no-namespace
+    export enum Themes {
+        NORMAL = 'normal',
+        INVERSE = 'inverse',
+    }
+}
+
+export default PaymentInfoLine;
 </script>
 
 <style scoped>
@@ -44,20 +100,41 @@ export default class PaymentInfoLine extends Vue {
         flex-direction: row;
         justify-content: space-between;
         box-sizing: border-box;
-        margin: 2rem 2.5rem 1rem 2.5rem;
+        margin: 1.75rem 2.5rem 1rem 2.375rem;
         flex-shrink: 0;
         font-size: 2rem;
         line-height: 1.5;
         font-weight: normal;
     }
 
+    .amounts {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-bottom: .125rem;
+    }
+
     .amount {
-        font-weight: bold;
         color: var(--nimiq-light-blue);
+        font-weight: bold;
+    }
+
+    .inverse-theme .amount {
+        color: var(--nimiq-light-blue-on-dark, var(--nimiq-light-blue));
+    }
+
+    .fiat-amount {
+        margin-top: .25rem;
+        color: var(--nimiq-blue);
+        font-size: 1.625rem;
+        line-height: 1;
+        font-weight: 600;
+        opacity: .6;
     }
 
     .arrow-runway {
         flex-grow: 1;
+        min-width: 3rem;
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -80,31 +157,16 @@ export default class PaymentInfoLine extends Vue {
         100% { transform: translate3D(3rem, 0, 0); }
     }
 
-    .description {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        color: inherit;
-        text-decoration: none;
-        outline: none;
-    }
-
-    .description:hover,
-    .description:focus {
-        text-decoration: none;
-    }
-
     .account {
         padding: 0;
         width: auto !important;
+        flex-shrink: 1;
     }
 
     .account >>> .identicon {
         min-width: unset;
         width: 3.375rem;
         height: 3.375rem;
-        margin-top: -0.25rem;
-        margin-bottom: -0.125rem;
         margin-right: 0;
     }
 
@@ -117,48 +179,24 @@ export default class PaymentInfoLine extends Vue {
     }
 
     .account >>> .label {
-        padding-left: 0;
-        transition: opacity .3s ease;
+        padding-left: .75rem;
+        margin-bottom: .25rem;
         font-weight: unset;
-        opacity: 1;
-        mask-image: unset; /* Remove gradient-fade-out */
+        opacity: 1 !important;
+        /* Remove gradient-fade-out and use text-overflow instead */
+        mask-image: unset;
+        white-space: nowrap;
+        text-overflow: fade;
     }
 
-    .info-circle-container {
-        position: relative;
-        opacity: 0.3;
-        margin-left: 1rem;
-        transition: opacity .3s ease;
+    .timer {
+        margin: auto -.5rem auto 1rem;
+        flex-shrink: 0;
     }
 
-    .info-circle-container .nq-icon {
-        display: block;
+    .inverse-theme .fiat-amount,
+    .inverse-theme .arrow-runway .nq-icon,
+    .inverse-theme .account >>> .label {
+        color: white;
     }
-
-    .description:hover .account >>> .label,
-    .description:focus .account >>> .label {
-        opacity: .7;
-    }
-
-    .description:hover .info-circle-container,
-    .description:focus .info-circle-container {
-        opacity: 1;
-    }
-
-    .info-circle-container::after {
-        content: "";
-        position: absolute;
-        left: -0.625rem;
-        top: -0.625rem;
-        right: -0.625rem;
-        bottom: -0.625rem;
-        border: 0.25rem solid rgba(5, 130, 202, 0.5); /* Based on Nimiq Light Blue */
-        border-radius: 50%;
-        opacity: 0;
-    }
-
-    .description:focus .info-circle-container::after {
-        opacity: 1;
-    }
-
 </style>
