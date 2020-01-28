@@ -1,25 +1,38 @@
 <template>
     <span class="amount" :class="{ approx: showApprox && isApprox }">
         {{ formattedAmount }}
-        <span class="nim">NIM</span>
+        <span class="currency" :class="currency">{{currency}}</span>
     </span>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
+import { FormattableNumber } from '@nimiq/utils';
+type BigInteger = import ('big-integer').BigInteger;
 
 @Component
 export default class Amount extends Vue {
-    // Amount in luna
-    @Prop(Number) public amount!: number;
+    // Amount in smallest unit
+    @Prop({type: [Number, Object]}) public amount!: number | BigInteger;
     // If set takes precedence over minDecimals and maxDecimals
-    @Prop({type: Number, validator: Amount._validateDecimals }) public decimals?: number;
-    @Prop({type: Number, default: 2, validator: Amount._validateDecimals }) public minDecimals!: number;
-    @Prop({type: Number, default: 5, validator: Amount._validateDecimals }) public maxDecimals!: number;
+    @Prop(Number) public decimals?: number;
+    @Prop({type: Number, default: 2}) public minDecimals!: number;
+    @Prop({type: Number, default: 5}) public maxDecimals!: number;
     @Prop({type: Boolean, default: false}) public showApprox!: boolean;
+    @Prop({type: String, default: 'nim'}) public currency!: string;
+    @Prop({type: Number, default: 5}) public currencyDecimals!: number;
 
-    private static _validateDecimals(decimals: number) {
-        return decimals >= 0 && decimals <= 5 && Number.isInteger(decimals);
+    @Watch('minDecimals', {immediate: true})
+    @Watch('maxDecimals', {immediate: true})
+    @Watch('decimals', {immediate: true})
+    private _validateDecimals(decimals: number) {
+        if (this.decimals !== undefined && decimals !== this.decimals) {
+            // skip validation for minDecimals and maxDecimals if they're overwritten by decimals
+            return;
+        }
+        if (decimals !== undefined && (decimals < 0 || decimals > this.currencyDecimals || !Number.isInteger(decimals))) {
+            throw new Error('Amount: decimals is not in range');
+        }
     }
 
     private get formattedAmount() {
@@ -32,22 +45,13 @@ export default class Amount extends Vue {
             maxDecimals = this.maxDecimals;
         }
 
-        const roundingFactor = 10 ** maxDecimals;
-        const value = Math.floor((this.amount / 1e5) * roundingFactor) / roundingFactor;
-
-        const result = parseFloat(value.toFixed(minDecimals)) === value
-            ? value.toFixed(minDecimals)
-            : value.toString();
-
-        if (Math.abs(value) < 10000) return result;
-        // add thin spaces (U+202F) every 3 digits. Stop at the decimal separator if there is one
-        const regexp = minDecimals > 0 ? /(\d)(?=(\d{3})+\.)/g : /(\d)(?=(\d{3})+$)/g;
-        return result.replace(regexp, '$1\u202F');
+        return new FormattableNumber(this.amount).moveDecimalSeparator(-this.currencyDecimals)
+            .toString({ maxDecimals, minDecimals, useGrouping: true });
     }
 
     private get isApprox() {
-        const roundedNum = Number.parseFloat((this.amount / 1e5).toFixed(this.decimals));
-        return roundedNum.toFixed(5) !== (this.amount / 1e5).toFixed(5);
+        return !new FormattableNumber(this.amount).moveDecimalSeparator(-this.currencyDecimals)
+            .equals(this.formattedAmount.replace(/\s/g, ''));
     }
 }
 </script>
@@ -60,5 +64,9 @@ export default class Amount extends Vue {
     .amount.approx::before {
         content: '~ ';
         opacity: 0.5;
+    }
+
+    .currency {
+        text-transform: uppercase;
     }
 </style>
