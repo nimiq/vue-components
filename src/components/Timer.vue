@@ -80,6 +80,11 @@ function _toSimplifiedTime(millis: number, includeUnit: boolean = true): number 
     filters: { _toSimplifiedTime },
 })
 class Timer extends Vue {
+    private static readonly REM_FACTOR = 8; // size of 1rem
+    private static readonly BASE_SIZE = 3.25 * Timer.REM_FACTOR;
+    private static readonly BASE_RADIUS = Timer.REM_FACTOR;
+    private static readonly RADIUS_GROWTH_FACTOR = 1.5;
+
     @Prop(Number)
     public startTime?: number;
 
@@ -173,9 +178,8 @@ class Timer extends Vue {
     }
 
     private get _updateInterval(): number {
-        const baseSize = 26;
-        const timerSize = (this.$el as HTMLAnchorElement).offsetWidth || baseSize;
-        const scaleFactor = timerSize / baseSize;
+        const timerSize = (this.$el as HTMLAnchorElement).offsetWidth || Timer.BASE_SIZE;
+        const scaleFactor = timerSize / Timer.BASE_SIZE;
         const circleLengthPixels = this.fullCircleLength * scaleFactor;
         const steps = circleLengthPixels * 3; // update every .33 pixel change for smooth transitions
         const minInterval = 1000 / 60; // up to 60 fps
@@ -187,7 +191,9 @@ class Timer extends Vue {
 
     @Watch('detailsShown', { immediate: true })
     private _setRadius() {
-        this.radius.tweenTo(this.detailsShown ? 12 : 8, 300);
+        this.radius.tweenTo(this.detailsShown
+            ? Timer.RADIUS_GROWTH_FACTOR * Timer.BASE_RADIUS
+            : Timer.BASE_RADIUS, 300);
         this._rerender();
     }
 

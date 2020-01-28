@@ -31,7 +31,6 @@ export default class Copyable extends Vue {
     private _copiedResetTimeout: number | null = null;
 
     public copy() {
-        // Note that when iterating over childNodes, pseudo elements are excluded.
         const text = this.text || (this.$el as HTMLElement).innerText;
         Clipboard.copy(text);
 
