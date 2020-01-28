@@ -1,5 +1,5 @@
 <template>
-    <div class="qr-scanner">
+    <div class="qr-scanner nq-blue-bg">
         <video ref="video" muted autoplay playsinline width="600" height="600"></video>
         <div ref="overlay" class="overlay" :class="{ inactive: cameraAccessFailed }">
             <slot>
@@ -182,7 +182,6 @@ export default QrScanner;
     .qr-scanner {
         position: relative;
         overflow: hidden;
-        background: black;
     }
 
     .fade-enter,
@@ -258,7 +257,7 @@ export default QrScanner;
     .camera-access-failed {
         color: white;
         text-align: center;
-        font-size: 16px;
+        font-size: 2rem;
     }
 
     .camera-access-failed-warning {
@@ -266,8 +265,8 @@ export default QrScanner;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 17rem;
-        max-width: 60%;
+        width: 30rem;
+        max-width: 80%;
         font-weight: bold;
     }
 

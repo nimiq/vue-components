@@ -3,7 +3,7 @@
         <div v-if="progressIndicator" class="progress-indicator">
             <div v-for="thisStep in progressSteps" class="indicator" :class="thisStep <= step ? 'active' : ''" :key="thisStep"></div>
         </div>
-        <a v-if="backArrow" href="#" class="page-header-back-button" @click.prevent="$emit('back')">
+        <a v-if="backArrow" href="#" class="page-header-back-button" @click.prevent="$emit('back')" title="Go back">
             <ArrowLeftIcon/>
         </a>
         <h1 class="nq-h1"><slot></slot></h1>
@@ -41,7 +41,7 @@
         left: 4rem;
         padding-top: .25rem;
         opacity: 0.4;
-        transition: opacity .3s cubic-bezier(0.25, 0, 0, 1), transform .3s cubic-bezier(0.25, 0, 0, 1);
+        transition: opacity .3s var(--nimiq-ease), transform .3s var(--nimiq-ease);
         color: inherit;
     }
 

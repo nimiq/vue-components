@@ -1,10 +1,7 @@
 <template>
     <div class="contact-list">
         <template v-if="contacts.length > 3">
-            <input type="text" class="search-field" placeholder="Search..." v-model="searchTerm" ref="search">
-            <i class="material-icons search-icon">search</i>
-            <a href="#" class="material-icons search-clear" title="Clear search" v-if="searchTerm"
-               @click.prevent="clearSearch">clear</a>
+            <input type="text" class="nq-input search-field" placeholder="Search..." v-model="searchTerm" ref="search">
         </template>
 
         <div class="list">
@@ -193,40 +190,30 @@ import NewContact from './NewContact.vue';
     }
 </script>
 
-<style>
+<style scoped>
     .contact-list {
         position: relative;
+        padding: 1rem 0;
     }
 
-    .contact-list .search-field {
-        width: 100%;
-        border: none !important;
-        padding: 1.5rem 5rem;
-        background: rgba(0, 0, 0, 0.05);
-        border-radius: 0.5rem;
-        text-align: left;
+    .search-field {
+        margin: 0 4rem;
+        width: calc(100% - 8rem);
+        box-sizing: border-box;
     }
 
-    .contact-list .search-field:focus {
-        background: rgba(0, 0, 0, 0.075);
-    }
-
-    .contact-list .search-field::placeholder {
-        text-align: left;
-    }
-
-    .contact-list .search-icon {
+    .search-icon {
         position: absolute;
-        left: 1rem;
-        top: 1.5rem;
+        left: 3rem;
+        top: 2rem;
         opacity: 0.4;
     }
 
-    .contact-list .search-field:focus ~ .search-icon {
+    .search-field:focus ~ .search-icon {
         opacity: 0.8;
     }
 
-    .contact-list .search-clear {
+    .search-clear {
         position: absolute;
         right: 0.5rem;
         top: 1rem;
@@ -236,37 +223,42 @@ import NewContact from './NewContact.vue';
         cursor: pointer;
     }
 
-    .contact-list .search-clear:hover,
-    .contact-list .search-clear:focus {
+    .search-clear:hover,
+    .search-clear:focus {
         background: rgba(0, 0, 0, 0.1);
         opacity: 0.8;
     }
 
-    .contact-list .list {
-        margin-top: 2rem;
+    .list {
+        overflow-y: auto;
+        margin-top: 1rem;
+        padding: 4rem 2rem;
+        mask-image: linear-gradient(0deg , rgba(255,255,255,0), rgba(255,255,255, 1) 4rem, rgba(255,255,255,1) calc(100% - 4rem), rgba(255,255,255,0));
+        max-height: calc(100% - 5.5rem); /* Sadly, I found no other way of making the list only grow to the container size */
     }
 
-    .contact-list .contact {
+    .contact {
         padding: 1rem;
+        transition: background-color .3s var(--nimiq-ease);
     }
 
-    .contact-list .contact:hover {
-        background-color: rgba(0, 0, 0, 0.075);
+    .contact:hover {
+        background-color: rgba(31, 35, 72, 0.06); /* Based on Nimiq Blue */
     }
 
-    .contact-list .no-contacts {
+    .no-contacts {
         text-align: center;
         opacity: 0.6;
     }
 
-    .contact-list .no-contacts .material-icons {
+    .no-contacts .material-icons {
         display: block;
         font-size: 10rem;
         line-height: 1.1;
         opacity: 0.3;
     }
 
-    .contact-list .file-import {
+    .file-import {
         width: 0;
         height: 0;
         opacity: 0;

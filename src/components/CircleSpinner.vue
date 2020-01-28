@@ -3,16 +3,16 @@
 </template>
 
 <script lang="ts">
-export default {};
+export default {}
 </script>
 
 <style scoped>
+    .circle-spinner {
+        animation: circle-spinner-spin 1s linear infinite;
+    }
+
     @keyframes circle-spinner-spin {
         from { transform: rotate(0deg); }
         to   { transform: rotate(360deg); }
-    }
-
-    .circle-spinner {
-        animation: circle-spinner-spin 1s linear infinite;
     }
 </style>

@@ -89,7 +89,8 @@ export default class AddressInput extends Vue {
         }
         return {
             text: value,
-            template: 'xxxx xxxx xxxx\nxxxx xxxx xxxx\nxxxx xxxx xxxx', // used by input-format to position caret
+            template: 'wwww wwww wwww\nwwww wwww wwww\nwwww wwww wwww', // used by input-format to position caret. Using
+            // w as placeholder instead of default x as w is not in our address alphabet.
         };
     }
 
@@ -108,7 +109,15 @@ export default class AddressInput extends Vue {
     })
     public value!: string;
 
+    @Prop(Boolean)
+    public autofocus?: string;
+
     public $refs: { textarea: HTMLTextAreaElement };
+
+    public focus(scrollIntoView = false) {
+        this.$refs.textarea.focus();
+        if (scrollIntoView) this.$refs.textarea.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
 
     private currentValue: string = '';
     private selectionStartBlock: number = -1;
@@ -123,6 +132,8 @@ export default class AddressInput extends Vue {
         // selections in textareas in Firefox. Therefore we also bind the listener to focus, blur, select, click.
         this._updateSelection = this._updateSelection.bind(this);
         document.addEventListener('selectionchange', this._updateSelection);
+
+        if (this.autofocus) this.focus();
     }
 
     private destroyed() {
@@ -250,15 +261,15 @@ export default class AddressInput extends Vue {
         animation: shake .4s;
     }
 
-    /* Copied from @nimiq/style as the animations are not included in the package */
+    /* Copied from Keyguard */
     @keyframes shake {
         from { transform: none; }
-        15% { transform: translate3d(-21%,0,0) rotate(-5deg); }
-        30% { transform: translate3d(13%,0,0) rotate(3deg); }
-        45% { transform: translate3d(-8%,0,0) rotate(-3deg); }
-        60% { transform: translate3d(5%,0,0) rotate(2deg); }
-        75% { transform: translate3d(-3%,0,0) rotate(-1deg); }
-        to { transform: none; }
+        10%  { transform: translate3d(-0.25rem, 0, 0) rotate(-0.15deg); }
+        20%  { transform: translate3d(0.5rem, 0, 0) rotate(0.15deg); }
+        30%  { transform: translate3d(-0.5rem, 0, 0) rotate(-0.15deg); }
+        40%  { transform: translate3d(0.5rem, 0, 0) rotate(0.15deg); }
+        50%  { transform: translate3d(-0.25rem, 0, 0) rotate(-0.15deg); }
+        to   { transform: none; }
     }
 
     textarea {
@@ -330,7 +341,7 @@ export default class AddressInput extends Vue {
 
     .block,
     .block-connector {
-        transition: opacity .2s cubic-bezier(0.25, 0, 0, 1);
+        transition: opacity .2s var(--nimiq-ease);
     }
 
     .invisible {

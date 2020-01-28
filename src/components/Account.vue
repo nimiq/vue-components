@@ -1,12 +1,20 @@
 <template>
-    <div class="account" :class="[{ editable }, layout]">
+    <div class="account" :class="[{ editable }, layout, {cashlink: displayAsCashlink}]">
         <div class="identicon-and-label">
-            <img v-if="showImage" class="identicon account-image" :src="image" @error="showImage = false">
+            <div v-if="showImage" class="identicon">
+                <img class="account-image" :src="image" @error="showImage = false">
+                <div class="outline"></div>
+            </div>
+            <div v-else-if="displayAsCashlink" class="identicon">
+                <div class="nq-blue-bg">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="white" stroke-linecap="round" stroke-width="2.5"><path d="M40.25 23.25v-.5a6.5 6.5 0 0 0-6.5-6.5h-3.5a6.5 6.5 0 0 0-6.5 6.5v6.5a6.5 6.5 0 0 0 6.5 6.5h2"/><path d="M23.75 40.75v.5a6.5 6.5 0 0 0 6.5 6.5h3.5a6.5 6.5 0 0 0 6.5-6.5v-6.5a6.5 6.5 0 0 0-6.5-6.5h-2"/><path d="M32 11.25v4M32 48.75v4"/></svg>
+                </div>
+            </div>
             <Identicon v-else :address="address"/>
 
             <div v-if="!editable" class="label" :class="{ 'address-font': _isLabelAddress }">{{ label }}</div>
             <div v-else class="label editable" :class="{ 'address-font': _isLabelAddress }">
-                <LabelInput :maxBytes="63" :value="label" :placeholder="placeholder" @changed="changed" ref="label"/>
+                <LabelInput :maxBytes="63" :value="label" :placeholder="placeholder" @input="changed" ref="label"/>
             </div>
 
             <div v-if="layout === 'column' && walletLabel" class="nq-label wallet-label">{{ walletLabel }}</div>
@@ -27,6 +35,7 @@
     export default class Account extends Vue {
         @Prop(String) public address!: string;
         @Prop(String) public image?: string;
+        @Prop({type: Boolean, default: false}) public displayAsCashlink!: boolean;
         @Prop(String) public label!: string;
         @Prop(String) public placeholder?: string;
         @Prop(String) public walletLabel?: string;
@@ -117,8 +126,31 @@
         margin-bottom: 1.25rem;
     }
 
-    .account-image {
-        border-radius: 1rem;
+    .cashlink .identicon {
+        padding: .5rem;
+    }
+
+    .cashlink .identicon div {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+    }
+    .cashlink .identicon:before {
+        display: block;
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        border: .25rem solid rgba(31, 35, 72, .2); /* based on nimiq-blue */
+    }
+
+    .identicon .account-image {
+        width: 100%;
+        height: 100%;
+        clip-path: url(#nimiq-hexagon-clip);
     }
 
     .wallet-label {
@@ -153,10 +185,6 @@
         line-height: 1.5;
         /* TODO implement multi line ellipsis */
         max-height: calc(2 * 1em * 1.5); /* #lines * font-size * line-height */
-    }
-
-    .column .label-input >>> input {
-        text-align: center;
     }
 
     .label.address-font {

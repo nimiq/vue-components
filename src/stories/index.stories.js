@@ -11,10 +11,14 @@ import AddressDisplay from '../components/AddressDisplay.vue';
 import AddressInput from '../components/AddressInput.vue';
 import AccountRing from '../components/AccountRing.vue';
 import Amount from '../components/Amount.vue';
+import AmountInput from '../components/AmountInput.vue';
 import AmountWithDetails from '../components/AmountWithDetails.vue';
+import AmountWithFee from '../components/AmountWithFee.vue';
 import CircleSpinner from '../components/CircleSpinner.vue';
+import CloseButton from '../components/CloseButton.vue';
 import Contact from '../components/Contact.vue';
 import ContactList from '../components/ContactList.vue';
+import ContactShortcuts from '../components/ContactShortcuts.vue';
 import Copyable from '../components/Copyable.vue';
 import CopyableField from '../components/CopyableField.vue';
 import FiatAmount from '../components/FiatAmount.vue';
@@ -26,8 +30,11 @@ import WalletMenu from '../components/WalletMenu.vue';
 import PaymentInfoLine from '../components/PaymentInfoLine.vue';
 import QrCode from '../components/QrCode.vue';
 import QrScanner from '../components/QrScanner.vue';
+import SelectBar from '../components/SelectBar.vue';
+import SendTx from '../components/SendTx.vue';
 import SmallPage from '../components/SmallPage.vue';
 import Timer from '../components/Timer.vue';
+import Tooltip from '../components/Tooltip.vue';
 import PageHeader from '../components/PageHeader.vue';
 import PageBody from '../components/PageBody.vue';
 import PageFooter from '../components/PageFooter.vue';
@@ -58,6 +65,21 @@ storiesOf('Basic', module)
             data: () => ({ amount, minDecimals, maxDecimals, decimals, showApprox }),
             template: `<Amount :amount="amount" :minDecimals="minDecimals" :maxDecimals="maxDecimals"
                 :decimals="decimals" :showApprox="showApprox" />`,
+        };
+    })
+    .add('AmountInput', () => {
+        const value = number('Value', 0);
+        return {
+            components: { AmountInput },
+            data() {
+                return {
+                    value,
+                };
+            },
+            methods: {
+                input: action('input'),
+            },
+            template: `<AmountInput :value="value" @input="input"/>`,
         };
     })
     .add('FiatAmount', () => {
@@ -129,8 +151,9 @@ storiesOf('Basic', module)
             components: {LabelInput},
             methods: {
                 changed: action('changed'),
+                input: action('input'),
             },
-            template: `<LabelInput placeholder="Name this account..." @changed="changed"/>`,
+            template: `<LabelInput placeholder="Name this account..." @changed="changed" @input="input"/>`,
         };
     })
     .add('LabelInput (restricted to 63 bytes)', () => {
@@ -138,13 +161,14 @@ storiesOf('Basic', module)
             components: {LabelInput},
             methods: {
                 changed: action('changed'),
+                input: action('input'),
             },
             data() {
                 return {
                     value: "Standard Address"
                 };
             },
-            template: `<LabelInput :value="value" :maxBytes="63" @changed="changed"/>`,
+            template: `<LabelInput :value="value" :maxBytes="63" @changed="changed" @input="input"/>`,
         };
     })
     .add('LoadingSpinner', () => {
@@ -157,6 +181,81 @@ storiesOf('Basic', module)
         return {
             components: { CircleSpinner },
             template: `<CircleSpinner />`,
+        };
+    })
+    .add('SelectBar', () => {
+        return {
+            components: { SelectBar },
+            methods: {
+                changed: action('changed'),
+            },
+            data() {
+                return {
+                    options: [{
+                        color: 'nq-light-blue-bg',
+                        value: 0,
+                        text: 'free',
+                        index: 0,
+                    }, {
+                        color: 'nq-green-bg',
+                        value: 1,
+                        text: 'standard',
+                        index: 1,
+                    }, {
+                        color: 'nq-gold-bg',
+                        value: 2,
+                        text: 'express',
+                        index: 2,
+                    }],
+                };
+            },
+            template: `<SelectBar :options="options" @changed="changed"/>`
+        }
+    })
+    .add('Tooltip', () => {
+        const fontSize = number('Font size (rem)', 3);
+        const useReference = boolean('Use referenceFrame', true);
+        return {
+            data() {
+                return {
+                    refsLoaded: false,
+                    message: '',
+                    fontSize,
+                    useReference,
+                };
+            },
+            computed: {
+                target() {
+                    if(this.refsLoaded)
+                        return this.$refs.target;
+                    else return null;
+                },
+                style() {
+                    return {
+                        fontSize: this.fontSize + 'rem',
+                    };
+                }
+            },
+            mounted() {
+                this.refsLoaded = true;
+            },
+            components: { SmallPage, PageHeader, PageBody, Tooltip, Icons, Account, LabelInput },
+            template: windowTemplate`<SmallPage>
+                            <PageHeader>Test</PageHeader>
+                            <PageBody style="overflow-y: scroll; position:relative;" ref="target">
+                                <div style="height:300px"></div>
+                                <div style="max-width: 100%; display: flex; align-items: center;">
+                                    <LabelInput v-model="message" style="display: inline;"/>
+                                    <Tooltip :reference="useReference ? target : undefined" :style="style">
+                                        <div style="font-size: 2rem;">
+                                            This is the Tooltip I was talking about.
+                                            <Account address="NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM" />
+                                        </div>
+                                    </Tooltip>
+                                </div>
+                                <div style="height:3000px"></div>
+                            </PageBody>
+                        </SmallPage>`,
         };
     });
 
@@ -174,15 +273,17 @@ storiesOf('Components', module)
         }, '');
         const balance = number('Balance (can be empty)', 12023110);
         const editable = boolean('Editable', false);
+        const cashlink = boolean('Cashlink', false);
 
         return {
             components: {Account},
             methods: {
                 changed: action('changed'),
             },
-            data: () => ({ layout, address, label, walletLabel, image, balance, editable }),
+            data: () => ({ layout, address, label, walletLabel, image, balance, editable, cashlink }),
             template: `<Account :layout="layout" :address="address" :label="label" :walletLabel="walletLabel"
-                :image="image" :balance="balance" :editable="editable" @changed="changed"></Account>`,
+                :image="image" :balance="balance" :editable="editable" :displayAsCashlink="cashlink"
+                @changed="changed"/>`,
         };
     })
     .add('AccountList', () => {
@@ -418,6 +519,30 @@ storiesOf('Components', module)
             template: `<div style="padding-left: 20rem"><AmountWithDetails :decimals="${digits}" :amount="${amount}" :networkFee="${networkFee}" :networkFeeEditable="${networkFeeEditable}"/></div>`,
         };
     })
+    .add('AmountWithFee',() => {
+        const maxBalance = number('Maximum balance', 102000000);
+        const amountAndFee = object('Amount and Fee', {amount: 100000, fee: 0, isValid: true});
+
+        return {
+            data() {
+                return {
+                    maxBalance,
+                    amountAndFee,
+                }
+            },
+            components: {AmountWithFee},
+            template: `<div style="padding-left: 20rem"><AmountWithFee :available-balance="maxBalance" v-model="amountAndFee" /></div>`,
+        }
+    })
+    .add('CloseButton', () => {
+        return {
+            components: {CloseButton},
+            methods: {
+                click: action('click'),
+            },
+            template: `<CloseButton class="top-right" @click="click"/>`,
+        };
+    })
     .add('Contact', () => {
         const label = text('label', 'Burn address');
         const address = text('address', 'NQ07 0000 00000000 0000 0000 0000 0000 0000');
@@ -503,6 +628,33 @@ storiesOf('Components', module)
                     <button class="nq-button" @click="reset">Reset</button>
                 </div>
             `
+        };
+    })
+    .add('ContactShortcuts', () => {
+        // setup knobs
+        const contacts = object('Contacts', [{
+            label: 'Nimiq Bar',
+            address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
+        }, {
+            label: 'Nimiq Shop',
+            address: 'NQ26 XM1G BFAD PACE R5L0 C85L 6143 FD8L 82U9',
+        }, {
+            label: 'Nimiq Foundation',
+            address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF',
+        }, {
+            label: 'Nimiq Charity',
+            address: 'NQ19 YG54 46TX EHGQ D2R2 V8XA JX84 UFG0 S0MC',
+        }]);
+
+        return {
+            components: { ContactShortcuts },
+            data: () => ({
+                contacts
+
+            }),
+            methods: {
+            },
+            template: `<ContactShortcuts :contacts="contacts"/>`,
         };
     })
     .add('Copyable', () => ({
@@ -935,7 +1087,7 @@ storiesOf('Pages', module)
                 <small-page style="height: 560px;">
                     <AccountDetails :address="account.userFriendlyAddress" :label="label"
                     :balance="account.balance" :walletLabel="walletLabel"
-                    :image="shopLogoUrl" @close="close"/>
+                    :image="shopLogoUrl" @close="close" :editable="true"/>
                 </small-page>
             `),
         };
@@ -951,6 +1103,91 @@ storiesOf('Pages', module)
                 finished: action('finished'),
             },
             template: windowTemplate(`<migration-welcome :link="link" @finished="finished"></migration-welcome>`),
+        };
+    })
+    .add('SendTx', () => {
+        const valueIsReadonly = boolean('Value is readonly', false);
+        const messageIsReadonly = boolean('Message is readonly', false);
+        const value = number('Value', 0);
+        const message = text('Message', '');
+        const isLoading = boolean('Loading?', false);
+        const contacts = object('Contacts', [{
+            label: 'Nimiq Bar',
+            address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
+        }, {
+            label: 'Nimiq Shop',
+            address: 'NQ26 XM1G BFAD PACE R5L0 C85L 6143 FD8L 82U9',
+        }, {
+            label: 'Nimiq Charity Foundation',
+            address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF',
+        }, {
+            label: 'Nimiq Charity',
+            address: 'NQ19 YG54 46TX EHGQ D2R2 V8XA JX84 UFG0 S0MC',
+        }]);
+        const wallet = object('Wallet', {
+            id: 'helloworld',
+            label: 'Keyguard Wallet',
+            type: 2, // BIP39
+            accounts: new Map([
+                ['NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM', {
+                    userFriendlyAddress: 'NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM',
+                    label: 'Primary account',
+                    balance: 12023110,
+                    path: "44'/242'/0'/0'",
+                }],
+                ['NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1', {
+                    userFriendlyAddress: 'NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1',
+                    label: 'HODL account',
+                    balance: 2712415141213,
+                    path: "44'/242'/0'/1'",
+                }],
+            ]),
+            contracts: [
+                {
+                    userFriendlyAddress: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE',
+                    label: 'My Vesting Contract',
+                    balance: 777777777,
+                },
+            ],
+        });
+        const addresses = [...wallet.accounts.values()]
+            .map(addr => ({address: addr.userFriendlyAddress, label: addr.label}))
+            .concat(wallet.contracts.map(contr => ({address: contr.userFriendlyAddress, label: contr.label})));
+        return {
+            components: { SendTx },
+            data: () => ({
+                contacts,
+                wallet,
+                addresses,
+                value,
+                valueIsReadonly,
+                message,
+                messageIsReadonly,
+                isLoading,
+            }),
+            methods: {
+                contactAdded: action('contactAdded'),
+                sendTx: action('sendTx'),
+                login: action('login'),
+                scanQr: action('scanQr'),
+                createCashlink: action('createCashlink'),
+            },
+            template:  windowTemplate(`<SendTx
+                :contacts="contacts"
+                :wallet="wallet"
+                :addresses="addresses"
+                :validityStartHeight="987654"
+                :value="value"
+                :valueIsReadonly="valueIsReadonly"
+                :message="message"
+                :messageIsReadonly="messageIsReadonly"
+                :is-loading="isLoading"
+                @login="login"
+                @scan-qr="scanQr"
+                @send-tx="sendTx"
+                @contact-added="contactAdded"
+                @create-cashlink="createCashlink"
+                />`),
         };
     });
 

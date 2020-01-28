@@ -3,14 +3,14 @@
         <Identicon :address="workingAddress"/>
 
         <div class="info">
-            <input type="text" class="label" placeholder="Name" ref="labelInput" v-model="workingLabel">
-            <input type="text" class="address-input" placeholder="Address" v-model="workingAddress">
+            <input type="text" class="nq-input label" placeholder="Name" ref="labelInput" v-model="workingLabel">
+            <input type="text" class="nq-input address-input" placeholder="Address" v-model="workingAddress">
 
             <div class="bottom">
-                <button class="small secondary save" @click.stop="save" :disabled="!isInputValid" title="Save changes">
+                <button class="nq-button-s light-blue" @click.stop="save" :disabled="!isInputValid" title="Save changes">
                     <i class="material-icons">check</i>
                 </button>
-                <button class="small secondary" @click.stop="abort" title="Abort">
+                <button class="nq-button-s" @click.stop="abort" title="Abort">
                     <i class="material-icons">close</i>
                 </button>
             </div>
