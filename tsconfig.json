@@ -9,6 +9,8 @@
         "experimentalDecorators": true,
         "esModuleInterop": true,
         "sourceMap": true,
+        "declaration": true,
+        "declarationDir": "dist/src",
         "baseUrl": ".",
         "types": [
             "node"
@@ -17,9 +19,6 @@
             "@/*": [
                 "src/*"
             ],
-            "@nimiq": [
-                "node_modules/@nimiq"
-            ]
         },
         "lib": [
             "esnext",
