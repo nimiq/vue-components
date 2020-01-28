@@ -1,6 +1,6 @@
 <template>
     <div class="carousel" :class="{ disabled }">
-        <div v-for="entry in entries" :ref="entry"
+        <div v-for="(entry, index) in entries" :ref="entry" :key="index"
             :class="{ selected: effectiveSelected === entry }"
             @click="!disabled && _updateSelection(entry)"
             @focusin="!disabled && _updateSelection(entry)">
@@ -11,10 +11,9 @@
 
 <script lang="ts">
 import { Component, Prop, Watch, Vue } from 'vue-property-decorator';
-import SmallPage from './SmallPage.vue';
 import { Tweenable } from '@nimiq/utils';
 
-@Component({components: {SmallPage}})
+@Component
 export default class Carousel extends Vue {
     @Prop({
         type: Array,
