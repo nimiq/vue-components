@@ -1,10 +1,7 @@
 <template>
     <div class="account" :class="[{ editable }, layout]">
         <div class="identicon-and-label">
-            <div v-if="showImage" class="identicon">
-                <img class="account-image" :src="image" @error="showImage = false">
-                <div class="outline"></div>
-            </div>
+            <img v-if="showImage" class="identicon account-image" :src="image" @error="showImage = false">
             <Identicon v-else :address="address"/>
 
             <div v-if="!editable" class="label" :class="{ 'address-font': _isLabelAddress }">{{ label }}</div>
@@ -55,25 +52,8 @@
         private changed(label: string) {}
 
         @Watch('image', { immediate: true })
-        private onImageChange() {
+        private _onImageChange() {
             this.showImage = !!this.image;
-
-            // load clip path if not done so yet
-            if (!this.showImage || document.getElementById('nimiq-hexagon-clip')) return;
-            /* tslint:disable max-line-length */
-            document.body.insertAdjacentHTML('beforeend', `
-                <svg width="0" height="0" viewBox="0 0 146 146">
-                    <defs>
-                        <clipPath id="nimiq-hexagon-clip" clipPathUnits="objectBoundingBox">
-                            <path d="M.302.055A.106.106 0 0 0 .21.108l-.196.34a.106.106 0 0 0 0 .105l.196.34a.106.106 0 0 0 .092.052h.392c.038 0 .073-.02.092-.053l.196-.34a.106.106 0 0 0 0-.105L.786.107A.106.106 0 0 0 .694.056z">
-                            </path>
-                        </clipPath>
-                    </defs>
-                </svg>
-            `);
-            /* tslint:enable max-line-length */
-            // avoid a line-height being rendered for default display: inline. Applied via code for CSP compatibility.
-            (document.body.lastElementChild as SVGElement).style.display = 'block';
         }
 
         private get _isLabelAddress() {
@@ -137,22 +117,8 @@
         margin-bottom: 1.25rem;
     }
 
-    .identicon .account-image {
-        width: 100%;
-        height: 100%;
-        clip-path: url(#nimiq-hexagon-clip);
-    }
-
-    .identicon .outline {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        background-repeat: no-repeat;
-        background-position: 0 center;
-        background-size: contain;
-        background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" fill="none" width="146" height="146"><path d="M113.8 16.2l28.7 49.6c2.5 4.5 2.5 10 0 14.4l-28.7 49.6a14.4 14.4 0 0 1-12.5 7.2H44.1c-5.2 0-10-2.7-12.5-7.2L2.9 80.2C.4 75.7.4 70.2 3 65.8l28.7-49.6C34.2 11.7 38.9 9 44 9h57.2c5.2 0 10 2.7 12.5 7.2z" clip-rule="evenodd" stroke="%231f2348" stroke-width="2" opacity=".2"/></svg>');
+    .account-image {
+        border-radius: 1rem;
     }
 
     .wallet-label {
