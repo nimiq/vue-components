@@ -30,11 +30,11 @@ declare class SendTx extends Vue {
     message: string;
     validityStartHeight: number;
     $refs: {
-        accountDetails?: AccountDetails;
-        amountWithFee?: AmountWithFee;
-        messageInput?: LabelInput;
-        feeSetter?: SelectBar;
-        address?: AddressInput;
+        accountDetails: AccountDetails;
+        amountWithFee: AmountWithFee;
+        messageInput: LabelInput;
+        feeSetter: SelectBar;
+        address: AddressInput;
     };
     focus(dontFocusOnMobile?: boolean): void;
     clear(): void;
