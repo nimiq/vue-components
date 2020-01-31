@@ -39,7 +39,7 @@ import { CaretRightSmallIcon } from './Icons';
 @Component({components: {Account, CaretRightSmallIcon}})
 export default class AccountList extends Vue {
     @Prop(Array) public accounts!: AccountInfo[];
-    @Prop({type: Array, default: []}) public disabledAddresses!: string[];
+    @Prop({type: Array, default: () => []}) public disabledAddresses!: string[];
     @Prop(String) private walletId?: string;
     @Prop(Boolean) private editable?: boolean;
     @Prop(Number) private decimals?: number;
