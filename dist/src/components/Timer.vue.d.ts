@@ -1,0 +1,39 @@
+import { Vue } from 'vue-property-decorator';
+declare class Timer extends Vue {
+    private static readonly REM_FACTOR;
+    private static readonly BASE_SIZE;
+    private static readonly BASE_RADIUS;
+    private static readonly RADIUS_GROWTH_FACTOR;
+    startTime?: number;
+    endTime?: number;
+    theme: string;
+    strokeWidth: number;
+    synchronize(referenceTime: number): void;
+    private timeOffset;
+    private sampledTime;
+    private detailsShown;
+    private radius;
+    private fullCircleLength;
+    private requestAnimationFrameId;
+    private timeout;
+    private destroyed;
+    private readonly _totalTime;
+    private readonly _timeLeft;
+    private readonly _progress;
+    private readonly _timeCircleInfo;
+    private readonly _fillerCircleInfo;
+    private readonly _updateInterval;
+    private _setRadius;
+    private _setTimer;
+    private _rerender;
+}
+declare namespace Timer {
+    enum Events {
+        END = "end"
+    }
+    enum Themes {
+        NORMAL = "normal",
+        INVERSE = "inverse"
+    }
+}
+export default Timer;
