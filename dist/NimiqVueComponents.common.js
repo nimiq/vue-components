@@ -412,17 +412,6 @@ module.exports = Object.keys || function keys(O) {
 
 /***/ }),
 
-/***/ "0dfc":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_683f0e29_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("a030");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_683f0e29_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_683f0e29_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
- /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_683f0e29_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
 /***/ "0f89":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5211,13 +5200,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 /***/ }),
 
-/***/ "a030":
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-
 /***/ "a1f0":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5753,6 +5735,13 @@ module.exports = function (it, Constructor, name, forbiddenField) {
   } return it;
 };
 
+
+/***/ }),
+
+/***/ "b1c5":
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
 
 /***/ }),
 
@@ -7719,6 +7708,17 @@ addToUnscopables('keys');
 addToUnscopables('values');
 addToUnscopables('entries');
 
+
+/***/ }),
+
+/***/ "fa7f":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_8f1b2a80_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("b1c5");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_8f1b2a80_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_8f1b2a80_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+ /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_8f1b2a80_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -16222,19 +16222,18 @@ var SendTx_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_SendTx = (SendTx_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"9eb37c86-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Tooltip.vue?vue&type=template&id=683f0e29&scoped=true&
-var Tooltipvue_type_template_id_683f0e29_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"tooltip",class:{ active: _vm.tooltipActive }},[_c('a',{ref:"tooltipIcon",class:{
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"9eb37c86-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Tooltip.vue?vue&type=template&id=8f1b2a80&scoped=true&
+var Tooltipvue_type_template_id_8f1b2a80_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"tooltip",class:{ active: _vm.tooltipToggled }},[_c('a',{ref:"tooltipIcon",class:{
             top: _vm.tooltipPosition === 'top',
             bottom: _vm.tooltipPosition === 'bottom',
-        },attrs:{"href":"javascript:void(0);"},on:{"click":_vm.toggleTooltip,"mouseenter":function($event){return _vm.mouseOver(true)},"mouseleave":function($event){return _vm.mouseOver(false)}}},[_vm._t("icon",[_c('AlertTriangleIcon',{staticClass:"nq-orange"})])],2),_c('div',{ref:"tooltipBox",staticClass:"tooltip-box",class:{
-            active: _vm.tooltipActive,
+        },attrs:{"href":"javascript:void(0);"},on:{"click":function($event){$event.stopPropagation();return _vm.toggleTooltip($event)},"mouseenter":function($event){return _vm.update()}}},[_vm._t("icon",[_c('AlertTriangleIcon',{staticClass:"nq-orange"})])],2),_c('div',{ref:"tooltipBox",staticClass:"tooltip-box",class:{
             top: _vm.tooltipPosition === 'top',
             bottom: _vm.tooltipPosition === 'bottom',
-        },style:(_vm.styles),on:{"mouseenter":function($event){return _vm.mouseOver(true)},"mouseleave":function($event){return _vm.mouseOver(false)}}},[_vm._t("default")],2)])}
-var Tooltipvue_type_template_id_683f0e29_scoped_true_staticRenderFns = []
+        },style:(_vm.styles)},[_vm._t("default")],2)])}
+var Tooltipvue_type_template_id_8f1b2a80_scoped_true_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Tooltip.vue?vue&type=template&id=683f0e29&scoped=true&
+// CONCATENATED MODULE: ./src/components/Tooltip.vue?vue&type=template&id=8f1b2a80&scoped=true&
 
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/@vue/cli-plugin-typescript/node_modules/ts-loader??ref--13-1!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Tooltip.vue?vue&type=script&lang=ts&
 
@@ -16272,32 +16271,51 @@ function (_Vue) {
 
   _createClass(Tooltip, [{
     key: "mounted",
-    value: function mounted() {
-      document.body.addEventListener('touchstart', this.onClickOutsideTooltip);
-    }
+    value: function () {
+      var _mounted = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee() {
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                document.body.addEventListener('click', this.onClickOutsideTooltip);
+                this.update();
+
+              case 2:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function mounted() {
+        return _mounted.apply(this, arguments);
+      }
+
+      return mounted;
+    }()
   }, {
     key: "update",
     value: function update() {
-      if (!this.height) {
-        // If setReference hasn't run yet position the tooltip centered on top
-        this.width = this.$refs.tooltipBox.offsetWidth;
-        this.height = this.$refs.tooltipBox.offsetHeight;
-        return;
-      }
+      if (this.reference && this.$el) {
+        var referenceLeftPad = parseInt(window.getComputedStyle(this.reference.$el, null).getPropertyValue('padding-left'), 10);
+        this.left = this.reference.$el.getBoundingClientRect().left - this.$el.getBoundingClientRect().left + referenceLeftPad;
 
-      if (this.$refs.tooltipBox.parentElement === this.$el) {
-        this.tooltipPosition = 'top';
-        this.top = -this.height;
-        this.left = -this.width / 2 + this.$el.offsetWidth / 2;
-      } else {
-        this.top = this.$el.offsetTop - this.height;
-
-        if (this.reference.$el.scrollTop < this.top) {
+        if (this.reference.$el.scrollTop < this.$el.offsetTop - this.height) {
           this.tooltipPosition = 'top';
+          this.top = -this.height;
         } else {
           this.tooltipPosition = 'bottom';
-          this.top += this.iconHeight;
+          this.top = this.iconHeight;
         }
+      } else {
+        this.tooltipPosition = 'top';
+        this.width = this.$refs.tooltipBox.offsetWidth;
+        this.height = this.$refs.tooltipBox.offsetHeight;
+        this.top = -this.height;
+        this.left = -this.width / 2 + this.$el.offsetWidth / 2;
       }
     }
   }, {
@@ -16305,33 +16323,30 @@ function (_Vue) {
     value: function () {
       var _setReference = _asyncToGenerator(
       /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee() {
-        return regeneratorRuntime.wrap(function _callee$(_context) {
+      regeneratorRuntime.mark(function _callee2() {
+        var referenceLeftPad, referenceRightPad;
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
-            switch (_context.prev = _context.next) {
+            switch (_context2.prev = _context2.next) {
               case 0:
-                if (!(!this.reference || this.$refs.tooltipBox.parentElement !== this.$el)) {
-                  _context.next = 2;
+                if (!(this.reference && this.$el)) {
+                  _context2.next = 12;
                   break;
                 }
 
-                return _context.abrupt("return");
-
-              case 2:
-                // Move the element
-                this.$refs.tooltipBox.parentElement.removeChild(this.$refs.tooltipBox);
-                this.reference.$el.appendChild(this.$refs.tooltipBox); // Compute fixed positions
-
-                this.left = parseInt(window.getComputedStyle(this.reference.$el, null).getPropertyValue('padding-left'), 10);
-                this.width = this.reference.$el.offsetWidth - this.left - parseInt(window.getComputedStyle(this.reference.$el, null).getPropertyValue('padding-right'), 10);
+                // Compute fixed positions
+                referenceLeftPad = parseInt(window.getComputedStyle(this.reference.$el, null).getPropertyValue('padding-left'), 10);
+                referenceRightPad = parseInt(window.getComputedStyle(this.reference.$el, null).getPropertyValue('padding-right'), 10);
+                this.width = this.reference.$el.offsetWidth - referenceLeftPad - referenceRightPad;
                 this.iconHeight = this.$el.offsetHeight; // reset height
 
                 this.height = 0;
-                _context.next = 10;
+                this.top = 0;
+                _context2.next = 9;
                 return external_vue_property_decorator_["Vue"].nextTick();
 
-              case 10:
-                // Height depends on width, soo wait a tick fot it to update
+              case 9:
+                // Height depends on width, so wait a tick fot it to update
                 this.height = this.$refs.tooltipBox.offsetHeight; // calculate variable positions.
 
                 this.update(); // In case the reference container is scrollable add a listener
@@ -16340,12 +16355,12 @@ function (_Vue) {
                   this.reference.$el.addEventListener('scroll', this.update.bind(this));
                 }
 
-              case 13:
+              case 12:
               case "end":
-                return _context.stop();
+                return _context2.stop();
             }
           }
-        }, _callee, this);
+        }, _callee2, this);
       }));
 
       function setReference() {
@@ -16359,8 +16374,8 @@ function (_Vue) {
     value: function onClickOutsideTooltip(e) {
       if (!this.tooltipToggled) return;
 
-      if (!this.$refs.tooltipBox.contains(e.target) && !this.$refs.tooltipIcon.contains(e.target)) {
-        this.tooltipToggled = false;
+      if (!this.$refs.tooltipBox.contains(e.target)) {
+        this.toggleTooltip();
       }
     }
   }, {
@@ -16368,29 +16383,33 @@ function (_Vue) {
     value: function () {
       var _toggleTooltip = _asyncToGenerator(
       /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee2() {
-        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+      regeneratorRuntime.mark(function _callee3() {
+        return regeneratorRuntime.wrap(function _callee3$(_context3) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context3.prev = _context3.next) {
               case 0:
                 if (this.height) {
-                  _context2.next = 3;
+                  _context3.next = 3;
                   break;
                 }
 
                 console.warn('Trying to toggle tooltip before dimensions are set.');
-                return _context2.abrupt("return");
+                return _context3.abrupt("return");
 
               case 3:
                 this.update();
                 this.tooltipToggled = !this.tooltipToggled;
 
-              case 5:
+                if (!this.tooltipToggled) {
+                  this.$refs.tooltipIcon.blur();
+                }
+
+              case 6:
               case "end":
-                return _context2.stop();
+                return _context3.stop();
             }
           }
-        }, _callee2, this);
+        }, _callee3, this);
       }));
 
       function toggleTooltip() {
@@ -16399,31 +16418,6 @@ function (_Vue) {
 
       return toggleTooltip;
     }()
-  }, {
-    key: "mouseOver",
-    value: function mouseOver(mouseOverTooltip) {
-      var _this2 = this;
-
-      if (this.tooltipToggled) return;
-
-      if (mouseOverTooltip === false) {
-        // mouseleave
-        this.mouseOverTimeout = setTimeout(function () {
-          return _this2._updateMouseOverTooltip(mouseOverTooltip);
-        }, 100);
-      } else {
-        // mouseenter
-        clearTimeout(this.mouseOverTimeout);
-
-        this._updateMouseOverTooltip(mouseOverTooltip);
-      }
-    }
-  }, {
-    key: "_updateMouseOverTooltip",
-    value: function _updateMouseOverTooltip(mouseOverTooltip) {
-      this.update();
-      this.mousedOver = mouseOverTooltip;
-    }
   }, {
     key: "styles",
     get: function get() {
@@ -16445,11 +16439,6 @@ function (_Vue) {
 
       return {};
     }
-  }, {
-    key: "tooltipActive",
-    get: function get() {
-      return this.tooltipToggled || this.mousedOver;
-    }
   }]);
 
   return Tooltip;
@@ -16458,6 +16447,8 @@ function (_Vue) {
 __decorate([Object(external_vue_property_decorator_["Prop"])(Object)], Tooltipvue_type_script_lang_ts_Tooltip.prototype, "reference", void 0);
 
 __decorate([Object(external_vue_property_decorator_["Watch"])('reference', {
+  immediate: true
+}), Object(external_vue_property_decorator_["Watch"])('$el', {
   immediate: true
 })], Tooltipvue_type_script_lang_ts_Tooltip.prototype, "setReference", null);
 
@@ -16469,8 +16460,8 @@ Tooltipvue_type_script_lang_ts_Tooltip = __decorate([Object(external_vue_propert
 /* harmony default export */ var Tooltipvue_type_script_lang_ts_ = (Tooltipvue_type_script_lang_ts_Tooltip);
 // CONCATENATED MODULE: ./src/components/Tooltip.vue?vue&type=script&lang=ts&
  /* harmony default export */ var components_Tooltipvue_type_script_lang_ts_ = (Tooltipvue_type_script_lang_ts_); 
-// EXTERNAL MODULE: ./src/components/Tooltip.vue?vue&type=style&index=0&id=683f0e29&scoped=true&lang=css&
-var Tooltipvue_type_style_index_0_id_683f0e29_scoped_true_lang_css_ = __webpack_require__("0dfc");
+// EXTERNAL MODULE: ./src/components/Tooltip.vue?vue&type=style&index=0&id=8f1b2a80&scoped=true&lang=css&
+var Tooltipvue_type_style_index_0_id_8f1b2a80_scoped_true_lang_css_ = __webpack_require__("fa7f");
 
 // CONCATENATED MODULE: ./src/components/Tooltip.vue
 
@@ -16483,11 +16474,11 @@ var Tooltipvue_type_style_index_0_id_683f0e29_scoped_true_lang_css_ = __webpack_
 
 var Tooltip_component = normalizeComponent(
   components_Tooltipvue_type_script_lang_ts_,
-  Tooltipvue_type_template_id_683f0e29_scoped_true_render,
-  Tooltipvue_type_template_id_683f0e29_scoped_true_staticRenderFns,
+  Tooltipvue_type_template_id_8f1b2a80_scoped_true_render,
+  Tooltipvue_type_template_id_8f1b2a80_scoped_true_staticRenderFns,
   false,
   null,
-  "683f0e29",
+  "8f1b2a80",
   null
   
 )

@@ -19,11 +19,8 @@ export default class Tooltip extends Vue {
     private top;
     private mounted;
     private readonly styles;
-    private readonly tooltipActive;
     update(): void;
     private setReference;
     private onClickOutsideTooltip;
     private toggleTooltip;
-    private mouseOver;
-    private _updateMouseOverTooltip;
 }
