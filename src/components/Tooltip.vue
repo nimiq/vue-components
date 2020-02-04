@@ -1,10 +1,9 @@
 <template>
-    <span class="tooltip" :class="{ active: tooltipActive }">
+    <span class="tooltip" :class="{ active: tooltipToggled }">
         <a href="javascript:void(0);"
             ref="tooltipIcon"
-            @click="toggleTooltip"
-            @mouseenter="mouseOver(true)"
-            @mouseleave="mouseOver(false)"
+            @click.stop="toggleTooltip"
+            @mouseenter="update()"
             :class="{
                 top: tooltipPosition === 'top',
                 bottom: tooltipPosition === 'bottom',
@@ -15,11 +14,8 @@
         </a>
         <div ref="tooltipBox"
             class="tooltip-box"
-            @mouseenter="mouseOver(true)"
-            @mouseleave="mouseOver(false)"
             :style="styles"
             :class="{
-                active: tooltipActive,
                 top: tooltipPosition === 'top',
                 bottom: tooltipPosition === 'bottom',
             }">
@@ -55,8 +51,10 @@ export default class Tooltip extends Vue {
     private left: number = 0;
     private top: number = 0;
 
-    private mounted() {
-        document.body.addEventListener('touchstart', this.onClickOutsideTooltip);
+    private async mounted() {
+        document.body.addEventListener('click', this.onClickOutsideTooltip);
+
+        this.update();
     }
 
     private get styles() {
@@ -77,76 +75,65 @@ export default class Tooltip extends Vue {
         return {};
     }
 
-    private get tooltipActive() {
-        return this.tooltipToggled || this.mousedOver;
-    }
-
     public update() {
-        if (!this.height) { // If setReference hasn't run yet position the tooltip centered on top
-            this.width = this.$refs.tooltipBox.offsetWidth;
-            this.height = this.$refs.tooltipBox.offsetHeight;
-            return;
-        }
-        if (this.$refs.tooltipBox.parentElement === this.$el) {
-            this.tooltipPosition = 'top';
-            this.top = -this.height;
-            this.left = -this.width / 2 + this.$el.offsetWidth / 2;
-        } else {
-            this.top = this.$el.offsetTop - this.height;
+        if (this.reference && this.$el) {
+            const referenceLeftPad = parseInt(
+                window.getComputedStyle(this.reference.$el, null).getPropertyValue('padding-left'), 10);
+            this.left = this.reference.$el.getBoundingClientRect().left - this.$el.getBoundingClientRect().left + referenceLeftPad;
 
-            if (this.reference.$el.scrollTop < this.top) {
+            if (this.reference.$el.scrollTop < this.$el.offsetTop - this.height) {
                 this.tooltipPosition = 'top';
+                this.top = -this.height;
             } else {
                 this.tooltipPosition = 'bottom';
-                this.top += this.iconHeight;
+                this.top = this.iconHeight;
             }
+        } else {
+            this.tooltipPosition = 'top';
+            this.width = this.$refs.tooltipBox.offsetWidth;
+            this.height = this.$refs.tooltipBox.offsetHeight;
+            this.top = -this.height;
+            this.left = -this.width / 2 + this.$el.offsetWidth / 2;
         }
 
     }
 
     @Watch('reference', { immediate: true })
+    @Watch('$el', { immediate: true })
     private async setReference() {
-        if (!this.reference || this.$refs.tooltipBox.parentElement !== this.$el) {
-             // If this.reference is null wait for the reference to get passed on.
-             // Also skip if already set up indicated by the moved tooltipBox.
-            return;
-        }
+        if (this.reference && this.$el) {
+            // Compute fixed positions
+            const referenceLeftPad = parseInt(
+                window.getComputedStyle(this.reference.$el, null).getPropertyValue('padding-left'), 10);
 
-        // Move the element
-        this.$refs.tooltipBox.parentElement.removeChild(this.$refs.tooltipBox);
-        this.reference.$el.appendChild(this.$refs.tooltipBox);
+            const referenceRightPad = parseInt(
+                window.getComputedStyle(this.reference.$el, null).getPropertyValue('padding-right'), 10);
 
-        // Compute fixed positions
-        this.left = parseInt(
-            window.getComputedStyle(this.reference.$el, null).getPropertyValue('padding-left'), 10);
+            this.width = this.reference.$el.offsetWidth - referenceLeftPad - referenceRightPad;
 
-        this.width = this.reference.$el.offsetWidth - this.left - parseInt(
-            window.getComputedStyle(this.reference.$el, null).getPropertyValue('padding-right'), 10);
+            this.iconHeight = this.$el.offsetHeight;
+            // reset height
+            this.height = 0;
+            this.top = 0;
+            await Vue.nextTick();
+            // Height depends on width, so wait a tick fot it to update
 
-        this.iconHeight = this.$el.offsetHeight;
-        // reset height
-        this.height = 0;
-        await Vue.nextTick();
-        // Height depends on width, soo wait a tick fot it to update
+            this.height = this.$refs.tooltipBox.offsetHeight;
 
-        this.height = this.$refs.tooltipBox.offsetHeight;
+            // calculate variable positions.
+            this.update();
 
-        // calculate variable positions.
-        this.update();
-
-        // In case the reference container is scrollable add a listener
-        if (this.reference.$el.scrollHeight !== this.reference.$el.offsetHeight) {
-            this.reference.$el.addEventListener('scroll', this.update.bind(this));
+            // In case the reference container is scrollable add a listener
+            if (this.reference.$el.scrollHeight !== this.reference.$el.offsetHeight) {
+                this.reference.$el.addEventListener('scroll', this.update.bind(this));
+            }
         }
     }
 
     private onClickOutsideTooltip(e: MouseEvent) {
         if (!this.tooltipToggled) return;
-        if (
-            !this.$refs.tooltipBox.contains(e.target as HTMLElement) &&
-            !this.$refs.tooltipIcon.contains(e.target as HTMLElement)
-        ) {
-            this.tooltipToggled = false;
+        if (!this.$refs.tooltipBox.contains(e.target as HTMLElement)) {
+            this.toggleTooltip();
         }
     }
 
@@ -157,25 +144,9 @@ export default class Tooltip extends Vue {
         }
         this.update();
         this.tooltipToggled = !this.tooltipToggled;
-    }
-
-    private mouseOver(mouseOverTooltip: boolean) {
-        if (this.tooltipToggled) return;
-
-        if (mouseOverTooltip === false) { // mouseleave
-            this.mouseOverTimeout = setTimeout(
-                () => this._updateMouseOverTooltip(mouseOverTooltip),
-                100
-            );
-        } else { // mouseenter
-            clearTimeout(this.mouseOverTimeout);
-            this._updateMouseOverTooltip(mouseOverTooltip);
+        if (!this.tooltipToggled) {
+            this.$refs.tooltipIcon.blur();
         }
-    }
-
-    private _updateMouseOverTooltip(mouseOverTooltip: boolean) {
-        this.update();
-        this.mousedOver = mouseOverTooltip;
     }
 }
 </script>
@@ -221,6 +192,8 @@ export default class Tooltip extends Vue {
         bottom: -2rem;
     }
 
+    .tooltip a:focus::after,
+    .tooltip a:hover::after,
     .tooltip.active > a::after {
         opacity: 1;
         visibility: visible;
@@ -240,14 +213,16 @@ export default class Tooltip extends Vue {
     }
 
     .tooltip-box.bottom {
-        transform: translateY(calc(100% + 2rem));
+        transform: translateY(2rem);
     }
 
     .tooltip-box.top {
         transform: translateY(-2rem);
     }
 
-    .tooltip-box.active {
+    .tooltip a:focus ~ .tooltip-box,
+    .tooltip a:hover ~ .tooltip-box,
+    .tooltip.active .tooltip-box {
         visibility: visible;
         opacity: 1;
     }
