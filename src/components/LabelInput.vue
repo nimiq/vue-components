@@ -18,7 +18,7 @@ import { Utf8Tools } from '@nimiq/utils';
 
 @Component
 export default class LabelInput extends Vue {
-    @Prop(Number) private maxBytes?: number;
+    @Prop(Number) protected maxBytes?: number;
     @Prop({type: String, default: ''}) private value!: string;
     @Prop({type: String, default: 'Name your address'}) private placeholder!: string;
     @Prop({type: Boolean, default: false}) private vanishing!: boolean;
