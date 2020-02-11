@@ -1,6 +1,6 @@
 import { Vue } from 'vue-property-decorator';
 export default class LabelInput extends Vue {
-    private maxBytes?;
+    protected maxBytes?: number;
     private value;
     private placeholder;
     private vanishing;
