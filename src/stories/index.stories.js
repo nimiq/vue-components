@@ -1,6 +1,7 @@
-import {storiesOf} from '@storybook/vue';
-import {action} from '@storybook/addon-actions';
-import {boolean, number, text, object, select, withKnobs} from '@storybook/addon-knobs';
+/* eslint-disable import/no-extraneous-dependencies */
+import { storiesOf } from '@storybook/vue';
+import { action } from '@storybook/addon-actions';
+import { boolean, number, text, object, select, withKnobs } from '@storybook/addon-knobs';
 import bigInt from 'big-integer';
 
 import Account from '../components/Account.vue';
