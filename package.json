@@ -14,17 +14,17 @@
     "types/**/*"
   ],
   "dependencies": {
-    "@nimiq/style": "^0.7.5",
+    "@nimiq/style": "^0.7.6",
     "big-integer": "^1.6.44",
-    "input-format": "^0.2.4",
+    "input-format": "^0.2.8",
     "qr-code": "github:nimiq/qr-encoder",
     "qr-scanner": "^1.1.1",
-    "vue": "^2.6.10",
-    "vue-property-decorator": "^7.0.0"
+    "vue": "^2.6.11",
+    "vue-property-decorator": "^8.4.0"
   },
   "devDependencies": {
-    "@nimiq/iqons": "^1.1.1",
-    "@nimiq/utils": "^0.4.4",
+    "@nimiq/iqons": "^1.5.2",
+    "@nimiq/utils": "^0.4.6",
     "@storybook/addon-actions": "^4.0.0-alpha.14",
     "@storybook/addon-knobs": "^4.0.0-alpha.14",
     "@storybook/addon-links": "^4.0.0-alpha.14",
@@ -35,12 +35,11 @@
     "@vue/cli-service": "~4.2.2",
     "core-js": "^3.6.4",
     "file-loader": "^3.0.1",
-    "moment": "^2.22.2",
-    "ts-loader": "^4.4.2",
+    "moment": "^2.24.0",
     "typescript": "~3.7.5",
     "vue-cli-plugin-ts-bundler": "^0.0.3",
     "vue-svg-loader": "^0.12.0",
-    "vue-template-compiler": "^2.6.10"
+    "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
     "root": true,
