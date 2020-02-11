@@ -9,7 +9,7 @@ export default class Amount extends Vue {
     currency: string;
     currencyDecimals: number;
     private _validateDecimals;
-    private readonly formattedAmount;
-    private readonly isApprox;
+    private get formattedAmount();
+    private get isApprox();
 }
 export {};

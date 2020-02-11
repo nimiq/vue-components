@@ -13,8 +13,8 @@ export default class Carousel extends Vue {
     private radius;
     private rotations;
     private requestAnimationFrameId;
-    private readonly _hasDummyPosition;
-    private readonly _totalPositionCount;
+    private get _hasDummyPosition();
+    private get _totalPositionCount();
     private mounted;
     private destroyed;
     private _onEntriesChange;

@@ -17,12 +17,12 @@ declare class Timer extends Vue {
     private requestAnimationFrameId;
     private timeout;
     private destroyed;
-    private readonly _totalTime;
-    private readonly _timeLeft;
-    private readonly _progress;
-    private readonly _timeCircleInfo;
-    private readonly _fillerCircleInfo;
-    private readonly _updateInterval;
+    private get _totalTime();
+    private get _timeLeft();
+    private get _progress();
+    private get _timeCircleInfo();
+    private get _fillerCircleInfo();
+    private get _updateInterval();
     private _setRadius;
     private _setTimer;
     private _rerender;

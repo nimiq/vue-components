@@ -5,7 +5,7 @@ export default class MigrationWelcome extends Vue {
     private content;
     reset(): void;
     private buttonClick;
-    private readonly title;
-    private readonly notice;
-    private readonly buttonText;
+    private get title();
+    private get notice();
+    private get buttonText();
 }

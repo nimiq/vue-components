@@ -6,6 +6,6 @@ export default class AmountWithFee extends Vue {
     mounted(): void;
     private watchAvailableAmountChange;
     private watchAmountChange;
-    private readonly isValid;
+    private get isValid();
     focus(): void;
 }

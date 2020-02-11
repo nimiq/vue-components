@@ -11,8 +11,8 @@ export default class CopyableField extends Vue {
     private _copiedResetTimeout;
     private mounted;
     private destroyed;
-    private readonly isKeyedValue;
-    private readonly hasSingleKey;
+    private get isKeyedValue();
+    private get hasSingleKey();
     private _onValueChange;
     private _updateFontSize;
     private copy;

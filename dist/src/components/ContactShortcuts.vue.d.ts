@@ -4,8 +4,8 @@ export default class ContactShortcuts extends Vue {
         address: string;
         label: string;
     }>;
-    private readonly filteredContacts;
-    private readonly missingContacts;
+    private get filteredContacts();
+    private get missingContacts();
     contactsOpened(): void;
     contactSelected(address: string, label: string): void;
 }

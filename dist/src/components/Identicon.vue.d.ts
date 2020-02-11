@@ -5,5 +5,5 @@ export default class Identicon extends Vue {
     address: string;
     private dataUrl;
     private computeDataUrl;
-    readonly placeholderDataUrl: string;
+    get placeholderDataUrl(): string;
 }

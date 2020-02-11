@@ -12,7 +12,7 @@ export default class ContactList extends Vue {
     private setContact;
     private removeContact;
     private notification;
-    private readonly filteredContacts;
+    private get filteredContacts();
     private reset;
     private changeContact;
     private deleteContact;

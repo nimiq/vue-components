@@ -18,7 +18,7 @@ export default class Tooltip extends Vue {
     private left;
     private top;
     private mounted;
-    private readonly styles;
+    private get styles();
     update(): void;
     private setReference;
     private onClickOutsideTooltip;

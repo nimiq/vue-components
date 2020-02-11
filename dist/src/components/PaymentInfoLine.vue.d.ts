@@ -10,7 +10,7 @@ interface FiatAmountInfo {
     currency: string;
 }
 declare class PaymentInfoLine extends Vue {
-    private readonly originDomain;
+    private get originDomain();
     cryptoAmount: CryptoAmountInfo;
     fiatAmount?: FiatAmountInfo;
     origin: string;

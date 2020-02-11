@@ -1,13 +1,13 @@
 import { Vue } from 'vue-property-decorator';
 export default class Wallet extends Vue {
     private wallet;
-    readonly addresses: string[];
-    readonly isLegacy: boolean;
-    readonly isBip39: boolean;
-    readonly isLedger: boolean;
-    readonly isKeyguard: boolean;
-    readonly isMultiAddress: boolean;
-    readonly fileMissing: boolean;
-    readonly wordsMissing: boolean;
-    readonly exportMissing: boolean;
+    get addresses(): string[];
+    get isLegacy(): boolean;
+    get isBip39(): boolean;
+    get isLedger(): boolean;
+    get isKeyguard(): boolean;
+    get isMultiAddress(): boolean;
+    get fileMissing(): boolean;
+    get wordsMissing(): boolean;
+    get exportMissing(): boolean;
 }

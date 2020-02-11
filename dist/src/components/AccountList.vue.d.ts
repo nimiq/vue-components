@@ -13,7 +13,7 @@ export default class AccountList extends Vue {
     private highlightedDisabledAddressTimeout;
     focus(address: string): void;
     private accountSelected;
-    private readonly accountContainerTag;
+    private get accountContainerTag();
     private accountChanged;
     private _isContract;
 }

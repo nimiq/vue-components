@@ -14,6 +14,6 @@ export default class Account extends Vue {
     focus(): void;
     private changed;
     private _onImageChange;
-    private readonly _isNimiqAddress;
-    private readonly _isLabelNimiqAddress;
+    private get _isNimiqAddress();
+    private get _isLabelNimiqAddress();
 }

@@ -19,5 +19,6 @@ export default class AmountInput extends Vue {
     focus(): void;
     private updateValue;
     private updateWidth;
-    formattedValue: string;
+    get formattedValue(): string;
+    set formattedValue(value: string);
 }

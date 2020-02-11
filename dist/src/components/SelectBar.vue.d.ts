@@ -5,7 +5,7 @@ declare class SelectBar extends Vue {
     selectedValue?: number;
     private selectedOption;
     private created;
-    readonly value: number;
+    get value(): number;
     private getColor;
     private onChanged;
 }

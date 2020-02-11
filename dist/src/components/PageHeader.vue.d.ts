@@ -4,5 +4,5 @@ export default class PageHeader extends Vue {
     private progressIndicator;
     private numberSteps;
     private step;
-    readonly progressSteps: any[];
+    get progressSteps(): any[];
 }

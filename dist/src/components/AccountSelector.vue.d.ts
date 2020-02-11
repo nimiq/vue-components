@@ -32,7 +32,7 @@ export default class AccountSelector extends Vue {
     private allowLogin;
     private highlightedDisabledAccount;
     private highlightedDisabledAccountTimeout;
-    private readonly sortedWallets;
+    private get sortedWallets();
     private accountSelected;
     private login;
     private _isAccountDisabled;
