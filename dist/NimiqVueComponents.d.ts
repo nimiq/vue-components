@@ -5,6 +5,7 @@
 
 declare module 'NimiqVueComponents' {
     export { default as CircleSpinner } from 'NimiqVueComponents/src/components/CircleSpinner.vue';
+    export { default as CloseButton } from 'NimiqVueComponents/src/components/CloseButton.vue';
     export { default as CopyableField } from 'NimiqVueComponents/src/components/CopyableField.vue';
     export { default as FiatAmount } from 'NimiqVueComponents/src/components/FiatAmount.vue';
     export { default as QrCode } from 'NimiqVueComponents/src/components/QrCode.vue';
@@ -16,6 +17,13 @@ declare module 'NimiqVueComponents' {
 declare module 'NimiqVueComponents/src/components/CircleSpinner.vue' {
     const _default: {};
     export default _default;
+}
+
+declare module 'NimiqVueComponents/src/components/CloseButton.vue' {
+    import { Vue } from 'vue-property-decorator';
+    export default class CloseButton extends Vue {
+        click(event: MouseEvent): void;
+    }
 }
 
 declare module 'NimiqVueComponents/src/components/CopyableField.vue' {

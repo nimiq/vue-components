@@ -13,7 +13,7 @@
 // export { default as AmountWithFee } from './components/AmountWithFee.vue';
 // export { default as BottomOverlay } from './components/BottomOverlay.vue';
 export { default as CircleSpinner } from './components/CircleSpinner.vue';
-// export { default as CloseButton } from './components/CloseButton.vue';
+export { default as CloseButton } from './components/CloseButton.vue';
 // export { default as Contact } from './components/Contact.vue';
 // export { default as ContactList } from './components/ContactList.vue';
 // export { default as Copyable } from './components/Copyable.vue';
