@@ -14,7 +14,7 @@
 // export { default as BottomOverlay } from './components/BottomOverlay.vue';
 // export { default as Carousel } from './components/Carousel.vue';
 export { default as CircleSpinner } from './components/CircleSpinner.vue';
-// export { default as CloseButton } from './components/CloseButton.vue';
+export { default as CloseButton } from './components/CloseButton.vue';
 // export { default as Contact } from './components/Contact.vue';
 // export { default as ContactList } from './components/ContactList.vue';
 // export { default as ContactShortcuts } from './components/ContactShortcuts.vue';
