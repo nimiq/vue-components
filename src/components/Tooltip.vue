@@ -42,13 +42,13 @@ export default class Tooltip extends Vue {
     public $refs!: {
         tooltipBox: HTMLDivElement,
         tooltipIcon: HTMLAnchorElement,
-    }
+    };
     public $el: HTMLElement;
 
     private tooltipPosition: 'top' | 'bottom' = 'top';
     private tooltipToggled: boolean = false;
     private mousedOver: boolean = false;
-    private mouseOverTimeout: number | NodeJS.Timer;
+    private mouseOverTimeout: number;
 
     private iconHeight: number = 0;
     private height: number = 0;
@@ -152,12 +152,12 @@ export default class Tooltip extends Vue {
 
     private mouseOver(mouseOverTooltip: boolean) {
         if (mouseOverTooltip === false) { // mouseleave
-            this.mouseOverTimeout = setTimeout(
+            this.mouseOverTimeout = window.setTimeout(
                 () => this._updateMouseOverTooltip(mouseOverTooltip),
-                100
+                100,
             );
         } else { // mouseenter
-            clearTimeout(this.mouseOverTimeout as number);
+            window.clearTimeout(this.mouseOverTimeout);
             this._updateMouseOverTooltip(mouseOverTooltip);
         }
     }
