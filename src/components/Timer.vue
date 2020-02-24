@@ -3,7 +3,7 @@
         @focus="detailsShown = true" @mouseenter="detailsShown = true"
         @blur="detailsShown = false" @mouseleave="detailsShown = false"
         :class="{
-            'details-shown': detailsShown,
+            'time-shown': detailsShown || alwaysShowTime,
             'little-time-left': _progress >= .75,
             'inverse-theme': theme === constructor.Themes.INVERSE,
         }"
@@ -19,7 +19,7 @@
                     :stroke-width="_fillerCircleInfo.strokeWidth"></circle>
 
             <transition name="transition-fade">
-                <g v-if="!detailsShown" class="info-exclamation-icon">
+                <g v-if="!detailsShown && !alwaysShowTime" class="info-exclamation-icon">
                     <rect x="12" y="9" width="2" height="2" rx="1" />
                     <rect x="12" y="12.5" width="2" height="4.5" rx="1" />
                 </g>
@@ -87,6 +87,12 @@ class Timer extends Vue {
     public endTime?: number;
 
     @Prop({
+        type: Boolean,
+        default: true,
+    })
+    public alwaysShowTime!: boolean;
+
+    @Prop({
         type: String,
         default: 'normal',
         validator: (value: any) => Object.values(Timer.Themes).includes(value),
@@ -109,7 +115,9 @@ class Timer extends Vue {
     // While the radius r of the circle and the values stroke-dasharray, stroke-dashoffset and stroke-width that depend
     // on the radius can be transitioned via css, the behavior on value update during an ongoing transition is not
     // consistent (e.g. time update while animating on user hover or quick hover and unhover). Therefore animate via JS.
-    private radius: Tweenable = new Tweenable(8);
+    private radius: Tweenable = new Tweenable(this.detailsShown || this.alwaysShowTime
+        ? 12
+        : 8);
     private fullCircleLength: number = 2 * Math.PI * this.radius.currentValue;
     private requestAnimationFrameId: number | null = null;
     private timeout: number | null = null;
@@ -186,8 +194,11 @@ class Timer extends Vue {
     }
 
     @Watch('detailsShown', { immediate: true })
+    @Watch('alwaysShowTime', { immediate: true })
     private _setRadius() {
-        this.radius.tweenTo(this.detailsShown ? 12 : 8, 300);
+        this.radius.tweenTo(this.detailsShown || this.alwaysShowTime
+            ? 12
+            : 8, 300);
         this._rerender();
     }
 
@@ -280,16 +291,16 @@ export default Timer;
         opacity: .3;
     }
 
-    .details-shown .time-circle {
+    .time-shown .time-circle {
         stroke: var(--nimiq-light-blue);
         opacity: 1;
     }
 
-    .inverse-theme.details-shown:not(.little-time-left) .time-circle {
+    .inverse-theme.time-shown:not(.little-time-left) .time-circle {
         stroke: var(--nimiq-light-blue-on-dark, var(--nimiq-light-blue));
     }
 
-    .inverse-theme.details-shown .filler-circle {
+    .inverse-theme.time-shown .filler-circle {
         opacity: 0;
     }
 

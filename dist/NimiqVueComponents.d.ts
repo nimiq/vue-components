@@ -436,6 +436,7 @@ declare module 'NimiqVueComponents/src/components/Timer.vue' {
     class Timer extends Vue {
         startTime?: number;
         endTime?: number;
+        alwaysShowTime: boolean;
         theme: string;
         strokeWidth: number;
         synchronize(referenceTime: number): void;
