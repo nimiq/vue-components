@@ -13,6 +13,7 @@
 import {Component, Emit, Prop, Vue} from 'vue-property-decorator';
 import Wallet from './Wallet.vue';
 
+/** @deprecated */
 @Component({components: {Wallet}})
 export default class WalletList extends Vue {
     @Prop(Array) private wallets!:
@@ -26,6 +27,11 @@ export default class WalletList extends Vue {
         balance?: number,
     }>;
     @Prop(String) private activeWalletId?: string;
+
+    private created() {
+        console.warn('WalletList is deprecated and will be removed soon. If you want to keep using it, please'
+            + ' copy it over to your code base.');
+    }
 
     @Emit()
     private walletSelected(id: string) {} // tslint:disable-line no-empty

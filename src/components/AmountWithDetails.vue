@@ -26,12 +26,18 @@
     import { Component, Prop, Vue } from 'vue-property-decorator';
     import Amount from './Amount.vue';
 
+    /** @deprecated */
     @Component({components: {Amount}})
     export default class AmountWithDetails extends Vue {
         @Prop(Number) public amount!: number;
         @Prop(Number) public networkFee!: number;
         @Prop({type: Boolean, default: false}) public networkFeeEditable!: boolean;
         @Prop({type: Number, default: 2, validator(value) { return value >= 0 && value <= 5; }}) public decimals!: number;
+
+        private created() {
+            console.warn('AmountWithDetails is deprecated and will be removed soon. If you want to keep using it,'
+                + ' please copy it over to your code base.');
+        }
 
         private showDetails = false;
         private isEditing = false;

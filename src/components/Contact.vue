@@ -40,6 +40,7 @@
 
     import { ValidationUtils } from '@nimiq/utils';
 
+    /** @deprecated */
     @Component({components: {Identicon, Address}})
     export default class Contact extends Vue {
         @Prop(String) public address!: string;
@@ -50,6 +51,11 @@
         private isEditing: boolean = false;
         private workingLabel: string = '';
         private workingAddress: string = '';
+
+        private created() {
+            console.warn('Contact is deprecated and will be removed soon. If you want to keep using it, please'
+                + ' copy it over to your code base.');
+        }
 
         private isInputValid() {
             return this.workingLabel && ValidationUtils.isValidAddress(this.workingAddress);

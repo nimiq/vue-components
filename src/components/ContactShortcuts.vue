@@ -23,6 +23,7 @@ import { Component, Emit, Prop, Vue } from 'vue-property-decorator';
 import Account from './Account.vue';
 import { ContactsIcon } from './Icons';
 
+/** @deprecated */
 @Component({components: {Account, ContactsIcon}})
     export default class ContactShortcuts extends Vue {
         @Prop(Array) public contacts!: Array<{address: string, label: string}>;
@@ -33,6 +34,11 @@ import { ContactsIcon } from './Icons';
 
         private get missingContacts() {
             return Math.max(0, 3 - this.contacts.length);
+        }
+
+        private created() {
+            console.warn('ContactShortcuts is deprecated and will be removed soon. If you want to keep using it, please'
+                + ' copy it over to your code base.');
         }
 
         @Emit()

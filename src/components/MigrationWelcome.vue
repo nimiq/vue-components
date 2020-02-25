@@ -67,6 +67,7 @@
     import PageFooter from './PageFooter.vue';
     import { ArrowRightSmallIcon } from './Icons';
 
+    /** @deprecated */
     @Component({components: {SmallPage, PageHeader, PageBody, PageFooter, ArrowRightSmallIcon}})
     export default class MigrationWelcome extends Vue {
         @Prop({type: String, default: 'https://medium.com/nimiq-network'}) public link!: string;
@@ -86,6 +87,11 @@
             notice: 'Multiple Addresses and Login Files<br>are supported by new Accounts only.',
             button: 'Got it!',
         }];
+
+        private created() {
+            console.warn('MigrationWelcome is deprecated and will be removed soon. If you want to keep using it, please'
+                + ' copy it over to your code base.');
+        }
 
         public reset() {
             this.page = 1;

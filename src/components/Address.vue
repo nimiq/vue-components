@@ -9,9 +9,15 @@
     import {Component, Prop, Vue} from 'vue-property-decorator';
     import Identicon from './Identicon.vue';
 
+    /** @deprecated */
     @Component
     export default class Address extends Vue {
         @Prop(String) public address!: string;
+
+        private created() {
+            console.warn('Address is deprecated and will be removed soon. If you want to keep using it, please'
+                + ' copy it over to your code base.');
+        }
 
         private copy() {
             const selection = window.getSelection();

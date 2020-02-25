@@ -437,7 +437,7 @@ storiesOf('Components', module)
                 :disabledAddresses="[disabledAddress]" />`
         };
     })
-    .add('Address', () => {
+    .add('Address (deprecated)', () => {
         const address = text('address', 'NQ07 0000 00000000 0000 0000 0000 0000 0000');
         return {
             components: {Address},
@@ -529,7 +529,7 @@ storiesOf('Components', module)
             template: `<AccountRing :addresses="addresses" :animate="true"/>`,
         };
     })
-    .add('AmountWithDetails', () => {
+    .add('AmountWithDetails (deprecated)', () => {
         const amount = number('amount', 199862);
         const networkFee = number('networkFee', 138);
         const networkFeeEditable = boolean('networkFeeEditable', false);
@@ -620,7 +620,7 @@ storiesOf('Components', module)
             template: `<CloseButton class="top-right" @click="click"/>`,
         };
     })
-    .add('Contact', () => {
+    .add('Contact (deprecated)', () => {
         const label = text('label', 'Burn address');
         const address = text('address', 'NQ07 0000 00000000 0000 0000 0000 0000 0000');
         const showOptions = boolean('showOptions', false);
@@ -637,7 +637,7 @@ storiesOf('Components', module)
             template: `<Contact label="${label}" :address="address" :show-options="${showOptions}" @select="onSelect" @change="onChange" @delete="onDelete"/>`,
         };
     })
-    .add('ContactList', () => {
+    .add('ContactList (deprecated)', () => {
         // setup knobs
         const contacts = object('Contacts', [{
             label: 'Nimiq Bar',
@@ -707,7 +707,7 @@ storiesOf('Components', module)
             `
         };
     })
-    .add('ContactShortcuts', () => {
+    .add('ContactShortcuts (deprecated)', () => {
         // setup knobs
         const contacts = object('Contacts', [{
             label: 'Nimiq Bar',
@@ -812,7 +812,7 @@ storiesOf('Components', module)
                             />`
         };
     })
-    .add('WalletList', () => {
+    .add('WalletList (deprecated)', () => {
         const activeWalletId = select('Active Wallet', ['account_1', 'account_2', 'account_3', 'account_4'], 'account_1');
         return {
             components: {WalletList},
@@ -888,7 +888,7 @@ storiesOf('Components', module)
             `,
         };
     })
-    .add('WalletMenu', () => {
+    .add('WalletMenu (deprecated)', () => {
         const activeWalletId = select('Active Wallet', ['account_0', 'account_1', 'account_2', 'account_3', 'account_4'], 'account_3');
         return {
             components: {WalletMenu},
@@ -1187,7 +1187,7 @@ storiesOf('Pages', module)
             `),
         };
     })
-    .add('MigrationWelcome', () => {
+    .add('MigrationWelcome (deprecated)', () => {
         const link = text('Link', 'https://medium.com/nimiq-network');
         return {
             components: {MigrationWelcome},
