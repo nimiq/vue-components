@@ -45,6 +45,8 @@ import LoadingSpinner from '../components/LoadingSpinner.vue';
 import MigrationWelcome from '../components/MigrationWelcome.vue';
 import * as Icons from '../components/Icons';
 
+import '@nimiq/style/nimiq-style.min.css';
+
 function windowTemplate(slot) {
     return `
         <div style="background: var(--nimiq-gray); padding: 64px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
