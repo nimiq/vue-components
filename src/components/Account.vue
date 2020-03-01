@@ -1,10 +1,7 @@
 <template>
     <div class="account" :class="[{ editable }, layout, {cashlink: displayAsCashlink}]">
         <div class="identicon-and-label">
-            <div v-if="showImage" class="identicon">
-                <img class="account-image" :src="image" @error="showImage = false">
-                <div class="outline"></div>
-            </div>
+            <img v-if="showImage" class="identicon account-image" :src="image" @error="showImage = false">
             <div v-else-if="displayAsCashlink" class="identicon">
                 <div class="nq-blue-bg">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="white" stroke-linecap="round" stroke-width="2.5"><path d="M40.25 23.25v-.5a6.5 6.5 0 0 0-6.5-6.5h-3.5a6.5 6.5 0 0 0-6.5 6.5v6.5a6.5 6.5 0 0 0 6.5 6.5h2"/><path d="M23.75 40.75v.5a6.5 6.5 0 0 0 6.5 6.5h3.5a6.5 6.5 0 0 0 6.5-6.5v-6.5a6.5 6.5 0 0 0-6.5-6.5h-2"/><path d="M32 11.25v4M32 48.75v4"/></svg>
@@ -151,10 +148,8 @@
         border: .25rem solid rgba(31, 35, 72, .2); /* based on nimiq-blue */
     }
 
-    .identicon .account-image {
-        width: 100%;
-        height: 100%;
-        clip-path: url(#nimiq-hexagon-clip);
+    .account-image {
+        border-radius: 1rem;
     }
 
     .wallet-label {
