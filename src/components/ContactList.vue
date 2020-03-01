@@ -44,6 +44,7 @@ import {Component, Emit, Prop, Vue} from 'vue-property-decorator';
 import Contact from './Contact.vue';
 import NewContact from './NewContact.vue';
 
+/** @deprecated */
 @Component({components: {Contact, NewContact}})
     export default class ContactList extends Vue {
         @Prop(Array) public contacts!: Array<{ address: string, label: string }>;
@@ -52,6 +53,11 @@ import NewContact from './NewContact.vue';
         private isManaging: boolean = false;
         private isAddingNewContact: boolean = false;
         private abortTrigger: number = 0;
+
+        private created() {
+            console.warn('ContactList is deprecated and will be removed soon. If you want to keep using it, please'
+                + ' copy it over to your code base.');
+        }
 
         @Emit()
         // tslint:disable-next-line no-empty

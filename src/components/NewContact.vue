@@ -25,10 +25,16 @@
 
     import { ValidationUtils } from '@nimiq/utils';
 
+    /** @deprecated */
     @Component({components: {Identicon, Address}})
     export default class NewContact extends Vue {
         private workingLabel: string = '';
         private workingAddress: string = '';
+
+        private created() {
+            console.warn('NewContact is deprecated and will be removed soon. If you want to keep using it, please'
+                + ' copy it over to your code base.');
+        }
 
         public edit() {
             this.workingLabel = '';

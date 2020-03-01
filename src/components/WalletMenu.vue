@@ -14,6 +14,7 @@ import {Component, Prop, Vue} from 'vue-property-decorator';
 import WalletList from './WalletList.vue';
 import { GearIcon } from './Icons';
 
+/** @deprecated */
 @Component({components: {WalletList, GearIcon}})
 export default class WalletMenu extends Vue {
     @Prop(Array) private wallets!:
@@ -27,6 +28,11 @@ export default class WalletMenu extends Vue {
         balance?: number,
     }>;
     @Prop(String) private activeWalletId!: string;
+
+    private created() {
+        console.warn('WalletMenu is deprecated and will be removed soon. If you want to keep using it, please'
+            + ' copy it over to your code base.');
+    }
 }
 </script>
 

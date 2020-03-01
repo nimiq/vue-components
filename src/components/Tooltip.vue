@@ -1,9 +1,13 @@
 <template>
-    <span class="tooltip" :class="{ active: tooltipToggled }">
+    <span class="tooltip"
+        :class="{ active: tooltipActive }"
+        @mouseenter="mouseOver(true)"
+        @mouseleave="mouseOver(false)"
+    >
         <a href="javascript:void(0);"
             ref="tooltipIcon"
-            @click.stop="toggleTooltip"
-            @mouseenter="update()"
+            @focus.stop="toggleTooltip"
+            @blur.stop="tooltipToggled ? toggleTooltip() : ''"
             :class="{
                 top: tooltipPosition === 'top',
                 bottom: tooltipPosition === 'bottom',
@@ -16,6 +20,7 @@
             class="tooltip-box"
             :style="styles"
             :class="{
+                active: tooltipActive,
                 top: tooltipPosition === 'top',
                 bottom: tooltipPosition === 'bottom',
             }">
@@ -37,7 +42,7 @@ export default class Tooltip extends Vue {
     public $refs!: {
         tooltipBox: HTMLDivElement,
         tooltipIcon: HTMLAnchorElement,
-    }
+    };
     public $el: HTMLElement;
 
     private tooltipPosition: 'top' | 'bottom' = 'top';
@@ -52,8 +57,6 @@ export default class Tooltip extends Vue {
     private top: number = 0;
 
     private async mounted() {
-        document.body.addEventListener('click', this.onClickOutsideTooltip);
-
         this.update();
     }
 
@@ -73,6 +76,10 @@ export default class Tooltip extends Vue {
             };
         }
         return {};
+    }
+
+    private get tooltipActive() {
+        return this.tooltipToggled || this.mousedOver;
     }
 
     public update() {
@@ -130,13 +137,6 @@ export default class Tooltip extends Vue {
         }
     }
 
-    private onClickOutsideTooltip(e: MouseEvent) {
-        if (!this.tooltipToggled) return;
-        if (!this.$refs.tooltipBox.contains(e.target as HTMLElement)) {
-            this.toggleTooltip();
-        }
-    }
-
     private async toggleTooltip() {
         if (!this.height) {
             console.warn('Trying to toggle tooltip before dimensions are set.');
@@ -144,9 +144,27 @@ export default class Tooltip extends Vue {
         }
         this.update();
         this.tooltipToggled = !this.tooltipToggled;
+
         if (!this.tooltipToggled) {
             this.$refs.tooltipIcon.blur();
         }
+    }
+
+    private mouseOver(mouseOverTooltip: boolean) {
+        if (mouseOverTooltip === false) { // mouseleave
+            this.mouseOverTimeout = window.setTimeout(
+                () => this._updateMouseOverTooltip(mouseOverTooltip),
+                100,
+            );
+        } else { // mouseenter
+            window.clearTimeout(this.mouseOverTimeout);
+            this._updateMouseOverTooltip(mouseOverTooltip);
+        }
+    }
+
+    private _updateMouseOverTooltip(mouseOverTooltip: boolean) {
+        this.update();
+        this.mousedOver = mouseOverTooltip;
     }
 }
 </script>

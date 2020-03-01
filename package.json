@@ -5,7 +5,8 @@
   "scripts": {
     "build": "vue-cli-service build --target lib --name NimiqVueComponents src/main.ts",
     "lint": "vue-cli-service lint",
-    "storybook": "start-storybook -p 6006 -c .storybook -s ."
+    "storybook": "start-storybook -p 6006 -c .storybook -s .",
+    "build-storybook": "build-storybook -c .storybook -o dist-storybook"
   },
   "main": "dist/NimiqVueComponents.common.js",
   "module": "dist/NimiqVueComponents.umd.js",
