@@ -110,7 +110,7 @@ export default class Carousel extends Vue {
         this._onKeydown = this._onKeydown.bind(this);
         document.addEventListener('keydown', this._onKeydown);
         // trigger these manually instead of via immediate watcher to avoid animating on first render
-        await this._updateDimensions(false);
+        await this.updateDimensions(false);
         this._updateSelection(this.selected);
         this._updateRotations(false);
     }
@@ -121,31 +121,8 @@ export default class Carousel extends Vue {
         cancelAnimationFrame(this.requestAnimationFrameId);
     }
 
-    @Watch('entries')
-    private async _onEntriesChange() {
-        await this._updateDimensions();
-        this._updateSelection(this.effectiveSelected); // revalidate
-        this._updateRotations();
-    }
-
-    @Watch('selected')
-    private _updateSelection(newSelection) {
-        const oldSelection = this.effectiveSelected;
-        const isNewSelectionValid = this.entries.indexOf(newSelection) !== -1;
-        const isOldSelectionValid = this.entries.indexOf(oldSelection) !== -1;
-        if (isNewSelectionValid) {
-            this.effectiveSelected = newSelection;
-        } else if (!isOldSelectionValid) {
-            this.effectiveSelected = this.entries[0];
-        } // else keep the old selection
-
-        if (this.effectiveSelected !== oldSelection) {
-            this.$emit('select', this.effectiveSelected);
-        }
-    }
-
     @Watch('entryMargin')
-    private async _updateDimensions(newWatcherValueOrTween = true) {
+    public async updateDimensions(newWatcherValueOrTween = true) {
         const tween = typeof newWatcherValueOrTween === 'boolean' ? newWatcherValueOrTween : true;
         await Vue.nextTick(); // let Vue render new entries
         let largestHeight = 0;
@@ -165,6 +142,29 @@ export default class Carousel extends Vue {
         this.radius.tweenTo(radius, tween ? this.animationDuration : 0);
         (this.$el as HTMLElement).style.minHeight = `${largestHeight}px`;
         this._rerender();
+    }
+
+    @Watch('entries')
+    private async _onEntriesChange() {
+        await this.updateDimensions();
+        this._updateSelection(this.effectiveSelected); // re-validate
+        this._updateRotations();
+    }
+
+    @Watch('selected')
+    private _updateSelection(newSelection: string) {
+        const oldSelection = this.effectiveSelected;
+        const isNewSelectionValid = this.entries.includes(newSelection);
+        const isOldSelectionValid = this.entries.includes(oldSelection);
+        if (isNewSelectionValid) {
+            this.effectiveSelected = newSelection;
+        } else if (!isOldSelectionValid) {
+            this.effectiveSelected = this.entries[0];
+        } // else keep the old selection
+
+        if (this.effectiveSelected !== oldSelection) {
+            this.$emit('select', this.effectiveSelected);
+        }
     }
 
     @Watch('effectiveSelected')

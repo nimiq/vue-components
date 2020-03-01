@@ -259,6 +259,7 @@ declare module 'NimiqVueComponents/src/components/Carousel.vue' {
         $refs: {
             [ref: string]: HTMLElement[];
         };
+        updateDimensions(newWatcherValueOrTween?: boolean): Promise<void>;
     }
 }
 

@@ -4128,17 +4128,6 @@ exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
 
 /***/ }),
 
-/***/ "9321":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Carousel_vue_vue_type_style_index_0_id_63b0ea62_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("c1c0");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Carousel_vue_vue_type_style_index_0_id_63b0ea62_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Carousel_vue_vue_type_style_index_0_id_63b0ea62_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
- /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Carousel_vue_vue_type_style_index_0_id_63b0ea62_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
 /***/ "9469":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -5593,6 +5582,13 @@ module.exports = function (it, TYPE) {
 
 /***/ }),
 
+/***/ "bc92":
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
 /***/ "be13":
 /***/ (function(module, exports) {
 
@@ -5624,13 +5620,6 @@ module.exports = function (it) {
 /* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AccountSelector_vue_vue_type_style_index_0_id_598fccf1_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AccountSelector_vue_vue_type_style_index_0_id_598fccf1_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
 /* unused harmony reexport * */
  /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AccountSelector_vue_vue_type_style_index_0_id_598fccf1_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
-/***/ "c1c0":
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
 
 /***/ }),
 
@@ -6121,6 +6110,17 @@ module.exports = function (it) {
   return it;
 };
 
+
+/***/ }),
+
+/***/ "da9c":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Carousel_vue_vue_type_style_index_0_id_6653e685_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("bc92");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Carousel_vue_vue_type_style_index_0_id_6653e685_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Carousel_vue_vue_type_style_index_0_id_6653e685_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+ /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_index_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Carousel_vue_vue_type_style_index_0_id_6653e685_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -11303,12 +11303,12 @@ var CopyableField_component = normalizeComponent(
 
 CopyableField_component.options.__file = "CopyableField.vue"
 /* harmony default export */ var components_CopyableField = (CopyableField_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"46064dad-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Carousel.vue?vue&type=template&id=63b0ea62&scoped=true&
-var Carouselvue_type_template_id_63b0ea62_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"carousel",class:{ disabled: _vm.disabled }},_vm._l((_vm.entries),function(entry){return _c('div',{ref:entry,refInFor:true,class:{ selected: _vm.effectiveSelected === entry },on:{"click":function($event){!_vm.disabled && _vm._updateSelection(entry)},"focusin":function($event){!_vm.disabled && _vm._updateSelection(entry)}}},[_vm._t(entry)],2)}),0)}
-var Carouselvue_type_template_id_63b0ea62_scoped_true_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"46064dad-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Carousel.vue?vue&type=template&id=6653e685&scoped=true&
+var Carouselvue_type_template_id_6653e685_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"carousel",class:{ disabled: _vm.disabled }},_vm._l((_vm.entries),function(entry){return _c('div',{ref:entry,refInFor:true,class:{ selected: _vm.effectiveSelected === entry },on:{"click":function($event){!_vm.disabled && _vm._updateSelection(entry)},"focusin":function($event){!_vm.disabled && _vm._updateSelection(entry)}}},[_vm._t(entry)],2)}),0)}
+var Carouselvue_type_template_id_6653e685_scoped_true_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Carousel.vue?vue&type=template&id=63b0ea62&scoped=true&
+// CONCATENATED MODULE: ./src/components/Carousel.vue?vue&type=template&id=6653e685&scoped=true&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.math.sign.js
 var es6_math_sign = __webpack_require__("0b21");
@@ -11436,6 +11436,8 @@ SmallPage_component.options.__file = "SmallPage.vue"
 
 
 
+
+
 var Carouselvue_type_script_lang_ts_Tweenable =
 /*#__PURE__*/
 function () {
@@ -11530,7 +11532,7 @@ function (_Vue) {
                 document.addEventListener('keydown', this._onKeydown); // trigger these manually instead of via immediate watcher to avoid animating on first render
 
                 _context.next = 4;
-                return this._updateDimensions(false);
+                return this.updateDimensions(false);
 
               case 4:
                 this._updateSelection(this.selected);
@@ -11557,60 +11559,11 @@ function (_Vue) {
       cancelAnimationFrame(this.requestAnimationFrameId);
     }
   }, {
-    key: "_onEntriesChange",
+    key: "updateDimensions",
     value: function () {
-      var _onEntriesChange2 = _asyncToGenerator(
+      var _updateDimensions = _asyncToGenerator(
       /*#__PURE__*/
       regeneratorRuntime.mark(function _callee2() {
-        return regeneratorRuntime.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                _context2.next = 2;
-                return this._updateDimensions();
-
-              case 2:
-                this._updateSelection(this.effectiveSelected); // revalidate
-
-
-                this._updateRotations();
-
-              case 4:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2, this);
-      }));
-
-      return function _onEntriesChange() {
-        return _onEntriesChange2.apply(this, arguments);
-      };
-    }()
-  }, {
-    key: "_updateSelection",
-    value: function _updateSelection(newSelection) {
-      var oldSelection = this.effectiveSelected;
-      var isNewSelectionValid = this.entries.indexOf(newSelection) !== -1;
-      var isOldSelectionValid = this.entries.indexOf(oldSelection) !== -1;
-
-      if (isNewSelectionValid) {
-        this.effectiveSelected = newSelection;
-      } else if (!isOldSelectionValid) {
-        this.effectiveSelected = this.entries[0];
-      } // else keep the old selection
-
-
-      if (this.effectiveSelected !== oldSelection) {
-        this.$emit('select', this.effectiveSelected);
-      }
-    }
-  }, {
-    key: "_updateDimensions",
-    value: function () {
-      var _updateDimensions2 = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee3() {
         var newWatcherValueOrTween,
             tween,
             largestHeight,
@@ -11623,15 +11576,15 @@ function (_Vue) {
             minDistance,
             centerAngle,
             radius,
-            _args3 = arguments;
+            _args2 = arguments;
 
-        return regeneratorRuntime.wrap(function _callee3$(_context3) {
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
-            switch (_context3.prev = _context3.next) {
+            switch (_context2.prev = _context2.next) {
               case 0:
-                newWatcherValueOrTween = _args3.length > 0 && _args3[0] !== undefined ? _args3[0] : true;
+                newWatcherValueOrTween = _args2.length > 0 && _args2[0] !== undefined ? _args2[0] : true;
                 tween = typeof newWatcherValueOrTween === 'boolean' ? newWatcherValueOrTween : true;
-                _context3.next = 4;
+                _context2.next = 4;
                 return external_vue_property_decorator_["Vue"].nextTick();
 
               case 4:
@@ -11660,16 +11613,65 @@ function (_Vue) {
 
               case 12:
               case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      return function updateDimensions() {
+        return _updateDimensions.apply(this, arguments);
+      };
+    }()
+  }, {
+    key: "_onEntriesChange",
+    value: function () {
+      var _onEntriesChange2 = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee3() {
+        return regeneratorRuntime.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return this.updateDimensions();
+
+              case 2:
+                this._updateSelection(this.effectiveSelected); // re-validate
+
+
+                this._updateRotations();
+
+              case 4:
+              case "end":
                 return _context3.stop();
             }
           }
         }, _callee3, this);
       }));
 
-      return function _updateDimensions() {
-        return _updateDimensions2.apply(this, arguments);
+      return function _onEntriesChange() {
+        return _onEntriesChange2.apply(this, arguments);
       };
     }()
+  }, {
+    key: "_updateSelection",
+    value: function _updateSelection(newSelection) {
+      var oldSelection = this.effectiveSelected;
+      var isNewSelectionValid = this.entries.includes(newSelection);
+      var isOldSelectionValid = this.entries.includes(oldSelection);
+
+      if (isNewSelectionValid) {
+        this.effectiveSelected = newSelection;
+      } else if (!isOldSelectionValid) {
+        this.effectiveSelected = this.entries[0];
+      } // else keep the old selection
+
+
+      if (this.effectiveSelected !== oldSelection) {
+        this.$emit('select', this.effectiveSelected);
+      }
+    }
   }, {
     key: "_updateRotations",
     value: function _updateRotations() {
@@ -11930,11 +11932,11 @@ __decorate([Object(external_vue_property_decorator_["Prop"])({
   default: false
 })], Carouselvue_type_script_lang_ts_Carousel.prototype, "disabled", void 0);
 
+__decorate([Object(external_vue_property_decorator_["Watch"])('entryMargin')], Carouselvue_type_script_lang_ts_Carousel.prototype, "updateDimensions", null);
+
 __decorate([Object(external_vue_property_decorator_["Watch"])('entries')], Carouselvue_type_script_lang_ts_Carousel.prototype, "_onEntriesChange", null);
 
 __decorate([Object(external_vue_property_decorator_["Watch"])('selected')], Carouselvue_type_script_lang_ts_Carousel.prototype, "_updateSelection", null);
-
-__decorate([Object(external_vue_property_decorator_["Watch"])('entryMargin')], Carouselvue_type_script_lang_ts_Carousel.prototype, "_updateDimensions", null);
 
 __decorate([Object(external_vue_property_decorator_["Watch"])('effectiveSelected'), Object(external_vue_property_decorator_["Watch"])('disabled')], Carouselvue_type_script_lang_ts_Carousel.prototype, "_updateRotations", null);
 
@@ -11948,8 +11950,8 @@ Carouselvue_type_script_lang_ts_Carousel = __decorate([Object(external_vue_prope
 /* harmony default export */ var Carouselvue_type_script_lang_ts_ = (Carouselvue_type_script_lang_ts_Carousel);
 // CONCATENATED MODULE: ./src/components/Carousel.vue?vue&type=script&lang=ts&
  /* harmony default export */ var components_Carouselvue_type_script_lang_ts_ = (Carouselvue_type_script_lang_ts_); 
-// EXTERNAL MODULE: ./src/components/Carousel.vue?vue&type=style&index=0&id=63b0ea62&scoped=true&lang=css&
-var Carouselvue_type_style_index_0_id_63b0ea62_scoped_true_lang_css_ = __webpack_require__("9321");
+// EXTERNAL MODULE: ./src/components/Carousel.vue?vue&type=style&index=0&id=6653e685&scoped=true&lang=css&
+var Carouselvue_type_style_index_0_id_6653e685_scoped_true_lang_css_ = __webpack_require__("da9c");
 
 // CONCATENATED MODULE: ./src/components/Carousel.vue
 
@@ -11962,11 +11964,11 @@ var Carouselvue_type_style_index_0_id_63b0ea62_scoped_true_lang_css_ = __webpack
 
 var Carousel_component = normalizeComponent(
   components_Carouselvue_type_script_lang_ts_,
-  Carouselvue_type_template_id_63b0ea62_scoped_true_render,
-  Carouselvue_type_template_id_63b0ea62_scoped_true_staticRenderFns,
+  Carouselvue_type_template_id_6653e685_scoped_true_render,
+  Carouselvue_type_template_id_6653e685_scoped_true_staticRenderFns,
   false,
   null,
-  "63b0ea62",
+  "6653e685",
   null
   
 )
