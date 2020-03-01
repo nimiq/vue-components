@@ -17,9 +17,9 @@ export default class Carousel extends Vue {
     private get _totalPositionCount();
     private mounted;
     private destroyed;
+    updateDimensions(newWatcherValueOrTween?: number | boolean): Promise<void>;
     private _onEntriesChange;
     private _updateSelection;
-    private _updateDimensions;
     private _updateRotations;
     /**
      * @param entry

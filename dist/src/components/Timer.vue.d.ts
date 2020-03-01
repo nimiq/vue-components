@@ -6,6 +6,7 @@ declare class Timer extends Vue {
     private static readonly RADIUS_GROWTH_FACTOR;
     startTime?: number;
     endTime?: number;
+    alwaysShowTime: boolean;
     theme: string;
     strokeWidth: number;
     synchronize(referenceTime: number): void;

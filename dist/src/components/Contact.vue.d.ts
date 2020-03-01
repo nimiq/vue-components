@@ -1,4 +1,5 @@
 import { Vue } from 'vue-property-decorator';
+/** @deprecated */
 export default class Contact extends Vue {
     address: string;
     label: string;
@@ -7,6 +8,7 @@ export default class Contact extends Vue {
     private isEditing;
     private workingLabel;
     private workingAddress;
+    private created;
     private isInputValid;
     private select;
     private edit;

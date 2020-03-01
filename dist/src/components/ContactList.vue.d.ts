@@ -1,4 +1,5 @@
 import { Vue } from 'vue-property-decorator';
+/** @deprecated */
 export default class ContactList extends Vue {
     contacts: Array<{
         address: string;
@@ -8,6 +9,7 @@ export default class ContactList extends Vue {
     private isManaging;
     private isAddingNewContact;
     private abortTrigger;
+    private created;
     private selectContact;
     private setContact;
     private removeContact;
