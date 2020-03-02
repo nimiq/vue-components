@@ -30,7 +30,13 @@ export default class Amount extends Vue {
             // skip validation for minDecimals and maxDecimals if they're overwritten by decimals
             return;
         }
-        if (decimals !== undefined && (decimals < 0 || decimals > this.currencyDecimals || !Number.isInteger(decimals))) {
+        if (
+            decimals !== undefined && (
+                decimals < 0
+                || decimals > this.currencyDecimals
+                || !Number.isInteger(decimals)
+            )
+        ) {
             throw new Error('Amount: decimals is not in range');
         }
     }
