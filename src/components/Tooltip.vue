@@ -36,7 +36,7 @@ import { AlertTriangleIcon } from './Icons';
 @Component({ components: { AlertTriangleIcon }})
 export default class Tooltip extends Vue {
     // Only $el of the reference is of interest
-    @Prop(Object) public reference?: {$el : HTMLElement};
+    @Prop(Object) public reference?: {$el: HTMLElement};
 
     // Typing of $refs and $el, in order to not having to cast it everywhere.
     public $refs!: {
@@ -86,7 +86,10 @@ export default class Tooltip extends Vue {
         if (this.reference && this.$el) {
             const referenceLeftPad = parseInt(
                 window.getComputedStyle(this.reference.$el, null).getPropertyValue('padding-left'), 10);
-            this.left = this.reference.$el.getBoundingClientRect().left - this.$el.getBoundingClientRect().left + referenceLeftPad;
+            this.left =
+                this.reference.$el.getBoundingClientRect().left
+                - this.$el.getBoundingClientRect().left
+                + referenceLeftPad;
 
             if (this.reference.$el.scrollTop < this.$el.offsetTop - this.height) {
                 this.tooltipPosition = 'top';

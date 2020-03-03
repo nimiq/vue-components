@@ -191,7 +191,7 @@ class Timer extends Vue {
         const circleLengthPixels = this.fullCircleLength * scaleFactor;
         const steps = circleLengthPixels * 3; // update every .33 pixel change for smooth transitions
         const minInterval = 1000 / 60; // up to 60 fps
-        const maxInterval = this.detailsShown && this._timeLeft < 60000
+        const maxInterval = (this.detailsShown || this.alwaysShowTime) && this._timeLeft < 60000
             ? 500 // when counting down seconds update more regularly
             : Number.POSITIVE_INFINITY;
         return Math.max(minInterval, Math.min(maxInterval, this._totalTime / steps));

@@ -25,7 +25,7 @@ export default class AmountInput extends Vue {
         input: HTMLInputElement,
         widthPlaceholder: HTMLSpanElement,
         widthValue: HTMLSpanElement,
-    }
+    };
 
     @Prop({type: Number}) private value?: number;
     @Prop({type: Number, default: 8}) private maxFontSize!: number;
