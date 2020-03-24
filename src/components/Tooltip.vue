@@ -16,16 +16,18 @@
                 <AlertTriangleIcon class="nq-orange" />
             </slot>
         </a>
-        <div ref="tooltipBox"
-            class="tooltip-box"
-            :style="styles"
-            :class="{
-                active: tooltipActive,
-                top: tooltipPosition === 'top',
-                bottom: tooltipPosition === 'bottom',
-            }">
-            <slot></slot>
-        </div>
+        <transition :duration="isTakingInitialMeasurement ? 0 : undefined">
+            <div ref="tooltipBox"
+                v-if="tooltipActive || isTakingInitialMeasurement"
+                class="tooltip-box"
+                :style="styles"
+                :class="{
+                    top: tooltipPosition === 'top',
+                    bottom: tooltipPosition === 'bottom',
+                }">
+                <slot></slot>
+            </div>
+        </transition>
     </span>
 </template>
 
@@ -40,13 +42,14 @@ export default class Tooltip extends Vue {
 
     // Typing of $refs and $el, in order to not having to cast it everywhere.
     public $refs!: {
-        tooltipBox: HTMLDivElement,
+        tooltipBox?: HTMLDivElement,
         tooltipTrigger: HTMLAnchorElement,
     };
     public $el: HTMLElement;
 
     private tooltipPosition: 'top' | 'bottom' = 'top';
     private tooltipToggled: boolean = false;
+    private isTakingInitialMeasurement: boolean = true; // take an initial measurement to avoid jumping on first display
     private mousedOver: boolean = false;
     private mouseOverTimeout: number;
 
@@ -56,41 +59,59 @@ export default class Tooltip extends Vue {
     private left: number = 0;
     private top: number = 0;
 
-    private async mounted() {
-        this.update();
-    }
-
     private get styles() {
-        if (this.width && this.top) {
-            return {
-                height: this.height + 'px',
-                top: this.top + 'px',
-                left: this.left + 'px',
-                width: this.width + 'px',
-            };
-        }
-        // needed in setReference
-        if (this.width) {
-            return {
-                width: this.width + 'px',
-            };
-        }
-        return {};
+        // note that we let the browser calculate height automatically
+        return {
+            top: this.top + 'px',
+            left: this.left + 'px',
+            width: this.reference ? this.width + 'px' : 'auto',
+        };
     }
 
     private get tooltipActive() {
         return this.tooltipToggled || this.mousedOver;
     }
 
-    public update() {
-        if (this.reference && this.$el) {
+    @Watch('tooltipActive', { immediate: true })
+    @Watch('$el', { immediate: true })
+    public async update() {
+        // updates dimensions and repositions tooltip
+        if (!this.tooltipActive && !this.isTakingInitialMeasurement) return; // no need to update as tooltip not visible
+
+        if (this.reference) {
             const referenceLeftPad = parseInt(
                 window.getComputedStyle(this.reference.$el, null).getPropertyValue('padding-left'), 10);
+
+            const referenceRightPad = parseInt(
+                window.getComputedStyle(this.reference.$el, null).getPropertyValue('padding-right'), 10);
+
+            this.width = this.reference.$el.offsetWidth - referenceLeftPad - referenceRightPad;
             this.left =
                 this.reference.$el.getBoundingClientRect().left
                 - this.$el.getBoundingClientRect().left
                 + referenceLeftPad;
+        }
 
+        // make sure that tooltipBox is rendered and apply new width then update measurements
+        await Vue.nextTick();
+        this.height = this.$refs.tooltipBox.offsetHeight;
+        this.width = this.$refs.tooltipBox.offsetWidth;
+        this.triggerHeight = this.$refs.tooltipTrigger.offsetHeight;
+
+        if (!this.reference) {
+            const triggerWidth = this.$refs.tooltipTrigger.offsetWidth;
+            this.left = -this.width / 2 + triggerWidth / 2;
+        }
+
+        this.updateVerticalPosition();
+
+        this.isTakingInitialMeasurement = false;
+        setTimeout(() => this.$el.style.overflow = 'unset', this.tooltipActive ? 0 : 300);
+    }
+
+    private updateVerticalPosition() {
+        if (this.reference) {
+            // position tooltip such that it best fits reference element
             if (this.reference.$el.scrollTop < this.$el.offsetTop - this.height) {
                 this.tooltipPosition = 'top';
                 this.top = -this.height;
@@ -100,52 +121,23 @@ export default class Tooltip extends Vue {
             }
         } else {
             this.tooltipPosition = 'top';
-            this.width = this.$refs.tooltipBox.offsetWidth;
-            this.height = this.$refs.tooltipBox.offsetHeight;
             this.top = -this.height;
-            this.left = -this.width / 2 + this.$el.offsetWidth / 2;
         }
-
     }
 
     @Watch('reference', { immediate: true })
-    @Watch('$el', { immediate: true })
     private async setReference() {
-        if (this.reference && this.$el) {
-            // Compute fixed positions
-            const referenceLeftPad = parseInt(
-                window.getComputedStyle(this.reference.$el, null).getPropertyValue('padding-left'), 10);
-
-            const referenceRightPad = parseInt(
-                window.getComputedStyle(this.reference.$el, null).getPropertyValue('padding-right'), 10);
-
-            this.width = this.reference.$el.offsetWidth - referenceLeftPad - referenceRightPad;
-
-            this.triggerHeight = this.$el.offsetHeight;
-            // reset height
-            this.height = 0;
-            this.top = 0;
-            await Vue.nextTick();
-            // Height depends on width, so wait a tick fot it to update
-
-            this.height = this.$refs.tooltipBox.offsetHeight;
-
-            // calculate variable positions.
-            this.update();
-
+        if (this.reference) {
             // In case the reference container is scrollable add a listener
             if (this.reference.$el.scrollHeight !== this.reference.$el.offsetHeight) {
-                this.reference.$el.addEventListener('scroll', this.update.bind(this));
+                this.reference.$el.addEventListener('scroll', this.updateVerticalPosition.bind(this));
             }
+
+            this.update();
         }
     }
 
     private async toggleTooltip() {
-        if (!this.height) {
-            console.warn('Trying to toggle tooltip before dimensions are set.');
-            return;
-        }
-        this.update();
         this.tooltipToggled = !this.tooltipToggled;
 
         if (!this.tooltipToggled) {
@@ -154,20 +146,15 @@ export default class Tooltip extends Vue {
     }
 
     private mouseOver(mouseOverTooltip: boolean) {
-        if (mouseOverTooltip === false) { // mouseleave
+        if (!mouseOverTooltip) { // mouseleave
             this.mouseOverTimeout = window.setTimeout(
-                () => this._updateMouseOverTooltip(mouseOverTooltip),
+                () => this.mousedOver = false,
                 100,
             );
         } else { // mouseenter
             window.clearTimeout(this.mouseOverTimeout);
-            this._updateMouseOverTooltip(mouseOverTooltip);
+            this.mousedOver = true;
         }
-    }
-
-    private _updateMouseOverTooltip(mouseOverTooltip: boolean) {
-        this.update();
-        this.mousedOver = mouseOverTooltip;
     }
 }
 </script>
@@ -177,6 +164,7 @@ export default class Tooltip extends Vue {
         display: block;
         position: relative;
         line-height: 1;
+        overflow: hidden; /* avoid showing potential scrollbars for wrongly positioned tooltip on initial measurement */
     }
 
     .tooltip > a {
@@ -197,7 +185,8 @@ export default class Tooltip extends Vue {
         left: calc(50% - 1rem);
         border-width: 1rem;
         border-style: solid;
-        transition: bottom .2s ease, top .2s ease, opacity .3s ease;
+        transition: bottom .2s ease, top .2s ease, opacity .3s ease, .3s visibility;
+        transition-delay: 16ms; /* delay one animation frame for better sync with tooltipBox */
         visibility: hidden;
         pointer-events: visible;
     }
@@ -214,8 +203,6 @@ export default class Tooltip extends Vue {
         bottom: -2rem;
     }
 
-    .tooltip a:focus::after,
-    .tooltip a:hover::after,
     .tooltip.active > a::after {
         opacity: 1;
         visibility: visible;
@@ -223,15 +210,18 @@ export default class Tooltip extends Vue {
 
     .tooltip-box {
         position: absolute;
-        visibility: hidden;
-        pointer-events: visible;
         color: white;
         background: var(--nimiq-blue-bg);
         padding: 1.5rem;
         border-radius: .5rem;
-        transition: opacity .3s ease, transform .2s ease, top .2s ease;
-        opacity: 0;
+        transition: opacity .3s ease, visibility .3s, transform .2s ease, top .2s ease;
         box-shadow: 0 1.125rem 2.275rem rgba(0, 0, 0, 0.11);
+        visibility: hidden; /* for hiding on initial measurement */
+    }
+
+    .tooltip-box.v-enter,
+    .tooltip-box.v-leave-to {
+        opacity: 0;
     }
 
     .tooltip-box.bottom {
@@ -242,10 +232,7 @@ export default class Tooltip extends Vue {
         transform: translateY(-2rem);
     }
 
-    .tooltip a:focus ~ .tooltip-box,
-    .tooltip a:hover ~ .tooltip-box,
     .tooltip.active .tooltip-box {
         visibility: visible;
-        opacity: 1;
     }
 </style>
