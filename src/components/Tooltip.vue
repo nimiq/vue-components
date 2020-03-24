@@ -5,14 +5,14 @@
         @mouseleave="mouseOver(false)"
     >
         <a href="javascript:void(0);"
-            ref="tooltipIcon"
+            ref="tooltipTrigger"
             @focus.stop="toggleTooltip"
             @blur.stop="tooltipToggled ? toggleTooltip() : ''"
             :class="{
                 top: tooltipPosition === 'top',
                 bottom: tooltipPosition === 'bottom',
             }">
-            <slot name="icon">
+            <slot name="trigger">
                 <AlertTriangleIcon class="nq-orange" />
             </slot>
         </a>
@@ -41,7 +41,7 @@ export default class Tooltip extends Vue {
     // Typing of $refs and $el, in order to not having to cast it everywhere.
     public $refs!: {
         tooltipBox: HTMLDivElement,
-        tooltipIcon: HTMLAnchorElement,
+        tooltipTrigger: HTMLAnchorElement,
     };
     public $el: HTMLElement;
 
@@ -50,7 +50,7 @@ export default class Tooltip extends Vue {
     private mousedOver: boolean = false;
     private mouseOverTimeout: number;
 
-    private iconHeight: number = 0;
+    private triggerHeight: number = 0;
     private height: number = 0;
     private width: number = 0;
     private left: number = 0;
@@ -96,7 +96,7 @@ export default class Tooltip extends Vue {
                 this.top = -this.height;
             } else {
                 this.tooltipPosition = 'bottom';
-                this.top = this.iconHeight;
+                this.top = this.triggerHeight;
             }
         } else {
             this.tooltipPosition = 'top';
@@ -121,7 +121,7 @@ export default class Tooltip extends Vue {
 
             this.width = this.reference.$el.offsetWidth - referenceLeftPad - referenceRightPad;
 
-            this.iconHeight = this.$el.offsetHeight;
+            this.triggerHeight = this.$el.offsetHeight;
             // reset height
             this.height = 0;
             this.top = 0;
@@ -149,7 +149,7 @@ export default class Tooltip extends Vue {
         this.tooltipToggled = !this.tooltipToggled;
 
         if (!this.tooltipToggled) {
-            this.$refs.tooltipIcon.blur();
+            this.$refs.tooltipTrigger.blur();
         }
     }
 
@@ -182,6 +182,7 @@ export default class Tooltip extends Vue {
     .tooltip > a {
         position: relative;
         display: block;
+        text-decoration: none;
     }
 
     .tooltip > a >>> svg {
