@@ -37,8 +37,7 @@ import { AlertTriangleIcon } from './Icons';
 
 @Component({ components: { AlertTriangleIcon }})
 export default class Tooltip extends Vue {
-    // Only $el of the reference is of interest
-    @Prop(Object) public reference?: {$el: HTMLElement};
+    @Prop(Object) public reference?: Vue | {$el: HTMLElement};
 
     // Typing of $refs and $el, in order to not having to cast it everywhere.
     public $refs!: {
@@ -73,19 +72,27 @@ export default class Tooltip extends Vue {
     }
 
     @Watch('tooltipActive', { immediate: true })
-    @Watch('$el', { immediate: true })
     public async update() {
         // updates dimensions and repositions tooltip
         if (!this.tooltipActive && !this.isTakingInitialMeasurement) return; // no need to update as tooltip not visible
+        if (!this.$el) {
+            // wait until we're mounted
+            await new Promise((resolve) => this.$once('hook:mounted', resolve));
+        }
 
         if (this.reference) {
+            if (!this.reference.$el && this.reference instanceof Vue) {
+                // wait until reference is mounted if it's a Vue instance
+                await new Promise((resolve) => (this.reference as Vue).$once('hook:mounted', resolve));
+            }
+
             const referenceLeftPad = parseInt(
                 window.getComputedStyle(this.reference.$el, null).getPropertyValue('padding-left'), 10);
 
             const referenceRightPad = parseInt(
                 window.getComputedStyle(this.reference.$el, null).getPropertyValue('padding-right'), 10);
 
-            this.width = this.reference.$el.offsetWidth - referenceLeftPad - referenceRightPad;
+            this.width = (this.reference.$el as HTMLElement).offsetWidth - referenceLeftPad - referenceRightPad;
             this.left =
                 this.reference.$el.getBoundingClientRect().left
                 - this.$el.getBoundingClientRect().left
@@ -94,6 +101,7 @@ export default class Tooltip extends Vue {
 
         // make sure that tooltipBox is rendered and apply new width then update measurements
         await Vue.nextTick();
+        if (!this.tooltipActive && !this.isTakingInitialMeasurement) return; // tooltip not visible anymore?
         this.height = this.$refs.tooltipBox.offsetHeight;
         this.width = this.$refs.tooltipBox.offsetWidth;
         this.triggerHeight = this.$refs.tooltipTrigger.offsetHeight;
@@ -129,7 +137,11 @@ export default class Tooltip extends Vue {
     private async setReference() {
         if (this.reference) {
             // In case the reference container is scrollable add a listener
-            if (this.reference.$el.scrollHeight !== this.reference.$el.offsetHeight) {
+            if (!this.reference.$el && this.reference instanceof Vue) {
+                // wait until reference is mounted if it's a Vue instance
+                await new Promise((resolve) => (this.reference as Vue).$once('hook:mounted', resolve));
+            }
+            if (this.reference.$el.scrollHeight !== (this.reference.$el as HTMLElement).offsetHeight) {
                 this.reference.$el.addEventListener('scroll', this.updateVerticalPosition.bind(this));
             }
 
