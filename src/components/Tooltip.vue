@@ -71,6 +71,16 @@ export default class Tooltip extends Vue {
         return this.tooltipToggled || this.mousedOver;
     }
 
+    private created() {
+        this.updateVerticalPosition = this.updateVerticalPosition.bind(this);
+    }
+
+    private destroyed() {
+        if (this.reference && this.reference.$el) {
+            this.reference.$el.removeEventListener('scroll', this.updateVerticalPosition);
+        }
+    }
+
     @Watch('tooltipActive', { immediate: true })
     public async update() {
         // updates dimensions and repositions tooltip
@@ -80,21 +90,23 @@ export default class Tooltip extends Vue {
             await new Promise((resolve) => this.$once('hook:mounted', resolve));
         }
 
-        if (this.reference) {
-            if (!this.reference.$el && this.reference instanceof Vue) {
+        const reference = this.reference;
+        if (reference) {
+            if (!reference.$el && reference instanceof Vue) {
                 // wait until reference is mounted if it's a Vue instance
-                await new Promise((resolve) => (this.reference as Vue).$once('hook:mounted', resolve));
+                await new Promise((resolve) => (reference as Vue).$once('hook:mounted', resolve));
+                if (reference !== this.reference) return; // reference changed; update was also called for new reference
             }
 
             const referenceLeftPad = parseInt(
-                window.getComputedStyle(this.reference.$el, null).getPropertyValue('padding-left'), 10);
+                window.getComputedStyle(reference.$el, null).getPropertyValue('padding-left'), 10);
 
             const referenceRightPad = parseInt(
-                window.getComputedStyle(this.reference.$el, null).getPropertyValue('padding-right'), 10);
+                window.getComputedStyle(reference.$el, null).getPropertyValue('padding-right'), 10);
 
-            this.width = (this.reference.$el as HTMLElement).offsetWidth - referenceLeftPad - referenceRightPad;
+            this.width = (reference.$el as HTMLElement).offsetWidth - referenceLeftPad - referenceRightPad;
             this.left =
-                this.reference.$el.getBoundingClientRect().left
+                reference.$el.getBoundingClientRect().left
                 - this.$el.getBoundingClientRect().left
                 + referenceLeftPad;
         }
@@ -106,7 +118,7 @@ export default class Tooltip extends Vue {
         this.width = this.$refs.tooltipBox.offsetWidth;
         this.triggerHeight = this.$refs.tooltipTrigger.offsetHeight;
 
-        if (!this.reference) {
+        if (!reference) {
             const triggerWidth = this.$refs.tooltipTrigger.offsetWidth;
             this.left = -this.width / 2 + triggerWidth / 2;
         }
@@ -134,19 +146,24 @@ export default class Tooltip extends Vue {
     }
 
     @Watch('reference', { immediate: true })
-    private async setReference() {
-        if (this.reference) {
-            // In case the reference container is scrollable add a listener
-            if (!this.reference.$el && this.reference instanceof Vue) {
-                // wait until reference is mounted if it's a Vue instance
-                await new Promise((resolve) => (this.reference as Vue).$once('hook:mounted', resolve));
-            }
-            if (this.reference.$el.scrollHeight !== (this.reference.$el as HTMLElement).offsetHeight) {
-                this.reference.$el.addEventListener('scroll', this.updateVerticalPosition.bind(this));
-            }
-
-            this.update();
+    private async setReference(newReference: Vue | {$el: HTMLElement}, oldReference: Vue | {$el: HTMLElement}) {
+        if (oldReference && oldReference.$el) {
+            oldReference.$el.removeEventListener('scroll', this.updateVerticalPosition);
         }
+
+        if (newReference) {
+            if (!newReference.$el && newReference instanceof Vue) {
+                // wait until reference is mounted if it's a Vue instance
+                await new Promise((resolve) => (newReference as Vue).$once('hook:mounted', resolve));
+                if (newReference !== this.reference) return; // reference changed
+            }
+            // In case the reference container is scrollable add a listener
+            if (newReference.$el.scrollHeight !== (newReference.$el as HTMLElement).offsetHeight) {
+                this.reference.$el.addEventListener('scroll', this.updateVerticalPosition);
+            }
+        }
+
+        await this.update();
     }
 
     private async toggleTooltip() {
