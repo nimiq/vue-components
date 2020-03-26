@@ -234,6 +234,7 @@ storiesOf('Basic', module)
     .add('Tooltip', () => {
         const fontSize = number('Font size (rem)', 3);
         const useReference = boolean('Use referenceFrame', true);
+        const disabled = boolean('disabled', false);
         return {
             data() {
                 return {
@@ -241,6 +242,7 @@ storiesOf('Basic', module)
                     message: '',
                     fontSize,
                     useReference,
+                    disabled,
                 };
             },
             computed: {
@@ -265,7 +267,9 @@ storiesOf('Basic', module)
                                 <div style="height:300px"></div>
                                 <div style="max-width: 100%; display: flex; align-items: center;">
                                     <LabelInput v-model="message" style="display: inline;"/>
-                                    <Tooltip :reference="useReference ? target : undefined" :style="style">
+                                    <Tooltip :reference="useReference ? target : undefined"
+                                        :style="style"
+                                        :disabled="disabled">
                                         <div style="font-size: 2rem;">
                                             This is the Tooltip I was talking about.
                                             <Account address="NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM" />

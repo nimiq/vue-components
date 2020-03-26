@@ -8,9 +8,11 @@
             ref="tooltipTrigger"
             @focus.stop="toggleTooltip"
             @blur.stop="tooltipToggled ? toggleTooltip() : ''"
+            :tabindex="disabled ? -1 : false"
             :class="{
                 top: tooltipPosition === 'top',
                 bottom: tooltipPosition === 'bottom',
+                disabled,
             }">
             <slot name="trigger">
                 <AlertTriangleIcon class="nq-orange" />
@@ -39,6 +41,7 @@ import { AlertTriangleIcon } from './Icons';
 @Component({ components: { AlertTriangleIcon }})
 export default class Tooltip extends Vue {
     @Prop(Object) public reference?: Vue | {$el: HTMLElement};
+    @Prop(Boolean) public disabled?: boolean;
 
     // Typing of $refs and $el, in order to not having to cast it everywhere.
     public $refs!: {
@@ -69,7 +72,7 @@ export default class Tooltip extends Vue {
     }
 
     private get tooltipActive() {
-        return this.tooltipToggled || this.mousedOver || this.isTakingInitialMeasurement;
+        return (this.tooltipToggled || this.mousedOver || this.isTakingInitialMeasurement) && !this.disabled;
     }
 
     private created() {
@@ -201,6 +204,11 @@ export default class Tooltip extends Vue {
         position: relative;
         display: block;
         text-decoration: none;
+    }
+
+    .tooltip > a.disabled {
+        outline: none;
+        cursor: default;
     }
 
     .tooltip > a >>> svg {
