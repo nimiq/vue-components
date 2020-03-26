@@ -18,12 +18,13 @@
         </a>
         <transition :duration="isTakingInitialMeasurement ? 0 : undefined">
             <div ref="tooltipBox"
-                v-if="tooltipActive || isTakingInitialMeasurement"
+                v-if="tooltipActive"
                 class="tooltip-box"
                 :style="styles"
                 :class="{
                     top: tooltipPosition === 'top',
                     bottom: tooltipPosition === 'bottom',
+                    hidden: isTakingInitialMeasurement,
                 }">
                 <slot></slot>
             </div>
@@ -68,7 +69,7 @@ export default class Tooltip extends Vue {
     }
 
     private get tooltipActive() {
-        return this.tooltipToggled || this.mousedOver;
+        return this.tooltipToggled || this.mousedOver || this.isTakingInitialMeasurement;
     }
 
     private created() {
@@ -84,7 +85,7 @@ export default class Tooltip extends Vue {
     @Watch('tooltipActive', { immediate: true })
     public async update() {
         // updates dimensions and repositions tooltip
-        if (!this.tooltipActive && !this.isTakingInitialMeasurement) return; // no need to update as tooltip not visible
+        if (!this.tooltipActive) return; // no need to update as tooltip not visible
         if (!this.$el) {
             // wait until we're mounted
             await new Promise((resolve) => this.$once('hook:mounted', resolve));
@@ -113,7 +114,7 @@ export default class Tooltip extends Vue {
 
         // make sure that tooltipBox is rendered and apply new width then update measurements
         await Vue.nextTick();
-        if (!this.tooltipActive && !this.isTakingInitialMeasurement) return; // tooltip not visible anymore?
+        if (!this.tooltipActive) return; // tooltip not visible anymore?
         this.height = this.$refs.tooltipBox.offsetHeight;
         this.width = this.$refs.tooltipBox.offsetWidth;
         this.triggerHeight = this.$refs.tooltipTrigger.offsetHeight;
@@ -243,9 +244,8 @@ export default class Tooltip extends Vue {
         background: var(--nimiq-blue-bg);
         padding: 1.5rem;
         border-radius: .5rem;
-        transition: opacity .3s ease, visibility .3s, transform .2s ease, top .2s ease;
+        transition: opacity .3s ease, transform .2s ease, top .2s ease;
         box-shadow: 0 1.125rem 2.275rem rgba(0, 0, 0, 0.11);
-        visibility: hidden; /* for hiding on initial measurement */
     }
 
     .tooltip-box.v-enter,
@@ -259,9 +259,5 @@ export default class Tooltip extends Vue {
 
     .tooltip-box.top {
         transform: translateY(-2rem);
-    }
-
-    .tooltip.active .tooltip-box {
-        visibility: visible;
     }
 </style>
