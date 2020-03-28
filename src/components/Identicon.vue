@@ -24,7 +24,7 @@ else {
 @Component
 export default class Identicon extends Vue {
     public static formatAddress(str: string) {
-        return str.replace(/[\+ ]/g, '').match(/.{4}/g)!.join(' ');
+        return str.replace(/[\+ ]/g, '').toUpperCase().match(/.{4}/g)!.join(' ');
     }
 
     public static isUserFriendlyAddress(str: string) {

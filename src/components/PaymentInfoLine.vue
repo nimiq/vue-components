@@ -4,7 +4,7 @@
             <Amount
                 :currency="cryptoAmount.currency"
                 :amount="cryptoAmount.amount"
-                :totalDecimals="cryptoAmount.decimals"
+                :currencyDecimals="cryptoAmount.decimals"
                 :minDecimals="0"
                 :maxDecimals="Math.min(4, cryptoAmount.decimals)"
             />
