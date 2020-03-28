@@ -56,7 +56,6 @@ export default class Tooltip extends Vue {
     private mousedOver: boolean = false;
     private mouseOverTimeout: number;
 
-    private triggerHeight: number = 0;
     private height: number = 0;
     private width: number = 0;
     private left: number = 0;
@@ -76,12 +75,12 @@ export default class Tooltip extends Vue {
     }
 
     private created() {
-        this.updateVerticalPosition = this.updateVerticalPosition.bind(this);
+        this.updatePosition = this.updatePosition.bind(this);
     }
 
     private destroyed() {
         if (this.reference && this.reference.$el) {
-            this.reference.$el.removeEventListener('scroll', this.updateVerticalPosition);
+            this.reference.$el.removeEventListener('scroll', this.updatePosition);
         }
     }
 
@@ -109,10 +108,6 @@ export default class Tooltip extends Vue {
                 window.getComputedStyle(reference.$el, null).getPropertyValue('padding-right'), 10);
 
             this.width = (reference.$el as HTMLElement).offsetWidth - referenceLeftPad - referenceRightPad;
-            this.left =
-                reference.$el.getBoundingClientRect().left
-                - this.$el.getBoundingClientRect().left
-                + referenceLeftPad;
         }
 
         // make sure that tooltipBox is rendered and apply new width then update measurements
@@ -120,39 +115,48 @@ export default class Tooltip extends Vue {
         if (!this.tooltipActive) return; // tooltip not visible anymore?
         this.height = this.$refs.tooltipBox.offsetHeight;
         this.width = this.$refs.tooltipBox.offsetWidth;
-        this.triggerHeight = this.$refs.tooltipTrigger.offsetHeight;
 
-        if (!reference) {
-            const triggerWidth = this.$refs.tooltipTrigger.offsetWidth;
-            this.left = -this.width / 2 + triggerWidth / 2;
-        }
-
-        this.updateVerticalPosition();
+        this.updatePosition();
 
         this.isTakingInitialMeasurement = false;
         setTimeout(() => this.$el.style.overflow = 'unset', this.tooltipActive ? 0 : 300);
     }
 
-    private updateVerticalPosition() {
+    private updatePosition() {
         if (this.reference) {
+            if (!this.reference.$el) {
+                // We don't wait here for the reference to get mounted, as we expect it to already be mounted when this
+                // private method is called and to do measurements immediately in the scroll event listener to avoid
+                // additional reflows (see https://gist.github.com/paulirish/5d52fb081b3570c81e3a#appendix)
+                console.warn('Tooltip reference does not seem to be mounted yet.');
+                return;
+            }
             // position tooltip such that it best fits reference element
             if (this.reference.$el.scrollTop < this.$el.offsetTop - this.height) {
                 this.tooltipPosition = 'top';
                 this.top = -this.height;
             } else {
                 this.tooltipPosition = 'bottom';
-                this.top = this.triggerHeight;
+                this.top = this.$refs.tooltipTrigger.offsetHeight;
             }
+            const referenceLeftPad = parseInt(
+                window.getComputedStyle(this.reference.$el, null).getPropertyValue('padding-left'), 10);
+            this.left =
+                this.reference.$el.getBoundingClientRect().left
+                - this.$el.getBoundingClientRect().left
+                + referenceLeftPad;
         } else {
             this.tooltipPosition = 'top';
             this.top = -this.height;
+            const triggerWidth = this.$refs.tooltipTrigger.offsetWidth;
+            this.left = -this.width / 2 + triggerWidth / 2;
         }
     }
 
     @Watch('reference', { immediate: true })
     private async setReference(newReference: Vue | {$el: HTMLElement}, oldReference: Vue | {$el: HTMLElement}) {
         if (oldReference && oldReference.$el) {
-            oldReference.$el.removeEventListener('scroll', this.updateVerticalPosition);
+            oldReference.$el.removeEventListener('scroll', this.updatePosition);
         }
 
         if (newReference) {
@@ -163,7 +167,7 @@ export default class Tooltip extends Vue {
             }
             // In case the reference container is scrollable add a listener
             if (newReference.$el.scrollHeight !== (newReference.$el as HTMLElement).offsetHeight) {
-                this.reference.$el.addEventListener('scroll', this.updateVerticalPosition);
+                this.reference.$el.addEventListener('scroll', this.updatePosition);
             }
         }
 
