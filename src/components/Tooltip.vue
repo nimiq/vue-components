@@ -132,7 +132,10 @@ export default class Tooltip extends Vue {
                 return;
             }
             // position tooltip such that it best fits reference element
-            if (this.reference.$el.scrollTop < this.$el.offsetTop - this.height) {
+            const triggerBoundingRect = this.$refs.tooltipTrigger.getBoundingClientRect();
+            const referenceBoundingRect = this.reference.$el.getBoundingClientRect();
+            const requiredSpace = this.height + 16; // 16 for arrow, assuming same height on mobile for simplicity
+            if (triggerBoundingRect.top - referenceBoundingRect.top >= requiredSpace) {
                 this.tooltipPosition = 'top';
                 this.top = -this.height;
             } else {
@@ -142,8 +145,8 @@ export default class Tooltip extends Vue {
             const referenceLeftPad = parseInt(
                 window.getComputedStyle(this.reference.$el, null).getPropertyValue('padding-left'), 10);
             this.left =
-                this.reference.$el.getBoundingClientRect().left
-                - this.$el.getBoundingClientRect().left
+                referenceBoundingRect.left
+                - triggerBoundingRect.left
                 + referenceLeftPad;
         } else {
             this.tooltipPosition = 'top';
