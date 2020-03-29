@@ -10,8 +10,8 @@
             @blur.stop="tooltipToggled ? toggleTooltip() : ''"
             :tabindex="disabled ? -1 : false"
             :class="{
-                top: tooltipPosition === 'top',
-                bottom: tooltipPosition === 'bottom',
+                top: tooltipPosition === constructor.Position.TOP,
+                bottom: tooltipPosition === constructor.Position.BOTTOM,
                 disabled,
             }">
             <slot name="trigger">
@@ -24,8 +24,8 @@
                 class="tooltip-box"
                 :style="styles"
                 :class="{
-                    top: tooltipPosition === 'top',
-                    bottom: tooltipPosition === 'bottom',
+                    top: tooltipPosition === constructor.Position.TOP,
+                    bottom: tooltipPosition === constructor.Position.BOTTOM,
                     hidden: isTakingInitialMeasurement,
                 }">
                 <slot></slot>
@@ -39,9 +39,14 @@ import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { AlertTriangleIcon } from './Icons';
 
 @Component({ components: { AlertTriangleIcon }})
-export default class Tooltip extends Vue {
+class Tooltip extends Vue {
     @Prop(Object) public reference?: Vue | {$el: HTMLElement};
     @Prop(Boolean) public disabled?: boolean;
+    @Prop({
+        type: String,
+        default: 'bottom' as Tooltip.Position.BOTTOM,
+        validator: (value: any) => Object.values(Tooltip.Position).includes(value),
+    }) public preferredPosition!: Tooltip.Position;
 
     // Typing of $refs and $el, in order to not having to cast it everywhere.
     public $refs!: {
@@ -50,7 +55,7 @@ export default class Tooltip extends Vue {
     };
     public $el: HTMLElement;
 
-    private tooltipPosition: 'top' | 'bottom' = 'top';
+    private tooltipPosition: Tooltip.Position | null = null;
     private tooltipToggled: boolean = false;
     private isTakingInitialMeasurement: boolean = true; // take an initial measurement to avoid jumping on first display
     private mousedOver: boolean = false;
@@ -122,6 +127,7 @@ export default class Tooltip extends Vue {
         setTimeout(() => this.$el.style.overflow = 'unset', this.tooltipActive ? 0 : 300);
     }
 
+    @Watch('preferredPosition') // no need to be immediate watcher, as initially called by update
     private updatePosition() {
         if (this.reference) {
             if (!this.reference.$el) {
@@ -135,11 +141,14 @@ export default class Tooltip extends Vue {
             const triggerBoundingRect = this.$refs.tooltipTrigger.getBoundingClientRect();
             const referenceBoundingRect = this.reference.$el.getBoundingClientRect();
             const requiredSpace = this.height + 16; // 16 for arrow, assuming same height on mobile for simplicity
-            if (triggerBoundingRect.top - referenceBoundingRect.top >= requiredSpace) {
-                this.tooltipPosition = 'top';
+            const fitsTop = triggerBoundingRect.top - referenceBoundingRect.top >= requiredSpace;
+            const fitsBottom = referenceBoundingRect.bottom - triggerBoundingRect.bottom >= requiredSpace;
+            if ((this.preferredPosition === Tooltip.Position.TOP && (fitsTop || !fitsBottom))
+                || (this.preferredPosition === Tooltip.Position.BOTTOM) && (fitsTop && !fitsBottom)) {
+                this.tooltipPosition = Tooltip.Position.TOP;
                 this.top = -this.height;
             } else {
-                this.tooltipPosition = 'bottom';
+                this.tooltipPosition = Tooltip.Position.BOTTOM;
                 this.top = this.$refs.tooltipTrigger.offsetHeight;
             }
             const referenceLeftPad = parseInt(
@@ -149,8 +158,10 @@ export default class Tooltip extends Vue {
                 - triggerBoundingRect.left
                 + referenceLeftPad;
         } else {
-            this.tooltipPosition = 'top';
-            this.top = -this.height;
+            this.tooltipPosition = this.preferredPosition;
+            this.top = this.preferredPosition === Tooltip.Position.BOTTOM
+                ? this.$refs.tooltipTrigger.offsetHeight
+                : -this.height;
             const triggerWidth = this.$refs.tooltipTrigger.offsetWidth;
             this.left = -this.width / 2 + triggerWidth / 2;
         }
@@ -197,6 +208,15 @@ export default class Tooltip extends Vue {
         }
     }
 }
+
+namespace Tooltip {
+    export enum Position {
+        TOP = 'top',
+        BOTTOM = 'bottom',
+    }
+}
+
+export default Tooltip;
 </script>
 
 <style scoped>

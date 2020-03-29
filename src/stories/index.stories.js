@@ -232,17 +232,19 @@ storiesOf('Basic', module)
         }
     })
     .add('Tooltip', () => {
-        const fontSize = number('Font size (rem)', 3);
         const useReference = boolean('Use referenceFrame', true);
+        const preferredPosition = select('preferredPosition', Object.values(Tooltip.Position), Tooltip.Position.TOP);
         const disabled = boolean('disabled', false);
+        const fontSize = number('Font size (rem)', 3);
         return {
             data() {
                 return {
                     refsLoaded: false,
                     message: '',
-                    fontSize,
                     useReference,
+                    preferredPosition,
                     disabled,
+                    fontSize,
                 };
             },
             computed: {
@@ -264,12 +266,13 @@ storiesOf('Basic', module)
             template: windowTemplate`<SmallPage>
                             <PageHeader>Test</PageHeader>
                             <PageBody style="overflow-y: scroll; position:relative;" ref="target">
-                                <div style="height:300px"></div>
+                                <div style="height:320px"></div>
                                 <div style="max-width: 100%; display: flex; align-items: center;">
                                     <LabelInput v-model="message" style="display: inline;"/>
                                     <Tooltip :reference="useReference ? target : undefined"
-                                        :style="style"
-                                        :disabled="disabled">
+                                        :preferredPosition="preferredPosition"
+                                        :disabled="disabled"
+                                        :style="style">
                                         <div style="font-size: 2rem;">
                                             This is the Tooltip I was talking about.
                                             <Account address="NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM" />
