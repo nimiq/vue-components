@@ -83,13 +83,18 @@ class Tooltip extends Vue {
         this.updatePosition = this.updatePosition.bind(this);
     }
 
+    private mounted() {
+        // Manually trigger an update instead of using immediate watchers to avoid unnecessary initial double updates
+        this.setReference(this.reference);
+    }
+
     private destroyed() {
         if (this.reference && this.reference.$el) {
             this.reference.$el.removeEventListener('scroll', this.updatePosition);
         }
     }
 
-    @Watch('tooltipActive', { immediate: true })
+    @Watch('tooltipActive')
     public async update() {
         // updates dimensions and repositions tooltip
         if (!this.tooltipActive) return; // no need to update as tooltip not visible
@@ -127,7 +132,7 @@ class Tooltip extends Vue {
         setTimeout(() => this.$el.style.overflow = 'unset', this.tooltipActive ? 0 : 300);
     }
 
-    @Watch('preferredPosition') // no need to be immediate watcher, as initially called by update
+    @Watch('preferredPosition')
     private updatePosition() {
         if (this.reference) {
             if (!this.reference.$el) {
@@ -167,8 +172,8 @@ class Tooltip extends Vue {
         }
     }
 
-    @Watch('reference', { immediate: true })
-    private async setReference(newReference: Vue | {$el: HTMLElement}, oldReference: Vue | {$el: HTMLElement}) {
+    @Watch('reference')
+    private async setReference(newReference: Vue | {$el: HTMLElement}, oldReference?: Vue | {$el: HTMLElement}) {
         if (oldReference && oldReference.$el) {
             oldReference.$el.removeEventListener('scroll', this.updatePosition);
         }
