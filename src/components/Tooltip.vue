@@ -117,35 +117,45 @@ class Tooltip extends Vue {
                 if (reference !== this.reference) return; // reference changed; update was also called for new reference
             }
 
-            const referenceLeftPad = parseInt(
-                window.getComputedStyle(reference.$el, null).getPropertyValue('padding-left'), 10);
+            await new Promise((resolve) => requestAnimationFrame(() => {
+                // avoid potential forced layouting / reflow by taking measurements within a requestAnimationFrame
+                // (see https://gist.github.com/paulirish/5d52fb081b3570c81e3a#appendix)
+                const referenceLeftPad = parseInt(
+                    window.getComputedStyle(reference.$el, null).getPropertyValue('padding-left'), 10);
 
-            const referenceRightPad = parseInt(
-                window.getComputedStyle(reference.$el, null).getPropertyValue('padding-right'), 10);
+                const referenceRightPad = parseInt(
+                    window.getComputedStyle(reference.$el, null).getPropertyValue('padding-right'), 10);
 
-            this.maxWidth = (reference.$el as HTMLElement).offsetWidth - referenceLeftPad - referenceRightPad;
-            if (this.autoWidth) this.width = this.maxWidth;
+                this.maxWidth = (reference.$el as HTMLElement).offsetWidth - referenceLeftPad - referenceRightPad;
+                if (this.autoWidth) this.width = this.maxWidth;
+                resolve();
+            }));
         }
 
         // make sure that tooltipBox is rendered then update measurements
         await Vue.nextTick();
         if (!this.tooltipActive) return; // tooltip not visible anymore?
+        // here we need the quick reflow to avoid that the visible tooltip gets rendered at the wrong position,
+        // potentially causing scroll bars
         this.height = this.$refs.tooltipBox.offsetHeight;
         this.width = this.$refs.tooltipBox.offsetWidth;
 
         this.updatePosition();
 
-        this.isTakingInitialMeasurement = false;
-        setTimeout(() => this.$el.style.overflow = 'unset', this.tooltipActive ? 0 : 300);
+        if (this.isTakingInitialMeasurement) {
+            this.isTakingInitialMeasurement = false;
+            setTimeout(() => this.$el.style.overflow = 'unset', this.tooltipActive ? 0 : 300);
+        }
     }
 
     @Watch('preferredPosition')
     private updatePosition() {
+        // Note that in his method we do not need to use requestAnimationFrame to avoid reflows, as the method is
+        // already called as a scroll event listener or manually in update after a reflow.
         if (this.reference) {
             if (!this.reference.$el) {
                 // We don't wait here for the reference to get mounted, as we expect it to already be mounted when this
-                // private method is called and to do measurements immediately in the scroll event listener to avoid
-                // additional reflows (see https://gist.github.com/paulirish/5d52fb081b3570c81e3a#appendix)
+                // private method is called and to do measurements immediately in the scroll event listener
                 console.warn('Tooltip reference does not seem to be mounted yet.');
                 return;
             }
@@ -176,7 +186,7 @@ class Tooltip extends Vue {
                 leftBound,
                 Math.min(
                     rightBound - this.width,
-                    -this.width / 2 + this.$refs.tooltipTrigger.offsetWidth / 2,
+                    -this.width / 2 + triggerBoundingRect.width / 2,
                 ),
             );
         } else {
@@ -201,9 +211,12 @@ class Tooltip extends Vue {
                 if (newReference !== this.reference) return; // reference changed
             }
             // In case the reference container is scrollable add a listener
-            if (newReference.$el.scrollHeight !== (newReference.$el as HTMLElement).offsetHeight) {
-                this.reference.$el.addEventListener('scroll', this.updatePosition);
-            }
+            await new Promise((resolve) => requestAnimationFrame(()  => {
+                if (newReference.$el.scrollHeight !== (newReference.$el as HTMLElement).offsetHeight) {
+                    this.reference.$el.addEventListener('scroll', this.updatePosition);
+                }
+                resolve();
+            }));
         }
 
         await this.update();
