@@ -1,7 +1,6 @@
 import {storiesOf} from '@storybook/vue';
 import {action} from '@storybook/addon-actions';
 import {boolean, number, text, object, select, withKnobs} from '@storybook/addon-knobs';
-import bigInt from 'big-integer';
 
 import Account from '../components/Account.vue';
 import AccountDetails from '../components/AccountDetails.vue';
@@ -234,6 +233,7 @@ storiesOf('Basic', module)
     .add('Tooltip', () => {
         const useReference = boolean('Use referenceFrame', true);
         const preferredPosition = select('preferredPosition', Object.values(Tooltip.Position), Tooltip.Position.TOP);
+        const autoWidth = boolean('autoWidth', false);
         const disabled = boolean('disabled', false);
         const fontSize = number('Font size (rem)', 3);
         return {
@@ -243,6 +243,7 @@ storiesOf('Basic', module)
                     message: '',
                     useReference,
                     preferredPosition,
+                    autoWidth,
                     disabled,
                     fontSize,
                 };
@@ -271,9 +272,10 @@ storiesOf('Basic', module)
                                     <LabelInput v-model="message" style="display: inline;"/>
                                     <Tooltip :reference="useReference ? target : undefined"
                                         :preferredPosition="preferredPosition"
+                                        :autoWidth="autoWidth"
                                         :disabled="disabled"
                                         :style="style">
-                                        <div style="font-size: 2rem;">
+                                        <div style="font-size: 2rem; min-width: 25rem">
                                             This is the Tooltip I was talking about.
                                             <Account address="NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM" />
                                         </div>

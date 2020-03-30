@@ -47,6 +47,10 @@ class Tooltip extends Vue {
         default: 'bottom' as Tooltip.Position.BOTTOM,
         validator: (value: any) => Object.values(Tooltip.Position).includes(value),
     }) public preferredPosition!: Tooltip.Position;
+    @Prop({
+        type: Boolean,
+        default: false,
+    }) public autoWidth!: boolean; // only relevant when using a reference
 
     // Typing of $refs and $el, in order to not having to cast it everywhere.
     public $refs!: {
@@ -63,6 +67,7 @@ class Tooltip extends Vue {
 
     private height: number = 0;
     private width: number = 0;
+    private maxWidth: number = 0;
     private left: number = 0;
     private top: number = 0;
 
@@ -71,7 +76,8 @@ class Tooltip extends Vue {
         return {
             top: this.top + 'px',
             left: this.left + 'px',
-            width: this.reference ? this.width + 'px' : 'auto',
+            width: this.reference && this.autoWidth ? this.width + 'px' : undefined,
+            maxWidth: this.reference ? this.maxWidth + 'px' : undefined,
         };
     }
 
@@ -117,10 +123,11 @@ class Tooltip extends Vue {
             const referenceRightPad = parseInt(
                 window.getComputedStyle(reference.$el, null).getPropertyValue('padding-right'), 10);
 
-            this.width = (reference.$el as HTMLElement).offsetWidth - referenceLeftPad - referenceRightPad;
+            this.maxWidth = (reference.$el as HTMLElement).offsetWidth - referenceLeftPad - referenceRightPad;
+            if (this.autoWidth) this.width = this.maxWidth;
         }
 
-        // make sure that tooltipBox is rendered and apply new width then update measurements
+        // make sure that tooltipBox is rendered then update measurements
         await Vue.nextTick();
         if (!this.tooltipActive) return; // tooltip not visible anymore?
         this.height = this.$refs.tooltipBox.offsetHeight;
@@ -156,19 +163,28 @@ class Tooltip extends Vue {
                 this.tooltipPosition = Tooltip.Position.BOTTOM;
                 this.top = this.$refs.tooltipTrigger.offsetHeight;
             }
+
+            // set horizontal position
             const referenceLeftPad = parseInt(
                 window.getComputedStyle(this.reference.$el, null).getPropertyValue('padding-left'), 10);
-            this.left =
-                referenceBoundingRect.left
-                - triggerBoundingRect.left
-                + referenceLeftPad;
+            const referenceRightPad = parseInt(
+                window.getComputedStyle(this.reference.$el, null).getPropertyValue('padding-right'), 10);
+            // left and right bound of reference, expressed in trigger's coordinate system
+            const leftBound = referenceBoundingRect.left + referenceLeftPad - triggerBoundingRect.left;
+            const rightBound = referenceBoundingRect.right - referenceRightPad - triggerBoundingRect.left;
+            this.left = Math.max(
+                leftBound,
+                Math.min(
+                    rightBound - this.width,
+                    -this.width / 2 + this.$refs.tooltipTrigger.offsetWidth / 2,
+                ),
+            );
         } else {
             this.tooltipPosition = this.preferredPosition;
             this.top = this.preferredPosition === Tooltip.Position.BOTTOM
                 ? this.$refs.tooltipTrigger.offsetHeight
                 : -this.height;
-            const triggerWidth = this.$refs.tooltipTrigger.offsetWidth;
-            this.left = -this.width / 2 + triggerWidth / 2;
+            this.left = -this.width / 2 + this.$refs.tooltipTrigger.offsetWidth / 2;
         }
     }
 
