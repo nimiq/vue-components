@@ -235,6 +235,7 @@ storiesOf('Basic', module)
         const preferredPosition = select('preferredPosition', Object.values(Tooltip.Position), Tooltip.Position.TOP);
         const autoWidth = boolean('autoWidth', false);
         const disabled = boolean('disabled', false);
+        const theme = select('theme', Object.values(Tooltip.Themes), Tooltip.Themes.NORMAL);
         const fontSize = number('Font size (rem)', 3);
         return {
             data() {
@@ -243,6 +244,7 @@ storiesOf('Basic', module)
                     preferredPosition,
                     autoWidth,
                     disabled,
+                    theme,
                     fontSize,
                     refsLoaded: false,
                     shown: false,
@@ -259,20 +261,25 @@ storiesOf('Basic', module)
                 this.refsLoaded = true;
             },
             components: { SmallPage, PageHeader, PageBody, Tooltip, Account },
-            template: windowTemplate`<SmallPage>
+            template: windowTemplate`<SmallPage :class="{ 'nq-blue-bg': theme === 'inverse' }">
                             <PageHeader>Test</PageHeader>
-                            <PageBody style="overflow-y: scroll; position:relative;" ref="target">
+                            <PageBody ref="target" style="overflow-y: scroll; position:relative;">
                                 <div style="height:320px"></div>
                                 <div style="max-width: 100%; display: flex; align-items: center;">
-                                    <button class="nq-button-s" @click="$refs.tooltip.show()">Show</button>
+                                    <button class="nq-button-s" :class="[theme]" @click="$refs.tooltip.show()">
+                                        Show
+                                    </button>
                                     &nbsp;or&nbsp;
-                                    <button class="nq-button-s" @click="$refs.tooltip.hide()">hide</button>
+                                    <button class="nq-button-s" :class="[theme]" @click="$refs.tooltip.hide()">
+                                        hide
+                                    </button>
                                     &nbsp;or hover me:&nbsp;
                                     <Tooltip ref="tooltip"
                                         :reference="useReference ? target : undefined"
                                         :preferredPosition="preferredPosition"
                                         :autoWidth="autoWidth"
                                         :disabled="disabled"
+                                        :theme="theme"
                                         :style="{ fontSize: fontSize + 'rem' }"
                                         @show="shown = true"
                                         @hide="shown = false">

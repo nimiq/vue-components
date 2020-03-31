@@ -4,6 +4,7 @@
             disabled,
             shown: isShown,
             'transition-position': transitionPosition,
+            'inverse-theme': theme === constructor.Themes.INVERSE,
         }]"
         @mouseenter="mouseOver(true)"
         @mouseleave="mouseOver(false)"
@@ -36,15 +37,24 @@ import { AlertTriangleIcon } from './Icons';
 class Tooltip extends Vue {
     @Prop(Object) public reference?: Vue | {$el: HTMLElement};
     @Prop(Boolean) public disabled?: boolean;
+
     @Prop({
         type: String,
         default: 'bottom' as Tooltip.Position.BOTTOM,
         validator: (value: any) => Object.values(Tooltip.Position).includes(value),
     }) public preferredPosition!: Tooltip.Position;
+
     @Prop({
         type: Boolean,
         default: false,
     }) public autoWidth!: boolean; // only relevant when using a reference
+
+    @Prop({
+        type: String,
+        default: 'normal' as Tooltip.Themes.NORMAL,
+        validator: (value: any) => Object.values(Tooltip.Themes).includes(value),
+    })
+    public theme!: Tooltip.Themes;
 
     // Typing of $refs and $el, in order to not having to cast it everywhere.
     public $refs!: {
@@ -260,6 +270,11 @@ namespace Tooltip {
         TOP = 'top',
         BOTTOM = 'bottom',
     }
+
+    export enum Themes {
+        NORMAL = 'normal',
+        INVERSE = 'inverse',
+    }
 }
 
 export default Tooltip;
@@ -295,11 +310,17 @@ export default Tooltip;
         width: 2.25rem;
         height: 2rem;
         left: calc(50% - 1.125rem);
-        background-image: url('data:image/svg+xml,<svg viewBox="0 0 18 16" xmlns="http://www.w3.org/2000/svg"><path d="M9 7.12c-.47 0-.93.2-1.23.64L3.2 14.29A4 4 0 010 16h18a4 4 0 01-3.2-1.7l-4.57-6.54c-.3-.43-.76-.64-1.23-.64z" fill="%23151833"/></svg>');
+        background: var(--nimiq-blue-bg-darkened);
+        mask-image: url('data:image/svg+xml,<svg viewBox="0 0 18 16" xmlns="http://www.w3.org/2000/svg"><path d="M9 7.12c-.47 0-.93.2-1.23.64L3.2 14.29A4 4 0 010 16h18a4 4 0 01-3.2-1.7l-4.57-6.54c-.3-.43-.76-.64-1.23-.64z" fill="white"/></svg>');
         transition: opacity .3s ease, .3s visibility;
         transition-delay: 16ms; /* delay one animation frame for better sync with tooltipBox */
         visibility: hidden;
         pointer-events: visible;
+        z-index: 1;
+    }
+
+    .tooltip.inverse-theme > a::after {
+        background: white;
     }
 
     .tooltip.transition-position > a::after {
@@ -328,6 +349,11 @@ export default Tooltip;
         border-radius: .5rem;
         transition: opacity .3s ease;
         box-shadow: 0 1.125rem 2.275rem rgba(0, 0, 0, 0.11);
+    }
+
+    .tooltip.inverse-theme .tooltip-box {
+        color: var(--nimiq-blue);
+        background: white;
     }
 
     .tooltip.transition-position .tooltip-box {
