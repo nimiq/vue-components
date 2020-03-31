@@ -12,13 +12,14 @@
             :class="{
                 top: tooltipPosition === constructor.Position.TOP,
                 bottom: tooltipPosition === constructor.Position.BOTTOM,
+                'transition-position': transitionPosition,
                 disabled,
             }">
             <slot name="trigger">
                 <AlertTriangleIcon class="nq-orange" />
             </slot>
         </a>
-        <transition :duration="isTakingInitialMeasurement ? 0 : undefined">
+        <transition>
             <div ref="tooltipBox"
                 v-if="tooltipActive"
                 class="tooltip-box"
@@ -26,7 +27,7 @@
                 :class="{
                     top: tooltipPosition === constructor.Position.TOP,
                     bottom: tooltipPosition === constructor.Position.BOTTOM,
-                    hidden: isTakingInitialMeasurement,
+                    'transition-position': transitionPosition,
                 }">
                 <slot></slot>
             </div>
@@ -61,7 +62,7 @@ class Tooltip extends Vue {
 
     private tooltipPosition: Tooltip.Position | null = null;
     private tooltipToggled: boolean = false;
-    private isTakingInitialMeasurement: boolean = true; // take an initial measurement to avoid jumping on first display
+    private transitionPosition: boolean = false; // do not transition on show but on position updates while shown
     private mousedOver: boolean = false;
     private mouseOverTimeout: number;
 
@@ -82,7 +83,7 @@ class Tooltip extends Vue {
     }
 
     private get tooltipActive() {
-        return (this.tooltipToggled || this.mousedOver || this.isTakingInitialMeasurement) && !this.disabled;
+        return (this.tooltipToggled || this.mousedOver) && !this.disabled;
     }
 
     private created() {
@@ -103,7 +104,10 @@ class Tooltip extends Vue {
     @Watch('tooltipActive')
     public async update() {
         // updates dimensions and repositions tooltip
-        if (!this.tooltipActive) return; // no need to update as tooltip not visible
+        if (!this.tooltipActive) {
+            this.transitionPosition = false; // when shown next time, render immediately at correct position
+            return; // no need to update as tooltip not visible
+        }
         if (!this.$el) {
             // wait until we're mounted
             await new Promise((resolve) => this.$once('hook:mounted', resolve));
@@ -132,7 +136,7 @@ class Tooltip extends Vue {
             }));
         }
 
-        // make sure that tooltipBox is rendered then update measurements
+        // make sure that tooltipBox is created, then update measurements
         await Vue.nextTick();
         if (!this.tooltipActive) return; // tooltip not visible anymore?
         // here we need the quick reflow to avoid that the visible tooltip gets rendered at the wrong position,
@@ -142,14 +146,15 @@ class Tooltip extends Vue {
 
         this.updatePosition();
 
-        if (this.isTakingInitialMeasurement) {
-            this.isTakingInitialMeasurement = false;
-            setTimeout(() => this.$el.style.overflow = 'unset', this.tooltipActive ? 0 : 300);
-        }
+        // wait for updated position to be effective and rendered, then enable transitions
+        await Vue.nextTick();
+        await new Promise((resolve) => requestAnimationFrame(resolve));
+        this.transitionPosition = true;
     }
 
     @Watch('preferredPosition')
     private updatePosition() {
+        if (!this.tooltipActive) return;
         // Note that in his method we do not need to use requestAnimationFrame to avoid reflows, as the method is
         // already called as a scroll event listener or manually in update after a reflow.
         if (this.reference) {
@@ -258,7 +263,6 @@ export default Tooltip;
         display: block;
         position: relative;
         line-height: 1;
-        overflow: hidden; /* avoid showing potential scrollbars for wrongly positioned tooltip on initial measurement */
     }
 
     .tooltip > a {
@@ -284,10 +288,14 @@ export default Tooltip;
         left: calc(50% - 1rem);
         border-width: 1rem;
         border-style: solid;
-        transition: bottom .2s ease, top .2s ease, opacity .3s ease, .3s visibility;
+        transition: opacity .3s ease, .3s visibility;
         transition-delay: 16ms; /* delay one animation frame for better sync with tooltipBox */
         visibility: hidden;
         pointer-events: visible;
+    }
+
+    .tooltip > a.transition-position::after {
+        transition: bottom .2s ease, top .2s ease, opacity .3s ease, .3s visibility;
     }
 
     .tooltip > a.top::after {
@@ -313,8 +321,12 @@ export default Tooltip;
         background: var(--nimiq-blue-bg);
         padding: 1.5rem;
         border-radius: .5rem;
-        transition: opacity .3s ease, transform .2s ease, top .2s ease;
+        transition: opacity .3s ease;
         box-shadow: 0 1.125rem 2.275rem rgba(0, 0, 0, 0.11);
+    }
+
+    .tooltip-box.transition-position {
+        transition: opacity .3s ease, transform .2s ease, top .2s ease;
     }
 
     .tooltip-box.v-enter,
