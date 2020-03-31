@@ -17,7 +17,14 @@
             <ArrowRightSmallIcon/>
         </div>
         <Account :address="address" :image="shopLogoUrl" :label="originDomain" />
-        <Timer v-if="startTime && endTime" ref="timer" :startTime="startTime" :endTime="endTime" :theme="theme" />
+        <Timer
+            v-if="startTime && endTime"
+            ref="timer"
+            :startTime="startTime"
+            :endTime="endTime"
+            :theme="theme"
+            :tooltipContainer="$parent"
+        />
     </div>
 </template>
 

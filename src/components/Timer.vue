@@ -1,44 +1,50 @@
 <template>
-    <div class="timer" tabindex="0"
-        @focus="detailsShown = true" @mouseenter="detailsShown = true"
-        @blur="detailsShown = false" @mouseleave="detailsShown = false"
+    <Tooltip class="timer"
+        preferredPosition="bottom right"
+        :container="tooltipContainer"
+        :theme="theme"
+        @show="detailsShown = true"
+        @hide="detailsShown = false"
         :class="{
             'time-shown': detailsShown || alwaysShowTime,
             'little-time-left': _progress >= .75,
             'inverse-theme': theme === constructor.Themes.INVERSE,
         }"
     >
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26">
-            <circle ref="time-circle" class="time-circle" cx="50%" cy="50%" :r="radius.currentValue"
+        <template v-slot:trigger>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26">
+                <circle ref="time-circle" class="time-circle" cx="50%" cy="50%" :r="radius.currentValue"
                     :stroke-dasharray="`${_timeCircleInfo.length} ${_timeCircleInfo.gap}`"
                     :stroke-dashoffset="_timeCircleInfo.offset"
                     :stroke-width="_timeCircleInfo.strokeWidth"></circle>
-            <circle class="filler-circle" cx="50%" cy="50%" :r="radius.currentValue"
+                <circle class="filler-circle" cx="50%" cy="50%" :r="radius.currentValue"
                     :stroke-dasharray="`${_fillerCircleInfo.length} ${_fillerCircleInfo.gap}`"
                     :stroke-dashoffset="_fillerCircleInfo.offset"
                     :stroke-width="_fillerCircleInfo.strokeWidth"></circle>
 
-            <transition name="transition-fade">
-                <g v-if="!detailsShown && !alwaysShowTime" class="info-exclamation-icon">
-                    <rect x="12" y="9" width="2" height="2" rx="1" />
-                    <rect x="12" y="12.5" width="2" height="4.5" rx="1" />
-                </g>
-                <text v-else class="countdown" x="50%" y="50%">
-                    {{ _timeLeft | _toSimplifiedTime(false) }}
-                </text>
-            </transition>
-        </svg>
-        <transition>
-            <div v-if="detailsShown" class="tooltip">
+                <transition name="transition-fade">
+                    <g v-if="!detailsShown && !alwaysShowTime" class="info-exclamation-icon">
+                        <rect x="12" y="9" width="2" height="2" rx="1" />
+                        <rect x="12" y="12.5" width="2" height="4.5" rx="1" />
+                    </g>
+                    <text v-else class="countdown" x="50%" y="50%">
+                        {{ _timeLeft | _toSimplifiedTime(false) }}
+                    </text>
+                </transition>
+            </svg>
+        </template>
+        <template v-slot:default>
+            <div class="tooltip-content">
                 This offer expires in {{ _timeLeft | _toSimplifiedTime(true) }}.
             </div>
-        </transition>
-    </div>
+        </template>
+    </Tooltip>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Watch, Vue } from 'vue-property-decorator';
 import { Tweenable } from '@nimiq/utils';
+import Tooltip from './Tooltip.vue';
 
 interface CircleInfo {
     length: number;
@@ -78,6 +84,7 @@ function _toSimplifiedTime(millis: number, includeUnit: boolean = true): number 
 
 @Component({
     filters: { _toSimplifiedTime },
+    components: { Tooltip },
 })
 class Timer extends Vue {
     private static readonly REM_FACTOR = 8; // size of 1rem
@@ -109,6 +116,8 @@ class Timer extends Vue {
         default: 2,
     })
     public strokeWidth!: number;
+
+    @Prop(Object) public tooltipContainer?: Vue | {$el: HTMLElement};
 
     public synchronize(referenceTime: number) {
         this.timeOffset = referenceTime - Date.now();
@@ -256,8 +265,6 @@ export default Timer;
     .timer {
         width: 3.25rem;
         position: relative;
-        outline: none;
-        cursor: default;
     }
 
     /* for setting height automatically depending on width */
@@ -267,6 +274,7 @@ export default Timer;
         display: block;
     }
 
+    .tooltip >>> .trigger,
     svg {
         display: block;
         position: absolute;
@@ -274,6 +282,9 @@ export default Timer;
         top: 0;
         width: 100%;
         height: 100%;
+    }
+
+    svg {
         fill: none;
         stroke-linecap: round;
     }
@@ -357,32 +368,7 @@ export default Timer;
         opacity: 0 !important;
     }
 
-    .tooltip {
-        position: absolute;
-        top: calc(100% + 1rem);
-        right: calc(50% - 3rem);
-        width: 17rem;
-        height: 8rem;
-        padding: 2rem 1.25rem .875rem 1.5rem;
-        font-size: 1.75rem;
-        line-height: 1.5;
-        font-weight: 600;
-        color: white;
-        z-index: 1;
-        pointer-events: none;
-        background: var(--nimiq-blue-bg);
-        mask-image: url('data:image/svg+xml,<svg viewBox="0 0 136 63.9" xmlns="http://www.w3.org/2000/svg"><path d="M136 59.9a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4v-47a4 4 0 0 1 4-4h99a4 4 0 0 0 3.2-1.7l4.6-6.6c.6-.8 1.8-.8 2.4 0l4.6 6.6a4 4 0 0 0 3.3 1.7H132a4 4 0 0 1 4 4z" fill="white"/></svg>');
-        transition: opacity .3s var(--nimiq-ease), transform .3s var(--nimiq-ease);
-    }
-
-    .inverse-theme .tooltip {
-        color: var(--nimiq-blue);
-        background: white;
-    }
-
-    .tooltip.v-enter,
-    .tooltip.v-leave-to {
-        opacity: 0;
-        transform: translateY(-.5rem);
+    .tooltip-content {
+        width: 15rem;
     }
 </style>
