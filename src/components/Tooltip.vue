@@ -1,7 +1,6 @@
 <template>
     <span class="tooltip"
         :class="[tooltipPosition, {
-            disabled,
             shown: isShown,
             'transition-position': transitionPosition,
             'inverse-theme': theme === constructor.Themes.INVERSE,
@@ -13,7 +12,8 @@
             ref="tooltipTrigger"
             @focus.stop="show"
             @blur.stop="hide"
-            :tabindex="disabled ? -1 : false">
+            :tabindex="disabled ? -1 : false"
+            class="trigger">
             <slot name="trigger">
                 <AlertTriangleIcon class="nq-orange" />
             </slot>
@@ -282,27 +282,24 @@ export default Tooltip;
 
 <style scoped>
     .tooltip {
-        display: block;
+        display: inline-block;
         position: relative;
         line-height: 1;
     }
 
-    .tooltip > a {
+    .trigger {
         position: relative;
         display: block;
         text-decoration: none;
-    }
-
-    .tooltip.disabled > a {
         outline: none;
         cursor: default;
     }
 
-    .tooltip > a >>> svg {
+    .trigger >>> svg {
         display: block;
     }
 
-    .tooltip > a::after {
+    .trigger::after {
         opacity: 0;
         content: '';
         display: block;
@@ -316,27 +313,27 @@ export default Tooltip;
         transition-delay: 16ms; /* delay one animation frame for better sync with tooltipBox */
         visibility: hidden;
         pointer-events: visible;
-        z-index: 1;
+        z-index: 2; /* move above tooltip-box's box-shadow */
     }
 
-    .tooltip.inverse-theme > a::after {
+    .inverse-theme .trigger::after {
         background: white;
     }
 
-    .tooltip.transition-position > a::after {
+    .transition-position .trigger::after {
         transition: top .2s ease, transform .2s ease, opacity .3s ease, .3s visibility;
     }
 
-    .tooltip.top > a::after {
+    .top .trigger::after {
         top: -2rem;
         transform: scaleY(-1);
     }
 
-    .tooltip.bottom > a::after {
+    .bottom .trigger::after {
         top: 100%;
     }
 
-    .tooltip.shown > a::after {
+    .shown .trigger::after {
         opacity: 1;
         visibility: visible;
     }
@@ -347,16 +344,20 @@ export default Tooltip;
         background: var(--nimiq-blue-bg);
         padding: 1.5rem;
         border-radius: .5rem;
+        font-size: 1.75rem;
+        line-height: 1.5;
+        font-weight: 600;
         transition: opacity .3s ease;
         box-shadow: 0 1.125rem 2.275rem rgba(0, 0, 0, 0.11);
+        z-index: 1;
     }
 
-    .tooltip.inverse-theme .tooltip-box {
+    .inverse-theme .tooltip-box {
         color: var(--nimiq-blue);
         background: white;
     }
 
-    .tooltip.transition-position .tooltip-box {
+    .transition-position .tooltip-box {
         transition: opacity .3s ease, transform .2s ease, top .2s ease;
     }
 
@@ -365,11 +366,11 @@ export default Tooltip;
         opacity: 0;
     }
 
-    .tooltip.top .tooltip-box {
+    .top .tooltip-box {
         transform: translateY(-2rem);
     }
 
-    .tooltip.bottom .tooltip-box {
+    .bottom .tooltip-box {
         transform: translateY(2rem);
     }
 </style>
