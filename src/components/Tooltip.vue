@@ -1,6 +1,10 @@
 <template>
     <span class="tooltip"
-        :class="{ active: tooltipActive }"
+        :class="[tooltipPosition, {
+            disabled,
+            active: tooltipActive,
+            'transition-position': transitionPosition,
+        }]"
         @mouseenter="mouseOver(true)"
         @mouseleave="mouseOver(false)"
     >
@@ -8,13 +12,7 @@
             ref="tooltipTrigger"
             @focus.stop="toggleTooltip"
             @blur.stop="tooltipToggled ? toggleTooltip() : ''"
-            :tabindex="disabled ? -1 : false"
-            :class="{
-                top: tooltipPosition === constructor.Position.TOP,
-                bottom: tooltipPosition === constructor.Position.BOTTOM,
-                'transition-position': transitionPosition,
-                disabled,
-            }">
+            :tabindex="disabled ? -1 : false">
             <slot name="trigger">
                 <AlertTriangleIcon class="nq-orange" />
             </slot>
@@ -23,12 +21,7 @@
             <div ref="tooltipBox"
                 v-if="tooltipActive"
                 class="tooltip-box"
-                :style="styles"
-                :class="{
-                    top: tooltipPosition === constructor.Position.TOP,
-                    bottom: tooltipPosition === constructor.Position.BOTTOM,
-                    'transition-position': transitionPosition,
-                }">
+                :style="styles">
                 <slot></slot>
             </div>
         </transition>
@@ -271,7 +264,7 @@ export default Tooltip;
         text-decoration: none;
     }
 
-    .tooltip > a.disabled {
+    .tooltip.disabled > a {
         outline: none;
         cursor: default;
     }
@@ -294,17 +287,17 @@ export default Tooltip;
         pointer-events: visible;
     }
 
-    .tooltip > a.transition-position::after {
+    .tooltip.transition-position > a::after {
         transition: bottom .2s ease, top .2s ease, opacity .3s ease, .3s visibility;
     }
 
-    .tooltip > a.top::after {
+    .tooltip.top > a::after {
         border-color: var(--nimiq-blue-darkened) transparent transparent transparent;
         top: -2rem;
         bottom: 0;
     }
 
-    .tooltip > a.bottom::after {
+    .tooltip.bottom > a::after {
         border-color: transparent transparent var(--nimiq-blue-darkened) transparent;
         top: 0;
         bottom: -2rem;
@@ -325,7 +318,7 @@ export default Tooltip;
         box-shadow: 0 1.125rem 2.275rem rgba(0, 0, 0, 0.11);
     }
 
-    .tooltip-box.transition-position {
+    .tooltip.transition-position .tooltip-box {
         transition: opacity .3s ease, transform .2s ease, top .2s ease;
     }
 
@@ -334,11 +327,11 @@ export default Tooltip;
         opacity: 0;
     }
 
-    .tooltip-box.bottom {
-        transform: translateY(2rem);
+    .tooltip.top .tooltip-box {
+        transform: translateY(-2rem);
     }
 
-    .tooltip-box.top {
-        transform: translateY(-2rem);
+    .tooltip.bottom .tooltip-box {
+        transform: translateY(2rem);
     }
 </style>
