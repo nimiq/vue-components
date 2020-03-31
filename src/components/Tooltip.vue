@@ -292,9 +292,10 @@ export default Tooltip;
         content: '';
         display: block;
         position: absolute;
-        left: calc(50% - 1rem);
-        border-width: 1rem;
-        border-style: solid;
+        width: 2.25rem;
+        height: 2rem;
+        left: calc(50% - 1.125rem);
+        background-image: url('data:image/svg+xml,<svg viewBox="0 0 18 16" xmlns="http://www.w3.org/2000/svg"><path d="M9 7.12c-.47 0-.93.2-1.23.64L3.2 14.29A4 4 0 010 16h18a4 4 0 01-3.2-1.7l-4.57-6.54c-.3-.43-.76-.64-1.23-.64z" fill="%23151833"/></svg>');
         transition: opacity .3s ease, .3s visibility;
         transition-delay: 16ms; /* delay one animation frame for better sync with tooltipBox */
         visibility: hidden;
@@ -302,19 +303,16 @@ export default Tooltip;
     }
 
     .tooltip.transition-position > a::after {
-        transition: bottom .2s ease, top .2s ease, opacity .3s ease, .3s visibility;
+        transition: top .2s ease, transform .2s ease, opacity .3s ease, .3s visibility;
     }
 
     .tooltip.top > a::after {
-        border-color: var(--nimiq-blue-darkened) transparent transparent transparent;
         top: -2rem;
-        bottom: 0;
+        transform: scaleY(-1);
     }
 
     .tooltip.bottom > a::after {
-        border-color: transparent transparent var(--nimiq-blue-darkened) transparent;
-        top: 0;
-        bottom: -2rem;
+        top: 100%;
     }
 
     .tooltip.shown > a::after {
