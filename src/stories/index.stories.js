@@ -239,13 +239,13 @@ storiesOf('Basic', module)
         return {
             data() {
                 return {
-                    refsLoaded: false,
-                    message: '',
                     useReference,
                     preferredPosition,
                     autoWidth,
                     disabled,
                     fontSize,
+                    refsLoaded: false,
+                    shown: false,
                 };
             },
             computed: {
@@ -254,32 +254,36 @@ storiesOf('Basic', module)
                         return this.$refs.target;
                     else return null;
                 },
-                style() {
-                    return {
-                        fontSize: this.fontSize + 'rem',
-                    };
-                }
             },
             mounted() {
                 this.refsLoaded = true;
             },
-            components: { SmallPage, PageHeader, PageBody, Tooltip, Icons, Account, LabelInput },
+            components: { SmallPage, PageHeader, PageBody, Tooltip, Account },
             template: windowTemplate`<SmallPage>
                             <PageHeader>Test</PageHeader>
                             <PageBody style="overflow-y: scroll; position:relative;" ref="target">
                                 <div style="height:320px"></div>
                                 <div style="max-width: 100%; display: flex; align-items: center;">
-                                    <LabelInput v-model="message" style="display: inline;"/>
-                                    <Tooltip :reference="useReference ? target : undefined"
+                                    <button class="nq-button-s" @click="$refs.tooltip.show()">Show</button>
+                                    &nbsp;or&nbsp;
+                                    <button class="nq-button-s" @click="$refs.tooltip.hide()">hide</button>
+                                    &nbsp;or hover me:&nbsp;
+                                    <Tooltip ref="tooltip"
+                                        :reference="useReference ? target : undefined"
                                         :preferredPosition="preferredPosition"
                                         :autoWidth="autoWidth"
                                         :disabled="disabled"
-                                        :style="style">
+                                        :style="{ fontSize: fontSize + 'rem' }"
+                                        @show="shown = true"
+                                        @hide="shown = false">
                                         <div style="font-size: 2rem; min-width: 25rem">
                                             This is the Tooltip I was talking about.
                                             <Account address="NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM" />
                                         </div>
                                     </Tooltip>
+                                </div>
+                                <div>
+                                    Shown: {{shown}}
                                 </div>
                                 <div style="height:3000px"></div>
                             </PageBody>

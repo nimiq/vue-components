@@ -2,7 +2,7 @@
     <span class="tooltip"
         :class="[tooltipPosition, {
             disabled,
-            active: tooltipActive,
+            shown: isShown,
             'transition-position': transitionPosition,
         }]"
         @mouseenter="mouseOver(true)"
@@ -10,8 +10,8 @@
     >
         <a href="javascript:void(0);"
             ref="tooltipTrigger"
-            @focus.stop="toggleTooltip"
-            @blur.stop="tooltipToggled ? toggleTooltip() : ''"
+            @focus.stop="show"
+            @blur.stop="hide"
             :tabindex="disabled ? -1 : false">
             <slot name="trigger">
                 <AlertTriangleIcon class="nq-orange" />
@@ -19,7 +19,7 @@
         </a>
         <transition>
             <div ref="tooltipBox"
-                v-if="tooltipActive"
+                v-if="isShown"
                 class="tooltip-box"
                 :style="styles">
                 <slot></slot>
@@ -65,6 +65,10 @@ class Tooltip extends Vue {
     private left: number = 0;
     private top: number = 0;
 
+    public get isShown() {
+        return (this.tooltipToggled || this.mousedOver) && !this.disabled;
+    }
+
     private get styles() {
         // note that we let the browser calculate height automatically
         return {
@@ -73,10 +77,6 @@ class Tooltip extends Vue {
             width: this.reference && this.autoWidth ? this.width + 'px' : undefined,
             maxWidth: this.reference ? this.maxWidth + 'px' : undefined,
         };
-    }
-
-    private get tooltipActive() {
-        return (this.tooltipToggled || this.mousedOver) && !this.disabled;
     }
 
     private created() {
@@ -94,12 +94,34 @@ class Tooltip extends Vue {
         }
     }
 
-    @Watch('tooltipActive')
-    public async update() {
+    public show() {
+        this.tooltipToggled = true;
+    }
+
+    public hide() {
+        this.tooltipToggled = false;
+        this.$refs.tooltipTrigger.blur();
+    }
+
+    public toggle() {
+        if (this.tooltipToggled) {
+            this.hide();
+        } else {
+            this.show();
+        }
+    }
+
+    @Watch('isShown')
+    public async update(newWatcherValue?: boolean) {
         // updates dimensions and repositions tooltip
-        if (!this.tooltipActive) {
+        if (!this.isShown) {
             this.transitionPosition = false; // when shown next time, render immediately at correct position
+            if (newWatcherValue === false) {
+                this.$emit('hide');
+            }
             return; // no need to update as tooltip not visible
+        } else if (newWatcherValue === true) {
+            this.$emit('show');
         }
         if (!this.$el) {
             // wait until we're mounted
@@ -131,7 +153,7 @@ class Tooltip extends Vue {
 
         // make sure that tooltipBox is created, then update measurements
         await Vue.nextTick();
-        if (!this.tooltipActive) return; // tooltip not visible anymore?
+        if (!this.isShown) return; // tooltip not visible anymore?
         // here we need the quick reflow to avoid that the visible tooltip gets rendered at the wrong position,
         // potentially causing scroll bars
         this.height = this.$refs.tooltipBox.offsetHeight;
@@ -147,7 +169,7 @@ class Tooltip extends Vue {
 
     @Watch('preferredPosition')
     private updatePosition() {
-        if (!this.tooltipActive) return;
+        if (!this.isShown) return;
         // Note that in his method we do not need to use requestAnimationFrame to avoid reflows, as the method is
         // already called as a scroll event listener or manually in update after a reflow.
         if (this.reference) {
@@ -218,14 +240,6 @@ class Tooltip extends Vue {
         }
 
         await this.update();
-    }
-
-    private async toggleTooltip() {
-        this.tooltipToggled = !this.tooltipToggled;
-
-        if (!this.tooltipToggled) {
-            this.$refs.tooltipTrigger.blur();
-        }
     }
 
     private mouseOver(mouseOverTooltip: boolean) {
@@ -303,7 +317,7 @@ export default Tooltip;
         bottom: -2rem;
     }
 
-    .tooltip.active > a::after {
+    .tooltip.shown > a::after {
         opacity: 1;
         visibility: visible;
     }
