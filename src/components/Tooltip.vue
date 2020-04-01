@@ -1,6 +1,6 @@
 <template>
     <span class="tooltip"
-        :class="[tooltipPosition, {
+        :class="[verticalPosition, {
             shown: isShown,
             'transition-position': transitionPosition,
             'inverse-theme': theme === constructor.Themes.INVERSE,
@@ -40,9 +40,14 @@ class Tooltip extends Vue {
 
     @Prop({
         type: String,
-        default: 'bottom' as Tooltip.Position.BOTTOM,
-        validator: (value: any) => Object.values(Tooltip.Position).includes(value),
-    }) public preferredPosition!: Tooltip.Position;
+        default: 'bottom right',
+        validator: (value: unknown) => {
+            if (typeof value !== 'string') return false;
+            const [vertical, horizontal] = value.split(' ');
+            return Object.values(Tooltip.VerticalPosition).includes(vertical)
+                && (!horizontal || Object.values(Tooltip.HorizontalPosition).includes(horizontal));
+        }
+    }) public preferredPosition!: string;
 
     @Prop({
         type: Boolean,
@@ -63,7 +68,7 @@ class Tooltip extends Vue {
     };
     public $el: HTMLElement;
 
-    private tooltipPosition: Tooltip.Position | null = null;
+    private verticalPosition: Tooltip.VerticalPosition | null = null;
     private tooltipToggled: boolean = false;
     private transitionPosition: boolean = false; // do not transition on show but on position updates while shown
     private mousedOver: boolean = false;
@@ -188,6 +193,12 @@ class Tooltip extends Vue {
         if (!this.isShown) return;
         // Note that in his method we do not need to use requestAnimationFrame to avoid reflows, as the method is
         // already called as a scroll event listener or manually in update after a reflow.
+        let [preferredVerticalPosition, preferredHorizontalPosition] = this.preferredPosition.split(' ');
+        preferredHorizontalPosition = preferredHorizontalPosition || Tooltip.HorizontalPosition.RIGHT;
+        this.left = preferredHorizontalPosition === Tooltip.HorizontalPosition.RIGHT
+            ? Math.round(this.$refs.tooltipTrigger.offsetWidth / 2 - 25) // offset by 25px according to designs
+            : Math.round(this.$refs.tooltipTrigger.offsetWidth / 2 - this.width + 25);
+
         if (this.container) {
             if (!this.container.$el) {
                 // We don't wait here for the container to get mounted, as we expect it to already be mounted when this
@@ -201,16 +212,14 @@ class Tooltip extends Vue {
             const requiredSpace = this.height + 16; // 16 for arrow, assuming same height on mobile for simplicity
             const fitsTop = triggerBoundingRect.top - containerBoundingRect.top >= requiredSpace;
             const fitsBottom = containerBoundingRect.bottom - triggerBoundingRect.bottom >= requiredSpace;
-            if ((this.preferredPosition === Tooltip.Position.TOP && (fitsTop || !fitsBottom))
-                || (this.preferredPosition === Tooltip.Position.BOTTOM) && (fitsTop && !fitsBottom)) {
-                this.tooltipPosition = Tooltip.Position.TOP;
-                this.top = -this.height;
+            if ((preferredVerticalPosition === Tooltip.VerticalPosition.TOP && (fitsTop || !fitsBottom))
+                || (preferredVerticalPosition === Tooltip.VerticalPosition.BOTTOM) && (fitsTop && !fitsBottom)) {
+                this.verticalPosition = Tooltip.VerticalPosition.TOP;
             } else {
-                this.tooltipPosition = Tooltip.Position.BOTTOM;
-                this.top = this.$refs.tooltipTrigger.offsetHeight;
+                this.verticalPosition = Tooltip.VerticalPosition.BOTTOM;
             }
 
-            // set horizontal position
+            // constrain horizontal position
             const containerLeftPad = parseInt(
                 window.getComputedStyle(this.container.$el, null).getPropertyValue('padding-left'), 10);
             const containerRightPad = parseInt(
@@ -222,16 +231,16 @@ class Tooltip extends Vue {
                 leftBound,
                 Math.min(
                     rightBound - this.width,
-                    -this.width / 2 + triggerBoundingRect.width / 2,
+                    this.left,
                 ),
             );
         } else {
-            this.tooltipPosition = this.preferredPosition;
-            this.top = this.preferredPosition === Tooltip.Position.BOTTOM
-                ? this.$refs.tooltipTrigger.offsetHeight
-                : -this.height;
-            this.left = -this.width / 2 + this.$refs.tooltipTrigger.offsetWidth / 2;
+            this.verticalPosition = preferredVerticalPosition as Tooltip.VerticalPosition;
         }
+
+        this.top = this.verticalPosition === Tooltip.VerticalPosition.BOTTOM
+            ? this.$refs.tooltipTrigger.offsetHeight
+            : -this.height;
     }
 
     @Watch('container')
@@ -272,9 +281,14 @@ class Tooltip extends Vue {
 }
 
 namespace Tooltip {
-    export enum Position {
+    export enum VerticalPosition {
         TOP = 'top',
         BOTTOM = 'bottom',
+    }
+
+    export enum HorizontalPosition {
+        LEFT = 'left',
+        RIGHT = 'right',
     }
 
     export enum Themes {
@@ -327,7 +341,7 @@ export default Tooltip;
     }
 
     .transition-position .trigger::after {
-        transition: top .2s ease, transform .2s ease, opacity .3s ease, .3s visibility;
+        transition: top .2s ease, left .2s ease, transform .2s ease, opacity .3s ease, .3s visibility;
     }
 
     .top .trigger::after {
