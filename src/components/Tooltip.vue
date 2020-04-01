@@ -12,13 +12,13 @@
             ref="tooltipTrigger"
             @focus.stop="show"
             @blur.stop="hide"
-            :tabindex="disabled ? -1 : false"
+            :tabindex="disabled ? -1 : 0"
             class="trigger">
             <slot name="trigger">
                 <AlertTriangleIcon class="nq-orange" />
             </slot>
         </a>
-        <transition>
+        <transition name="transition-fade">
             <div ref="tooltipBox"
                 v-if="isShown"
                 class="tooltip-box"
@@ -94,6 +94,12 @@ class Tooltip extends Vue {
     }
 
     private mounted() {
+        if ('icon' in this.$slots) {
+            throw new Error('Deprecated Tooltip usage: slot `icon` has been renamed to `trigger`.');
+        }
+        if ('reference' in this) {
+            throw new Error('Deprecated Tooltip usage: prop `reference` has been renamed to `container`.');
+        }
         // Manually trigger an update instead of using immediate watchers to avoid unnecessary initial double updates
         this.setContainer(this.container);
     }
@@ -240,7 +246,7 @@ class Tooltip extends Vue {
                 await new Promise((resolve) => (newContainer as Vue).$once('hook:mounted', resolve));
                 if (newContainer !== this.container) return; // container changed
             }
-            // In case the container container is scrollable add a listener
+            // In case the container is scrollable add a listener
             await new Promise((resolve) => requestAnimationFrame(()  => {
                 if (newContainer.$el.scrollHeight !== (newContainer.$el as HTMLElement).offsetHeight) {
                     this.container.$el.addEventListener('scroll', this.updatePosition);
@@ -313,7 +319,7 @@ export default Tooltip;
         transition-delay: 16ms; /* delay one animation frame for better sync with tooltipBox */
         visibility: hidden;
         pointer-events: visible;
-        z-index: 2; /* move above tooltip-box's box-shadow */
+        z-index: 1000; /* move above tooltip-box's box-shadow */
     }
 
     .inverse-theme .trigger::after {
@@ -349,7 +355,7 @@ export default Tooltip;
         font-weight: 600;
         transition: opacity .3s ease;
         box-shadow: 0 1.125rem 2.275rem rgba(0, 0, 0, 0.11);
-        z-index: 1;
+        z-index: 999;
     }
 
     .inverse-theme .tooltip-box {
@@ -361,8 +367,8 @@ export default Tooltip;
         transition: opacity .3s ease, transform .2s ease, top .2s ease;
     }
 
-    .tooltip-box.v-enter,
-    .tooltip-box.v-leave-to {
+    .tooltip-box.transition-fade-enter,
+    .tooltip-box.transition-fade-leave-to {
         opacity: 0;
     }
 
