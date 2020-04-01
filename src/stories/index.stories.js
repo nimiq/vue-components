@@ -231,7 +231,7 @@ storiesOf('Basic', module)
         }
     })
     .add('Tooltip', () => {
-        const useReference = boolean('Use referenceFrame', true);
+        const useContainer = boolean('Use container', true);
         const preferredPosition = select('preferredPosition', Object.values(Tooltip.Position), Tooltip.Position.TOP);
         const autoWidth = boolean('autoWidth', false);
         const disabled = boolean('disabled', false);
@@ -240,7 +240,7 @@ storiesOf('Basic', module)
         return {
             data() {
                 return {
-                    useReference,
+                    useContainer,
                     preferredPosition,
                     autoWidth,
                     disabled,
@@ -251,9 +251,9 @@ storiesOf('Basic', module)
                 };
             },
             computed: {
-                target() {
+                container() {
                     if(this.refsLoaded)
-                        return this.$refs.target;
+                        return this.$refs.container;
                     else return null;
                 },
             },
@@ -263,7 +263,7 @@ storiesOf('Basic', module)
             components: { SmallPage, PageHeader, PageBody, Tooltip, Account },
             template: windowTemplate`<SmallPage :class="{ 'nq-blue-bg': theme === 'inverse' }">
                             <PageHeader>Test</PageHeader>
-                            <PageBody ref="target" style="overflow-y: scroll; position:relative;">
+                            <PageBody ref="container" style="overflow-y: scroll; position:relative;">
                                 <div style="height:320px"></div>
                                 <div style="max-width: 100%; display: flex; align-items: center;">
                                     <button class="nq-button-s" :class="[theme]" @click="$refs.tooltip.show()">
@@ -275,7 +275,7 @@ storiesOf('Basic', module)
                                     </button>
                                     &nbsp;or hover me:&nbsp;
                                     <Tooltip ref="tooltip"
-                                        :reference="useReference ? target : undefined"
+                                        :container="useContainer ? container : undefined"
                                         :preferredPosition="preferredPosition"
                                         :autoWidth="autoWidth"
                                         :disabled="disabled"

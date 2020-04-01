@@ -35,7 +35,7 @@ import { AlertTriangleIcon } from './Icons';
 
 @Component({ components: { AlertTriangleIcon }})
 class Tooltip extends Vue {
-    @Prop(Object) public reference?: Vue | {$el: HTMLElement};
+    @Prop(Object) public container?: Vue | {$el: HTMLElement};
     @Prop(Boolean) public disabled?: boolean;
 
     @Prop({
@@ -47,7 +47,7 @@ class Tooltip extends Vue {
     @Prop({
         type: Boolean,
         default: false,
-    }) public autoWidth!: boolean; // only relevant when using a reference
+    }) public autoWidth!: boolean; // only relevant when using a container
 
     @Prop({
         type: String,
@@ -84,8 +84,8 @@ class Tooltip extends Vue {
         return {
             top: this.top + 'px',
             left: this.left + 'px',
-            width: this.reference && this.autoWidth ? this.width + 'px' : undefined,
-            maxWidth: this.reference ? this.maxWidth + 'px' : undefined,
+            width: this.container && this.autoWidth ? this.width + 'px' : undefined,
+            maxWidth: this.container ? this.maxWidth + 'px' : undefined,
         };
     }
 
@@ -95,12 +95,12 @@ class Tooltip extends Vue {
 
     private mounted() {
         // Manually trigger an update instead of using immediate watchers to avoid unnecessary initial double updates
-        this.setReference(this.reference);
+        this.setContainer(this.container);
     }
 
     private destroyed() {
-        if (this.reference && this.reference.$el) {
-            this.reference.$el.removeEventListener('scroll', this.updatePosition);
+        if (this.container && this.container.$el) {
+            this.container.$el.removeEventListener('scroll', this.updatePosition);
         }
     }
 
@@ -138,24 +138,24 @@ class Tooltip extends Vue {
             await new Promise((resolve) => this.$once('hook:mounted', resolve));
         }
 
-        const reference = this.reference;
-        if (reference) {
-            if (!reference.$el && reference instanceof Vue) {
-                // wait until reference is mounted if it's a Vue instance
-                await new Promise((resolve) => (reference as Vue).$once('hook:mounted', resolve));
-                if (reference !== this.reference) return; // reference changed; update was also called for new reference
+        const container = this.container;
+        if (container) {
+            if (!container.$el && container instanceof Vue) {
+                // wait until container is mounted if it's a Vue instance
+                await new Promise((resolve) => (container as Vue).$once('hook:mounted', resolve));
+                if (container !== this.container) return; // container changed; update was also called for new container
             }
 
             await new Promise((resolve) => requestAnimationFrame(() => {
                 // avoid potential forced layouting / reflow by taking measurements within a requestAnimationFrame
                 // (see https://gist.github.com/paulirish/5d52fb081b3570c81e3a#appendix)
-                const referenceLeftPad = parseInt(
-                    window.getComputedStyle(reference.$el, null).getPropertyValue('padding-left'), 10);
+                const containerLeftPad = parseInt(
+                    window.getComputedStyle(container.$el, null).getPropertyValue('padding-left'), 10);
 
-                const referenceRightPad = parseInt(
-                    window.getComputedStyle(reference.$el, null).getPropertyValue('padding-right'), 10);
+                const containerRightPad = parseInt(
+                    window.getComputedStyle(container.$el, null).getPropertyValue('padding-right'), 10);
 
-                this.maxWidth = (reference.$el as HTMLElement).offsetWidth - referenceLeftPad - referenceRightPad;
+                this.maxWidth = (container.$el as HTMLElement).offsetWidth - containerLeftPad - containerRightPad;
                 if (this.autoWidth) this.width = this.maxWidth;
                 resolve();
             }));
@@ -182,19 +182,19 @@ class Tooltip extends Vue {
         if (!this.isShown) return;
         // Note that in his method we do not need to use requestAnimationFrame to avoid reflows, as the method is
         // already called as a scroll event listener or manually in update after a reflow.
-        if (this.reference) {
-            if (!this.reference.$el) {
-                // We don't wait here for the reference to get mounted, as we expect it to already be mounted when this
+        if (this.container) {
+            if (!this.container.$el) {
+                // We don't wait here for the container to get mounted, as we expect it to already be mounted when this
                 // private method is called and to do measurements immediately in the scroll event listener
-                console.warn('Tooltip reference does not seem to be mounted yet.');
+                console.warn('Tooltip container does not seem to be mounted yet.');
                 return;
             }
-            // position tooltip such that it best fits reference element
+            // position tooltip such that it best fits container element
             const triggerBoundingRect = this.$refs.tooltipTrigger.getBoundingClientRect();
-            const referenceBoundingRect = this.reference.$el.getBoundingClientRect();
+            const containerBoundingRect = this.container.$el.getBoundingClientRect();
             const requiredSpace = this.height + 16; // 16 for arrow, assuming same height on mobile for simplicity
-            const fitsTop = triggerBoundingRect.top - referenceBoundingRect.top >= requiredSpace;
-            const fitsBottom = referenceBoundingRect.bottom - triggerBoundingRect.bottom >= requiredSpace;
+            const fitsTop = triggerBoundingRect.top - containerBoundingRect.top >= requiredSpace;
+            const fitsBottom = containerBoundingRect.bottom - triggerBoundingRect.bottom >= requiredSpace;
             if ((this.preferredPosition === Tooltip.Position.TOP && (fitsTop || !fitsBottom))
                 || (this.preferredPosition === Tooltip.Position.BOTTOM) && (fitsTop && !fitsBottom)) {
                 this.tooltipPosition = Tooltip.Position.TOP;
@@ -205,13 +205,13 @@ class Tooltip extends Vue {
             }
 
             // set horizontal position
-            const referenceLeftPad = parseInt(
-                window.getComputedStyle(this.reference.$el, null).getPropertyValue('padding-left'), 10);
-            const referenceRightPad = parseInt(
-                window.getComputedStyle(this.reference.$el, null).getPropertyValue('padding-right'), 10);
-            // left and right bound of reference, expressed in trigger's coordinate system
-            const leftBound = referenceBoundingRect.left + referenceLeftPad - triggerBoundingRect.left;
-            const rightBound = referenceBoundingRect.right - referenceRightPad - triggerBoundingRect.left;
+            const containerLeftPad = parseInt(
+                window.getComputedStyle(this.container.$el, null).getPropertyValue('padding-left'), 10);
+            const containerRightPad = parseInt(
+                window.getComputedStyle(this.container.$el, null).getPropertyValue('padding-right'), 10);
+            // left and right bound of container, expressed in trigger's coordinate system
+            const leftBound = containerBoundingRect.left + containerLeftPad - triggerBoundingRect.left;
+            const rightBound = containerBoundingRect.right - containerRightPad - triggerBoundingRect.left;
             this.left = Math.max(
                 leftBound,
                 Math.min(
@@ -228,22 +228,22 @@ class Tooltip extends Vue {
         }
     }
 
-    @Watch('reference')
-    private async setReference(newReference: Vue | {$el: HTMLElement}, oldReference?: Vue | {$el: HTMLElement}) {
-        if (oldReference && oldReference.$el) {
-            oldReference.$el.removeEventListener('scroll', this.updatePosition);
+    @Watch('container')
+    private async setContainer(newContainer: Vue | {$el: HTMLElement}, oldContainer?: Vue | {$el: HTMLElement}) {
+        if (oldContainer && oldContainer.$el) {
+            oldContainer.$el.removeEventListener('scroll', this.updatePosition);
         }
 
-        if (newReference) {
-            if (!newReference.$el && newReference instanceof Vue) {
-                // wait until reference is mounted if it's a Vue instance
-                await new Promise((resolve) => (newReference as Vue).$once('hook:mounted', resolve));
-                if (newReference !== this.reference) return; // reference changed
+        if (newContainer) {
+            if (!newContainer.$el && newContainer instanceof Vue) {
+                // wait until container is mounted if it's a Vue instance
+                await new Promise((resolve) => (newContainer as Vue).$once('hook:mounted', resolve));
+                if (newContainer !== this.container) return; // container changed
             }
-            // In case the reference container is scrollable add a listener
+            // In case the container container is scrollable add a listener
             await new Promise((resolve) => requestAnimationFrame(()  => {
-                if (newReference.$el.scrollHeight !== (newReference.$el as HTMLElement).offsetHeight) {
-                    this.reference.$el.addEventListener('scroll', this.updatePosition);
+                if (newContainer.$el.scrollHeight !== (newContainer.$el as HTMLElement).offsetHeight) {
+                    this.container.$el.addEventListener('scroll', this.updatePosition);
                 }
                 resolve();
             }));
