@@ -46,9 +46,10 @@ class Tooltip extends Vue {
         validator: (value: unknown) => {
             if (typeof value !== 'string') return false;
             const [vertical, horizontal] = value.split(' ');
-            return Object.values(Tooltip.VerticalPosition).includes(vertical)
-                && (!horizontal || Object.values(Tooltip.HorizontalPosition).includes(horizontal));
-        }
+            return Object.values(Tooltip.VerticalPosition).includes(vertical as Tooltip.VerticalPosition)
+                && (!horizontal || Object.values(Tooltip.HorizontalPosition)
+                    .includes(horizontal as Tooltip.HorizontalPosition));
+        },
     }) public preferredPosition!: string;
 
     @Prop({
@@ -204,6 +205,7 @@ class Tooltip extends Vue {
         if (!this.isShown) return;
         // Note that in his method we do not need to use requestAnimationFrame to avoid reflows, as the method is
         // already called as a scroll event listener or manually in update after a reflow.
+        // tslint:disable-next-line:prefer-const
         let [preferredVerticalPosition, preferredHorizontalPosition] = this.preferredPosition.split(' ');
         preferredHorizontalPosition = preferredHorizontalPosition || Tooltip.HorizontalPosition.RIGHT;
         this.left = preferredHorizontalPosition === Tooltip.HorizontalPosition.RIGHT
