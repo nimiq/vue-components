@@ -341,7 +341,7 @@ export default Tooltip;
         height: 2rem;
         left: calc(50% - 1.125rem);
         background: var(--nimiq-blue-bg-darkened);
-        mask-image: url('data:image/svg+xml,<svg viewBox="0 0 18 16" xmlns="http://www.w3.org/2000/svg"><path d="M9 7.12c-.47 0-.93.2-1.23.64L3.2 14.29A4 4 0 010 16h18a4 4 0 01-3.2-1.7l-4.57-6.54c-.3-.43-.76-.64-1.23-.64z" fill="white"/></svg>');
+        mask-image: url('data:image/svg+xml,<svg viewBox="0 0 18 16" xmlns="http://www.w3.org/2000/svg"><path d="M9 7.12c-.47 0-.93.2-1.23.64L3.2 14.29A4 4 0 0 1 0 16h18a4 4 0 0 1-3.2-1.7l-4.57-6.54c-.3-.43-.76-.64-1.23-.64z" fill="white"/></svg>');
         transition: opacity .3s ease, .3s visibility;
         transition-delay: 16ms; /* delay one animation frame for better sync with tooltipBox */
         visibility: hidden;
