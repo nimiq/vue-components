@@ -14,9 +14,11 @@
             @blur.stop="hide"
             :tabindex="disabled ? -1 : 0"
             class="trigger">
-            <slot name="trigger">
+            <slot v-if="!$slots.icon" name="trigger">
                 <AlertTriangleIcon class="nq-orange" />
             </slot>
+            <!-- Note: usage of the `icon` slot is deprecated. Use `trigger` instead. -->
+            <slot v-if="$slots.icon && !$slots.trigger" name="icon"></slot>
         </a>
         <transition name="transition-fade">
             <div ref="tooltipBox"
@@ -61,6 +63,9 @@ class Tooltip extends Vue {
     })
     public theme!: Tooltip.Themes;
 
+    /** @deprecated */
+    @Prop(Object) public reference?: Vue | {$el: HTMLElement};
+
     // Typing of $refs and $el, in order to not having to cast it everywhere.
     public $refs!: {
         tooltipBox?: HTMLDivElement,
@@ -84,13 +89,21 @@ class Tooltip extends Vue {
         return (this.tooltipToggled || this.mousedOver) && !this.disabled;
     }
 
+    private get effectiveContainer(): Vue | {$el: HTMLElement} | undefined {
+        if (this.reference) {
+            console.warn('Tooltip: Prop `reference` is deprecated and support will be removed in the future.'
+                + ' Use prop `container` instead.');
+        }
+        return this.container || this.reference;
+    }
+
     private get styles() {
         // note that we let the browser calculate height automatically
         return {
             top: this.top + 'px',
             left: this.left + 'px',
-            width: this.container && this.autoWidth ? this.width + 'px' : undefined,
-            maxWidth: this.container ? this.maxWidth + 'px' : undefined,
+            width: this.effectiveContainer && this.autoWidth ? this.width + 'px' : undefined,
+            maxWidth: this.effectiveContainer ? this.maxWidth + 'px' : undefined,
         };
     }
 
@@ -100,18 +113,16 @@ class Tooltip extends Vue {
 
     private mounted() {
         if ('icon' in this.$slots) {
-            throw new Error('Deprecated Tooltip usage: slot `icon` has been renamed to `trigger`.');
-        }
-        if ('reference' in this) {
-            throw new Error('Deprecated Tooltip usage: prop `reference` has been renamed to `container`.');
+            console.warn('Tooltip: Slot `icon` is deprecated and support will be removed in the future.'
+                + ' Use slot `trigger` instead.');
         }
         // Manually trigger an update instead of using immediate watchers to avoid unnecessary initial double updates
-        this.setContainer(this.container);
+        this.setContainer(this.effectiveContainer);
     }
 
     private destroyed() {
-        if (this.container && this.container.$el) {
-            this.container.$el.removeEventListener('scroll', this.updatePosition);
+        if (this.effectiveContainer && this.effectiveContainer.$el) {
+            this.effectiveContainer.$el.removeEventListener('scroll', this.updatePosition);
         }
     }
 
@@ -149,12 +160,12 @@ class Tooltip extends Vue {
             await new Promise((resolve) => this.$once('hook:mounted', resolve));
         }
 
-        const container = this.container;
+        const container = this.effectiveContainer;
         if (container) {
             if (!container.$el && container instanceof Vue) {
                 // wait until container is mounted if it's a Vue instance
                 await new Promise((resolve) => (container as Vue).$once('hook:mounted', resolve));
-                if (container !== this.container) return; // container changed; update was also called for new container
+                if (container !== this.effectiveContainer) return; // container changed; update was called again
             }
 
             await new Promise((resolve) => requestAnimationFrame(() => {
@@ -199,8 +210,8 @@ class Tooltip extends Vue {
             ? Math.round(this.$refs.tooltipTrigger.offsetWidth / 2 - 25) // offset by 25px according to designs
             : Math.round(this.$refs.tooltipTrigger.offsetWidth / 2 - this.width + 25);
 
-        if (this.container) {
-            if (!this.container.$el) {
+        if (this.effectiveContainer) {
+            if (!this.effectiveContainer.$el) {
                 // We don't wait here for the container to get mounted, as we expect it to already be mounted when this
                 // private method is called and to do measurements immediately in the scroll event listener
                 console.warn('Tooltip container does not seem to be mounted yet.');
@@ -208,7 +219,7 @@ class Tooltip extends Vue {
             }
             // position tooltip such that it best fits container element
             const triggerBoundingRect = this.$refs.tooltipTrigger.getBoundingClientRect();
-            const containerBoundingRect = this.container.$el.getBoundingClientRect();
+            const containerBoundingRect = this.effectiveContainer.$el.getBoundingClientRect();
             const requiredSpace = this.height + 16; // 16 for arrow, assuming same height on mobile for simplicity
             const fitsTop = triggerBoundingRect.top - containerBoundingRect.top >= requiredSpace;
             const fitsBottom = containerBoundingRect.bottom - triggerBoundingRect.bottom >= requiredSpace;
@@ -221,9 +232,9 @@ class Tooltip extends Vue {
 
             // constrain horizontal position
             const containerLeftPad = parseInt(
-                window.getComputedStyle(this.container.$el, null).getPropertyValue('padding-left'), 10);
+                window.getComputedStyle(this.effectiveContainer.$el, null).getPropertyValue('padding-left'), 10);
             const containerRightPad = parseInt(
-                window.getComputedStyle(this.container.$el, null).getPropertyValue('padding-right'), 10);
+                window.getComputedStyle(this.effectiveContainer.$el, null).getPropertyValue('padding-right'), 10);
             // left and right bound of container, expressed in trigger's coordinate system
             const leftBound = containerBoundingRect.left + containerLeftPad - triggerBoundingRect.left;
             const rightBound = containerBoundingRect.right - containerRightPad - triggerBoundingRect.left;
@@ -243,7 +254,7 @@ class Tooltip extends Vue {
             : -this.height;
     }
 
-    @Watch('container')
+    @Watch('effectiveContainer')
     private async setContainer(newContainer: Vue | {$el: HTMLElement}, oldContainer?: Vue | {$el: HTMLElement}) {
         if (oldContainer && oldContainer.$el) {
             oldContainer.$el.removeEventListener('scroll', this.updatePosition);
@@ -253,12 +264,12 @@ class Tooltip extends Vue {
             if (!newContainer.$el && newContainer instanceof Vue) {
                 // wait until container is mounted if it's a Vue instance
                 await new Promise((resolve) => (newContainer as Vue).$once('hook:mounted', resolve));
-                if (newContainer !== this.container) return; // container changed
+                if (newContainer !== this.effectiveContainer) return; // container changed
             }
             // In case the container is scrollable add a listener
             await new Promise((resolve) => requestAnimationFrame(()  => {
                 if (newContainer.$el.scrollHeight !== (newContainer.$el as HTMLElement).offsetHeight) {
-                    this.container.$el.addEventListener('scroll', this.updatePosition);
+                    newContainer.$el.addEventListener('scroll', this.updatePosition);
                 }
                 resolve();
             }));
