@@ -69,9 +69,12 @@ class Tooltip extends Vue {
 
     // Typing of $refs and $el, in order to not having to cast it everywhere.
     public $refs!: {
-        tooltipBox?: HTMLDivElement,
         tooltipTrigger: HTMLAnchorElement,
-    };
+    } & ({} | {
+        // tooltipBox is optional but can not be types as such with a ? as 'undefined' is not assignable to type
+        // 'Element | Element[] | Vue | Vue[]'
+        tooltipBox: HTMLDivElement,
+    });
     public $el: HTMLElement;
 
     private verticalPosition: Tooltip.VerticalPosition | null = null;
@@ -186,7 +189,7 @@ class Tooltip extends Vue {
 
         // make sure that tooltipBox is created, then update measurements
         await Vue.nextTick();
-        if (!this.isShown) return; // tooltip not visible anymore?
+        if (!this.isShown || !('tooltipBox' in this.$refs && this.$refs.tooltipBox)) return; // not visible anymore?
         // here we need the quick reflow to avoid that the visible tooltip gets rendered at the wrong position,
         // potentially causing scroll bars
         this.height = this.$refs.tooltipBox.offsetHeight;
