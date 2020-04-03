@@ -1,6 +1,8 @@
 <template>
     <div class="account-list">
-        <component :is="accountContainerTag" href="javascript:void(0)" class="account-entry"
+        <component :is="!_isDisabled(account) && !editable ? 'a' : 'div'"
+            href="javascript:void(0)"
+            class="account-entry"
             v-for="account in accounts"
             :class="{
                 'disabled': _isDisabled(account),
@@ -93,19 +95,15 @@ export default class AccountList extends Vue {
         }
     }
 
-    private get accountContainerTag() {
-        return !this.editable || this.disabled ? 'a' : 'div';
-    }
-
     @Emit()
     // tslint:disable-next-line no-empty
     private accountChanged(address: string, label: string) {}
 
     private _isDisabled(account: AccountInfo | ContractInfo) {
-        return this.disabled
-            || this._isDisabledContract(account)
+        return this.disabled || (!this.editable
+            && (this._isDisabledContract(account)
             || this._isDisabledAccount(account)
-            || this._hasInsufficientBalance(account);
+            || this._hasInsufficientBalance(account)));
     }
 
     private _isDisabledContract(account: AccountInfo | ContractInfo) {
@@ -151,23 +149,6 @@ export default class AccountList extends Vue {
         text-decoration: none;
     }
 
-    .account-entry:not(.disabled)::after {
-        content: "";
-        position: absolute;
-        left: -0.625rem;
-        top: -0.625rem;
-        right: -0.625rem;
-        bottom: -0.625rem;
-        border: 0.25rem solid rgba(5, 130, 202, 0.5); /* Based on Nimiq Light Blue */
-        border-radius: 1rem;
-        opacity: 0;
-        pointer-events: none;
-    }
-
-    .account-entry:not(.disabled):focus::after {
-        opacity: 1;
-    }
-
     .account-entry >>> .identicon img {
         transform: scale(0.9);
         transition: transform .45s var(--nimiq-ease);
@@ -196,56 +177,68 @@ export default class AccountList extends Vue {
         outline: none;
     }
 
-    a.account-entry:not(.disabled):hover,
-    a.account-entry:not(.disabled):focus {
+    a.account-entry:focus::after {
+        content: "";
+        position: absolute;
+        left: -0.625rem;
+        top: -0.625rem;
+        right: -0.625rem;
+        bottom: -0.625rem;
+        border: 0.25rem solid rgba(5, 130, 202, 0.5); /* Based on Nimiq Light Blue */
+        border-radius: 1rem;
+        pointer-events: none;
+    }
+
+    a.account-entry:hover,
+    a.account-entry:focus {
         background-color: rgba(31, 35, 72, 0.06); /* Based on Nimiq Blue */
     }
 
-    a.account-entry:not(.disabled):hover >>> .identicon img,
-    a.account-entry:not(.disabled):focus >>> .identicon img {
+    a.account-entry:hover >>> .identicon img,
+    a.account-entry:focus >>> .identicon img {
         transform: scale(1);
     }
 
-    a.account-entry:not(.disabled):hover >>> .label,
-    a.account-entry:not(.disabled):hover >>> .balance,
-    a.account-entry:not(.disabled):focus >>> .label,
-    a.account-entry:not(.disabled):focus >>> .balance {
+    a.account-entry:hover >>> .label,
+    a.account-entry:hover >>> .balance,
+    a.account-entry:focus >>> .label,
+    a.account-entry:focus >>> .balance {
         opacity: 1;
     }
 
-    a.account-entry:not(.disabled):hover >>> .balance,
-    a.account-entry:not(.disabled):focus >>> .balance,
-    a.account-entry.has-tooltip >>> .balance {
+    a.account-entry:hover >>> .balance,
+    a.account-entry:focus >>> .balance,
+    .account-entry.has-tooltip >>> .balance {
         margin-right: 3rem; /* make space for caret or tooltip trigger */
     }
 
-    a.account-entry:not(.disabled):hover >>> .balance,
-    a.account-entry:not(.disabled):focus >>> .balance {
+    a.account-entry:hover >>> .balance,
+    a.account-entry:focus >>> .balance {
         color: var(--nimiq-green);
     }
 
-    a.account-entry:not(.disabled):hover .caret,
-    a.account-entry:not(.disabled):focus .caret {
+    a.account-entry:hover .caret,
+    a.account-entry:focus .caret {
         transform: translateX(0);
         opacity: 0.23;
     }
 
-    a.account-entry.disabled {
+    .account-entry.disabled {
         cursor: not-allowed;
     }
 
-    a.account-entry.disabled >>> .identicon,
-    a.account-entry.disabled >>> .label,
-    a.account-entry.disabled >>> .balance {
+    .account-entry.disabled >>> .identicon,
+    .account-entry.disabled >>> .label,
+    .account-entry.disabled >>> .balance {
         opacity: 0.2;
     }
 
-    a.account-entry.highlight-insufficient-balance >>> .balance {
+    .account-entry.highlight-insufficient-balance >>> .balance {
         color: var(--nimiq-red);
         opacity: 1;
     }
 
-    a.account-entry >>> .tooltip-box {
+    .account-entry >>> .tooltip-box {
         width: 23rem;
         cursor: default;
     }
