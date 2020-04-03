@@ -69,7 +69,7 @@ export default class AccountList extends Vue {
     }
 
     private accountSelected(account: AccountInfo) {
-        if (this.disabled) return;
+        if (this.disabled || this.editable) return;
 
         window.clearTimeout(this.highlightedDisabledAddressTimeout);
         if (account.userFriendlyAddress !== this.highlightedDisabledAddress) {
@@ -121,7 +121,8 @@ export default class AccountList extends Vue {
     }
 
     private _hasTooltip(account: AccountInfo | ContractInfo) {
-        return !this.disabled && (this._isDisabledContract(account) || this._isDisabledAccount(account));
+        return !this.disabled && !this.editable
+            && (this._isDisabledContract(account) || this._isDisabledAccount(account));
     }
 
     private _clearHighlightedDisabledAddress() {
