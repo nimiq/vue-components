@@ -10,10 +10,12 @@
     >
         <a href="javascript:void(0);"
             ref="tooltipTrigger"
-            @focus.stop="show"
-            @blur.stop="hide"
+            @focus.stop="show()"
+            @blur.stop="hide()"
+            @click="onClick()"
             :tabindex="disabled ? -1 : 0"
-            class="trigger">
+            class="trigger"
+        >
             <slot v-if="!$slots.icon" name="trigger">
                 <AlertTriangleIcon class="nq-orange" />
             </slot>
@@ -82,6 +84,7 @@ class Tooltip extends Vue {
     private transitionPosition: boolean = false; // do not transition on show but on position updates while shown
     private mousedOver: boolean = false;
     private mouseOverTimeout: number;
+    private lastToggle: number = -1;
 
     private height: number = 0;
     private width: number = 0;
@@ -134,14 +137,16 @@ class Tooltip extends Vue {
         this.tooltipToggled = true;
     }
 
-    public hide() {
+    public hide(force: boolean = false) {
         this.tooltipToggled = false;
         this.$refs.tooltipTrigger.blur();
+        if (!force) return;
+        this.mousedOver = false;
     }
 
-    public toggle() {
-        if (this.tooltipToggled) {
-            this.hide();
+    public toggle(force: boolean = false) {
+        if (this.tooltipToggled || this.mousedOver) {
+            this.hide(force);
         } else {
             this.show();
         }
@@ -153,10 +158,12 @@ class Tooltip extends Vue {
         if (!this.isShown) {
             this.transitionPosition = false; // when shown next time, render immediately at correct position
             if (newWatcherValue === false) {
+                this.lastToggle = Date.now();
                 this.$emit('hide');
             }
             return; // no need to update as tooltip not visible
         } else if (newWatcherValue === true) {
+            this.lastToggle = Date.now();
             this.$emit('show');
         }
         if (!this.$el) {
@@ -293,6 +300,11 @@ class Tooltip extends Vue {
             window.clearTimeout(this.mouseOverTimeout);
             this.mousedOver = true;
         }
+    }
+
+    private onClick() {
+        if (Date.now() - this.lastToggle < 200) return; // just toggled by mouseover or focus
+        this.toggle(/* force */ true);
     }
 }
 
