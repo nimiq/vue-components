@@ -232,7 +232,7 @@ storiesOf('Basic', module)
     })
     .add('Tooltip', () => {
         const useContainer = boolean('Use container', true);
-        const preferredPosition = text('preferredPosition', 'bottom right');
+        const preferredPosition = text('preferredPosition', 'top right');
         const autoWidth = boolean('autoWidth', false);
         const disabled = boolean('disabled', false);
         const theme = select('theme', Object.values(Tooltip.Themes), Tooltip.Themes.NORMAL);

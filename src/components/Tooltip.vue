@@ -42,7 +42,7 @@ class Tooltip extends Vue {
 
     @Prop({
         type: String,
-        default: 'bottom right',
+        default: 'top right',
         validator: (value: unknown) => {
             if (typeof value !== 'string') return false;
             const [vertical, horizontal] = value.split(' ');
