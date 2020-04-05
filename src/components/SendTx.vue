@@ -209,24 +209,31 @@ import { Utf8Tools, BrowserDetection } from '@nimiq/utils';
         @Prop({type: String, default: ''}) public message!: string;
         @Prop({type: Number, default: 0}) public validityStartHeight!: number;
 
-        public $refs: {
-            accountDetails?: AccountDetails,
-            amountWithFee?: AmountWithFee,
-            messageInput?: LabelInput,
-            feeSetter?: SelectBar,
-            address?: AddressInput,
-        };
+        // Note that these refs are optional but can not be types as such with a ? as 'undefined' is not assignable to
+        // type 'Element | Element[] | Vue | Vue[]'.
+        public $refs: ({} | {
+            accountDetails: AccountDetails,
+        }) & ({} | {
+            amountWithFee: AmountWithFee,
+        }) & ({} | {
+            messageInput: LabelInput,
+        }) & ({} | {
+            feeSetter: SelectBar,
+        }) & ({} | {
+            address: AddressInput,
+        });
 
         public focus(dontFocusOnMobile = false) {
             if (dontFocusOnMobile && BrowserDetection.isMobile()) return;
             Vue.nextTick(() => { // Await updated DOM
-                if (this.$refs.accountDetails) {
+                if ('accountDetails' in this.$refs && this.$refs.accountDetails) {
                     this.$refs.accountDetails.focus();
-                } else if (this.$refs.address) {
+                } else if ('address' in this.$refs && this.$refs.address) {
                     this.$refs.address.focus();
-                } else if (this.$refs.amountWithFee && (!this.liveAmountAndFee.amount || this.liveExtraData)) {
+                } else if ('amountWithFee' in this.$refs && this.$refs.amountWithFee
+                    && (!this.liveAmountAndFee.amount || this.liveExtraData)) {
                     this.$refs.amountWithFee.focus();
-                } else if (this.$refs.messageInput) {
+                } else if ('messageInput' in this.$refs && this.$refs.messageInput) {
                     this.$refs.messageInput.focus();
                 }
             });
@@ -386,8 +393,9 @@ import { Utf8Tools, BrowserDetection } from '@nimiq/utils';
         }
 
         private setFee() {
+            if (!('feeSetter' in this.$refs)) return; // should never happen
             this.optionsOpened = false;
-            this.feeLunaPerByte = this.$refs!.feeSetter.value;
+            this.feeLunaPerByte = this.$refs.feeSetter.value;
             this.liveAmountAndFee.fee = this.fee;
             this.focus(true);
         }

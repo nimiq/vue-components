@@ -1,7 +1,6 @@
 import {storiesOf} from '@storybook/vue';
 import {action} from '@storybook/addon-actions';
 import {boolean, number, text, object, select, withKnobs} from '@storybook/addon-knobs';
-import bigInt from 'big-integer';
 
 import Account from '../components/Account.vue';
 import AccountDetails from '../components/AccountDetails.vue';
@@ -232,45 +231,66 @@ storiesOf('Basic', module)
         }
     })
     .add('Tooltip', () => {
+        const useContainer = boolean('Use container', true);
+        const preferredPosition = text('preferredPosition', 'top right');
+        const autoWidth = boolean('autoWidth', false);
+        const disabled = boolean('disabled', false);
+        const theme = select('theme', Object.values(Tooltip.Themes), Tooltip.Themes.NORMAL);
         const fontSize = number('Font size (rem)', 3);
-        const useReference = boolean('Use referenceFrame', true);
         return {
             data() {
                 return {
-                    refsLoaded: false,
-                    message: '',
+                    useContainer,
+                    preferredPosition,
+                    autoWidth,
+                    disabled,
+                    theme,
                     fontSize,
-                    useReference,
+                    refsLoaded: false,
+                    shown: false,
                 };
             },
             computed: {
-                target() {
+                container() {
                     if(this.refsLoaded)
-                        return this.$refs.target;
+                        return this.$refs.container;
                     else return null;
                 },
-                style() {
-                    return {
-                        fontSize: this.fontSize + 'rem',
-                    };
-                }
             },
             mounted() {
                 this.refsLoaded = true;
             },
-            components: { SmallPage, PageHeader, PageBody, Tooltip, Icons, Account, LabelInput },
-            template: windowTemplate`<SmallPage>
+            components: { SmallPage, PageHeader, PageBody, Tooltip, Account },
+            template: windowTemplate`<SmallPage :class="{ 'nq-blue-bg': theme === 'inverse' }">
                             <PageHeader>Test</PageHeader>
-                            <PageBody style="overflow-y: scroll; position:relative;" ref="target">
-                                <div style="height:300px"></div>
+                            <PageBody ref="container" style="overflow-y: scroll; position:relative;">
+                                <div style="height:320px"></div>
                                 <div style="max-width: 100%; display: flex; align-items: center;">
-                                    <LabelInput v-model="message" style="display: inline;"/>
-                                    <Tooltip :reference="useReference ? target : undefined" :style="style">
-                                        <div style="font-size: 2rem;">
+                                    <button class="nq-button-s" :class="[theme]" @click="$refs.tooltip.show()">
+                                        Show
+                                    </button>
+                                    &nbsp;or&nbsp;
+                                    <button class="nq-button-s" :class="[theme]" @click="$refs.tooltip.hide()">
+                                        hide
+                                    </button>
+                                    &nbsp;or hover me:&nbsp;
+                                    <Tooltip ref="tooltip"
+                                        :container="useContainer ? container : undefined"
+                                        :preferredPosition="preferredPosition"
+                                        :autoWidth="autoWidth"
+                                        :disabled="disabled"
+                                        :theme="theme"
+                                        :style="{ fontSize: fontSize + 'rem' }"
+                                        @show="shown = true"
+                                        @hide="shown = false">
+                                        <div style="font-size: 2rem; min-width: 25rem">
                                             This is the Tooltip I was talking about.
                                             <Account address="NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM" />
                                         </div>
                                     </Tooltip>
+                                </div>
+                                <div>
+                                    Shown: {{shown}}
                                 </div>
                                 <div style="height:3000px"></div>
                             </PageBody>
