@@ -110,17 +110,21 @@ storiesOf('Basic', module)
         };
     })
     .add('Icons', () => ({
-        components: { ...Icons },
+        components: { ...Icons, Tooltip },
         functional: true,
         render: (createElement) => {
-            const icons = Object.values(Icons).map((component) => createElement(component, {
+            const icons = Object.entries(Icons).map(([name, icon]) => createElement(Tooltip, {
+                props: { preferredPosition: 'bottom right' },
                 style: { margin: '4px' },
+                scopedSlots: {
+                    trigger: () => createElement(icon, { style: { color: 'var(--nimiq-blue)' } }),
+                    default: () => name,
+                }
             }));
             return createElement('div', {
                 style: {
                     fontSize: '40px',
                     padding: '16px',
-                    color: 'var(--nimiq-blue)',
                 }
             }, icons);
         },
