@@ -109,51 +109,22 @@ storiesOf('Basic', module)
             template: `<FiatAmount :amount="amount" :currency="currency" :locale="locale" />`,
         };
     })
-    .add('Icons', () => {
-        return {
-            components: { ...Icons },
-            template: `
-                <div style="font-size: 40px; color: var(--nimiq-blue); padding: 16px;">
-                    <AlertTriangleIcon/>
-                    <ArrowLeftSmallIcon/>
-                    <ArrowLeftIcon/>
-                    <ArrowRightSmallIcon/>
-                    <ArrowRightIcon/>
-                    <BrowserLoginIcon/>
-                    <CaretRightSmallIcon/>
-                    <CheckmarkIcon/>
-                    <CloseIcon/>
-                    <ContactsIcon/>
-                    <CopyIcon/>
-                    <DownloadIcon/>
-                    <FaceNeutralIcon/>
-                    <FaceSadIcon/>
-                    <FireIcon/>
-                    <GearIcon/>
-                    <HexagonIcon/>
-                    <InfoCircleIcon/>
-                    <KeysIcon/>
-                    <LedgerIcon/>
-                    <LockLockedIcon/>
-                    <LockUnlockedIcon/>
-                    <LoginIcon/>
-                    <MenuDotsIcon/>
-                    <PaperEditIcon/>
-                    <PlusCircleIcon/>
-                    <QrCodeIcon/>
-                    <QuestionmarkIcon/>
-                    <ScanQrCodeIcon/>
-                    <SettingsIcon/>
-                    <ShredderIcon/>
-                    <SkullIcon/>
-                    <StopwatchIcon/>
-                    <TransferIcon/>
-                    <UnderPaymentIcon/>
-                    <ViewOffIcon/>
-                    <ViewIcon/>
-                </div>`,
-        };
-    })
+    .add('Icons', () => ({
+        components: { ...Icons },
+        functional: true,
+        render: (createElement) => {
+            const icons = Object.values(Icons).map((component) => createElement(component, {
+                style: { margin: '4px' },
+            }));
+            return createElement('div', {
+                style: {
+                    fontSize: '40px',
+                    padding: '16px',
+                    color: 'var(--nimiq-blue)',
+                }
+            }, icons);
+        },
+    }))
     .add('Identicon', () => {
         const address = text('address', 'NQ07 0000 00000000 0000 0000 0000 0000 0000');
         return {
