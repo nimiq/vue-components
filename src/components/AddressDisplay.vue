@@ -1,6 +1,6 @@
 <template>
     <div class="address-display">
-        <span v-for="chunk in chunks" class="chunk" :key="chunk">{{ chunk }}<span class="space">&nbsp;</span></span>
+        <span v-for="(chunk, index) in chunks" class="chunk" :key="chunk + index">{{ chunk }}<span class="space">&nbsp;</span></span>
     </div>
 </template>
 
