@@ -32,7 +32,7 @@
                     preferredPosition: 'bottom left',
                     ...tooltipProps,
                     styles: {
-                        width: '23rem',
+                        width: '22.25rem',
                         cursor: 'default',
                         ...(tooltipProps ? tooltipProps.styles : undefined),
                     },
@@ -40,8 +40,8 @@
                 @click.native.stop
             >
                 {{ _isDisabledContract(account)
-                    ? 'Contracts are ineligible for this operation.'
-                    : 'This address can not be used in this operation.'
+                    ? 'Contracts cannot be used for this operation.'
+                    : 'This address cannot be used for this operation.'
                 }}
             </Tooltip>
         </component>
