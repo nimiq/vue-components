@@ -208,6 +208,7 @@ storiesOf('Basic', module)
     .add('Tooltip', () => {
         const useContainer = boolean('Use container', true);
         const preferredPosition = text('preferredPosition', 'top right');
+        const margin = object('margin (json)', {});
         const autoWidth = boolean('autoWidth', false);
         const disabled = boolean('disabled', false);
         const theme = select('theme', Object.values(Tooltip.Themes), Tooltip.Themes.NORMAL);
@@ -217,6 +218,7 @@ storiesOf('Basic', module)
                 return {
                     useContainer,
                     preferredPosition,
+                    margin,
                     autoWidth,
                     disabled,
                     theme,
@@ -238,7 +240,7 @@ storiesOf('Basic', module)
             components: { SmallPage, PageHeader, PageBody, Tooltip, Account },
             template: windowTemplate`<SmallPage :class="{ 'nq-blue-bg': theme === 'inverse' }">
                             <PageHeader>Test</PageHeader>
-                            <PageBody ref="container" style="overflow-y: scroll; position:relative;">
+                            <PageBody ref="container" style="overflow-y: scroll; background: aliceblue">
                                 <div style="height:320px"></div>
                                 <div style="max-width: 100%; display: flex; align-items: center;">
                                     <button class="nq-button-s" :class="[theme]" @click="$refs.tooltip.show()">
@@ -252,6 +254,7 @@ storiesOf('Basic', module)
                                     <Tooltip ref="tooltip"
                                         :container="useContainer ? container : undefined"
                                         :preferredPosition="preferredPosition"
+                                        :margin="margin"
                                         :autoWidth="autoWidth"
                                         :disabled="disabled"
                                         :theme="theme"
