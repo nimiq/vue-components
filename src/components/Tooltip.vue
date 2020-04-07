@@ -39,9 +39,15 @@ import { AlertTriangleIcon } from './Icons';
 
 @Component({ components: { AlertTriangleIcon }})
 class Tooltip extends Vue {
+    /**
+     * Container within which the tooltip should be positioned if possible.
+     */
     @Prop(Object) public container?: Vue | {$el: HTMLElement};
     @Prop(Boolean) public disabled?: boolean;
 
+    /**
+     * Preferred tooltip position as "[vertical] [horizontal]" or "[vertical]".
+     */
     @Prop({
         type: String,
         default: 'top right',
@@ -54,6 +60,10 @@ class Tooltip extends Vue {
         },
     }) public preferredPosition!: string;
 
+    /**
+     * Margin to maintain to container. If no container is set, this prop has no effect. For omitted values, the
+     * container's padding is used as margin.
+     */
     @Prop({
         type: Object,
         validator: (value: unknown) => typeof value === 'object'
@@ -62,10 +72,13 @@ class Tooltip extends Vue {
                     || Object.values(Tooltip.HorizontalPosition).includes(position as Tooltip.HorizontalPosition))),
     }) public margin?: Partial<Record<Tooltip.VerticalPosition | Tooltip.HorizontalPosition, number>>;
 
+    /**
+     * Sets the tooltip's width to the container's width minus margin. If no container is set, this prop has no effect.
+     */
     @Prop({
         type: Boolean,
         default: false,
-    }) public autoWidth!: boolean; // only relevant when using a container
+    }) public autoWidth!: boolean;
 
     @Prop({
         type: String,
@@ -74,6 +87,9 @@ class Tooltip extends Vue {
     })
     public theme!: Tooltip.Themes;
 
+    /**
+     * Styles to apply on the tooltip box without the need to use deep css selectors.
+     */
     @Prop(Object) public styles?: Partial<CSSStyleDeclaration>;
 
     /** @deprecated */
