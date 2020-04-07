@@ -114,7 +114,13 @@ storiesOf('Basic', module)
         functional: true,
         render: (createElement) => {
             const icons = Object.entries(Icons).map(([name, icon]) => createElement(Tooltip, {
-                props: { preferredPosition: 'bottom right' },
+                props: {
+                    container: { $el: document.body },
+                    preferredPosition: 'bottom right',
+                    styles: {
+                        pointerEvents: 'none',
+                    },
+                },
                 style: { margin: '4px' },
                 scopedSlots: {
                     trigger: () => createElement(icon),
