@@ -3,7 +3,12 @@
         v-bind="{
             preferredPosition: 'bottom right',
             theme,
-            ...tooltipProps
+            ...tooltipProps,
+            styles: {
+                width: '17.25rem',
+                pointerEvents: 'none',
+                ...(tooltipProps ? tooltipProps.styles : undefined),
+            },
         }"
         @show="detailsShown = true"
         @hide="detailsShown = false"
@@ -36,9 +41,7 @@
             </svg>
         </template>
         <template v-slot:default>
-            <div class="tooltip-content">
-                This offer expires in {{ _timeLeft | _toSimplifiedTime(true) }}.
-            </div>
+            This offer expires in {{ _timeLeft | _toSimplifiedTime(true) }}.
         </template>
     </Tooltip>
 </template>
@@ -368,9 +371,5 @@ export default Timer;
     .transition-fade-enter,
     .transition-fade-leave-to {
         opacity: 0 !important;
-    }
-
-    .tooltip-content {
-        width: 15rem;
     }
 </style>

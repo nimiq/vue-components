@@ -33,7 +33,7 @@
                     ...tooltipProps,
                     styles: {
                         width: '22.25rem',
-                        cursor: 'default',
+                        pointerEvents: 'none',
                         ...(tooltipProps ? tooltipProps.styles : undefined),
                     },
                 }"

@@ -11,6 +11,7 @@
                             ...tooltipProps,
                             styles: {
                                 width: '25.25rem',
+                                ...tooltipProps.styles,
                             },
                         }"
                     >
@@ -119,6 +120,9 @@ export default class AccountSelector extends Vue {
             right: 16,
             top: 32, // avoid that tooltips get affected by mask image
             bottom: 32,
+        },
+        styles: {
+            pointerEvents: 'none',
         },
     };
 
