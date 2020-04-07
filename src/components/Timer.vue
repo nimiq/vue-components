@@ -1,8 +1,10 @@
 <template>
     <Tooltip class="timer"
-        preferredPosition="bottom right"
-        :container="tooltipContainer"
-        :theme="theme"
+        v-bind="{
+            preferredPosition: 'bottom right',
+            theme,
+            ...tooltipProps
+        }"
         @show="detailsShown = true"
         @hide="detailsShown = false"
         :class="{
@@ -117,7 +119,7 @@ class Timer extends Vue {
     })
     public strokeWidth!: number;
 
-    @Prop(Object) public tooltipContainer?: Vue | {$el: HTMLElement};
+    @Prop(Object) public tooltipProps?: object;
 
     public synchronize(referenceTime: number) {
         this.timeOffset = referenceTime - Date.now();

@@ -28,8 +28,10 @@
             <CaretRightSmallIcon v-if="!_isDisabled(account)" class="caret"/>
             <Tooltip v-if="_hasTooltip(account)"
                 :ref="`tooltip-${account.userFriendlyAddress}`"
-                preferredPosition="bottom left"
-                :container="$parent"
+                v-bind="{
+                    preferredPosition: 'bottom left',
+                    ...tooltipProps,
+                }"
                 @click.native.stop
             >
                 <div class="tooltip-content">
@@ -60,6 +62,7 @@ export default class AccountList extends Vue {
     @Prop(Number) private minBalance?: number;
     @Prop(Boolean) private disableContracts?: boolean;
     @Prop(Boolean) private disabled?: boolean;
+    @Prop(Object) private tooltipProps?: object;
 
     private highlightedDisabledAddress: string | null = null;
     private highlightedDisabledAddressTimeout: number = -1;

@@ -310,6 +310,7 @@ storiesOf('Components', module)
         const disableContracts = boolean('disableContracts', false);
         const disabled = boolean('disabled', false);
         const disabledAddress = text('blacklist address', 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1');
+        const tooltipProps = object('tooltipProps (json)', {});
         return {
             components: {AccountList},
             methods: {
@@ -348,11 +349,12 @@ storiesOf('Components', module)
                     editable,
                     disableContracts,
                     disabled,
+                    tooltipProps,
                 };
             },
             template: `<AccountList @account-selected="accountSelected" :accounts="accounts" walletId="helloworld1"
                 :minBalance="minBalance" :decimals="decimals" :editable="editable" :disableContracts="disableContracts"
-                :disabled="disabled" :disabledAddresses="[disabledAddress]" />`
+                :disabled="disabled" :disabledAddresses="[disabledAddress]" :tooltipProps="tooltipProps" />`
         };
     })
     .add('AccountSelector', () => {
@@ -1107,16 +1109,17 @@ storiesOf('Components', module)
             timerEnded: false,
             theme: select('theme', Object.values(Timer.Themes), Timer.Themes.NORMAL),
             alwaysShowTime: boolean('alwaysShowTime', true),
+            tooltipProps: object('tooltipProps (json)', {}),
         }),
         template: `
             <div>
                 <div :class="{ 'nq-blue-bg': theme === 'inverse' }" style="display: flex; align-items: center; padding: 7rem 3rem 10rem 12rem">
                     <Timer :startTime="startTime" :endTime="endTime" :theme="theme" :alwaysShowTime="alwaysShowTime"
-                        @end="timerEnded = true" style="margin: 2rem"/>
+                        :tooltipProps="tooltipProps" @end="timerEnded = true" style="margin: 2rem"/>
                     <Timer :startTime="startTime" :endTime="endTime" :theme="theme" :alwaysShowTime="alwaysShowTime"
-                        style="width: 10rem; margin: 2rem"/>
+                        :tooltipProps="tooltipProps" style="width: 10rem; margin: 2rem"/>
                     <Timer :startTime="startTime" :endTime="endTime" :theme="theme" :alwaysShowTime="alwaysShowTime"
-                        style="width: 20rem; margin: 2rem"/>
+                        :tooltipProps="tooltipProps" style="width: 20rem; margin: 2rem"/>
                 </div>
                 <div v-if="startTime" style="margin: 1rem 2rem">Timer {{ timerEnded ? 'ended' : 'running' }}</div>
                 <div style="display: flex; flex-wrap: wrap; max-width: 95rem;">

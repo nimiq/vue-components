@@ -23,7 +23,7 @@
             :startTime="startTime"
             :endTime="endTime"
             :theme="theme"
-            :tooltipContainer="$parent"
+            :tooltipProps="{ container: $parent }"
         />
     </div>
 </template>
