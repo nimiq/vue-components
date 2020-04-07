@@ -19,7 +19,8 @@
                     </Tooltip>
                 </div>
                 <AccountList
-                    :accounts="wallet | listAccountsAndContracts | sortAccountsAndContracts(minBalance, disableContracts)"
+                    :accounts="wallet | listAccountsAndContracts
+                        | sortAccountsAndContracts(minBalance, disableContracts, disabledAddresses)"
                     :disabledAddresses="disabledAddresses"
                     :walletId="wallet.id"
                     :minBalance="minBalance"
@@ -80,6 +81,7 @@ export interface WalletInfo {
             accounts: Array<AccountInfo|ContractInfo>,
             minBalance?: number,
             disableContracts?: boolean,
+            disabledAddresses?: string[],
         ): Array<AccountInfo|ContractInfo> => {
             if (!minBalance) return accounts;
 
@@ -89,6 +91,12 @@ export interface WalletInfo {
                 const bIsDisabledContract = disableContracts && !('path' in b && b.path);
                 if (aIsDisabledContract && !bIsDisabledContract) return 1;
                 if (!aIsDisabledContract && bIsDisabledContract) return -1;
+
+                // sort disabled addresses below other addresses
+                const aIsDisabledAddress = disabledAddresses && disabledAddresses.includes(a.userFriendlyAddress);
+                const bIsDisabledAddress = disabledAddresses && disabledAddresses.includes(b.userFriendlyAddress);
+                if (aIsDisabledAddress && !bIsDisabledAddress) return 1;
+                if (!aIsDisabledAddress && bIsDisabledAddress) return -1;
 
                 // sort accounts with insufficient funds below accounts with enough balance
                 if ((!a.balance || a.balance < minBalance) && b.balance && b.balance >= minBalance) return 1;
