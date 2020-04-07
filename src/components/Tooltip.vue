@@ -26,7 +26,7 @@
             <div ref="tooltipBox"
                 v-if="isShown"
                 class="tooltip-box"
-                :style="styles">
+                :style="tooltipBoxStyles">
                 <slot></slot>
             </div>
         </transition>
@@ -74,6 +74,8 @@ class Tooltip extends Vue {
     })
     public theme!: Tooltip.Themes;
 
+    @Prop(Object) public styles?: Partial<CSSStyleDeclaration>;
+
     /** @deprecated */
     @Prop(Object) public reference?: Vue | {$el: HTMLElement};
 
@@ -112,13 +114,14 @@ class Tooltip extends Vue {
         return this.container || this.reference;
     }
 
-    private get styles() {
+    private get tooltipBoxStyles() {
         // note that we let the browser calculate height automatically
         return {
+            ...this.styles,
             top: this.top + 'px',
             left: this.left + 'px',
-            width: this.effectiveContainer && this.autoWidth ? this.width + 'px' : undefined,
-            maxWidth: this.effectiveContainer ? this.maxWidth + 'px' : undefined,
+            width: this.effectiveContainer && this.autoWidth ? this.width + 'px' : (this.styles || {}).width,
+            maxWidth: this.effectiveContainer ? this.maxWidth + 'px' : (this.styles || {}).maxWidth,
         };
     }
 
@@ -358,10 +361,12 @@ export default Tooltip;
 
     .trigger {
         position: relative;
-        display: block;
+        display: inline-block;
+        vertical-align: bottom;
         text-decoration: none;
         outline: none;
         cursor: default;
+        color: inherit;
     }
 
     .trigger >>> svg {

@@ -117,7 +117,7 @@ storiesOf('Basic', module)
                 props: { preferredPosition: 'bottom right' },
                 style: { margin: '4px' },
                 scopedSlots: {
-                    trigger: () => createElement(icon, { style: { color: 'var(--nimiq-blue)' } }),
+                    trigger: () => createElement(icon),
                     default: () => name,
                 }
             }));
@@ -212,7 +212,8 @@ storiesOf('Basic', module)
         const autoWidth = boolean('autoWidth', false);
         const disabled = boolean('disabled', false);
         const theme = select('theme', Object.values(Tooltip.Themes), Tooltip.Themes.NORMAL);
-        const fontSize = number('Font size (rem)', 3);
+        const styles = object('styles (json)', {});
+        const fontSize = number('External font size (rem)', 3);
         return {
             data() {
                 return {
@@ -222,6 +223,7 @@ storiesOf('Basic', module)
                     autoWidth,
                     disabled,
                     theme,
+                    styles,
                     fontSize,
                     refsLoaded: false,
                     shown: false,
@@ -258,6 +260,7 @@ storiesOf('Basic', module)
                                         :autoWidth="autoWidth"
                                         :disabled="disabled"
                                         :theme="theme"
+                                        :styles="styles"
                                         :style="{ fontSize: fontSize + 'rem' }"
                                         @show="shown = true"
                                         @hide="shown = false">

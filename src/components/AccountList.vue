@@ -31,15 +31,18 @@
                 v-bind="{
                     preferredPosition: 'bottom left',
                     ...tooltipProps,
+                    styles: {
+                        width: '23rem',
+                        cursor: 'default',
+                        ...(tooltipProps ? tooltipProps.styles : undefined),
+                    },
                 }"
                 @click.native.stop
             >
-                <div class="tooltip-content">
-                    {{ _isDisabledContract(account)
-                        ? 'Contracts are ineligible for this operation.'
-                        : 'This address can not be used in this operation.'
-                    }}
-                </div>
+                {{ _isDisabledContract(account)
+                    ? 'Contracts are ineligible for this operation.'
+                    : 'This address can not be used in this operation.'
+                }}
             </Tooltip>
         </component>
     </div>
@@ -239,10 +242,5 @@ export default class AccountList extends Vue {
     .account-entry.highlight-insufficient-balance >>> .balance {
         color: var(--nimiq-red);
         opacity: 1;
-    }
-
-    .account-entry >>> .tooltip-box {
-        width: 23rem;
-        cursor: default;
     }
 </style>
