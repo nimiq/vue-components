@@ -1,17 +1,72 @@
 <template>
     <div class="info-line" :class="{ 'inverse-theme': theme === constructor.Themes.INVERSE }">
-        <div class="amounts">
+        <div class="amounts"
+            @mouseenter="$refs['price-tooltip'] && $refs['price-tooltip'].show()"
+            @mouseleave="$refs['price-tooltip'] && $refs['price-tooltip'].hide()">
             <Amount
                 :currency="cryptoAmount.currency"
                 :amount="cryptoAmount.amount"
                 :currencyDecimals="cryptoAmount.decimals"
                 :minDecimals="0"
                 :maxDecimals="Math.min(4, cryptoAmount.decimals)"
+                @click.native="$refs['price-tooltip'] && $refs['price-tooltip'].toggle()"
             />
-            <FiatAmount v-if="fiatAmount" class="fiat-amount"
-                :currency="fiatAmount.currency"
-                :amount="fiatAmount.amount"
-            />
+            <Tooltip ref="price-tooltip"
+                v-if="fiatAmount"
+                :container="$parent"
+                preferredPosition="bottom left"
+                :margin="{ left: 8 }"
+                :styles="{
+                    minWidth: '27.75rem',
+                    padding: '2rem',
+                    lineHeight: 1.3,
+                }"
+                :theme="theme"
+                class="price-tooltip"
+            >
+                <template v-slot:trigger>
+                    <FiatAmount :currency="fiatAmount.currency" :amount="fiatAmount.amount" />
+                </template>
+                <template v-slot:default>
+                    <div class="price-breakdown">
+                        <label>Order amount</label>
+                        <FiatAmount :currency="fiatAmount.currency" :amount="fiatAmount.amount" />
+                        <template v-if="!!merchantFee || merchantFee === 0">
+                            <label>Merchant fee</label>
+                            <div>+{{ formattedMerchantFee }}</div>
+                        </template>
+                        <label>Effective rate</label>
+                        <div>
+                            <FiatAmount :currency="fiatAmount.currency" :amount="effectiveRate"
+                                :maxRelativeDeviation=".0001"/>
+                            / {{ cryptoAmount.currency.toUpperCase() }}
+                        </div>
+                    </div>
+                    <div class="free-service-hint info">Nimiq provides this service free of charge.</div>
+                    <hr>
+                    <div class="total">
+                        <label>Total</label>
+                        <Amount
+                            :currency="cryptoAmount.currency"
+                            :amount="cryptoAmount.amount"
+                            :currencyDecimals="cryptoAmount.decimals"
+                            :minDecimals="0"
+                            :maxDecimals="Math.min(8, cryptoAmount.decimals)"
+                            showApprox
+                        />
+                    </div>
+                    <div v-if="networkFee" class="network-fee info">
+                        + ~<Amount
+                            :currency="cryptoAmount.currency"
+                            :amount="networkFee"
+                            :currencyDecimals="cryptoAmount.decimals"
+                            :minDecimals="0"
+                            :maxDecimals="Math.min(5, cryptoAmount.decimals)"
+                        />
+                        network fee
+                    </div>
+                </template>
+            </Tooltip>
         </div>
         <div class="arrow-runway">
             <ArrowRightSmallIcon/>
@@ -23,7 +78,10 @@
             :startTime="startTime"
             :endTime="endTime"
             :theme="theme"
-            :tooltipProps="{ container: $parent }"
+            :tooltipProps="{
+                container: $parent,
+                margin: { right: 8 },
+            }"
         />
     </div>
 </template>
@@ -37,6 +95,7 @@ import Account from './Account.vue';
 import Timer from './Timer.vue';
 import Amount, { amountValidator } from './Amount.vue';
 import FiatAmount from './FiatAmount.vue';
+import Tooltip from './Tooltip.vue';
 import { ArrowRightSmallIcon } from './Icons';
 
 interface CryptoAmountInfo {
@@ -63,7 +122,7 @@ function fiatAmountInfoValidator(value: any) {
         && typeof value.currency === 'string';
 }
 
-@Component({components: {Account, Timer, Amount, FiatAmount, ArrowRightSmallIcon}})
+@Component({components: {Account, Timer, Amount, FiatAmount, Tooltip, ArrowRightSmallIcon}})
 class PaymentInfoLine extends Vue {
     private get originDomain() {
         return this.origin.split('://')[1];
@@ -71,6 +130,8 @@ class PaymentInfoLine extends Vue {
 
     @Prop({type: Object, required: true, validator: cryptoAmountInfoValidator}) public cryptoAmount!: CryptoAmountInfo;
     @Prop({type: Object, validator: fiatAmountInfoValidator}) public fiatAmount?: FiatAmountInfo;
+    @Prop(Number) public merchantFee?: number;
+    @Prop(Number) public networkFee?: number;
     @Prop({type: String, required: true}) public origin!: string;
     @Prop(String) public address?: string;
     @Prop(String) public shopLogoUrl?: string;
@@ -87,6 +148,20 @@ class PaymentInfoLine extends Vue {
         await this.$nextTick(); // let vue update in case the timer was just added
         if (!this.$refs.timer) return;
         (this.$refs.timer as Timer).synchronize(time);
+    }
+
+    private get effectiveRate() {
+        if (!this.fiatAmount) return null;
+        // Note: precision loss should be acceptable here
+        return this.fiatAmount.amount / (Number(this.cryptoAmount.amount) / (10 ** this.cryptoAmount.decimals));
+    }
+
+    private get formattedMerchantFee() {
+        if (this.merchantFee === null || this.merchantFee === undefined) return null;
+        // Note: precision loss should be acceptable here
+        const merchantFeePercent = (this.merchantFee / (Number(this.cryptoAmount.amount) - this.merchantFee)) * 100;
+        // Round to two decimals. Always ceil to avoid displaying a lower fee than charged.
+        return `${Math.ceil(merchantFeePercent * 100) / 100}%`;
     }
 }
 
@@ -105,6 +180,7 @@ export default PaymentInfoLine;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        align-items: center;
         box-sizing: border-box;
         margin: 1.75rem 2.5rem 1rem 2.375rem;
         flex-shrink: 0;
@@ -116,26 +192,81 @@ export default PaymentInfoLine;
     .amounts {
         display: flex;
         flex-direction: column;
-        justify-content: center;
         margin-bottom: .125rem;
+        cursor: default;
     }
 
-    .amount {
+    .amounts > .amount {
         color: var(--nimiq-light-blue);
         font-weight: bold;
     }
 
-    .inverse-theme .amount {
+    .inverse-theme .amounts > .amount {
         color: var(--nimiq-light-blue-on-dark, var(--nimiq-light-blue));
     }
 
-    .fiat-amount {
+    .amounts .trigger .fiat-amount {
         margin-top: .25rem;
         color: var(--nimiq-blue);
         font-size: 1.625rem;
         line-height: 1;
         font-weight: 600;
         opacity: .6;
+    }
+
+    .price-tooltip label {
+        font-weight: normal;
+    }
+
+    .price-tooltip .price-breakdown {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        column-gap: 1rem;
+        row-gap: 1.5rem;
+        white-space: nowrap;
+    }
+
+    .price-tooltip .price-breakdown label + * {
+        justify-self: end;
+    }
+
+    .price-tooltip .info {
+        font-size: 1.5rem;
+    }
+
+    .price-tooltip .free-service-hint {
+        width: 85%;
+        margin-top: 1.5rem;
+        color: var(--nimiq-green);
+    }
+
+    .price-tooltip hr {
+        margin: 2rem -1rem 1.5rem;
+        border: unset;
+        border-top: 1px solid currentColor;
+        opacity: .2;
+    }
+
+    .price-tooltip .total {
+        /* The total row is on purpose not part of the grid as the label is shorter and the value longer */
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .price-tooltip .total .amount {
+        font-weight: bold;
+    }
+
+    .price-tooltip .network-fee {
+        margin-top: .5rem;
+        margin-bottom: -.25rem;
+        text-align: right;
+        white-space: nowrap;
+        opacity: .5;
+    }
+
+    .price-tooltip .network-fee .amount {
+        margin-left: -.5ch;
     }
 
     .arrow-runway {
@@ -200,7 +331,7 @@ export default PaymentInfoLine;
         flex-shrink: 0;
     }
 
-    .inverse-theme .fiat-amount,
+    .inverse-theme .amounts .trigger .fiat-amount,
     .inverse-theme .arrow-runway .nq-icon,
     .inverse-theme .account >>> .label {
         color: white;
