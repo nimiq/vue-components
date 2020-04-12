@@ -101,12 +101,14 @@ storiesOf('Basic', module)
     .add('FiatAmount', () => {
         const amount = number('amount', 12345.67);
         const currency = text('currency', 'eur');
+        const maxRelativeDeviation = number('maxRelativeDeviation', .1);
         const locale = text('locale', navigator.language);
 
         return {
             components: {FiatAmount},
-            data: () => ({ amount, currency, locale }),
-            template: `<FiatAmount :amount="amount" :currency="currency" :locale="locale" />`,
+            data: () => ({ amount, currency, maxRelativeDeviation, locale }),
+            template: `<FiatAmount :amount="amount" :currency="currency" :maxRelativeDeviation="maxRelativeDeviation"
+                :locale="locale" />`,
         };
     })
     .add('Icons', () => ({
