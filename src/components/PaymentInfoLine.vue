@@ -55,14 +55,17 @@
                             showApprox
                         />
                     </div>
-                    <div v-if="networkFee" class="network-fee info">
-                        + ~<Amount
-                            :currency="cryptoAmount.currency"
-                            :amount="networkFee"
-                            :currencyDecimals="cryptoAmount.decimals"
-                            :minDecimals="0"
-                            :maxDecimals="Math.min(5, cryptoAmount.decimals)"
-                        />
+                    <div v-if="networkFee !== 0" class="network-fee info">
+                        +
+                        <template v-if="!isFormattedNetworkFeeZero">
+                            ~<Amount
+                                :currency="cryptoAmount.currency"
+                                :amount="networkFee"
+                                :currencyDecimals="cryptoAmount.decimals"
+                                :minDecimals="0"
+                                :maxDecimals="Math.min(6, cryptoAmount.decimals)"
+                            />
+                        </template>
                         network fee
                     </div>
                 </template>
@@ -162,6 +165,17 @@ class PaymentInfoLine extends Vue {
         const merchantFeePercent = (this.merchantFee / (Number(this.cryptoAmount.amount) - this.merchantFee)) * 100;
         // Round to two decimals. Always ceil to avoid displaying a lower fee than charged.
         return `${Math.ceil(merchantFeePercent * 100) / 100}%`;
+    }
+
+    private get isFormattedNetworkFeeZero() {
+        if (this.networkFee === null || this.networkFee === undefined) return true;
+        // Note: While we use the Amount component which does formatting itself, we manually format here to check
+        // whether the formatted value is 0. Precision loss should be acceptable here.
+        const networkFeeBaseCurrency = this.networkFee / (10 ** this.cryptoAmount.decimals);
+        // Round to maxDecimals used above in the template
+        const maxDecimals = Math.min(6, this.cryptoAmount.decimals);
+        const roundingFactor = 10 ** maxDecimals;
+        return Math.round(networkFeeBaseCurrency * roundingFactor) / roundingFactor === 0;
     }
 }
 
