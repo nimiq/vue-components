@@ -8,7 +8,7 @@
 // export { default as AddressDisplay } from './components/AddressDisplay.vue';
 // export { default as AddressInput } from './components/AddressInput.vue';
 export { default as Amount } from './components/Amount.vue';
-// export { default as AmountInput } from './components/AmountInput.vue';
+export { default as AmountInput } from './components/AmountInput.vue';
 // export { default as AmountWithDetails } from './components/AmountWithDetails.vue';
 // export { default as AmountWithFee } from './components/AmountWithFee.vue';
 // export { default as BottomOverlay } from './components/BottomOverlay.vue';
