@@ -31,14 +31,15 @@
                     <div class="price-breakdown">
                         <label>Order amount</label>
                         <FiatAmount :currency="fiatAmount.currency" :amount="fiatAmount.amount" />
-                        <template v-if="!!merchantFee || merchantFee === 0">
+                        <template v-if="merchantFee !== undefined && merchantFee !== null">
                             <label>Merchant fee</label>
                             <div>+{{ formattedMerchantFee }}</div>
                         </template>
                         <label>Effective rate</label>
                         <div>
                             <FiatAmount :currency="fiatAmount.currency" :amount="effectiveRate"
-                                :maxRelativeDeviation=".0001"/>
+                                :maxRelativeDeviation=".0001"
+                            />
                             / {{ cryptoAmount.currency.toUpperCase() }}
                         </div>
                     </div>
@@ -55,7 +56,9 @@
                             showApprox
                         />
                     </div>
-                    <div v-if="networkFee !== 0" class="network-fee info">
+                    <div v-if="networkFee === undefined || networkFee === null || Number(networkFee) !== 0"
+                        class="network-fee info"
+                    >
                         +
                         <template v-if="!isFormattedNetworkFeeZero">
                             ~<Amount
@@ -133,8 +136,13 @@ class PaymentInfoLine extends Vue {
 
     @Prop({type: Object, required: true, validator: cryptoAmountInfoValidator}) public cryptoAmount!: CryptoAmountInfo;
     @Prop({type: Object, validator: fiatAmountInfoValidator}) public fiatAmount?: FiatAmountInfo;
-    @Prop(Number) public merchantFee?: number;
-    @Prop(Number) public networkFee?: number;
+    // Note that merchantFee and networkFee have no effect if fiatAmount is not set, as the tooltip in which they appear
+    // is only visible when fiatAmount is set. As the fiatAmount was only introduced in the v2 checkout request in the
+    // Hub, the tooltip and merchantFee and networkFee are thus never visible for v1 checkout requests. This should be
+    // ok though as the merchantFee also only exists in v2 and the free-service-info doesn't make too much sense for
+    // nimiq.shop or the nimiq voting app which are currently the main apps using the v1 checkout.
+    @Prop({validator: amountValidator}) public merchantFee?: number | bigint | BigInteger;
+    @Prop({validator: amountValidator}) public networkFee?: number | bigint | BigInteger;
     @Prop({type: String, required: true}) public origin!: string;
     @Prop(String) public address?: string;
     @Prop(String) public shopLogoUrl?: string;
@@ -162,7 +170,8 @@ class PaymentInfoLine extends Vue {
     private get formattedMerchantFee() {
         if (this.merchantFee === null || this.merchantFee === undefined) return null;
         // Note: precision loss should be acceptable here
-        const merchantFeePercent = (this.merchantFee / (Number(this.cryptoAmount.amount) - this.merchantFee)) * 100;
+        const merchantFee = Number(this.merchantFee);
+        const merchantFeePercent = (merchantFee / (Number(this.cryptoAmount.amount) - merchantFee)) * 100;
         // Round to two decimals. Always ceil to avoid displaying a lower fee than charged.
         return `${Math.ceil(merchantFeePercent * 100) / 100}%`;
     }
@@ -171,7 +180,7 @@ class PaymentInfoLine extends Vue {
         if (this.networkFee === null || this.networkFee === undefined) return true;
         // Note: While we use the Amount component which does formatting itself, we manually format here to check
         // whether the formatted value is 0. Precision loss should be acceptable here.
-        const networkFeeBaseCurrency = this.networkFee / (10 ** this.cryptoAmount.decimals);
+        const networkFeeBaseCurrency = Number(this.networkFee) / (10 ** this.cryptoAmount.decimals);
         // Round to maxDecimals used above in the template
         const maxDecimals = Math.min(6, this.cryptoAmount.decimals);
         const roundingFactor = 10 ** maxDecimals;
