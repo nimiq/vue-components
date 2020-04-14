@@ -22,6 +22,7 @@
                     lineHeight: 1.3,
                 }"
                 :theme="theme"
+                @show="updateReferenceRate"
                 class="price-tooltip"
             >
                 <template v-slot:trigger>
@@ -35,15 +36,24 @@
                             <label>Merchant fee</label>
                             <div>+{{ formattedMerchantFee }}</div>
                         </template>
-                        <label>Effective rate</label>
-                        <div>
+                        <label :class="{ 'nq-orange': rateDeviation <= -constructor.RATE_DEVIATION_THRESHOLD }">
+                            Effective rate
+                        </label>
+                        <div :class="{ 'nq-orange': rateDeviation <= -constructor.RATE_DEVIATION_THRESHOLD }">
                             <FiatAmount :currency="fiatAmount.currency" :amount="effectiveRate"
                                 :maxRelativeDeviation=".0001"
                             />
                             / {{ cryptoAmount.currency.toUpperCase() }}
                         </div>
                     </div>
-                    <div class="free-service-hint info">Nimiq provides this service free of charge.</div>
+                    <div v-if="Math.abs(rateDeviation) >= constructor.RATE_DEVIATION_THRESHOLD"
+                        :class="{ 'nq-orange': rateDeviation <= -constructor.RATE_DEVIATION_THRESHOLD }"
+                        class="rate-info info"
+                    >
+                        Compared to coingecko.com, this rate is {{ formattedRateDeviation }}
+                        {{ rateDeviation < 0 ? 'worse' : 'better' }}.
+                    </div>
+                    <div class="free-service-info info">Nimiq provides this service free of charge.</div>
                     <hr>
                     <div class="total">
                         <label>Total</label>
@@ -57,7 +67,7 @@
                         />
                     </div>
                     <div v-if="networkFee === undefined || networkFee === null || Number(networkFee) !== 0"
-                        class="network-fee info"
+                        class="network-fee-info info"
                     >
                         +
                         <template v-if="!isFormattedNetworkFeeZero">
@@ -96,7 +106,8 @@
 // this imports only the type without bundling the library
 type BigInteger = import ('big-integer').BigInteger;
 
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Watch, Vue } from 'vue-property-decorator';
+import { FiatApiSupportedFiatCurrency, FiatApiSupportedCryptoCurrency, getExchangeRates } from '@nimiq/utils';
 import Account from './Account.vue';
 import Timer from './Timer.vue';
 import Amount, { amountValidator } from './Amount.vue';
@@ -130,9 +141,8 @@ function fiatAmountInfoValidator(value: any) {
 
 @Component({components: {Account, Timer, Amount, FiatAmount, Tooltip, ArrowRightSmallIcon}})
 class PaymentInfoLine extends Vue {
-    private get originDomain() {
-        return this.origin.split('://')[1];
-    }
+    private static readonly REFERENCE_RATE_UPDATE_INTERVAL = 60000; // every minute
+    private static readonly RATE_DEVIATION_THRESHOLD = .05;
 
     @Prop({type: Object, required: true, validator: cryptoAmountInfoValidator}) public cryptoAmount!: CryptoAmountInfo;
     @Prop({type: Object, validator: fiatAmountInfoValidator}) public fiatAmount?: FiatAmountInfo;
@@ -154,6 +164,16 @@ class PaymentInfoLine extends Vue {
         default: 'normal',
     })
     public theme!: string;
+    private referenceRate: number | null = null;
+    private referenceRateUpdateTimeout: number = -1;
+
+    private created() {
+        this.updateReferenceRate();
+    }
+
+    private destroyed() {
+        window.clearTimeout(this.referenceRateUpdateTimeout);
+    }
 
     public async setTime(time: number) {
         await this.$nextTick(); // let vue update in case the timer was just added
@@ -161,9 +181,14 @@ class PaymentInfoLine extends Vue {
         (this.$refs.timer as Timer).synchronize(time);
     }
 
+    private get originDomain() {
+        return this.origin.split('://')[1];
+    }
+
     private get effectiveRate() {
         if (!this.fiatAmount) return null;
-        // Note: precision loss should be acceptable here
+        // Fiat/crypto rate. Higher fiat/crypto rate means user is paying less crypto for the requested fiat amount
+        // and is therefore better for the user. Note: precision loss should be acceptable here.
         return this.fiatAmount.amount / (Number(this.cryptoAmount.amount) / (10 ** this.cryptoAmount.decimals));
     }
 
@@ -185,6 +210,44 @@ class PaymentInfoLine extends Vue {
         const maxDecimals = Math.min(6, this.cryptoAmount.decimals);
         const roundingFactor = 10 ** maxDecimals;
         return Math.round(networkFeeBaseCurrency * roundingFactor) / roundingFactor === 0;
+    }
+
+    private get rateDeviation() {
+        // Compare fiat/crypto rates. Positive rate deviation (i.e. higher effective rate) is better for the user.
+        if (this.effectiveRate === null || this.referenceRate === null) return null;
+        return (this.effectiveRate - this.referenceRate) / this.referenceRate;
+    }
+
+    private get formattedRateDeviation() {
+        if (this.rateDeviation === null) return null;
+        // Converted to absolute percent, rounded to one decimal
+        return `${Math.round(Math.abs(this.rateDeviation) * 100 * 10) / 10}%`;
+    }
+
+    @Watch('cryptoAmount.currency')
+    @Watch('fiatAmount.currency')
+    private async updateReferenceRate() {
+        window.clearTimeout(this.referenceRateUpdateTimeout);
+        const cryptoCurrency = this.cryptoAmount.currency.toLowerCase() as FiatApiSupportedCryptoCurrency;
+        const fiatCurrency = this.fiatAmount
+            ? this.fiatAmount.currency.toLowerCase() as FiatApiSupportedFiatCurrency
+            : null;
+        if (!this.fiatAmount
+            || !Object.values(FiatApiSupportedFiatCurrency).includes(fiatCurrency)
+            || !Object.values(FiatApiSupportedCryptoCurrency).includes(cryptoCurrency)
+        ) {
+            this.referenceRate = null;
+            return;
+        }
+
+        const { [cryptoCurrency]: { [fiatCurrency]: referenceRate }} =
+            await getExchangeRates([cryptoCurrency], [fiatCurrency]);
+        this.referenceRate = referenceRate || null;
+
+        this.referenceRateUpdateTimeout = window.setTimeout(
+            () => this.updateReferenceRate(),
+            PaymentInfoLine.REFERENCE_RATE_UPDATE_INTERVAL,
+        );
     }
 }
 
@@ -255,12 +318,22 @@ export default PaymentInfoLine;
 
     .price-tooltip .info {
         font-size: 1.5rem;
+        opacity: .5;
     }
 
-    .price-tooltip .free-service-hint {
+    .price-tooltip .rate-info {
+        margin-top: .5rem;
+    }
+
+    .price-tooltip .rate-info.nq-orange {
+        opacity: 1;
+    }
+
+    .price-tooltip .free-service-info {
         width: 85%;
         margin-top: 1.5rem;
         color: var(--nimiq-green);
+        opacity: 1;
     }
 
     .price-tooltip hr {
@@ -280,15 +353,14 @@ export default PaymentInfoLine;
         font-weight: bold;
     }
 
-    .price-tooltip .network-fee {
+    .price-tooltip .network-fee-info {
         margin-top: .5rem;
         margin-bottom: -.25rem;
         text-align: right;
         white-space: nowrap;
-        opacity: .5;
     }
 
-    .price-tooltip .network-fee .amount {
+    .price-tooltip .network-fee-info .amount {
         margin-left: -.5ch;
     }
 
