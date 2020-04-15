@@ -2,14 +2,15 @@
     <div class="info-line" :class="{ 'inverse-theme': theme === constructor.Themes.INVERSE }">
         <div class="amounts"
             @mouseenter="$refs['price-tooltip'] && $refs['price-tooltip'].show()"
-            @mouseleave="$refs['price-tooltip'] && $refs['price-tooltip'].hide()">
+            @mouseleave="$refs['price-tooltip'] && $refs['price-tooltip'].hide()"
+            @click="$refs['price-tooltip'] && Date.now() - lastTooltipToggle > 200 && $refs['price-tooltip'].toggle()"
+        >
             <Amount
                 :currency="cryptoAmount.currency"
                 :amount="cryptoAmount.amount"
                 :currencyDecimals="cryptoAmount.decimals"
                 :minDecimals="0"
                 :maxDecimals="Math.min(4, cryptoAmount.decimals)"
-                @click.native="$refs['price-tooltip'] && $refs['price-tooltip'].toggle()"
             />
             <Tooltip ref="price-tooltip"
                 v-if="fiatAmount"
@@ -22,7 +23,9 @@
                     lineHeight: 1.3,
                 }"
                 :theme="theme"
-                @show="updateReferenceRate"
+                @show="onPriceTooltipToggle(true)"
+                @hide="onPriceTooltipToggle(false)"
+                @click.native.stop
                 class="price-tooltip"
             >
                 <template v-slot:trigger>
@@ -166,6 +169,7 @@ class PaymentInfoLine extends Vue {
     public theme!: string;
     private referenceRate: number | null = null;
     private referenceRateUpdateTimeout: number = -1;
+    private lastTooltipToggle: number = -1;
 
     private created() {
         this.updateReferenceRate();
@@ -248,6 +252,12 @@ class PaymentInfoLine extends Vue {
             () => this.updateReferenceRate(),
             PaymentInfoLine.REFERENCE_RATE_UPDATE_INTERVAL,
         );
+    }
+
+    private onPriceTooltipToggle(isShow: boolean) {
+        this.lastTooltipToggle = Date.now(); // record last toggle to avoid second toggle on click just after mouseover
+        if (!isShow) return;
+        this.updateReferenceRate();
     }
 }
 
