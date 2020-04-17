@@ -18,7 +18,7 @@
                 preferredPosition="bottom left"
                 :margin="{ left: 8 }"
                 :styles="{
-                    minWidth: '27.75rem',
+                    minWidth: '34.75rem',
                     padding: '2rem',
                     lineHeight: 1.3,
                 }"
@@ -39,10 +39,10 @@
                             <label>Merchant fee</label>
                             <div>+{{ formattedMerchantFee }}</div>
                         </template>
-                        <label :class="{ 'nq-orange': rateDeviation <= -constructor.RATE_DEVIATION_THRESHOLD }">
+                        <label :class="{ 'nq-orange': rateDeviation >= constructor.RATE_DEVIATION_THRESHOLD }">
                             Effective rate
                         </label>
-                        <div :class="{ 'nq-orange': rateDeviation <= -constructor.RATE_DEVIATION_THRESHOLD }">
+                        <div :class="{ 'nq-orange': rateDeviation >= constructor.RATE_DEVIATION_THRESHOLD }">
                             <FiatAmount :currency="fiatAmount.currency" :amount="effectiveRate"
                                 :maxRelativeDeviation=".0001"
                             />
@@ -50,11 +50,13 @@
                         </div>
                     </div>
                     <div v-if="Math.abs(rateDeviation) >= constructor.RATE_DEVIATION_THRESHOLD"
-                        :class="{ 'nq-orange': rateDeviation <= -constructor.RATE_DEVIATION_THRESHOLD }"
+                        :class="{ 'nq-orange': rateDeviation >= constructor.RATE_DEVIATION_THRESHOLD }"
                         class="rate-info info"
                     >
-                        Compared to coingecko.com, this rate is {{ formattedRateDeviation }}
-                        {{ rateDeviation < 0 ? 'worse' : 'better' }}.
+                        You are paying approx.
+                        {{ formattedRateDeviation }}
+                        {{ rateDeviation > 0 ? 'more' : 'less' }}
+                        than at the current market rate (coingecko.com).
                     </div>
                     <div class="free-service-info info">Nimiq provides this service free of charge.</div>
                     <hr>
@@ -74,13 +76,14 @@
                     >
                         +
                         <template v-if="!isFormattedNetworkFeeZero">
-                            ~<Amount
+                            <Amount
                                 :currency="cryptoAmount.currency"
                                 :amount="networkFee"
                                 :currencyDecimals="cryptoAmount.decimals"
                                 :minDecimals="0"
                                 :maxDecimals="Math.min(6, cryptoAmount.decimals)"
                             />
+                            suggested
                         </template>
                         network fee
                     </div>
@@ -145,7 +148,7 @@ function fiatAmountInfoValidator(value: any) {
 @Component({components: {Account, Timer, Amount, FiatAmount, Tooltip, ArrowRightSmallIcon}})
 class PaymentInfoLine extends Vue {
     private static readonly REFERENCE_RATE_UPDATE_INTERVAL = 60000; // every minute
-    private static readonly RATE_DEVIATION_THRESHOLD = .05;
+    private static readonly RATE_DEVIATION_THRESHOLD = .1;
 
     @Prop({type: Object, required: true, validator: cryptoAmountInfoValidator}) public cryptoAmount!: CryptoAmountInfo;
     @Prop({type: Object, validator: fiatAmountInfoValidator}) public fiatAmount?: FiatAmountInfo;
@@ -217,9 +220,12 @@ class PaymentInfoLine extends Vue {
     }
 
     private get rateDeviation() {
-        // Compare fiat/crypto rates. Positive rate deviation (i.e. higher effective rate) is better for the user.
+        // Compare rates. Convert them from fiat/crypto to crypto/fiat as the user will be paying crypto in the end and
+        // the flipped rates can therefore be compared more intuitively. Negative rate deviation is better for the user.
         if (this.effectiveRate === null || this.referenceRate === null) return null;
-        return (this.effectiveRate - this.referenceRate) / this.referenceRate;
+        const flippedEffectiveRate = 1 / this.effectiveRate;
+        const flippedReferenceRate = 1 / this.referenceRate;
+        return (flippedEffectiveRate - flippedReferenceRate) / flippedReferenceRate;
     }
 
     private get formattedRateDeviation() {
@@ -317,7 +323,7 @@ export default PaymentInfoLine;
     .price-tooltip .price-breakdown {
         display: grid;
         grid-template-columns: 1fr auto;
-        column-gap: 1rem;
+        column-gap: 2rem;
         row-gap: 1.5rem;
         white-space: nowrap;
     }
@@ -333,6 +339,7 @@ export default PaymentInfoLine;
 
     .price-tooltip .rate-info {
         margin-top: .5rem;
+        text-align: justify;
     }
 
     .price-tooltip .rate-info.nq-orange {
@@ -340,7 +347,6 @@ export default PaymentInfoLine;
     }
 
     .price-tooltip .free-service-info {
-        width: 85%;
         margin-top: 1.5rem;
         color: var(--nimiq-green);
         opacity: 1;
@@ -368,10 +374,6 @@ export default PaymentInfoLine;
         margin-bottom: -.25rem;
         text-align: right;
         white-space: nowrap;
-    }
-
-    .price-tooltip .network-fee-info .amount {
-        margin-left: -.5ch;
     }
 
     .arrow-runway {
