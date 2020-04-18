@@ -1009,15 +1009,15 @@ storiesOf('Components', module)
         };
         if (fiatAmount.amount < 0) fiatAmount = null;
         let vendorMarkup = number('vendor markup (-1 for unset)', -1);
-        if (vendorMarkup < 0) vendorMarkup = null;
+        if (vendorMarkup === -1) vendorMarkup = null;
         let networkFee = number('network fee (-1 for unset)', -1);
-        if (networkFee < 0) networkFee = null;
+        if (networkFee === -1) networkFee = null;
         const origin = text('origin', 'https://shop.nimiq.com');
         const address = text('address', 'NQ07 0000 00000000 0000 0000 0000 0000 0000');
         const shopLogo = text('shopLogo', 'https://pbs.twimg.com/profile_images/1150268408287698945/x4f3ITmx_400x400.png');
         let startTime = number('startTime', Date.now());
         let endTime = number('endTime (-1 for unset)', -1);
-        if (endTime < 0) endTime = null;
+        if (endTime === -1) endTime = null;
 
         return {
             components: {PaymentInfoLine},

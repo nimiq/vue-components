@@ -36,24 +36,25 @@
                         <label>Order amount</label>
                         <FiatAmount :currency="fiatAmount.currency" :amount="fiatAmount.amount" />
                         <template v-if="vendorMarkup || vendorMarkup === 0">
-                            <label>Vendor crypto markup</label>
-                            <div>+{{ formattedVendorMarkup }}</div>
+                            <label>Vendor crypto {{ vendorMarkup >= 0 ? 'markup' : 'discount' }}</label>
+                            <div>{{ formattedVendorMarkup }}</div>
                         </template>
-                        <label :class="{ 'nq-orange': rateDeviation >= constructor.RATE_DEVIATION_THRESHOLD }">
+                        <label :class="{ 'nq-orange': isBadRate }">
                             Effective rate
                         </label>
-                        <div :class="{ 'nq-orange': rateDeviation >= constructor.RATE_DEVIATION_THRESHOLD }">
+                        <div :class="{ 'nq-orange': isBadRate }">
                             <FiatAmount :currency="fiatAmount.currency" :amount="effectiveRate"
                                 :maxRelativeDeviation=".0001"
                             />
                             / {{ cryptoAmount.currency.toUpperCase() }}
                         </div>
                     </div>
-                    <div v-if="Math.abs(rateDeviation) >= constructor.RATE_DEVIATION_THRESHOLD"
-                        :class="{ 'nq-orange': rateDeviation >= constructor.RATE_DEVIATION_THRESHOLD }"
+                    <div v-if="isBadRate || Math.abs(rateDeviation) >= constructor.RATE_DEVIATION_THRESHOLD"
+                        :class="{ 'nq-orange': isBadRate }"
                         class="rate-info info"
                     >
                         You are paying approx.
+                        {{ isBadRate && rateDeviation < 0 ? 'only' : '' }}
                         {{ formattedRateDeviation }}
                         {{ rateDeviation > 0 ? 'more' : 'less' }}
                         than at the current market rate (coingecko.com).
@@ -157,7 +158,7 @@ class PaymentInfoLine extends Vue {
     // in the Hub, the tooltip and vendorMarkup and networkFee are thus never visible for v1 checkout requests. This
     // should be ok though as the vendorMarkup also only exists in v2 and the free-service-info doesn't make too much
     // sense for nimiq.shop or the nimiq voting app which are currently the main apps using the v1 checkout.
-    @Prop(Number) public vendorMarkup?: number;
+    @Prop({ type: Number, validator: (value: unknown) => value > -1 }) public vendorMarkup?: number;
     @Prop({validator: amountValidator}) public networkFee?: number | bigint | BigInteger;
     @Prop({type: String, required: true}) public origin!: string;
     @Prop(String) public address?: string;
@@ -201,10 +202,10 @@ class PaymentInfoLine extends Vue {
 
     private get formattedVendorMarkup() {
         if (typeof this.vendorMarkup !== 'number') return null;
-        // Convert to percent and round to two decimals. Always ceil to avoid displaying a lower fee than charged.
-        // Subtract a small epsilon to avoid that numbers get rounded up as a result of floating point imprecision after
-        // the multiplication. Otherwise formatting for example .07 would result in 7.01%.
-        return `${Math.ceil(this.vendorMarkup * 100 * 100 - 1e-10) / 100}%`;
+        // Convert to percent and round to two decimals. Always ceil to avoid displaying a lower fee than charged or
+        // larger discount than applied. Subtract a small epsilon to avoid that numbers get rounded up as a result of
+        // floating point imprecision after multiplication. Otherwise formatting for example .07 would result in 7.01%.
+        return `${this.vendorMarkup >= 0 ? '+' : ''}${Math.ceil(this.vendorMarkup * 100 * 100 - 1e-10) / 100}%`;
     }
 
     private get isFormattedNetworkFeeZero() {
@@ -225,6 +226,15 @@ class PaymentInfoLine extends Vue {
         const flippedEffectiveRate = 1 / this.effectiveRate;
         const flippedReferenceRate = 1 / this.referenceRate;
         return (flippedEffectiveRate - flippedReferenceRate) / flippedReferenceRate;
+    }
+
+    private get isBadRate() {
+        if (this.rateDeviation === null) return false;
+        return this.rateDeviation >= PaymentInfoLine.RATE_DEVIATION_THRESHOLD
+            || (this.vendorMarkup
+                && this.vendorMarkup < 0 // verify promised discount
+                && this.rateDeviation >= this.vendorMarkup + PaymentInfoLine.RATE_DEVIATION_THRESHOLD
+            );
     }
 
     private get formattedRateDeviation() {
