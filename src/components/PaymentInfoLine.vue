@@ -35,9 +35,9 @@
                     <div class="price-breakdown">
                         <label>Order amount</label>
                         <FiatAmount :currency="fiatAmount.currency" :amount="fiatAmount.amount" />
-                        <template v-if="merchantFee !== undefined && merchantFee !== null">
-                            <label>Merchant fee</label>
-                            <div>+{{ formattedMerchantFee }}</div>
+                        <template v-if="vendorMarkup || vendorMarkup === 0">
+                            <label>Vendor crypto markup</label>
+                            <div>+{{ formattedVendorMarkup }}</div>
                         </template>
                         <label :class="{ 'nq-orange': rateDeviation >= constructor.RATE_DEVIATION_THRESHOLD }">
                             Effective rate
@@ -152,12 +152,12 @@ class PaymentInfoLine extends Vue {
 
     @Prop({type: Object, required: true, validator: cryptoAmountInfoValidator}) public cryptoAmount!: CryptoAmountInfo;
     @Prop({type: Object, validator: fiatAmountInfoValidator}) public fiatAmount?: FiatAmountInfo;
-    // Note that merchantFee and networkFee have no effect if fiatAmount is not set, as the tooltip in which they appear
-    // is only visible when fiatAmount is set. As the fiatAmount was only introduced in the v2 checkout request in the
-    // Hub, the tooltip and merchantFee and networkFee are thus never visible for v1 checkout requests. This should be
-    // ok though as the merchantFee also only exists in v2 and the free-service-info doesn't make too much sense for
-    // nimiq.shop or the nimiq voting app which are currently the main apps using the v1 checkout.
-    @Prop({validator: amountValidator}) public merchantFee?: number | bigint | BigInteger;
+    // Note that vendorMarkup and networkFee have no effect if fiatAmount is not set, as the tooltip in which they
+    // appear is only visible when fiatAmount is set. As the fiatAmount was only introduced in the v2 checkout request
+    // in the Hub, the tooltip and vendorMarkup and networkFee are thus never visible for v1 checkout requests. This
+    // should be ok though as the vendorMarkup also only exists in v2 and the free-service-info doesn't make too much
+    // sense for nimiq.shop or the nimiq voting app which are currently the main apps using the v1 checkout.
+    @Prop(Number) public vendorMarkup?: number;
     @Prop({validator: amountValidator}) public networkFee?: number | bigint | BigInteger;
     @Prop({type: String, required: true}) public origin!: string;
     @Prop(String) public address?: string;
@@ -199,13 +199,12 @@ class PaymentInfoLine extends Vue {
         return this.fiatAmount.amount / (Number(this.cryptoAmount.amount) / (10 ** this.cryptoAmount.decimals));
     }
 
-    private get formattedMerchantFee() {
-        if (this.merchantFee === null || this.merchantFee === undefined) return null;
-        // Note: precision loss should be acceptable here
-        const merchantFee = Number(this.merchantFee);
-        const merchantFeePercent = (merchantFee / (Number(this.cryptoAmount.amount) - merchantFee)) * 100;
-        // Round to two decimals. Always ceil to avoid displaying a lower fee than charged.
-        return `${Math.ceil(merchantFeePercent * 100) / 100}%`;
+    private get formattedVendorMarkup() {
+        if (typeof this.vendorMarkup !== 'number') return null;
+        // Convert to percent and round to two decimals. Always ceil to avoid displaying a lower fee than charged.
+        // Subtract a small epsilon to avoid that numbers get rounded up as a result of floating point imprecision after
+        // the multiplication. Otherwise formatting for example .07 would result in 7.01%.
+        return `${Math.ceil(this.vendorMarkup * 100 * 100 - 1e-10) / 100}%`;
     }
 
     private get isFormattedNetworkFeeZero() {

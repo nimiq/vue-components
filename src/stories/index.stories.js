@@ -1008,8 +1008,8 @@ storiesOf('Components', module)
             currency: text('fiatAmount.currency', 'EUR'),
         };
         if (fiatAmount.amount < 0) fiatAmount = null;
-        let merchantFee = number('merchant fee (-1 for unset)', -1);
-        if (merchantFee < 0) merchantFee = null;
+        let vendorMarkup = number('vendor markup (-1 for unset)', -1);
+        if (vendorMarkup < 0) vendorMarkup = null;
         let networkFee = number('network fee (-1 for unset)', -1);
         if (networkFee < 0) networkFee = null;
         const origin = text('origin', 'https://shop.nimiq.com');
@@ -1022,11 +1022,11 @@ storiesOf('Components', module)
         return {
             components: {PaymentInfoLine},
             data: () => ({
-                cryptoAmount, fiatAmount, merchantFee, networkFee, origin, address, shopLogo, startTime, endTime, theme
+                cryptoAmount, fiatAmount, vendorMarkup, networkFee, origin, address, shopLogo, startTime, endTime, theme
             }),
             template: `<div style="max-width: 420px" :class="{ 'nq-blue-bg': theme === 'inverse' }">
                 <PaymentInfoLine :cryptoAmount="cryptoAmount" :fiatAmount="fiatAmount"
-                :merchantFee="merchantFee" :networkFee="networkFee"
+                :vendorMarkup="vendorMarkup" :networkFee="networkFee"
                 :origin="origin" :address="address" :shopLogoUrl="shopLogo" :startTime="startTime" :endTime="endTime"
                 :theme="theme"/>
             </div>`,
