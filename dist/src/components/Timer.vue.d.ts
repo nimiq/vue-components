@@ -9,6 +9,7 @@ declare class Timer extends Vue {
     alwaysShowTime: boolean;
     theme: string;
     strokeWidth: number;
+    tooltipProps?: object;
     synchronize(referenceTime: number): void;
     private timeOffset;
     private sampledTime;

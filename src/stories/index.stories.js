@@ -101,59 +101,42 @@ storiesOf('Basic', module)
     .add('FiatAmount', () => {
         const amount = number('amount', 12345.67);
         const currency = text('currency', 'eur');
+        const maxRelativeDeviation = number('maxRelativeDeviation', .1);
         const locale = text('locale', navigator.language);
 
         return {
             components: {FiatAmount},
-            data: () => ({ amount, currency, locale }),
-            template: `<FiatAmount :amount="amount" :currency="currency" :locale="locale" />`,
+            data: () => ({ amount, currency, maxRelativeDeviation, locale }),
+            template: `<FiatAmount :amount="amount" :currency="currency" :maxRelativeDeviation="maxRelativeDeviation"
+                :locale="locale" />`,
         };
     })
-    .add('Icons', () => {
-        return {
-            components: { ...Icons },
-            template: `
-                <div style="font-size: 40px; color: var(--nimiq-blue); padding: 16px;">
-                    <AlertTriangleIcon/>
-                    <ArrowLeftSmallIcon/>
-                    <ArrowLeftIcon/>
-                    <ArrowRightSmallIcon/>
-                    <ArrowRightIcon/>
-                    <BrowserLoginIcon/>
-                    <CaretRightSmallIcon/>
-                    <CheckmarkIcon/>
-                    <CloseIcon/>
-                    <ContactsIcon/>
-                    <CopyIcon/>
-                    <DownloadIcon/>
-                    <FaceNeutralIcon/>
-                    <FaceSadIcon/>
-                    <FireIcon/>
-                    <GearIcon/>
-                    <HexagonIcon/>
-                    <InfoCircleIcon/>
-                    <KeysIcon/>
-                    <LedgerIcon/>
-                    <LockLockedIcon/>
-                    <LockUnlockedIcon/>
-                    <LoginIcon/>
-                    <MenuDotsIcon/>
-                    <PaperEditIcon/>
-                    <PlusCircleIcon/>
-                    <QrCodeIcon/>
-                    <QuestionmarkIcon/>
-                    <ScanQrCodeIcon/>
-                    <SettingsIcon/>
-                    <ShredderIcon/>
-                    <SkullIcon/>
-                    <StopwatchIcon/>
-                    <TransferIcon/>
-                    <UnderPaymentIcon/>
-                    <ViewOffIcon/>
-                    <ViewIcon/>
-                </div>`,
-        };
-    })
+    .add('Icons', () => ({
+        components: { ...Icons, Tooltip },
+        functional: true,
+        render: (createElement) => {
+            const icons = Object.entries(Icons).map(([name, icon]) => createElement(Tooltip, {
+                props: {
+                    container: { $el: document.body },
+                    preferredPosition: 'bottom right',
+                    styles: {
+                        pointerEvents: 'none',
+                    },
+                },
+                style: { margin: '4px' },
+                scopedSlots: {
+                    trigger: () => createElement(icon),
+                    default: () => name,
+                }
+            }));
+            return createElement('div', {
+                style: {
+                    fontSize: '40px',
+                    padding: '16px',
+                }
+            }, icons);
+        },
+    }))
     .add('Identicon', () => {
         const address = text('address', 'NQ07 0000 00000000 0000 0000 0000 0000 0000');
         return {
@@ -233,18 +216,22 @@ storiesOf('Basic', module)
     .add('Tooltip', () => {
         const useContainer = boolean('Use container', true);
         const preferredPosition = text('preferredPosition', 'top right');
+        const margin = object('margin (json)', {});
         const autoWidth = boolean('autoWidth', false);
         const disabled = boolean('disabled', false);
         const theme = select('theme', Object.values(Tooltip.Themes), Tooltip.Themes.NORMAL);
-        const fontSize = number('Font size (rem)', 3);
+        const styles = object('styles (json)', {});
+        const fontSize = number('External font size (rem)', 3);
         return {
             data() {
                 return {
                     useContainer,
                     preferredPosition,
+                    margin,
                     autoWidth,
                     disabled,
                     theme,
+                    styles,
                     fontSize,
                     refsLoaded: false,
                     shown: false,
@@ -263,7 +250,7 @@ storiesOf('Basic', module)
             components: { SmallPage, PageHeader, PageBody, Tooltip, Account },
             template: windowTemplate`<SmallPage :class="{ 'nq-blue-bg': theme === 'inverse' }">
                             <PageHeader>Test</PageHeader>
-                            <PageBody ref="container" style="overflow-y: scroll; position:relative;">
+                            <PageBody ref="container" style="overflow-y: scroll; background: aliceblue">
                                 <div style="height:320px"></div>
                                 <div style="max-width: 100%; display: flex; align-items: center;">
                                     <button class="nq-button-s" :class="[theme]" @click="$refs.tooltip.show()">
@@ -277,9 +264,11 @@ storiesOf('Basic', module)
                                     <Tooltip ref="tooltip"
                                         :container="useContainer ? container : undefined"
                                         :preferredPosition="preferredPosition"
+                                        :margin="margin"
                                         :autoWidth="autoWidth"
                                         :disabled="disabled"
                                         :theme="theme"
+                                        :styles="styles"
                                         :style="{ fontSize: fontSize + 'rem' }"
                                         @show="shown = true"
                                         @hide="shown = false">
@@ -332,6 +321,7 @@ storiesOf('Components', module)
         const disableContracts = boolean('disableContracts', false);
         const disabled = boolean('disabled', false);
         const disabledAddress = text('blacklist address', 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1');
+        const tooltipProps = object('tooltipProps (json)', {});
         return {
             components: {AccountList},
             methods: {
@@ -370,11 +360,12 @@ storiesOf('Components', module)
                     editable,
                     disableContracts,
                     disabled,
+                    tooltipProps,
                 };
             },
             template: `<AccountList @account-selected="accountSelected" :accounts="accounts" walletId="helloworld1"
                 :minBalance="minBalance" :decimals="decimals" :editable="editable" :disableContracts="disableContracts"
-                :disabled="disabled" :disabledAddresses="[disabledAddress]" />`
+                :disabled="disabled" :disabledAddresses="[disabledAddress]" :tooltipProps="tooltipProps" />`
         };
     })
     .add('AccountSelector', () => {
@@ -1021,15 +1012,15 @@ storiesOf('Components', module)
         const address = text('address', 'NQ07 0000 00000000 0000 0000 0000 0000 0000');
         const shopLogo = text('shopLogo', 'https://pbs.twimg.com/profile_images/1150268408287698945/x4f3ITmx_400x400.png');
         let startTime = number('startTime', Date.now());
-        let expires = number('expires (-1 for unset)', -1);
-        if (expires < 0) expires = null;
+        let endTime = number('endTime (-1 for unset)', -1);
+        if (endTime < 0) endTime = null;
 
         return {
             components: {PaymentInfoLine},
-            data: () => ({ cryptoAmount, fiatAmount, origin, address, shopLogo, startTime, expires, theme }),
+            data: () => ({ cryptoAmount, fiatAmount, origin, address, shopLogo, startTime, endTime, theme }),
             template: `<div style="max-width: 420px" :class="{ 'nq-blue-bg': theme === 'inverse' }">
                 <PaymentInfoLine :cryptoAmount="cryptoAmount" :fiatAmount="fiatAmount"
-                :origin="origin" :address="address" :shopLogoUrl="shopLogo" :startTime="startTime" :expires="expires"
+                :origin="origin" :address="address" :shopLogoUrl="shopLogo" :startTime="startTime" :endTime="endTime"
                 :theme="theme"/>
             </div>`,
         };
@@ -1129,16 +1120,17 @@ storiesOf('Components', module)
             timerEnded: false,
             theme: select('theme', Object.values(Timer.Themes), Timer.Themes.NORMAL),
             alwaysShowTime: boolean('alwaysShowTime', true),
+            tooltipProps: object('tooltipProps (json)', {}),
         }),
         template: `
             <div>
                 <div :class="{ 'nq-blue-bg': theme === 'inverse' }" style="display: flex; align-items: center; padding: 7rem 3rem 10rem 12rem">
                     <Timer :startTime="startTime" :endTime="endTime" :theme="theme" :alwaysShowTime="alwaysShowTime"
-                        @end="timerEnded = true" style="margin: 2rem"/>
+                        :tooltipProps="tooltipProps" @end="timerEnded = true" style="margin: 2rem"/>
                     <Timer :startTime="startTime" :endTime="endTime" :theme="theme" :alwaysShowTime="alwaysShowTime"
-                        style="width: 10rem; margin: 2rem"/>
+                        :tooltipProps="tooltipProps" style="width: 10rem; margin: 2rem"/>
                     <Timer :startTime="startTime" :endTime="endTime" :theme="theme" :alwaysShowTime="alwaysShowTime"
-                        style="width: 20rem; margin: 2rem"/>
+                        :tooltipProps="tooltipProps" style="width: 20rem; margin: 2rem"/>
                 </div>
                 <div v-if="startTime" style="margin: 1rem 2rem">Timer {{ timerEnded ? 'ended' : 'running' }}</div>
                 <div style="display: flex; flex-wrap: wrap; max-width: 95rem;">

@@ -30,11 +30,14 @@ export default class AccountSelector extends Vue {
     private disableBip39Accounts?;
     private disableLedgerAccounts?;
     private allowLogin;
-    private highlightedDisabledAccount;
-    private highlightedDisabledAccountTimeout;
+    private shownTooltip;
+    private hideTooltipTimeout;
+    private tooltipProps;
     private get sortedWallets();
+    private mounted;
     private accountSelected;
     private login;
     private _isAccountDisabled;
+    private _getAccountTypeName;
     private _accountClicked;
 }

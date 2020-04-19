@@ -9,11 +9,16 @@ export default class AccountList extends Vue {
     private minBalance?;
     private disableContracts?;
     private disabled?;
+    private tooltipProps?;
     private highlightedDisabledAddress;
     private highlightedDisabledAddressTimeout;
     focus(address: string): void;
     private accountSelected;
-    private get accountContainerTag();
     private accountChanged;
-    private _isContract;
+    private _isDisabled;
+    private _isDisabledContract;
+    private _isDisabledAccount;
+    private _hasInsufficientBalance;
+    private _hasTooltip;
+    private _clearHighlightedDisabledAddress;
 }

@@ -10,10 +10,18 @@ import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { FormattableNumber } from '@nimiq/utils';
 type BigInteger = import ('big-integer').BigInteger;
 
+export function amountValidator(value: unknown): boolean {
+    return typeof value === 'number' || typeof value === 'bigint'
+        || (value && value.constructor && value.constructor.name.endsWith('Integer'));
+}
+
 @Component
 export default class Amount extends Vue {
     // Amount in smallest unit
-    @Prop({type: [Number, Object]}) public amount!: number | BigInteger;
+    @Prop({
+        required: true,
+        validator: amountValidator,
+    }) public amount!: number | bigint | BigInteger;
     // If set takes precedence over minDecimals and maxDecimals
     @Prop(Number) public decimals?: number;
     @Prop({type: Number, default: 2}) public minDecimals!: number;

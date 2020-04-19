@@ -17,7 +17,14 @@
             <ArrowRightSmallIcon/>
         </div>
         <Account :address="address" :image="shopLogoUrl" :label="originDomain" />
-        <Timer v-if="startTime && endTime" ref="timer" :startTime="startTime" :endTime="endTime" :theme="theme" />
+        <Timer
+            v-if="startTime && endTime"
+            ref="timer"
+            :startTime="startTime"
+            :endTime="endTime"
+            :theme="theme"
+            :tooltipProps="{ container: $parent }"
+        />
     </div>
 </template>
 
@@ -28,7 +35,7 @@ type BigInteger = import ('big-integer').BigInteger;
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import Account from './Account.vue';
 import Timer from './Timer.vue';
-import Amount from './Amount.vue';
+import Amount, { amountValidator } from './Amount.vue';
 import FiatAmount from './FiatAmount.vue';
 import { ArrowRightSmallIcon } from './Icons';
 
@@ -45,8 +52,7 @@ interface FiatAmountInfo {
 
 function cryptoAmountInfoValidator(value: any) {
     return 'amount' in value && 'currency' in value && 'decimals' in value
-        && (typeof value.amount === 'number' || typeof value.amount === 'bigint'
-            || (value.amount && value.amount.constructor && value.amount.constructor.name.endsWith('Integer')))
+        && amountValidator(value.amount)
         && typeof value.currency === 'string'
         && typeof value.decimals === 'number' && Number.isInteger(value.decimals);
 }

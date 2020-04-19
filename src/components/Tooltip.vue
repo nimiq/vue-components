@@ -26,7 +26,7 @@
             <div ref="tooltipBox"
                 v-if="isShown"
                 class="tooltip-box"
-                :style="styles">
+                :style="tooltipBoxStyles">
                 <slot></slot>
             </div>
         </transition>
@@ -39,9 +39,15 @@ import { AlertTriangleIcon } from './Icons';
 
 @Component({ components: { AlertTriangleIcon }})
 class Tooltip extends Vue {
+    /**
+     * Container within which the tooltip should be positioned if possible.
+     */
     @Prop(Object) public container?: Vue | {$el: HTMLElement};
     @Prop(Boolean) public disabled?: boolean;
 
+    /**
+     * Preferred tooltip position as "[vertical] [horizontal]" or "[vertical]".
+     */
     @Prop({
         type: String,
         default: 'top right',
@@ -54,10 +60,25 @@ class Tooltip extends Vue {
         },
     }) public preferredPosition!: string;
 
+    /**
+     * Margin to maintain to container. If no container is set, this prop has no effect. For omitted values, the
+     * container's padding is used as margin.
+     */
+    @Prop({
+        type: Object,
+        validator: (value: unknown) => typeof value === 'object'
+            && Object.entries(value).every(([position, margin]) => typeof margin === 'number'
+                && (Object.values(Tooltip.VerticalPosition).includes(position as Tooltip.VerticalPosition)
+                    || Object.values(Tooltip.HorizontalPosition).includes(position as Tooltip.HorizontalPosition))),
+    }) public margin?: Partial<Record<Tooltip.VerticalPosition | Tooltip.HorizontalPosition, number>>;
+
+    /**
+     * Sets the tooltip's width to the container's width minus margin. If no container is set, this prop has no effect.
+     */
     @Prop({
         type: Boolean,
         default: false,
-    }) public autoWidth!: boolean; // only relevant when using a container
+    }) public autoWidth!: boolean;
 
     @Prop({
         type: String,
@@ -65,6 +86,11 @@ class Tooltip extends Vue {
         validator: (value: any) => Object.values(Tooltip.Themes).includes(value),
     })
     public theme!: Tooltip.Themes;
+
+    /**
+     * Styles to apply on the tooltip box without the need to use deep css selectors.
+     */
+    @Prop(Object) public styles?: Partial<CSSStyleDeclaration>;
 
     /** @deprecated */
     @Prop(Object) public reference?: Vue | {$el: HTMLElement};
@@ -104,13 +130,14 @@ class Tooltip extends Vue {
         return this.container || this.reference;
     }
 
-    private get styles() {
+    private get tooltipBoxStyles() {
         // note that we let the browser calculate height automatically
         return {
+            ...this.styles,
             top: this.top + 'px',
             left: this.left + 'px',
-            width: this.effectiveContainer && this.autoWidth ? this.width + 'px' : undefined,
-            maxWidth: this.effectiveContainer ? this.maxWidth + 'px' : undefined,
+            width: this.effectiveContainer && this.autoWidth ? this.width + 'px' : (this.styles || {}).width,
+            maxWidth: this.effectiveContainer ? this.maxWidth + 'px' : (this.styles || {}).maxWidth,
         };
     }
 
@@ -182,13 +209,10 @@ class Tooltip extends Vue {
             await new Promise((resolve) => requestAnimationFrame(() => {
                 // avoid potential forced layouting / reflow by taking measurements within a requestAnimationFrame
                 // (see https://gist.github.com/paulirish/5d52fb081b3570c81e3a#appendix)
-                const containerLeftPad = parseInt(
-                    window.getComputedStyle(container.$el, null).getPropertyValue('padding-left'), 10);
+                const leftMargin = this.getMargin(Tooltip.HorizontalPosition.LEFT);
+                const rightMargin = this.getMargin(Tooltip.HorizontalPosition.RIGHT);
 
-                const containerRightPad = parseInt(
-                    window.getComputedStyle(container.$el, null).getPropertyValue('padding-right'), 10);
-
-                this.maxWidth = (container.$el as HTMLElement).offsetWidth - containerLeftPad - containerRightPad;
+                this.maxWidth = (container.$el as HTMLElement).offsetWidth - leftMargin - rightMargin;
                 if (this.autoWidth) this.width = this.maxWidth;
                 resolve();
             }));
@@ -222,8 +246,9 @@ class Tooltip extends Vue {
             ? Math.round(this.$refs.tooltipTrigger.offsetWidth / 2 - 25) // offset by 25px according to designs
             : Math.round(this.$refs.tooltipTrigger.offsetWidth / 2 - this.width + 25);
 
-        if (this.effectiveContainer) {
-            if (!this.effectiveContainer.$el) {
+        const container = this.effectiveContainer;
+        if (container) {
+            if (!container.$el) {
                 // We don't wait here for the container to get mounted, as we expect it to already be mounted when this
                 // private method is called and to do measurements immediately in the scroll event listener
                 console.warn('Tooltip container does not seem to be mounted yet.');
@@ -231,10 +256,12 @@ class Tooltip extends Vue {
             }
             // position tooltip such that it best fits container element
             const triggerBoundingRect = this.$refs.tooltipTrigger.getBoundingClientRect();
-            const containerBoundingRect = this.effectiveContainer.$el.getBoundingClientRect();
-            const requiredSpace = this.height + 16; // 16 for arrow, assuming same height on mobile for simplicity
-            const fitsTop = triggerBoundingRect.top - containerBoundingRect.top >= requiredSpace;
-            const fitsBottom = containerBoundingRect.bottom - triggerBoundingRect.bottom >= requiredSpace;
+            const containerBoundingRect = container.$el.getBoundingClientRect();
+            const topMargin = this.getMargin(Tooltip.VerticalPosition.TOP);
+            const bottomMargin = this.getMargin(Tooltip.VerticalPosition.BOTTOM);
+            const spaceNeeded = this.height + 16; // 16 for arrow, assuming same height on mobile for simplicity
+            const fitsTop = triggerBoundingRect.top - containerBoundingRect.top - topMargin >= spaceNeeded;
+            const fitsBottom = containerBoundingRect.bottom - triggerBoundingRect.bottom - bottomMargin >= spaceNeeded;
             if ((preferredVerticalPosition === Tooltip.VerticalPosition.TOP && (fitsTop || !fitsBottom))
                 || (preferredVerticalPosition === Tooltip.VerticalPosition.BOTTOM) && (fitsTop && !fitsBottom)) {
                 this.verticalPosition = Tooltip.VerticalPosition.TOP;
@@ -243,13 +270,11 @@ class Tooltip extends Vue {
             }
 
             // constrain horizontal position
-            const containerLeftPad = parseInt(
-                window.getComputedStyle(this.effectiveContainer.$el, null).getPropertyValue('padding-left'), 10);
-            const containerRightPad = parseInt(
-                window.getComputedStyle(this.effectiveContainer.$el, null).getPropertyValue('padding-right'), 10);
+            const leftMargin = this.getMargin(Tooltip.HorizontalPosition.LEFT);
+            const rightMargin = this.getMargin(Tooltip.HorizontalPosition.RIGHT);
             // left and right bound of container, expressed in trigger's coordinate system
-            const leftBound = containerBoundingRect.left + containerLeftPad - triggerBoundingRect.left;
-            const rightBound = containerBoundingRect.right - containerRightPad - triggerBoundingRect.left;
+            const leftBound = containerBoundingRect.left + leftMargin - triggerBoundingRect.left;
+            const rightBound = containerBoundingRect.right - rightMargin - triggerBoundingRect.left;
             this.left = Math.max(
                 leftBound,
                 Math.min(
@@ -288,6 +313,21 @@ class Tooltip extends Vue {
         }
 
         await this.update();
+    }
+
+    private getMargin(position: Tooltip.VerticalPosition | Tooltip.HorizontalPosition) {
+        if (this.margin && this.margin[position] !== undefined) return this.margin[position];
+        const containerEl = this.effectiveContainer && this.effectiveContainer.$el
+            ? this.effectiveContainer.$el as HTMLElement
+            : null;
+        if (!containerEl) return 0;
+        if ((position === Tooltip.VerticalPosition.TOP || position === Tooltip.VerticalPosition.BOTTOM)
+            && containerEl.scrollHeight !== containerEl.offsetHeight) {
+            // If container is scrollable, the padding scrolls with the content. Therefore we consider the whole
+            // offsetHeight as valid area for the tooltip and return a margin of 0.
+            return 0;
+        }
+        return parseInt(window.getComputedStyle(containerEl, null).getPropertyValue(`padding-${position}`), 10);
     }
 
     private mouseOver(mouseOverTooltip: boolean) {
@@ -337,10 +377,12 @@ export default Tooltip;
 
     .trigger {
         position: relative;
-        display: block;
+        display: inline-block;
+        vertical-align: bottom;
         text-decoration: none;
         outline: none;
         cursor: default;
+        color: inherit;
     }
 
     .trigger >>> svg {

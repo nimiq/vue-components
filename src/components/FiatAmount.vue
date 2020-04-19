@@ -10,6 +10,9 @@ import { FormattableNumber } from '@nimiq/utils';
 
 @Component
 export default class FiatAmount extends Vue {
+    private static readonly NUMBER_REGEX = /(-)?\D*(\d+)(\.(\d+))?/;
+    private static readonly DECIMAL_SEPARATOR_REGEX = /(\d)\D(\d)/;
+
     @Prop({
         type: Number,
         required: true,
@@ -23,6 +26,12 @@ export default class FiatAmount extends Vue {
     public currency!: string;
 
     @Prop({
+        type: Number,
+        default: .1,
+    })
+    public maxRelativeDeviation!: number;
+
+    @Prop({
         type: String,
         default: navigator.language,
     })
@@ -30,18 +39,36 @@ export default class FiatAmount extends Vue {
 
     private get _currencyString() {
         const localeWithLatinNumbers = `${this.locale}-u-nu-latn`;
-        const formatted = this.amount.toLocaleString([localeWithLatinNumbers, 'en-US'], {
+        const formattingOptions = {
             style: 'currency',
             currency: this.currency,
             currencyDisplay: 'symbol',
             useGrouping: false,
-        });
-        const integerPart = formatted.match(/\d+/)![0]; // first match is the integer part
-        return formatted
-            // Enforce a dot as decimal separator for consistency. Using capturing groups instead of
-            // lookahead/lookbehind to avoid browser support limitations.
-            .replace(/(\d)\D(\d)/, '$1.$2')
-            .replace(integerPart, new FormattableNumber(integerPart).toString(true));
+            minimumFractionDigits: undefined, // start with decimal count typical for this.currency, e.g. 2 for eur
+        };
+        let formatted: string;
+        let integers: string;
+        let relativeDeviation: number;
+
+        do {
+            formatted = this.amount.toLocaleString([localeWithLatinNumbers, 'en-US'], formattingOptions)
+                // Enforce a dot as decimal separator for consistency and parseFloat. Using capturing groups instead of
+                // lookahead/lookbehind to avoid browser support limitations.
+                .replace(FiatAmount.DECIMAL_SEPARATOR_REGEX, '$1.$2');
+            const regexMatch = formatted.match(FiatAmount.NUMBER_REGEX)!;
+            const [/* full match */, sign, /* integers */, decimalsIncludingSeparator, decimals] = regexMatch;
+            integers = regexMatch[2];
+            const formattedNumber = `${sign || ''}${integers}${decimalsIncludingSeparator || ''}`;
+            relativeDeviation = Math.abs((this.amount - Number.parseFloat(formattedNumber)) / this.amount);
+
+            formattingOptions.minimumFractionDigits = decimals ? decimals.length + 1 : 1;
+        } while (relativeDeviation > this.maxRelativeDeviation
+            && formattingOptions.minimumFractionDigits <= 20 // maximum allowed value for minimumFractionDigits
+        );
+
+        // apply integer grouping
+        if (integers.length <= 4) return formatted;
+        return formatted.replace(integers, new FormattableNumber(integers).toString(true));
     }
 }
 </script>
