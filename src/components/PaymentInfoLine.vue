@@ -18,7 +18,7 @@
                 preferredPosition="bottom left"
                 :margin="{ left: 8 }"
                 :styles="{
-                    minWidth: '34.75rem',
+                    minWidth: '37rem',
                     padding: '2rem',
                     lineHeight: 1.3,
                 }"
@@ -29,6 +29,7 @@
                 class="price-tooltip"
             >
                 <template v-slot:trigger>
+                    <AlertTriangleIcon v-if="isBadRate" />
                     <FiatAmount :currency="fiatAmount.currency" :amount="fiatAmount.amount" />
                 </template>
                 <template v-slot:default>
@@ -49,15 +50,11 @@
                             / {{ cryptoAmount.currency.toUpperCase() }}
                         </div>
                     </div>
-                    <div v-if="isBadRate || Math.abs(rateDeviation) >= constructor.RATE_DEVIATION_THRESHOLD"
+                    <div v-if="rateInfo"
                         :class="{ 'nq-orange': isBadRate }"
                         class="rate-info info"
                     >
-                        You are paying approx.
-                        {{ isBadRate && rateDeviation < 0 ? 'only' : '' }}
-                        {{ formattedRateDeviation }}
-                        {{ rateDeviation > 0 ? 'more' : 'less' }}
-                        than at the current market rate (coingecko.com).
+                        {{ rateInfo }}
                     </div>
                     <div class="free-service-info info">Nimiq provides this service free of charge.</div>
                     <hr>
@@ -120,7 +117,7 @@ import Timer from './Timer.vue';
 import Amount, { amountValidator } from './Amount.vue';
 import FiatAmount from './FiatAmount.vue';
 import Tooltip from './Tooltip.vue';
-import { ArrowRightSmallIcon } from './Icons';
+import { AlertTriangleIcon, ArrowRightSmallIcon } from './Icons';
 
 interface CryptoAmountInfo {
     amount: number | bigint | BigInteger; // in the smallest unit
@@ -146,7 +143,7 @@ function fiatAmountInfoValidator(value: any) {
         && typeof value.currency === 'string';
 }
 
-@Component({components: {Account, Timer, Amount, FiatAmount, Tooltip, ArrowRightSmallIcon}})
+@Component({components: {Account, Timer, Amount, FiatAmount, Tooltip, AlertTriangleIcon, ArrowRightSmallIcon}})
 class PaymentInfoLine extends Vue {
     private static readonly REFERENCE_RATE_UPDATE_INTERVAL = 60000; // every minute
     private static readonly RATE_DEVIATION_THRESHOLD = .1;
@@ -243,6 +240,20 @@ class PaymentInfoLine extends Vue {
         return `${Math.round(Math.abs(this.rateDeviation) * 100 * 10) / 10}%`;
     }
 
+    private get rateInfo() {
+        if (this.rateDeviation === null
+            || (Math.abs(this.rateDeviation) < PaymentInfoLine.RATE_DEVIATION_THRESHOLD && !this.isBadRate)) {
+            return null;
+        }
+        const suffix = 'the current market rate (coingecko.com).';
+        if (this.rateDeviation < 0 && this.isBadRate) {
+            // False discount
+            return `Your actual discount is approx. ${this.formattedRateDeviation} compared to ${suffix}`;
+        }
+        return `You are paying approx. ${this.formattedRateDeviation} ${this.rateDeviation > 0 ? 'more' : 'less'} `
+            + `than at ${suffix}`;
+    }
+
     @Watch('cryptoAmount.currency')
     @Watch('fiatAmount.currency')
     private async updateReferenceRate() {
@@ -316,6 +327,12 @@ export default PaymentInfoLine;
         color: var(--nimiq-light-blue-on-dark, var(--nimiq-light-blue));
     }
 
+    .amounts .trigger .nq-icon {
+        font-size: 1.625rem;
+        color: var(--nimiq-orange);
+        vertical-align: middle;
+    }
+
     .amounts .trigger .fiat-amount {
         margin-top: .25rem;
         color: var(--nimiq-blue);
@@ -342,13 +359,12 @@ export default PaymentInfoLine;
     }
 
     .price-tooltip .info {
-        font-size: 1.5rem;
+        font-size: 1.625rem;
         opacity: .5;
     }
 
     .price-tooltip .rate-info {
         margin-top: .5rem;
-        text-align: justify;
     }
 
     .price-tooltip .rate-info.nq-orange {
