@@ -250,7 +250,7 @@ storiesOf('Basic', module)
             components: { SmallPage, PageHeader, PageBody, Tooltip, Account },
             template: windowTemplate`<SmallPage :class="{ 'nq-blue-bg': theme === 'inverse' }">
                             <PageHeader>Test</PageHeader>
-                            <PageBody ref="container" style="overflow-y: scroll; background: aliceblue">
+                            <PageBody ref="container" style="overflow-y: scroll; background: rgba(127,127,127,.1)">
                                 <div style="height:320px"></div>
                                 <div style="max-width: 100%; display: flex; align-items: center;">
                                     <button class="nq-button-s" :class="[theme]" @click="$refs.tooltip.show()">
