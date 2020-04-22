@@ -138,12 +138,22 @@ class Timer extends Vue {
         ? Timer.BASE_RADIUS * Timer.RADIUS_GROWTH_FACTOR
         : Timer.BASE_RADIUS);
     private fullCircleLength: number = 2 * Math.PI * this.radius.currentValue;
+    private timeoutId: number | null = null;
+    private updateIntervalId: number | null = null;
     private requestAnimationFrameId: number | null = null;
-    private timeout: number | null = null;
+    private size: number = Timer.BASE_SIZE;
+
+    private mounted() {
+        requestAnimationFrame(() => this.size = (this.$el as HTMLElement).offsetWidth); // in rAF to avoid forced reflow
+        this._onResize = this._onResize.bind(this);
+        window.addEventListener('resize', this._onResize);
+    }
 
     private destroyed() {
-        clearTimeout(this.timeout);
+        clearTimeout(this.timeoutId);
+        clearInterval(this.updateIntervalId);
         cancelAnimationFrame(this.requestAnimationFrameId);
+        window.removeEventListener('resize', this._onResize);
     }
 
     private get _totalTime(): number {
@@ -200,8 +210,7 @@ class Timer extends Vue {
     }
 
     private get _updateInterval(): number {
-        const timerSize = (this.$el as HTMLAnchorElement).offsetWidth || Timer.BASE_SIZE;
-        const scaleFactor = timerSize / Timer.BASE_SIZE;
+        const scaleFactor = this.size / Timer.BASE_SIZE;
         const circleLengthPixels = this.fullCircleLength * scaleFactor;
         const steps = circleLengthPixels * 3; // update every .33 pixel change for smooth transitions
         const minInterval = 1000 / 60; // up to 60 fps
@@ -217,7 +226,7 @@ class Timer extends Vue {
         this.radius.tweenTo(this.detailsShown || this.alwaysShowTime
             ? Timer.RADIUS_GROWTH_FACTOR * Timer.BASE_RADIUS
             : Timer.BASE_RADIUS, 300);
-        this._rerender();
+        this._animateRadius();
     }
 
     @Watch('startTime', { immediate: true })
@@ -225,30 +234,47 @@ class Timer extends Vue {
     @Watch('timeOffset')
     private _setTimer() {
         this.sampledTime = Date.now() + this.timeOffset;
-        clearTimeout(this.timeout);
+        clearTimeout(this.timeoutId);
         if (this.startTime && this.endTime) {
-            this.timeout = window.setTimeout(() => this.$emit(Timer.Events.END, this.endTime),
+            this.timeoutId = window.setTimeout(() => this.$emit(Timer.Events.END, this.endTime),
                 this.endTime - this.sampledTime);
+            this._setupUpdateInterval();
         }
-        this._rerender();
+    }
+
+    @Watch('_updateInterval')
+    private _setupUpdateInterval() {
+        if (this._timeLeft === 0 || this.requestAnimationFrameId !== null) return;
+
+        clearInterval(this.updateIntervalId);
+        this.updateIntervalId = window.setInterval(() => {
+            this._rerender();
+            if (this._timeLeft !== 0) return;
+            clearInterval(this.updateIntervalId);
+        }, this._updateInterval);
+    }
+
+    private _animateRadius() {
+        if (this.requestAnimationFrameId !== null || this.radius.finished) return;
+        clearInterval(this.updateIntervalId); // stop interval while we render via requestAnimationFrame
+        this.requestAnimationFrameId = requestAnimationFrame(() => {
+            this._rerender();
+            this.requestAnimationFrameId = null;
+            if (this.radius.finished) {
+                this._setupUpdateInterval(); // start update interval again
+            } else {
+                this._animateRadius();
+            }
+        });
     }
 
     private _rerender() {
-        if (this.requestAnimationFrameId !== null) return;
-        this.requestAnimationFrameId = requestAnimationFrame(() => {
-            const sampledTime = Date.now() + this.timeOffset;
+        this.sampledTime = Date.now() + this.timeOffset;
+        this.fullCircleLength = 2 * Math.PI * this.radius.currentValue;
+    }
 
-            // update values if necessary
-            if (!this.sampledTime || sampledTime - this.sampledTime >= this._updateInterval
-                || !this.radius.finished) { // animating radius
-                this.sampledTime = sampledTime;
-                this.fullCircleLength = 2 * Math.PI * this.radius.currentValue;
-            }
-
-            this.requestAnimationFrameId = null;
-            if (this._timeLeft === 0 && this.radius.finished) return;
-            this._rerender();
-        });
+    private _onResize() {
+        this.size = (this.$el as HTMLElement).offsetWidth;
     }
 }
 
