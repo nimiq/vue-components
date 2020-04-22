@@ -212,7 +212,7 @@ class Timer extends Vue {
     }
 
     @Watch('detailsShown', { immediate: true })
-    @Watch('alwaysShowTime', { immediate: true })
+    @Watch('alwaysShowTime')
     private _setRadius() {
         this.radius.tweenTo(this.detailsShown || this.alwaysShowTime
             ? Timer.RADIUS_GROWTH_FACTOR * Timer.BASE_RADIUS
@@ -221,8 +221,8 @@ class Timer extends Vue {
     }
 
     @Watch('startTime', { immediate: true })
-    @Watch('endTime', { immediate: true })
-    @Watch('timeOffset', { immediate: true })
+    @Watch('endTime')
+    @Watch('timeOffset')
     private _setTimer() {
         this.sampledTime = Date.now() + this.timeOffset;
         clearTimeout(this.timeout);
