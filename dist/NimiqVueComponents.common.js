@@ -238,13 +238,6 @@ $({ target: 'Object', stat: true }, {
 
 /***/ }),
 
-/***/ "07b7":
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-
 /***/ "0ccb":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1186,6 +1179,13 @@ module.exports = function (CONSTRUCTOR_NAME) {
 
 /***/ }),
 
+/***/ "28b8":
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
 /***/ "2a22":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1212,6 +1212,17 @@ $({ target: 'Math', stat: true }, {
   sign: sign
 });
 
+
+/***/ }),
+
+/***/ "2bde":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentInfoLine_vue_vue_type_style_index_0_id_4b527ab5_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("dd50");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentInfoLine_vue_vue_type_style_index_0_id_4b527ab5_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentInfoLine_vue_vue_type_style_index_0_id_4b527ab5_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+ /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentInfoLine_vue_vue_type_style_index_0_id_4b527ab5_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -3290,13 +3301,6 @@ module.exports = {
 
 /***/ }),
 
-/***/ "7138":
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-
 /***/ "7156":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3498,17 +3502,6 @@ module.exports = Object.create || function create(O, Properties) {
   return Properties === undefined ? result : defineProperties(result, Properties);
 };
 
-
-/***/ }),
-
-/***/ "7d62":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentInfoLine_vue_vue_type_style_index_0_id_7b409c48_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("7138");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentInfoLine_vue_vue_type_style_index_0_id_7b409c48_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentInfoLine_vue_vue_type_style_index_0_id_7b409c48_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
- /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentInfoLine_vue_vue_type_style_index_0_id_7b409c48_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -4081,6 +4074,17 @@ function edit(value, caret, operation) {
 
 /***/ }),
 
+/***/ "8fa6":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_51bbebcc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("28b8");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_51bbebcc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_51bbebcc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+ /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_51bbebcc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
 /***/ "90e3":
 /***/ (function(module, exports) {
 
@@ -4323,6 +4327,17 @@ module.exports = patchedExec;
 /***/ (function(module, exports, __webpack_require__) {
 
 // extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "94aa":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Timer_vue_vue_type_style_index_0_id_2efc637b_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("b663");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Timer_vue_vue_type_style_index_0_id_2efc637b_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Timer_vue_vue_type_style_index_0_id_2efc637b_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+ /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Timer_vue_vue_type_style_index_0_id_2efc637b_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -6073,13 +6088,6 @@ if (isForced(NUMBER, !NativeNumber(' 0o1') || !NativeNumber('0b1') || NativeNumb
 /* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AmountWithDetails_vue_vue_type_style_index_0_id_659f106d_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AmountWithDetails_vue_vue_type_style_index_0_id_659f106d_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
 /* unused harmony reexport * */
  /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AmountWithDetails_vue_vue_type_style_index_0_id_659f106d_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
-/***/ "aacf":
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
 
 /***/ }),
 
@@ -8266,14 +8274,10 @@ $({ target: 'Object', stat: true, forced: FAILS_ON_PRIMITIVES }, {
 
 /***/ }),
 
-/***/ "b653":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ "b663":
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_63fdb0d0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("07b7");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_63fdb0d0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_63fdb0d0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
- /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_63fdb0d0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+// extracted by mini-css-extract-plugin
 
 /***/ }),
 
@@ -8895,17 +8899,6 @@ module.exports = function (key, value) {
 
 /***/ }),
 
-/***/ "cfa1":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Timer_vue_vue_type_style_index_0_id_7d7bfe63_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("aacf");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Timer_vue_vue_type_style_index_0_id_7d7bfe63_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Timer_vue_vue_type_style_index_0_id_7d7bfe63_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
- /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Timer_vue_vue_type_style_index_0_id_7d7bfe63_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
 /***/ "d012":
 /***/ (function(module, exports) {
 
@@ -9360,6 +9353,13 @@ module.exports = function(originalModule) {
 	return module;
 };
 
+
+/***/ }),
+
+/***/ "dd50":
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
 
 /***/ }),
 
@@ -13136,16 +13136,16 @@ var es_array_includes = __webpack_require__("caad");
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.includes.js
 var es_string_includes = __webpack_require__("2532");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6e1ebcfe-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Tooltip.vue?vue&type=template&id=63fdb0d0&scoped=true&
-var Tooltipvue_type_template_id_63fdb0d0_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"tooltip",class:[_vm.verticalPosition, {
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6e1ebcfe-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Tooltip.vue?vue&type=template&id=51bbebcc&scoped=true&
+var Tooltipvue_type_template_id_51bbebcc_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"tooltip",class:[_vm.verticalPosition, {
         shown: _vm.isShown,
         'transition-position': _vm.transitionPosition,
         'inverse-theme': _vm.theme === _vm.constructor.Themes.INVERSE,
     }],on:{"mouseenter":function($event){return _vm.mouseOver(true)},"mouseleave":function($event){return _vm.mouseOver(false)}}},[_c('a',{ref:"tooltipTrigger",staticClass:"trigger",attrs:{"href":"javascript:void(0);","tabindex":_vm.disabled ? -1 : 0},on:{"focus":function($event){$event.stopPropagation();return _vm.show()},"blur":function($event){$event.stopPropagation();return _vm.hide()},"click":function($event){return _vm.onClick()}}},[(!_vm.$slots.icon)?_vm._t("trigger",[_c('AlertTriangleIcon',{staticClass:"nq-orange"})]):_vm._e(),(_vm.$slots.icon && !_vm.$slots.trigger)?_vm._t("icon"):_vm._e()],2),_c('transition',{attrs:{"name":"transition-fade"}},[(_vm.isShown)?_c('div',{ref:"tooltipBox",staticClass:"tooltip-box",style:(_vm.tooltipBoxStyles)},[_vm._t("default")],2):_vm._e()])],1)}
-var Tooltipvue_type_template_id_63fdb0d0_scoped_true_staticRenderFns = []
+var Tooltipvue_type_template_id_51bbebcc_scoped_true_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Tooltip.vue?vue&type=template&id=63fdb0d0&scoped=true&
+// CONCATENATED MODULE: ./src/components/Tooltip.vue?vue&type=template&id=51bbebcc&scoped=true&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.every.js
 var es_array_every = __webpack_require__("a623");
@@ -13797,8 +13797,8 @@ Tooltipvue_type_script_lang_ts_Tooltip = Tooltip_1 = __decorate([Object(external
 /* harmony default export */ var Tooltipvue_type_script_lang_ts_ = (Tooltipvue_type_script_lang_ts_Tooltip);
 // CONCATENATED MODULE: ./src/components/Tooltip.vue?vue&type=script&lang=ts&
  /* harmony default export */ var components_Tooltipvue_type_script_lang_ts_ = (Tooltipvue_type_script_lang_ts_); 
-// EXTERNAL MODULE: ./src/components/Tooltip.vue?vue&type=style&index=0&id=63fdb0d0&scoped=true&lang=css&
-var Tooltipvue_type_style_index_0_id_63fdb0d0_scoped_true_lang_css_ = __webpack_require__("b653");
+// EXTERNAL MODULE: ./src/components/Tooltip.vue?vue&type=style&index=0&id=51bbebcc&scoped=true&lang=css&
+var Tooltipvue_type_style_index_0_id_51bbebcc_scoped_true_lang_css_ = __webpack_require__("8fa6");
 
 // CONCATENATED MODULE: ./src/components/Tooltip.vue
 
@@ -13811,11 +13811,11 @@ var Tooltipvue_type_style_index_0_id_63fdb0d0_scoped_true_lang_css_ = __webpack_
 
 var Tooltip_component = normalizeComponent(
   components_Tooltipvue_type_script_lang_ts_,
-  Tooltipvue_type_template_id_63fdb0d0_scoped_true_render,
-  Tooltipvue_type_template_id_63fdb0d0_scoped_true_staticRenderFns,
+  Tooltipvue_type_template_id_51bbebcc_scoped_true_render,
+  Tooltipvue_type_template_id_51bbebcc_scoped_true_staticRenderFns,
   false,
   null,
-  "63fdb0d0",
+  "51bbebcc",
   null
   
 )
@@ -17063,15 +17063,223 @@ var PageHeader_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_PageHeader = (PageHeader_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6e1ebcfe-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/PaymentInfoLine.vue?vue&type=template&id=7b409c48&scoped=true&
-var PaymentInfoLinevue_type_template_id_7b409c48_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"info-line",class:{ 'inverse-theme': _vm.theme === _vm.constructor.Themes.INVERSE }},[_c('div',{staticClass:"amounts"},[_c('Amount',{attrs:{"currency":_vm.cryptoAmount.currency,"amount":_vm.cryptoAmount.amount,"currencyDecimals":_vm.cryptoAmount.decimals,"minDecimals":0,"maxDecimals":Math.min(4, _vm.cryptoAmount.decimals)}}),(_vm.fiatAmount)?_c('FiatAmount',{staticClass:"fiat-amount",attrs:{"currency":_vm.fiatAmount.currency,"amount":_vm.fiatAmount.amount}}):_vm._e()],1),_c('div',{staticClass:"arrow-runway"},[_c('ArrowRightSmallIcon')],1),_c('Account',{attrs:{"address":_vm.address,"image":_vm.shopLogoUrl,"label":_vm.originDomain}}),(_vm.startTime && _vm.endTime)?_c('Timer',{ref:"timer",attrs:{"startTime":_vm.startTime,"endTime":_vm.endTime,"theme":_vm.theme,"tooltipProps":{ container: _vm.$parent }}}):_vm._e()],1)}
-var PaymentInfoLinevue_type_template_id_7b409c48_scoped_true_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6e1ebcfe-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/PaymentInfoLine.vue?vue&type=template&id=4b527ab5&scoped=true&
+var PaymentInfoLinevue_type_template_id_4b527ab5_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"info-line",class:{ 'inverse-theme': _vm.theme === _vm.constructor.Themes.INVERSE }},[_c('div',{staticClass:"amounts",on:{"mouseenter":function($event){_vm.$refs['price-tooltip'] && _vm.$refs['price-tooltip'].show()},"mouseleave":function($event){_vm.$refs['price-tooltip'] && _vm.$refs['price-tooltip'].hide()},"click":function($event){_vm.$refs['price-tooltip'] && Date.now() - _vm.lastTooltipToggle > 200 && _vm.$refs['price-tooltip'].toggle()}}},[_c('Amount',{attrs:{"currency":_vm.cryptoAmount.currency,"amount":_vm.cryptoAmount.amount,"currencyDecimals":_vm.cryptoAmount.decimals,"minDecimals":0,"maxDecimals":Math.min(4, _vm.cryptoAmount.decimals)}}),(_vm.fiatAmount)?_c('Tooltip',{ref:"price-tooltip",staticClass:"price-tooltip",attrs:{"container":_vm.$parent,"preferredPosition":"bottom left","margin":{ left: 8 },"styles":{
+                minWidth: '37rem',
+                padding: '2rem',
+                lineHeight: 1.3,
+            },"theme":_vm.theme},on:{"show":function($event){return _vm.onPriceTooltipToggle(true)},"hide":function($event){return _vm.onPriceTooltipToggle(false)}},nativeOn:{"click":function($event){$event.stopPropagation();}},scopedSlots:_vm._u([{key:"trigger",fn:function(){return [(_vm.isBadRate)?_c('AlertTriangleIcon'):_vm._e(),_c('FiatAmount',{attrs:{"currency":_vm.fiatAmount.currency,"amount":_vm.fiatAmount.amount}})]},proxy:true},{key:"default",fn:function(){return [_c('div',{staticClass:"price-breakdown"},[_c('label',[_vm._v("Order amount")]),_c('FiatAmount',{attrs:{"currency":_vm.fiatAmount.currency,"amount":_vm.fiatAmount.amount}}),(_vm.vendorMarkup || _vm.vendorMarkup === 0)?[_c('label',[_vm._v("Vendor crypto "+_vm._s(_vm.vendorMarkup >= 0 ? 'markup' : 'discount'))]),_c('div',[_vm._v(_vm._s(_vm.formattedVendorMarkup))])]:_vm._e(),_c('label',{class:{ 'nq-orange': _vm.isBadRate }},[_vm._v(" Effective rate ")]),_c('div',{class:{ 'nq-orange': _vm.isBadRate }},[_c('FiatAmount',{attrs:{"currency":_vm.fiatAmount.currency,"amount":_vm.effectiveRate,"maxRelativeDeviation":.0001}}),_vm._v(" / "+_vm._s(_vm.cryptoAmount.currency.toUpperCase())+" ")],1)],2),(_vm.rateInfo)?_c('div',{staticClass:"rate-info info",class:{ 'nq-orange': _vm.isBadRate }},[_vm._v(" "+_vm._s(_vm.rateInfo)+" ")]):_vm._e(),_c('div',{staticClass:"free-service-info info"},[_vm._v("Nimiq provides this service free of charge.")]),_c('hr'),_c('div',{staticClass:"price-breakdown"},[_c('label',[_vm._v("Total")]),_c('Amount',{staticClass:"total",attrs:{"currency":_vm.cryptoAmount.currency,"amount":_vm.cryptoAmount.amount,"currencyDecimals":_vm.cryptoAmount.decimals,"minDecimals":0,"maxDecimals":Math.min(8, _vm.cryptoAmount.decimals),"showApprox":""}})],1),(_vm.networkFee === undefined || _vm.networkFee === null || Number(_vm.networkFee) !== 0)?_c('div',{staticClass:"network-fee-info info"},[_vm._v(" + "),(!_vm.isFormattedNetworkFeeZero)?[_c('Amount',{attrs:{"currency":_vm.cryptoAmount.currency,"amount":_vm.networkFee,"currencyDecimals":_vm.cryptoAmount.decimals,"minDecimals":0,"maxDecimals":Math.min(6, _vm.cryptoAmount.decimals)}}),_vm._v(" suggested ")]:_vm._e(),_vm._v(" network fee ")],2):_vm._e()]},proxy:true}],null,false,1275234901)}):_vm._e()],1),_c('div',{staticClass:"arrow-runway"},[_c('ArrowRightSmallIcon')],1),_c('Account',{attrs:{"address":_vm.address,"image":_vm.shopLogoUrl,"label":_vm.originDomain}}),(_vm.startTime && _vm.endTime)?_c('Timer',{ref:"timer",attrs:{"startTime":_vm.startTime,"endTime":_vm.endTime,"theme":_vm.theme,"tooltipProps":{
+            container: _vm.$parent,
+            margin: { right: 8 },
+        }}}):_vm._e()],1)}
+var PaymentInfoLinevue_type_template_id_4b527ab5_scoped_true_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/PaymentInfoLine.vue?vue&type=template&id=7b409c48&scoped=true&
+// CONCATENATED MODULE: ./src/components/PaymentInfoLine.vue?vue&type=template&id=4b527ab5&scoped=true&
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6e1ebcfe-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Timer.vue?vue&type=template&id=7d7bfe63&scoped=true&
-var Timervue_type_template_id_7d7bfe63_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('Tooltip',_vm._b({staticClass:"timer",class:{
+// CONCATENATED MODULE: ./node_modules/@nimiq/utils/dist/module/FiatApi.js
+// Note that coingecko supports many more but these are the ones that are currently of interest to us
+var FiatApiSupportedCryptoCurrency;
+(function (FiatApiSupportedCryptoCurrency) {
+    FiatApiSupportedCryptoCurrency["NIM"] = "nim";
+    FiatApiSupportedCryptoCurrency["BTC"] = "btc";
+    FiatApiSupportedCryptoCurrency["ETH"] = "eth";
+})(FiatApiSupportedCryptoCurrency || (FiatApiSupportedCryptoCurrency = {}));
+// Note that coingecko supports more vs_currencies (see https://api.coingecko.com/api/v3/simple/supported_vs_currencies)
+// but also includes crypto currencies and ounces of gold amongst others that are not fiat currencies. This list here
+// has been generated by reducing the vs_currencies to those that have a currency symbol (using CurrencyInfo.ts)
+var FiatApiSupportedFiatCurrency;
+(function (FiatApiSupportedFiatCurrency) {
+    FiatApiSupportedFiatCurrency["AUD"] = "aud";
+    FiatApiSupportedFiatCurrency["BRL"] = "brl";
+    FiatApiSupportedFiatCurrency["CAD"] = "cad";
+    FiatApiSupportedFiatCurrency["CNY"] = "cny";
+    FiatApiSupportedFiatCurrency["EUR"] = "eur";
+    FiatApiSupportedFiatCurrency["GBP"] = "gbp";
+    FiatApiSupportedFiatCurrency["HKD"] = "hkd";
+    FiatApiSupportedFiatCurrency["ILS"] = "ils";
+    FiatApiSupportedFiatCurrency["INR"] = "inr";
+    FiatApiSupportedFiatCurrency["JPY"] = "jpy";
+    FiatApiSupportedFiatCurrency["KRW"] = "krw";
+    FiatApiSupportedFiatCurrency["MXN"] = "mxn";
+    FiatApiSupportedFiatCurrency["NZD"] = "nzd";
+    FiatApiSupportedFiatCurrency["TWD"] = "twd";
+    FiatApiSupportedFiatCurrency["USD"] = "usd";
+    FiatApiSupportedFiatCurrency["VND"] = "vnd";
+})(FiatApiSupportedFiatCurrency || (FiatApiSupportedFiatCurrency = {}));
+const API_URL = 'https://api.coingecko.com/api/v3';
+const COINGECKO_COIN_IDS = {
+    [FiatApiSupportedCryptoCurrency.NIM]: 'nimiq-2',
+    [FiatApiSupportedCryptoCurrency.BTC]: 'bitcoin',
+    [FiatApiSupportedCryptoCurrency.ETH]: 'ethereum',
+};
+const ONE_MINUTE = 60 * 1000;
+const ONE_HOUR = 60 * ONE_MINUTE;
+const ONE_DAY = 24 * ONE_HOUR;
+async function getExchangeRates(cryptoCurrencies, vsCurrencies) {
+    const coinIds = cryptoCurrencies.map((currency) => COINGECKO_COIN_IDS[currency]);
+    const apiResult = await _fetch(`${API_URL}/simple/price`
+        + `?ids=${coinIds.join(',')}&vs_currencies=${vsCurrencies.join(',')}`);
+    // Map coingecko coin ids back to FiatApiSupportedCryptoCurrency enum
+    return cryptoCurrencies.reduce((result, cryptoCurrency) => ({
+        ...result,
+        [cryptoCurrency]: apiResult[COINGECKO_COIN_IDS[cryptoCurrency]],
+    }), {});
+}
+/**
+ * Request historic exchange rates by range. Note that the time resolution depends on the chosen range. Coingecko
+ * provides minutely for ranges within 1 day from the current time, hourly data for any ranges between 1 day and 90 days
+ * (do not need to be within 90 days from current time) and daily for ranges above 90 days.
+ * Note that minutely data is ~5-10 minutes apart, hourly data about an hour.
+ * Input and output timestamps are in milliseconds.
+ */
+async function getHistoricExchangeRatesByRange(cryptoCurrency, vsCurrency, from, // in milliseconds
+to) {
+    const coinId = COINGECKO_COIN_IDS[cryptoCurrency];
+    // Note that from and to are expected in seconds but returned timestamps are in ms.
+    from = Math.floor(from / 1000);
+    to = Math.ceil(to / 1000);
+    const { prices: result } = await _fetch(`${API_URL}/coins/${coinId}/market_chart/range`
+        + `?vs_currency=${vsCurrency}&from=${from}&to=${to}`);
+    return result;
+}
+/**
+ * Get historic exchange rates at specific timestamps in milliseconds.
+ */
+async function getHistoricExchangeRates(cryptoCurrency, vsCurrency, timestamps, disableMinutlyData = false) {
+    const result = new Map();
+    if (!timestamps.length)
+        return result;
+    // 1. Create chunks.
+    // To get the best possible time resolution, we split the timestamps into a chunk within at most 1 day from now
+    // and the rest into additional 90 day chunks.
+    const now = Date.now();
+    const chunks = [];
+    let timestampIndex = timestamps.length - 1;
+    timestamps.sort((a, b) => a - b);
+    // Create one day chunk
+    if (!disableMinutlyData && now - timestamps[timestamps.length - 1] < ONE_DAY - 15 * ONE_MINUTE) {
+        // Has a timestamp within last day (minus safety margin in case our clock is slightly off).
+        // As one day is calculated from now and not from the timestamp, we have to account for the difference
+        // between now and the timestamp.
+        const maxChunkLength = ONE_DAY - 15 * ONE_MINUTE - (now - timestamps[timestamps.length - 1]);
+        const { chunk, searchEndIndex } = _findTimestampChunk(timestamps, timestampIndex, maxChunkLength, 
+        // Prices are 5-10 min apart, chose margin such we get earlier and later data point for interpolation
+        10 * ONE_MINUTE);
+        chunks.push(chunk);
+        timestampIndex = searchEndIndex;
+    }
+    // Create additional 90 day chunks
+    while (timestampIndex >= 0) {
+        const { chunk, searchEndIndex } = _findTimestampChunk(timestamps, timestampIndex, 90 * ONE_DAY, 
+        // Prices are ~1h apart, chose margin such we get earlier and later data point for interpolation
+        1.5 * ONE_HOUR);
+        chunks.push(chunk);
+        timestampIndex = searchEndIndex;
+    }
+    // 2. Query Coingecko Api
+    const fetchPromises = chunks.map((chunk) => getHistoricExchangeRatesByRange(cryptoCurrency, vsCurrency, chunk.start, chunk.end));
+    const prices = (await Promise.all(fetchPromises)).reduce((accumulated, singleResult) => [...singleResult, ...accumulated], []).sort((a, b) => a[0] - b[0]); // have to re-sort by timestamp as chunks might be overlapping
+    if (!prices.length)
+        return result; // Happens if coingecko doesn't have data for any of requested timestamps,
+    // for example for days before coingecko started collecting Nim price info or for days in the future.
+    // 3. For every requested timestamp interpolate the price from the timestamps we got from the API
+    timestampIndex = 0;
+    let priceIndex = 0;
+    while (timestampIndex < timestamps.length) {
+        // Search priceIndex at which predecessor price timestamp < our timestamp <= current price timestamp.
+        const timestamp = timestamps[timestampIndex];
+        while (priceIndex < prices.length && prices[priceIndex][0] < timestamp) {
+            ++priceIndex;
+        }
+        if (priceIndex === 0 || priceIndex === prices.length) {
+            // Can't interpolate. This should typically not happen as we try to include additional data points
+            // for interpolation by our choice of _findTimestampChunk margins. However, this can still occur in
+            // exceptional cases when the gap between two data points was larger than our margin or the requested
+            // timestamp was before coingecko even started recording price data or is in the future.
+            const priceEntry = prices[Math.min(priceIndex, prices.length - 1)];
+            if (Math.abs(timestamp - priceEntry[0]) < 2 * ONE_DAY && timestamp <= now) {
+                // Accept the single price entry's price if it's within a limit of 2 days and we're not making
+                // assumptions about the future.
+                result.set(timestamp, priceEntry[1]);
+            }
+        }
+        else {
+            // Interpolate between priceIndex-1 and priceIndex
+            const predecessorEntry = prices[priceIndex - 1];
+            const currentEntry = prices[priceIndex];
+            const timeDelta = currentEntry[0] - predecessorEntry[0];
+            if (timeDelta < 2 * ONE_DAY) {
+                // accept the interpolation if timeDelta is within 2 days (typically should be 1 hour).
+                const priceDelta = currentEntry[1] - predecessorEntry[1];
+                const interpolatedPrice = predecessorEntry[1]
+                    + priceDelta * ((timestamp - predecessorEntry[0]) / timeDelta);
+                result.set(timestamp, interpolatedPrice);
+            }
+        }
+        ++timestampIndex; // Continue with next timestamp and check same priceIndex
+    }
+    return result;
+}
+function _findTimestampChunk(timestamps, searchStartIndex, maxChunkLength, timeMargin) {
+    maxChunkLength -= 2 * timeMargin;
+    const end = timestamps[searchStartIndex];
+    let start = end;
+    let i = searchStartIndex - 1;
+    while (i >= 0 && end - timestamps[i] < maxChunkLength) {
+        start = timestamps[i];
+        --i;
+    }
+    return {
+        searchEndIndex: i,
+        chunk: {
+            start: start - timeMargin,
+            end: end + timeMargin,
+        },
+    };
+}
+async function _fetch(input, init) {
+    let result = null;
+    do {
+        let retry = true;
+        try {
+            // eslint-disable-next-line no-await-in-loop
+            const response = await fetch(input, init); // throws when user is offline
+            if (!response.ok) {
+                if (response.status === 400) {
+                    retry = false;
+                    throw new Error('400 - Bad request');
+                }
+                throw new Error(`Failed to fetch: ${response.status}. Retrying...`);
+            }
+            // eslint-disable-next-line no-await-in-loop
+            result = await response.json();
+        }
+        catch (e) {
+            // User might be offline or we ran into coingecko's rate limiting. Coingecko allows 100 requests
+            // per minute and tells us in the response headers when our next minute starts, but unfortunately
+            // due to cors we can not access this information. Therefore, we blindly retry after waiting some
+            // time. Note that coingecko resets the quota solely based on their system time, i.e. independent
+            // of when we resend our request. Therefore, we do not waste time/part of our quota by waiting a
+            // bit longer. Note however, that we do not prioritize between our fetches, therefore they will
+            // be resolved in random order.
+            if (retry) {
+                // eslint-disable-next-line no-await-in-loop
+                await new Promise((resolve) => setTimeout(resolve, 15000));
+            }
+            else {
+                throw e;
+            }
+        }
+    } while (!result);
+    return result;
+}
+
+
+//# sourceMappingURL=FiatApi.js.map
+
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6e1ebcfe-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Timer.vue?vue&type=template&id=2efc637b&scoped=true&
+var Timervue_type_template_id_2efc637b_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('Tooltip',_vm._b({staticClass:"timer",class:{
         'time-shown': _vm.detailsShown || _vm.alwaysShowTime,
         'little-time-left': _vm._progress >= .75,
         'inverse-theme': _vm.theme === _vm.constructor.Themes.INVERSE,
@@ -17081,10 +17289,10 @@ var Timervue_type_template_id_7d7bfe63_scoped_true_render = function () {var _vm
         {styles: Object.assign({}, {width: '17.25rem',
             pointerEvents: 'none'},
             (_vm.tooltipProps ? _vm.tooltipProps.styles : undefined))}),false))}
-var Timervue_type_template_id_7d7bfe63_scoped_true_staticRenderFns = []
+var Timervue_type_template_id_2efc637b_scoped_true_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Timer.vue?vue&type=template&id=7d7bfe63&scoped=true&
+// CONCATENATED MODULE: ./src/components/Timer.vue?vue&type=template&id=2efc637b&scoped=true&
 
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--13-1!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Timer.vue?vue&type=script&lang=ts&
 
@@ -17160,8 +17368,10 @@ function (_Vue) {
 
     _this.radius = new module_Tweenable(_this.detailsShown || _this.alwaysShowTime ? Timer_1.BASE_RADIUS * Timer_1.RADIUS_GROWTH_FACTOR : Timer_1.BASE_RADIUS);
     _this.fullCircleLength = 2 * Math.PI * _this.radius.currentValue;
+    _this.timeoutId = null;
+    _this.updateIntervalId = null;
     _this.requestAnimationFrameId = null;
-    _this.timeout = null;
+    _this.size = Timer_1.BASE_SIZE;
     return _this;
   }
 
@@ -17171,55 +17381,93 @@ function (_Vue) {
       this.timeOffset = referenceTime - Date.now();
     }
   }, {
+    key: "mounted",
+    value: function mounted() {
+      var _this2 = this;
+
+      requestAnimationFrame(function () {
+        return _this2.size = _this2.$el.offsetWidth;
+      }); // in rAF to avoid forced reflow
+
+      this._onResize = this._onResize.bind(this);
+      window.addEventListener('resize', this._onResize);
+    }
+  }, {
     key: "destroyed",
     value: function destroyed() {
-      clearTimeout(this.timeout);
+      clearTimeout(this.timeoutId);
+      clearInterval(this.updateIntervalId);
       cancelAnimationFrame(this.requestAnimationFrameId);
+      window.removeEventListener('resize', this._onResize);
     }
   }, {
     key: "_setRadius",
     value: function _setRadius() {
       this.radius.tweenTo(this.detailsShown || this.alwaysShowTime ? Timer_1.RADIUS_GROWTH_FACTOR * Timer_1.BASE_RADIUS : Timer_1.BASE_RADIUS, 300);
 
-      this._rerender();
+      this._animateRadius();
     }
   }, {
     key: "_setTimer",
     value: function _setTimer() {
-      var _this2 = this;
+      var _this3 = this;
 
       this.sampledTime = Date.now() + this.timeOffset;
-      clearTimeout(this.timeout);
+      clearTimeout(this.timeoutId);
 
       if (this.startTime && this.endTime) {
-        this.timeout = window.setTimeout(function () {
-          return _this2.$emit(Timer_1.Events.END, _this2.endTime);
+        this.timeoutId = window.setTimeout(function () {
+          return _this3.$emit(Timer_1.Events.END, _this3.endTime);
         }, this.endTime - this.sampledTime);
-      }
 
-      this._rerender();
+        this._setupUpdateInterval();
+      }
+    }
+  }, {
+    key: "_setupUpdateInterval",
+    value: function _setupUpdateInterval() {
+      var _this4 = this;
+
+      if (this._timeLeft === 0 || this.requestAnimationFrameId !== null) return;
+      clearInterval(this.updateIntervalId);
+      this.updateIntervalId = window.setInterval(function () {
+        _this4._rerender();
+
+        if (_this4._timeLeft !== 0) return;
+        clearInterval(_this4.updateIntervalId);
+      }, this._updateInterval);
+    }
+  }, {
+    key: "_animateRadius",
+    value: function _animateRadius() {
+      var _this5 = this;
+
+      if (this.requestAnimationFrameId !== null || this.radius.finished) return;
+      clearInterval(this.updateIntervalId); // stop interval while we render via requestAnimationFrame
+
+      this.requestAnimationFrameId = requestAnimationFrame(function () {
+        _this5._rerender();
+
+        _this5.requestAnimationFrameId = null;
+
+        if (_this5.radius.finished) {
+          _this5._setupUpdateInterval(); // start update interval again
+
+        } else {
+          _this5._animateRadius();
+        }
+      });
     }
   }, {
     key: "_rerender",
     value: function _rerender() {
-      var _this3 = this;
-
-      if (this.requestAnimationFrameId !== null) return;
-      this.requestAnimationFrameId = requestAnimationFrame(function () {
-        var sampledTime = Date.now() + _this3.timeOffset; // update values if necessary
-
-
-        if (!_this3.sampledTime || sampledTime - _this3.sampledTime >= _this3._updateInterval || !_this3.radius.finished) {
-          // animating radius
-          _this3.sampledTime = sampledTime;
-          _this3.fullCircleLength = 2 * Math.PI * _this3.radius.currentValue;
-        }
-
-        _this3.requestAnimationFrameId = null;
-        if (_this3._timeLeft === 0 && _this3.radius.finished) return;
-
-        _this3._rerender();
-      });
+      this.sampledTime = Date.now() + this.timeOffset;
+      this.fullCircleLength = 2 * Math.PI * this.radius.currentValue;
+    }
+  }, {
+    key: "_onResize",
+    value: function _onResize() {
+      this.size = this.$el.offsetWidth;
     }
   }, {
     key: "_totalTime",
@@ -17297,8 +17545,7 @@ function (_Vue) {
   }, {
     key: "_updateInterval",
     get: function get() {
-      var timerSize = this.$el.offsetWidth || Timer_1.BASE_SIZE;
-      var scaleFactor = timerSize / Timer_1.BASE_SIZE;
+      var scaleFactor = this.size / Timer_1.BASE_SIZE;
       var circleLengthPixels = this.fullCircleLength * scaleFactor;
       var steps = circleLengthPixels * 3; // update every .33 pixel change for smooth transitions
 
@@ -17345,17 +17592,13 @@ __decorate([Object(external_vue_property_decorator_["Prop"])(Object)], Timervue_
 
 __decorate([Object(external_vue_property_decorator_["Watch"])('detailsShown', {
   immediate: true
-}), Object(external_vue_property_decorator_["Watch"])('alwaysShowTime', {
-  immediate: true
-})], Timervue_type_script_lang_ts_Timer.prototype, "_setRadius", null);
+}), Object(external_vue_property_decorator_["Watch"])('alwaysShowTime')], Timervue_type_script_lang_ts_Timer.prototype, "_setRadius", null);
 
 __decorate([Object(external_vue_property_decorator_["Watch"])('startTime', {
   immediate: true
-}), Object(external_vue_property_decorator_["Watch"])('endTime', {
-  immediate: true
-}), Object(external_vue_property_decorator_["Watch"])('timeOffset', {
-  immediate: true
-})], Timervue_type_script_lang_ts_Timer.prototype, "_setTimer", null);
+}), Object(external_vue_property_decorator_["Watch"])('endTime'), Object(external_vue_property_decorator_["Watch"])('timeOffset')], Timervue_type_script_lang_ts_Timer.prototype, "_setTimer", null);
+
+__decorate([Object(external_vue_property_decorator_["Watch"])('_updateInterval')], Timervue_type_script_lang_ts_Timer.prototype, "_setupUpdateInterval", null);
 
 Timervue_type_script_lang_ts_Timer = Timer_1 = __decorate([Object(external_vue_property_decorator_["Component"])({
   filters: {
@@ -17384,8 +17627,8 @@ Timervue_type_script_lang_ts_Timer = Timer_1 = __decorate([Object(external_vue_p
 /* harmony default export */ var Timervue_type_script_lang_ts_ = (Timervue_type_script_lang_ts_Timer);
 // CONCATENATED MODULE: ./src/components/Timer.vue?vue&type=script&lang=ts&
  /* harmony default export */ var components_Timervue_type_script_lang_ts_ = (Timervue_type_script_lang_ts_); 
-// EXTERNAL MODULE: ./src/components/Timer.vue?vue&type=style&index=0&id=7d7bfe63&scoped=true&lang=css&
-var Timervue_type_style_index_0_id_7d7bfe63_scoped_true_lang_css_ = __webpack_require__("cfa1");
+// EXTERNAL MODULE: ./src/components/Timer.vue?vue&type=style&index=0&id=2efc637b&scoped=true&lang=css&
+var Timervue_type_style_index_0_id_2efc637b_scoped_true_lang_css_ = __webpack_require__("94aa");
 
 // CONCATENATED MODULE: ./src/components/Timer.vue
 
@@ -17398,17 +17641,18 @@ var Timervue_type_style_index_0_id_7d7bfe63_scoped_true_lang_css_ = __webpack_re
 
 var Timer_component = normalizeComponent(
   components_Timervue_type_script_lang_ts_,
-  Timervue_type_template_id_7d7bfe63_scoped_true_render,
-  Timervue_type_template_id_7d7bfe63_scoped_true_staticRenderFns,
+  Timervue_type_template_id_2efc637b_scoped_true_render,
+  Timervue_type_template_id_2efc637b_scoped_true_staticRenderFns,
   false,
   null,
-  "7d7bfe63",
+  "2efc637b",
   null
   
 )
 
 /* harmony default export */ var components_Timer = (Timer_component.exports);
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--13-1!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/PaymentInfoLine.vue?vue&type=script&lang=ts&
+
 
 
 
@@ -17432,6 +17676,8 @@ var PaymentInfoLine_1;
 
 
 
+
+
 function cryptoAmountInfoValidator(value) {
   return 'amount' in value && 'currency' in value && 'decimals' in value && amountValidator(value.amount) && typeof value.currency === 'string' && typeof value.decimals === 'number' && Number.isInteger(value.decimals);
 }
@@ -17446,12 +17692,28 @@ function (_Vue) {
   _inherits(PaymentInfoLine, _Vue);
 
   function PaymentInfoLine() {
+    var _this;
+
     _classCallCheck(this, PaymentInfoLine);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(PaymentInfoLine).apply(this, arguments));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(PaymentInfoLine).apply(this, arguments));
+    _this.referenceRate = null;
+    _this.referenceRateUpdateTimeout = -1;
+    _this.lastTooltipToggle = -1;
+    return _this;
   }
 
   _createClass(PaymentInfoLine, [{
+    key: "created",
+    value: function created() {
+      this.updateReferenceRate();
+    }
+  }, {
+    key: "destroyed",
+    value: function destroyed() {
+      window.clearTimeout(this.referenceRateUpdateTimeout);
+    }
+  }, {
     key: "setTime",
     value: function () {
       var _setTime = _asyncToGenerator(
@@ -17490,14 +17752,156 @@ function (_Vue) {
       return setTime;
     }()
   }, {
+    key: "updateReferenceRate",
+    value: function () {
+      var _updateReferenceRate = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee2() {
+        var _this2 = this;
+
+        var cryptoCurrency, fiatCurrency, _ref, referenceRate;
+
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                window.clearTimeout(this.referenceRateUpdateTimeout);
+                cryptoCurrency = this.cryptoAmount.currency.toLowerCase();
+                fiatCurrency = this.fiatAmount ? this.fiatAmount.currency.toLowerCase() : null;
+
+                if (!(!this.fiatAmount || !Object.values(FiatApiSupportedFiatCurrency).includes(fiatCurrency) || !Object.values(FiatApiSupportedCryptoCurrency).includes(cryptoCurrency))) {
+                  _context2.next = 6;
+                  break;
+                }
+
+                this.referenceRate = null;
+                return _context2.abrupt("return");
+
+              case 6:
+                _context2.prev = 6;
+                _context2.next = 9;
+                return getExchangeRates([cryptoCurrency], [fiatCurrency]);
+
+              case 9:
+                _ref = _context2.sent;
+                referenceRate = _ref[cryptoCurrency][fiatCurrency];
+                this.referenceRate = referenceRate || null;
+                _context2.next = 16;
+                break;
+
+              case 14:
+                _context2.prev = 14;
+                _context2.t0 = _context2["catch"](6);
+
+              case 16:
+                this.referenceRateUpdateTimeout = window.setTimeout(function () {
+                  return _this2.updateReferenceRate();
+                }, PaymentInfoLine_1.REFERENCE_RATE_UPDATE_INTERVAL);
+
+              case 17:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this, [[6, 14]]);
+      }));
+
+      function updateReferenceRate() {
+        return _updateReferenceRate.apply(this, arguments);
+      }
+
+      return updateReferenceRate;
+    }()
+  }, {
+    key: "onPriceTooltipToggle",
+    value: function onPriceTooltipToggle(isShow) {
+      this.lastTooltipToggle = Date.now(); // record last toggle to avoid second toggle on click just after mouseover
+
+      if (!isShow) return;
+      this.updateReferenceRate();
+    }
+  }, {
     key: "originDomain",
     get: function get() {
       return this.origin.split('://')[1];
+    }
+  }, {
+    key: "effectiveRate",
+    get: function get() {
+      if (!this.fiatAmount) return null; // Fiat/crypto rate. Higher fiat/crypto rate means user is paying less crypto for the requested fiat amount
+      // and is therefore better for the user. Note: precision loss should be acceptable here.
+
+      return this.fiatAmount.amount / (Number(this.cryptoAmount.amount) / Math.pow(10, this.cryptoAmount.decimals));
+    }
+  }, {
+    key: "formattedVendorMarkup",
+    get: function get() {
+      if (typeof this.vendorMarkup !== 'number') return null; // Convert to percent and round to two decimals. Always ceil to avoid displaying a lower fee than charged or
+      // larger discount than applied. Subtract a small epsilon to avoid that numbers get rounded up as a result of
+      // floating point imprecision after multiplication. Otherwise formatting for example .07 would result in 7.01%.
+
+      return "".concat(this.vendorMarkup >= 0 ? '+' : '').concat(Math.ceil(this.vendorMarkup * 100 * 100 - 1e-10) / 100, "%");
+    }
+  }, {
+    key: "isFormattedNetworkFeeZero",
+    get: function get() {
+      if (this.networkFee === null || this.networkFee === undefined) return true; // Note: While we use the Amount component which does formatting itself, we manually format here to check
+      // whether the formatted value is 0. Precision loss should be acceptable here.
+
+      var networkFeeBaseCurrency = Number(this.networkFee) / Math.pow(10, this.cryptoAmount.decimals); // Round to maxDecimals used above in the template
+
+      var maxDecimals = Math.min(6, this.cryptoAmount.decimals);
+      var roundingFactor = Math.pow(10, maxDecimals);
+      return Math.round(networkFeeBaseCurrency * roundingFactor) / roundingFactor === 0;
+    }
+  }, {
+    key: "rateDeviation",
+    get: function get() {
+      // Compare rates. Convert them from fiat/crypto to crypto/fiat as the user will be paying crypto in the end and
+      // the flipped rates can therefore be compared more intuitively. Negative rate deviation is better for the user.
+      if (this.effectiveRate === null || this.referenceRate === null) return null;
+      var flippedEffectiveRate = 1 / this.effectiveRate;
+      var flippedReferenceRate = 1 / this.referenceRate;
+      return (flippedEffectiveRate - flippedReferenceRate) / flippedReferenceRate;
+    }
+  }, {
+    key: "isBadRate",
+    get: function get() {
+      if (this.rateDeviation === null) return false;
+      return this.rateDeviation >= PaymentInfoLine_1.RATE_DEVIATION_THRESHOLD || this.vendorMarkup && this.vendorMarkup < 0 // verify promised discount
+      && this.rateDeviation >= this.vendorMarkup + PaymentInfoLine_1.RATE_DEVIATION_THRESHOLD;
+    }
+  }, {
+    key: "formattedRateDeviation",
+    get: function get() {
+      if (this.rateDeviation === null) return null; // Converted to absolute percent, rounded to one decimal
+
+      return "".concat(Math.round(Math.abs(this.rateDeviation) * 100 * 10) / 10, "%");
+    }
+  }, {
+    key: "rateInfo",
+    get: function get() {
+      if (this.rateDeviation === null || Math.abs(this.rateDeviation) < PaymentInfoLine_1.RATE_DEVIATION_THRESHOLD && !this.isBadRate) {
+        return null;
+      }
+
+      var suffix = 'the current market rate (coingecko.com).';
+
+      if (this.rateDeviation < 0 && this.isBadRate) {
+        // False discount
+        return "Your actual discount is approx. ".concat(this.formattedRateDeviation, " compared to ").concat(suffix);
+      }
+
+      return "You are paying approx. ".concat(this.formattedRateDeviation, " ").concat(this.rateDeviation > 0 ? 'more' : 'less', " ") + "than at ".concat(suffix);
     }
   }]);
 
   return PaymentInfoLine;
 }(external_vue_property_decorator_["Vue"]);
+
+PaymentInfoLinevue_type_script_lang_ts_PaymentInfoLine.REFERENCE_RATE_UPDATE_INTERVAL = 60000; // every minute
+
+PaymentInfoLinevue_type_script_lang_ts_PaymentInfoLine.RATE_DEVIATION_THRESHOLD = .1;
 
 __decorate([Object(external_vue_property_decorator_["Prop"])({
   type: Object,
@@ -17509,6 +17913,17 @@ __decorate([Object(external_vue_property_decorator_["Prop"])({
   type: Object,
   validator: fiatAmountInfoValidator
 })], PaymentInfoLinevue_type_script_lang_ts_PaymentInfoLine.prototype, "fiatAmount", void 0);
+
+__decorate([Object(external_vue_property_decorator_["Prop"])({
+  type: Number,
+  validator: function validator(value) {
+    return value > -1;
+  }
+})], PaymentInfoLinevue_type_script_lang_ts_PaymentInfoLine.prototype, "vendorMarkup", void 0);
+
+__decorate([Object(external_vue_property_decorator_["Prop"])({
+  validator: amountValidator
+})], PaymentInfoLinevue_type_script_lang_ts_PaymentInfoLine.prototype, "networkFee", void 0);
 
 __decorate([Object(external_vue_property_decorator_["Prop"])({
   type: String,
@@ -17531,12 +17946,16 @@ __decorate([Object(external_vue_property_decorator_["Prop"])({
   default: 'normal'
 })], PaymentInfoLinevue_type_script_lang_ts_PaymentInfoLine.prototype, "theme", void 0);
 
+__decorate([Object(external_vue_property_decorator_["Watch"])('cryptoAmount.currency'), Object(external_vue_property_decorator_["Watch"])('fiatAmount.currency')], PaymentInfoLinevue_type_script_lang_ts_PaymentInfoLine.prototype, "updateReferenceRate", null);
+
 PaymentInfoLinevue_type_script_lang_ts_PaymentInfoLine = PaymentInfoLine_1 = __decorate([Object(external_vue_property_decorator_["Component"])({
   components: {
     Account: components_Account,
     Timer: components_Timer,
     Amount: components_Amount,
     FiatAmount: components_FiatAmount,
+    Tooltip: components_Tooltip,
+    AlertTriangleIcon: AlertTriangleIcon,
     ArrowRightSmallIcon: ArrowRightSmallIcon
   }
 })], PaymentInfoLinevue_type_script_lang_ts_PaymentInfoLine);
@@ -17553,8 +17972,8 @@ PaymentInfoLinevue_type_script_lang_ts_PaymentInfoLine = PaymentInfoLine_1 = __d
 /* harmony default export */ var PaymentInfoLinevue_type_script_lang_ts_ = (PaymentInfoLinevue_type_script_lang_ts_PaymentInfoLine);
 // CONCATENATED MODULE: ./src/components/PaymentInfoLine.vue?vue&type=script&lang=ts&
  /* harmony default export */ var components_PaymentInfoLinevue_type_script_lang_ts_ = (PaymentInfoLinevue_type_script_lang_ts_); 
-// EXTERNAL MODULE: ./src/components/PaymentInfoLine.vue?vue&type=style&index=0&id=7b409c48&scoped=true&lang=css&
-var PaymentInfoLinevue_type_style_index_0_id_7b409c48_scoped_true_lang_css_ = __webpack_require__("7d62");
+// EXTERNAL MODULE: ./src/components/PaymentInfoLine.vue?vue&type=style&index=0&id=4b527ab5&scoped=true&lang=css&
+var PaymentInfoLinevue_type_style_index_0_id_4b527ab5_scoped_true_lang_css_ = __webpack_require__("2bde");
 
 // CONCATENATED MODULE: ./src/components/PaymentInfoLine.vue
 
@@ -17567,11 +17986,11 @@ var PaymentInfoLinevue_type_style_index_0_id_7b409c48_scoped_true_lang_css_ = __
 
 var PaymentInfoLine_component = normalizeComponent(
   components_PaymentInfoLinevue_type_script_lang_ts_,
-  PaymentInfoLinevue_type_template_id_7b409c48_scoped_true_render,
-  PaymentInfoLinevue_type_template_id_7b409c48_scoped_true_staticRenderFns,
+  PaymentInfoLinevue_type_template_id_4b527ab5_scoped_true_render,
+  PaymentInfoLinevue_type_template_id_4b527ab5_scoped_true_staticRenderFns,
   false,
   null,
-  "7b409c48",
+  "4b527ab5",
   null
   
 )

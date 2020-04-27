@@ -16,8 +16,11 @@ declare class Timer extends Vue {
     private detailsShown;
     private radius;
     private fullCircleLength;
+    private timeoutId;
+    private updateIntervalId;
     private requestAnimationFrameId;
-    private timeout;
+    private size;
+    private mounted;
     private destroyed;
     private get _totalTime();
     private get _timeLeft();
@@ -27,7 +30,10 @@ declare class Timer extends Vue {
     private get _updateInterval();
     private _setRadius;
     private _setTimer;
+    private _setupUpdateInterval;
+    private _animateRadius;
     private _rerender;
+    private _onResize;
 }
 declare namespace Timer {
     enum Events {

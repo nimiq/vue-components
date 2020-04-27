@@ -385,7 +385,7 @@ export default Tooltip;
         color: inherit;
     }
 
-    .trigger >>> svg {
+    .trigger >>> svg:first-child:last-child {
         display: block;
     }
 
@@ -397,30 +397,31 @@ export default Tooltip;
         width: 2.25rem;
         height: 2rem;
         left: calc(50% - 1.125rem);
-        background: var(--nimiq-blue-bg-darkened);
         mask-image: url('data:image/svg+xml,<svg viewBox="0 0 18 16" xmlns="http://www.w3.org/2000/svg"><path d="M9 7.12c-.47 0-.93.2-1.23.64L3.2 14.29A4 4 0 0 1 0 16h18a4 4 0 0 1-3.2-1.7l-4.57-6.54c-.3-.43-.76-.64-1.23-.64z" fill="white"/></svg>');
-        transition: opacity .3s ease, .3s visibility;
+        transition: opacity .3s var(--nimiq-ease), .3s visibility;
         transition-delay: 16ms; /* delay one animation frame for better sync with tooltipBox */
         visibility: hidden;
-        pointer-events: visible;
         z-index: 1000; /* move above tooltip-box's box-shadow */
     }
 
-    .inverse-theme .trigger::after {
-        background: white;
-    }
-
     .transition-position .trigger::after {
-        transition: top .2s ease, left .2s ease, transform .2s ease, opacity .3s ease, .3s visibility;
+        transition: top .2s var(--nimiq-ease), left .2s var(--nimiq-ease), transform .2s var(--nimiq-ease),
+            opacity .3s var(--nimiq-ease), .3s visibility;
     }
 
     .top .trigger::after {
         top: -2rem;
+        background: #250636; /* a color of the nimiq-blue-bg gradient in the lower area */
         transform: scaleY(-1);
     }
 
     .bottom .trigger::after {
         top: 100%;
+        background: #201e45; /* a color of the nimiq-blue-bg gradient in the upper area */
+    }
+
+    .inverse-theme .trigger::after {
+        background: white;
     }
 
     .shown .trigger::after {
@@ -437,7 +438,7 @@ export default Tooltip;
         font-size: 1.75rem;
         line-height: 1.5;
         font-weight: 600;
-        transition: opacity .3s ease;
+        transition: opacity .3s var(--nimiq-ease);
         box-shadow: 0 1.125rem 2.275rem rgba(0, 0, 0, 0.11);
         z-index: 999;
     }
@@ -448,7 +449,7 @@ export default Tooltip;
     }
 
     .transition-position .tooltip-box {
-        transition: opacity .3s ease, transform .2s ease, top .2s ease;
+        transition: opacity .3s var(--nimiq-ease), transform .2s var(--nimiq-ease), top .2s var(--nimiq-ease);
     }
 
     .tooltip-box.transition-fade-enter,

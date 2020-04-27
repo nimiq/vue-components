@@ -10,16 +10,34 @@ interface FiatAmountInfo {
     currency: string;
 }
 declare class PaymentInfoLine extends Vue {
-    private get originDomain();
+    private static readonly REFERENCE_RATE_UPDATE_INTERVAL;
+    private static readonly RATE_DEVIATION_THRESHOLD;
     cryptoAmount: CryptoAmountInfo;
     fiatAmount?: FiatAmountInfo;
+    vendorMarkup?: number;
+    networkFee?: number | bigint | BigInteger;
     origin: string;
     address?: string;
     shopLogoUrl?: string;
     startTime?: number;
     endTime?: number;
     theme: string;
+    private referenceRate;
+    private referenceRateUpdateTimeout;
+    private lastTooltipToggle;
+    private created;
+    private destroyed;
     setTime(time: number): Promise<void>;
+    private get originDomain();
+    private get effectiveRate();
+    private get formattedVendorMarkup();
+    private get isFormattedNetworkFeeZero();
+    private get rateDeviation();
+    private get isBadRate();
+    private get formattedRateDeviation();
+    private get rateInfo();
+    private updateReferenceRate;
+    private onPriceTooltipToggle;
 }
 declare namespace PaymentInfoLine {
     enum Themes {

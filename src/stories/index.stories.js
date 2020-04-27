@@ -250,7 +250,7 @@ storiesOf('Basic', module)
             components: { SmallPage, PageHeader, PageBody, Tooltip, Account },
             template: windowTemplate`<SmallPage :class="{ 'nq-blue-bg': theme === 'inverse' }">
                             <PageHeader>Test</PageHeader>
-                            <PageBody ref="container" style="overflow-y: scroll; background: aliceblue">
+                            <PageBody ref="container" style="overflow-y: scroll; background: rgba(127,127,127,.1)">
                                 <div style="height:320px"></div>
                                 <div style="max-width: 100%; display: flex; align-items: center;">
                                     <button class="nq-button-s" :class="[theme]" @click="$refs.tooltip.show()">
@@ -1008,18 +1008,25 @@ storiesOf('Components', module)
             currency: text('fiatAmount.currency', 'EUR'),
         };
         if (fiatAmount.amount < 0) fiatAmount = null;
+        let vendorMarkup = number('vendor markup (-1 for unset)', -1);
+        if (vendorMarkup === -1) vendorMarkup = null;
+        let networkFee = number('network fee (-1 for unset)', -1);
+        if (networkFee === -1) networkFee = null;
         const origin = text('origin', 'https://shop.nimiq.com');
         const address = text('address', 'NQ07 0000 00000000 0000 0000 0000 0000 0000');
         const shopLogo = text('shopLogo', 'https://pbs.twimg.com/profile_images/1150268408287698945/x4f3ITmx_400x400.png');
         let startTime = number('startTime', Date.now());
         let endTime = number('endTime (-1 for unset)', -1);
-        if (endTime < 0) endTime = null;
+        if (endTime === -1) endTime = null;
 
         return {
             components: {PaymentInfoLine},
-            data: () => ({ cryptoAmount, fiatAmount, origin, address, shopLogo, startTime, endTime, theme }),
+            data: () => ({
+                cryptoAmount, fiatAmount, vendorMarkup, networkFee, origin, address, shopLogo, startTime, endTime, theme
+            }),
             template: `<div style="max-width: 420px" :class="{ 'nq-blue-bg': theme === 'inverse' }">
                 <PaymentInfoLine :cryptoAmount="cryptoAmount" :fiatAmount="fiatAmount"
+                :vendorMarkup="vendorMarkup" :networkFee="networkFee"
                 :origin="origin" :address="address" :shopLogoUrl="shopLogo" :startTime="startTime" :endTime="endTime"
                 :theme="theme"/>
             </div>`,
