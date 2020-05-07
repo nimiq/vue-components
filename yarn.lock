@@ -953,10 +953,10 @@
     shallowequal "^0.2.2"
     velocity-react "^1.3.1"
 
-"@nimiq/iqons@^1.5.2":
-  version "1.5.2"
-  resolved "https://registry.yarnpkg.com/@nimiq/iqons/-/iqons-1.5.2.tgz#e5a104c99472c948be7cb82049ece19c4eeb96c9"
-  integrity sha512-K/6Kq9UoiwM3OeLwUhnGC78MRbe3wNyb+gk8jRC18QovM8I3wDCPxb8x8688/vx/8W9Fp8oNVlcnABdfKT92lw==
+"@nimiq/iqons@^1.6.0":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@nimiq/iqons/-/iqons-1.6.0.tgz#29829c57f1fbdf53f228146162579db4602017db"
+  integrity sha512-M1g/rFVmOoucgIPvb5cxOPz1GVUslBj5wz1YYZbLVS9FP4FrWoKUlnd3gQd4bfl4DIz3wT6QgEnI1gUgQ/QKQQ==
   dependencies:
     dom-parser "^0.1.5"
 
