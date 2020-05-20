@@ -7,6 +7,7 @@ interface I18n$tVariable {
 
 type ComponentLanguageLoadedCallback = (lang?: string) => any;
 
+/** i18n Class for vue-components */
 @Component
 class I18nMixin extends Vue {
     private static readonly DEFAULT_LANGUAGE = 'en';
@@ -14,10 +15,17 @@ class I18nMixin extends Vue {
     private static readonly LOADED_LANGUAGES: string[] = [];
     private static readonly LOADED_MESSAGES: { [key: string]: string[] } = {};
 
+    /** Current active language */
     private static lang: string = '';
 
+    /** Object containing an array of function per component that is executed every time a translation file is loaded */
     private static onComponentLanguageLoadedListeners: { [key: string]: ComponentLanguageLoadedCallback[] } = {};
 
+    /**
+     * Public static method that add a function into the onComponentLanguageLoadedListeners property
+     * @param {string} componentName - Name of the component you want to listen for new translation file load
+     * @param {function} fn - The function to be executed when a new translation file is loaded
+     */
     public static onComponentLanguageLoaded(componentName: string, fn: ComponentLanguageLoadedCallback) {
         if (!I18nMixin.onComponentLanguageLoadedListeners[componentName]) {
             I18nMixin.onComponentLanguageLoadedListeners[componentName] = [];
@@ -25,7 +33,12 @@ class I18nMixin extends Vue {
         I18nMixin.onComponentLanguageLoadedListeners[componentName].push(fn);
     }
 
-    public static execComponentLanguageLoadedCallbacks(componentName: string, lang: string) {
+    /**
+     * Private static method that execute the functions in onComponentLanguageLoadedListeners for a component
+     * @param {string} componentName - Name of the component you want to execute listeners for
+     * @param {string} lang - The language of the loaded translation file
+     */
+    private static execComponentLanguageLoadedCallbacks(componentName: string, lang: string) {
         const callbacks = I18nMixin.onComponentLanguageLoadedListeners[componentName];
 
         if (callbacks && callbacks.length) {
@@ -33,7 +46,11 @@ class I18nMixin extends Vue {
         }
     }
 
-    public static $i18nDetectLanguage() {
+    /**
+     * Public static method to detect the current active language. Fallback to the browser language
+     * @return {string} The language code
+     */
+    public static $i18nDetectLanguage(): string {
         const langCookie = Cookie.getCookie('lang');
         const langRaw = window.navigator.language;
         const langParts = langRaw.split('-');
@@ -41,7 +58,17 @@ class I18nMixin extends Vue {
         return langCookie || langParts[0];
     }
 
-    public static async $i18nLoadComponentLanguage(componentName: string, lang: string = I18nMixin.lang) {
+    /**
+     * Public static async method used to load a translation file
+     * @param {string} componentName - name of the component you want to load a translation for
+     * @param {string} lang - language of the translation you want to load
+     * @return {Promise<string>} a string containing the language code and the component name, separated by a dash
+     */
+    public static async $i18nLoadComponentLanguage(
+        componentName: string,
+        lang: string = I18nMixin.lang,
+    ): Promise<string> {
+        // if the language is not supported yes, setting it to the default one
         if (!I18nMixin.SUPPORTED_LANGUAGES.includes(lang)) {
             lang = I18nMixin.DEFAULT_LANGUAGE;
         }
@@ -65,7 +92,14 @@ class I18nMixin extends Vue {
         return componentLang;
     }
 
-    public static $t(componentName: string, key: string, variables?: I18n$tVariable) {
+    /**
+     * Public static method used to get the translation of a given string
+     * @param {string} componentName - Name of the component you want the translation for
+     * @param {string} key - The string you want the translation for
+     * @param {object} variables - Optional parameter. Contains the variables to be replaced in the translated string
+     * @return {string} The translated string.
+     */
+    public static $t(componentName: string, key: string, variables?: I18n$tVariable): string {
         const componentLang = I18nMixin.lang + '-' + componentName;
 
         if (!I18nMixin.LOADED_MESSAGES[componentLang]) {
@@ -84,10 +118,17 @@ class I18nMixin extends Vue {
         return message;
     }
 
+    /**
+     * Public method used to get the translation of a given string
+     * @param {string} key - The string you want the translation for
+     * @param {object} variables - Optional parameter. Contains the variables to be replaced in the translated string
+     * @return {string} The translated string.
+     */
     public $t(key: string, variables?: I18n$tVariable) {
         return I18nMixin.$t(this.constructor.name, key, variables);
     }
 
+    /** Private method executed on tab focus. Check if the language changed and if so, load the new language */
     private onTabFocus() {
         I18nMixin.lang = I18nMixin.$i18nDetectLanguage();
         I18nMixin.$i18nLoadComponentLanguage(this.constructor.name);
