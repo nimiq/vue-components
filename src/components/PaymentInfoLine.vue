@@ -34,14 +34,15 @@
                 </template>
                 <template v-slot:default>
                     <div class="price-breakdown">
-                        <label>Order amount</label>
+                        <label>{{ $t('Order amount') }}</label>
                         <FiatAmount :currency="fiatAmount.currency" :amount="fiatAmount.amount" />
                         <template v-if="vendorMarkup || vendorMarkup === 0">
-                            <label>Vendor crypto {{ vendorMarkup >= 0 ? 'markup' : 'discount' }}</label>
+                            <label v-if="vendorMarkup >= 0">{{ $t('Vendor crypto markup') }}</label>
+                            <label v-else>{{ $t('Vendor crypto discount') }}</label>
                             <div>{{ formattedVendorMarkup }}</div>
                         </template>
                         <label :class="{ 'nq-orange': isBadRate }">
-                            Effective rate
+                            {{ $t('Effective rate') }}
                         </label>
                         <div :class="{ 'nq-orange': isBadRate }">
                             <FiatAmount :currency="fiatAmount.currency" :amount="effectiveRate"
@@ -56,10 +57,10 @@
                     >
                         {{ rateInfo }}
                     </div>
-                    <div class="free-service-info info">Nimiq provides this service free of charge.</div>
+                    <div class="free-service-info info">{{ $t('Nimiq provides this service free of charge.') }}</div>
                     <hr>
                     <div class="total">
-                        <label>Total</label>
+                        <label>{{ $t('Total') }}</label>
                         <Amount
                             :currency="cryptoAmount.currency"
                             :amount="cryptoAmount.amount"
@@ -81,9 +82,9 @@
                                 :minDecimals="0"
                                 :maxDecimals="Math.min(6, cryptoAmount.decimals)"
                             />
-                            suggested
+                            {{ $t('suggested') }}
                         </template>
-                        network fee
+                        {{ $t('network fee') }}
                     </div>
                 </template>
             </Tooltip>
@@ -118,6 +119,7 @@ import Amount, { amountValidator } from './Amount.vue';
 import FiatAmount from './FiatAmount.vue';
 import Tooltip from './Tooltip.vue';
 import { AlertTriangleIcon, ArrowRightSmallIcon } from './Icons';
+import I18nMixin from '../i18n/I18nMixin';
 
 interface CryptoAmountInfo {
     amount: number | bigint | BigInteger; // in the smallest unit
@@ -143,7 +145,18 @@ function fiatAmountInfoValidator(value: any) {
         && typeof value.currency === 'string';
 }
 
-@Component({components: {Account, Timer, Amount, FiatAmount, Tooltip, AlertTriangleIcon, ArrowRightSmallIcon}})
+@Component({
+    components: {
+        Account,
+        Timer,
+        Amount,
+        FiatAmount,
+        Tooltip,
+        AlertTriangleIcon,
+        ArrowRightSmallIcon,
+    },
+    mixins: [I18nMixin],
+})
 class PaymentInfoLine extends Vue {
     private static readonly REFERENCE_RATE_UPDATE_INTERVAL = 60000; // every minute
     private static readonly RATE_DEVIATION_THRESHOLD = .1;
@@ -245,13 +258,29 @@ class PaymentInfoLine extends Vue {
             || (Math.abs(this.rateDeviation) < PaymentInfoLine.RATE_DEVIATION_THRESHOLD && !this.isBadRate)) {
             return null;
         }
-        const suffix = 'the current market rate (coingecko.com).';
         if (this.rateDeviation < 0 && this.isBadRate) {
             // False discount
-            return `Your actual discount is approx. ${this.formattedRateDeviation} compared to ${suffix}`;
+            return this.$t(
+                'Your actual discount is approx. {formattedRateDeviation} compared '
+                + 'to the current market rate (coingecko.com).',
+                { formattedRateDeviation: this.formattedRateDeviation },
+            );
         }
-        return `You are paying approx. ${this.formattedRateDeviation} ${this.rateDeviation > 0 ? 'more' : 'less'} `
-            + `than at ${suffix}`;
+
+        if (this.rateDeviation > 0) {
+            return this.$t(
+                'You are paying approx. {formattedRateDeviation} more '
+                + 'than at the current market rate (coingecko.com).',
+                { formattedRateDeviation: this.formattedRateDeviation },
+            );
+        } else {
+            return this.$t(
+                'You are paying approx. {formattedRateDeviation} less '
+                + 'than at the current market rate (coingecko.com).',
+                { formattedRateDeviation: this.formattedRateDeviation },
+            );
+        }
+
     }
 
     @Watch('cryptoAmount.currency')

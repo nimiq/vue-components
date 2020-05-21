@@ -1,0 +1,285 @@
+# 
+# Translators:
+# Matheo <matheo@nimiq.com>, 2020
+# 
+msgid ""
+msgstr ""
+"Last-Translator: Matheo <matheo@nimiq.com>, 2020\n"
+"Language-Team: French (https://www.transifex.com/nimiq-foundation/teams/109388/fr/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: src/components/AccountSelector.vue:18
+msgid "Accounts cannot be used for this operation."
+msgstr "Les Comptes ne peuvent être utilisés pour cette opération."
+
+#: src/components/SendTx.vue:120
+msgid "Add a public message..."
+msgstr "Ajouter un message public..."
+
+#: src/components/SendTx.vue:483
+msgid "Awaiting Consensus..."
+msgstr "En attente du Consensus..."
+
+#: src/components/SendTx.vue:92
+msgid ""
+"By adding a transation fee, you can influence how fast your transaction will"
+" be processed."
+msgstr ""
+"En ajoutant un frais de transaction, vous influencez sur la vitesse à "
+"laquelle votre transaction sera traitée."
+
+#: src/components/QrScanner.vue:11
+msgid "Cancel"
+msgstr "Annuler"
+
+#: src/components/Wallet.vue:24
+msgid "Change Password"
+msgstr "Changer de Mot de passe"
+
+#: src/components/SendTx.vue:6
+msgid "Choose Sender"
+msgstr "Choisissez l'émetteur"
+
+#: src/components/QrScanner.vue:25
+msgid ""
+"Click on {icon} and go to \n"
+"Settings > Site Settings > Camera"
+msgstr ""
+"Cliquez sur {icon} et allez à \n"
+"Settings > Site Settings > Camera"
+
+#: src/components/QrScanner.vue:47
+msgid "Click on {icon} in the URL bar."
+msgstr "Cliquez sur {icon} dans la bar d'adresse."
+
+#: src/components/QrScanner.vue:40
+msgid ""
+"Click on {safari} and go to\n"
+"Settings for this Website > Camera"
+msgstr ""
+
+#: src/components/AccountList.vue:43
+msgid "Contracts cannot be used for this operation."
+msgstr "Les Contrats ne peuvent pas être utilisés pour cette opération."
+
+#: src/components/SendTx.vue:64
+msgid "Create a Cashlink"
+msgstr "Créer un Cashlink"
+
+#: src/components/Wallet.vue:21
+msgid "Create Backup"
+msgstr "Créer une Sauvegarde"
+
+#: src/components/Timer.vue:78
+msgid "day"
+msgstr "jour"
+
+#: src/components/Timer.vue:79
+msgid "days"
+msgstr "jours"
+
+#: src/components/PaymentInfoLine.vue:45
+msgid "Effective rate"
+msgstr "Taux effectif"
+
+#: src/components/SendTx.vue:57
+msgid "Enter address"
+msgstr "Entrez l'adresse"
+
+#: src/components/SendTx.vue:199
+msgid "express"
+msgstr "express"
+
+#: src/components/AmountWithFee.vue:7
+msgid "fee"
+msgstr "frais"
+
+#: src/components/SendTx.vue:189
+msgid "free"
+msgstr "gratuit"
+
+#: src/components/QrScanner.vue:35
+msgid "Grant camera access when asked."
+msgstr "Accordez l'accès à la caméra lorsque cela vous est demandé."
+
+#: src/components/Timer.vue:76
+msgid "hour"
+msgstr "heure"
+
+#: src/components/Timer.vue:77
+msgid "hours"
+msgstr "heures"
+
+#: src/components/SendTx.vue:63
+msgid "If recipient has no Account yet:"
+msgstr "Si le destinataire n'a pas encore de Compte:"
+
+#: src/components/AmountWithFee.vue:5
+msgid "Insufficient balance"
+msgstr "Balance insuffisante"
+
+#: src/components/AccountSelector.vue:38
+msgid "Login to another Account"
+msgstr "Connexion à un autre Compte"
+
+#: src/components/Wallet.vue:26
+msgid "Logout"
+msgstr "Déconnexion"
+
+#: src/components/Timer.vue:74
+msgid "minute"
+msgstr "minute"
+
+#: src/components/Timer.vue:75
+msgid "minutes"
+msgstr "minutes"
+
+#: src/components/SendTx.vue:22 src/components/SendTx.vue:74
+msgid "Name this contact..."
+msgstr "Nommez ce contact..."
+
+#: src/components/PaymentInfoLine.vue:87
+msgid "network fee"
+msgstr "frais de réseau"
+
+#: src/components/PaymentInfoLine.vue:60
+msgid "Nimiq provides this service free of charge."
+msgstr "Nimiq fournit ce service gratuitement."
+
+#: src/components/SendTx.vue:104
+msgid "Open settings"
+msgstr "Ouvrir les réglages"
+
+#: src/components/PaymentInfoLine.vue:37
+msgid "Order amount"
+msgstr "Montant de la commande"
+
+#: src/components/Wallet.vue:23
+msgid "Rename"
+msgstr "Renommer"
+
+#: src/components/QrScanner.vue:42
+msgid "Safari"
+msgstr "Safari"
+
+#: src/components/SendTx.vue:491
+msgid "Save & Set Amount"
+msgstr "Enregistrer et Définir le montant"
+
+#: src/components/SendTx.vue:82
+msgid "Save Contact"
+msgstr "Enregistrer le Contact"
+
+#: src/components/Wallet.vue:18
+msgid "Save Login File"
+msgstr "Enregistrer le Fichier de Login"
+
+#: src/components/Timer.vue:72
+msgid "second"
+msgstr "seconde"
+
+#: src/components/Timer.vue:73
+msgid "seconds"
+msgstr "secondes"
+
+#: src/components/SendTx.vue:37
+msgid "Select a contact"
+msgstr "Sélectionner un contact"
+
+#: src/components/SendTx.vue:45
+msgid "Send a transaction"
+msgstr "Envoyer une transaction"
+
+#: src/components/SendTx.vue:486
+msgid "Send Transaction"
+msgstr "Envoyer la Transaction"
+
+#: src/components/SendTx.vue:485
+msgid "Sending Transaction..."
+msgstr "Envoi de transaction en cours..."
+
+#: src/components/SendTx.vue:103 src/components/SendTx.vue:492
+msgid "Set Amount"
+msgstr "Définir le montant"
+
+#: src/components/SendTx.vue:97
+msgid "Set fee"
+msgstr "Définir les frais"
+
+#: src/components/SendTx.vue:91
+msgid "Speed up your transaction"
+msgstr "Accélérer votre transaction"
+
+#: src/components/SendTx.vue:194
+msgid "standard"
+msgstr "standard"
+
+#: src/components/PaymentInfoLine.vue:85
+msgid "suggested"
+msgstr "suggéré"
+
+#: src/components/QrScanner.vue:51
+msgid "the camera icon"
+msgstr "l'icône de caméra"
+
+#: src/components/AccountList.vue:44
+msgid "This address cannot be used for this operation."
+msgstr "Cette adresse ne peut pas être utilisée pour cette opération."
+
+#: src/components/Timer.vue:44
+msgid "This offer expires in {timer}."
+msgstr "Cette offre expire dans {timer}."
+
+#: src/components/PaymentInfoLine.vue:63
+msgid "Total"
+msgstr "Total"
+
+#: src/components/QrScanner.vue:20
+msgid "Unblock the camera for this website to scan QR codes."
+msgstr "Débloquez la caméra pour ce site de façon à scanner les QR codes."
+
+#: src/components/SendTx.vue:116
+msgid "Unnamed Contact"
+msgstr "Contact sans nom"
+
+#: src/components/PaymentInfoLine.vue:41
+msgid "Vendor crypto discount"
+msgstr ""
+
+#: src/components/PaymentInfoLine.vue:40
+msgid "Vendor crypto markup"
+msgstr ""
+
+#: src/components/AmountInput.vue:5
+msgid "Width"
+msgstr "Largeur"
+
+#: src/components/PaymentInfoLine.vue:277
+msgid ""
+"You are paying approx. {formattedRateDeviation} less than at the current "
+"market rate (coingecko.com)."
+msgstr ""
+"Vous payez environ {formattedRateDeviation} moins que le taux actuel du "
+"marché (coingecko.com)."
+
+#: src/components/PaymentInfoLine.vue:271
+msgid ""
+"You are paying approx. {formattedRateDeviation} more than at the current "
+"market rate (coingecko.com)."
+msgstr ""
+"Vous payez environ {formattedRateDeviation} plus que le taux actuel du "
+"marché (coingecko.com)."
+
+#: src/components/PaymentInfoLine.vue:263
+msgid ""
+"Your actual discount is approx. {formattedRateDeviation} compared to the "
+"current market rate (coingecko.com)."
+msgstr ""
+"Votre remise réelle est d'environ {formattedRateDeviation}  par rapport au "
+"taux actuel du marché (coingecko.com)."
+
+#: src/components/QrScanner.vue:16
+msgid "Your device does not have an accessible camera."
+msgstr "Votre appareil n'a pas de caméra accessible."

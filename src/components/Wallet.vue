@@ -15,15 +15,15 @@
             <MenuDotsIcon/>
             <div class="menu nq-blue-bg">
                 <button v-if="isBip39" class="item export" @click="$emit('export-file', wallet.id)">
-                    Save Login File<AlertTriangleIcon v-if="fileMissing" class="nq-orange"/>
+                    {{ $t('Save Login File') }}<AlertTriangleIcon v-if="fileMissing" class="nq-orange"/>
                 </button>
                 <button v-if="isKeyguard" class="item export" @click="$emit('export-words', wallet.id)">
-                    Create Backup<AlertTriangleIcon v-if="wordsMissing" class="nq-orange"/>
+                    {{ $t('Create Backup') }}<AlertTriangleIcon v-if="wordsMissing" class="nq-orange"/>
                 </button>
-                <button class="item" @click="$emit('rename', wallet.id)">Rename</button>
-                <button v-if="isKeyguard" class="item" @click="$emit('change-password', wallet.id)">Change Password</button>
+                <button class="item" @click="$emit('rename', wallet.id)">{{ $t('Rename') }}</button>
+                <button v-if="isKeyguard" class="item" @click="$emit('change-password', wallet.id)">{{ $t('Change Password') }}</button>
                 <div class="separator"></div>
-                <button class="item logout" @click="$emit('logout', wallet.id)"><ArrowRightSmallIcon/>Logout</button>
+                <button class="item logout" @click="$emit('logout', wallet.id)"><ArrowRightSmallIcon/>{{ $t('Logout') }}</button>
             </div>
         </button>
     </div>
@@ -35,8 +35,19 @@ import AccountRing from './AccountRing.vue';
 import Amount from './Amount.vue';
 import Identicon from './Identicon.vue';
 import { AlertTriangleIcon, MenuDotsIcon, ArrowRightSmallIcon } from './Icons';
+import I18nMixin from '../i18n/I18nMixin';
 
-@Component({components: { AccountRing, Amount, Identicon, AlertTriangleIcon, MenuDotsIcon, ArrowRightSmallIcon }})
+@Component({
+    components: {
+        AccountRing,
+        Amount,
+        Identicon,
+        AlertTriangleIcon,
+        MenuDotsIcon,
+        ArrowRightSmallIcon,
+    },
+    mixins: [I18nMixin],
+})
 export default class Wallet extends Vue {
     @Prop(Object) private wallet!: {
         id: string,

@@ -40,8 +40,8 @@
                 @click.native.stop
             >
                 {{ _isDisabledContract(account)
-                    ? 'Contracts cannot be used for this operation.'
-                    : 'This address cannot be used for this operation.'
+                    ? $t('Contracts cannot be used for this operation.')
+                    : $t('This address cannot be used for this operation.')
                 }}
             </Tooltip>
         </component>
@@ -54,8 +54,16 @@ import Account from './Account.vue';
 import { AccountInfo, ContractInfo } from './AccountSelector.vue';
 import Tooltip from './Tooltip.vue';
 import { CaretRightSmallIcon } from './Icons';
+import I18nMixin from '../i18n/I18nMixin';
 
-@Component({components: {Account, Tooltip, CaretRightSmallIcon}})
+@Component({
+    components: {
+        Account,
+        Tooltip,
+        CaretRightSmallIcon,
+    },
+    mixins: [I18nMixin],
+})
 export default class AccountList extends Vue {
     @Prop(Array) public accounts!: AccountInfo[];
     @Prop({type: Array, default: () => []}) public disabledAddresses!: string[];
