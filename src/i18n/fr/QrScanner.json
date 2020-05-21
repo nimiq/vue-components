@@ -1,0 +1,11 @@
+{
+  "Cancel": "Annuler",
+  "Click on {icon} and go to \nSettings > Site Settings > Camera": "Cliquez sur {icon} et allez à \nSettings > Site Settings > Camera",
+  "Click on {icon} in the URL bar.": "Cliquez sur {icon} dans la bar d'adresse.",
+  "Click on {safari} and go to\nSettings for this Website > Camera": "Click on {safari} and go to\nSettings for this Website > Camera",
+  "Grant camera access when asked.": "Accordez l'accès à la caméra lorsque cela vous est demandé.",
+  "Safari": "Safari",
+  "the camera icon": "l'icône de caméra",
+  "Unblock the camera for this website to scan QR codes.": "Débloquez la caméra pour ce site de façon à scanner les QR codes.",
+  "Your device does not have an accessible camera.": "Votre appareil n'a pas de caméra accessible."
+}

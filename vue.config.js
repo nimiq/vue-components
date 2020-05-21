@@ -42,6 +42,12 @@ const chainWebpack = config => {
           .options(svgDefaultHandler.get('options'))
           .end()
         .end()
+    .rule('po')
+        .test(/\.pot?$/)
+        .use('po-loader')
+        .loader('webpack-i18n-tools')
+        .end()
+      .end();
 }
 
 module.exports = { configureWebpack, chainWebpack };

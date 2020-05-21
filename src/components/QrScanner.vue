@@ -8,43 +8,49 @@
                 </svg>
             </slot>
         </div>
-        <button class="nq-button-s inverse cancel-button" @click="_cancel">Cancel</button>
+        <button class="nq-button-s inverse cancel-button" @click="_cancel">{{ $t('Cancel') }}</button>
 
         <transition name="fade">
             <div v-if="cameraAccessFailed" class="camera-access-failed">
                 <div v-if="!hasCamera" class="camera-access-failed-warning">
-                    Your device does not have an accessible camera.
+                    {{ $t('Your device does not have an accessible camera.') }}
                 </div>
                 <div v-else>
                     <div class="camera-access-failed-warning">
-                        Unblock the camera for this website to scan QR codes.
+                        {{ $t('Unblock the camera for this website to scan QR codes.') }}
                     </div>
                     <div v-if="isMobileOrTablet">
                         <div v-if="browser === 'chrome'">
                             <div class="access-denied-instructions">
-                                Click on <span class="browser-menu-icon"></span> and go to
-                                <br>
-                                Settings > Site Settings > Camera
+                                <I18n path="Click on {icon} and go to \nSettings > Site Settings > Camera">
+                                    <template #icon>
+                                        <span class="browser-menu-icon"></span>
+                                    </template>
+                                </I18n>
                             </div>
                             <div class="browser-menu-arrow"></div>
                         </div>
                         <div v-else class="access-denied-instructions">
                             <!-- Mobile safari and mobile firefox ask on every camera request -->
-                            Grant camera access when asked.
+                            {{ $t('Grant camera access when asked.') }}
                         </div>
                     </div>
                     <div v-else class="access-denied-instructions">
                         <div v-if="browser === 'safari'">
-                            Click on <b>Safari</b> and go to
-                            <br>
-                            Settings for this Website > Camera
+                            <I18n path="Click on {safari} and go to\nSettings for this Website > Camera">
+                                <template #safari>
+                                    <b>{{ $t('Safari') }}</b>
+                                </template>
+                            </I18n>
                         </div>
                         <div v-else>
-                            Click on
-                            <span v-if="browser === 'chrome'" class="camera-icon-chrome"></span>
-                            <span v-else-if="browser === 'firefox'" class="camera-icon-firefox"></span>
-                            <span v-else>the camera icon</span>
-                            in the URL bar.
+                            <I18n path="Click on {icon} in the URL bar.">
+                                <template #icon>
+                                    <span v-if="browser === 'chrome'" class="camera-icon-chrome"></span>
+                                    <span v-else-if="browser === 'firefox'" class="camera-icon-firefox"></span>
+                                    <span v-else>{{ $t('the camera icon') }}</span>
+                                </template>
+                            </I18n>
                         </div>
                     </div>
                 </div>
@@ -59,12 +65,17 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import QrScannerLib from 'qr-scanner';
 import { BrowserDetection } from '@nimiq/utils';
+import I18nMixin from '../i18n/I18nMixin';
+import I18n from '../i18n/I18n.vue';
 
 // Declare qr worker as asset using file-loader which copies the file to dist and binds the path to QrScannerWorker
 import QrScannerWorker from '!!file-loader?name=[name].[ext]!../../node_modules/qr-scanner/qr-scanner-worker.min.js';
 QrScannerLib.WORKER_PATH = QrScannerWorker;
 
-@Component
+@Component({
+    components: { I18n },
+    mixins: [I18nMixin],
+})
 class QrScanner extends Vue {
     @Prop({ type: Number, default: 7000 }) public reportFrequency!: number;
     @Prop(Function) public validate?: (scanResult: string) => boolean;
