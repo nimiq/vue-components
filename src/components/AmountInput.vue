@@ -2,7 +2,7 @@
     <div class="amount-input">
         <form class="label-input" @submit.prevent ref="fullWidth">
             <span class="width-finder width-placeholder" ref="widthPlaceholder">{{placeholder}}</span>
-            <div v-if="maxFontSize" class="full-width" :class="{'width-finder': maxWidth > 0}" >Width</div>
+            <div v-if="maxFontSize" class="full-width" :class="{'width-finder': maxWidth > 0}" >{{ $t('Width') }}</div>
             <span class="width-finder width-value" ref="widthValue">{{formattedValue || ''}}</span>
             <input type="text" class="nq-input nq-light-blue" :class="vanishing"
                 :placeholder="placeholder"
@@ -17,8 +17,11 @@
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { Utf8Tools } from '@nimiq/utils';
+import I18nMixin from '../i18n/I18nMixin';
 
-@Component
+@Component({
+    mixins: [I18nMixin],
+})
 export default class AmountInput extends Vue {
     public $refs!: {
         fullWidth: HTMLDivElement,

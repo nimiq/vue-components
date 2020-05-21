@@ -15,7 +15,7 @@
                             },
                         }"
                     >
-                        {{ _getAccountTypeName(wallet) }} Accounts cannot be used for this operation.
+                        {{ _getAccountTypeName(wallet) }} {{ $t('Accounts cannot be used for this operation.') }}
                     </Tooltip>
                 </div>
                 <AccountList
@@ -35,7 +35,7 @@
         </div>
 
         <div class="footer">
-            <button v-if="allowLogin" class="nq-button-s" @click="login">Login to another Account</button>
+            <button v-if="allowLogin" class="nq-button-s" @click="login">{{ $t('Login to another Account') }}</button>
         </div>
     </div>
 </template>
@@ -44,6 +44,7 @@
 import {Component, Emit, Prop, Vue} from 'vue-property-decorator';
 import AccountList from './AccountList.vue';
 import Tooltip from './Tooltip.vue';
+import I18nMixin from '../i18n/I18nMixin';
 
 // This is a reduced list of properties, for convenience
 export interface ContractInfo {
@@ -106,6 +107,7 @@ export interface WalletInfo {
             });
         },
     },
+    mixins: [I18nMixin],
 })
 export default class AccountSelector extends Vue {
     @Prop(Array) private wallets!: WalletInfo[];

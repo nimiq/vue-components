@@ -2,13 +2,14 @@
     <div class="copyable" :class="{ copied }" @click="copy" tabindex="0">
         <div class="background"></div>
         <slot></slot>
-        <div class="tooltip">Copied</div>
+        <div class="tooltip">{{ $t('Copied') }}</div>
     </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import { Clipboard } from '@nimiq/utils';
+import I18nMixin from '../i18n/I18nMixin';
 
 /**
  * **Copyable**
@@ -21,7 +22,7 @@ import { Clipboard } from '@nimiq/utils';
  *
  * **text** {string} [optional] - A specific text to be copied to the clipboard on click
  */
-@Component
+@Component({ mixins: [I18nMixin] })
 export default class Copyable extends Vue {
     private static readonly DISPLAY_TIME = 800;
 

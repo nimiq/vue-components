@@ -1,0 +1,9 @@
+{
+  "A contact with the address \"{address}\",\nbut a different name already exists.\n\nDo you want to override it?": "Un contact avec l'adresse \"{address}\",\nmais un nom différent existe déjà.\n\nVoulez-vous l'écraser ?",
+  "Cannot import file, wrong format.": "Impossible d'importer le fichier, mauvais format.",
+  "Contact import finished.": "Importation des Contacts terminé.",
+  "New contact:": "Nouveau contact",
+  "No matches found": "Aucune correspondances trouvée",
+  "Search...": "Recherche...",
+  "Use the menu to add contacts": "Utilisez le menu pour ajouter des contacts"
+}

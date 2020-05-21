@@ -1,0 +1,11 @@
+{
+  "Cancel": "Cancel",
+  "Click on {icon} and go to \nSettings > Site Settings > Camera": "Click on {icon} and go to \nSettings > Site Settings > Camera",
+  "Click on {icon} in the URL bar.": "Click on {icon} in the URL bar.",
+  "Click on {safari} and go to\nSettings for this Website > Camera": "Click on {safari} and go to\nSettings for this Website > Camera",
+  "Grant camera access when asked.": "Grant camera access when asked.",
+  "Safari": "Safari",
+  "the camera icon": "the camera icon",
+  "Unblock the camera for this website to scan QR codes.": "Unblock the camera for this website to scan QR codes.",
+  "Your device does not have an accessible camera.": "Your device does not have an accessible camera."
+}
