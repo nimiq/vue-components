@@ -174,7 +174,7 @@ msgstr "Enregistrer le Contact"
 
 #: src/components/Wallet.vue:18
 msgid "Save Login File"
-msgstr "Enregistrer le Fichier de Login"
+msgstr "Enregistrer le Fichier de Connexion"
 
 #: src/components/Timer.vue:72
 msgid "second"
