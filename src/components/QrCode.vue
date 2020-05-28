@@ -5,7 +5,7 @@
 <script lang="ts">
     import {Component, Prop, Vue, Watch} from 'vue-property-decorator';
 
-    import QrEncoder from 'qr-code';
+    import QrCreator from 'qr-creator';
 
     /**
      * **Nimiq QR Code Component**
@@ -69,7 +69,7 @@
                 return hasValidGradientStops;
             },
         })
-        public fill!: string | QrEncoder.LinearGradient | QrEncoder.RadialGradient;
+        public fill!: string | QrCreator.LinearGradient | QrCreator.RadialGradient;
 
         @Prop({
             default: null,
@@ -99,7 +99,7 @@
         private async _updateQrCode() {
             if (!this.data) return;
             await Vue.nextTick(); // Make sure the canvas is in the DOM (it depends on !!data)
-            QrEncoder.render({
+            QrCreator.render({
                 text: this.data,
                 radius: this.radius,
                 ecLevel: this.errorCorrection,

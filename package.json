@@ -18,7 +18,7 @@
     "@nimiq/style": "^0.8.0",
     "big-integer": "^1.6.44",
     "input-format": "^0.2.8",
-    "qr-code": "github:nimiq/qr-encoder",
+    "qr-creator": "^1.0.0",
     "qr-scanner": "^1.1.1",
     "vue": "^2.6.11",
     "vue-property-decorator": "^8.4.0"
