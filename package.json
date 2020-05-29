@@ -24,7 +24,7 @@
     "vue-property-decorator": "^8.4.0"
   },
   "devDependencies": {
-    "@nimiq/iqons": "^1.5.2",
+    "@nimiq/iqons": "^1.6.0",
     "@nimiq/utils": "^0.4.6",
     "@storybook/addon-actions": "^4.0.0-alpha.14",
     "@storybook/addon-knobs": "^4.0.0-alpha.14",
