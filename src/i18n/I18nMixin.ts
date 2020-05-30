@@ -1,74 +1,77 @@
 import { Cookie } from '@nimiq/utils';
 import { Vue, Component } from 'vue-property-decorator';
 
-interface I18n$tVariable {
+interface I18n$tVariables {
     [key: string]: string | number;
 }
 
-type ComponentLanguageLoadedCallback = (lang?: string) => any;
+type LanguageLoadListener = (lang: string) => void;
 
-/** i18n Class for vue-components */
+/**
+ * i18n mixin for vue-components that provides a similar, but reduced, api as vue-i18n. This is to avoid that users need
+ * to add the entire vue-i18n lib to their app as soon as they want to use a component from this library even if they
+ * don't intend to add internationalization.
+ */
 @Component
 class I18nMixin extends Vue {
     private static readonly DEFAULT_LANGUAGE = 'en';
     private static readonly SUPPORTED_LANGUAGES = [I18nMixin.DEFAULT_LANGUAGE, 'fr'];
     private static readonly LOADED_LANGUAGES: string[] = [];
-    private static readonly LOADED_MESSAGES: { [key: string]: string[] } = {};
+    private static readonly LOADED_MESSAGES: { [lang: string]: string[] } = {};
 
     /** Current active language */
     private static lang: string = '';
 
-    /** Object containing an array of function per component that is executed every time a translation file is loaded */
-    private static onComponentLanguageLoadedListeners: { [key: string]: ComponentLanguageLoadedCallback[] } = {};
+    /** Object containing an array of functions per component that are executed when a translation file is loaded */
+    private static languageLoadListeners: { [component: string]: LanguageLoadListener[] } = {};
 
     /**
-     * Public static method that add a function into the onComponentLanguageLoadedListeners property
-     * @param {string} componentName - Name of the component you want to listen for new translation file load
-     * @param {function} fn - The function to be executed when a new translation file is loaded
+     * Registers a language load event listener.
+     * @param {string} componentName - Name of the component for which you want to listen for translation load events
+     * @param {function} listener - The function to be executed when a new translation file is loaded
      */
-    public static onComponentLanguageLoaded(componentName: string, fn: ComponentLanguageLoadedCallback) {
-        if (!I18nMixin.onComponentLanguageLoadedListeners[componentName]) {
-            I18nMixin.onComponentLanguageLoadedListeners[componentName] = [];
+    public static onComponentLanguageLoad(componentName: string, listener: LanguageLoadListener) {
+        if (!I18nMixin.languageLoadListeners[componentName]) {
+            I18nMixin.languageLoadListeners[componentName] = [];
         }
-        I18nMixin.onComponentLanguageLoadedListeners[componentName].push(fn);
+        I18nMixin.languageLoadListeners[componentName].push(listener);
     }
 
     /**
-     * Private static method that execute the functions in onComponentLanguageLoadedListeners for a component
+     * Notify listeners that a component's language finished loading.
      * @param {string} componentName - Name of the component you want to execute listeners for
      * @param {string} lang - The language of the loaded translation file
      */
-    private static execComponentLanguageLoadedCallbacks(componentName: string, lang: string) {
-        const callbacks = I18nMixin.onComponentLanguageLoadedListeners[componentName];
+    private static fireComponentLanguageLoad(componentName: string, lang: string) {
+        const listeners = I18nMixin.languageLoadListeners[componentName];
 
-        if (callbacks && callbacks.length) {
-            callbacks.forEach((fn) => fn(lang));
+        if (listeners && listeners.length) {
+            listeners.forEach((listener) => listener(lang));
         }
     }
 
     /**
-     * Public static method to detect the current active language. Fallback to the browser language
-     * @return {string} The language code
+     * Detect the current active language. If no language is set fallback to the browser language.
+     * @returns {string} The language code
      */
-    public static $i18nDetectLanguage(): string {
+    public static detectLanguage(): string {
         const langCookie = Cookie.getCookie('lang');
-        const langRaw = window.navigator.language;
-        const langParts = langRaw.split('-');
+        const fallbackLang = window.navigator.language.split('-')[0];
 
-        return langCookie || langParts[0];
+        return langCookie || fallbackLang;
     }
 
     /**
-     * Public static async method used to load a translation file
-     * @param {string} componentName - name of the component you want to load a translation for
-     * @param {string} lang - language of the translation you want to load
-     * @return {Promise<string>} a string containing the language code and the component name, separated by a dash
+     * Asynchronously load a translation file.
+     * @param {string} componentName - Name of the component you want to load a translation for
+     * @param {string} lang - Language of the translation you want to load
+     * @returns {Promise<string>} a string containing the language code and the component name, separated by a dash
      */
-    public static async $i18nLoadComponentLanguage(
+    public static async loadComponentLanguage(
         componentName: string,
         lang: string = I18nMixin.lang,
     ): Promise<string> {
-        // if the language is not supported yes, setting it to the default one
+        // If the language is not supported set it to the default one
         if (!I18nMixin.SUPPORTED_LANGUAGES.includes(lang)) {
             lang = I18nMixin.DEFAULT_LANGUAGE;
         }
@@ -88,18 +91,18 @@ class I18nMixin extends Vue {
 
         I18nMixin.LOADED_MESSAGES[componentLang] = messages.default || {};
         I18nMixin.LOADED_LANGUAGES.push(componentLang);
-        I18nMixin.execComponentLanguageLoadedCallbacks(componentName, lang);
+        I18nMixin.fireComponentLanguageLoad(componentName, lang);
         return componentLang;
     }
 
     /**
-     * Public static method used to get the translation of a given string
+     * Get the translation of a given string for a component.
      * @param {string} componentName - Name of the component you want the translation for
      * @param {string} key - The string you want the translation for
-     * @param {object} variables - Optional parameter. Contains the variables to be replaced in the translated string
-     * @return {string} The translated string.
+     * @param {I18n$tVariables} variables - Variables to be replaced in the translated string. Optional.
+     * @returns {string} The translated string.
      */
-    public static $t(componentName: string, key: string, variables?: I18n$tVariable): string {
+    public static $t(componentName: string, key: string, variables?: I18n$tVariables): string {
         const componentLang = I18nMixin.lang + '-' + componentName;
 
         if (!I18nMixin.LOADED_MESSAGES[componentLang]) {
@@ -119,29 +122,29 @@ class I18nMixin extends Vue {
     }
 
     /**
-     * Public method used to get the translation of a given string
+     * Get the translation of a given string for this component.
      * @param {string} key - The string you want the translation for
-     * @param {object} variables - Optional parameter. Contains the variables to be replaced in the translated string
-     * @return {string} The translated string.
+     * @param {I18n$tVariables} variables - Variables to be replaced in the translated string. Optional.
+     * @returns {string} The translated string.
      */
-    public $t(key: string, variables?: I18n$tVariable) {
+    public $t(key: string, variables?: I18n$tVariables) {
         return I18nMixin.$t(this.constructor.name, key, variables);
     }
 
-    /** Private method executed on tab focus. Check if the language changed and if so, load the new language */
+    /** On tab focus check whether the language changed and if so, load the new language */
     private onTabFocus() {
-        I18nMixin.lang = I18nMixin.$i18nDetectLanguage();
-        I18nMixin.$i18nLoadComponentLanguage(this.constructor.name);
+        I18nMixin.lang = I18nMixin.detectLanguage();
+        I18nMixin.loadComponentLanguage(this.constructor.name);
     }
 
     public created() {
         window.addEventListener('focus', this.onTabFocus.bind(this));
 
-        I18nMixin.onComponentLanguageLoaded(this.constructor.name, this.$forceUpdate.bind(this));
+        I18nMixin.onComponentLanguageLoad(this.constructor.name, this.$forceUpdate.bind(this));
         if (!I18nMixin.lang) {
-            I18nMixin.lang = I18nMixin.$i18nDetectLanguage();
+            I18nMixin.lang = I18nMixin.detectLanguage();
         }
-        I18nMixin.$i18nLoadComponentLanguage(this.constructor.name);
+        I18nMixin.loadComponentLanguage(this.constructor.name);
     }
 }
 
