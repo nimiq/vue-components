@@ -4,6 +4,10 @@ import { Vue, Component, Prop } from 'vue-property-decorator';
 import I18nMixin from './I18nMixin';
 import { VNode } from 'vue';
 
+/**
+ * Component for slot interpolation, similar to vue-i18n's interpolation component,
+ * see https://kazupon.github.io/vue-i18n/guide/interpolation.html#slots-syntax-usage
+ */
 @Component
 class I18n extends Vue {
 
@@ -24,7 +28,7 @@ class I18n extends Vue {
 
         if (!slotNames.length) {
             throw new Error(
-                'I18n: the component must contain at least 1 template slot, or you should use the basic $t function.',
+                'I18n: the component must contain at least 1 template slot, otherwise simply use the $t function.',
             );
         }
         if (!isEveryVarASlot) {
@@ -55,7 +59,7 @@ class I18n extends Vue {
     }
 
     private created() {
-        I18nMixin.onComponentLanguageLoaded(
+        I18nMixin.onComponentLanguageLoad(
             this.$parent.$vnode.componentOptions.tag,
             this.updateTemplate,
         );

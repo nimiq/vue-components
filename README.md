@@ -92,7 +92,7 @@ yarn build
 
 First of all, a big thank you to all translators!
 
-The Nimiq Vue-components is fully internationalized and ready for the community to add translations in different languages.
+The Nimiq Vue-components are fully internationalized and ready for the community to add translations in different languages.
 
 To help translate Vue-components, the procedure is as follows:
 - Clone this repository.
@@ -114,6 +114,8 @@ To help translate Vue-components, the procedure is as follows:
   msgstr "Compte Créé"
   ```
   Please only edit the translations, not the source strings.
+
+- Please also don't change the `.json` language files as these are auto-generated. Only edit the `.po` language files.
 
 - Once the file has been fully translated or you are done updating an existing language file, you can open a pull
   request here in github.
