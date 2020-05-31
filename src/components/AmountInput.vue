@@ -15,14 +15,11 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
-import { Utf8Tools } from '@nimiq/utils';
+import { Component, Mixins, Prop, Watch, Vue } from 'vue-property-decorator';
 import I18nMixin from '../i18n/I18nMixin';
 
-@Component({
-    mixins: [I18nMixin],
-})
-export default class AmountInput extends Vue {
+@Component
+export default class AmountInput extends Mixins(I18nMixin) {
     public $refs!: {
         fullWidth: HTMLDivElement,
         input: HTMLInputElement,

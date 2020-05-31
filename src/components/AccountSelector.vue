@@ -41,7 +41,7 @@
 </template>
 
 <script lang="ts">
-import {Component, Emit, Prop, Vue} from 'vue-property-decorator';
+import {Component, Mixins, Emit, Prop} from 'vue-property-decorator';
 import AccountList from './AccountList.vue';
 import Tooltip from './Tooltip.vue';
 import I18nMixin from '../i18n/I18nMixin';
@@ -107,9 +107,8 @@ export interface WalletInfo {
             });
         },
     },
-    mixins: [I18nMixin],
 })
-export default class AccountSelector extends Vue {
+export default class AccountSelector extends Mixins(I18nMixin) {
     @Prop(Array) private wallets!: WalletInfo[];
     @Prop({type: Array, default: () => []}) public disabledAddresses!: string[];
     @Prop(Number) private decimals?: number;

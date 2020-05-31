@@ -62,7 +62,7 @@
 <script lang="ts">
 // TODO could use IntersectionObserver api to start scanner when visible
 
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Mixins, Prop } from 'vue-property-decorator';
 import QrScannerLib from 'qr-scanner';
 import { BrowserDetection } from '@nimiq/utils';
 import I18nMixin from '../i18n/I18nMixin';
@@ -74,9 +74,8 @@ QrScannerLib.WORKER_PATH = QrScannerWorker;
 
 @Component({
     components: { I18n },
-    mixins: [I18nMixin],
 })
-class QrScanner extends Vue {
+class QrScanner extends Mixins(I18nMixin) {
     @Prop({ type: Number, default: 7000 }) public reportFrequency!: number;
     @Prop(Function) public validate?: (scanResult: string) => boolean;
 

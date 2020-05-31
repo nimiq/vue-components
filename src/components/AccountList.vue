@@ -49,7 +49,7 @@
 </template>
 
 <script lang="ts">
-import {Component, Emit, Prop, Vue} from 'vue-property-decorator';
+import {Component, Mixins, Emit, Prop} from 'vue-property-decorator';
 import Account from './Account.vue';
 import { AccountInfo, ContractInfo } from './AccountSelector.vue';
 import Tooltip from './Tooltip.vue';
@@ -62,9 +62,8 @@ import I18nMixin from '../i18n/I18nMixin';
         Tooltip,
         CaretRightSmallIcon,
     },
-    mixins: [I18nMixin],
 })
-export default class AccountList extends Vue {
+export default class AccountList extends Mixins(I18nMixin) {
     @Prop(Array) public accounts!: AccountInfo[];
     @Prop({type: Array, default: () => []}) public disabledAddresses!: string[];
     @Prop(String) private walletId?: string;
