@@ -51,7 +51,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Watch, Vue } from 'vue-property-decorator';
+import { Component, Mixins, Prop, Watch } from 'vue-property-decorator';
 import { Tweenable } from '@nimiq/utils';
 import Tooltip from './Tooltip.vue';
 import I18nMixin from '../i18n/I18nMixin';
@@ -106,10 +106,8 @@ function _toSimplifiedTime(millis: number, includeUnit: boolean = true): number 
 @Component({
     filters: { _toSimplifiedTime },
     components: { Tooltip, I18n },
-    mixins: [I18nMixin],
-
 })
-class Timer extends Vue {
+class Timer extends Mixins(I18nMixin) {
     private static readonly REM_FACTOR = 8; // size of 1rem
     private static readonly BASE_SIZE = 3.25 * Timer.REM_FACTOR;
     private static readonly BASE_RADIUS = Timer.REM_FACTOR;

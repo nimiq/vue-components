@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Emit, Prop, Vue, Watch } from 'vue-property-decorator';
+import { Component, Mixins, Prop, Watch } from 'vue-property-decorator';
 import Amount from './Amount.vue';
 import AmountInput from './AmountInput.vue';
 import I18nMixin from '../i18n/I18nMixin';
@@ -21,9 +21,8 @@ import I18nMixin from '../i18n/I18nMixin';
         Amount,
         AmountInput,
     },
-    mixins: [I18nMixin],
 })
-export default class AmountWithFee extends Vue {
+export default class AmountWithFee extends Mixins(I18nMixin) {
     @Prop({
         type: Object,
         default: () => ({amount: 0, fee: 0, isValid: false}),

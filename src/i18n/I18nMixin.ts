@@ -137,7 +137,7 @@ class I18nMixin extends Vue {
         I18nMixin.loadComponentLanguage(this.constructor.name);
     }
 
-    public created() {
+    protected created() {
         window.addEventListener('focus', this.onTabFocus.bind(this));
 
         I18nMixin.onComponentLanguageLoad(this.constructor.name, this.$forceUpdate.bind(this));

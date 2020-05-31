@@ -131,7 +131,7 @@
 </template>
 
 <script lang="ts">
-import {Component, Emit, Prop, Vue, Watch} from 'vue-property-decorator';
+import {Component, Mixins, Emit, Prop, Watch, Vue} from 'vue-property-decorator';
 import SmallPage from './SmallPage.vue';
 import PageHeader from './PageHeader.vue';
 import PageBody from './PageBody.vue';
@@ -180,9 +180,8 @@ import { Utf8Tools, BrowserDetection } from '@nimiq/utils';
             return [ ...wallet.accounts.values(), ...wallet.contracts ];
         },
     },
-    mixins: [I18nMixin],
 })
-    class SendTx extends Vue {
+    class SendTx extends Mixins(I18nMixin) {
         private static FEE_OPTIONS: SelectBar.SelectBarOption[] = [{
             color: 'nq-light-blue-bg',
             value: 0,

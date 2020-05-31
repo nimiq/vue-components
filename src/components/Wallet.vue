@@ -30,7 +30,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Mixins, Prop } from 'vue-property-decorator';
 import AccountRing from './AccountRing.vue';
 import Amount from './Amount.vue';
 import Identicon from './Identicon.vue';
@@ -46,9 +46,8 @@ import I18nMixin from '../i18n/I18nMixin';
         MenuDotsIcon,
         ArrowRightSmallIcon,
     },
-    mixins: [I18nMixin],
 })
-export default class Wallet extends Vue {
+export default class Wallet extends Mixins(I18nMixin) {
     @Prop(Object) private wallet!: {
         id: string,
         label: string,
