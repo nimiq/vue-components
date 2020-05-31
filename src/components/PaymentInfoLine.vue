@@ -111,7 +111,7 @@
 // this imports only the type without bundling the library
 type BigInteger = import ('big-integer').BigInteger;
 
-import { Component, Prop, Watch, Vue } from 'vue-property-decorator';
+import { Component, Mixins, Prop, Watch } from 'vue-property-decorator';
 import { FiatApiSupportedFiatCurrency, FiatApiSupportedCryptoCurrency, getExchangeRates } from '@nimiq/utils';
 import Account from './Account.vue';
 import Timer from './Timer.vue';
@@ -155,9 +155,8 @@ function fiatAmountInfoValidator(value: any) {
         AlertTriangleIcon,
         ArrowRightSmallIcon,
     },
-    mixins: [I18nMixin],
 })
-class PaymentInfoLine extends Vue {
+class PaymentInfoLine extends Mixins(I18nMixin) {
     private static readonly REFERENCE_RATE_UPDATE_INTERVAL = 60000; // every minute
     private static readonly RATE_DEVIATION_THRESHOLD = .1;
 
@@ -185,7 +184,7 @@ class PaymentInfoLine extends Vue {
     private referenceRateUpdateTimeout: number = -1;
     private lastTooltipToggle: number = -1;
 
-    private created() {
+    protected created() {
         this.updateReferenceRate();
     }
 
