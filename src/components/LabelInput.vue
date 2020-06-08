@@ -99,6 +99,8 @@ export default class LabelInput extends Vue {
     input {
         padding-right: 0;
         max-width: 100%;
-        transition: width 50ms ease-out;
+        transition:
+            color .2s ease, box-shadow .2s ease, /* Copied from Nimiq Styles */
+            width 50ms ease-out;
     }
 </style>
