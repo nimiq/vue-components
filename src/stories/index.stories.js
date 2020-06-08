@@ -757,15 +757,28 @@ storiesOf('Components', module)
         components: { Copyable },
         template: `
             <div>
-                <Copyable ref="copyable">I'm a text you can copy.</Copyable>
+                <Copyable ref="copyable" style="margin-top: 7rem;">I'm a text you can copy.</Copyable>
                 <Copyable>
                     I'm a copyable text<br>with <b>child nodes</b>.
                 </Copyable>
-                <Copyable text="Surprise!!!" style="margin-top: 7rem">When you click me you get a surprise!</Copyable>
+                <Copyable text="Surprise!!!">When you click me you get a surprise!</Copyable>
                 <button class="nq-button" style="margin-top: 7rem; margin-left: 1rem" @click="$refs.copyable.copy()">
                     Click me to trigger a copy via code
                 </button>
             </div>
+        `,
+    }))
+    .add('Copyable Address', () => ({
+        data() {
+            return {
+                address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE',
+            };
+        },
+        components: { Copyable, AddressDisplay },
+        template: `
+            <Copyable style="margin-top: 7rem; margin-left: 2rem; display: inline-block;">
+                <AddressDisplay :address="address"/>
+            </Copyable>
         `,
     }))
     .add('CopyableField', () => {

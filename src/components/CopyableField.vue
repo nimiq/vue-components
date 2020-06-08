@@ -131,12 +131,13 @@ export default class CopyableField extends Vue {
     }
 
     .copyable-field-content::after {
-        content: 'COPIED';
+        content: 'Copied';
         position: absolute;
         right: 0;
         top: 50%;
         transform: translateY(-50%);
         font-size: 1.75rem;
+        font-weight: 600;
         color: var(--nimiq-light-blue);
         pointer-events: none;
         opacity: 0;
