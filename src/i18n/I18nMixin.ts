@@ -17,7 +17,7 @@ class I18nMixin extends Vue {
     private static readonly DEFAULT_LANGUAGE = 'en';
     private static readonly SUPPORTED_LANGUAGES = [I18nMixin.DEFAULT_LANGUAGE, 'fr'];
     private static readonly LOADED_LANGUAGE_FILES: string[] = [];
-    private static readonly LOADED_MESSAGES: { [lang: string]: string[] } = {};
+    private static readonly LOADED_MESSAGES: { [lang: string]: { [key: string]: string } } = {};
 
     /** Current active language */
     private static lang: string = I18nMixin.detectLanguage();
@@ -125,17 +125,12 @@ class I18nMixin extends Vue {
     public static $t(componentName: string, key: string, variables?: I18n$tVariables): string {
         const componentLang = I18nMixin.lang + '-' + componentName;
 
-        if (!I18nMixin.LOADED_MESSAGES[componentLang]) {
-            return key;
-        }
+        let message = I18nMixin.LOADED_MESSAGES[componentLang]
+            ? I18nMixin.LOADED_MESSAGES[componentLang][key] || key
+            : key;
 
-        let message = I18nMixin.LOADED_MESSAGES[componentLang][key] || key;
-
-        if (variables && typeof variables === 'object') {
-            Object.keys(variables).forEach((k) => {
-                const re = new RegExp(`{${k}}`, 'g');
-                message = message.replace(re, variables[k]);
-            });
+        if (typeof variables === 'object') {
+            message = message.replace(/{(\w+?)}/g, (match, variable) => variables[variable].toString() || match);
         }
 
         return message;
