@@ -59,6 +59,7 @@ class I18n extends Vue {
     }
 
     private created() {
+        this.updateTemplate = this.updateTemplate.bind(this);
         I18nMixin.onComponentLanguageLoad(
             this.$parent.$vnode.componentOptions.tag,
             this.updateTemplate,
@@ -67,6 +68,13 @@ class I18n extends Vue {
 
     private mounted() {
         this.updateTemplate();
+    }
+
+    private beforeDestroy() {
+        I18nMixin.offComponentLanguageLoad(
+            this.$parent.$vnode.componentOptions.tag,
+            this.updateTemplate,
+        );
     }
 
     private render(createElement) {

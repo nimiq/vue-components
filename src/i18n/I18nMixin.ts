@@ -20,7 +20,7 @@ class I18nMixin extends Vue {
     private static readonly LOADED_MESSAGES: { [lang: string]: string[] } = {};
 
     /** Current active language */
-    private static lang: string = '';
+    private static lang: string = I18nMixin.detectLanguage();
 
     /** Object containing an array of functions per component that are executed when a translation file is loaded */
     private static languageLoadListeners: { [component: string]: LanguageLoadListener[] } = {};
@@ -35,6 +35,21 @@ class I18nMixin extends Vue {
             I18nMixin.languageLoadListeners[componentName] = [];
         }
         I18nMixin.languageLoadListeners[componentName].push(listener);
+    }
+
+    /**
+     * Unregisters a language load event listener.
+     * @param {string} componentName - Name of the component for which to stop listening for translation load events
+     * @param {function} listener - The event listener to remove
+     */
+    public static offComponentLanguageLoad(componentName: string, listener: LanguageLoadListener) {
+        const listeners = I18nMixin.languageLoadListeners[componentName];
+        if (!listeners) return;
+        const index = listeners.indexOf(listener);
+        if (index === -1) return;
+        // more performant equivalent of splice(i, 1), see https://twitter.com/Rich_Harris/status/1125850391155965952
+        listeners[index] = listeners[listeners.length - 1];
+        listeners.pop();
     }
 
     /**
@@ -143,13 +158,18 @@ class I18nMixin extends Vue {
     }
 
     protected created() {
-        window.addEventListener('focus', this.onTabFocus.bind(this));
+        this.onTabFocus = this.onTabFocus.bind(this);
+        this.$forceUpdate = this.$forceUpdate.bind(this);
 
-        I18nMixin.onComponentLanguageLoad(this.constructor.name, this.$forceUpdate.bind(this));
-        if (!I18nMixin.lang) {
-            I18nMixin.lang = I18nMixin.detectLanguage();
-        }
+        window.addEventListener('focus', this.onTabFocus);
+
+        I18nMixin.onComponentLanguageLoad(this.constructor.name, this.$forceUpdate);
         I18nMixin.loadComponentLanguage(this.constructor.name);
+    }
+
+    protected beforeDestroy() {
+        window.removeEventListener('focus', this.onTabFocus);
+        I18nMixin.offComponentLanguageLoad(this.constructor.name, this.$forceUpdate);
     }
 }
 
