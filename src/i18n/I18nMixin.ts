@@ -16,7 +16,7 @@ type LanguageLoadListener = (lang: string) => void;
 class I18nMixin extends Vue {
     private static readonly DEFAULT_LANGUAGE = 'en';
     private static readonly SUPPORTED_LANGUAGES = [I18nMixin.DEFAULT_LANGUAGE, 'fr'];
-    private static readonly LOADED_LANGUAGES: string[] = [];
+    private static readonly LOADED_LANGUAGE_FILES: string[] = [];
     private static readonly LOADED_MESSAGES: { [lang: string]: string[] } = {};
 
     /** Current active language */
@@ -78,19 +78,24 @@ class I18nMixin extends Vue {
 
         const componentLang = lang + '-' + componentName;
 
-        // If the language was already loaded
-        if (I18nMixin.LOADED_LANGUAGES.includes(componentLang)) {
+        if (I18nMixin.LOADED_LANGUAGE_FILES.includes(componentLang)) {
+            // language was already loaded
             return componentLang;
         }
 
-        // If the language hasn't been loaded yet
+        // Lazy-load translations. Note that the request is cached and not repeated for parallel calls
         const messages = await import(
             // tslint:disable-next-line: trailing-comma
             /* webpackChunkName: "lang-[request]" */ `./${lang}/${componentName}.json`
         );
 
+        if (I18nMixin.LOADED_LANGUAGE_FILES.includes(componentLang)) {
+            // another call loaded the language in the meantime and resolved earlier
+            return componentLang;
+        }
+
         I18nMixin.LOADED_MESSAGES[componentLang] = messages.default || {};
-        I18nMixin.LOADED_LANGUAGES.push(componentLang);
+        I18nMixin.LOADED_LANGUAGE_FILES.push(componentLang);
         I18nMixin.fireComponentLanguageLoad(componentName, lang);
         return componentLang;
     }
