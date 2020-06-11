@@ -38,14 +38,20 @@ class I18nMixin extends Vue {
     }
 
     /**
-     * Detect the current active language. If no language is set fallback to the browser language.
+     * Detect the language to use. If no language is set fallback to the browser language.
      * @returns {string} The language code
      */
     public static detectLanguage(): string {
         const langCookie = Cookie.getCookie('lang');
-        const fallbackLang = window.navigator.language.split('-')[0];
+        // const fallbackLang = window.navigator.language.split('-')[0];
+        const fallbackLang = 'en'; // TODO just temporarily, until language switching is enabled in wallet
 
-        return langCookie || fallbackLang;
+        let lang = langCookie || fallbackLang;
+        // If the language is not supported set it to the default one
+        if (!I18nMixin.SUPPORTED_LANGUAGES.includes(lang)) {
+            lang = I18nMixin.DEFAULT_LANGUAGE;
+        }
+        return lang;
     }
 
     /**
