@@ -106,29 +106,21 @@ class I18nMixin extends Vue {
         const lang = I18nMixin.lang;
         const componentLang = lang + '-' + componentName;
 
-        if (componentLang in I18nMixin.loadedMessages) {
-            // language was already loaded
-            return;
+        if (!(componentLang in I18nMixin.loadedMessages)) {
+            // Lazy-load translations. Note that the request is cached and not repeated for parallel calls
+            const messages = await import(
+                // tslint:disable-next-line: trailing-comma
+                /* webpackChunkName: "lang-[request]" */ `./${lang}/${componentName}.json`
+            );
+
+            I18nMixin.loadedMessages[componentLang] = messages.default || {};
         }
-
-        // Lazy-load translations. Note that the request is cached and not repeated for parallel calls
-        const messages = await import(
-            // tslint:disable-next-line: trailing-comma
-            /* webpackChunkName: "lang-[request]" */ `./${lang}/${componentName}.json`
-        );
-
-        if (componentLang in I18nMixin.loadedMessages) {
-            // another call loaded the language in the meantime and resolved earlier
-            return;
-        }
-
-        I18nMixin.loadedMessages[componentLang] = messages.default || {};
 
         const componentsToNotify = I18nMixin.registeredComponents[componentName] || [];
         for (const component of componentsToNotify) {
             // rerender with new language and notify potential event listeners
             component.$forceUpdate();
-            component.$emit(I18nMixin.Events.LANGUAGE_LOAD, lang);
+            component.$emit(I18nMixin.Events.LANGUAGE_READY, lang);
         }
     }
 
@@ -153,7 +145,7 @@ class I18nMixin extends Vue {
 
 namespace I18nMixin {
     export enum Events {
-        LANGUAGE_LOAD = 'language-load',
+        LANGUAGE_READY = 'language-ready',
     }
 }
 

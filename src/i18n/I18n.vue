@@ -60,7 +60,7 @@ class I18n extends Vue {
 
     private created() {
         this.updateTemplate = this.updateTemplate.bind(this);
-        this.$parent.$on(I18nMixin.Events.LANGUAGE_LOAD, this.updateTemplate);
+        this.$parent.$on(I18nMixin.Events.LANGUAGE_READY, this.updateTemplate);
     }
 
     private mounted() {
@@ -68,7 +68,7 @@ class I18n extends Vue {
     }
 
     private beforeDestroy() {
-        this.$parent.$off(I18nMixin.Events.LANGUAGE_LOAD, this.updateTemplate);
+        this.$parent.$off(I18nMixin.Events.LANGUAGE_READY, this.updateTemplate);
     }
 
     private render(createElement) {
