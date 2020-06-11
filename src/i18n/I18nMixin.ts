@@ -18,6 +18,7 @@ class I18nMixin extends Vue {
     private static readonly SUPPORTED_LANGUAGES = [I18nMixin.DEFAULT_LANGUAGE, 'fr'];
     private static readonly LOADED_LANGUAGE_FILES: string[] = [];
     private static readonly LOADED_MESSAGES: { [lang: string]: { [key: string]: string } } = {};
+    private static readonly REGISTERED_COMPONENTS: { [componentName: string]: Set<Vue> } = {};
 
     /** Current active language */
     private static lang: string = I18nMixin.detectLanguage();
@@ -66,6 +67,23 @@ class I18nMixin extends Vue {
     }
 
     /**
+     * Set the language to use. This will lazy-load the translation files and rerender the ui once ready.
+     * @param {string} lang - The language to use.
+     */
+    public static setLanguage(lang: string) {
+        // If the language is not supported set it to the default one
+        if (!I18nMixin.SUPPORTED_LANGUAGES.includes(lang)) {
+            lang = I18nMixin.DEFAULT_LANGUAGE;
+        }
+        if (lang === I18nMixin.lang) return;
+
+        I18nMixin.lang = lang;
+        for (const componentName of Object.keys(I18nMixin.REGISTERED_COMPONENTS)) {
+            I18nMixin.loadComponentLanguage(componentName, lang);
+        }
+    }
+
+    /**
      * Detect the current active language. If no language is set fallback to the browser language.
      * @returns {string} The language code
      */
@@ -76,13 +94,34 @@ class I18nMixin extends Vue {
         return langCookie || fallbackLang;
     }
 
+    private static registerComponent(component: Vue) {
+        const componentName = component.constructor.name;
+        let componentsOfSameType = I18nMixin.REGISTERED_COMPONENTS[componentName];
+        if (!componentsOfSameType) {
+            componentsOfSameType = new Set<Vue>();
+            I18nMixin.REGISTERED_COMPONENTS[componentName] = componentsOfSameType;
+        }
+        componentsOfSameType.add(component);
+    }
+
+    private static unregisterComponent(component: Vue) {
+        const componentName = component.constructor.name;
+        let componentsOfSameType = I18nMixin.REGISTERED_COMPONENTS[componentName];
+        if (!componentsOfSameType) return;
+        if (componentsOfSameType.size === 1) {
+            delete I18nMixin.REGISTERED_COMPONENTS[componentName];
+        } else {
+            componentsOfSameType.delete(component);
+        }
+    }
+
     /**
      * Asynchronously load a translation file.
      * @param {string} componentName - Name of the component you want to load a translation for
      * @param {string} lang - Language of the translation you want to load
      * @returns {Promise<string>} a string containing the language code and the component name, separated by a dash
      */
-    public static async loadComponentLanguage(
+    private static async loadComponentLanguage(
         componentName: string,
         lang: string = I18nMixin.lang,
     ): Promise<string> {
@@ -153,6 +192,8 @@ class I18nMixin extends Vue {
     }
 
     protected created() {
+        I18nMixin.registerComponent(this);
+
         this.onTabFocus = this.onTabFocus.bind(this);
         this.$forceUpdate = this.$forceUpdate.bind(this);
 
@@ -163,6 +204,8 @@ class I18nMixin extends Vue {
     }
 
     protected beforeDestroy() {
+        I18nMixin.unregisterComponent(this);
+
         window.removeEventListener('focus', this.onTabFocus);
         I18nMixin.offComponentLanguageLoad(this.constructor.name, this.$forceUpdate);
     }
