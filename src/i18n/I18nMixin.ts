@@ -75,6 +75,7 @@ class I18nMixin extends Vue {
         if (!componentsOfSameType) {
             componentsOfSameType = new Set<Vue>();
             I18nMixin.registeredComponents[componentName] = componentsOfSameType;
+            I18nMixin.loadComponentLanguageFile(componentName);
         }
         componentsOfSameType.add(component);
     }
@@ -135,24 +136,12 @@ class I18nMixin extends Vue {
         return I18nMixin.$t(this.constructor.name, key, variables);
     }
 
-    /** On tab focus check whether the language changed and if so, load the new language */
-    private onTabFocus() {
-        I18nMixin.lang = I18nMixin.detectLanguage();
-        I18nMixin.loadComponentLanguageFile(this.constructor.name);
-    }
-
     protected created() {
         I18nMixin.registerComponent(this);
-
-        this.onTabFocus = this.onTabFocus.bind(this);
-        window.addEventListener('focus', this.onTabFocus);
-
-        I18nMixin.loadComponentLanguageFile(this.constructor.name);
     }
 
     protected beforeDestroy() {
         I18nMixin.unregisterComponent(this);
-        window.removeEventListener('focus', this.onTabFocus);
     }
 }
 
@@ -161,5 +150,8 @@ namespace I18nMixin {
         LANGUAGE_LOAD = 'language-load',
     }
 }
+
+// Update the language in case it was changed via language cookie.
+window.addEventListener('focus', () => I18nMixin.setLanguage(I18nMixin.detectLanguage()));
 
 export default I18nMixin;
