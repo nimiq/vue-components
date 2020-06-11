@@ -1,85 +1,43 @@
 <script lang="ts">
-
 import { Vue, Component, Prop } from 'vue-property-decorator';
 import I18nMixin from './I18nMixin';
-import { VNode } from 'vue';
 
 /**
  * Component for slot interpolation, similar to vue-i18n's interpolation component,
  * see https://kazupon.github.io/vue-i18n/guide/interpolation.html#slots-syntax-usage
  */
 @Component
-class I18n extends Vue {
-
+export default class I18n extends Vue {
     @Prop({
         type: String,
         required: true,
     })
-    private path!: string;
+    public path!: string;
 
-    private template: Array<string | VNode | VNode[]> = [];
+    private created() {
+        this.$forceUpdate = this.$forceUpdate.bind(this);
+        this.$vnode.context.$on(I18nMixin.Events.LANGUAGE_READY, this.$forceUpdate);
+    }
 
-    private updateTemplate() {
-        this.template = [];
+    private beforeDestroy() {
+        this.$vnode.context.$off(I18nMixin.Events.LANGUAGE_READY, this.$forceUpdate);
+    }
 
-        const trad = I18nMixin.$t(this.$vnode.context.$vnode.componentOptions.tag, this.path.replace(/\\n/gm, '\n'));
-        const slotNames = Object.keys(this.$slots);
-        const isEveryVarASlot = slotNames.every((slotName) => trad.includes(`{${slotName}}`));
-
-        if (!slotNames.length) {
+    private render(createElement) {
+        if (!Object.keys(this.$slots).length) {
             throw new Error(
                 'I18n: the component must contain at least 1 template slot, otherwise simply use the $t function.',
             );
         }
-        if (!isEveryVarASlot) {
-            throw new Error('I18n: every {variable} in the translation must be a template slot.');
-        }
 
-        const re = /\{(\w+)\}/gm;
-        let match = re.exec(trad);
-        let lastParsedIndex = 0;
-
-        while (match != null) {
-            const stringBeforeMatch = trad.substring(lastParsedIndex, match.index);
-
-            if (stringBeforeMatch) {
-                this.template.push(stringBeforeMatch);
-            }
-            // this.arr.push(this.$slots[match[1]]);
-            this.template.push(match[0]);
-
-            lastParsedIndex = match.index + match[0].length;
-            match = re.exec(trad);
-        }
-
-        const lastPartOfString = trad.substring(lastParsedIndex);
-        if (lastPartOfString) {
-            this.template.push(lastPartOfString);
-        }
-    }
-
-    private created() {
-        this.updateTemplate = this.updateTemplate.bind(this);
-        this.$vnode.context.$on(I18nMixin.Events.LANGUAGE_READY, this.updateTemplate);
-    }
-
-    private mounted() {
-        this.updateTemplate();
-    }
-
-    private beforeDestroy() {
-        this.$vnode.context.$off(I18nMixin.Events.LANGUAGE_READY, this.updateTemplate);
-    }
-
-    private render(createElement) {
-        return createElement('span', {}, this.template.map((el) => {
-            return (typeof el === 'string' && this.$slots[el.slice(1, -1)])
-                ? this.$slots[el.slice(1, -1)]
-                : el;
-        }));
+        const message = I18nMixin.$t(this.$vnode.context.$vnode.componentOptions.tag, this.path.replace(/\\n/g, '\n'));
+        const children = message.split(/({\w+})/g)
+            .map((part) => {
+                const variableNameMatch = part.match(/^{(\w+)}$/);
+                if (!variableNameMatch) return part; // plain text part or empty part
+                return this.$slots[variableNameMatch[1]] || part;
+            });
+        return createElement('span', {}, children);
     }
 }
-
-export default I18n;
-
 </script>
