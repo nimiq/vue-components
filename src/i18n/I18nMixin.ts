@@ -106,8 +106,9 @@ class I18nMixin extends Vue {
         const lang = I18nMixin.lang;
         const componentLang = lang + '-' + componentName;
 
-        if (!(componentLang in I18nMixin.loadedMessages)) {
-            // Lazy-load translations. Note that the request is cached and not repeated for parallel calls
+        if (!(componentLang in I18nMixin.loadedMessages) && lang !== 'en') {
+            // Lazy-load translations. For English we don't load a language file but use the translation keys directly.
+            // Note that the request is cached and not repeated for parallel calls.
             const messages = await import(
                 // tslint:disable-next-line: trailing-comma
                 /* webpackChunkName: "lang-[request]" */ `./${lang}/${componentName}.json`
