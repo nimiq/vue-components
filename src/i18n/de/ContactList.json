@@ -1,9 +1,0 @@
-{
-  "A contact with the address \"{address}\",\nbut a different name already exists.\n\nDo you want to override it?": "A contact with the address \"{address}\",\nbut a different name already exists.\n\nDo you want to override it?",
-  "Cannot import file, wrong format.": "Cannot import file, wrong format.",
-  "Contact import finished.": "Contact import finished.",
-  "New contact:": "New contact:",
-  "No matches found": "No matches found",
-  "Search...": "Search...",
-  "Use the menu to add contacts": "Use the menu to add contacts"
-}
