@@ -21,13 +21,12 @@
                     </div>
                     <div v-if="isMobileOrTablet">
                         <div v-if="browser === 'chrome'">
-                            <div class="access-denied-instructions">
-                                <I18n path="Click on {icon} and go to \nSettings > Site Settings > Camera">
-                                    <template #icon>
-                                        <span class="browser-menu-icon"></span>
-                                    </template>
-                                </I18n>
-                            </div>
+                            <I18n path="Click on {icon} and go to\nSettings > Site Settings > Camera" tag="div"
+                                class="access-denied-instructions">
+                                <template #icon>
+                                    <span class="browser-menu-icon"></span>
+                                </template>
+                            </I18n>
                             <div class="browser-menu-arrow"></div>
                         </div>
                         <div v-else class="access-denied-instructions">
@@ -36,22 +35,19 @@
                         </div>
                     </div>
                     <div v-else class="access-denied-instructions">
-                        <div v-if="browser === 'safari'">
-                            <I18n path="Click on {safari} and go to\nSettings for this Website > Camera">
-                                <template #safari>
-                                    <b>{{ $t('Safari') }}</b>
-                                </template>
-                            </I18n>
-                        </div>
-                        <div v-else>
-                            <I18n path="Click on {icon} in the URL bar.">
-                                <template #icon>
-                                    <span v-if="browser === 'chrome'" class="camera-icon-chrome"></span>
-                                    <span v-else-if="browser === 'firefox'" class="camera-icon-firefox"></span>
-                                    <span v-else>{{ $t('the camera icon') }}</span>
-                                </template>
-                            </I18n>
-                        </div>
+                        <I18n v-if="browser === 'safari'"
+                            path="Click on {safari} and go to\nSettings for this Website > Camera" tag="div">
+                            <template #safari>
+                                <b>Safari</b>
+                            </template>
+                        </I18n>
+                        <I18n v-else path="Click on {icon} in the URL bar." tag="div">
+                            <template #icon>
+                                <span v-if="browser === 'chrome'" class="camera-icon-chrome"></span>
+                                <span v-else-if="browser === 'firefox'" class="camera-icon-firefox"></span>
+                                <span v-else>{{ $t('the camera icon') }}</span>
+                            </template>
+                        </I18n>
                     </div>
                 </div>
             </div>
@@ -288,6 +284,7 @@ export default QrScanner;
         width: calc(100% - 4rem);
         transform: translateX(-50%);
         line-height: 1.7;
+        white-space: pre-line;
     }
 
     .browser-menu-icon,

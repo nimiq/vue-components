@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator';
+import { Component, Mixins, Prop } from 'vue-property-decorator';
 import { Clipboard } from '@nimiq/utils';
 import I18nMixin from '../i18n/I18nMixin';
 
@@ -22,8 +22,8 @@ import I18nMixin from '../i18n/I18nMixin';
  *
  * **text** {string} [optional] - A specific text to be copied to the clipboard on click
  */
-@Component({ mixins: [I18nMixin] })
-export default class Copyable extends Vue {
+@Component
+export default class Copyable extends Mixins(I18nMixin) {
     private static readonly DISPLAY_TIME = 1800;
 
     @Prop(String)

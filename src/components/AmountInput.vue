@@ -2,7 +2,7 @@
     <div class="amount-input">
         <form class="label-input" @submit.prevent ref="fullWidth">
             <span class="width-finder width-placeholder" ref="widthPlaceholder">{{placeholder}}</span>
-            <div v-if="maxFontSize" class="full-width" :class="{'width-finder': maxWidth > 0}" >{{ $t('Width') }}</div>
+            <div v-if="maxFontSize" class="full-width" :class="{'width-finder': maxWidth > 0}">Width</div>
             <span class="width-finder width-value" ref="widthValue">{{formattedValue || ''}}</span>
             <input type="text" class="nq-input nq-light-blue" :class="vanishing"
                 :placeholder="placeholder"
@@ -15,11 +15,10 @@
 </template>
 
 <script lang="ts">
-import { Component, Mixins, Prop, Watch, Vue } from 'vue-property-decorator';
-import I18nMixin from '../i18n/I18nMixin';
+import { Component, Prop, Watch, Vue } from 'vue-property-decorator';
 
 @Component
-export default class AmountInput extends Mixins(I18nMixin) {
+export default class AmountInput extends Vue {
     public $refs!: {
         fullWidth: HTMLDivElement,
         input: HTMLInputElement,
