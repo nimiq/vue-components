@@ -15,7 +15,10 @@
                             },
                         }"
                     >
-                        {{ _getAccountTypeName(wallet) }} {{ $t('Accounts cannot be used for this operation.') }}
+                        {{ $t(
+                            '{type} accounts cannot be used for this operation.',
+                            { type: _getAccountTypeName(wallet)},
+                        ) }}
                     </Tooltip>
                 </div>
                 <AccountList
@@ -181,7 +184,7 @@ export default class AccountSelector extends Mixins(I18nMixin) {
 
     private _getAccountTypeName(account: WalletInfo): string {
         switch (account.type) {
-            case 1: return 'Legacy';
+            case 1: return this.$t('Legacy');
             case 2: return 'Keyguard';
             case 3: return 'Ledger';
             default: throw new Error(`Unknown account type ${account.type}`);

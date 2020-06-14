@@ -2,19 +2,23 @@ msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 
-#: src/components/AccountSelector.vue:18
-msgid "Accounts cannot be used for this operation."
+#: src/components/PaymentInfoLine.vue:77
+msgid "{amount} suggested network fee"
 msgstr ""
 
-#: src/components/SendTx.vue:120
+#: src/components/AccountSelector.vue:18
+msgid "{type} accounts cannot be used for this operation."
+msgstr ""
+
+#: src/components/SendTx.vue:124
 msgid "Add a public message..."
 msgstr ""
 
-#: src/components/SendTx.vue:483
+#: src/components/SendTx.vue:131
 msgid "Awaiting Consensus..."
 msgstr ""
 
-#: src/components/SendTx.vue:92
+#: src/components/SendTx.vue:96
 msgid "By adding a transation fee, you can influence how fast your transaction will be processed."
 msgstr ""
 
@@ -30,17 +34,17 @@ msgstr ""
 msgid "Choose Sender"
 msgstr ""
 
-#: src/components/QrScanner.vue:25
+#: src/components/QrScanner.vue:24
 msgid ""
-"Click on {icon} and go to \n"
+"Click on {icon} and go to\n"
 "Settings > Site Settings > Camera"
 msgstr ""
 
-#: src/components/QrScanner.vue:47
+#: src/components/QrScanner.vue:44
 msgid "Click on {icon} in the URL bar."
 msgstr ""
 
-#: src/components/QrScanner.vue:40
+#: src/components/QrScanner.vue:39
 msgid ""
 "Click on {safari} and go to\n"
 "Settings for this Website > Camera"
@@ -50,7 +54,12 @@ msgstr ""
 msgid "Contracts cannot be used for this operation."
 msgstr ""
 
-#: src/components/SendTx.vue:64
+#: src/components/Copyable.vue:5
+#: src/components/CopyableField.vue:21
+msgid "Copied"
+msgstr ""
+
+#: src/components/SendTx.vue:68
 msgid "Create a Cashlink"
 msgstr ""
 
@@ -58,11 +67,11 @@ msgstr ""
 msgid "Create Backup"
 msgstr ""
 
-#: src/components/Timer.vue:78
+#: src/components/Timer.vue:95
 msgid "day"
 msgstr ""
 
-#: src/components/Timer.vue:79
+#: src/components/Timer.vue:96
 msgid "days"
 msgstr ""
 
@@ -70,11 +79,11 @@ msgstr ""
 msgid "Effective rate"
 msgstr ""
 
-#: src/components/SendTx.vue:57
+#: src/components/SendTx.vue:61
 msgid "Enter address"
 msgstr ""
 
-#: src/components/SendTx.vue:199
+#: src/components/SendTx.vue:208
 msgid "express"
 msgstr ""
 
@@ -82,23 +91,27 @@ msgstr ""
 msgid "fee"
 msgstr ""
 
-#: src/components/SendTx.vue:189
+#: src/components/SendTx.vue:198
 msgid "free"
 msgstr ""
 
-#: src/components/QrScanner.vue:35
+#: src/components/PageHeader.vue:7
+msgid "Go back"
+msgstr ""
+
+#: src/components/QrScanner.vue:34
 msgid "Grant camera access when asked."
 msgstr ""
 
-#: src/components/Timer.vue:76
+#: src/components/Timer.vue:93
 msgid "hour"
 msgstr ""
 
-#: src/components/Timer.vue:77
+#: src/components/Timer.vue:94
 msgid "hours"
 msgstr ""
 
-#: src/components/SendTx.vue:63
+#: src/components/SendTx.vue:67
 msgid "If recipient has no Account yet:"
 msgstr ""
 
@@ -106,7 +119,11 @@ msgstr ""
 msgid "Insufficient balance"
 msgstr ""
 
-#: src/components/AccountSelector.vue:38
+#: src/components/AccountSelector.vue:187
+msgid "Legacy"
+msgstr ""
+
+#: src/components/AccountSelector.vue:41
 msgid "Login to another Account"
 msgstr ""
 
@@ -114,20 +131,25 @@ msgstr ""
 msgid "Logout"
 msgstr ""
 
-#: src/components/Timer.vue:74
+#: src/components/Timer.vue:91
 msgid "minute"
 msgstr ""
 
-#: src/components/Timer.vue:75
+#: src/components/Timer.vue:92
 msgid "minutes"
 msgstr ""
 
 #: src/components/SendTx.vue:22
-#: src/components/SendTx.vue:74
+#: src/components/SendTx.vue:78
 msgid "Name this contact..."
 msgstr ""
 
-#: src/components/PaymentInfoLine.vue:87
+#: src/components/LabelInput.vue:4
+#: src/components/LabelInput.vue:8
+msgid "Name your address"
+msgstr ""
+
+#: src/components/PaymentInfoLine.vue:88
 msgid "network fee"
 msgstr ""
 
@@ -135,7 +157,7 @@ msgstr ""
 msgid "Nimiq provides this service free of charge."
 msgstr ""
 
-#: src/components/SendTx.vue:104
+#: src/components/SendTx.vue:108
 msgid "Open settings"
 msgstr ""
 
@@ -147,15 +169,11 @@ msgstr ""
 msgid "Rename"
 msgstr ""
 
-#: src/components/QrScanner.vue:42
-msgid "Safari"
-msgstr ""
-
-#: src/components/SendTx.vue:491
+#: src/components/SendTx.vue:31
 msgid "Save & Set Amount"
 msgstr ""
 
-#: src/components/SendTx.vue:82
+#: src/components/SendTx.vue:86
 msgid "Save Contact"
 msgstr ""
 
@@ -163,52 +181,48 @@ msgstr ""
 msgid "Save Login File"
 msgstr ""
 
-#: src/components/Timer.vue:72
+#: src/components/Timer.vue:89
 msgid "second"
 msgstr ""
 
-#: src/components/Timer.vue:73
+#: src/components/Timer.vue:90
 msgid "seconds"
 msgstr ""
 
-#: src/components/SendTx.vue:37
+#: src/components/SendTx.vue:41
 msgid "Select a contact"
 msgstr ""
 
-#: src/components/SendTx.vue:45
+#: src/components/SendTx.vue:49
 msgid "Send a transaction"
 msgstr ""
 
-#: src/components/SendTx.vue:486
+#: src/components/SendTx.vue:134
 msgid "Send Transaction"
 msgstr ""
 
-#: src/components/SendTx.vue:485
+#: src/components/SendTx.vue:133
 msgid "Sending Transaction..."
 msgstr ""
 
-#: src/components/SendTx.vue:103
-#: src/components/SendTx.vue:492
+#: src/components/SendTx.vue:107
+#: src/components/SendTx.vue:32
 msgid "Set Amount"
 msgstr ""
 
-#: src/components/SendTx.vue:97
+#: src/components/SendTx.vue:101
 msgid "Set fee"
 msgstr ""
 
-#: src/components/SendTx.vue:91
+#: src/components/SendTx.vue:95
 msgid "Speed up your transaction"
 msgstr ""
 
-#: src/components/SendTx.vue:194
+#: src/components/SendTx.vue:203
 msgid "standard"
 msgstr ""
 
-#: src/components/PaymentInfoLine.vue:85
-msgid "suggested"
-msgstr ""
-
-#: src/components/QrScanner.vue:51
+#: src/components/QrScanner.vue:48
 msgid "the camera icon"
 msgstr ""
 
@@ -228,7 +242,7 @@ msgstr ""
 msgid "Unblock the camera for this website to scan QR codes."
 msgstr ""
 
-#: src/components/SendTx.vue:116
+#: src/components/SendTx.vue:120
 msgid "Unnamed Contact"
 msgstr ""
 
@@ -240,19 +254,15 @@ msgstr ""
 msgid "Vendor crypto markup"
 msgstr ""
 
-#: src/components/AmountInput.vue:5
-msgid "Width"
-msgstr ""
-
-#: src/components/PaymentInfoLine.vue:277
+#: src/components/PaymentInfoLine.vue:280
 msgid "You are paying approx. {formattedRateDeviation} less than at the current market rate (coingecko.com)."
 msgstr ""
 
-#: src/components/PaymentInfoLine.vue:271
+#: src/components/PaymentInfoLine.vue:274
 msgid "You are paying approx. {formattedRateDeviation} more than at the current market rate (coingecko.com)."
 msgstr ""
 
-#: src/components/PaymentInfoLine.vue:263
+#: src/components/PaymentInfoLine.vue:266
 msgid "Your actual discount is approx. {formattedRateDeviation} compared to the current market rate (coingecko.com)."
 msgstr ""
 

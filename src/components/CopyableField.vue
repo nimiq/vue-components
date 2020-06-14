@@ -18,16 +18,18 @@
                 }"
                 :tabindex="hasSingleKey ? -1 : 0"
             >{{key}}</button>
+            <div class="copy-notice">{{ $t('Copied') }}</div>
         </div>
     </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Watch } from 'vue-property-decorator';
+import { Vue, Component, Mixins, Prop, Watch } from 'vue-property-decorator';
 import { Clipboard } from '@nimiq/utils';
+import I18nMixin from '../i18n/I18nMixin';
 
 @Component
-export default class CopyableField extends Vue {
+export default class CopyableField extends Mixins(I18nMixin) {
     private static readonly DEFAULT_FONT_SIZE = 3; // in rem
 
     @Prop({
@@ -100,7 +102,7 @@ export default class CopyableField extends Vue {
 
 <style scoped>
     .copyable-field-content,
-    .copyable-field-content::after,
+    .copy-notice,
     button,
     .simple-value .value-container {
         transition-duration: .25s;
@@ -130,8 +132,7 @@ export default class CopyableField extends Vue {
         transition-property: background;
     }
 
-    .copyable-field-content::after {
-        content: 'Copied';
+    .copy-notice {
         position: absolute;
         right: 0;
         top: 50%;
@@ -145,7 +146,7 @@ export default class CopyableField extends Vue {
     }
 
     .copyable-field-content,
-    .copyable-field-content::after {
+    .copy-notice {
         padding: 0 3rem;
     }
 
@@ -153,7 +154,7 @@ export default class CopyableField extends Vue {
         background: rgba(255, 255, 255, 0.16);
     }
 
-    .copyable-field-content.copied::after {
+    .copied .copy-notice {
         opacity: 1;
     }
 

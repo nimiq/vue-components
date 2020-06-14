@@ -26,7 +26,11 @@
                             ref="accountDetails"
                         />
                         <PageFooter>
-                            <button class="nq-button light-blue" @click="proceedToSetAmount">{{addContactButtonText}}</button>
+                            <button class="nq-button light-blue" @click="proceedToSetAmount">{{
+                                liveContactLabel !== liveRecipient.label
+                                    ? $t('Save & Set Amount')
+                                    : $t('Set Amount')
+                            }}</button>
                         </PageFooter>
                     </SmallPage>
                 </transition>
@@ -122,7 +126,13 @@
 
                 <PageFooter class="blur-target">
                     <button class="nq-button light-blue" :disabled="!isValid || isLoading" @click="sendTransaction">
-                        <CircleSpinner v-if="showButtonLoader"/>{{buttonText}}
+                        <CircleSpinner v-if="showButtonLoader"/>{{
+                            !validityStartHeight
+                                ? $t('Awaiting Consensus...')
+                                : isLoading
+                                    ? this.$t('Sending Transaction...')
+                                    : this.$t('Send Transaction')
+                        }}
                     </button>
                 </PageFooter>
             </div>
@@ -475,20 +485,6 @@ import { Utf8Tools, BrowserDetection } from '@nimiq/utils';
                 return lunaPerByte * (166 + Utf8Tools.stringToUtf8ByteArray(this.liveExtraData).byteLength);
             }
             return lunaPerByte * 138;
-        }
-
-        private get buttonText(): string {
-            return !this.validityStartHeight
-                ? this.$t('Awaiting Consensus...')
-                : this.isLoading
-                    ? this.$t('Sending Transaction...')
-                    : this.$t('Send Transaction');
-        }
-
-        private get addContactButtonText() {
-            return this.liveContactLabel !== this.liveRecipient!.label
-                ? this.$t('Save & Set Amount')
-                : this.$t('Set Amount');
         }
 
         private get showButtonLoader(): boolean {

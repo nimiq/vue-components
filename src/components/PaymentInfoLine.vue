@@ -28,11 +28,11 @@
                 @click.native.stop
                 class="price-tooltip"
             >
-                <template v-slot:trigger>
+                <template #trigger>
                     <AlertTriangleIcon v-if="isBadRate" />
                     <FiatAmount :currency="fiatAmount.currency" :amount="fiatAmount.amount" />
                 </template>
-                <template v-slot:default>
+                <template #default>
                     <div class="price-breakdown">
                         <label>{{ $t('Order amount') }}</label>
                         <FiatAmount :currency="fiatAmount.currency" :amount="fiatAmount.amount" />
@@ -51,11 +51,11 @@
                             / {{ cryptoAmount.currency.toUpperCase() }}
                         </div>
                     </div>
-                    <div v-if="rateInfo"
+                    <div v-if="rateInfo()"
                         :class="{ 'nq-orange': isBadRate }"
                         class="rate-info info"
                     >
-                        {{ rateInfo }}
+                        {{ rateInfo() }}
                     </div>
                     <div class="free-service-info info">{{ $t('Nimiq provides this service free of charge.') }}</div>
                     <hr>
@@ -74,17 +74,18 @@
                         class="network-fee-info info"
                     >
                         +
-                        <template v-if="!isFormattedNetworkFeeZero">
-                            <Amount
-                                :currency="cryptoAmount.currency"
-                                :amount="networkFee"
-                                :currencyDecimals="cryptoAmount.decimals"
-                                :minDecimals="0"
-                                :maxDecimals="Math.min(6, cryptoAmount.decimals)"
-                            />
-                            {{ $t('suggested') }}
-                        </template>
-                        {{ $t('network fee') }}
+                        <I18n v-if="!isFormattedNetworkFeeZero" path="{amount} suggested network fee">
+                            <template #amount>
+                                <Amount
+                                    :currency="cryptoAmount.currency"
+                                    :amount="networkFee"
+                                    :currencyDecimals="cryptoAmount.decimals"
+                                    :minDecimals="0"
+                                    :maxDecimals="Math.min(6, cryptoAmount.decimals)"
+                                />
+                            </template>
+                        </I18n>
+                        <template v-else>{{ $t('network fee') }}</template>
                     </div>
                 </template>
             </Tooltip>
@@ -120,6 +121,7 @@ import FiatAmount from './FiatAmount.vue';
 import Tooltip from './Tooltip.vue';
 import { AlertTriangleIcon, ArrowRightSmallIcon } from './Icons';
 import I18nMixin from '../i18n/I18nMixin';
+import I18n from '../i18n/I18n.vue';
 
 interface CryptoAmountInfo {
     amount: number | bigint | BigInteger; // in the smallest unit
@@ -154,6 +156,7 @@ function fiatAmountInfoValidator(value: any) {
         Tooltip,
         AlertTriangleIcon,
         ArrowRightSmallIcon,
+        I18n,
     },
 })
 class PaymentInfoLine extends Mixins(I18nMixin) {
@@ -188,7 +191,7 @@ class PaymentInfoLine extends Mixins(I18nMixin) {
         this.updateReferenceRate();
     }
 
-    private destroyed() {
+    protected destroyed() {
         window.clearTimeout(this.referenceRateUpdateTimeout);
     }
 
@@ -252,7 +255,8 @@ class PaymentInfoLine extends Mixins(I18nMixin) {
         return `${Math.round(Math.abs(this.rateDeviation) * 100 * 10) / 10}%`;
     }
 
-    private get rateInfo() {
+    private rateInfo() {
+        // Note: this method is not a getter / computed property to update on language changes
         if (this.rateDeviation === null
             || (Math.abs(this.rateDeviation) < PaymentInfoLine.RATE_DEVIATION_THRESHOLD && !this.isBadRate)) {
             return null;
