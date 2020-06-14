@@ -156,7 +156,7 @@ storiesOf('Basic', module)
                 changed: action('changed'),
                 input: action('input'),
             },
-            template: `<LabelInput placeholder="Name this account..." @changed="changed" @input="input"/>`,
+            template: `<LabelInput @changed="changed" @input="input"/>`,
         };
     })
     .add('LabelInput (restricted to 63 bytes)', () => {

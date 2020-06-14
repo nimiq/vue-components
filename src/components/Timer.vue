@@ -5,7 +5,7 @@
             theme,
             ...tooltipProps,
             styles: {
-                width: '17.25rem',
+                width: '18.25rem',
                 pointerEvents: 'none',
                 ...(tooltipProps ? tooltipProps.styles : undefined),
             },
@@ -18,7 +18,7 @@
             'inverse-theme': theme === constructor.Themes.INVERSE,
         }"
     >
-        <template v-slot:trigger>
+        <template #trigger>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26">
                 <circle ref="time-circle" class="time-circle" cx="50%" cy="50%" :r="radius.currentValue"
                     :stroke-dasharray="`${_timeCircleInfo.length} ${_timeCircleInfo.gap}`"
@@ -40,11 +40,9 @@
                 </transition>
             </svg>
         </template>
-        <template v-slot:default>
+        <template #default>
             <I18n path="This offer expires in {timer}.">
-                <template #timer>
-                    {{ _timeLeft | _toSimplifiedTime(true) }}
-                </template>
+                <template #timer>{{ _timeLeft | _toSimplifiedTime(true) }}</template>
             </I18n>
         </template>
     </Tooltip>
@@ -74,17 +72,6 @@ const TIME_STEPS = [
 function _toSimplifiedTime(millis: number, includeUnit?: true): string;
 function _toSimplifiedTime(millis: number, includeUnit: false): number;
 function _toSimplifiedTime(millis: number, includeUnit: boolean = true): number | string {
-    const i18nTime = {
-        get second() { return I18nMixin.$t('Timer', 'second'); },
-        get seconds() { return I18nMixin.$t('Timer', 'seconds'); },
-        get minute() { return I18nMixin.$t('Timer', 'minute'); },
-        get minutes() { return I18nMixin.$t('Timer', 'minutes'); },
-        get hour() { return I18nMixin.$t('Timer', 'hour'); },
-        get hours() { return I18nMixin.$t('Timer', 'hours'); },
-        get day() { return I18nMixin.$t('Timer', 'day'); },
-        get days() { return I18nMixin.$t('Timer', 'days'); },
-    };
-
     // find appropriate unit, starting with second
     let resultTime = millis / 1000;
     let resultUnit = 'second';
@@ -98,6 +85,17 @@ function _toSimplifiedTime(millis: number, includeUnit: boolean = true): number 
     if (!includeUnit) {
         return resultTime;
     } else {
+        const i18nTime = {
+            get second() { return I18nMixin.$t('Timer', 'second'); },
+            get seconds() { return I18nMixin.$t('Timer', 'seconds'); },
+            get minute() { return I18nMixin.$t('Timer', 'minute'); },
+            get minutes() { return I18nMixin.$t('Timer', 'minutes'); },
+            get hour() { return I18nMixin.$t('Timer', 'hour'); },
+            get hours() { return I18nMixin.$t('Timer', 'hours'); },
+            get day() { return I18nMixin.$t('Timer', 'day'); },
+            get days() { return I18nMixin.$t('Timer', 'days'); },
+        };
+
         resultUnit = i18nTime[`${resultUnit}${resultTime !== 1 ? 's' : ''}`];
         return `${resultTime} ${resultUnit}`;
     }
