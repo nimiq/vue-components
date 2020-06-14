@@ -14,6 +14,12 @@ export default class I18n extends Vue {
     })
     public path!: string;
 
+    @Prop({
+        type: String,
+        default: 'span',
+    })
+    public tag!: string;
+
     private created() {
         this.$forceUpdate = this.$forceUpdate.bind(this);
         this.$vnode.context.$on(I18nMixin.Events.LANGUAGE_READY, this.$forceUpdate);
@@ -37,7 +43,7 @@ export default class I18n extends Vue {
                 if (!variableNameMatch) return part; // plain text part or empty part
                 return this.$slots[variableNameMatch[1]] || part;
             });
-        return createElement('span', {}, children);
+        return createElement(this.tag, {}, children);
     }
 }
 </script>
