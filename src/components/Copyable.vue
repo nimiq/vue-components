@@ -23,7 +23,7 @@ import { Clipboard } from '@nimiq/utils';
  */
 @Component
 export default class Copyable extends Vue {
-    private static readonly DISPLAY_TIME = 1800;
+    private static readonly DISPLAY_TIME = 800;
 
     @Prop(String)
     public text?: string;
