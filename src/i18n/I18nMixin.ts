@@ -1,9 +1,7 @@
 import { Cookie } from '@nimiq/utils';
 import { Vue, Component } from 'vue-property-decorator';
 
-interface I18n$tVariables {
-    [key: string]: string | number;
-}
+type I18n$tVariables = { [key: string]: string | number } | any[];
 
 /**
  * i18n mixin for vue-components that provides a similar, but reduced, api as vue-i18n. This is to avoid that users need
@@ -58,17 +56,39 @@ class I18nMixin extends Vue {
      * Get the translation of a given string for a component.
      * @param {string} componentName - Name of the component you want the translation for
      * @param {string} key - The string you want the translation for
-     * @param {I18n$tVariables} variables - Variables to be replaced in the translated string. Optional.
+     * @param {I18n$tVariables} [variables] - Variables to be replaced in the translated string. Optional.
      * @returns {string} The translated string.
      */
-    public static $t(componentName: string, key: string, variables?: I18n$tVariables): string {
-        const componentLang = I18nMixin.lang + '-' + componentName;
+    public static $t(componentName: string, key: string, variables?: I18n$tVariables): string;
+    /**
+     * Get the translation of a given string for a component.
+     * @param {string} componentName - Name of the component you want the translation for
+     * @param {string} key - The string you want the translation for
+     * @param {string} lang - Language to use. The language has to be already loaded.
+     * @param {I18n$tVariables} [variables] - Variables to be replaced in the translated string. Optional.
+     * @returns {string} The translated string.
+     */
+    public static $t(componentName: string, key: string, lang: string, variables?: I18n$tVariables): string;
+    public static $t(
+        componentName: string,
+        key: string,
+        variablesOrLang?: I18n$tVariables | string,
+        variables?: I18n$tVariables,
+    ): string {
+        let lang;
+        if (typeof variablesOrLang === 'string') {
+            lang = variablesOrLang;
+        } else {
+            lang = I18nMixin.lang;
+            variables = variablesOrLang;
+        }
+        const componentLang = `${lang}-${componentName}`;
 
         let message = I18nMixin.loadedMessages[componentLang]
             ? I18nMixin.loadedMessages[componentLang][key] || key
             : key;
 
-        if (typeof variables === 'object') {
+        if (typeof variables === 'object' || Array.isArray(variables)) {
             message = message.replace(/{(\w+?)}/g, (match, variable) => variables[variable].toString() || match);
         }
 
@@ -100,7 +120,6 @@ class I18nMixin extends Vue {
     /**
      * Asynchronously load a translation file.
      * @param {string} componentName - Name of the component you want to load a translation for
-     * @param {string} lang - Language of the translation you want to load
      */
     private static async loadComponentLanguageFile(componentName: string) {
         const lang = I18nMixin.lang;
@@ -125,17 +144,26 @@ class I18nMixin extends Vue {
         }
     }
 
+    /* tslint:disable:jsdoc-format */
     /**
      * Get the translation of a given string for this component.
      * @param {string} key - The string you want the translation for
-     * @param {I18n$tVariables} variables - Variables to be replaced in the translated string. Optional.
+     * @param {I18n$tVariables} [variables] - Variables to be replaced in the translated string. Optional.
+     * @returns {string} The translated string.
+     *//**
+     * Get the translation of a given string for this component.
+     * @param {string} key - The string you want the translation for
+     * @param {string} lang - Language to use. The language has to be already loaded.
+     * @param {I18n$tVariables} [variables] - Variables to be replaced in the translated string. Optional.
      * @returns {string} The translated string.
      */
-    public $t(key: string, variables?: I18n$tVariables) {
-        return I18nMixin.$t(this.constructor.name, key, variables);
-    }
+    /* tslint:enable:jsdoc-format */
+    // declared as property instead of instance member function for type compatibility with vue-i18n
+    public $t: (key: string, variablesOrLang?: I18n$tVariables | string, variables?: I18n$tVariables) => string;
 
-    protected created() {
+    protected beforeCreate() {
+        this.$t = I18nMixin.$t.bind(this, this.constructor.name);
+
         I18nMixin.registerComponent(this);
     }
 
