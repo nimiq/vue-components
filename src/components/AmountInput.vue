@@ -31,6 +31,7 @@ export default class AmountInput extends Vue {
     @Prop({type: Number, default: 8}) private maxFontSize!: number;
     @Prop({type: String, default: '0'}) private placeholder!: string;
     @Prop({type: Boolean, default: false}) private vanishing!: boolean;
+    @Prop({type: Number, default: 5}) private decimals!: number;
 
     private liveValue: string = '';
     private lastEmittedValue = 0;
@@ -51,7 +52,7 @@ export default class AmountInput extends Vue {
 
     @Watch('value', { immediate: true })
     private updateValue(newValue: number) {
-        this.formattedValue = newValue ? (newValue / 1e5).toString() : '';
+        this.formattedValue = newValue ? (newValue / Math.pow(10, this.decimals)).toString() : '';
         this.updateWidth();
     }
 
@@ -82,12 +83,12 @@ export default class AmountInput extends Vue {
         }
 
         value = value.replace(/\,/, '.');
-        const regExp = new RegExp(/(\d*)(\.(\d{0,5}))?/g);
+        const regExp = new RegExp(`(\\d*)(\\.(\\d{0,${this.decimals}}))?`, 'g'); // Backslashes are escaped
         const regExpResult = regExp.exec(value)!;
         if (regExpResult[1] || regExpResult[2]) {
             this.liveValue = `${regExpResult[1] ? regExpResult[1] : '0'}${regExpResult[2] ? regExpResult[2] : ''}`;
             this.valueInLuna = Number(
-                `${regExpResult[1]}${regExpResult[2] ? regExpResult[3].padEnd(5, '0') : '00000'}`,
+                `${regExpResult[1]}${(regExpResult[2] ? regExpResult[3] : '').padEnd(this.decimals, '0')}`,
             );
         }
 
