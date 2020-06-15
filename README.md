@@ -13,6 +13,46 @@ yarn add github:nimiq/vue-components#build/master
 This will install the complete component collection. To install only a subset for reduced bundle size, see section
 [Advanced setup](#advanced-setup).
 
+The components offer translations via lazy-loaded language files. If you want to support other languages than
+English, you have to copy these language files over to your project. If your project has been created with the
+[vue-cli](https://cli.vuejs.org/) / gets bundled via [webpack](https://webpack.js.org/), this can be conveniently done
+with the [CopyWebpackPlugin](https://webpack.js.org/plugins/copy-webpack-plugin/):
+
+```js
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
+const plugins = [
+    new CopyWebpackPlugin([
+        {
+            from: 'node_modules/@nimiq/vue-components/dist/NimiqVueComponents.umd.min.lang-*.js',
+            to: './js',
+            flatten: true,
+            transformPath(path) {
+                // If you are bundling a non-minified build of the components (for later minification in your build
+                // process; the default) it tries to also load the the non-minified language files, but we want
+                // to load the minified files instead, so we rename them.
+                return path.replace('.min', '');
+            },
+        },
+    ]),
+    ...
+];
+
+// webpack.config.js:
+module.exports = {
+  plugins,
+  ...
+};
+
+// Or for projects created via vue-cli:
+module.exports = {
+    configureWebpack: {
+        plugins,
+    },
+    ...
+};
+```
+
 ## Updating
 
 ```bash
