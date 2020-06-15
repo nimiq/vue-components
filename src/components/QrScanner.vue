@@ -245,7 +245,7 @@ export default QrScanner;
         bottom: 3rem;
         left: 50%;
         transform: translateX(-50%);
-        color: inherit;
+        color: var(--nimiq-blue);
     }
 
     .cancel-button:hover,

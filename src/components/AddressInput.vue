@@ -110,7 +110,7 @@ export default class AddressInput extends Vue {
     public value!: string;
 
     @Prop(Boolean)
-    public autofocus?: string;
+    public autofocus?: boolean;
 
     public $refs: { textarea: HTMLTextAreaElement };
 

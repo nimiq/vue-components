@@ -59,27 +59,25 @@ interface CircleInfo {
     strokeWidth: number;
 }
 
+const TIME_STEPS = [
+    { unit: 'minute', factor: 60 },
+    { unit: 'hour', factor: 60 },
+    { unit: 'day', factor: 24 },
+];
+
 function _toSimplifiedTime(millis: number, includeUnit?: true): string;
 function _toSimplifiedTime(millis: number, includeUnit: false): number;
 function _toSimplifiedTime(millis: number, includeUnit: boolean = true): number | string {
     // find appropriate unit, starting with second
     let resultTime = millis / 1000;
     let resultUnit = 'second';
-    const timeSteps = [
-        { unit: 'minute', factor: 60 },
-        { unit: 'hour', factor: 60 },
-        { unit: 'day', factor: 24 },
-    ];
-    for (const { unit, factor } of timeSteps) {
-        if (resultTime / factor < 1) {
-            break;
-        } else {
-            resultTime /= factor;
-            resultUnit = unit;
-        }
+    for (const { unit, factor } of TIME_STEPS) {
+        if (resultTime / factor < 1) break;
+        resultTime /= factor;
+        resultUnit = unit;
     }
 
-    resultTime = Math.round(resultTime);
+    resultTime = Math.floor(resultTime);
     if (!includeUnit) {
         return resultTime;
     } else {
@@ -139,7 +137,7 @@ class Timer extends Vue {
         : Timer.BASE_RADIUS);
     private fullCircleLength: number = 2 * Math.PI * this.radius.currentValue;
     private timeoutId: number | null = null;
-    private updateIntervalId: number | null = null;
+    private updateTimeoutId: number | null = null;
     private requestAnimationFrameId: number | null = null;
     private size: number = Timer.BASE_SIZE;
 
@@ -151,7 +149,7 @@ class Timer extends Vue {
 
     private destroyed() {
         clearTimeout(this.timeoutId);
-        clearInterval(this.updateIntervalId);
+        clearTimeout(this.updateTimeoutId);
         cancelAnimationFrame(this.requestAnimationFrameId);
         window.removeEventListener('resize', this._onResize);
     }
@@ -209,15 +207,40 @@ class Timer extends Vue {
         return { length, lengthWithLineCaps, gap, offset, strokeWidth };
     }
 
-    private get _updateInterval(): number {
+    private _calculateUpdateInterval(): number {
+        // Not a getter / computed prop to avoid unnecessary updates when not needed.
         const scaleFactor = this.size / Timer.BASE_SIZE;
         const circleLengthPixels = this.fullCircleLength * scaleFactor;
         const steps = circleLengthPixels * 3; // update every .33 pixel change for smooth transitions
         const minInterval = 1000 / 60; // up to 60 fps
-        const maxInterval = (this.detailsShown || this.alwaysShowTime) && this._timeLeft < 60000
-            ? 500 // when counting down seconds update more regularly
-            : Number.POSITIVE_INFINITY;
-        return Math.max(minInterval, Math.min(maxInterval, this._totalTime / steps));
+        // Constrain interval such that we don't skip time steps in the countdown for the respective time unit.
+        const timeLeft = this._timeLeft;
+        const totalTime = this._totalTime;
+        const updatesPerTimeStep = 2; // multiple updates per time step to avoid skipping a step by a delayed interval
+        let timeStep = 1000; // starting with seconds
+        let maxInterval = timeStep / updatesPerTimeStep;
+        for (const { factor } of TIME_STEPS) {
+            const nextTimeStep = timeStep * factor;
+            const nextMaxInterval = nextTimeStep / updatesPerTimeStep;
+            const nextInterval = Math.min(nextMaxInterval, Math.max(minInterval, totalTime / steps));
+            if ((timeLeft - nextInterval) / nextTimeStep < 1) {
+                // If the time left after nextInterval can't be expressed in nextTimeStep as a value >=1, stop. We check
+                // for the time after the next interval to avoid jumping for example from 70s (displayed as 1 minute)
+                // directly to 50s if the interval is 20s. Note that the behavior here resembles the one in
+                // _toSimplifiedTime.
+                if (timeLeft / nextTimeStep > 1) {
+                    // If the value before the interval is still >1 in the next time unit still allow a larger jump than
+                    // at the smaller time unit but set the maxInterval such that we jump no further than where the
+                    // switch to the smaller unit happens, for example jump from 70s to 60s if the interval is 20s.
+                    maxInterval = timeLeft - nextTimeStep;
+                }
+                break;
+            }
+            timeStep = nextTimeStep;
+            maxInterval = nextMaxInterval;
+        }
+
+        return Math.min(maxInterval, Math.max(minInterval, this._totalTime / steps));
     }
 
     @Watch('detailsShown', { immediate: true })
@@ -226,7 +249,7 @@ class Timer extends Vue {
         this.radius.tweenTo(this.detailsShown || this.alwaysShowTime
             ? Timer.RADIUS_GROWTH_FACTOR * Timer.BASE_RADIUS
             : Timer.BASE_RADIUS, 300);
-        this._animateRadius();
+        this._rerender();
     }
 
     @Watch('startTime', { immediate: true })
@@ -238,39 +261,26 @@ class Timer extends Vue {
         if (this.startTime && this.endTime) {
             this.timeoutId = window.setTimeout(() => this.$emit(Timer.Events.END, this.endTime),
                 this.endTime - this.sampledTime);
-            this._setupUpdateInterval();
+            this._rerender();
         }
-    }
-
-    @Watch('_updateInterval')
-    private _setupUpdateInterval() {
-        if (this._timeLeft === 0 || this.requestAnimationFrameId !== null) return;
-
-        clearInterval(this.updateIntervalId);
-        this.updateIntervalId = window.setInterval(() => {
-            this._rerender();
-            if (this._timeLeft !== 0) return;
-            clearInterval(this.updateIntervalId);
-        }, this._updateInterval);
-    }
-
-    private _animateRadius() {
-        if (this.requestAnimationFrameId !== null || this.radius.finished) return;
-        clearInterval(this.updateIntervalId); // stop interval while we render via requestAnimationFrame
-        this.requestAnimationFrameId = requestAnimationFrame(() => {
-            this._rerender();
-            this.requestAnimationFrameId = null;
-            if (this.radius.finished) {
-                this._setupUpdateInterval(); // start update interval again
-            } else {
-                this._animateRadius();
-            }
-        });
     }
 
     private _rerender() {
         this.sampledTime = Date.now() + this.timeOffset;
         this.fullCircleLength = 2 * Math.PI * this.radius.currentValue;
+
+        if (this._timeLeft === 0 && this.radius.finished) return;
+
+        clearTimeout(this.updateTimeoutId);
+        cancelAnimationFrame(this.requestAnimationFrameId);
+
+        if (!this.radius.finished) {
+            // animate radius with high frame rate
+            this.requestAnimationFrameId = requestAnimationFrame(() => this._rerender());
+        } else {
+            // update with low frame rate
+            this.updateTimeoutId = window.setTimeout(() => this._rerender(), this._calculateUpdateInterval());
+        }
     }
 
     private _onResize() {

@@ -4,7 +4,7 @@
             <span class="width-finder width-placeholder" ref="widthPlaceholder">{{placeholder}}</span>
             <div v-if="maxFontSize" class="full-width" :class="{'width-finder': maxWidth > 0}" >Width</div>
             <span class="width-finder width-value" ref="widthValue">{{formattedValue || ''}}</span>
-            <input type="text" class="nq-input nq-light-blue vanishing"
+            <input type="text" class="nq-input nq-light-blue" :class="vanishing"
                 :placeholder="placeholder"
                 :style="{width: `${this.width}px`, fontSize: `${this.fontSize}rem`}"
                 v-model="formattedValue"
@@ -30,6 +30,7 @@ export default class AmountInput extends Vue {
     @Prop({type: Number}) private value?: number;
     @Prop({type: Number, default: 8}) private maxFontSize!: number;
     @Prop({type: String, default: '0'}) private placeholder!: string;
+    @Prop({type: Boolean, default: false}) private vanishing!: boolean;
 
     private liveValue: string = '';
     private lastEmittedValue = 0;
