@@ -385,7 +385,8 @@ export default Tooltip;
         color: inherit;
     }
 
-    .trigger >>> svg:first-child:last-child {
+    .trigger >>> svg:first-child:last-child,
+    .trigger >>> img:first-child:last-child {
         display: block;
     }
 

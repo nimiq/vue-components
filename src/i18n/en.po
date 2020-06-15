@@ -1,0 +1,271 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+#: src/components/PaymentInfoLine.vue:78
+msgid "{amount} suggested network fee"
+msgstr ""
+
+#: src/components/AccountSelector.vue:18
+msgid "{type} accounts cannot be used for this operation."
+msgstr ""
+
+#: src/components/SendTx.vue:124
+msgid "Add a public message..."
+msgstr ""
+
+#: src/components/SendTx.vue:131
+msgid "Awaiting Consensus..."
+msgstr ""
+
+#: src/components/SendTx.vue:96
+msgid "By adding a transation fee, you can influence how fast your transaction will be processed."
+msgstr ""
+
+#: src/components/QrScanner.vue:11
+msgid "Cancel"
+msgstr ""
+
+#: src/components/Wallet.vue:24
+msgid "Change Password"
+msgstr ""
+
+#: src/components/SendTx.vue:6
+msgid "Choose Sender"
+msgstr ""
+
+#: src/components/QrScanner.vue:24
+msgid ""
+"Click on {icon} and go to\n"
+"Settings > Site Settings > Camera"
+msgstr ""
+
+#: src/components/QrScanner.vue:44
+msgid "Click on {icon} in the URL bar."
+msgstr ""
+
+#: src/components/QrScanner.vue:39
+msgid ""
+"Click on {safari} and go to\n"
+"Settings for this Website > Camera"
+msgstr ""
+
+#: src/components/AccountList.vue:43
+msgid "Contracts cannot be used for this operation."
+msgstr ""
+
+#: src/components/Copyable.vue:5
+#: src/components/CopyableField.vue:21
+msgid "Copied"
+msgstr ""
+
+#: src/components/SendTx.vue:68
+msgid "Create a Cashlink"
+msgstr ""
+
+#: src/components/Wallet.vue:21
+msgid "Create Backup"
+msgstr ""
+
+#: src/components/Timer.vue:95
+msgid "day"
+msgstr ""
+
+#: src/components/Timer.vue:96
+msgid "days"
+msgstr ""
+
+#: src/components/PaymentInfoLine.vue:45
+msgid "Effective rate"
+msgstr ""
+
+#: src/components/SendTx.vue:61
+msgid "Enter address"
+msgstr ""
+
+#: src/components/SendTx.vue:208
+msgid "express"
+msgstr ""
+
+#: src/components/AmountWithFee.vue:7
+msgid "fee"
+msgstr ""
+
+#: src/components/SendTx.vue:198
+msgid "free"
+msgstr ""
+
+#: src/components/PageHeader.vue:7
+msgid "Go back"
+msgstr ""
+
+#: src/components/QrScanner.vue:34
+msgid "Grant camera access when asked."
+msgstr ""
+
+#: src/components/Timer.vue:93
+msgid "hour"
+msgstr ""
+
+#: src/components/Timer.vue:94
+msgid "hours"
+msgstr ""
+
+#: src/components/SendTx.vue:67
+msgid "If recipient has no Account yet:"
+msgstr ""
+
+#: src/components/AmountWithFee.vue:5
+msgid "Insufficient balance"
+msgstr ""
+
+#: src/components/AccountSelector.vue:187
+msgid "Legacy"
+msgstr ""
+
+#: src/components/AccountSelector.vue:41
+msgid "Login to another Account"
+msgstr ""
+
+#: src/components/Wallet.vue:26
+msgid "Logout"
+msgstr ""
+
+#: src/components/Timer.vue:91
+msgid "minute"
+msgstr ""
+
+#: src/components/Timer.vue:92
+msgid "minutes"
+msgstr ""
+
+#: src/components/SendTx.vue:22
+#: src/components/SendTx.vue:78
+msgid "Name this contact..."
+msgstr ""
+
+#: src/components/LabelInput.vue:4
+#: src/components/LabelInput.vue:8
+msgid "Name your address"
+msgstr ""
+
+#: src/components/PaymentInfoLine.vue:89
+msgid "network fee"
+msgstr ""
+
+#: src/components/PaymentInfoLine.vue:60
+msgid "Nimiq provides this service free of charge."
+msgstr ""
+
+#: src/components/SendTx.vue:108
+msgid "Open settings"
+msgstr ""
+
+#: src/components/PaymentInfoLine.vue:37
+msgid "Order amount"
+msgstr ""
+
+#: src/components/Wallet.vue:23
+msgid "Rename"
+msgstr ""
+
+#: src/components/SendTx.vue:31
+msgid "Save & Set Amount"
+msgstr ""
+
+#: src/components/SendTx.vue:86
+msgid "Save Contact"
+msgstr ""
+
+#: src/components/Wallet.vue:18
+msgid "Save Login File"
+msgstr ""
+
+#: src/components/Timer.vue:89
+msgid "second"
+msgstr ""
+
+#: src/components/Timer.vue:90
+msgid "seconds"
+msgstr ""
+
+#: src/components/SendTx.vue:41
+msgid "Select a contact"
+msgstr ""
+
+#: src/components/SendTx.vue:49
+msgid "Send a transaction"
+msgstr ""
+
+#: src/components/SendTx.vue:134
+msgid "Send Transaction"
+msgstr ""
+
+#: src/components/SendTx.vue:133
+msgid "Sending Transaction..."
+msgstr ""
+
+#: src/components/SendTx.vue:107
+#: src/components/SendTx.vue:32
+msgid "Set Amount"
+msgstr ""
+
+#: src/components/SendTx.vue:101
+msgid "Set fee"
+msgstr ""
+
+#: src/components/SendTx.vue:95
+msgid "Speed up your transaction"
+msgstr ""
+
+#: src/components/SendTx.vue:203
+msgid "standard"
+msgstr ""
+
+#: src/components/QrScanner.vue:48
+msgid "the camera icon"
+msgstr ""
+
+#: src/components/AccountList.vue:44
+msgid "This address cannot be used for this operation."
+msgstr ""
+
+#: src/components/Timer.vue:44
+msgid "This offer expires in {timer}."
+msgstr ""
+
+#: src/components/PaymentInfoLine.vue:63
+msgid "Total"
+msgstr ""
+
+#: src/components/QrScanner.vue:20
+msgid "Unblock the camera for this website to scan QR codes."
+msgstr ""
+
+#: src/components/SendTx.vue:120
+msgid "Unnamed Contact"
+msgstr ""
+
+#: src/components/PaymentInfoLine.vue:41
+msgid "Vendor crypto discount"
+msgstr ""
+
+#: src/components/PaymentInfoLine.vue:40
+msgid "Vendor crypto markup"
+msgstr ""
+
+#: src/components/PaymentInfoLine.vue:281
+msgid "You are paying approx. {formattedRateDeviation} less than at the current market rate (coingecko.com)."
+msgstr ""
+
+#: src/components/PaymentInfoLine.vue:275
+msgid "You are paying approx. {formattedRateDeviation} more than at the current market rate (coingecko.com)."
+msgstr ""
+
+#: src/components/PaymentInfoLine.vue:267
+msgid "Your actual discount is approx. {formattedRateDeviation} compared to the current market rate (coingecko.com)."
+msgstr ""
+
+#: src/components/QrScanner.vue:16
+msgid "Your device does not have an accessible camera."
+msgstr ""

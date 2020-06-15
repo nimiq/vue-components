@@ -25,6 +25,10 @@ export default class CloseButton extends Vue {
         height: 3rem;
     }
 
+    button::before {
+        border-radius: 50%;
+    }
+
     button .nq-icon {
         opacity: .2;
         transition: opacity .3s var(--nimiq-ease);

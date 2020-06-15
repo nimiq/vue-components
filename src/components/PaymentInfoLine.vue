@@ -28,20 +28,21 @@
                 @click.native.stop
                 class="price-tooltip"
             >
-                <template v-slot:trigger>
+                <template #trigger>
                     <AlertTriangleIcon v-if="isBadRate" />
                     <FiatAmount :currency="fiatAmount.currency" :amount="fiatAmount.amount" />
                 </template>
-                <template v-slot:default>
+                <template #default>
                     <div class="price-breakdown">
-                        <label>Order amount</label>
+                        <label>{{ $t('Order amount') }}</label>
                         <FiatAmount :currency="fiatAmount.currency" :amount="fiatAmount.amount" />
                         <template v-if="vendorMarkup || vendorMarkup === 0">
-                            <label>Vendor crypto {{ vendorMarkup >= 0 ? 'markup' : 'discount' }}</label>
+                            <label v-if="vendorMarkup >= 0">{{ $t('Vendor crypto markup') }}</label>
+                            <label v-else>{{ $t('Vendor crypto discount') }}</label>
                             <div>{{ formattedVendorMarkup }}</div>
                         </template>
                         <label :class="{ 'nq-orange': isBadRate }">
-                            Effective rate
+                            {{ $t('Effective rate') }}
                         </label>
                         <div :class="{ 'nq-orange': isBadRate }">
                             <FiatAmount :currency="fiatAmount.currency" :amount="effectiveRate"
@@ -50,16 +51,16 @@
                             / {{ cryptoAmount.currency.toUpperCase() }}
                         </div>
                     </div>
-                    <div v-if="rateInfo"
+                    <div v-if="rateInfo()"
                         :class="{ 'nq-orange': isBadRate }"
                         class="rate-info info"
                     >
-                        {{ rateInfo }}
+                        {{ rateInfo() }}
                     </div>
-                    <div class="free-service-info info">Nimiq provides this service free of charge.</div>
+                    <div class="free-service-info info">{{ $t('Nimiq provides this service free of charge.') }}</div>
                     <hr>
                     <div class="price-breakdown">
-                        <label>Total</label>
+                        <label>{{ $t('Total') }}</label>
                         <Amount
                             :currency="cryptoAmount.currency"
                             :amount="cryptoAmount.amount"
@@ -74,17 +75,18 @@
                         class="network-fee-info info"
                     >
                         +
-                        <template v-if="!isFormattedNetworkFeeZero">
-                            <Amount
-                                :currency="cryptoAmount.currency"
-                                :amount="networkFee"
-                                :currencyDecimals="cryptoAmount.decimals"
-                                :minDecimals="0"
-                                :maxDecimals="Math.min(6, cryptoAmount.decimals)"
-                            />
-                            suggested
-                        </template>
-                        network fee
+                        <I18n v-if="!isFormattedNetworkFeeZero" path="{amount} suggested network fee">
+                            <template #amount>
+                                <Amount
+                                    :currency="cryptoAmount.currency"
+                                    :amount="networkFee"
+                                    :currencyDecimals="cryptoAmount.decimals"
+                                    :minDecimals="0"
+                                    :maxDecimals="Math.min(6, cryptoAmount.decimals)"
+                                />
+                            </template>
+                        </I18n>
+                        <template v-else>{{ $t('network fee') }}</template>
                     </div>
                 </template>
             </Tooltip>
@@ -111,7 +113,7 @@
 // this imports only the type without bundling the library
 type BigInteger = import ('big-integer').BigInteger;
 
-import { Component, Prop, Watch, Vue } from 'vue-property-decorator';
+import { Component, Mixins, Prop, Watch } from 'vue-property-decorator';
 import { FiatApiSupportedFiatCurrency, FiatApiSupportedCryptoCurrency, getExchangeRates } from '@nimiq/utils';
 import Account from './Account.vue';
 import Timer from './Timer.vue';
@@ -119,6 +121,8 @@ import Amount, { amountValidator } from './Amount.vue';
 import FiatAmount from './FiatAmount.vue';
 import Tooltip from './Tooltip.vue';
 import { AlertTriangleIcon, ArrowRightSmallIcon } from './Icons';
+import I18nMixin from '../i18n/I18nMixin';
+import I18n from '../i18n/I18n.vue';
 
 interface CryptoAmountInfo {
     amount: number | bigint | BigInteger; // in the smallest unit
@@ -144,8 +148,19 @@ function fiatAmountInfoValidator(value: any) {
         && typeof value.currency === 'string';
 }
 
-@Component({components: {Account, Timer, Amount, FiatAmount, Tooltip, AlertTriangleIcon, ArrowRightSmallIcon}})
-class PaymentInfoLine extends Vue {
+@Component({
+    components: {
+        Account,
+        Timer,
+        Amount,
+        FiatAmount,
+        Tooltip,
+        AlertTriangleIcon,
+        ArrowRightSmallIcon,
+        I18n,
+    },
+})
+class PaymentInfoLine extends Mixins(I18nMixin) {
     private static readonly REFERENCE_RATE_UPDATE_INTERVAL = 60000; // every minute
     private static readonly RATE_DEVIATION_THRESHOLD = .1;
 
@@ -173,11 +188,11 @@ class PaymentInfoLine extends Vue {
     private referenceRateUpdateTimeout: number = -1;
     private lastTooltipToggle: number = -1;
 
-    private created() {
+    protected created() {
         this.updateReferenceRate();
     }
 
-    private destroyed() {
+    protected destroyed() {
         window.clearTimeout(this.referenceRateUpdateTimeout);
     }
 
@@ -241,18 +256,35 @@ class PaymentInfoLine extends Vue {
         return `${Math.round(Math.abs(this.rateDeviation) * 100 * 10) / 10}%`;
     }
 
-    private get rateInfo() {
+    private rateInfo() {
+        // Note: this method is not a getter / computed property to update on language changes
         if (this.rateDeviation === null
             || (Math.abs(this.rateDeviation) < PaymentInfoLine.RATE_DEVIATION_THRESHOLD && !this.isBadRate)) {
             return null;
         }
-        const suffix = 'the current market rate (coingecko.com).';
         if (this.rateDeviation < 0 && this.isBadRate) {
             // False discount
-            return `Your actual discount is approx. ${this.formattedRateDeviation} compared to ${suffix}`;
+            return this.$t(
+                'Your actual discount is approx. {formattedRateDeviation} compared '
+                + 'to the current market rate (coingecko.com).',
+                { formattedRateDeviation: this.formattedRateDeviation },
+            );
         }
-        return `You are paying approx. ${this.formattedRateDeviation} ${this.rateDeviation > 0 ? 'more' : 'less'} `
-            + `than at ${suffix}`;
+
+        if (this.rateDeviation > 0) {
+            return this.$t(
+                'You are paying approx. {formattedRateDeviation} more '
+                + 'than at the current market rate (coingecko.com).',
+                { formattedRateDeviation: this.formattedRateDeviation },
+            );
+        } else {
+            return this.$t(
+                'You are paying approx. {formattedRateDeviation} less '
+                + 'than at the current market rate (coingecko.com).',
+                { formattedRateDeviation: this.formattedRateDeviation },
+            );
+        }
+
     }
 
     @Watch('cryptoAmount.currency')

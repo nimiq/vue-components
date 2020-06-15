@@ -1,4 +1,5 @@
-import { Vue } from 'vue-property-decorator';
+import I18nMixin from '../i18n/I18nMixin';
+declare const Copyable_base: import("vue-class-component/lib/declarations").VueClass<I18nMixin>;
 /**
  * **Copyable**
  *
@@ -8,12 +9,17 @@ import { Vue } from 'vue-property-decorator';
  *
  * Props:
  *
- * **text** {string} [optional] - A specific text to be copied to the clipboard
+ * **text** {string} [optional] - A specific text to be copied to the clipboard on click
  */
-export default class Copyable extends Vue {
+export default class Copyable extends Copyable_base {
     private static readonly DISPLAY_TIME;
     text?: string;
     private copied;
     private _copiedResetTimeout;
     copy(): void;
+    private onKeyDown;
+    created(): void;
+    mounted(): void;
+    beforeDestroy(): void;
 }
+export {};

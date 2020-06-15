@@ -1,5 +1,6 @@
-import { Vue } from 'vue-property-decorator';
-declare class Timer extends Vue {
+import I18nMixin from '../i18n/I18nMixin';
+declare const Timer_base: import("vue-class-component/lib/declarations").VueClass<I18nMixin>;
+declare class Timer extends Timer_base {
     private static readonly REM_FACTOR;
     private static readonly BASE_SIZE;
     private static readonly BASE_RADIUS;
@@ -17,7 +18,7 @@ declare class Timer extends Vue {
     private radius;
     private fullCircleLength;
     private timeoutId;
-    private updateIntervalId;
+    private updateTimeoutId;
     private requestAnimationFrameId;
     private size;
     private mounted;
@@ -27,11 +28,9 @@ declare class Timer extends Vue {
     private get _progress();
     private get _timeCircleInfo();
     private get _fillerCircleInfo();
-    private get _updateInterval();
+    private _calculateUpdateInterval;
     private _setRadius;
     private _setTimer;
-    private _setupUpdateInterval;
-    private _animateRadius;
     private _rerender;
     private _onResize;
 }

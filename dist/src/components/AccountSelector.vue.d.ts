@@ -1,4 +1,4 @@
-import { Vue } from 'vue-property-decorator';
+import I18nMixin from '../i18n/I18nMixin';
 export interface ContractInfo {
     label: string;
     userFriendlyAddress: string;
@@ -20,7 +20,8 @@ export interface WalletInfo {
     type: number;
     keyMissing: boolean;
 }
-export default class AccountSelector extends Vue {
+declare const AccountSelector_base: import("vue-class-component/lib/declarations").VueClass<I18nMixin>;
+export default class AccountSelector extends AccountSelector_base {
     private wallets;
     disabledAddresses: string[];
     private decimals?;
@@ -41,3 +42,4 @@ export default class AccountSelector extends Vue {
     private _getAccountTypeName;
     private _accountClicked;
 }
+export {};

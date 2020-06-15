@@ -5,7 +5,7 @@
             theme,
             ...tooltipProps,
             styles: {
-                width: '17.25rem',
+                width: '18.25rem',
                 pointerEvents: 'none',
                 ...(tooltipProps ? tooltipProps.styles : undefined),
             },
@@ -18,7 +18,7 @@
             'inverse-theme': theme === constructor.Themes.INVERSE,
         }"
     >
-        <template v-slot:trigger>
+        <template #trigger>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26">
                 <circle ref="time-circle" class="time-circle" cx="50%" cy="50%" :r="radius.currentValue"
                     :stroke-dasharray="`${_timeCircleInfo.length} ${_timeCircleInfo.gap}`"
@@ -40,16 +40,20 @@
                 </transition>
             </svg>
         </template>
-        <template v-slot:default>
-            This offer expires in {{ _timeLeft | _toSimplifiedTime(true) }}.
+        <template #default>
+            <I18n path="This offer expires in {timer}.">
+                <template #timer>{{ _timeLeft | _toSimplifiedTime(true) }}</template>
+            </I18n>
         </template>
     </Tooltip>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Watch, Vue } from 'vue-property-decorator';
+import { Component, Mixins, Prop, Watch } from 'vue-property-decorator';
 import { Tweenable } from '@nimiq/utils';
 import Tooltip from './Tooltip.vue';
+import I18nMixin from '../i18n/I18nMixin';
+import I18n from '../i18n/I18n.vue';
 
 interface CircleInfo {
     length: number;
@@ -81,15 +85,27 @@ function _toSimplifiedTime(millis: number, includeUnit: boolean = true): number 
     if (!includeUnit) {
         return resultTime;
     } else {
-        return `${resultTime} ${resultUnit}${resultTime !== 1 ? 's' : ''}`;
+        const i18nTime = {
+            get second() { return I18nMixin.$t('Timer', 'second'); },
+            get seconds() { return I18nMixin.$t('Timer', 'seconds'); },
+            get minute() { return I18nMixin.$t('Timer', 'minute'); },
+            get minutes() { return I18nMixin.$t('Timer', 'minutes'); },
+            get hour() { return I18nMixin.$t('Timer', 'hour'); },
+            get hours() { return I18nMixin.$t('Timer', 'hours'); },
+            get day() { return I18nMixin.$t('Timer', 'day'); },
+            get days() { return I18nMixin.$t('Timer', 'days'); },
+        };
+
+        resultUnit = i18nTime[`${resultUnit}${resultTime !== 1 ? 's' : ''}`];
+        return `${resultTime} ${resultUnit}`;
     }
 }
 
 @Component({
     filters: { _toSimplifiedTime },
-    components: { Tooltip },
+    components: { Tooltip, I18n },
 })
-class Timer extends Vue {
+class Timer extends Mixins(I18nMixin) {
     private static readonly REM_FACTOR = 8; // size of 1rem
     private static readonly BASE_SIZE = 3.25 * Timer.REM_FACTOR;
     private static readonly BASE_RADIUS = Timer.REM_FACTOR;

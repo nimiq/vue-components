@@ -170,6 +170,10 @@ export default class AddressInput extends Vue {
     }
 
     private _onPaste(e: ClipboardEvent) {
+        const clipboardData = e.clipboardData;
+        const pastedData = clipboardData ? clipboardData.getData('text/plain') : '';
+        this.$emit('paste', e, pastedData);
+
         inputFormatOnPaste(e, this.$refs.textarea, AddressInput._parse, AddressInput._format, this._afterChange);
     }
 

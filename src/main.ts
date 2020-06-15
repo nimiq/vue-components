@@ -43,3 +43,5 @@ export { default as Tooltip } from './components/Tooltip.vue';
 
 // Comment out unused icons in the components/Icons.ts file
 export * from './components/Icons';
+
+export { default as I18nMixin } from './i18n/I18nMixin';

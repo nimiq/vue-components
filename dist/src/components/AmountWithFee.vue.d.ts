@@ -1,5 +1,6 @@
-import { Vue } from 'vue-property-decorator';
-export default class AmountWithFee extends Vue {
+import I18nMixin from '../i18n/I18nMixin';
+declare const AmountWithFee_base: import("vue-class-component/lib/declarations").VueClass<I18nMixin>;
+export default class AmountWithFee extends AmountWithFee_base {
     private value;
     private availableBalance;
     private liveAmount;
@@ -9,3 +10,4 @@ export default class AmountWithFee extends Vue {
     private get isValid();
     focus(): void;
 }
+export {};

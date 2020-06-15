@@ -15,7 +15,10 @@
                             },
                         }"
                     >
-                        {{ _getAccountTypeName(wallet) }} Accounts cannot be used for this operation.
+                        {{ $t(
+                            '{type} accounts cannot be used for this operation.',
+                            { type: _getAccountTypeName(wallet)},
+                        ) }}
                     </Tooltip>
                 </div>
                 <AccountList
@@ -35,15 +38,16 @@
         </div>
 
         <div class="footer">
-            <button v-if="allowLogin" class="nq-button-s" @click="login">Login to another Account</button>
+            <button v-if="allowLogin" class="nq-button-s" @click="login">{{ $t('Login to another Account') }}</button>
         </div>
     </div>
 </template>
 
 <script lang="ts">
-import {Component, Emit, Prop, Vue} from 'vue-property-decorator';
+import {Component, Mixins, Emit, Prop} from 'vue-property-decorator';
 import AccountList from './AccountList.vue';
 import Tooltip from './Tooltip.vue';
+import I18nMixin from '../i18n/I18nMixin';
 
 // This is a reduced list of properties, for convenience
 export interface ContractInfo {
@@ -107,7 +111,7 @@ export interface WalletInfo {
         },
     },
 })
-export default class AccountSelector extends Vue {
+export default class AccountSelector extends Mixins(I18nMixin) {
     @Prop(Array) private wallets!: WalletInfo[];
     @Prop({type: Array, default: () => []}) public disabledAddresses!: string[];
     @Prop(Number) private decimals?: number;
@@ -180,7 +184,7 @@ export default class AccountSelector extends Vue {
 
     private _getAccountTypeName(account: WalletInfo): string {
         switch (account.type) {
-            case 1: return 'Legacy';
+            case 1: return this.$t('Legacy');
             case 2: return 'Keyguard';
             case 3: return 'Ledger';
             default: throw new Error(`Unknown account type ${account.type}`);

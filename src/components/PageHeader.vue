@@ -3,7 +3,8 @@
         <div v-if="progressIndicator" class="progress-indicator">
             <div v-for="thisStep in progressSteps" class="indicator" :class="thisStep <= step ? 'active' : ''" :key="thisStep"></div>
         </div>
-        <a v-if="backArrow" href="#" class="page-header-back-button" @click.prevent="$emit('back')" title="Go back">
+        <a v-if="backArrow" href="#" class="page-header-back-button" @click.prevent="$emit('back')"
+            :title="$t('Go back')">
             <ArrowLeftIcon/>
         </a>
         <h1 class="nq-h1"><slot></slot></h1>
@@ -12,11 +13,12 @@
 </template>
 
 <script lang="ts">
-    import {Component, Prop, Vue} from 'vue-property-decorator';
+    import { Component, Mixins, Prop } from 'vue-property-decorator';
     import { ArrowLeftIcon } from './Icons';
+    import I18nMixin from '../i18n/I18nMixin';
 
     @Component({components: { ArrowLeftIcon }})
-    export default class PageHeader extends Vue {
+    export default class PageHeader extends Mixins(I18nMixin) {
         @Prop({type: Boolean, default: false}) private backArrow!: boolean;
         @Prop({type: Boolean, default: false}) private progressIndicator!: boolean;
         @Prop({type: Number, default: 6}) private numberSteps!: number;

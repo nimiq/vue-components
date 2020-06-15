@@ -1,8 +1,9 @@
-import { Vue } from 'vue-property-decorator';
-export default class LabelInput extends Vue {
+import I18nMixin from '../i18n/I18nMixin';
+declare const LabelInput_base: import("vue-class-component/lib/declarations").VueClass<I18nMixin>;
+export default class LabelInput extends LabelInput_base {
     protected maxBytes?: number;
     private value;
-    private placeholder;
+    private placeholder?;
     private vanishing;
     private liveValue;
     private lastValue;
@@ -14,3 +15,4 @@ export default class LabelInput extends Vue {
     private updateValue;
     private updateWidth;
 }
+export {};
