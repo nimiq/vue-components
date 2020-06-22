@@ -3,7 +3,7 @@
         <transition name="transition-fade">
             <div v-if="!liveSender" key="choose-sender">
                 <PageHeader>
-                    Choose Sender
+                    {{ $t('Choose Sender') }}
                 </PageHeader>
                 <AccountList
                     :accounts="wallet | listAccountsAndContracts"
@@ -19,14 +19,18 @@
                         <AccountDetails
                             :address="liveRecipient.address"
                             :editable="liveRecipient.type !== constructor.RecipientType.OWN_ADDRESS"
-                            placeholder="Name this contact..."
+                            :placeholder="$t('Name this contact...')"
                             :label="liveRecipient.label"
                             @close="closeAddContact"
                             @changed="setLabel"
                             ref="accountDetails"
                         />
                         <PageFooter>
-                            <button class="nq-button light-blue" @click="proceedToSetAmount">{{addContactButtonText}}</button>
+                            <button class="nq-button light-blue" @click="proceedToSetAmount">{{
+                                liveContactLabel !== liveRecipient.label
+                                    ? $t('Save & Set Amount')
+                                    : $t('Set Amount')
+                            }}</button>
                         </PageFooter>
                     </SmallPage>
                 </transition>
@@ -34,7 +38,7 @@
                 <transition name="transition-fade">
                     <SmallPage class="overlay" v-if="contactsOpened && !addContactOpened">
                         <PageHeader>
-                            Select a contact
+                            {{ $t('Select a contact') }}
                         </PageHeader>
                         <ContactList :contacts="contacts" @select-contact="updateRecipient"/>
                         <CloseButton class="top-right" @click="contactsOpened = false"/>
@@ -42,7 +46,7 @@
                 </transition>
 
                 <PageHeader :backArrow="addressCount > 1" @back="backFromRecipient" class="blur-target">
-                    Send a transaction
+                    {{ $t('Send a transaction') }}
                     <a href="javascript:void(0)" class="scan-qr nq-blue" @click="scanQr">
                         <ScanQrCodeIcon />
                     </a>
@@ -54,14 +58,14 @@
                         @contact-selected="updateRecipient"
                         @contacts-opened="contacts.length > 0 ? contactsOpened = true : false"/>
                     <div>
-                        <label class="nq-label">Enter address</label>
+                        <label class="nq-label">{{ $t('Enter address') }}</label>
                         <AddressInput v-model="liveAddress" @address="updateRecipient" ref="address"/>
                     </div>
                 </PageBody>
 
                 <PageFooter class="blur-target">
-                    <p class="nq-text">If recipient has no Account yet:</p>
-                    <button class="nq-button-s" @click="createCashlink(liveSender)">Create a Cashlink</button>
+                    <p class="nq-text">{{ $t('If recipient has no Account yet:') }}</p>
+                    <button class="nq-button-s" @click="createCashlink(liveSender)">{{ $t('Create a Cashlink') }}</button>
                 </PageFooter>
             </div>
 
@@ -71,7 +75,7 @@
                         <AccountDetails
                             :address="displayedDetails === constructor.Details.SENDER ? liveSender.address : liveRecipient.address"
                             :editable="displayedDetails === constructor.Details.RECIPIENT && liveRecipient.type !== constructor.RecipientType.OWN_ADDRESS"
-                            placeholder="Name this contact..."
+                            :placeholder="$t('Name this contact...')"
                             :label="displayedDetails === constructor.Details.SENDER ? liveSender.label : liveRecipient.label"
                             :balance="displayedDetails === constructor.Details.SENDER ? liveSender.balance : null"
                             @close="closeDetails"
@@ -79,7 +83,7 @@
                             ref="accountDetails"
                         />
                         <PageFooter v-if="displayedDetails === constructor.Details.RECIPIENT && liveRecipient.type !== constructor.RecipientType.OWN_ADDRESS">
-                            <button class="nq-button light-blue" @click="storeContactAndCloseOverlay()">Save Contact</button>
+                            <button class="nq-button light-blue" @click="storeContactAndCloseOverlay()">{{ $t('Save Contact') }}</button>
                         </PageFooter>
                     </SmallPage>
                 </transition>
@@ -88,20 +92,20 @@
                     <SmallPage class="overlay fee" v-if="optionsOpened">
                         <CloseButton class="top-right" @click="closeOptions"/>
                         <PageBody>
-                            <h1 class="nq-h1">Speed up your transaction</h1>
-                            <p class="nq-text">By adding a transation fee, you can influence how fast your transaction will be processed.</p>
+                            <h1 class="nq-h1">{{ $t('Speed up your transaction') }}</h1>
+                            <p class="nq-text">{{ $t('By adding a transation fee, you can influence how fast your transaction will be processed.') }}</p>
                             <SelectBar ref="feeSetter" :options="constructor.FEE_OPTIONS" name="fee" :selectedValue="feeLunaPerByte" @changed="updateFeePreview" />
                             <Amount :amount="feePreview" :minDecimals="0" :maxDecimals="5" />
                         </PageBody>
                         <PageFooter>
-                            <button class="nq-button light-blue" @click="setFee">Set fee</button>
+                            <button class="nq-button light-blue" @click="setFee">{{ $t('Set fee') }}</button>
                         </PageFooter>
                     </SmallPage>
                 </transition>
 
                 <PageHeader :backArrow="!sender || !recipient || !recipientIsReadonly" class="blur-target" @back="backFromAmount">
-                    Set Amount
-                    <a href="javascript:void(0)" class="nq-blue options-button" @click="optionsOpened = true" title="Open settings">
+                    {{ $t('Set Amount') }}
+                    <a href="javascript:void(0)" class="nq-blue options-button" @click="optionsOpened = true" :title="$t('Open settings')">
                         <SettingsIcon/>
                     </a>
                 </PageHeader>
@@ -113,16 +117,22 @@
                         </a>
                         <div class="arrow-wrapper"><ArrowRightIcon class="nq-light-blue" /></div>
                         <a href="javascript:void(0);" @click="displayedDetails = constructor.Details.RECIPIENT">
-                            <Account layout="column" :address="liveRecipient.address" :label="liveRecipient.label || 'Unnamed Contact'" :class="{invalid: !recipientValid}"/>
+                            <Account layout="column" :address="liveRecipient.address" :label="liveRecipient.label || $t('Unnamed Contact')" :class="{invalid: !recipientValid}"/>
                         </a>
                     </div>
                     <AmountWithFee v-model="liveAmountAndFee" :available-balance="liveSender.balance" ref="amountWithFee"/>
-                    <LabelInput class="message" :vanishing="true" placeholder="Add a public message..." :maxBytes="64" v-model="liveExtraData" ref="messageInput" />
+                    <LabelInput class="message" :vanishing="true" :placeholder="$t('Add a public message...')" :maxBytes="64" v-model="liveExtraData" ref="messageInput" />
                 </PageBody>
 
                 <PageFooter class="blur-target">
                     <button class="nq-button light-blue" :disabled="!isValid || isLoading" @click="sendTransaction">
-                        <CircleSpinner v-if="showButtonLoader"/>{{buttonText}}
+                        <CircleSpinner v-if="showButtonLoader"/>{{
+                            !validityStartHeight
+                                ? $t('Awaiting Consensus...')
+                                : isLoading
+                                    ? this.$t('Sending Transaction...')
+                                    : this.$t('Send Transaction')
+                        }}
                     </button>
                 </PageFooter>
             </div>
@@ -131,7 +141,7 @@
 </template>
 
 <script lang="ts">
-import {Component, Emit, Prop, Vue, Watch} from 'vue-property-decorator';
+import {Component, Mixins, Emit, Prop, Watch, Vue} from 'vue-property-decorator';
 import SmallPage from './SmallPage.vue';
 import PageHeader from './PageHeader.vue';
 import PageBody from './PageBody.vue';
@@ -150,6 +160,7 @@ import SelectBar from './SelectBar.vue';
 import CircleSpinner from './CircleSpinner.vue';
 import CloseButton from './CloseButton.vue';
 import { ArrowRightIcon, ScanQrCodeIcon, SettingsIcon } from './Icons';
+import I18nMixin from '../i18n/I18nMixin';
 import { Utf8Tools, BrowserDetection } from '@nimiq/utils';
 
 @Component({
@@ -180,21 +191,21 @@ import { Utf8Tools, BrowserDetection } from '@nimiq/utils';
         },
     },
 })
-    class SendTx extends Vue {
+    class SendTx extends Mixins(I18nMixin) {
         private static FEE_OPTIONS: SelectBar.SelectBarOption[] = [{
             color: 'nq-light-blue-bg',
             value: 0,
-            text: 'free',
+            get text() { return I18nMixin.$t('SendTx', 'free'); },
             index: 0,
         }, {
             color: 'nq-green-bg',
             value: 1,
-            text: 'standard',
+            get text() { return I18nMixin.$t('SendTx', 'standard'); },
             index: 1,
         }, {
             color: 'nq-gold-bg',
             value: 2,
-            text: 'express',
+            get text() { return I18nMixin.$t('SendTx', 'express'); },
             index: 2,
         }];
 
@@ -474,20 +485,6 @@ import { Utf8Tools, BrowserDetection } from '@nimiq/utils';
                 return lunaPerByte * (166 + Utf8Tools.stringToUtf8ByteArray(this.liveExtraData).byteLength);
             }
             return lunaPerByte * 138;
-        }
-
-        private get buttonText(): string {
-            return !this.validityStartHeight
-                ? 'Awaiting Consensus...'
-                : this.isLoading
-                    ? 'Sending Transaction...'
-                    : 'Send Transaction';
-        }
-
-        private get addContactButtonText() {
-            return this.liveContactLabel !== this.liveRecipient!.label
-                ? 'Save & Set Amount'
-                : 'Set Amount';
         }
 
         private get showButtonLoader(): boolean {

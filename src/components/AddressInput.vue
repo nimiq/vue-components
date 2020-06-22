@@ -110,7 +110,7 @@ export default class AddressInput extends Vue {
     public value!: string;
 
     @Prop(Boolean)
-    public autofocus?: string;
+    public autofocus?: boolean;
 
     public $refs: { textarea: HTMLTextAreaElement };
 
@@ -170,6 +170,10 @@ export default class AddressInput extends Vue {
     }
 
     private _onPaste(e: ClipboardEvent) {
+        const clipboardData = e.clipboardData;
+        const pastedData = clipboardData ? clipboardData.getData('text/plain') : '';
+        this.$emit('paste', e, pastedData);
+
         inputFormatOnPaste(e, this.$refs.textarea, AddressInput._parse, AddressInput._format, this._afterChange);
     }
 

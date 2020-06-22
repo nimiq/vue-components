@@ -85,17 +85,19 @@ storiesOf('Basic', module)
     })
     .add('AmountInput', () => {
         const value = number('Value', 0);
+        const decimals = number('Decimals', 5);
         return {
             components: { AmountInput },
             data() {
                 return {
                     value,
+                    decimals,
                 };
             },
             methods: {
                 input: action('input'),
             },
-            template: `<AmountInput :value="value" @input="input"/>`,
+            template: `<AmountInput :value="value" :decimals="decimals" @input="input"/>`,
         };
     })
     .add('FiatAmount', () => {
@@ -154,7 +156,7 @@ storiesOf('Basic', module)
                 changed: action('changed'),
                 input: action('input'),
             },
-            template: `<LabelInput placeholder="Name this account..." @changed="changed" @input="input"/>`,
+            template: `<LabelInput @changed="changed" @input="input"/>`,
         };
     })
     .add('LabelInput (restricted to 63 bytes)', () => {
@@ -482,8 +484,12 @@ storiesOf('Components', module)
                     lastValidAddress: null,
                 };
             },
+            methods: {
+                input: action('input'),
+                paste: action('paste'),
+            },
             template: `<div>
-                <AddressInput v-model="address" @address="lastValidAddress = $event" />
+                <AddressInput v-model="address" @input="input" @address="lastValidAddress = $event" @paste="paste" />
                 <div>Current address: {{ address }}</div>
                 <div>valid?: {{ address === lastValidAddress }}</div>
             </div>`,
@@ -753,15 +759,28 @@ storiesOf('Components', module)
         components: { Copyable },
         template: `
             <div>
-                <Copyable ref="copyable">I'm a text you can copy.</Copyable>
+                <Copyable ref="copyable" style="margin-top: 7rem;">I'm a text you can copy.</Copyable>
                 <Copyable>
                     I'm a copyable text<br>with <b>child nodes</b>.
                 </Copyable>
-                <Copyable text="Surprise!!!" style="margin-top: 7rem">When you click me you get a surprise!</Copyable>
+                <Copyable text="Surprise!!!">When you click me you get a surprise!</Copyable>
                 <button class="nq-button" style="margin-top: 7rem; margin-left: 1rem" @click="$refs.copyable.copy()">
                     Click me to trigger a copy via code
                 </button>
             </div>
+        `,
+    }))
+    .add('Copyable Address', () => ({
+        data() {
+            return {
+                address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE',
+            };
+        },
+        components: { Copyable, AddressDisplay },
+        template: `
+            <Copyable style="margin-top: 7rem; margin-left: 2rem; display: inline-block;">
+                <AddressDisplay :address="address"/>
+            </Copyable>
         `,
     }))
     .add('CopyableField', () => {

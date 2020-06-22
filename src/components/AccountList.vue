@@ -40,8 +40,8 @@
                 @click.native.stop
             >
                 {{ _isDisabledContract(account)
-                    ? 'Contracts cannot be used for this operation.'
-                    : 'This address cannot be used for this operation.'
+                    ? $t('Contracts cannot be used for this operation.')
+                    : $t('This address cannot be used for this operation.')
                 }}
             </Tooltip>
         </component>
@@ -49,14 +49,21 @@
 </template>
 
 <script lang="ts">
-import {Component, Emit, Prop, Vue} from 'vue-property-decorator';
+import {Component, Mixins, Emit, Prop} from 'vue-property-decorator';
 import Account from './Account.vue';
 import { AccountInfo, ContractInfo } from './AccountSelector.vue';
 import Tooltip from './Tooltip.vue';
 import { CaretRightSmallIcon } from './Icons';
+import I18nMixin from '../i18n/I18nMixin';
 
-@Component({components: {Account, Tooltip, CaretRightSmallIcon}})
-export default class AccountList extends Vue {
+@Component({
+    components: {
+        Account,
+        Tooltip,
+        CaretRightSmallIcon,
+    },
+})
+export default class AccountList extends Mixins(I18nMixin) {
     @Prop(Array) public accounts!: AccountInfo[];
     @Prop({type: Array, default: () => []}) public disabledAddresses!: string[];
     @Prop(String) private walletId?: string;

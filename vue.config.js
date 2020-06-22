@@ -41,7 +41,7 @@ const chainWebpack = config => {
           .loader(svgDefaultHandler.get('loader'))
           .options(svgDefaultHandler.get('options'))
           .end()
-        .end()
+        .end();
 }
 
 module.exports = { configureWebpack, chainWebpack };
