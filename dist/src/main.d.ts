@@ -32,3 +32,4 @@ export { default as SmallPage } from './components/SmallPage.vue';
 export { default as Timer } from './components/Timer.vue';
 export { default as Tooltip } from './components/Tooltip.vue';
 export * from './components/Icons';
+export { default as I18nMixin } from './i18n/I18nMixin';

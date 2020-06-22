@@ -1,5 +1,6 @@
-import { Vue } from 'vue-property-decorator';
-export default class CopyableField extends Vue {
+import I18nMixin from '../i18n/I18nMixin';
+declare const CopyableField_base: import("vue-class-component/lib/declarations").VueClass<I18nMixin>;
+export default class CopyableField extends CopyableField_base {
     private static readonly DEFAULT_FONT_SIZE;
     value: string | number | {
         [key: string]: any;
@@ -17,3 +18,4 @@ export default class CopyableField extends Vue {
     private _updateFontSize;
     private copy;
 }
+export {};

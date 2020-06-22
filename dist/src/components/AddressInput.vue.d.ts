@@ -7,7 +7,7 @@ export default class AddressInput extends Vue {
     private static _stripWhitespace;
     private static _exportValue;
     value: string;
-    autofocus?: string;
+    autofocus?: boolean;
     $refs: {
         textarea: HTMLTextAreaElement;
     };

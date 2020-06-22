@@ -1,6 +1,7 @@
-import { Vue } from 'vue-property-decorator';
 import { AccountInfo } from './AccountSelector.vue';
-export default class AccountList extends Vue {
+import I18nMixin from '../i18n/I18nMixin';
+declare const AccountList_base: import("vue-class-component/lib/declarations").VueClass<I18nMixin>;
+export default class AccountList extends AccountList_base {
     accounts: AccountInfo[];
     disabledAddresses: string[];
     private walletId?;
@@ -22,3 +23,4 @@ export default class AccountList extends Vue {
     private _hasTooltip;
     private _clearHighlightedDisabledAddress;
 }
+export {};

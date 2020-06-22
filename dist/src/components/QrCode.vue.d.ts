@@ -1,5 +1,5 @@
 import { Vue } from 'vue-property-decorator';
-import QrEncoder from 'qr-code';
+import QrCreator from 'qr-creator';
 /**
  * **Nimiq QR Code Component**
  *
@@ -24,7 +24,7 @@ export default class QrCode extends Vue {
     data: string;
     errorCorrection: 'L' | 'M' | 'H' | 'Q';
     radius: number;
-    fill: string | QrEncoder.LinearGradient | QrEncoder.RadialGradient;
+    fill: string | QrCreator.LinearGradient | QrCreator.RadialGradient;
     background: string | null;
     size: number;
     toDataUrl(type?: string): Promise<string>;

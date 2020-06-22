@@ -1,6 +1,7 @@
-import { Vue } from 'vue-property-decorator';
 import QrScannerLib from 'qr-scanner';
-declare class QrScanner extends Vue {
+import I18nMixin from '../i18n/I18nMixin';
+declare const QrScanner_base: import("vue-class-component/lib/declarations").VueClass<I18nMixin>;
+declare class QrScanner extends QrScanner_base {
     reportFrequency: number;
     validate?: (scanResult: string) => boolean;
     private cameraAccessFailed;
