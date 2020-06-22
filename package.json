@@ -47,7 +47,7 @@
     "vue-cli-plugin-ts-bundler": "^0.0.3",
     "vue-svg-loader": "^0.12.0",
     "vue-template-compiler": "^2.6.11",
-    "webpack-i18n-tools": "https://github.com/Yukiioz/webpack-i18n-tools.git#master"
+    "webpack-i18n-tools": "https://github.com/nimiq/webpack-i18n-tools#master"
   },
   "eslintConfig": {
     "root": true,
