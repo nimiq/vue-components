@@ -345,6 +345,7 @@ class Tooltip extends Vue {
     private onClick() {
         if (Date.now() - this.lastToggle < 200) return; // just toggled by mouseover or focus
         this.toggle(/* force */ true);
+        this.$emit('click');
     }
 }
 
