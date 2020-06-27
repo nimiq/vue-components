@@ -960,10 +960,10 @@
   dependencies:
     dom-parser "^0.1.5"
 
-"@nimiq/style@^0.8.0":
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/@nimiq/style/-/style-0.8.0.tgz#b97ec06ca7742c5fc8fa5a9951008ceb9e81d469"
-  integrity sha512-Pu4GSeMfOOsA8wW7JE1vABEcK7porFE0+vcUhhhnk7Y58YC5QG9d9Sk2zUjp2IwSbPp05t4ocLqJAm1WX0jhAg==
+"@nimiq/style@^0.8.2":
+  version "0.8.2"
+  resolved "https://registry.yarnpkg.com/@nimiq/style/-/style-0.8.2.tgz#140ab7cbe71a9b1db6e0bca34ba880cfff64037a"
+  integrity sha512-nQjMQjmU3ZuYRMG+8uADM/fVv6Taq70qKdPGuRR/gLUJZMg/2qxZaGHDikg4kVNLFbo9pjzjotJDMqtNwlVSew==
 
 "@nimiq/utils@^0.5.0":
   version "0.5.0"

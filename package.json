@@ -20,7 +20,7 @@
     "types/**/*"
   ],
   "dependencies": {
-    "@nimiq/style": "^0.8.0",
+    "@nimiq/style": "^0.8.2",
     "big-integer": "^1.6.44",
     "input-format": "^0.2.8",
     "qr-creator": "^1.0.0",
