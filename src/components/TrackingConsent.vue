@@ -1,25 +1,26 @@
 <template>
-    <div
-        class="tracking-consent nq-shadow"
+    <div class="tracking-consent"
         :class="[ theme, safariFix ]"
         v-if="uiRequired && uiAllowed"
     >
-        {{ text.main }}
-        <div class="button-group">
-            <button
-                class="nq-button-pill light-blue"
-                @click="allowUsageData"
-            >{{ text.yes }}</button>
-            <button
-                class="nq-button-s"
-                @click="denyConsent"
-                :class="{ inverse: theme === constructor.Themes.DARK }"
-            >{{ text.no }}</button>
-            <button
-                class="nq-button-s"
-                @click="allowBrowserData"
-                :class="{ inverse: theme === constructor.Themes.DARK }"
-            >{{ text.browserOnly }}</button>
+        <div class="content nq-shadow">
+            {{ text.main }}
+            <div class="button-group">
+                <button
+                    class="nq-button-pill light-blue"
+                    @click="allowUsageData"
+                >{{ text.yes }}</button>
+                <button
+                    class="nq-button-s"
+                    @click="denyConsent"
+                    :class="{ inverse: theme === constructor.Themes.DARK }"
+                >{{ text.no }}</button>
+                <button
+                    class="nq-button-s"
+                    @click="allowBrowserData"
+                    :class="{ inverse: theme === constructor.Themes.DARK }"
+                >{{ text.browserOnly }}</button>
+            </div>
         </div>
     </div>
 </template>
@@ -402,23 +403,28 @@ export default TrackingConsent;
         position: fixed;
         bottom: 2rem;
         z-index: 900;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
 
-        padding: 1.5rem;
-
+    .content {
         display: flex;
         align-items: center;
         justify-content: space-between;
+
+        padding: 1.5rem;
 
         border-radius: 1rem;
         font-size: 2rem;
     }
 
-    .tracking-consent.light {
+    .light .content {
         background: white;
         color: var(--nimiq-blue);
     }
 
-    .tracking-consent.dark {
+    .dark .content {
         background: var(--nimiq-blue);
         color: white;
     }
@@ -433,14 +439,16 @@ export default TrackingConsent;
     }
 
     @media (max-width: 860px) {
-        .tracking-consent {
+        .content {
             flex-direction: column;
             align-items: flex-start;
-            width: 100%;
-            bottom: 0;
             border-bottom-left-radius: 0;
             border-bottom-right-radius: 0;
             padding: 2.5rem;
+        }
+
+        .tracking-consent {
+            bottom: 0;
         }
 
         .tracking-consent.ios-safari-13-fix {
