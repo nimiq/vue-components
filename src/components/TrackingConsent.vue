@@ -1,6 +1,6 @@
 <template>
     <div class="tracking-consent"
-        :class="[ theme, safariFix ]"
+        :class="[ theme ]"
         v-if="uiRequired && uiAllowed"
     >
         <div class="content nq-shadow">
@@ -251,29 +251,6 @@ class TrackingConsent extends Vue {
         this._checkUiRequired();
     }
 
-    private mounted() {
-        /* Safari IOS style fix */
-        const ua = window.navigator.userAgent;
-        const iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
-        const webkit = !!ua.match(/WebKit/i);
-        const iOSSafari = iOS && webkit && !ua.match(/CriOS/i);
-
-        if (iOSSafari) {
-            let majorVersion = null;
-
-            if (/iP(hone|od|ad)/.test(navigator.platform)) {
-                const match = (navigator.appVersion).match(/OS (\d+)_(\d+)_?(\d+)?/);
-                majorVersion = parseInt(match[1], 10);
-            }
-
-            if (majorVersion >= 13) {
-                this.safariFix = 'ios-safari-13-fix';
-            } else if (majorVersion >= 12) {
-                this.safariFix = 'ios-safari-12-fix';
-            }
-        }
-    }
-
     private destroyed() {
         /* Remove the event watching for consent changes on tab / window focus */
         document.removeEventListener('visibilitychange', this._onVisibilityChange);
@@ -449,14 +426,6 @@ export default TrackingConsent;
 
         .tracking-consent {
             bottom: 0;
-        }
-
-        .tracking-consent.ios-safari-13-fix {
-            bottom: 74px;
-        }
-
-        .tracking-consent.ios-safari-12-fix {
-            bottom: 34px;
         }
 
         .button-group {
