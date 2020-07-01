@@ -4,7 +4,7 @@
         :class="[ theme, safariFix ]"
         v-if="uiRequired && uiAllowed"
     >
-        {{ text.main }} ❤️
+        {{ text.main }}
         <div class="button-group">
             <button
                 class="nq-button-pill light-blue"
@@ -26,6 +26,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
+import I18nMixin from '../i18n/I18nMixin';
 
 interface Consent {
     allowsBrowserData?: boolean;
@@ -37,17 +38,22 @@ class TrackingConsent extends Vue {
     @Prop({
         type: Object,
         default:  () => ({
-            main: 'Help Nimiq improve by sharing anonymized usage data. Thank you!',
-            yes: 'Yes',
-            no: 'No',
+            get main() {
+                return I18nMixin.$t(
+                    'TrackingConsent',
+                    'Help Nimiq improve by sharing anonymized usage data. Thank you! ❤️',
+                );
+            },
+            get yes() { return I18nMixin.$t('TrackingConsent', 'Yes'); },
+            get no() { return I18nMixin.$t('TrackingConsent', 'No'); },
             browserOnly: 'Browser-info only',
         }),
-        validator: (value) => (
-            value && typeof value === 'object' &&
-            value.no && typeof value.no === 'string' && value.no.length &&
-            value.yes && typeof value.yes === 'string' && value.yes.length &&
-            value.main && typeof value.main === 'string' && value.main.length &&
-            value.browserOnly && typeof value.browserOnly === 'string' && value.browserOnly.length
+        validator: (text) => (
+            text && typeof text === 'object' &&
+            text.no && typeof text.no === 'string' && text.no.length &&
+            text.yes && typeof text.yes === 'string' && text.yes.length &&
+            text.main && typeof text.main === 'string' && text.main.length &&
+            text.browserOnly && typeof text.browserOnly === 'string' && text.browserOnly.length
         ),
     })
     public text: {
