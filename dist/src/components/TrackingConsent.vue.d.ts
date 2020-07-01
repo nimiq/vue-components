@@ -42,7 +42,6 @@ declare class TrackingConsent extends Vue {
     allowUsageData(): void;
     allowBrowserData(): void;
     private created;
-    private mounted;
     private destroyed;
     private _checkUiRequired;
     private _onVisibilityChange;
