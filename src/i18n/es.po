@@ -1,124 +1,122 @@
 # 
 # Translators:
-# Talleyrand <baptistekugener@wanadoo.fr>, 2020
-# Daniel, 2020
-# Matheo <matheo@nimiq.com>, 2020
+# Ricardo Barquero Carranza <richy@nimiq.com>, 2020
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Matheo <matheo@nimiq.com>, 2020\n"
-"Language-Team: French (https://www.transifex.com/nimiq-foundation/teams/109388/fr/)\n"
+"Last-Translator: Ricardo Barquero Carranza <richy@nimiq.com>, 2020\n"
+"Language-Team: Spanish (https://www.transifex.com/nimiq-foundation/teams/109388/es/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: src/components/PaymentInfoLine.vue:77
 msgid "{amount} suggested network fee"
-msgstr "{amount} montant ed frais suggéré"
+msgstr "{amount} cuota de red sugerida"
 
 #: src/components/AccountSelector.vue:18
 msgid "{type} accounts cannot be used for this operation."
-msgstr "Les comptes {type} ne peuvent pas être utilisés pour cette opération."
+msgstr "cuentas tipo {type} no se pueden utilizar para esta operación."
 
 #: src/components/SendTx.vue:124
 msgid "Add a public message..."
-msgstr "Ajouter un message public..."
+msgstr "Agregue un mensaje público..."
 
 #: src/components/SendTx.vue:131
 msgid "Awaiting Consensus..."
-msgstr "En attente du Consensus..."
+msgstr "Esperando Consenso..."
 
 #: src/components/SendTx.vue:96
 msgid ""
 "By adding a transation fee, you can influence how fast your transaction will"
 " be processed."
 msgstr ""
-"En ajoutant un frais de transaction, vous influencez sur la vitesse à "
-"laquelle votre transaction sera traitée."
+"Al agregar una cuota de transacción, puede influenciar que tan rápido se "
+"procesa su transacción."
 
 #: src/components/QrScanner.vue:11
 msgid "Cancel"
-msgstr "Annuler"
+msgstr "Cancelar"
 
 #: src/components/Wallet.vue:24
 msgid "Change Password"
-msgstr "Changer de Mot de passe"
+msgstr "Cambiar Contraseña"
 
 #: src/components/SendTx.vue:6
 msgid "Choose Sender"
-msgstr "Choisissez l'émetteur"
+msgstr "Elija Destinatario"
 
 #: src/components/QrScanner.vue:24
 msgid ""
 "Click on {icon} and go to\n"
 "Settings > Site Settings > Camera"
 msgstr ""
-"Cliquez sur {icon} et allez dans\n"
-"Paramètres > Paramètres de site > Appareil photo"
+"Haga click en {icon} y visite\n"
+"Ajustes > Ajustes del Sitio > Cámara"
 
 #: src/components/QrScanner.vue:44
 msgid "Click on {icon} in the URL bar."
-msgstr "Cliquez sur {icon} dans la bar d'adresse."
+msgstr "Haga click en {icon} en la barra del navegador."
 
 #: src/components/QrScanner.vue:39
 msgid ""
 "Click on {safari} and go to\n"
 "Settings for this Website > Camera"
 msgstr ""
-"Cliquez sur {safari} et rendez-vous dans \n"
-"Paramètres pour ce site > Caméra"
+"Haga click en {safari} y visite\n"
+"Ajustes para esta Página> Cámara"
 
 #: src/components/AccountList.vue:43
 msgid "Contracts cannot be used for this operation."
-msgstr "Les Contrats ne peuvent pas être utilisés pour cette opération."
+msgstr "Contratos no pueden ser utilizados para esta operación."
 
 #: src/components/Copyable.vue:5 src/components/CopyableField.vue:21
 msgid "Copied"
-msgstr "Copié"
+msgstr "Copiado"
 
 #: src/components/SendTx.vue:68
 msgid "Create a Cashlink"
-msgstr "Créer un Cashlink"
+msgstr "Crear un Cashlink"
 
 #: src/components/Wallet.vue:21
 msgid "Create Backup"
-msgstr "Créer une Sauvegarde"
+msgstr "Crear un respaldo"
 
 #: src/components/Timer.vue:95
 msgid "day"
-msgstr "jour"
+msgstr "día"
 
 #: src/components/Timer.vue:96
 msgid "days"
-msgstr "jours"
+msgstr "días"
 
 #: src/components/PaymentInfoLine.vue:45
 msgid "Effective rate"
-msgstr "Taux effectif"
+msgstr "Taza efectiva"
 
 #: src/components/SendTx.vue:61
 msgid "Enter address"
-msgstr "Entrez l'adresse"
+msgstr "Inserte dirección"
 
 #: src/components/SendTx.vue:208
 msgid "express"
-msgstr "express"
+msgstr "exprés"
 
 #: src/components/AmountWithFee.vue:7
 msgid "fee"
-msgstr "frais"
+msgstr "cuota"
 
 #: src/components/SendTx.vue:198
 msgid "free"
-msgstr "gratuit"
+msgstr "gratis"
 
 #: src/components/PageHeader.vue:7
 msgid "Go back"
-msgstr "Retour"
+msgstr "Volver"
 
 #: src/components/QrScanner.vue:34
 msgid "Grant camera access when asked."
-msgstr "Accordez l'accès à la caméra lorsque cela vous est demandé."
+msgstr "De permiso a la cámara cuando se le pida"
 
 #: src/components/TrackingConsent.vue:42
 msgid "Help Nimiq improve by sharing anonymized usage data. Thank you! ❤️"
@@ -126,55 +124,55 @@ msgstr ""
 
 #: src/components/Timer.vue:93
 msgid "hour"
-msgstr "heure"
+msgstr "hora"
 
 #: src/components/Timer.vue:94
 msgid "hours"
-msgstr "heures"
+msgstr "horas"
 
 #: src/components/SendTx.vue:67
 msgid "If recipient has no Account yet:"
-msgstr "Si le destinataire n'a pas encore de Compte:"
+msgstr "El destinatario a'un no tiene una Cuenta."
 
 #: src/components/AmountWithFee.vue:5
 msgid "Insufficient balance"
-msgstr "Solde insuffisant"
+msgstr "Balance insuficiente"
 
 #: src/components/AccountSelector.vue:187
 msgid "Legacy"
-msgstr "Legacy"
+msgstr "Versión Antigua"
 
 #: src/components/AccountSelector.vue:41
 msgid "Login to another Account"
-msgstr "Connexion à un autre Compte"
+msgstr "Inicie sesión con otra Cuenta"
 
 #: src/components/Wallet.vue:26
 msgid "Logout"
-msgstr "Déconnexion"
+msgstr "Cerrar sesión"
 
 #: src/components/Timer.vue:91
 msgid "minute"
-msgstr "minute"
+msgstr "minuto"
 
 #: src/components/Timer.vue:92
 msgid "minutes"
-msgstr "minutes"
+msgstr "minutos"
 
 #: src/components/SendTx.vue:22 src/components/SendTx.vue:78
 msgid "Name this contact..."
-msgstr "Nommez ce contact..."
+msgstr "De nombre a este contacto..."
 
 #: src/components/LabelInput.vue:4 src/components/LabelInput.vue:8
 msgid "Name your address"
-msgstr "Nommez votre adresse"
+msgstr "De nombre a su dirección"
 
 #: src/components/PaymentInfoLine.vue:88
 msgid "network fee"
-msgstr "frais de réseau"
+msgstr "cuota de red"
 
 #: src/components/PaymentInfoLine.vue:60
 msgid "Nimiq provides this service free of charge."
-msgstr "Nimiq fournit ce service gratuitement."
+msgstr "Nimiq provee este servicio sin ningún costo."
 
 #: src/components/TrackingConsent.vue:48
 msgid "No"
@@ -182,79 +180,79 @@ msgstr ""
 
 #: src/components/SendTx.vue:108
 msgid "Open settings"
-msgstr "Ouvrir les réglages"
+msgstr "Abrir ajustes"
 
 #: src/components/PaymentInfoLine.vue:37
 msgid "Order amount"
-msgstr "Montant de la commande"
+msgstr "Monto de la ordén"
 
 #: src/components/Wallet.vue:23
 msgid "Rename"
-msgstr "Renommer"
+msgstr "Renombrar"
 
 #: src/components/SendTx.vue:31
 msgid "Save & Set Amount"
-msgstr "Enregistrer et Définir le montant"
+msgstr "Guardar & Ingresar Monto"
 
 #: src/components/SendTx.vue:86
 msgid "Save Contact"
-msgstr "Enregistrer le Contact"
+msgstr "Guardar Contacto"
 
 #: src/components/Wallet.vue:18
 msgid "Save Login File"
-msgstr "Enregistrer le Fichier de Connexion"
+msgstr "Guardar Archivo de Sesión"
 
 #: src/components/Timer.vue:89
 msgid "second"
-msgstr "seconde"
+msgstr "segundo"
 
 #: src/components/Timer.vue:90
 msgid "seconds"
-msgstr "secondes"
+msgstr "segundos"
 
 #: src/components/SendTx.vue:41
 msgid "Select a contact"
-msgstr "Sélectionner un contact"
+msgstr "Seleccione un contacto"
 
 #: src/components/SendTx.vue:49
 msgid "Send a transaction"
-msgstr "Envoyer une transaction"
+msgstr "Enviar una transacción"
 
 #: src/components/SendTx.vue:134
 msgid "Send Transaction"
-msgstr "Envoyer la Transaction"
+msgstr "Enviar una Transacción"
 
 #: src/components/SendTx.vue:133
 msgid "Sending Transaction..."
-msgstr "Envoi de transaction en cours..."
+msgstr "Enviando Transacción"
 
 #: src/components/SendTx.vue:107 src/components/SendTx.vue:32
 msgid "Set Amount"
-msgstr "Définir le montant"
+msgstr "Ingresar Monto"
 
 #: src/components/SendTx.vue:101
 msgid "Set fee"
-msgstr "Définir les frais"
+msgstr "Ingresar cuota"
 
 #: src/components/SendTx.vue:95
 msgid "Speed up your transaction"
-msgstr "Accélérer votre transaction"
+msgstr "Acelerar su transacción"
 
 #: src/components/SendTx.vue:203
 msgid "standard"
-msgstr "standard"
+msgstr "estándar"
 
 #: src/components/QrScanner.vue:48
 msgid "the camera icon"
-msgstr "l'icône de caméra"
+msgstr "el icono de cámara"
 
 #: src/components/AccountList.vue:44
 msgid "This address cannot be used for this operation."
-msgstr "Cette adresse ne peut pas être utilisée pour cette opération."
+msgstr "Esta dirección no puede ser utilizada para esta operación."
 
 #: src/components/Timer.vue:44
 msgid "This offer expires in {timer}."
-msgstr "Cette offre expire dans {timer}."
+msgstr "Esta oferta expira en {timer}."
 
 #: src/components/PaymentInfoLine.vue:63
 msgid "Total"
@@ -262,19 +260,19 @@ msgstr "Total"
 
 #: src/components/QrScanner.vue:20
 msgid "Unblock the camera for this website to scan QR codes."
-msgstr "Débloquez la caméra pour ce site de façon à scanner les QR codes."
+msgstr "Desbloquee la cámara para esta página para poder escanear códigos QR."
 
 #: src/components/SendTx.vue:120
 msgid "Unnamed Contact"
-msgstr "Contact sans nom"
+msgstr "Contacto sin Nombre"
 
 #: src/components/PaymentInfoLine.vue:41
 msgid "Vendor crypto discount"
-msgstr "Crypto-remise"
+msgstr "Descuento en criptomonedas del vendedor"
 
 #: src/components/PaymentInfoLine.vue:40
 msgid "Vendor crypto markup"
-msgstr "Crypto-premium"
+msgstr "Margen en criptomonedas del vendedor"
 
 #: src/components/TrackingConsent.vue:47
 msgid "Yes"
@@ -285,25 +283,25 @@ msgid ""
 "You are paying approx. {formattedRateDeviation} less than at the current "
 "market rate (coingecko.com)."
 msgstr ""
-"Vous payez environ {formattedRateDeviation} moins que le taux actuel du "
-"marché (coingecko.com)."
+"Esta pagando approx. {formattedRateDeviation} menos que la taza actual de "
+"mercado (coingecko.com)."
 
 #: src/components/PaymentInfoLine.vue:274
 msgid ""
 "You are paying approx. {formattedRateDeviation} more than at the current "
 "market rate (coingecko.com)."
 msgstr ""
-"Vous payez environ {formattedRateDeviation} plus que le taux actuel du "
-"marché (coingecko.com)."
+"Esta pagando approx. {formattedRateDeviation} más que la taza actual de "
+"mercado (coingecko.com)."
 
 #: src/components/PaymentInfoLine.vue:266
 msgid ""
 "Your actual discount is approx. {formattedRateDeviation} compared to the "
 "current market rate (coingecko.com)."
 msgstr ""
-"Votre remise réelle est d'environ {formattedRateDeviation}  par rapport au "
-"taux actuel du marché (coingecko.com)."
+"Su descuento es approx. {formattedRateDeviation} comparado a la taza del "
+"mercado actual (coingecko.com)."
 
 #: src/components/QrScanner.vue:16
 msgid "Your device does not have an accessible camera."
-msgstr "Votre appareil n'a pas de caméra accessible."
+msgstr "Su dispositivo no tiene una cámara accesible."
