@@ -1,0 +1,2 @@
+(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[46],{aee6:function(e){e.exports=JSON.parse('{"Go back":"返回"}')}}]);
+//# sourceMappingURL=NimiqVueComponents.umd.min.lang-zh-PageHeader-json.js.map

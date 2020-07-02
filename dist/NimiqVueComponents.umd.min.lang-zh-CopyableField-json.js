@@ -1,0 +1,2 @@
+(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[44],{afa7:function(e){e.exports=JSON.parse('{"Copied":"已复制"}')}}]);
+//# sourceMappingURL=NimiqVueComponents.umd.min.lang-zh-CopyableField-json.js.map

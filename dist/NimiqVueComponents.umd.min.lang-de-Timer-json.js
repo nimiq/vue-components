@@ -1,0 +1,2 @@
+(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[11],{"6e2d":function(e){e.exports=JSON.parse('{"day":"Tag","days":"Tage","hour":"Stunde","hours":"Stunden","minute":"Minute","minutes":"Minuten","second":"Sekunde","seconds":"Sekunden","This offer expires in {timer}.":"Dieses Angebot endet in {timer}."}')}}]);
+//# sourceMappingURL=NimiqVueComponents.umd.min.lang-de-Timer-json.js.map

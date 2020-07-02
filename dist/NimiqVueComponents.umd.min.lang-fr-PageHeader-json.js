@@ -1,2 +1,2 @@
-(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[7],{"014a":function(e){e.exports=JSON.parse('{"Go back":"Retour"}')}}]);
+(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[33],{"014a":function(e){e.exports=JSON.parse('{"Go back":"Retour"}')}}]);
 //# sourceMappingURL=NimiqVueComponents.umd.min.lang-fr-PageHeader-json.js.map
