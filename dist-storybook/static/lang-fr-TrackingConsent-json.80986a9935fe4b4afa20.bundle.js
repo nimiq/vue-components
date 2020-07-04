@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[39],{1361:function(a){a.exports={"Help Nimiq improve by sharing anonymized usage data. Thank you! ❤️":"Help Nimiq improve by sharing anonymized usage data. Thank you! ❤️",No:"No",Yes:"Yes"}}}]);
+//# sourceMappingURL=lang-fr-TrackingConsent-json.80986a9935fe4b4afa20.bundle.js.map
