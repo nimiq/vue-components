@@ -1,0 +1,2 @@
+(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[2],{e3b5:function(e){e.exports=JSON.parse('{"{type} accounts cannot be used for this operation.":"{type} Kontos können für diese Aktion nicht verwendet werden.","Legacy":"Legacy","Login to another Account":"In ein anderes Konto einloggen"}')}}]);
+//# sourceMappingURL=NimiqVueComponents.umd.min.lang-de-AccountSelector-json.js.map

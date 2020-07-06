@@ -17,6 +17,7 @@ export default class AmountInput extends Vue {
     private fontSize;
     private maxWidth;
     private valueInLuna;
+    private isFocussed;
     mounted(): Promise<void>;
     focus(): void;
     private updateValue;

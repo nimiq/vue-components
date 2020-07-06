@@ -1,0 +1,2 @@
+(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[13],{"2e5a":function(e){e.exports=JSON.parse('{"Change Password":"Passwort ändern","Create Backup":"Sicherung erstellen","Logout":"Ausloggen","Rename":"Umbenennen","Save Login File":"Login-Datei sichern"}')}}]);
+//# sourceMappingURL=NimiqVueComponents.umd.min.lang-de-Wallet-json.js.map

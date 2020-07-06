@@ -1,0 +1,2 @@
+(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[45],{c7b6:function(e){e.exports=JSON.parse('{"Name your address":"命名您的地址"}')}}]);
+//# sourceMappingURL=NimiqVueComponents.umd.min.lang-zh-LabelInput-json.js.map
