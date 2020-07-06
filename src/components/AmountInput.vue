@@ -1,13 +1,14 @@
 <template>
-    <div class="amount-input">
+    <div class="amount-input" :class="{'has-value': valueInLuna > 0, 'focussed': isFocussed}">
         <form class="label-input" @submit.prevent ref="fullWidth">
             <span class="width-finder width-placeholder" ref="widthPlaceholder">{{placeholder}}</span>
             <div v-if="maxFontSize" class="full-width" :class="{'width-finder': maxWidth > 0}">Width</div>
             <span class="width-finder width-value" ref="widthValue">{{formattedValue || ''}}</span>
-            <input type="text" class="nq-input nq-light-blue" :class="vanishing"
+            <input type="text" inputmode="numeric" class="nq-input" :class="vanishing"
                 :placeholder="placeholder"
                 :style="{width: `${this.width}px`, fontSize: `${this.fontSize}rem`}"
                 v-model="formattedValue"
+                @focus="isFocussed = true" @blur="isFocussed = false"
                 ref="input">
         </form>
         <span class="nim">NIM</span>
@@ -38,6 +39,7 @@ export default class AmountInput extends Vue {
     private fontSize = this.maxFontSize;
     private maxWidth = 0;
     private valueInLuna = 0;
+    private isFocussed = false;
 
     public async mounted() {
         if (this.maxFontSize) {
@@ -120,10 +122,10 @@ export default class AmountInput extends Vue {
     }
 
     input {
-        padding: 1rem 0.25rem;
+        padding: 0 0.25rem;
         max-width: 100%;
-        transition: width 50ms ease-out;
         text-align: center;
+        transition: width 50ms ease-out, color .2s var(--nimiq-ease);
     }
 
     .full-width {
@@ -136,6 +138,16 @@ export default class AmountInput extends Vue {
         justify-content: center;
         width: 100%;
         font-size: 8rem;
+        color: rgba(31, 35, 72, 0.5); /* Based on Nimiq Blue */
+        transition: color .2s var(--nimiq-ease);
+    }
+
+    .amount-input.has-value {
+        color: var(--nimiq-blue);
+    }
+
+    .amount-input.focussed {
+        color: var(--nimiq-light-blue);
     }
 
     .amount-input form {
@@ -147,6 +159,5 @@ export default class AmountInput extends Vue {
         font-size: 4rem;
         font-weight: 700;
         line-height: 4.5rem;
-        color: var(--nimiq-light-blue);
     }
 </style>
