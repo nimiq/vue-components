@@ -19,7 +19,7 @@ import { Component, Mixins, Prop, Vue, Watch } from 'vue-property-decorator';
 import { Utf8Tools } from '@nimiq/utils';
 import I18nMixin from '../i18n/I18nMixin';
 
-@Component
+@Component({ name: 'LabelInput' })
 export default class LabelInput extends Mixins(I18nMixin) {
     @Prop(Number) protected maxBytes?: number;
     @Prop({type: String, default: ''}) private value!: string;

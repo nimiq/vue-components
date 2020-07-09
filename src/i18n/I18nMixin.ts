@@ -96,7 +96,9 @@ class I18nMixin extends Vue {
     }
 
     private static registerComponent(component: Vue) {
-        const componentName = component.constructor.name;
+        const componentName = component.$options.name;
+        // Using $options.name instead of constructor.name as class names get mangled in the production build.
+
         let componentsOfSameType = I18nMixin.registeredComponents[componentName];
         if (!componentsOfSameType) {
             componentsOfSameType = new Set<Vue>();
@@ -107,7 +109,9 @@ class I18nMixin extends Vue {
     }
 
     private static unregisterComponent(component: Vue) {
-        const componentName = component.constructor.name;
+        const componentName = component.$options.name;
+        // Using $options.name instead of constructor.name as class names get mangled in the production build.
+
         const componentsOfSameType = I18nMixin.registeredComponents[componentName];
         if (!componentsOfSameType) return;
         if (componentsOfSameType.size === 1) {
@@ -162,7 +166,7 @@ class I18nMixin extends Vue {
     public $t: (key: string, variablesOrLang?: I18n$tVariables | string, variables?: I18n$tVariables) => string;
 
     protected beforeCreate() {
-        this.$t = I18nMixin.$t.bind(this, this.constructor.name);
+        this.$t = I18nMixin.$t.bind(this, this.$options.name);
 
         I18nMixin.registerComponent(this);
     }
