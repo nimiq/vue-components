@@ -22,7 +22,7 @@ import I18nMixin from '../i18n/I18nMixin';
  *
  * **text** {string} [optional] - A specific text to be copied to the clipboard on click
  */
-@Component
+@Component({ name: 'Copyable' })
 export default class Copyable extends Mixins(I18nMixin) {
     private static readonly DISPLAY_TIME = 800;
 

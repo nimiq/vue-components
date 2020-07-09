@@ -69,6 +69,7 @@ import QrScannerWorker from '!!file-loader?name=[name].[ext]!../../node_modules/
 QrScannerLib.WORKER_PATH = QrScannerWorker;
 
 @Component({
+    name: 'QrScanner',
     components: { I18n },
 })
 class QrScanner extends Mixins(I18nMixin) {

@@ -57,6 +57,7 @@ import { CaretRightSmallIcon } from './Icons';
 import I18nMixin from '../i18n/I18nMixin';
 
 @Component({
+    name: 'AccountList',
     components: {
         Account,
         Tooltip,

@@ -76,6 +76,7 @@ export interface WalletInfo {
 }
 
 @Component({
+    name: 'AccountSelector',
     components: {AccountList, Tooltip},
     filters: {
         listAccountsAndContracts(wallet: WalletInfo): Array<AccountInfo|ContractInfo> {
