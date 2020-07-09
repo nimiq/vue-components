@@ -17,6 +17,7 @@ import AmountInput from './AmountInput.vue';
 import I18nMixin from '../i18n/I18nMixin';
 
 @Component({
+    name: 'AmountWithFee',
     components: {
         Amount,
         AmountInput,

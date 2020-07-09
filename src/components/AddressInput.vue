@@ -8,10 +8,10 @@
             <div class="block" :class="{
                 focused: _isBlockFocused(i - 1),
                 invisible: _isBlockFilled(i - 1),
-            }"></div>
+            }" :key="`block-${i}`"></div>
             <div v-if="i % 3" class="block-connector" :class="{
                 invisible: _isBlockFilled(i - 1) && !_isBlockFocused(i - 1) || _isBlockFilled(i) && !_isBlockFocused(i),
-            }"></div>
+            }" :key="`connector-${i}`"></div>
         </template>
 
         <template v-if="supportsMixBlendMode">
@@ -22,8 +22,8 @@
                         visibility: currentValue ? 'visible' : 'hidden',
                         left: `calc(${column - 1} * (var(--block-width) + var(--block-gap)) + .25rem)`,
                         top: `calc(${row - 1} * (var(--block-height) + var(--block-gap)) + .25rem)`,
-                        background:  `var(--nimiq-${_isBlockFocused((row - 1) * 3 + (column - 1)) ? 'light-' : ''}blue)`,
-                    }"></div>
+                        background: `var(--nimiq-${_isBlockFocused((row - 1) * 3 + (column - 1)) ? 'light-' : ''}blue)`,
+                    }" :key="`color-${row}-${column}`"></div>
                 </template>
             </template>
         </template>
@@ -192,7 +192,7 @@ export default class AddressInput extends Vue {
         // preventDefault() which then results in the need to reimplement the behavior for cutting text and has side
         // effects like the change not being added to the undo history. Therefore we let the browser do the default
         // behavior but overwrite the clipboard afterwards.
-        const text = AddressInput._exportValue(document.getSelection().toString());
+        const text = AddressInput._exportValue(document.getSelection()!.toString());
         setTimeout(() => Clipboard.copy(text));
     }
 
@@ -309,20 +309,33 @@ export default class AddressInput extends Vue {
     }
 
     ::-webkit-input-placeholder {
-        color: var(--nimiq-light-blue);
+        opacity: .6;
+    }
+    ::-ms-input-placeholder {
         opacity: .6;
     }
     ::-moz-placeholder {
-        color: var(--nimiq-light-blue);
         opacity: .6;
     }
-    :-ms-input-placeholder {
-        color: var(--nimiq-light-blue);
+    ::placeholder {
         opacity: .6;
     }
-    :-moz-placeholder {
+
+    textarea:focus::-webkit-input-placeholder {
+        transition: color .2s var(--nimiq-ease);
         color: var(--nimiq-light-blue);
-        opacity: .6;
+    }
+    textarea:focus::-ms-input-placeholder {
+        transition: color .2s var(--nimiq-ease);
+        color: var(--nimiq-light-blue);
+    }
+    textarea:focus::-moz-placeholder {
+        transition: color .2s var(--nimiq-ease);
+        color: var(--nimiq-light-blue);
+    }
+    textarea:focus::placeholder {
+        transition: color .2s var(--nimiq-ease);
+        color: var(--nimiq-light-blue);
     }
 
     .block {
@@ -333,6 +346,7 @@ export default class AddressInput extends Vue {
 
     .block.focused {
         opacity: .16;
+        border-color: var(--nimiq-light-blue);
     }
 
     .block-connector {
@@ -345,7 +359,7 @@ export default class AddressInput extends Vue {
 
     .block,
     .block-connector {
-        transition: opacity .2s var(--nimiq-ease);
+        transition: opacity .2s var(--nimiq-ease), border .2s var(--nimiq-ease);
     }
 
     .invisible {
