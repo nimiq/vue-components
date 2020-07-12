@@ -3,7 +3,7 @@
 /***/ "b4df":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"fee\":\"Gebühr\",\"Insufficient balance\":\"Guthaben ungenügend\"}");
+module.exports = JSON.parse("{\"fee\":\"Gebühr\",\"Insufficient balance\":\"Dein Guthaben reicht nicht aus.\"}");
 
 /***/ })
 

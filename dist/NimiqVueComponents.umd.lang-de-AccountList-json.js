@@ -3,7 +3,7 @@
 /***/ "db74":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"Contracts cannot be used for this operation.\":\"Contract-Kontos können für diese Aktion nicht verwendet werden.\",\"This address cannot be used for this operation.\":\"Diese Addresse kann für diese Aktion nicht verwendet werden.\"}");
+module.exports = JSON.parse("{\"Contracts cannot be used for this operation.\":\"Smart-Contracts können für diese Aktion nicht verwendet werden.\",\"This address cannot be used for this operation.\":\"Diese Adresse kann für diese Aktion nicht verwendet werden.\"}");
 
 /***/ })
 

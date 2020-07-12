@@ -1,2 +1,2 @@
-(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[41],{4634:function(e){e.exports=JSON.parse('{"{type} accounts cannot be used for this operation.":"{type} 个帐户不适用于此操作","Legacy":"传统","Login to another Account":"登录另一个帐户"}')}}]);
+(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[38],{4634:function(e){e.exports=JSON.parse('{"{type} accounts cannot be used for this operation.":"{type} 个帐户不适用于此操作","Legacy":"传统","Login to another Account":"登录另一个帐户"}')}}]);
 //# sourceMappingURL=NimiqVueComponents.umd.min.lang-zh-AccountSelector-json.js.map

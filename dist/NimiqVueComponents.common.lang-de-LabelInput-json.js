@@ -3,7 +3,7 @@
 /***/ "57cc":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"Name your address\":\"Benenne deine Addresse\"}");
+module.exports = JSON.parse("{\"Name your address\":\"Benenne deine Adresse\"}");
 
 /***/ })
 

@@ -98,7 +98,7 @@ msgstr "Taza efectiva"
 msgid "Enter address"
 msgstr "Inserte dirección"
 
-#: src/components/SendTx.vue:208
+#: src/components/SendTx.vue:209
 msgid "express"
 msgstr "exprés"
 
@@ -106,7 +106,7 @@ msgstr "exprés"
 msgid "fee"
 msgstr "cuota"
 
-#: src/components/SendTx.vue:198
+#: src/components/SendTx.vue:199
 msgid "free"
 msgstr "gratis"
 
@@ -117,10 +117,6 @@ msgstr "Volver"
 #: src/components/QrScanner.vue:34
 msgid "Grant camera access when asked."
 msgstr "De permiso a la cámara cuando se le pida"
-
-#: src/components/TrackingConsent.vue:42
-msgid "Help Nimiq improve by sharing anonymized usage data. Thank you! ❤️"
-msgstr ""
 
 #: src/components/Timer.vue:93
 msgid "hour"
@@ -138,7 +134,7 @@ msgstr "El destinatario a'un no tiene una Cuenta."
 msgid "Insufficient balance"
 msgstr "Balance insuficiente"
 
-#: src/components/AccountSelector.vue:187
+#: src/components/AccountSelector.vue:188
 msgid "Legacy"
 msgstr "Versión Antigua"
 
@@ -173,10 +169,6 @@ msgstr "cuota de red"
 #: src/components/PaymentInfoLine.vue:60
 msgid "Nimiq provides this service free of charge."
 msgstr "Nimiq provee este servicio sin ningún costo."
-
-#: src/components/TrackingConsent.vue:48
-msgid "No"
-msgstr ""
 
 #: src/components/SendTx.vue:108
 msgid "Open settings"
@@ -238,7 +230,7 @@ msgstr "Ingresar cuota"
 msgid "Speed up your transaction"
 msgstr "Acelerar su transacción"
 
-#: src/components/SendTx.vue:203
+#: src/components/SendTx.vue:204
 msgid "standard"
 msgstr "estándar"
 
@@ -274,11 +266,7 @@ msgstr "Descuento en criptomonedas del vendedor"
 msgid "Vendor crypto markup"
 msgstr "Margen en criptomonedas del vendedor"
 
-#: src/components/TrackingConsent.vue:47
-msgid "Yes"
-msgstr ""
-
-#: src/components/PaymentInfoLine.vue:280
+#: src/components/PaymentInfoLine.vue:281
 msgid ""
 "You are paying approx. {formattedRateDeviation} less than at the current "
 "market rate (coingecko.com)."
@@ -286,7 +274,7 @@ msgstr ""
 "Esta pagando approx. {formattedRateDeviation} menos que la taza actual de "
 "mercado (coingecko.com)."
 
-#: src/components/PaymentInfoLine.vue:274
+#: src/components/PaymentInfoLine.vue:275
 msgid ""
 "You are paying approx. {formattedRateDeviation} more than at the current "
 "market rate (coingecko.com)."
@@ -294,7 +282,7 @@ msgstr ""
 "Esta pagando approx. {formattedRateDeviation} más que la taza actual de "
 "mercado (coingecko.com)."
 
-#: src/components/PaymentInfoLine.vue:266
+#: src/components/PaymentInfoLine.vue:267
 msgid ""
 "Your actual discount is approx. {formattedRateDeviation} compared to the "
 "current market rate (coingecko.com)."
