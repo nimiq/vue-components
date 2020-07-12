@@ -1,0 +1,2 @@
+(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[15],{fb1d:function(e){e.exports=JSON.parse('{"fee":"cuota","Insufficient balance":"Balance insuficiente"}')}}]);
+//# sourceMappingURL=NimiqVueComponents.umd.min.lang-es-AmountWithFee-json.js.map
