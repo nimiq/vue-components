@@ -1,10 +1,12 @@
 # 
 # Translators:
+# Sven <sven@nimiq.com>, 2020
 # Daniel, 2020
+# Sebastian Langer <basti@b-compu.de>, 2020
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Daniel, 2020\n"
+"Last-Translator: Sebastian Langer <basti@b-compu.de>, 2020\n"
 "Language-Team: German (https://www.transifex.com/nimiq-foundation/teams/109388/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de\n"
@@ -16,11 +18,11 @@ msgstr "{amount} empfohlene Netzwerkgebühr"
 
 #: src/components/AccountSelector.vue:18
 msgid "{type} accounts cannot be used for this operation."
-msgstr "{type} Kontos können für diese Aktion nicht verwendet werden."
+msgstr "{type}-Konten können für diese Aktion nicht verwendet werden."
 
 #: src/components/SendTx.vue:124
 msgid "Add a public message..."
-msgstr "Füge eine öffentliche Nachricht hinzu."
+msgstr "Optionale öffentliche Nachricht..."
 
 #: src/components/SendTx.vue:131
 msgid "Awaiting Consensus..."
@@ -31,8 +33,8 @@ msgid ""
 "By adding a transation fee, you can influence how fast your transaction will"
 " be processed."
 msgstr ""
-"Durch Hinzufügen einer Transaktionsgebühr kannst du beeinflussen, wie "
-"schnell deine Transaktion bestätigt wird."
+"Indem du eine Transaktionsgebühr hinzufügst, kannst du beeinflussen, wie "
+"schnell deine Transaktion verarbeitet wird."
 
 #: src/components/QrScanner.vue:11
 msgid "Cancel"
@@ -63,12 +65,12 @@ msgid ""
 "Click on {safari} and go to\n"
 "Settings for this Website > Camera"
 msgstr ""
-"Klicke auf {safari} und gehe auf\n"
-"Seiteneinstellungen > Kamera"
+"Klicke auf {safari} und gehe zu\n"
+"Einstellungen für Websites > Kamera"
 
 #: src/components/AccountList.vue:43
 msgid "Contracts cannot be used for this operation."
-msgstr "Contract-Kontos können für diese Aktion nicht verwendet werden."
+msgstr "Smart-Contracts können für diese Aktion nicht verwendet werden."
 
 #: src/components/Copyable.vue:5 src/components/CopyableField.vue:21
 msgid "Copied"
@@ -96,9 +98,9 @@ msgstr "Effektiver Wechselkurs"
 
 #: src/components/SendTx.vue:61
 msgid "Enter address"
-msgstr "Addresse eingeben"
+msgstr "Adresse eingeben"
 
-#: src/components/SendTx.vue:208
+#: src/components/SendTx.vue:209
 msgid "express"
 msgstr "Express"
 
@@ -106,9 +108,9 @@ msgstr "Express"
 msgid "fee"
 msgstr "Gebühr"
 
-#: src/components/SendTx.vue:198
+#: src/components/SendTx.vue:199
 msgid "free"
-msgstr "Kostenlos"
+msgstr "kostenlos"
 
 #: src/components/PageHeader.vue:7
 msgid "Go back"
@@ -116,13 +118,7 @@ msgstr "Zurück"
 
 #: src/components/QrScanner.vue:34
 msgid "Grant camera access when asked."
-msgstr "Bestätige den Zugriff auf die Kamera, wenn du danach gefragt wirst."
-
-#: src/components/TrackingConsent.vue:42
-msgid "Help Nimiq improve by sharing anonymized usage data. Thank you! ❤️"
-msgstr ""
-"Hilf uns Nimiq zu verbessern, indem du anonymisierte Nutzerdaten mit uns "
-"teilst. Vielen Dank ❤️"
+msgstr "Bestätige den Zugriff auf deine Kamera, wenn du danach gefragt wirst."
 
 #: src/components/Timer.vue:93
 msgid "hour"
@@ -138,9 +134,9 @@ msgstr "Falls der Empfänger noch kein Konto hat:"
 
 #: src/components/AmountWithFee.vue:5
 msgid "Insufficient balance"
-msgstr "Guthaben ungenügend"
+msgstr "Dein Guthaben reicht nicht aus."
 
-#: src/components/AccountSelector.vue:187
+#: src/components/AccountSelector.vue:188
 msgid "Legacy"
 msgstr "Legacy"
 
@@ -162,11 +158,11 @@ msgstr "Minuten"
 
 #: src/components/SendTx.vue:22 src/components/SendTx.vue:78
 msgid "Name this contact..."
-msgstr "Benenne diesen Kontakt..."
+msgstr "Name dieses Kontaktes..."
 
 #: src/components/LabelInput.vue:4 src/components/LabelInput.vue:8
 msgid "Name your address"
-msgstr "Benenne deine Addresse"
+msgstr "Benenne deine Adresse"
 
 #: src/components/PaymentInfoLine.vue:88
 msgid "network fee"
@@ -174,11 +170,7 @@ msgstr "Netzwerkgebühr"
 
 #: src/components/PaymentInfoLine.vue:60
 msgid "Nimiq provides this service free of charge."
-msgstr "Nimiq bietet diesen Service kostenfrei an."
-
-#: src/components/TrackingConsent.vue:48
-msgid "No"
-msgstr "Nein"
+msgstr "Nimiq bietet diesen Service kostenlos an."
 
 #: src/components/SendTx.vue:108
 msgid "Open settings"
@@ -198,11 +190,11 @@ msgstr "Speichern und fortfahren"
 
 #: src/components/SendTx.vue:86
 msgid "Save Contact"
-msgstr "Kontakt anlegen"
+msgstr "Kontakt speichern"
 
 #: src/components/Wallet.vue:18
 msgid "Save Login File"
-msgstr "Login-Datei sichern"
+msgstr "Login-Datei speichern"
 
 #: src/components/Timer.vue:89
 msgid "second"
@@ -240,7 +232,7 @@ msgstr "Gebühr festlegen"
 msgid "Speed up your transaction"
 msgstr "Beschleunige deine Transaktion"
 
-#: src/components/SendTx.vue:203
+#: src/components/SendTx.vue:204
 msgid "standard"
 msgstr "Standard"
 
@@ -250,7 +242,7 @@ msgstr "das Kamera Symbol"
 
 #: src/components/AccountList.vue:44
 msgid "This address cannot be used for this operation."
-msgstr "Diese Addresse kann für diese Aktion nicht verwendet werden."
+msgstr "Diese Adresse kann für diese Aktion nicht verwendet werden."
 
 #: src/components/Timer.vue:44
 msgid "This offer expires in {timer}."
@@ -262,7 +254,7 @@ msgstr "Gesamt"
 
 #: src/components/QrScanner.vue:20
 msgid "Unblock the camera for this website to scan QR codes."
-msgstr "Erlaube den Zugriff auf die Kamera um QR codes zu scannen."
+msgstr "Erlaube den Zugriff auf deine Kamera um QR-Codes zu scannen."
 
 #: src/components/SendTx.vue:120
 msgid "Unnamed Contact"
@@ -270,17 +262,13 @@ msgstr "Unbenannter Kontakt"
 
 #: src/components/PaymentInfoLine.vue:41
 msgid "Vendor crypto discount"
-msgstr "Verkäufer Krypto-Rabatt"
+msgstr "Krypto-Rabatt des Verkäufers"
 
 #: src/components/PaymentInfoLine.vue:40
 msgid "Vendor crypto markup"
-msgstr "Verkäufer Krypto-Aufschlag"
+msgstr "Krypto-Aufschlag des Verkäufers"
 
-#: src/components/TrackingConsent.vue:47
-msgid "Yes"
-msgstr "Gerne"
-
-#: src/components/PaymentInfoLine.vue:280
+#: src/components/PaymentInfoLine.vue:281
 msgid ""
 "You are paying approx. {formattedRateDeviation} less than at the current "
 "market rate (coingecko.com)."
@@ -288,7 +276,7 @@ msgstr ""
 "Du zahlst etwa {formattedRateDeviation} weniger als zum aktuellen "
 "Wechselkurs (coingecko.com)."
 
-#: src/components/PaymentInfoLine.vue:274
+#: src/components/PaymentInfoLine.vue:275
 msgid ""
 "You are paying approx. {formattedRateDeviation} more than at the current "
 "market rate (coingecko.com)."
@@ -296,13 +284,13 @@ msgstr ""
 "Du zahlst etwa {formattedRateDeviation} mehr als zum aktuellen Wechselkurs "
 "(coingecko.com)."
 
-#: src/components/PaymentInfoLine.vue:266
+#: src/components/PaymentInfoLine.vue:267
 msgid ""
 "Your actual discount is approx. {formattedRateDeviation} compared to the "
 "current market rate (coingecko.com)."
 msgstr ""
-"Dein tatsächlicher Rabatt beträgt etwa {formattedRateDeviation} zum "
-"aktuellen Wechselkurs (coingecko.com)."
+"Dein tatsächlicher Rabatt beträgt etwa {formattedRateDeviation} im Vergleich"
+" zum aktuellen Wechselkurs (coingecko.com)."
 
 #: src/components/QrScanner.vue:16
 msgid "Your device does not have an accessible camera."
