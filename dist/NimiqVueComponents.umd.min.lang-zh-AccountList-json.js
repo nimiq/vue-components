@@ -1,2 +1,1 @@
-(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[40],{bb4e:function(e){e.exports=JSON.parse('{"Contracts cannot be used for this operation.":"合同不适用于此操作","This address cannot be used for this operation.":"此地址不适用于此操作"}')}}]);
-//# sourceMappingURL=NimiqVueComponents.umd.min.lang-zh-AccountList-json.js.map
+(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[37],{bb4e:function(e){e.exports=JSON.parse('{"Contracts cannot be used for this operation.":"合同不适用于此操作","This address cannot be used for this operation.":"此地址不适用于此操作"}')}}]);

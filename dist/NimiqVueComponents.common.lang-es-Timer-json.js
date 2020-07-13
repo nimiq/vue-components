@@ -1,4 +1,4 @@
-((typeof self !== 'undefined' ? self : this)["webpackJsonpNimiqVueComponents"] = (typeof self !== 'undefined' ? self : this)["webpackJsonpNimiqVueComponents"] || []).push([[24],{
+((typeof self !== 'undefined' ? self : this)["webpackJsonpNimiqVueComponents"] = (typeof self !== 'undefined' ? self : this)["webpackJsonpNimiqVueComponents"] || []).push([[23],{
 
 /***/ "5b2d":
 /***/ (function(module) {
@@ -8,4 +8,3 @@ module.exports = JSON.parse("{\"day\":\"día\",\"days\":\"días\",\"hour\":\"hor
 /***/ })
 
 }]);
-//# sourceMappingURL=NimiqVueComponents.common.lang-es-Timer-json.js.map

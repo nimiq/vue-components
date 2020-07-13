@@ -8,4 +8,3 @@ module.exports = JSON.parse("{\"day\":\"Tag\",\"days\":\"Tage\",\"hour\":\"Stund
 /***/ })
 
 }]);
-//# sourceMappingURL=NimiqVueComponents.common.lang-de-Timer-json.js.map

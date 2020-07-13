@@ -1,4 +1,4 @@
-((typeof self !== 'undefined' ? self : this)["webpackJsonpNimiqVueComponents"] = (typeof self !== 'undefined' ? self : this)["webpackJsonpNimiqVueComponents"] || []).push([[41],{
+((typeof self !== 'undefined' ? self : this)["webpackJsonpNimiqVueComponents"] = (typeof self !== 'undefined' ? self : this)["webpackJsonpNimiqVueComponents"] || []).push([[38],{
 
 /***/ "4634":
 /***/ (function(module) {
@@ -8,4 +8,3 @@ module.exports = JSON.parse("{\"{type} accounts cannot be used for this operatio
 /***/ })
 
 }]);
-//# sourceMappingURL=NimiqVueComponents.common.lang-zh-AccountSelector-json.js.map

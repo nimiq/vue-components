@@ -3,9 +3,8 @@
 /***/ "57cc":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"Name your address\":\"Benenne deine Addresse\"}");
+module.exports = JSON.parse("{\"Name your address\":\"Benenne deine Adresse\"}");
 
 /***/ })
 
 }]);
-//# sourceMappingURL=NimiqVueComponents.common.lang-de-LabelInput-json.js.map

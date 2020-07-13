@@ -3,9 +3,8 @@
 /***/ "b4df":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"fee\":\"Gebühr\",\"Insufficient balance\":\"Guthaben ungenügend\"}");
+module.exports = JSON.parse("{\"fee\":\"Gebühr\",\"Insufficient balance\":\"Dein Guthaben reicht nicht aus.\"}");
 
 /***/ })
 
 }]);
-//# sourceMappingURL=NimiqVueComponents.umd.lang-de-AmountWithFee-json.js.map

@@ -1,4 +1,4 @@
-((typeof self !== 'undefined' ? self : this)["webpackJsonpNimiqVueComponents"] = (typeof self !== 'undefined' ? self : this)["webpackJsonpNimiqVueComponents"] || []).push([[47],{
+((typeof self !== 'undefined' ? self : this)["webpackJsonpNimiqVueComponents"] = (typeof self !== 'undefined' ? self : this)["webpackJsonpNimiqVueComponents"] || []).push([[44],{
 
 /***/ "6daa":
 /***/ (function(module) {
@@ -8,4 +8,3 @@ module.exports = JSON.parse("{\"{amount} suggested network fee\":\"{amount} å»ºè
 /***/ })
 
 }]);
-//# sourceMappingURL=NimiqVueComponents.common.lang-zh-PaymentInfoLine-json.js.map
