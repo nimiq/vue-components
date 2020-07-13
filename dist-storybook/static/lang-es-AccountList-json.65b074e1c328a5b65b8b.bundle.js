@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[14],{1336:function(o){o.exports={"Contracts cannot be used for this operation.":"Contratos no pueden ser utilizados para esta operación.","This address cannot be used for this operation.":"Esta dirección no puede ser utilizada para esta operación."}}}]);
+//# sourceMappingURL=lang-es-AccountList-json.65b074e1c328a5b65b8b.bundle.js.map
