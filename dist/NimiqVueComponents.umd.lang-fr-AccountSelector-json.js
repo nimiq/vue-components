@@ -8,4 +8,3 @@ module.exports = JSON.parse("{\"{type} accounts cannot be used for this operatio
 /***/ })
 
 }]);
-//# sourceMappingURL=NimiqVueComponents.umd.lang-fr-AccountSelector-json.js.map

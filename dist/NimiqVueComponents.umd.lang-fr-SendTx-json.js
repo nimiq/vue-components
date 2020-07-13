@@ -8,4 +8,3 @@ module.exports = JSON.parse("{\"Add a public message...\":\"Ajouter un message p
 /***/ })
 
 }]);
-//# sourceMappingURL=NimiqVueComponents.umd.lang-fr-SendTx-json.js.map

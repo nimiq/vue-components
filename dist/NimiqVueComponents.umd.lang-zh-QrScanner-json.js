@@ -8,4 +8,3 @@ module.exports = JSON.parse("{\"Cancel\":\"取消\",\"Click on {icon} and go to\
 /***/ })
 
 }]);
-//# sourceMappingURL=NimiqVueComponents.umd.lang-zh-QrScanner-json.js.map

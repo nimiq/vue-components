@@ -8,4 +8,3 @@ module.exports = JSON.parse("{\"Copied\":\"Copiado\"}");
 /***/ })
 
 }]);
-//# sourceMappingURL=NimiqVueComponents.common.lang-es-Copyable-json.js.map

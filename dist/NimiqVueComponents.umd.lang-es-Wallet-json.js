@@ -8,4 +8,3 @@ module.exports = JSON.parse("{\"Change Password\":\"Cambiar Contraseña\",\"Crea
 /***/ })
 
 }]);
-//# sourceMappingURL=NimiqVueComponents.umd.lang-es-Wallet-json.js.map

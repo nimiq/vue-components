@@ -8,4 +8,3 @@ module.exports = JSON.parse("{\"Add a public message...\":\"添加公开信息..
 /***/ })
 
 }]);
-//# sourceMappingURL=NimiqVueComponents.common.lang-zh-SendTx-json.js.map

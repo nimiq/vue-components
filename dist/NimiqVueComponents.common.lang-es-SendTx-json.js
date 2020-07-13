@@ -8,4 +8,3 @@ module.exports = JSON.parse("{\"Add a public message...\":\"Agregue un mensaje p
 /***/ })
 
 }]);
-//# sourceMappingURL=NimiqVueComponents.common.lang-es-SendTx-json.js.map
