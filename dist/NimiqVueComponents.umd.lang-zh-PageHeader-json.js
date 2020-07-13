@@ -8,4 +8,3 @@ module.exports = JSON.parse("{\"Go back\":\"返回\"}");
 /***/ })
 
 }]);
-//# sourceMappingURL=NimiqVueComponents.umd.lang-zh-PageHeader-json.js.map

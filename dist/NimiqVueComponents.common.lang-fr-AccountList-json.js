@@ -8,4 +8,3 @@ module.exports = JSON.parse("{\"Contracts cannot be used for this operation.\":\
 /***/ })
 
 }]);
-//# sourceMappingURL=NimiqVueComponents.common.lang-fr-AccountList-json.js.map

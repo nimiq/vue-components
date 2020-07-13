@@ -8,4 +8,3 @@ module.exports = JSON.parse("{\"{amount} suggested network fee\":\"{amount} empf
 /***/ })
 
 }]);
-//# sourceMappingURL=NimiqVueComponents.common.lang-de-PaymentInfoLine-json.js.map

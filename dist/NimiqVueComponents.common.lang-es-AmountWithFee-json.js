@@ -8,4 +8,3 @@ module.exports = JSON.parse("{\"fee\":\"cuota\",\"Insufficient balance\":\"Balan
 /***/ })
 
 }]);
-//# sourceMappingURL=NimiqVueComponents.common.lang-es-AmountWithFee-json.js.map

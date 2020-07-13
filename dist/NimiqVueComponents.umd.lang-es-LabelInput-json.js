@@ -8,4 +8,3 @@ module.exports = JSON.parse("{\"Name your address\":\"De nombre a su dirección\
 /***/ })
 
 }]);
-//# sourceMappingURL=NimiqVueComponents.umd.lang-es-LabelInput-json.js.map
