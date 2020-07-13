@@ -38,6 +38,7 @@ import { AlertTriangleIcon, MenuDotsIcon, ArrowRightSmallIcon } from './Icons';
 import I18nMixin from '../i18n/I18nMixin';
 
 @Component({
+    name: 'Wallet',
     components: {
         AccountRing,
         Amount,

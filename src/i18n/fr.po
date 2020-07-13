@@ -100,7 +100,7 @@ msgstr "Taux effectif"
 msgid "Enter address"
 msgstr "Entrez l'adresse"
 
-#: src/components/SendTx.vue:208
+#: src/components/SendTx.vue:209
 msgid "express"
 msgstr "express"
 
@@ -108,7 +108,7 @@ msgstr "express"
 msgid "fee"
 msgstr "frais"
 
-#: src/components/SendTx.vue:198
+#: src/components/SendTx.vue:199
 msgid "free"
 msgstr "gratuit"
 
@@ -136,7 +136,7 @@ msgstr "Si le destinataire n'a pas encore de Compte:"
 msgid "Insufficient balance"
 msgstr "Solde insuffisant"
 
-#: src/components/AccountSelector.vue:187
+#: src/components/AccountSelector.vue:188
 msgid "Legacy"
 msgstr "Legacy"
 
@@ -232,7 +232,7 @@ msgstr "Définir les frais"
 msgid "Speed up your transaction"
 msgstr "Accélérer votre transaction"
 
-#: src/components/SendTx.vue:203
+#: src/components/SendTx.vue:204
 msgid "standard"
 msgstr "standard"
 
@@ -268,7 +268,7 @@ msgstr "Crypto-remise"
 msgid "Vendor crypto markup"
 msgstr "Crypto-premium"
 
-#: src/components/PaymentInfoLine.vue:280
+#: src/components/PaymentInfoLine.vue:281
 msgid ""
 "You are paying approx. {formattedRateDeviation} less than at the current "
 "market rate (coingecko.com)."
@@ -276,7 +276,7 @@ msgstr ""
 "Vous payez environ {formattedRateDeviation} moins que le taux actuel du "
 "marché (coingecko.com)."
 
-#: src/components/PaymentInfoLine.vue:274
+#: src/components/PaymentInfoLine.vue:275
 msgid ""
 "You are paying approx. {formattedRateDeviation} more than at the current "
 "market rate (coingecko.com)."
@@ -284,7 +284,7 @@ msgstr ""
 "Vous payez environ {formattedRateDeviation} plus que le taux actuel du "
 "marché (coingecko.com)."
 
-#: src/components/PaymentInfoLine.vue:266
+#: src/components/PaymentInfoLine.vue:267
 msgid ""
 "Your actual discount is approx. {formattedRateDeviation} compared to the "
 "current market rate (coingecko.com)."

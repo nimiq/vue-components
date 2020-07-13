@@ -102,6 +102,7 @@ function _toSimplifiedTime(millis: number, includeUnit: boolean = true): number 
 }
 
 @Component({
+    name: 'Timer',
     filters: { _toSimplifiedTime },
     components: { Tooltip, I18n },
 })

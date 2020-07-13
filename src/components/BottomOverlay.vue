@@ -40,7 +40,7 @@ export default BottomOverlay;
         bottom: 2rem;
         max-width: 110rem;
         padding: 1.5rem 2rem 1.75rem 2rem;
-        border-radius: 1rem;
+        border-radius: 1.25rem;
         box-shadow: 0 0 2.5rem rgba(0, 0, 0, 0.111158);
         font-size: 2rem;
         line-height: 1.3;
