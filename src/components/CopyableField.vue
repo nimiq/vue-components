@@ -28,7 +28,7 @@ import { Vue, Component, Mixins, Prop, Watch } from 'vue-property-decorator';
 import { Clipboard } from '@nimiq/utils';
 import I18nMixin from '../i18n/I18nMixin';
 
-@Component
+@Component({ name: 'CopyableField' })
 export default class CopyableField extends Mixins(I18nMixin) {
     private static readonly DEFAULT_FONT_SIZE = 3; // in rem
 

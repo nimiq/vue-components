@@ -17,7 +17,10 @@
     import { ArrowLeftIcon } from './Icons';
     import I18nMixin from '../i18n/I18nMixin';
 
-    @Component({components: { ArrowLeftIcon }})
+    @Component({
+        name: 'PageHeader',
+        components: { ArrowLeftIcon },
+    })
     export default class PageHeader extends Mixins(I18nMixin) {
         @Prop({type: Boolean, default: false}) private backArrow!: boolean;
         @Prop({type: Boolean, default: false}) private progressIndicator!: boolean;

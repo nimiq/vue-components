@@ -96,7 +96,7 @@ msgstr "有效率"
 msgid "Enter address"
 msgstr "输入地址"
 
-#: src/components/SendTx.vue:208
+#: src/components/SendTx.vue:209
 msgid "express"
 msgstr "表现"
 
@@ -104,7 +104,7 @@ msgstr "表现"
 msgid "fee"
 msgstr "费用"
 
-#: src/components/SendTx.vue:198
+#: src/components/SendTx.vue:199
 msgid "free"
 msgstr "费用"
 
@@ -115,10 +115,6 @@ msgstr "返回"
 #: src/components/QrScanner.vue:34
 msgid "Grant camera access when asked."
 msgstr "在询问时，授予摄像机访问权限"
-
-#: src/components/TrackingConsent.vue:42
-msgid "Help Nimiq improve by sharing anonymized usage data. Thank you! ❤️"
-msgstr ""
 
 #: src/components/Timer.vue:93
 msgid "hour"
@@ -136,7 +132,7 @@ msgstr "如果接收者还没有帐户："
 msgid "Insufficient balance"
 msgstr "余额不足"
 
-#: src/components/AccountSelector.vue:187
+#: src/components/AccountSelector.vue:188
 msgid "Legacy"
 msgstr "传统"
 
@@ -171,10 +167,6 @@ msgstr "网络费"
 #: src/components/PaymentInfoLine.vue:60
 msgid "Nimiq provides this service free of charge."
 msgstr "Nimiq免费提供此服务"
-
-#: src/components/TrackingConsent.vue:48
-msgid "No"
-msgstr ""
 
 #: src/components/SendTx.vue:108
 msgid "Open settings"
@@ -236,7 +228,7 @@ msgstr "设定费用"
 msgid "Speed up your transaction"
 msgstr "加快交易"
 
-#: src/components/SendTx.vue:203
+#: src/components/SendTx.vue:204
 msgid "standard"
 msgstr "标准"
 
@@ -272,23 +264,19 @@ msgstr "供应商的加密货币折扣"
 msgid "Vendor crypto markup"
 msgstr "供应商加密货币标记"
 
-#: src/components/TrackingConsent.vue:47
-msgid "Yes"
-msgstr ""
-
-#: src/components/PaymentInfoLine.vue:280
+#: src/components/PaymentInfoLine.vue:281
 msgid ""
 "You are paying approx. {formattedRateDeviation} less than at the current "
 "market rate (coingecko.com)."
 msgstr "您正在支付约 {formattedRateDeviation} 低于当前市场的价格（coingecko.com）"
 
-#: src/components/PaymentInfoLine.vue:274
+#: src/components/PaymentInfoLine.vue:275
 msgid ""
 "You are paying approx. {formattedRateDeviation} more than at the current "
 "market rate (coingecko.com)."
 msgstr "您正在支付约 {formattedRateDeviation} 高于当前市场的价格（coingecko.com）"
 
-#: src/components/PaymentInfoLine.vue:266
+#: src/components/PaymentInfoLine.vue:267
 msgid ""
 "Your actual discount is approx. {formattedRateDeviation} compared to the "
 "current market rate (coingecko.com)."

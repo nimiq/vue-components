@@ -148,6 +148,7 @@ function fiatAmountInfoValidator(value: any) {
 }
 
 @Component({
+    name: 'PaymentInfoLine',
     components: {
         Account,
         Timer,

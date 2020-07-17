@@ -164,6 +164,7 @@ import I18nMixin from '../i18n/I18nMixin';
 import { Utf8Tools, BrowserDetection } from '@nimiq/utils';
 
 @Component({
+    name: 'SendTx',
     components: {
         SmallPage,
         PageHeader,
