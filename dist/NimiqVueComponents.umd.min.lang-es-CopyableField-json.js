@@ -1,2 +1,1 @@
-(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[18],{ac40:function(e){e.exports=JSON.parse('{"Copied":"Copiado"}')}}]);
-//# sourceMappingURL=NimiqVueComponents.umd.min.lang-es-CopyableField-json.js.map
+(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[17],{ac40:function(e){e.exports=JSON.parse('{"Copied":"Copiado"}')}}]);

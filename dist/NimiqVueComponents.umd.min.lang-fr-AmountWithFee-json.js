@@ -1,2 +1,1 @@
-(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[29],{"615f":function(e){e.exports=JSON.parse('{"fee":"frais","Insufficient balance":"Solde insuffisant"}')}}]);
-//# sourceMappingURL=NimiqVueComponents.umd.min.lang-fr-AmountWithFee-json.js.map
+(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[27],{"615f":function(e){e.exports=JSON.parse('{"fee":"frais","Insufficient balance":"Solde insuffisant"}')}}]);

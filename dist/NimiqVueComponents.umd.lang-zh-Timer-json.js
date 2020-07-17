@@ -1,4 +1,4 @@
-((typeof self !== 'undefined' ? self : this)["webpackJsonpNimiqVueComponents"] = (typeof self !== 'undefined' ? self : this)["webpackJsonpNimiqVueComponents"] || []).push([[50],{
+((typeof self !== 'undefined' ? self : this)["webpackJsonpNimiqVueComponents"] = (typeof self !== 'undefined' ? self : this)["webpackJsonpNimiqVueComponents"] || []).push([[47],{
 
 /***/ "813f":
 /***/ (function(module) {
@@ -8,4 +8,3 @@ module.exports = JSON.parse("{\"day\":\"天\",\"days\":\"天\",\"hour\":\"时\",
 /***/ })
 
 }]);
-//# sourceMappingURL=NimiqVueComponents.umd.lang-zh-Timer-json.js.map

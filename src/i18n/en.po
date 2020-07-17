@@ -103,6 +103,10 @@ msgstr ""
 msgid "Grant camera access when asked."
 msgstr ""
 
+#: src/components/TrackingConsent.vue:43
+msgid "Help Nimiq improve by sharing anonymized usage data. Thank you! ❤️"
+msgstr ""
+
 #: src/components/Timer.vue:93
 msgid "hour"
 msgstr ""
@@ -155,6 +159,10 @@ msgstr ""
 
 #: src/components/PaymentInfoLine.vue:60
 msgid "Nimiq provides this service free of charge."
+msgstr ""
+
+#: src/components/TrackingConsent.vue:49
+msgid "No"
 msgstr ""
 
 #: src/components/SendTx.vue:108
@@ -252,6 +260,10 @@ msgstr ""
 
 #: src/components/PaymentInfoLine.vue:40
 msgid "Vendor crypto markup"
+msgstr ""
+
+#: src/components/TrackingConsent.vue:48
+msgid "Yes"
 msgstr ""
 
 #: src/components/PaymentInfoLine.vue:281

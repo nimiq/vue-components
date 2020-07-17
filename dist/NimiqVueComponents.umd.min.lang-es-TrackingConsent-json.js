@@ -1,2 +1,0 @@
-(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[25],{"18e1":function(e){e.exports=JSON.parse('{"Help Nimiq improve by sharing anonymized usage data. Thank you! ❤️":"Help Nimiq improve by sharing anonymized usage data. Thank you! ❤️","No":"No","Yes":"Yes"}')}}]);
-//# sourceMappingURL=NimiqVueComponents.umd.min.lang-es-TrackingConsent-json.js.map
