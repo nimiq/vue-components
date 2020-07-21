@@ -33,7 +33,9 @@ interface Consent {
     allowsBrowserData?: boolean;
     allowsUsageData?: boolean;
 }
-
+/**
+ * TrackinConsent Component - used to setup Matomo tracking in a vue-based project
+ */
 @Component
 class TrackingConsent extends Vue {
     @Prop({
@@ -74,21 +76,21 @@ class TrackingConsent extends Vue {
     @Prop({
         type: Object,
         default: () => ({
-            setTrackerUrl: TrackingConsent.DEFAULT_MATOMO_URL + 'nimiq.php',
+            setTrackerUrl: TrackingConsent.DEFAULT_TRACKER_URL,
         }),
     })
     public options: {
-        setSiteId: string, /* 3 for safe.nimiq.com ? */
+        setSiteId: number, /* 3 for safe.nimiq.com ? */
         setTrackerUrl: string
         addDownloadExtensions?: string,
         trackPageView?: boolean,
         enableLinkTracking?: boolean,
-        [k: string]: string | boolean,
+        [k: string]: number | string | boolean,
     };
 
     @Prop({
         type: String,
-        default: () => TrackingConsent.DEFAULT_MATOMO_URL + 'nimiq.js',
+        default: () => TrackingConsent.DEFAULT_TRACKING_URL,
     })
     public trackingScriptUrl: string;
 
@@ -230,7 +232,7 @@ class TrackingConsent extends Vue {
         }
 
         /* Check for consent changes on tab / window focus */
-        document.addEventListener('visibilitychange', this._onVisibilityChange);
+        window.addEventListener('focus', this._onVisibilityChange);
 
         /* Add to the TrackingConsent instances list */
         TrackingConsent._instances.add(this);
@@ -253,7 +255,7 @@ class TrackingConsent extends Vue {
 
     private destroyed() {
         /* Remove the event watching for consent changes on tab / window focus */
-        document.removeEventListener('visibilitychange', this._onVisibilityChange);
+        window.removeEventListener('focus', this._onVisibilityChange);
 
         /* Remove from the TrackingConsent instances list */
         TrackingConsent._instances.delete(this);
@@ -335,6 +337,11 @@ class TrackingConsent extends Vue {
             localStorage.removeItem('referrer');
         }
 
+        /* set setTrackerUrl to default value if not set */
+        if (!this.options.setTrackerUrl) {
+            this.options.setTrackerUrl = TrackingConsent.DEFAULT_TRACKER_URL;
+        }
+
         /* Cycle through options and set them */
         Object.keys(this.options).forEach((k) => {
             const option = this.options[k];
@@ -352,8 +359,6 @@ class TrackingConsent extends Vue {
         script.src = this.trackingScriptUrl;
         script.setAttribute('matomo', '');
         nextScript.parentNode.insertBefore(script, nextScript);
-
-        console.log('TrackingConsent: Matomo initialized and script added');
     }
 }
 
@@ -370,6 +375,9 @@ namespace TrackingConsent { // tslint:disable-line:no-namespace
 
     export const COOKIE_STORAGE_KEY = 'tracking-consent';
     export const DEFAULT_MATOMO_URL = '//stats.nimiq-network.com/';
+
+    export const DEFAULT_TRACKER_URL = DEFAULT_MATOMO_URL + 'matomo.php';
+    export const DEFAULT_TRACKING_URL = DEFAULT_MATOMO_URL + 'matomo.js';
 }
 
 export default TrackingConsent;
