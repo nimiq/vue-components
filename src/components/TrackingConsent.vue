@@ -38,6 +38,8 @@ interface Consent {
  */
 @Component
 class TrackingConsent extends Vue {
+    private static _instances: Set<TrackingConsent> = new Set();
+
     @Prop({
         type: Object,
         default:  () => ({
@@ -76,12 +78,13 @@ class TrackingConsent extends Vue {
     @Prop({
         type: Object,
         default: () => ({
+            setSiteId: 1,
             setTrackerUrl: TrackingConsent.DEFAULT_TRACKER_URL,
         }),
     })
     public options: {
-        setSiteId: number, /* 3 for safe.nimiq.com ? */
-        setTrackerUrl: string
+        setSiteId: number,
+        setTrackerUrl?: string
         addDownloadExtensions?: string,
         trackPageView?: boolean,
         enableLinkTracking?: boolean,
@@ -123,11 +126,9 @@ class TrackingConsent extends Vue {
         type: String,
         default: 'https://geoip.nimiq-network.com:8443/v1/locate',
     })
-    private geoIpServer: string;
+    public geoIpServer: string;
 
-    private static _instances: Set<TrackingConsent> = new Set();
     private uiRequired: boolean = false;
-    private safariFix: string = '';
 
     public static get _paq() {
         if (!window._paq || !Array.isArray(window._paq)) {
@@ -143,8 +144,13 @@ class TrackingConsent extends Vue {
         return window._mtm;
     }
 
+    /**
+     * consent getter - return the parsed content of the consent cookie that store the user's choice about data sharing
+     * @return {Consent} An object containing two boolean properties: allowsBrowserData & allowsUsageData
+     */
     public static get consent(): Consent {
         const cookie = TrackingConsent._getCookie(TrackingConsent.COOKIE_STORAGE_KEY);
+
         if (cookie) {
             return JSON.parse(cookie);
         }
@@ -152,14 +158,19 @@ class TrackingConsent extends Vue {
         return {};
     }
 
-    public static get allowsUsageData() {
+    public static get allowsUsageData(): boolean {
         return TrackingConsent.consent.allowsUsageData;
     }
 
-    public static get allowsBrowserData() {
+    public static get allowsBrowserData(): boolean {
         return TrackingConsent.consent.allowsBrowserData;
     }
 
+    /**
+     * trackEvent - allow you to track custom interaction on the website/webapp.
+     *
+     * Docs: https://matomo.org/docs/event-tracking/
+     */
     public static trackEvent(
         category: string,
         action: string,
@@ -208,17 +219,20 @@ class TrackingConsent extends Vue {
         return match && match[2];
     }
 
+    /** denyConsent - deny sharing usage & browser data and opt out of matomo tracking */
     public denyConsent() {
         TrackingConsent._paq.push(['optUserOut']);
         this._setConsent({ allowsUsageData: false, allowsBrowserData: false });
     }
 
+    /** allowUsageData - allow sharing usage & browser data */
     public allowUsageData() {
         TrackingConsent._paq.push(['forgetUserOptOut']);
         this._setConsent({ allowsUsageData: true, allowsBrowserData: true });
         this._initMatomo();
     }
 
+    /** allowBrowserData - allow sharing browser data, but not usage data */
     public allowBrowserData() {
         TrackingConsent._paq.push(['forgetUserOptOut']);
         this._setConsent({ allowsBrowserData: true, allowsUsageData: false });
