@@ -3,6 +3,9 @@ interface Consent {
     allowsBrowserData?: boolean;
     allowsUsageData?: boolean;
 }
+/**
+ * TrackinConsent Component - used to setup Matomo tracking in a vue-based project
+ */
 declare class TrackingConsent extends Vue {
     text: {
         main: string;
@@ -12,12 +15,12 @@ declare class TrackingConsent extends Vue {
     };
     theme: string;
     options: {
-        setSiteId: string;
+        setSiteId: number;
         setTrackerUrl: string;
         addDownloadExtensions?: string;
         trackPageView?: boolean;
         enableLinkTracking?: boolean;
-        [k: string]: string | boolean;
+        [k: string]: number | string | boolean;
     };
     trackingScriptUrl: string;
     uiAllowed: boolean;
@@ -56,5 +59,7 @@ declare namespace TrackingConsent {
     const localstorageKeys: string[];
     const COOKIE_STORAGE_KEY = "tracking-consent";
     const DEFAULT_MATOMO_URL = "//stats.nimiq-network.com/";
+    const DEFAULT_TRACKER_URL: string;
+    const DEFAULT_TRACKING_URL: string;
 }
 export default TrackingConsent;
