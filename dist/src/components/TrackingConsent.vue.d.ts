@@ -7,6 +7,7 @@ interface Consent {
  * TrackinConsent Component - used to setup Matomo tracking in a vue-based project
  */
 declare class TrackingConsent extends Vue {
+    private static _instances;
     text: {
         main: string;
         yes: string;
@@ -16,7 +17,7 @@ declare class TrackingConsent extends Vue {
     theme: string;
     options: {
         setSiteId: number;
-        setTrackerUrl: string;
+        setTrackerUrl?: string;
         addDownloadExtensions?: string;
         trackPageView?: boolean;
         enableLinkTracking?: boolean;
@@ -29,20 +30,30 @@ declare class TrackingConsent extends Vue {
         domain: string;
         expirationDays: number;
     };
-    private geoIpServer;
-    private static _instances;
+    geoIpServer: string;
     private uiRequired;
-    private safariFix;
     static get _paq(): any[];
     static get _mtm(): any[];
+    /**
+     * consent getter - return the parsed content of the consent cookie that store the user's choice about data sharing
+     * @return {Consent} An object containing two boolean properties: allowsBrowserData & allowsUsageData
+     */
     static get consent(): Consent;
     static get allowsUsageData(): boolean;
     static get allowsBrowserData(): boolean;
+    /**
+     * trackEvent - allow you to track custom interaction on the website/webapp.
+     *
+     * Docs: https://matomo.org/docs/event-tracking/
+     */
     static trackEvent(category: string, action: string, name?: string, value?: string | number): void;
     private static _setCookie;
     private static _getCookie;
+    /** denyConsent - deny sharing usage & browser data and opt out of matomo tracking */
     denyConsent(): void;
+    /** allowUsageData - allow sharing usage & browser data */
     allowUsageData(): void;
+    /** allowBrowserData - allow sharing browser data, but not usage data */
     allowBrowserData(): void;
     private created;
     private destroyed;
