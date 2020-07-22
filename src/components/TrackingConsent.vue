@@ -191,6 +191,16 @@ class TrackingConsent extends Vue {
         TrackingConsent._paq.push(obj);
     }
 
+    /**
+     * execFunction - allow you to execute a function in matomo's scope, where `this` is Matomo's tracker object
+     *
+     * Docs: https://developer.matomo.org/guides/tracking-javascript-guide
+     * API ref: https://developer.matomo.org/guides/tracking-javascript
+     */
+    public static execFunction(fn: () => void) {
+        TrackingConsent._paq.push([fn]);
+    }
+
     private static _setCookie(
         cookieName: string,
         cookieValue: string,
