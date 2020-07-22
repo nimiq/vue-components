@@ -110,8 +110,8 @@ class TrackingConsent extends Vue {
     @Prop({
         type: Object,
         default: () => ({
-            domain: document.location.hostname,
-            expirationDays: 365 * 20,
+            domain: TrackingConsent.DEFAULT_COOKIE_DOMAIN,
+            expirationDays: TrackingConsent.DEFAULT_COOKIE_EXPIRATION_DAYS,
         }),
         validator: ({ expirationDays }) => expirationDays >= 0,
     })
@@ -167,6 +167,8 @@ class TrackingConsent extends Vue {
     /**
      * trackEvent - allow you to track custom interaction on the website/webapp.
      *
+     * This method won't do anything if the user denied to share usage data.
+     *
      * Docs: https://matomo.org/docs/event-tracking/
      */
     public static trackEvent(
@@ -203,19 +205,18 @@ class TrackingConsent extends Vue {
         cookieName: string,
         cookieValue: string,
         options: {
-            expirationDays: number,
             domain: string,
+            expirationDays: number,
         },
     ) {
         const cookie = [cookieName + '=' + cookieValue];
 
         if (options) {
-            if (options.expirationDays) {
-                cookie.push('max-age=' + options.expirationDays * 24 * 60 * 60);
-            }
-            if (options.domain) {
-                cookie.push('domain=' + options.domain);
-            }
+            if (!options.domain) options.domain = TrackingConsent.DEFAULT_COOKIE_DOMAIN;
+            if (!options.expirationDays) options.expirationDays = TrackingConsent.DEFAULT_COOKIE_EXPIRATION_DAYS;
+
+            cookie.push('domain=' + options.domain);
+            cookie.push('max-age=' + options.expirationDays * 24 * 60 * 60);
         }
 
         cookie.push('path=/');
@@ -261,12 +262,12 @@ class TrackingConsent extends Vue {
 
         /* Check old consent preferences if there's any */
         const localStoredConsent =
-            localStorage.getItem(TrackingConsent.localstorageKeys[0]) ||
-            localStorage.getItem(TrackingConsent.localstorageKeys[1]);
+            localStorage.getItem(TrackingConsent.LOCALSTORAGE_KEYS[0]) ||
+            localStorage.getItem(TrackingConsent.LOCALSTORAGE_KEYS[1]);
 
         if (localStoredConsent) {
-            localStorage.removeItem(TrackingConsent.localstorageKeys[0]);
-            localStorage.removeItem(TrackingConsent.localstorageKeys[1]);
+            localStorage.removeItem(TrackingConsent.LOCALSTORAGE_KEYS[0]);
+            localStorage.removeItem(TrackingConsent.LOCALSTORAGE_KEYS[1]);
 
             this._setConsent(JSON.parse(localStoredConsent));
         }
@@ -388,14 +389,16 @@ namespace TrackingConsent { // tslint:disable-line:no-namespace
         DARK = 'dark',
     }
 
-    export const localstorageKeys = [
+    export const LOCALSTORAGE_KEYS = [
         'tracking-consent',
         'tracking-consensus',
     ];
-
     export const COOKIE_STORAGE_KEY = 'tracking-consent';
-    export const DEFAULT_MATOMO_URL = '//stats.nimiq-network.com/';
 
+    export const DEFAULT_COOKIE_DOMAIN = document.location.hostname;
+    export const DEFAULT_COOKIE_EXPIRATION_DAYS = 365 * 20;
+
+    export const DEFAULT_MATOMO_URL = '//stats.nimiq-network.com/';
     export const DEFAULT_TRACKER_URL = DEFAULT_MATOMO_URL + 'matomo.php';
     export const DEFAULT_TRACKING_URL = DEFAULT_MATOMO_URL + 'matomo.js';
 }
