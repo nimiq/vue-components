@@ -42,6 +42,8 @@ declare class TrackingConsent extends Vue {
     /**
      * trackEvent - allow you to track custom interaction on the website/webapp.
      *
+     * This method won't do anything if the user denied to share usage data.
+     *
      * Docs: https://matomo.org/docs/event-tracking/
      */
     static trackEvent(category: string, action: string, name?: string, value?: string | number): void;
@@ -72,8 +74,10 @@ declare namespace TrackingConsent {
         LIGHT = "light",
         DARK = "dark"
     }
-    const localstorageKeys: string[];
+    const LOCALSTORAGE_KEYS: string[];
     const COOKIE_STORAGE_KEY = "tracking-consent";
+    const DEFAULT_COOKIE_DOMAIN: string;
+    const DEFAULT_COOKIE_EXPIRATION_DAYS: number;
     const DEFAULT_MATOMO_URL = "//stats.nimiq-network.com/";
     const DEFAULT_TRACKER_URL: string;
     const DEFAULT_TRACKING_URL: string;
