@@ -75,6 +75,7 @@ class TrackingConsent extends Vue {
     })
     public theme: string;
 
+    /** API reference: https://developer.matomo.org/guides/tracking-javascript#configuration-of-the-tracker-object */
     @Prop({
         type: Object,
         default: () => ({
@@ -85,10 +86,7 @@ class TrackingConsent extends Vue {
     public options: {
         setSiteId: number,
         setTrackerUrl?: string
-        addDownloadExtensions?: string,
-        trackPageView?: boolean,
-        enableLinkTracking?: boolean,
-        [k: string]: number | string | boolean,
+        [k: string]: null | boolean | number | string | string[],
     };
 
     @Prop({
@@ -370,9 +368,7 @@ class TrackingConsent extends Vue {
         Object.keys(this.options).forEach((k) => {
             const option = this.options[k];
 
-            if (option) {
-                TrackingConsent._paq.push(typeof option === 'boolean' ? [k] : [k, option]);
-            }
+            TrackingConsent._paq.push(option === null ? [k] : [k, option]);
         });
 
         /* append script */
