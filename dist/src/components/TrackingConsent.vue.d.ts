@@ -15,13 +15,11 @@ declare class TrackingConsent extends Vue {
         browserOnly: string;
     };
     theme: string;
+    /** API reference: https://developer.matomo.org/guides/tracking-javascript#configuration-of-the-tracker-object */
     options: {
         setSiteId: number;
         setTrackerUrl?: string;
-        addDownloadExtensions?: string;
-        trackPageView?: boolean;
-        enableLinkTracking?: boolean;
-        [k: string]: number | string | boolean;
+        [k: string]: null | boolean | number | string | string[];
     };
     trackingScriptUrl: string;
     uiAllowed: boolean;
@@ -47,6 +45,13 @@ declare class TrackingConsent extends Vue {
      * Docs: https://matomo.org/docs/event-tracking/
      */
     static trackEvent(category: string, action: string, name?: string, value?: string | number): void;
+    /**
+     * execFunction - allow you to execute a function in matomo's scope, where `this` is Matomo's tracker object
+     *
+     * Docs: https://developer.matomo.org/guides/tracking-javascript-guide
+     * API ref: https://developer.matomo.org/guides/tracking-javascript
+     */
+    static execFunction(fn: () => void): void;
     private static _setCookie;
     private static _getCookie;
     /** denyConsent - deny sharing usage & browser data and opt out of matomo tracking */
