@@ -29,6 +29,7 @@ import LabelInput from '../components/LabelInput.vue';
 import Wallet from '../components/Wallet.vue';
 import WalletList from '../components/WalletList.vue';
 import WalletMenu from '../components/WalletMenu.vue';
+import NimiqButton from '../components/NimiqButton.vue';
 import PaymentInfoLine from '../components/PaymentInfoLine.vue';
 import QrCode from '../components/QrCode.vue';
 import QrScanner from '../components/QrScanner.vue';
@@ -45,6 +46,7 @@ import MigrationWelcome from '../components/MigrationWelcome.vue';
 import * as Icons from '../components/Icons';
 
 import '@nimiq/style/nimiq-style.min.css';
+import { getNodeMajorVersion } from 'typescript';
 
 function windowTemplate(slot) {
     return `
@@ -639,6 +641,25 @@ storiesOf('Components', module)
                 click: action('click'),
             },
             template: `<CloseButton class="top-right" @click="click"/>`,
+        };
+    })
+    .add('NimiqButton', () => {
+        const label = text('label', 'Nimiq Button');
+        const link = text('link', '');
+        const color = select('color', ['gray', 'blue', 'light-blue', 'green', 'orange', 'red', 'gold'], 'light-blue');
+        const small = boolean('small', false);
+        const inverse = boolean('inverse', false);
+        const arrow = boolean('arrow', true);
+        const back = boolean('back', false);
+        return {
+            components: {NimiqButton},
+            methods: {
+                click: action('click'),
+            },
+            data() {
+                return { label, link, color, small, inverse, arrow, back }
+            },
+            template: `<NimiqButton :text="label" :link="link" :color="color" :small="small" :inverse="inverse" :arrow="arrow" :back="back" @click="click"/>`,
         };
     })
     .add('Contact (deprecated)', () => {
