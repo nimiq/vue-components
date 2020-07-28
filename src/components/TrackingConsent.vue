@@ -78,8 +78,9 @@ class TrackingConsent extends Vue {
     /** API reference: https://developer.matomo.org/guides/tracking-javascript#configuration-of-the-tracker-object */
     @Prop({
         type: Object,
+        required: true,
+        validator: (options) => 'setSiteId' in options,
         default: () => ({
-            setSiteId: 1,
             setTrackerUrl: TrackingConsent.DEFAULT_TRACKER_URL,
         }),
     })
@@ -91,7 +92,7 @@ class TrackingConsent extends Vue {
 
     @Prop({
         type: String,
-        default: () => TrackingConsent.DEFAULT_TRACKING_URL,
+        default: () => TrackingConsent.DEFAULT_TRACKING_SCRIPT_URL,
     })
     public trackingScriptUrl: string;
 
@@ -118,11 +119,13 @@ class TrackingConsent extends Vue {
     public cookieOptions: {
         domain: string,
         expirationDays: number,
+        secure?: boolean,
+        sameSite?: 'lax'|'strict'|'none',
     };
 
     @Prop({
         type: String,
-        default: 'https://geoip.nimiq-network.com:8443/v1/locate',
+        default: TrackingConsent.DEFAULT_GEOIP_SERVER_URL,
     })
     public geoIpServer: string;
 
@@ -207,6 +210,8 @@ class TrackingConsent extends Vue {
         options: {
             domain: string,
             expirationDays: number,
+            secure?: boolean,
+            sameSite?: 'lax'|'strict'|'none',
         },
     ) {
         const cookie = [cookieName + '=' + cookieValue];
@@ -217,6 +222,8 @@ class TrackingConsent extends Vue {
 
             cookie.push('domain=' + options.domain);
             cookie.push('max-age=' + options.expirationDays * 24 * 60 * 60);
+            if (options.secure) cookie.push('Secure');
+            if (options.sameSite) cookie.push('SameSite=' + options.sameSite);
         }
 
         cookie.push('path=/');
@@ -389,6 +396,11 @@ namespace TrackingConsent { // tslint:disable-line:no-namespace
         DARK = 'dark',
     }
 
+    /**
+     * Old matomo tracking implementations were using localStorage instead of cookies to store consent.
+     * But unfortunately, some implementations were using the first key, and some the second one.
+     * So we're checking both keys for existing consent for the sake of backward compatibility.
+     */
     export const LOCALSTORAGE_KEYS = [
         'tracking-consent',
         'tracking-consensus',
@@ -396,11 +408,13 @@ namespace TrackingConsent { // tslint:disable-line:no-namespace
     export const COOKIE_STORAGE_KEY = 'tracking-consent';
 
     export const DEFAULT_COOKIE_DOMAIN = document.location.hostname;
-    export const DEFAULT_COOKIE_EXPIRATION_DAYS = 365 * 20;
+    export const DEFAULT_COOKIE_EXPIRATION_DAYS = 365 * 10;
 
     export const DEFAULT_MATOMO_URL = '//stats.nimiq-network.com/';
     export const DEFAULT_TRACKER_URL = DEFAULT_MATOMO_URL + 'matomo.php';
-    export const DEFAULT_TRACKING_URL = DEFAULT_MATOMO_URL + 'matomo.js';
+    export const DEFAULT_TRACKING_SCRIPT_URL = DEFAULT_MATOMO_URL + 'matomo.js';
+
+    export const DEFAULT_GEOIP_SERVER_URL = 'https://geoip.nimiq-network.com:8443/v1/locate';
 }
 
 export default TrackingConsent;
