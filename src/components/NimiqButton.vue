@@ -8,7 +8,7 @@
         'nq-button-pill': small && color != 'gray',
         'go-back': back,
         'has-arrow': arrow || back,
-        small, inverse, }]"
+        small, medium, inverse, }]"
     :target="(link && link.startsWith('http')) ? '_blank' : '_self'">
 
     <span>{{ $t(text) }}</span>
@@ -29,7 +29,7 @@
         </svg>
       </template>
     </template>
-
+    <ArrowRightSmallIcon v-if="arrow || back" class="arrow"/>
   </a>
 </template>
 
@@ -49,69 +49,97 @@ export default class NimiqButton extends Mixins(I18nMixin) {
     @Prop(String) private link?: string;
     @Prop({ type: String, default: 'light-blue' }) private color!: string;
     @Prop(Boolean) private arrow?: boolean;
-    @Prop(Boolean) private small?: boolean;
+    @Prop(Boolean) private small?: boolean; // "big" is default
+    @Prop(Boolean) private medium?: boolean;
     @Prop(Boolean) private inverse?: boolean;
     @Prop(Boolean) private back?: boolean;
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
-  a.has-arrow {
+a {
+  &.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  &.has-arrow {
     display: inline-flex;
     align-items: center;
     justify-content: center;
   }
 
-  a .arrow {
+  .arrow {
     margin-left: 8px;
     transition: transform .4s cubic-bezier(.25,0,0,1);
     fill: #fff;
   }
 
-  a:hover .arrow {
+//   &.small .nq-icon {
+//       height: 9px;
+//   }
+
+  &.medium {
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+
+    padding: 1.5rem 0;
+    flex-grow: 1;
+    height: unset;
+    line-height: 1;
+    border-radius: 500px;
+    font-size: 2rem;
+
+    .nq-icon {
+        font-size: 1.75rem;
+        margin-right: 1rem;
+    }
+  }
+
+
+  &:hover .arrow {
     transform: translate3D(2px,0,0);
   }
 
-  a.go-back {
+  &.go-back {
     flex-direction: row-reverse;
-  }
 
-  a.go-back .arrow {
-    margin-left: 0;
-    margin-right: 8px;
-    transform: rotate(180deg);
-  }
-
-  a.go-back:hover .arrow {
-    transform: rotate(180deg) translate3D(2px,0,0);
-  }
-
-  .arrow.mobile {
-      display: none;
-  }
-
-  @media (max-width: 850px) {
-    .nq-button {
-      padding: 0 24px;
-      height: 50px;
-    }
-
-    .small .arrow {
-      margin-left: 6px;
-    }
-
-    .small.go-back .arrow {
+    .arrow {
       margin-left: 0;
-      margin-right: 6px;
+      margin-right: 8px;
+      transform: rotate(180deg);
     }
 
-    .arrow.desktop {
-        display: none;
-    }
-
-    .arrow.mobile {
-        display: block;
+    &:hover .arrow {
+      transform: rotate(180deg) translate3D(2px,0,0);
     }
   }
+}
+
+@media (max-width: 850px) {
+  .nq-button {
+    padding: 0 24px;
+    height: 50px;
+  }
+
+  .small .arrow {
+    margin-left: 6px;
+  }
+
+  .small.go-back .arrow {
+    margin-left: 0;
+    margin-right: 6px;
+  }
+
+  .arrow {
+    &.desktop {
+      display: none;
+    }
+    &.mobile {
+      display: block;
+    }
+  }
+}
 </style>
