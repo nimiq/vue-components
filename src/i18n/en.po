@@ -112,7 +112,7 @@ msgid "hours"
 msgstr ""
 
 #: src/components/SendTx.vue:67
-msgid "If recipient has no Account yet:"
+msgid "If recipient has no account yet:"
 msgstr ""
 
 #: src/components/AmountWithFee.vue:5
@@ -124,7 +124,7 @@ msgid "Legacy"
 msgstr ""
 
 #: src/components/AccountSelector.vue:41
-msgid "Login to another Account"
+msgid "Login to another account"
 msgstr ""
 
 #: src/components/Wallet.vue:26
@@ -215,7 +215,7 @@ msgid "Set fee"
 msgstr ""
 
 #: src/components/SendTx.vue:95
-msgid "Speed up your transaction"
+msgid "Speed up your Transaction"
 msgstr ""
 
 #: src/components/SendTx.vue:204

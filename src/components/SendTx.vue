@@ -64,7 +64,7 @@
                 </PageBody>
 
                 <PageFooter class="blur-target">
-                    <p class="nq-text">{{ $t('If recipient has no Account yet:') }}</p>
+                    <p class="nq-text">{{ $t('If recipient has no account yet:') }}</p>
                     <button class="nq-button-s" @click="createCashlink(liveSender)">{{ $t('Create a Cashlink') }}</button>
                 </PageFooter>
             </div>
@@ -92,7 +92,7 @@
                     <SmallPage class="overlay fee" v-if="optionsOpened">
                         <CloseButton class="top-right" @click="closeOptions"/>
                         <PageBody>
-                            <h1 class="nq-h1">{{ $t('Speed up your transaction') }}</h1>
+                            <h1 class="nq-h1">{{ $t('Speed up your Transaction') }}</h1>
                             <p class="nq-text">{{ $t('By adding a transation fee, you can influence how fast your transaction will be processed.') }}</p>
                             <SelectBar ref="feeSetter" :options="constructor.FEE_OPTIONS" name="fee" :selectedValue="feeLunaPerByte" @changed="updateFeePreview" />
                             <Amount :amount="feePreview" :minDecimals="0" :maxDecimals="5" />

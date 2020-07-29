@@ -1,12 +1,12 @@
 # 
 # Translators:
 # Talleyrand <baptistekugener@wanadoo.fr>, 2020
-# Daniel, 2020
 # Matheo <matheo@nimiq.com>, 2020
+# Daniel, 2020
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Matheo <matheo@nimiq.com>, 2020\n"
+"Last-Translator: Daniel, 2020\n"
 "Language-Team: French (https://www.transifex.com/nimiq-foundation/teams/109388/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fr\n"
@@ -129,8 +129,8 @@ msgid "hours"
 msgstr "heures"
 
 #: src/components/SendTx.vue:67
-msgid "If recipient has no Account yet:"
-msgstr "Si le destinataire n'a pas encore de Compte:"
+msgid "If recipient has no account yet:"
+msgstr "Si le destinataire n'a pas encore de compte:"
 
 #: src/components/AmountWithFee.vue:5
 msgid "Insufficient balance"
@@ -141,8 +141,8 @@ msgid "Legacy"
 msgstr "Legacy"
 
 #: src/components/AccountSelector.vue:41
-msgid "Login to another Account"
-msgstr "Connexion à un autre Compte"
+msgid "Login to another account"
+msgstr "Connexion à un autre compte"
 
 #: src/components/Wallet.vue:26
 msgid "Logout"
@@ -229,8 +229,8 @@ msgid "Set fee"
 msgstr "Définir les frais"
 
 #: src/components/SendTx.vue:95
-msgid "Speed up your transaction"
-msgstr "Accélérer votre transaction"
+msgid "Speed up your Transaction"
+msgstr "Accélérer votre Transaction"
 
 #: src/components/SendTx.vue:204
 msgid "standard"

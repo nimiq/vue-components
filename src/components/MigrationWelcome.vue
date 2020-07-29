@@ -8,10 +8,10 @@
         <PageBody v-if="page === 1" class="right-aligned">
             <div class="text">
                 <p class="nq-text">
-                    Handling multiple Addresses is now convenient and easy – with one password and shared login information.
+                    Handling multiple addresses is now convenient and easy – with one password and shared login information.
                 </p>
                 <p class="nq-text">
-                    <strong>Accounts</strong> hold, manage and aggregate Addresses.
+                    <strong>Accounts</strong> hold, manage and aggregate addresses.
                 </p>
                 <p class="nq-text">
                     <strong>Addresses</strong> send and receive transactions.
@@ -25,10 +25,10 @@
         <PageBody v-else-if="page === 2" class="left-aligned">
             <div class="text">
                 <p class="nq-text">
-                    The new Login Files are an easy and convenient way to gain access to your Account and its Addresses.
+                    The new Login Files are an easy and convenient way to gain access to your account and its addresses.
                 </p>
                 <p class="nq-text">
-                    Import it to any browser and enter your password to connect to Nimiq.
+                    Import it to any browser and enter your password to use the same addresses.
                 </p>
                 <p class="nq-text">
                     <strong><a :href="link" target="_blank" class="nq-link">Learn more here <ArrowRightSmallIcon/></a></strong>
@@ -42,7 +42,7 @@
         <PageBody v-else-if="page === 3" class="right-aligned">
             <div class="text">
                 <p class="nq-text">
-                    Your Accounts are now legacy Accounts. Easily switch, edit and create Accounts with the new Account picker.
+                    Your accounts are now legacy accounts. Easily switch, edit and create accounts with the new account picker.
                 </p>
                 <p class="nq-text">
                     Account creation was massively improved. Give<br>it a try and experience all new Nimiq features.
@@ -76,7 +76,7 @@
 
         private content = [{
             title: 'One Account, many Addresses',
-            notice: 'The new and improved Accounts<br>can have multiple Addresses.',
+            notice: 'The new and improved accounts<br>can have multiple addresses.',
             button: 'Continue',
         }, {
             title: 'Improved Accessibility',
@@ -84,7 +84,7 @@
             button: 'What else?',
         }, {
             title: 'Old and new Accounts',
-            notice: 'Multiple Addresses and Login Files<br>are supported by new Accounts only.',
+            notice: 'Multiple addresses and Login Files<br>are supported by new accounts only.',
             button: 'Got it!',
         }];
 
