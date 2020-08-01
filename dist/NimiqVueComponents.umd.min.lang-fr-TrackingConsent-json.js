@@ -1,0 +1,1 @@
+(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[36],{"4f30":function(e){e.exports=JSON.parse('{"Help Nimiq improve by sharing anonymized usage data. Thank you! ❤️":"Help Nimiq improve by sharing anonymized usage data. Thank you! ❤️","No":"No","Yes":"Yes"}')}}]);
