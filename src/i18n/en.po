@@ -103,7 +103,7 @@ msgstr ""
 msgid "Grant camera access when asked."
 msgstr ""
 
-#: src/components/TrackingConsent.vue:47
+#: src/components/TrackingConsent.vue:43
 msgid "Help Nimiq improve by sharing anonymized usage data. Thank you! ❤️"
 msgstr ""
 
@@ -116,7 +116,7 @@ msgid "hours"
 msgstr ""
 
 #: src/components/SendTx.vue:67
-msgid "If recipient has no Account yet:"
+msgid "If recipient has no account yet:"
 msgstr ""
 
 #: src/components/AmountWithFee.vue:5
@@ -128,7 +128,7 @@ msgid "Legacy"
 msgstr ""
 
 #: src/components/AccountSelector.vue:41
-msgid "Login to another Account"
+msgid "Login to another account"
 msgstr ""
 
 #: src/components/Wallet.vue:26
@@ -161,7 +161,7 @@ msgstr ""
 msgid "Nimiq provides this service free of charge."
 msgstr ""
 
-#: src/components/TrackingConsent.vue:53
+#: src/components/TrackingConsent.vue:49
 msgid "No"
 msgstr ""
 
@@ -223,7 +223,7 @@ msgid "Set fee"
 msgstr ""
 
 #: src/components/SendTx.vue:95
-msgid "Speed up your transaction"
+msgid "Speed up your Transaction"
 msgstr ""
 
 #: src/components/SendTx.vue:204
@@ -262,7 +262,7 @@ msgstr ""
 msgid "Vendor crypto markup"
 msgstr ""
 
-#: src/components/TrackingConsent.vue:52
+#: src/components/TrackingConsent.vue:48
 msgid "Yes"
 msgstr ""
 

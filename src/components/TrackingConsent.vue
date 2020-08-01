@@ -15,11 +15,6 @@
                     @click="denyConsent"
                     :class="{ inverse: theme === constructor.Themes.DARK }"
                 >{{ text.no }}</button>
-                <button
-                    class="nq-button-s"
-                    @click="allowBrowserData"
-                    :class="{ inverse: theme === constructor.Themes.DARK }"
-                >{{ text.browserOnly }}</button>
             </div>
         </div>
     </div>
@@ -30,7 +25,6 @@ import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import I18nMixin from '../i18n/I18nMixin';
 
 interface Consent {
-    allowsBrowserData?: boolean;
     allowsUsageData?: boolean;
 }
 /**
@@ -78,9 +72,11 @@ class TrackingConsent extends Vue {
     /** API reference: https://developer.matomo.org/guides/tracking-javascript#configuration-of-the-tracker-object */
     @Prop({
         type: Object,
+        required: true,
+        validator: (options) => 'setSiteId' in options,
         default: () => ({
-            setSiteId: 1,
             setTrackerUrl: TrackingConsent.DEFAULT_TRACKER_URL,
+            trackPageView: null,
         }),
     })
     public options: {
@@ -91,7 +87,7 @@ class TrackingConsent extends Vue {
 
     @Prop({
         type: String,
-        default: () => TrackingConsent.DEFAULT_TRACKING_URL,
+        default: () => TrackingConsent.DEFAULT_TRACKING_SCRIPT_URL,
     })
     public trackingScriptUrl: string;
 
@@ -118,25 +114,28 @@ class TrackingConsent extends Vue {
     public cookieOptions: {
         domain: string,
         expirationDays: number,
+        secure?: boolean,
+        sameSite?: 'lax'|'strict'|'none',
     };
 
     @Prop({
         type: String,
-        default: 'https://geoip.nimiq-network.com:8443/v1/locate',
+        default: () => TrackingConsent.DEFAULT_GEOIP_SERVER_URL,
     })
     public geoIpServer: string;
 
     private uiRequired: boolean = false;
+    private isOutsideEEA: boolean = false;
 
     public static get _paq() {
-        if (!window._paq || !Array.isArray(window._paq)) {
+        if (!window._paq || !('push' in window._paq)) {
             window._paq = [];
         }
         return window._paq;
     }
 
     public static get _mtm() {
-        if (!window._mtm || !Array.isArray(window._mtm)) {
+        if (!window._mtm || !('push' in window._mtm)) {
             window._mtm = [];
         }
         return window._mtm;
@@ -144,7 +143,7 @@ class TrackingConsent extends Vue {
 
     /**
      * consent getter - return the parsed content of the consent cookie that store the user's choice about data sharing
-     * @return {Consent} An object containing two boolean properties: allowsBrowserData & allowsUsageData
+     * @return {Consent} An object containing one boolean property: allowsUsageData
      */
     public static get consent(): Consent {
         const cookie = TrackingConsent._getCookie(TrackingConsent.COOKIE_STORAGE_KEY);
@@ -160,8 +159,8 @@ class TrackingConsent extends Vue {
         return TrackingConsent.consent.allowsUsageData;
     }
 
-    public static get allowsBrowserData(): boolean {
-        return TrackingConsent.consent.allowsBrowserData;
+    public static get isOutsideEEA(): boolean {
+        return Array.from(TrackingConsent._instances).every((instance) => instance.isOutsideEEA);
     }
 
     /**
@@ -177,7 +176,7 @@ class TrackingConsent extends Vue {
         name?: string,
         value?: string | number,
     ) {
-        if (!TrackingConsent.allowsUsageData) return;
+        if (!TrackingConsent.allowsUsageData || !TrackingConsent.isOutsideEEA) return;
 
         const obj: Array<string | number> = ['trackEvent', category, action];
 
@@ -197,8 +196,35 @@ class TrackingConsent extends Vue {
      * Docs: https://developer.matomo.org/guides/tracking-javascript-guide
      * API ref: https://developer.matomo.org/guides/tracking-javascript
      */
-    public static execFunction(fn: () => void) {
-        TrackingConsent._paq.push([fn]);
+    public static async execFunction(fn: (self: any) => any) {
+        return new Promise((resolve, reject) => {
+            TrackingConsent._paq.push([function() {
+                try {
+                    const ret = fn(this);
+                    resolve(ret);
+                } catch (e) {
+                    reject(e);
+                }
+            }]);
+        });
+    }
+
+    /**
+     * trackPageView - allow you to track a new page view. Usefull for single-page apps that use history manipulation
+     *
+     * @param {number} generationTimeMs - Time that took the new route to load. Usefull if lazy-loading routes
+     */
+    public static trackPageView(
+        options?: {
+            generationTimeMs?: number,
+            customUrl?: string,
+        },
+    ) {
+        if (options.customUrl) TrackingConsent._paq.push(['setCustomUrl', options.customUrl]);
+
+        TrackingConsent._paq.push(['deleteCustomVariables', 'page']);
+        TrackingConsent._paq.push(['setGenerationTimeMs', options.generationTimeMs || 0]);
+        TrackingConsent._paq.push(['trackPageView']);
     }
 
     private static _setCookie(
@@ -207,6 +233,8 @@ class TrackingConsent extends Vue {
         options: {
             domain: string,
             expirationDays: number,
+            secure?: boolean,
+            sameSite?: 'lax'|'strict'|'none',
         },
     ) {
         const cookie = [cookieName + '=' + cookieValue];
@@ -217,6 +245,8 @@ class TrackingConsent extends Vue {
 
             cookie.push('domain=' + options.domain);
             cookie.push('max-age=' + options.expirationDays * 24 * 60 * 60);
+            if (options.secure) cookie.push('Secure');
+            if (options.sameSite) cookie.push('SameSite=' + options.sameSite);
         }
 
         cookie.push('path=/');
@@ -231,21 +261,15 @@ class TrackingConsent extends Vue {
     /** denyConsent - deny sharing usage & browser data and opt out of matomo tracking */
     public denyConsent() {
         TrackingConsent._paq.push(['optUserOut']);
-        this._setConsent({ allowsUsageData: false, allowsBrowserData: false });
+        TrackingConsent._paq.push(['forgetCookieConsentGiven']);
+        this._setConsent({ allowsUsageData: false });
     }
 
     /** allowUsageData - allow sharing usage & browser data */
     public allowUsageData() {
         TrackingConsent._paq.push(['forgetUserOptOut']);
-        this._setConsent({ allowsUsageData: true, allowsBrowserData: true });
-        this._initMatomo();
-    }
-
-    /** allowBrowserData - allow sharing browser data, but not usage data */
-    public allowBrowserData() {
-        TrackingConsent._paq.push(['forgetUserOptOut']);
-        this._setConsent({ allowsBrowserData: true, allowsUsageData: false });
-        this._initMatomo();
+        TrackingConsent._paq.push(['setCookieConsentGiven']);
+        this._setConsent({ allowsUsageData: true });
     }
 
     private created() {
@@ -272,6 +296,9 @@ class TrackingConsent extends Vue {
             this._setConsent(JSON.parse(localStoredConsent));
         }
 
+        /* Initialise matomo */
+        this._initMatomo();
+
         /* check if the UI is required */
         this._checkUiRequired();
     }
@@ -292,14 +319,11 @@ class TrackingConsent extends Vue {
         }
 
         /* Check consent preferences if there's any */
-        if (TrackingConsent.allowsBrowserData || TrackingConsent.allowsUsageData) {
+        if (TrackingConsent.allowsUsageData) {
             this.uiRequired = false;
-            this._initMatomo();
+            TrackingConsent._paq.push(['setCookieConsentGiven']);
             return;
-        } else if (
-            TrackingConsent.allowsBrowserData === false &&
-            TrackingConsent.allowsUsageData === false
-        ) {
+        } else if (TrackingConsent.allowsUsageData === false) {
             this.uiRequired = false;
             return;
         }
@@ -313,7 +337,8 @@ class TrackingConsent extends Vue {
         const geoIpInfo = await geoIpResponse.json();
         if (geoIpInfo.continent !== 'EU' && !['NO', 'LI', 'IS'].includes(geoIpInfo.country)) { /* EU / EEA */
             this.uiRequired = false;
-            this._initMatomo();
+            this.isOutsideEEA = true;
+            TrackingConsent._paq.push(['setCookieConsentGiven']);
             return;
         }
 
@@ -341,6 +366,11 @@ class TrackingConsent extends Vue {
     }
 
     private _initMatomo() {
+        /* Prevent matomo to set a cookie before user gave consent */
+        if (TrackingConsent.allowsUsageData !== true) {
+            TrackingConsent._paq.push(['requireCookieConsent']);
+        }
+
         /* Check whether matomo is already initialized */
         if (document.querySelector('script[matomo]')) {
             console.warn('TrackingConsent: Matomo already initialized.');
@@ -361,9 +391,10 @@ class TrackingConsent extends Vue {
         }
 
         /* set setTrackerUrl to default value if not set */
-        if (!this.options.setTrackerUrl) {
-            this.options.setTrackerUrl = TrackingConsent.DEFAULT_TRACKER_URL;
-        }
+        if (!this.options.setTrackerUrl) this.options.setTrackerUrl = TrackingConsent.DEFAULT_TRACKER_URL;
+
+        /* set trackPageView if not set, to track the first page view */
+        if (!this.options.trackPageView) this.options.trackPageView = null;
 
         /* Cycle through options and set them */
         Object.keys(this.options).forEach((k) => {
@@ -389,6 +420,11 @@ namespace TrackingConsent { // tslint:disable-line:no-namespace
         DARK = 'dark',
     }
 
+    /**
+     * Old matomo tracking implementations were using localStorage instead of cookies to store consent.
+     * But unfortunately, some implementations were using the first key, and some the second one.
+     * So we're checking both keys for existing consent for the sake of backward compatibility.
+     */
     export const LOCALSTORAGE_KEYS = [
         'tracking-consent',
         'tracking-consensus',
@@ -396,11 +432,13 @@ namespace TrackingConsent { // tslint:disable-line:no-namespace
     export const COOKIE_STORAGE_KEY = 'tracking-consent';
 
     export const DEFAULT_COOKIE_DOMAIN = document.location.hostname;
-    export const DEFAULT_COOKIE_EXPIRATION_DAYS = 365 * 20;
+    export const DEFAULT_COOKIE_EXPIRATION_DAYS = 365 * 10;
 
     export const DEFAULT_MATOMO_URL = '//stats.nimiq-network.com/';
     export const DEFAULT_TRACKER_URL = DEFAULT_MATOMO_URL + 'matomo.php';
-    export const DEFAULT_TRACKING_URL = DEFAULT_MATOMO_URL + 'matomo.js';
+    export const DEFAULT_TRACKING_SCRIPT_URL = DEFAULT_MATOMO_URL + 'matomo.js';
+
+    export const DEFAULT_GEOIP_SERVER_URL = 'https://geoip.nimiq-network.com:8443/v1/locate';
 }
 
 export default TrackingConsent;

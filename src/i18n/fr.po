@@ -1,12 +1,12 @@
 # 
 # Translators:
 # Talleyrand <baptistekugener@wanadoo.fr>, 2020
-# Daniel, 2020
 # Matheo <matheo@nimiq.com>, 2020
+# Daniel, 2020
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Matheo <matheo@nimiq.com>, 2020\n"
+"Last-Translator: Daniel, 2020\n"
 "Language-Team: French (https://www.transifex.com/nimiq-foundation/teams/109388/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fr\n"
@@ -120,6 +120,10 @@ msgstr "Retour"
 msgid "Grant camera access when asked."
 msgstr "Accordez l'accès à la caméra lorsque cela vous est demandé."
 
+#: src/components/TrackingConsent.vue:42
+msgid "Help Nimiq improve by sharing anonymized usage data. Thank you! ❤️"
+msgstr ""
+
 #: src/components/Timer.vue:93
 msgid "hour"
 msgstr "heure"
@@ -129,8 +133,8 @@ msgid "hours"
 msgstr "heures"
 
 #: src/components/SendTx.vue:67
-msgid "If recipient has no Account yet:"
-msgstr "Si le destinataire n'a pas encore de Compte:"
+msgid "If recipient has no account yet:"
+msgstr "Si le destinataire n'a pas encore de compte:"
 
 #: src/components/AmountWithFee.vue:5
 msgid "Insufficient balance"
@@ -141,8 +145,8 @@ msgid "Legacy"
 msgstr "Legacy"
 
 #: src/components/AccountSelector.vue:41
-msgid "Login to another Account"
-msgstr "Connexion à un autre Compte"
+msgid "Login to another account"
+msgstr "Connexion à un autre compte"
 
 #: src/components/Wallet.vue:26
 msgid "Logout"
@@ -171,6 +175,10 @@ msgstr "frais de réseau"
 #: src/components/PaymentInfoLine.vue:60
 msgid "Nimiq provides this service free of charge."
 msgstr "Nimiq fournit ce service gratuitement."
+
+#: src/components/TrackingConsent.vue:48
+msgid "No"
+msgstr ""
 
 #: src/components/SendTx.vue:108
 msgid "Open settings"
@@ -229,8 +237,8 @@ msgid "Set fee"
 msgstr "Définir les frais"
 
 #: src/components/SendTx.vue:95
-msgid "Speed up your transaction"
-msgstr "Accélérer votre transaction"
+msgid "Speed up your Transaction"
+msgstr "Accélérer votre Transaction"
 
 #: src/components/SendTx.vue:204
 msgid "standard"
@@ -267,6 +275,10 @@ msgstr "Crypto-remise"
 #: src/components/PaymentInfoLine.vue:40
 msgid "Vendor crypto markup"
 msgstr "Crypto-premium"
+
+#: src/components/TrackingConsent.vue:47
+msgid "Yes"
+msgstr ""
 
 #: src/components/PaymentInfoLine.vue:281
 msgid ""
