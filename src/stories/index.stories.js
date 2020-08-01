@@ -33,6 +33,7 @@ import PageHeader from '../components/PageHeader.vue';
 import PageBody from '../components/PageBody.vue';
 import PageFooter from '../components/PageFooter.vue';
 import LoadingSpinner from '../components/LoadingSpinner.vue';
+import TrackingConsent from '../components/TrackingConsent.vue';
 import * as Icons from '../components/Icons';
 
 import '@nimiq/style/nimiq-style.min.css';
@@ -824,6 +825,45 @@ storiesOf('Components', module)
     <page-footer>Page footer</page-footer>
 </small-page>
 `),
+        };
+    })
+    .add('TrackingConsent', () => {
+        return {
+            components: { TrackingConsent },
+            data: () => ({
+                theme: 'dark',
+                uiallowed: true,
+                setSiteId: 68,
+            }),
+            template: windowTemplate(`
+                <label>
+                    Dark theme
+                    <input type="radio" v-model="theme" value="dark"/>
+                </label>
+                <label>
+                    Light theme
+                    <input type="radio" v-model="theme" value="light"/>
+                </label>
+                <br />
+                <label>
+                    Ui Allowed
+                    <input type="radio" v-model="uiallowed" :value="true"/>
+                </label>
+                <label>
+                    Ui Not Allowed
+                    <input type="radio" v-model="uiallowed" :value="false"/>
+                </label>
+                <br />
+                <label>
+                    Matomo Site ID (required, 68 is demo)
+                    <input type="number" v-model="setSiteId" />
+                </label>
+                <TrackingConsent
+                    :theme="theme"
+                    :uiAllowed="uiallowed"
+                    :options="{ setSiteId, trackPageView: null }"
+                />
+            `)
         };
     })
     .add('Timer', () => ({
