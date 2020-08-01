@@ -832,7 +832,8 @@ storiesOf('Components', module)
             components: { TrackingConsent },
             data: () => ({
                 theme: 'dark',
-                uiallowed: true
+                uiallowed: true,
+                setSiteId: 68,
             }),
             template: windowTemplate(`
                 <label>
@@ -852,7 +853,16 @@ storiesOf('Components', module)
                     Ui Not Allowed
                     <input type="radio" v-model="uiallowed" :value="false"/>
                 </label>
-                <TrackingConsent :theme="theme" :uiAllowed="uiallowed"/>
+                <br />
+                <label>
+                    Matomo Site ID (required, 68 is demo)
+                    <input type="number" v-model="setSiteId" />
+                </label>
+                <TrackingConsent
+                    :theme="theme"
+                    :uiAllowed="uiallowed"
+                    :options="{ setSiteId, trackPageView: null }"
+                />
             `)
         };
     })
