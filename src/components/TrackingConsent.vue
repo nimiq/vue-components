@@ -122,7 +122,7 @@ class TrackingConsent extends Vue {
         type: String,
         default: () => TrackingConsent.DEFAULT_GEOIP_SERVER_URL,
     })
-    public geoIpServer: string;
+    public geoIpServer: string | null;
 
     private uiRequired: boolean = false;
     private isOutsideEEA: boolean = false;
@@ -328,18 +328,20 @@ class TrackingConsent extends Vue {
             return;
         }
 
-        /* Automatically track stats if user is not in the EU continent  */
-        const geoIpResponse = await fetch(this.geoIpServer);
-        if (geoIpResponse.status !== 200) {
-            console.warn('TrackingConsent: Failed to contact geoip server');
-            return;
-        }
-        const geoIpInfo = await geoIpResponse.json();
-        if (geoIpInfo.continent !== 'EU' && !['NO', 'LI', 'IS'].includes(geoIpInfo.country)) { /* EU / EEA */
-            this.uiRequired = false;
-            this.isOutsideEEA = true;
-            TrackingConsent._paq.push(['setCookieConsentGiven']);
-            return;
+        if (this.geoIpServer) {
+            /* Automatically track stats if user is not in the EU continent  */
+            const geoIpResponse = await fetch(this.geoIpServer);
+            if (geoIpResponse.status !== 200) {
+                console.warn('TrackingConsent: Failed to contact geoip server');
+                return;
+            }
+            const geoIpInfo = await geoIpResponse.json();
+            if (geoIpInfo.continent !== 'EU' && !['NO', 'LI', 'IS'].includes(geoIpInfo.country)) { /* EU / EEA */
+                this.uiRequired = false;
+                this.isOutsideEEA = true;
+                TrackingConsent._paq.push(['setCookieConsentGiven']);
+                return;
+            }
         }
 
         this.uiRequired = true;
