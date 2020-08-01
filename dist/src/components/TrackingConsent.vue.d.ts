@@ -29,7 +29,7 @@ declare class TrackingConsent extends Vue {
         secure?: boolean;
         sameSite?: 'lax' | 'strict' | 'none';
     };
-    geoIpServer: string;
+    geoIpServer: string | null;
     private uiRequired;
     private isOutsideEEA;
     static get _paq(): any[];

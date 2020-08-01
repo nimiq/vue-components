@@ -1367,6 +1367,13 @@ $({ target: 'String', proto: true, forced: !MDN_POLYFILL_BUG && !CORRECT_IS_REGE
 
 /***/ }),
 
+/***/ "2ce0":
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
 /***/ "2cf4":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4139,6 +4146,17 @@ module.exports = function (it) {
 /* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Copyable_vue_vue_type_style_index_0_id_1fbe8b15_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Copyable_vue_vue_type_style_index_0_id_1fbe8b15_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
 /* unused harmony reexport * */
  /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Copyable_vue_vue_type_style_index_0_id_1fbe8b15_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "87bc":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TrackingConsent_vue_vue_type_style_index_0_id_fa0ffa24_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("2ce0");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TrackingConsent_vue_vue_type_style_index_0_id_fa0ffa24_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TrackingConsent_vue_vue_type_style_index_0_id_fa0ffa24_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+ /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TrackingConsent_vue_vue_type_style_index_0_id_fa0ffa24_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -9514,13 +9532,6 @@ module.exports =
 
 /***/ }),
 
-/***/ "dae7":
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-
 /***/ "db98":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10346,17 +10357,6 @@ module.exports = function (it) {
   return it !== undefined && (Iterators.Array === it || ArrayPrototype[ITERATOR] === it);
 };
 
-
-/***/ }),
-
-/***/ "ec61":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TrackingConsent_vue_vue_type_style_index_0_id_22b076de_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("dae7");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TrackingConsent_vue_vue_type_style_index_0_id_22b076de_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TrackingConsent_vue_vue_type_style_index_0_id_22b076de_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
- /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TrackingConsent_vue_vue_type_style_index_0_id_22b076de_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -19368,12 +19368,12 @@ var SmallPage_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_SmallPage = (SmallPage_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"66e9f076-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/TrackingConsent.vue?vue&type=template&id=22b076de&scoped=true&
-var TrackingConsentvue_type_template_id_22b076de_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.uiRequired && _vm.uiAllowed)?_c('div',{staticClass:"tracking-consent",class:[ _vm.theme ]},[_c('div',{staticClass:"content nq-shadow"},[_vm._v(" "+_vm._s(_vm.text.main)+" "),_c('div',{staticClass:"button-group"},[_c('button',{staticClass:"nq-button-pill light-blue",on:{"click":_vm.allowUsageData}},[_vm._v(_vm._s(_vm.text.yes))]),_c('button',{staticClass:"nq-button-s",class:{ inverse: _vm.theme === _vm.constructor.Themes.DARK },on:{"click":_vm.denyConsent}},[_vm._v(_vm._s(_vm.text.no))])])])]):_vm._e()}
-var TrackingConsentvue_type_template_id_22b076de_scoped_true_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"66e9f076-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/TrackingConsent.vue?vue&type=template&id=fa0ffa24&scoped=true&
+var TrackingConsentvue_type_template_id_fa0ffa24_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.uiRequired && _vm.uiAllowed)?_c('div',{staticClass:"tracking-consent",class:[ _vm.theme ]},[_c('div',{staticClass:"content nq-shadow"},[_vm._v(" "+_vm._s(_vm.text.main)+" "),_c('div',{staticClass:"button-group"},[_c('button',{staticClass:"nq-button-pill light-blue",on:{"click":_vm.allowUsageData}},[_vm._v(_vm._s(_vm.text.yes))]),_c('button',{staticClass:"nq-button-s",class:{ inverse: _vm.theme === _vm.constructor.Themes.DARK },on:{"click":_vm.denyConsent}},[_vm._v(_vm._s(_vm.text.no))])])])]):_vm._e()}
+var TrackingConsentvue_type_template_id_fa0ffa24_scoped_true_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/TrackingConsent.vue?vue&type=template&id=22b076de&scoped=true&
+// CONCATENATED MODULE: ./src/components/TrackingConsent.vue?vue&type=template&id=fa0ffa24&scoped=true&
 
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--13-1!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/TrackingConsent.vue?vue&type=script&lang=ts&
 
@@ -19537,29 +19537,34 @@ function (_Vue) {
                 return _context.abrupt("return");
 
               case 12:
-                _context.next = 14;
+                if (!this.geoIpServer) {
+                  _context.next = 27;
+                  break;
+                }
+
+                _context.next = 15;
                 return fetch(this.geoIpServer);
 
-              case 14:
+              case 15:
                 geoIpResponse = _context.sent;
 
                 if (!(geoIpResponse.status !== 200)) {
-                  _context.next = 18;
+                  _context.next = 19;
                   break;
                 }
 
                 console.warn('TrackingConsent: Failed to contact geoip server');
                 return _context.abrupt("return");
 
-              case 18:
-                _context.next = 20;
+              case 19:
+                _context.next = 21;
                 return geoIpResponse.json();
 
-              case 20:
+              case 21:
                 geoIpInfo = _context.sent;
 
                 if (!(geoIpInfo.continent !== 'EU' && !['NO', 'LI', 'IS'].includes(geoIpInfo.country))) {
-                  _context.next = 26;
+                  _context.next = 27;
                   break;
                 }
 
@@ -19571,10 +19576,10 @@ function (_Vue) {
 
                 return _context.abrupt("return");
 
-              case 26:
+              case 27:
                 this.uiRequired = true;
 
-              case 27:
+              case 28:
               case "end":
                 return _context.stop();
             }
@@ -19936,8 +19941,8 @@ TrackingConsentvue_type_script_lang_ts_TrackingConsent = TrackingConsent_1 = __d
 /* harmony default export */ var TrackingConsentvue_type_script_lang_ts_ = (TrackingConsentvue_type_script_lang_ts_TrackingConsent);
 // CONCATENATED MODULE: ./src/components/TrackingConsent.vue?vue&type=script&lang=ts&
  /* harmony default export */ var components_TrackingConsentvue_type_script_lang_ts_ = (TrackingConsentvue_type_script_lang_ts_); 
-// EXTERNAL MODULE: ./src/components/TrackingConsent.vue?vue&type=style&index=0&id=22b076de&scoped=true&lang=css&
-var TrackingConsentvue_type_style_index_0_id_22b076de_scoped_true_lang_css_ = __webpack_require__("ec61");
+// EXTERNAL MODULE: ./src/components/TrackingConsent.vue?vue&type=style&index=0&id=fa0ffa24&scoped=true&lang=css&
+var TrackingConsentvue_type_style_index_0_id_fa0ffa24_scoped_true_lang_css_ = __webpack_require__("87bc");
 
 // CONCATENATED MODULE: ./src/components/TrackingConsent.vue
 
@@ -19950,11 +19955,11 @@ var TrackingConsentvue_type_style_index_0_id_22b076de_scoped_true_lang_css_ = __
 
 var TrackingConsent_component = normalizeComponent(
   components_TrackingConsentvue_type_script_lang_ts_,
-  TrackingConsentvue_type_template_id_22b076de_scoped_true_render,
-  TrackingConsentvue_type_template_id_22b076de_scoped_true_staticRenderFns,
+  TrackingConsentvue_type_template_id_fa0ffa24_scoped_true_render,
+  TrackingConsentvue_type_template_id_fa0ffa24_scoped_true_staticRenderFns,
   false,
   null,
-  "22b076de",
+  "fa0ffa24",
   null
   
 )
