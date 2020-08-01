@@ -76,6 +76,7 @@ class TrackingConsent extends Vue {
         validator: (options) => 'setSiteId' in options,
         default: () => ({
             setTrackerUrl: TrackingConsent.DEFAULT_TRACKER_URL,
+            trackPageView: null,
         }),
     })
     public options: {
@@ -206,6 +207,24 @@ class TrackingConsent extends Vue {
                 }
             }]);
         });
+    }
+
+    /**
+     * trackPageView - allow you to track a new page view. Usefull for single-page apps that use history manipulation
+     *
+     * @param {number} generationTimeMs - Time that took the new route to load. Usefull if lazy-loading routes
+     */
+    public static trackPageView(
+        options?: {
+            generationTimeMs?: number,
+            customUrl?: string,
+        },
+    ) {
+        if (options.customUrl) TrackingConsent._paq.push(['setCustomUrl', options.customUrl]);
+
+        TrackingConsent._paq.push(['deleteCustomVariables', 'page']);
+        TrackingConsent._paq.push(['setGenerationTimeMs', options.generationTimeMs || 0]);
+        TrackingConsent._paq.push(['trackPageView']);
     }
 
     private static _setCookie(
@@ -372,9 +391,10 @@ class TrackingConsent extends Vue {
         }
 
         /* set setTrackerUrl to default value if not set */
-        if (!this.options.setTrackerUrl) {
-            this.options.setTrackerUrl = TrackingConsent.DEFAULT_TRACKER_URL;
-        }
+        if (!this.options.setTrackerUrl) this.options.setTrackerUrl = TrackingConsent.DEFAULT_TRACKER_URL;
+
+        /* set trackPageView if not set, to track the first page view */
+        if (!this.options.trackPageView) this.options.trackPageView = null;
 
         /* Cycle through options and set them */
         Object.keys(this.options).forEach((k) => {
