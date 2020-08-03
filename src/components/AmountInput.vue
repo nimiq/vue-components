@@ -11,7 +11,7 @@
                 @focus="isFocussed = true" @blur="isFocussed = false"
                 ref="input">
         </form>
-        <span class="nim">NIM</span>
+        <span class="label">{{ label }}</span>
     </div>
 </template>
 
@@ -32,6 +32,7 @@ export default class AmountInput extends Vue {
     @Prop({type: String, default: '0'}) private placeholder!: string;
     @Prop({type: Boolean, default: false}) private vanishing!: boolean;
     @Prop({type: Number, default: 5}) private decimals!: number;
+    @Prop({type: String, default: 'NIM'}) private label!: string;
 
     private liveValue: string = '';
     private lastEmittedValue = 0;
@@ -154,7 +155,7 @@ export default class AmountInput extends Vue {
         display: flex;
     }
 
-    .amount-input .nim {
+    .amount-input .label {
         margin-left: 1rem;
         font-size: 4rem;
         font-weight: 700;

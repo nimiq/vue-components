@@ -77,18 +77,20 @@ storiesOf('Basic', module)
     .add('AmountInput', () => {
         const value = number('Value', 0);
         const decimals = number('Decimals', 5);
+        const label = text('Label', 'NIM');
         return {
             components: { AmountInput },
             data() {
                 return {
                     value,
                     decimals,
+                    label,
                 };
             },
             methods: {
                 input: action('input'),
             },
-            template: `<AmountInput :value="value" :decimals="decimals" @input="input"/>`,
+            template: `<AmountInput :value="value" :decimals="decimals" :label="label" @input="input"/>`,
         };
     })
     .add('FiatAmount', () => {
