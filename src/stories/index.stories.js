@@ -141,13 +141,21 @@ storiesOf('Basic', module)
         };
     })
     .add('LabelInput', () => {
+        const disabled = boolean('Disabled', false);
+        const value = text('Value', '');
         return {
             components: {LabelInput},
+            data() {
+                return {
+                    value,
+                    disabled,
+                };
+            },
             methods: {
                 changed: action('changed'),
                 input: action('input'),
             },
-            template: `<LabelInput @changed="changed" @input="input"/>`,
+            template: `<LabelInput @changed="changed" @input="input" v-model="value" :disabled="disabled"/>`,
         };
     })
     .add('LabelInput (restricted to 63 bytes)', () => {
