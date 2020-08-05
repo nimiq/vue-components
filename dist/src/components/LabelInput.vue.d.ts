@@ -5,6 +5,7 @@ export default class LabelInput extends LabelInput_base {
     private value;
     private placeholder?;
     private vanishing;
+    private disabled;
     private liveValue;
     private lastValue;
     private lastEmittedValue;
