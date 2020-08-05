@@ -8,9 +8,10 @@
             :placeholder="placeholder || $t('Name your address')"
             :style="{width: `${this.width}px`}"
             v-model="liveValue"
+            :disabled="disabled"
             @input="onInput"
             @blur="onBlur"
-            :disabled="disabled"
+            @paste="$emit('paste', $event)"
             ref="input">
     </form>
 </template>
