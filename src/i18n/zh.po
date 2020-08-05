@@ -1,10 +1,11 @@
 # 
 # Translators:
 # Sven <sven@nimiq.com>, 2020
+# Daniel, 2020
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Sven <sven@nimiq.com>, 2020\n"
+"Last-Translator: Daniel, 2020\n"
 "Language-Team: Chinese (https://www.transifex.com/nimiq-foundation/teams/109388/zh/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: zh\n"
@@ -125,7 +126,7 @@ msgid "hours"
 msgstr "时"
 
 #: src/components/SendTx.vue:67
-msgid "If recipient has no Account yet:"
+msgid "If recipient has no account yet:"
 msgstr "如果接收者还没有帐户："
 
 #: src/components/AmountWithFee.vue:5
@@ -137,7 +138,7 @@ msgid "Legacy"
 msgstr "传统"
 
 #: src/components/AccountSelector.vue:41
-msgid "Login to another Account"
+msgid "Login to another account"
 msgstr "登录另一个帐户"
 
 #: src/components/Wallet.vue:26
@@ -225,7 +226,7 @@ msgid "Set fee"
 msgstr "设定费用"
 
 #: src/components/SendTx.vue:95
-msgid "Speed up your transaction"
+msgid "Speed up your Transaction"
 msgstr "加快交易"
 
 #: src/components/SendTx.vue:204

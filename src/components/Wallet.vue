@@ -37,6 +37,7 @@ import Identicon from './Identicon.vue';
 import { AlertTriangleIcon, MenuDotsIcon, ArrowRightSmallIcon } from './Icons';
 import I18nMixin from '../i18n/I18nMixin';
 
+/** @deprecated */
 @Component({
     name: 'Wallet',
     components: {

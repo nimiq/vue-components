@@ -1,10 +1,11 @@
 # 
 # Translators:
 # Ricardo Barquero Carranza <richy@nimiq.com>, 2020
+# Daniel, 2020
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Ricardo Barquero Carranza <richy@nimiq.com>, 2020\n"
+"Last-Translator: Daniel, 2020\n"
 "Language-Team: Spanish (https://www.transifex.com/nimiq-foundation/teams/109388/es/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: es\n"
@@ -127,8 +128,8 @@ msgid "hours"
 msgstr "horas"
 
 #: src/components/SendTx.vue:67
-msgid "If recipient has no Account yet:"
-msgstr "El destinatario a'un no tiene una Cuenta."
+msgid "If recipient has no account yet:"
+msgstr "Si el destinatario aún no tiene una cuenta:"
 
 #: src/components/AmountWithFee.vue:5
 msgid "Insufficient balance"
@@ -139,8 +140,8 @@ msgid "Legacy"
 msgstr "Versión Antigua"
 
 #: src/components/AccountSelector.vue:41
-msgid "Login to another Account"
-msgstr "Inicie sesión con otra Cuenta"
+msgid "Login to another account"
+msgstr "Inicie sesión con otra cuenta"
 
 #: src/components/Wallet.vue:26
 msgid "Logout"
@@ -227,8 +228,8 @@ msgid "Set fee"
 msgstr "Ingresar cuota"
 
 #: src/components/SendTx.vue:95
-msgid "Speed up your transaction"
-msgstr "Acelerar su transacción"
+msgid "Speed up your Transaction"
+msgstr "Acelerar su Transacción"
 
 #: src/components/SendTx.vue:204
 msgid "standard"
