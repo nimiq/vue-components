@@ -2,6 +2,8 @@ import {storiesOf} from '@storybook/vue';
 import {action} from '@storybook/addon-actions';
 import {boolean, number, text, object, select, withKnobs} from '@storybook/addon-knobs';
 
+import '@nimiq/style/nimiq-style.min.css';
+
 import Account from '../components/Account.vue';
 import AccountDetails from '../components/AccountDetails.vue';
 import AccountList from '../components/AccountList.vue';
@@ -34,8 +36,6 @@ import PageBody from '../components/PageBody.vue';
 import PageFooter from '../components/PageFooter.vue';
 import LoadingSpinner from '../components/LoadingSpinner.vue';
 import * as Icons from '../components/Icons';
-
-import '@nimiq/style/nimiq-style.min.css';
 
 function windowTemplate(slot) {
     return `
