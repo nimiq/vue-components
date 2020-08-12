@@ -454,14 +454,13 @@ storiesOf('Components', module)
         };
     })
     .add('AddressDisplay', () => {
+        const address = text('address', 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE');
+        const copyable = boolean('copyable', false);
         return {
-            data() {
-                return {
-                    address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE',
-                };
-            },
+            data: () => ({ address, copyable }),
             components: {AddressDisplay},
-            template: `<AddressDisplay :address="address"/>`,
+            template: `<AddressDisplay :address="address" :copyable="copyable"
+                style="margin-top: 7rem; margin-left: 2rem;" />`,
         };
     })
     .add('AddressInput', () => {
@@ -633,19 +632,6 @@ storiesOf('Components', module)
                     Click me to trigger a copy via code
                 </button>
             </div>
-        `,
-    }))
-    .add('Copyable Address', () => ({
-        data() {
-            return {
-                address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE',
-            };
-        },
-        components: { Copyable, AddressDisplay },
-        template: `
-            <Copyable style="margin-top: 7rem; margin-left: 2rem; display: inline-block;">
-                <AddressDisplay :address="address"/>
-            </Copyable>
         `,
     }))
     .add('CopyableField', () => {
