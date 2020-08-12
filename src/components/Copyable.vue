@@ -2,7 +2,7 @@
     <div class="copyable" :class="{ copied }" @click="copy" tabindex="0">
         <div class="background"></div>
         <slot></slot>
-        <div class="tooltip">{{ $t('Copied') }}</div>
+        <div class="tooltip" ref="tooltip">{{ $t('Copied') }}</div>
     </div>
 </template>
 
@@ -33,7 +33,11 @@ export default class Copyable extends Mixins(I18nMixin) {
     private _copiedResetTimeout: number | null = null;
 
     public copy() {
-        const text = this.text || (this.$el as HTMLElement).innerText;
+        let text = this.text;
+        if (!text) {
+            const copiedLabel = (this.$refs.tooltip as HTMLElement).textContent;
+            text = (this.$el as HTMLElement).innerText.replace(new RegExp(`\\s*${copiedLabel}$`), '');
+        }
         Clipboard.copy(text);
 
         window.clearTimeout(this._copiedResetTimeout!);
