@@ -79,6 +79,7 @@ export default class Copyable extends Mixins(I18nMixin) {
     .copyable:focus,
     .copyable.copied {
         color: var(--nimiq-light-blue) !important;
+        outline: none;
     }
 
     .background {
