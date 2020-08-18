@@ -2,6 +2,8 @@ import {storiesOf} from '@storybook/vue';
 import {action} from '@storybook/addon-actions';
 import {boolean, number, text, object, select, withKnobs} from '@storybook/addon-knobs';
 
+import '@nimiq/style/nimiq-style.min.css';
+
 import Account from '../components/Account.vue';
 import AccountDetails from '../components/AccountDetails.vue';
 import AccountList from '../components/AccountList.vue';
@@ -34,8 +36,6 @@ import PageBody from '../components/PageBody.vue';
 import PageFooter from '../components/PageFooter.vue';
 import LoadingSpinner from '../components/LoadingSpinner.vue';
 import * as Icons from '../components/Icons';
-
-import '@nimiq/style/nimiq-style.min.css';
 
 function windowTemplate(slot) {
     return `
@@ -454,14 +454,13 @@ storiesOf('Components', module)
         };
     })
     .add('AddressDisplay', () => {
+        const address = text('address', 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE');
+        const copyable = boolean('copyable', false);
         return {
-            data() {
-                return {
-                    address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE',
-                };
-            },
+            data: () => ({ address, copyable }),
             components: {AddressDisplay},
-            template: `<AddressDisplay :address="address"/>`,
+            template: `<AddressDisplay :address="address" :copyable="copyable"
+                style="margin-top: 7rem; margin-left: 2rem;" />`,
         };
     })
     .add('AddressInput', () => {
@@ -633,19 +632,6 @@ storiesOf('Components', module)
                     Click me to trigger a copy via code
                 </button>
             </div>
-        `,
-    }))
-    .add('Copyable Address', () => ({
-        data() {
-            return {
-                address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE',
-            };
-        },
-        components: { Copyable, AddressDisplay },
-        template: `
-            <Copyable style="margin-top: 7rem; margin-left: 2rem; display: inline-block;">
-                <AddressDisplay :address="address"/>
-            </Copyable>
         `,
     }))
     .add('CopyableField', () => {
