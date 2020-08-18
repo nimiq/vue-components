@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { FormattableNumber } from '@nimiq/utils';
+import { FormattableNumber, CurrencyInfo } from '@nimiq/utils';
 
 @Component
 export default class FiatAmount extends Vue {
@@ -55,6 +55,13 @@ export default class FiatAmount extends Vue {
                 // Enforce a dot as decimal separator for consistency and parseFloat. Using capturing groups instead of
                 // lookahead/lookbehind to avoid browser support limitations.
                 .replace(FiatAmount.DECIMAL_SEPARATOR_REGEX, '$1.$2');
+            if (formatted.includes(this.currency.toUpperCase())) {
+                const symbol = new CurrencyInfo(this.currency).symbol;
+                // Replace prefixed currency code including space, with the symbol and an unbreaking zero-width space
+                formatted = formatted.replace(new RegExp(`${this.currency.toUpperCase()}\\s`), `${symbol}\uFEFF`);
+                // Replace suffixed currency code, preserving the non-breaking space
+                formatted = formatted.replace(this.currency.toUpperCase(), symbol);
+            }
             const regexMatch = formatted.match(FiatAmount.NUMBER_REGEX)!;
             const [/* full match */, sign, /* integers */, decimalsIncludingSeparator, decimals] = regexMatch;
             integers = regexMatch[2];
