@@ -13091,12 +13091,12 @@ var CloseButton_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_CloseButton = (CloseButton_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"dcd64838-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/FiatAmount.vue?vue&type=template&id=89a0d25a&
-var FiatAmountvue_type_template_id_89a0d25a_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"fiat-amount"},[_vm._v(" "+_vm._s(_vm._currencyString)+" ")])}
-var FiatAmountvue_type_template_id_89a0d25a_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"dcd64838-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/FiatAmount.vue?vue&type=template&id=6c1797c5&
+var FiatAmountvue_type_template_id_6c1797c5_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"fiat-amount"},[_vm._v(" "+_vm._s(_vm._currencyString)+" ")])}
+var FiatAmountvue_type_template_id_6c1797c5_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/FiatAmount.vue?vue&type=template&id=89a0d25a&
+// CONCATENATED MODULE: ./src/components/FiatAmount.vue?vue&type=template&id=6c1797c5&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.number.parse-float.js
 var es_number_parse_float = __webpack_require__("c35a");
@@ -13267,14 +13267,35 @@ function (_Vue) {
   }
 
   _createClass(FiatAmount, [{
+    key: "_currencyToLocale",
+    value: function _currencyToLocale(currency) {
+      currency = currency.toLowerCase();
+
+      switch (currency) {
+        case 'eur':
+        case 'chf':
+          return 'de';
+
+        case 'gbp':
+        case 'usd':
+          return 'en';
+
+        case 'cny':
+          return 'zh';
+
+        default:
+          return currency.substr(0, 2);
+      }
+    }
+  }, {
     key: "_currencyString",
     get: function get() {
-      var localeWithLatinNumbers = "".concat(this.locale, "-u-nu-latn");
       var formattingOptions = {
         style: 'currency',
         currency: this.currency,
         currencyDisplay: 'symbol',
         useGrouping: false,
+        // start with decimal count typical for this.currency, e.g. 2 for eur
         minimumFractionDigits: undefined
       };
       var formatted;
@@ -13282,7 +13303,7 @@ function (_Vue) {
       var relativeDeviation;
 
       do {
-        formatted = this.amount.toLocaleString([localeWithLatinNumbers, 'en-US'], formattingOptions) // Enforce a dot as decimal separator for consistency and parseFloat. Using capturing groups instead of
+        formatted = this.amount.toLocaleString(["".concat(this.locale || this._currencyToLocale(this.currency), "-u-nu-latn"), "".concat(navigator.language, "-u-nu-latn"), 'en-US'], formattingOptions) // Enforce a dot as decimal separator for consistency and parseFloat. Using capturing groups instead of
         // lookahead/lookbehind to avoid browser support limitations.
         .replace(FiatAmount_1.DECIMAL_SEPARATOR_REGEX, '$1.$2');
 
@@ -13341,7 +13362,7 @@ __decorate([Object(external_vue_property_decorator_["Prop"])({
 
 __decorate([Object(external_vue_property_decorator_["Prop"])({
   type: String,
-  default: navigator.language
+  required: false
 })], FiatAmountvue_type_script_lang_ts_FiatAmount.prototype, "locale", void 0);
 
 FiatAmountvue_type_script_lang_ts_FiatAmount = FiatAmount_1 = __decorate([external_vue_property_decorator_["Component"]], FiatAmountvue_type_script_lang_ts_FiatAmount);
@@ -13358,8 +13379,8 @@ FiatAmountvue_type_script_lang_ts_FiatAmount = FiatAmount_1 = __decorate([extern
 
 var FiatAmount_component = normalizeComponent(
   components_FiatAmountvue_type_script_lang_ts_,
-  FiatAmountvue_type_template_id_89a0d25a_render,
-  FiatAmountvue_type_template_id_89a0d25a_staticRenderFns,
+  FiatAmountvue_type_template_id_6c1797c5_render,
+  FiatAmountvue_type_template_id_6c1797c5_staticRenderFns,
   false,
   null,
   null,

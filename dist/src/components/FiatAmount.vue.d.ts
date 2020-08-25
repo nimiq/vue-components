@@ -5,6 +5,7 @@ export default class FiatAmount extends Vue {
     amount: number;
     currency: string;
     maxRelativeDeviation: number;
-    locale: string;
+    locale?: string;
     private get _currencyString();
+    private _currencyToLocale;
 }
