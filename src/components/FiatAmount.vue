@@ -33,25 +33,29 @@ export default class FiatAmount extends Vue {
 
     @Prop({
         type: String,
-        default: navigator.language,
+        required: false,
     })
-    public locale!: string;
+    public locale?: string;
 
     private get _currencyString() {
-        const localeWithLatinNumbers = `${this.locale}-u-nu-latn`;
         const formattingOptions = {
             style: 'currency',
             currency: this.currency,
             currencyDisplay: 'symbol',
             useGrouping: false,
-            minimumFractionDigits: undefined, // start with decimal count typical for this.currency, e.g. 2 for eur
+            // start with decimal count typical for this.currency, e.g. 2 for eur
+            minimumFractionDigits: undefined as number | undefined,
         };
         let formatted: string;
         let integers: string;
         let relativeDeviation: number;
 
         do {
-            formatted = this.amount.toLocaleString([localeWithLatinNumbers, 'en-US'], formattingOptions)
+            formatted = this.amount.toLocaleString([
+                `${this.locale || this._currencyToLocale(this.currency)}-u-nu-latn`,
+                `${navigator.language}-u-nu-latn`,
+                'en-US',
+            ], formattingOptions)
                 // Enforce a dot as decimal separator for consistency and parseFloat. Using capturing groups instead of
                 // lookahead/lookbehind to avoid browser support limitations.
                 .replace(FiatAmount.DECIMAL_SEPARATOR_REGEX, '$1.$2');
@@ -76,6 +80,22 @@ export default class FiatAmount extends Vue {
         // apply integer grouping
         if (integers.length <= 4) return formatted;
         return formatted.replace(integers, new FormattableNumber(integers).toString(true));
+    }
+
+    private _currencyToLocale(currency: string) {
+        currency = currency.toLowerCase();
+        switch (currency) {
+            case 'eur':
+            case 'chf':
+                return 'de';
+            case 'gbp':
+            case 'usd':
+                return 'en';
+            case 'cny':
+                return 'zh';
+            default:
+                return currency.substr(0, 2);
+        }
     }
 }
 </script>
