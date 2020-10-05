@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[59],{1345:function(n){n.exports={fee:"费用","Insufficient balance":"余额不足"}}}]);
+//# sourceMappingURL=lang-zh-AmountWithFee-json.48a3b17db742b4289b12.bundle.js.map

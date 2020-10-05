@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[36],{1322:function(o){o.exports={"{type} accounts cannot be used for this operation.":"{type} 계정은 해당 작업에 사용될 수 없습니다.",Legacy:"구형","Login to another account":"다른 계정으로 로그인"}}}]);
+//# sourceMappingURL=lang-ko-AccountSelector-json.92709ee69333c423a9df.bundle.js.map

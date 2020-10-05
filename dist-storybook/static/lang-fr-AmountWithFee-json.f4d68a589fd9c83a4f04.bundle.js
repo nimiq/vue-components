@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[26],{1312:function(n){n.exports={fee:"frais","Insufficient balance":"Solde insuffisant"}}}]);
+//# sourceMappingURL=lang-fr-AmountWithFee-json.f4d68a589fd9c83a4f04.bundle.js.map
