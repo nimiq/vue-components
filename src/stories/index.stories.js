@@ -96,12 +96,13 @@ storiesOf('Basic', module)
         const currency = text('currency', 'eur');
         const maxRelativeDeviation = number('maxRelativeDeviation', .1);
         const locale = text('locale', navigator.language);
+        const hideDecimals = boolean('hideDecimals', false);
 
         return {
             components: {FiatAmount},
-            data: () => ({ amount, currency, maxRelativeDeviation, locale }),
+            data: () => ({ amount, currency, maxRelativeDeviation, locale, hideDecimals }),
             template: `<FiatAmount :amount="amount" :currency="currency" :maxRelativeDeviation="maxRelativeDeviation"
-                :locale="locale" />`,
+                :locale="locale" :hideDecimals="hideDecimals" />`,
         };
     })
     .add('Icons', () => ({
