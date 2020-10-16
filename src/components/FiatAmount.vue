@@ -37,6 +37,12 @@ export default class FiatAmount extends Vue {
     })
     public locale?: string;
 
+    @Prop({
+        type: Boolean,
+        default: false,
+    })
+    public hideDecimals!: boolean;
+
     private get _currencyString() {
         const formattingOptions = {
             style: 'currency',
@@ -44,7 +50,8 @@ export default class FiatAmount extends Vue {
             currencyDisplay: 'symbol',
             useGrouping: false,
             // start with decimal count typical for this.currency, e.g. 2 for eur
-            minimumFractionDigits: undefined as number | undefined,
+            minimumFractionDigits: this.hideDecimals ? 0 : undefined,
+            maximumFractionDigits: this.hideDecimals ? 0 : undefined,
         };
         let formatted: string;
         let integers: string;
