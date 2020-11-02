@@ -4,9 +4,7 @@
         <Account layout="column" :address="address" :image="image" :label="label !== address ? label : ''"
              :walletLabel="walletLabel" :balance="balance" :editable="editable" :placeholder="placeholder"
              @changed="changed" ref="account"/>
-        <Copyable :text="address">
-            <AddressDisplay :address="address"/>
-        </Copyable>
+        <AddressDisplay :address="address" copyable />
     </div>
 </template>
 
@@ -15,10 +13,9 @@ import { Component, Prop, Emit, Vue } from 'vue-property-decorator';
 import Account from './Account.vue';
 import Amount from './Amount.vue';
 import AddressDisplay from './AddressDisplay.vue';
-import Copyable from './Copyable.vue';
 import CloseButton from './CloseButton.vue';
 
-@Component({components: {Account, Amount, AddressDisplay, Copyable, CloseButton}})
+@Component({components: {Account, Amount, AddressDisplay, CloseButton}})
 export default class AccountDetails extends Vue {
     @Prop(String) private address!: string;
     @Prop(String) private image?: string;
@@ -97,7 +94,7 @@ export default class AccountDetails extends Vue {
         margin-top: 3rem;
     }
 
-    .copyable {
+    .address-display {
         margin-top: 3rem;
         margin-bottom: 1.5rem;
     }

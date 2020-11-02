@@ -12,5 +12,6 @@ export default class Amount extends Vue {
     private _validateDecimals;
     private get formattedAmount();
     private get isApprox();
+    private get ticker();
 }
 export {};

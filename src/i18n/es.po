@@ -1,10 +1,11 @@
 # 
 # Translators:
 # Ricardo Barquero Carranza <richy@nimiq.com>, 2020
+# Daniel, 2020
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Ricardo Barquero Carranza <richy@nimiq.com>, 2020\n"
+"Last-Translator: Daniel, 2020\n"
 "Language-Team: Spanish (https://www.transifex.com/nimiq-foundation/teams/109388/es/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: es\n"
@@ -18,22 +19,6 @@ msgstr "{amount} cuota de red sugerida"
 msgid "{type} accounts cannot be used for this operation."
 msgstr "cuentas tipo {type} no se pueden utilizar para esta operación."
 
-#: src/components/SendTx.vue:124
-msgid "Add a public message..."
-msgstr "Agregue un mensaje público..."
-
-#: src/components/SendTx.vue:131
-msgid "Awaiting Consensus..."
-msgstr "Esperando Consenso..."
-
-#: src/components/SendTx.vue:96
-msgid ""
-"By adding a transation fee, you can influence how fast your transaction will"
-" be processed."
-msgstr ""
-"Al agregar una cuota de transacción, puede influenciar que tan rápido se "
-"procesa su transacción."
-
 #: src/components/QrScanner.vue:11
 msgid "Cancel"
 msgstr "Cancelar"
@@ -41,10 +26,6 @@ msgstr "Cancelar"
 #: src/components/Wallet.vue:24
 msgid "Change Password"
 msgstr "Cambiar Contraseña"
-
-#: src/components/SendTx.vue:6
-msgid "Choose Sender"
-msgstr "Elija Destinatario"
 
 #: src/components/QrScanner.vue:24
 msgid ""
@@ -74,10 +55,6 @@ msgstr "Contratos no pueden ser utilizados para esta operación."
 msgid "Copied"
 msgstr "Copiado"
 
-#: src/components/SendTx.vue:68
-msgid "Create a Cashlink"
-msgstr "Crear un Cashlink"
-
 #: src/components/Wallet.vue:21
 msgid "Create Backup"
 msgstr "Crear un respaldo"
@@ -94,21 +71,9 @@ msgstr "días"
 msgid "Effective rate"
 msgstr "Taza efectiva"
 
-#: src/components/SendTx.vue:61
-msgid "Enter address"
-msgstr "Inserte dirección"
-
-#: src/components/SendTx.vue:209
-msgid "express"
-msgstr "exprés"
-
 #: src/components/AmountWithFee.vue:7
 msgid "fee"
 msgstr "cuota"
-
-#: src/components/SendTx.vue:199
-msgid "free"
-msgstr "gratis"
 
 #: src/components/PageHeader.vue:7
 msgid "Go back"
@@ -126,10 +91,6 @@ msgstr "hora"
 msgid "hours"
 msgstr "horas"
 
-#: src/components/SendTx.vue:67
-msgid "If recipient has no Account yet:"
-msgstr "El destinatario a'un no tiene una Cuenta."
-
 #: src/components/AmountWithFee.vue:5
 msgid "Insufficient balance"
 msgstr "Balance insuficiente"
@@ -139,8 +100,8 @@ msgid "Legacy"
 msgstr "Versión Antigua"
 
 #: src/components/AccountSelector.vue:41
-msgid "Login to another Account"
-msgstr "Inicie sesión con otra Cuenta"
+msgid "Login to another account"
+msgstr "Inicie sesión con otra cuenta"
 
 #: src/components/Wallet.vue:26
 msgid "Logout"
@@ -154,10 +115,6 @@ msgstr "minuto"
 msgid "minutes"
 msgstr "minutos"
 
-#: src/components/SendTx.vue:22 src/components/SendTx.vue:78
-msgid "Name this contact..."
-msgstr "De nombre a este contacto..."
-
 #: src/components/LabelInput.vue:4 src/components/LabelInput.vue:8
 msgid "Name your address"
 msgstr "De nombre a su dirección"
@@ -170,10 +127,6 @@ msgstr "cuota de red"
 msgid "Nimiq provides this service free of charge."
 msgstr "Nimiq provee este servicio sin ningún costo."
 
-#: src/components/SendTx.vue:108
-msgid "Open settings"
-msgstr "Abrir ajustes"
-
 #: src/components/PaymentInfoLine.vue:37
 msgid "Order amount"
 msgstr "Monto de la ordén"
@@ -181,14 +134,6 @@ msgstr "Monto de la ordén"
 #: src/components/Wallet.vue:23
 msgid "Rename"
 msgstr "Renombrar"
-
-#: src/components/SendTx.vue:31
-msgid "Save & Set Amount"
-msgstr "Guardar & Ingresar Monto"
-
-#: src/components/SendTx.vue:86
-msgid "Save Contact"
-msgstr "Guardar Contacto"
 
 #: src/components/Wallet.vue:18
 msgid "Save Login File"
@@ -201,38 +146,6 @@ msgstr "segundo"
 #: src/components/Timer.vue:90
 msgid "seconds"
 msgstr "segundos"
-
-#: src/components/SendTx.vue:41
-msgid "Select a contact"
-msgstr "Seleccione un contacto"
-
-#: src/components/SendTx.vue:49
-msgid "Send a transaction"
-msgstr "Enviar una transacción"
-
-#: src/components/SendTx.vue:134
-msgid "Send Transaction"
-msgstr "Enviar una Transacción"
-
-#: src/components/SendTx.vue:133
-msgid "Sending Transaction..."
-msgstr "Enviando Transacción"
-
-#: src/components/SendTx.vue:107 src/components/SendTx.vue:32
-msgid "Set Amount"
-msgstr "Ingresar Monto"
-
-#: src/components/SendTx.vue:101
-msgid "Set fee"
-msgstr "Ingresar cuota"
-
-#: src/components/SendTx.vue:95
-msgid "Speed up your transaction"
-msgstr "Acelerar su transacción"
-
-#: src/components/SendTx.vue:204
-msgid "standard"
-msgstr "estándar"
 
 #: src/components/QrScanner.vue:48
 msgid "the camera icon"
@@ -253,10 +166,6 @@ msgstr "Total"
 #: src/components/QrScanner.vue:20
 msgid "Unblock the camera for this website to scan QR codes."
 msgstr "Desbloquee la cámara para esta página para poder escanear códigos QR."
-
-#: src/components/SendTx.vue:120
-msgid "Unnamed Contact"
-msgstr "Contacto sin Nombre"
 
 #: src/components/PaymentInfoLine.vue:41
 msgid "Vendor crypto discount"

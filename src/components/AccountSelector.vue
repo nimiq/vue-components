@@ -38,7 +38,7 @@
         </div>
 
         <div class="footer">
-            <button v-if="allowLogin" class="nq-button-s" @click="login">{{ $t('Login to another Account') }}</button>
+            <button v-if="allowLogin" class="nq-button-s" @click="login">{{ $t('Login to another account') }}</button>
         </div>
     </div>
 </template>
