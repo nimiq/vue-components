@@ -8,18 +8,6 @@
 import {Component, Prop, Watch, Vue} from 'vue-property-decorator';
 import { ValidationUtils } from '@nimiq/utils';
 import Iqons from '@nimiq/iqons/dist/iqons.min.js';
-import IqonsSvg from '@nimiq/iqons/dist/iqons.min.svg';
-
-// Detect Iqons.svgPath
-// @ts-ignore
-if (self.NIMIQ_IQONS_SVG_PATH) Iqons.svgPath = self.NIMIQ_IQONS_SVG_PATH;
-else {
-    if (IqonsSvg[0] === '"') {
-        Iqons.svgPath = IqonsSvg.substring(1, IqonsSvg.length - 1);
-    } else {
-        Iqons.svgPath = IqonsSvg;
-    }
-}
 
 @Component
 export default class Identicon extends Vue {
@@ -36,11 +24,26 @@ export default class Identicon extends Vue {
     private dataUrl: string = this.placeholderDataUrl;
 
     @Watch('address', { immediate: true })
-    private computeDataUrl(address: string, oldAddress?: string) {
+    private async computeDataUrl(address: string, oldAddress?: string) {
         if (this.address && Identicon.isUserFriendlyAddress(this.address)) {
-            Iqons.toDataUrl(Identicon.formatAddress(this.address)).then((dataUrl: string) => {
-                this.dataUrl = dataUrl;
-            });
+            // Set svgPath
+            // @ts-ignore
+            if (self.NIMIQ_IQONS_SVG_PATH) {
+                console.warn('Setting NIMIQ_IQONS_SVG_PATH is deprecated and support will be removed in the future. '
+                    + 'Use setAssetPublicPath instead.');
+                // @ts-ignore
+                Iqons.svgPath = self.NIMIQ_IQONS_SVG_PATH;
+            } else {
+                // Use file-loader to copy the svg asset to dist and set the path to where the file is located. Instead
+                // of a normal import use a dynamic import at usage time to give apps the opportunity to adapt the base
+                // path via setAssetPublicPath before the path is being determined. Using webpackMode: 'eager' to avoid
+                // creating an additional chunk and to let the import resolve immediately.
+                ({ default: Iqons.svgPath } = await import(
+                    /* webpackMode: 'eager' */
+                    '@nimiq/iqons/dist/iqons.min.svg'));
+            }
+
+            this.dataUrl = await Iqons.toDataUrl(Identicon.formatAddress(this.address));
         } else {
             this.dataUrl = this.placeholderDataUrl;
         }

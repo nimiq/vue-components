@@ -64,10 +64,6 @@ import { BrowserDetection } from '@nimiq/utils';
 import I18nMixin from '../i18n/I18nMixin';
 import I18n from '../i18n/I18n.vue';
 
-// Declare qr worker as asset using file-loader which copies the file to dist and binds the path to QrScannerWorker
-import QrScannerWorker from '!!file-loader?name=[name].[ext]!../../node_modules/qr-scanner/qr-scanner-worker.min.js';
-QrScannerLib.WORKER_PATH = QrScannerWorker;
-
 @Component({
     name: 'QrScanner',
     components: { I18n },
@@ -85,7 +81,15 @@ class QrScanner extends Mixins(I18nMixin) {
     private _lastResultTime: number = 0;
     private _cameraRetryTimer?: number;
 
-    private mounted() {
+    private async mounted() {
+        // Use file-loader to copy the worker to dist and set the path to where the file is located. Instead of a normal
+        // import use a dynamic import at creation time of a QrScanner to give apps the opportunity to adapt the base
+        // path via setAssetPublicPath before the path is being determined. Using webpackMode: 'eager' to avoid creating
+        // an additional chunk and to let the import resolve immediately.
+        ({ default: QrScannerLib.WORKER_PATH } = await import(
+            /* webpackMode: 'eager' */
+            '!!file-loader?name=[name].[ext]!../../node_modules/qr-scanner/qr-scanner-worker.min.js'));
+
         this.repositionOverlay = this.repositionOverlay.bind(this);
         const $video = this.$refs.video as HTMLVideoElement;
         this._scanner = new QrScannerLib($video, (result) => this._onResult(result));
