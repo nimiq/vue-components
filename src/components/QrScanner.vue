@@ -88,7 +88,7 @@ class QrScanner extends Mixins(I18nMixin) {
         // an additional chunk and to let the import resolve immediately.
         ({ default: QrScannerLib.WORKER_PATH } = await import(
             /* webpackMode: 'eager' */
-            '!!file-loader?name=[name].[ext]!../../node_modules/qr-scanner/qr-scanner-worker.min.js'));
+            '!!file-loader?name=[name].[hash:8].[ext]!../../node_modules/qr-scanner/qr-scanner-worker.min.js'));
 
         this.repositionOverlay = this.repositionOverlay.bind(this);
         const $video = this.$refs.video as HTMLVideoElement;

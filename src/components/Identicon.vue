@@ -40,7 +40,7 @@ export default class Identicon extends Vue {
                 // creating an additional chunk and to let the import resolve immediately.
                 ({ default: Iqons.svgPath } = await import(
                     /* webpackMode: 'eager' */
-                    '@nimiq/iqons/dist/iqons.min.svg'));
+                    '!!file-loader?name=[name].[hash:8].[ext]!@nimiq/iqons/dist/iqons.min.svg'));
             }
 
             this.dataUrl = await Iqons.toDataUrl(Identicon.formatAddress(this.address));
