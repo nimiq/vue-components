@@ -38,9 +38,14 @@ export default class Identicon extends Vue {
                 // of a normal import use a dynamic import at usage time to give apps the opportunity to adapt the base
                 // path via setAssetPublicPath before the path is being determined. Using webpackMode: 'eager' to avoid
                 // creating an additional chunk and to let the import resolve immediately.
-                ({ default: Iqons.svgPath } = await import(
+                let { default: svgPath } = await import(
                     /* webpackMode: 'eager' */
-                    '!!file-loader?name=[name].[hash:8].[ext]!@nimiq/iqons/dist/iqons.min.svg'));
+                    '!!file-loader?name=[name].[hash:8].[ext]!@nimiq/iqons/dist/iqons.min.svg');
+                if (typeof self.NIMIQ_VUE_COMPONENTS_IMAGE_ASSET_PATH === 'string') {
+                    // @ts-ignore TS2304: Cannot find name '__webpack_public_path__'.
+                    svgPath = svgPath.replace(__webpack_public_path__, self.NIMIQ_VUE_COMPONENTS_IMAGE_ASSET_PATH);
+                }
+                Iqons.svgPath = svgPath;
             }
 
             this.dataUrl = await Iqons.toDataUrl(Identicon.formatAddress(this.address));

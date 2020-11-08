@@ -36,15 +36,27 @@ export * from './components/Icons';
 
 export { default as I18nMixin } from './i18n/I18nMixin';
 
+declare global {
+    interface Window {
+        NIMIQ_VUE_COMPONENTS_IMAGE_ASSET_PATH?: string;
+    }
+}
+
 /**
  * Set a specific public path / base path (see https://webpack.js.org/guides/public-path/) from where assets like
  * translation files, identicons or the qr scanner worker should be loaded. By default, this is the path from where
  * the importing script is loaded, derived from the importing script's currentScript src.
+ *
+ * Optionally, you can define a different path for image assets.
  */
-export function setAssetPublicPath(path: string) {
+export function setAssetPublicPath(path: string, imageAssetsPath?: string) {
     // See https://webpack.js.org/guides/public-path/#on-the-fly.
     // Note that the default for build target "lib" is set via @vue/cli-service/lib/commands/build/setPublicPath.js and
     // can not be overwritten via publicPath in vue.config.js.
     // @ts-ignore
     __webpack_public_path__ = `${path}${!path.endsWith('/') ? '/' : ''}`;
+
+    if (typeof imageAssetsPath === 'string') {
+        self.NIMIQ_VUE_COMPONENTS_IMAGE_ASSET_PATH = `${imageAssetsPath}${!imageAssetsPath.endsWith('/') ? '/' : ''}`;
+    }
 }
