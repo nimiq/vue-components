@@ -79,6 +79,9 @@ setAssetPublicPath('/my-path/');
 
 // Useful for projects setup via vue-cli to apply the app's public path to the vue-component assets
 setAssetPublicPath(process.env.BASE_URL);
+
+// You can also specify a separate folder for image assets
+setAssetPublicPath('/js', '/img');
 ```
 
 ## Updating
