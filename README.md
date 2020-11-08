@@ -40,12 +40,13 @@ const plugins = [
         },
         // for the identicons
         {
-            from: 'node_modules/@nimiq/vue-components/dist/img',
-            to: 'img/',
+            from: 'node_modules/@nimiq/vue-components/dist/iqons.min.*.svg',
+            to: './',
+            flatten: true,
         },
         // for the QR scanner
         {
-            from: 'node_modules/@nimiq/vue-components/dist/qr-scanner-worker.min.js',
+            from: 'node_modules/@nimiq/vue-components/dist/qr-scanner-worker.min.*.js',
             to: './',
             flatten: true,
         },
