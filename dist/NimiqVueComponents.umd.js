@@ -53,7 +53,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "NimiqVueComponents.umd." + ({"1":"lang-de-AccountList-json","2":"lang-de-AccountSelector-json","3":"lang-de-AmountWithFee-json","4":"lang-de-Copyable-json","5":"lang-de-CopyableField-json","6":"lang-de-LabelInput-json","7":"lang-de-PageHeader-json","8":"lang-de-PaymentInfoLine-json","9":"lang-de-QrScanner-json","10":"lang-de-Timer-json","11":"lang-de-Wallet-json","12":"lang-es-AccountList-json","13":"lang-es-AccountSelector-json","14":"lang-es-AmountWithFee-json","15":"lang-es-Copyable-json","16":"lang-es-CopyableField-json","17":"lang-es-LabelInput-json","18":"lang-es-PageHeader-json","19":"lang-es-PaymentInfoLine-json","20":"lang-es-QrScanner-json","21":"lang-es-Timer-json","22":"lang-es-Wallet-json","23":"lang-fr-AccountList-json","24":"lang-fr-AccountSelector-json","25":"lang-fr-AmountWithFee-json","26":"lang-fr-Copyable-json","27":"lang-fr-CopyableField-json","28":"lang-fr-LabelInput-json","29":"lang-fr-PageHeader-json","30":"lang-fr-PaymentInfoLine-json","31":"lang-fr-QrScanner-json","32":"lang-fr-Timer-json","33":"lang-fr-Wallet-json","34":"lang-ko-AccountList-json","35":"lang-ko-AccountSelector-json","36":"lang-ko-AmountWithFee-json","37":"lang-ko-Copyable-json","38":"lang-ko-CopyableField-json","39":"lang-ko-LabelInput-json","40":"lang-ko-PageHeader-json","41":"lang-ko-PaymentInfoLine-json","42":"lang-ko-QrScanner-json","43":"lang-ko-Timer-json","44":"lang-ko-Wallet-json","45":"lang-ru-AccountList-json","46":"lang-ru-AccountSelector-json","47":"lang-ru-AmountWithFee-json","48":"lang-ru-Copyable-json","49":"lang-ru-CopyableField-json","50":"lang-ru-LabelInput-json","51":"lang-ru-PageHeader-json","52":"lang-ru-PaymentInfoLine-json","53":"lang-ru-QrScanner-json","54":"lang-ru-Timer-json","55":"lang-ru-Wallet-json","56":"lang-zh-AccountList-json","57":"lang-zh-AccountSelector-json","58":"lang-zh-AmountWithFee-json","59":"lang-zh-Copyable-json","60":"lang-zh-CopyableField-json","61":"lang-zh-LabelInput-json","62":"lang-zh-PageHeader-json","63":"lang-zh-PaymentInfoLine-json","64":"lang-zh-QrScanner-json","65":"lang-zh-Timer-json","66":"lang-zh-Wallet-json"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "NimiqVueComponents.umd." + ({"1":"lang-de-AccountList-json","2":"lang-de-AccountSelector-json","3":"lang-de-AmountWithFee-json","4":"lang-de-Copyable-json","5":"lang-de-CopyableField-json","6":"lang-de-LabelInput-json","7":"lang-de-PageHeader-json","8":"lang-de-PaymentInfoLine-json","9":"lang-de-QrScanner-json","10":"lang-de-Timer-json","11":"lang-de-Wallet-json","12":"lang-es-AccountList-json","13":"lang-es-AccountSelector-json","14":"lang-es-AmountWithFee-json","15":"lang-es-Copyable-json","16":"lang-es-CopyableField-json","17":"lang-es-LabelInput-json","18":"lang-es-PageHeader-json","19":"lang-es-PaymentInfoLine-json","20":"lang-es-QrScanner-json","21":"lang-es-Timer-json","22":"lang-es-Wallet-json","23":"lang-fr-AccountList-json","24":"lang-fr-AccountSelector-json","25":"lang-fr-AmountWithFee-json","26":"lang-fr-Copyable-json","27":"lang-fr-CopyableField-json","28":"lang-fr-LabelInput-json","29":"lang-fr-PageHeader-json","30":"lang-fr-PaymentInfoLine-json","31":"lang-fr-QrScanner-json","32":"lang-fr-Timer-json","33":"lang-fr-Wallet-json","34":"lang-ru-AccountList-json","35":"lang-ru-AccountSelector-json","36":"lang-ru-AmountWithFee-json","37":"lang-ru-Copyable-json","38":"lang-ru-CopyableField-json","39":"lang-ru-LabelInput-json","40":"lang-ru-PageHeader-json","41":"lang-ru-PaymentInfoLine-json","42":"lang-ru-QrScanner-json","43":"lang-ru-Timer-json","44":"lang-ru-Wallet-json","45":"lang-zh-AccountList-json","46":"lang-zh-AccountSelector-json","47":"lang-zh-AmountWithFee-json","48":"lang-zh-Copyable-json","49":"lang-zh-CopyableField-json","50":"lang-zh-LabelInput-json","51":"lang-zh-PageHeader-json","52":"lang-zh-PaymentInfoLine-json","53":"lang-zh-QrScanner-json","54":"lang-zh-Timer-json","55":"lang-zh-Wallet-json"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -1973,137 +1973,93 @@ var map = {
 		"ec08",
 		33
 	],
-	"./ko/AccountList.json": [
-		"a4e2",
-		34
-	],
-	"./ko/AccountSelector.json": [
-		"f367",
-		35
-	],
-	"./ko/AmountWithFee.json": [
-		"afb1",
-		36
-	],
-	"./ko/Copyable.json": [
-		"2f73",
-		37
-	],
-	"./ko/CopyableField.json": [
-		"facd",
-		38
-	],
-	"./ko/LabelInput.json": [
-		"3bc8",
-		39
-	],
-	"./ko/PageHeader.json": [
-		"5801",
-		40
-	],
-	"./ko/PaymentInfoLine.json": [
-		"a39b",
-		41
-	],
-	"./ko/QrScanner.json": [
-		"e7f1",
-		42
-	],
-	"./ko/Timer.json": [
-		"6127",
-		43
-	],
-	"./ko/Wallet.json": [
-		"b1e8",
-		44
-	],
 	"./ru/AccountList.json": [
 		"e162",
-		45
+		34
 	],
 	"./ru/AccountSelector.json": [
 		"2153",
-		46
+		35
 	],
 	"./ru/AmountWithFee.json": [
 		"f212",
-		47
+		36
 	],
 	"./ru/Copyable.json": [
 		"d3a8",
-		48
+		37
 	],
 	"./ru/CopyableField.json": [
 		"580c",
-		49
+		38
 	],
 	"./ru/LabelInput.json": [
 		"ac46",
-		50
+		39
 	],
 	"./ru/PageHeader.json": [
 		"0773",
-		51
+		40
 	],
 	"./ru/PaymentInfoLine.json": [
 		"81c0",
-		52
+		41
 	],
 	"./ru/QrScanner.json": [
 		"b74a",
-		53
+		42
 	],
 	"./ru/Timer.json": [
 		"1d1a",
-		54
+		43
 	],
 	"./ru/Wallet.json": [
 		"da26",
-		55
+		44
 	],
 	"./zh/AccountList.json": [
 		"bb4e",
-		56
+		45
 	],
 	"./zh/AccountSelector.json": [
 		"4634",
-		57
+		46
 	],
 	"./zh/AmountWithFee.json": [
 		"5f88",
-		58
+		47
 	],
 	"./zh/Copyable.json": [
 		"6a72",
-		59
+		48
 	],
 	"./zh/CopyableField.json": [
 		"afa7",
-		60
+		49
 	],
 	"./zh/LabelInput.json": [
 		"c7b6",
-		61
+		50
 	],
 	"./zh/PageHeader.json": [
 		"aee6",
-		62
+		51
 	],
 	"./zh/PaymentInfoLine.json": [
 		"6daa",
-		63
+		52
 	],
 	"./zh/QrScanner.json": [
 		"4e49",
-		64
+		53
 	],
 	"./zh/Timer.json": [
 		"813f",
-		65
+		54
 	],
 	"./zh/Wallet.json": [
 		"43f7",
-		66
+		55
 	]
 };
 function webpackAsyncContext(req) {
@@ -12222,7 +12178,7 @@ function (_Vue) {
 }(external_vue_property_decorator_["Vue"]);
 
 I18nMixin_I18nMixin.DEFAULT_LANGUAGE = 'en';
-I18nMixin_I18nMixin.SUPPORTED_LANGUAGES = [I18nMixin_1.DEFAULT_LANGUAGE, 'de', 'es', 'fr', 'zh'];
+I18nMixin_I18nMixin.SUPPORTED_LANGUAGES = [I18nMixin_1.DEFAULT_LANGUAGE, 'de', 'es', 'fr', 'ru', 'zh'];
 /** Current active language */
 
 I18nMixin_I18nMixin.lang = I18nMixin_1.detectLanguage();
