@@ -3,10 +3,11 @@
 # Sven <sven@nimiq.com>, 2020
 # Sebastian Langer <basti@b-compu.de>, 2020
 # Daniel, 2020
+# Redexe <timo.niehoff@yahoo.de>, 2020
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Daniel, 2020\n"
+"Last-Translator: Redexe <timo.niehoff@yahoo.de>, 2020\n"
 "Language-Team: German (https://www.transifex.com/nimiq-foundation/teams/109388/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de\n"
@@ -166,7 +167,7 @@ msgstr "Gesamt"
 
 #: src/components/QrScanner.vue:20
 msgid "Unblock the camera for this website to scan QR codes."
-msgstr "Erlaube den Zugriff auf deine Kamera um QR-Codes zu scannen."
+msgstr "Erlaube den Zugriff auf deine Kamera, um QR-Codes zu scannen."
 
 #: src/components/PaymentInfoLine.vue:41
 msgid "Vendor crypto discount"
