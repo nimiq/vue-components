@@ -1,20 +1,20 @@
 # 
 # Translators:
 # Talleyrand <baptistekugener@wanadoo.fr>, 2020
-# Matheo <matheo@nimiq.com>, 2020
 # Daniel, 2020
+# Matheo <matheo@nimiq.com>, 2020
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Daniel, 2020\n"
-"Language-Team: French (https://www.transifex.com/nimiq-foundation/teams/109388/fr/)\n"
+"Last-Translator: Matheo <matheo@nimiq.com>, 2020\n"
+"Language-Team: French (https://www.transifex.com/nimiq-foundation/teams/110181/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: src/components/PaymentInfoLine.vue:77
 msgid "{amount} suggested network fee"
-msgstr "{amount} montant ed frais suggéré"
+msgstr "{amount} de frais de réseau suggéré"
 
 #: src/components/AccountSelector.vue:18
 msgid "{type} accounts cannot be used for this operation."
