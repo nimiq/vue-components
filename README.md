@@ -13,8 +13,11 @@ yarn add github:nimiq/vue-components#build/master
 This will install the complete component collection. To install only a subset for reduced bundle size, see section
 [Advanced setup](#advanced-setup).
 
-The components offer translations via lazy-loaded language files. If you want to support other languages than
-English, you have to copy these language files over to your project. If your project has been created with the
+Some components require additional lazy-loaded assets which have to be copied over to your project. Specifically, these
+are translation files (if you want to support other languages than English), the Identicon svg asset and the QR scanner
+worker.
+
+If your project has been created with the
 [vue-cli](https://cli.vuejs.org/) / gets bundled via [webpack](https://webpack.js.org/), this can be conveniently done
 with the [CopyWebpackPlugin](https://webpack.js.org/plugins/copy-webpack-plugin/):
 
@@ -23,9 +26,10 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const plugins = [
     new CopyWebpackPlugin([
+        // for translation files
         {
             from: 'node_modules/@nimiq/vue-components/dist/NimiqVueComponents.umd.min.lang-*.js',
-            to: './js',
+            to: './',
             flatten: true,
             transformPath(path) {
                 // If you are bundling a non-minified build of the components (for later minification in your build
@@ -33,6 +37,18 @@ const plugins = [
                 // to load the minified files instead, so we rename them.
                 return path.replace('.min', '');
             },
+        },
+        // for the identicons
+        {
+            from: 'node_modules/@nimiq/vue-components/dist/iqons.min.*.svg',
+            to: './',
+            flatten: true,
+        },
+        // for the QR scanner
+        {
+            from: 'node_modules/@nimiq/vue-components/dist/qr-scanner-worker.min.*.js',
+            to: './',
+            flatten: true,
         },
     ]),
     ...
@@ -51,6 +67,21 @@ module.exports = {
     },
     ...
 };
+```
+
+By default, these assets are resolved relatively to the importing script's location (the importing script's
+currentScript src) as base path. Alternatively, you can also specify a custom path:
+
+```js
+import { setAssetPublicPath } from '@nimiq/vue-components';
+
+setAssetPublicPath('/my-path/');
+
+// Useful for projects setup via vue-cli to apply the app's public path to the vue-component assets
+setAssetPublicPath(process.env.BASE_URL);
+
+// You can also specify a separate folder for image assets
+setAssetPublicPath('/js', '/img');
 ```
 
 ## Updating

@@ -664,13 +664,6 @@ for (var COLLECTION_NAME in DOMIterables) {
 
 /***/ }),
 
-/***/ "1625":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "img/iqons.min.a593173e.svg";
-
-/***/ }),
-
 /***/ "1669":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1288,13 +1281,6 @@ module.exports = function (CONSTRUCTOR_NAME) {
 
 /***/ }),
 
-/***/ "2c17":
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-
 /***/ "2ca0":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1706,17 +1692,6 @@ module.exports = DESCRIPTORS ? Object.defineProperties : function defineProperti
   return O;
 };
 
-
-/***/ }),
-
-/***/ "386a":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Identicon_vue_vue_type_style_index_0_id_053228da_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("2c17");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Identicon_vue_vue_type_style_index_0_id_053228da_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Identicon_vue_vue_type_style_index_0_id_053228da_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
- /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Identicon_vue_vue_type_style_index_0_id_053228da_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -2197,13 +2172,6 @@ fixRegExpWellKnownSymbolLogic('match', 1, function (MATCH, nativeMatch, maybeCal
 
 /***/ }),
 
-/***/ "46f5":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "qr-scanner-worker.min.js";
-
-/***/ }),
-
 /***/ "4840":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2221,6 +2189,13 @@ module.exports = function (O, defaultConstructor) {
   return C === undefined || (S = anObject(C)[SPECIES]) == undefined ? defaultConstructor : aFunction(S);
 };
 
+
+/***/ }),
+
+/***/ "4873":
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
 
 /***/ }),
 
@@ -2242,17 +2217,6 @@ module.exports = !!Object.getOwnPropertySymbols && !fails(function () {
 /***/ (function(module, exports, __webpack_require__) {
 
 // extracted by mini-css-extract-plugin
-
-/***/ }),
-
-/***/ "4cbf":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_QrScanner_vue_vue_type_style_index_0_id_0f31d4dc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("acd3");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_QrScanner_vue_vue_type_style_index_0_id_0f31d4dc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_QrScanner_vue_vue_type_style_index_0_id_0f31d4dc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
- /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_QrScanner_vue_vue_type_style_index_0_id_0f31d4dc_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -2635,6 +2599,13 @@ module.exports = getBuiltIn('Reflect', 'ownKeys') || function ownKeys(it) {
 
 /***/ }),
 
+/***/ "578c":
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
 /***/ "5899":
 /***/ (function(module, exports) {
 
@@ -2736,6 +2707,13 @@ module.exports = function isInteger(it) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "5f98":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "iqons.min.a593173e.svg";
 
 /***/ }),
 
@@ -3686,6 +3664,17 @@ module.exports = Object.create || function create(O, Properties) {
   return Properties === undefined ? result : defineProperties(result, Properties);
 };
 
+
+/***/ }),
+
+/***/ "7daf":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_QrScanner_vue_vue_type_style_index_0_id_5b05f1b5_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("4873");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_QrScanner_vue_vue_type_style_index_0_id_5b05f1b5_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_QrScanner_vue_vue_type_style_index_0_id_5b05f1b5_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+ /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_QrScanner_vue_vue_type_style_index_0_id_5b05f1b5_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -6242,13 +6231,6 @@ function count_occurences(symbol, string) {
 
 /***/ }),
 
-/***/ "acd3":
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-
 /***/ "ad6d":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6270,6 +6252,17 @@ module.exports = function () {
   return result;
 };
 
+
+/***/ }),
+
+/***/ "ada8":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Identicon_vue_vue_type_style_index_0_id_7d87c782_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("578c");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Identicon_vue_vue_type_style_index_0_id_7d87c782_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Identicon_vue_vue_type_style_index_0_id_7d87c782_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+ /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Identicon_vue_vue_type_style_index_0_id_7d87c782_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -9334,6 +9327,13 @@ module.exports = function(originalModule) {
 
 /***/ }),
 
+/***/ "dd8e":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "qr-scanner-worker.min.b4a169d0.js";
+
+/***/ }),
+
 /***/ "ddb0":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10279,6 +10279,12 @@ if (typeof window !== 'undefined') {
 // Indicate to webpack that this file can be concatenated
 /* harmony default export */ var setPublicPath = (null);
 
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.concat.js
+var es_array_concat = __webpack_require__("99af");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.ends-with.js
+var es_string_ends_with = __webpack_require__("8a79");
+
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"68cbd2af-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/AddressDisplay.vue?vue&type=template&id=1c9646e4&scoped=true&
 var AddressDisplayvue_type_template_id_1c9646e4_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c(_vm.copyable ? 'Copyable' : 'div',{tag:"component",staticClass:"address-display",attrs:{"text":_vm.chunks.join(' ').toUpperCase()}},_vm._l((_vm.chunks),function(chunk,index){return _c('span',{key:chunk + index,staticClass:"chunk"},[_vm._v(_vm._s(chunk)),_c('span',{staticClass:"space"})])}),0)}
 var staticRenderFns = []
@@ -10669,9 +10675,6 @@ class Clipboard {
 
 
 //# sourceMappingURL=Clipboard.js.map
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.concat.js
-var es_array_concat = __webpack_require__("99af");
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.includes.js
 var es_array_includes = __webpack_require__("caad");
@@ -11407,9 +11410,6 @@ var AddressInputvue_type_template_id_836b5032_scoped_true_staticRenderFns = []
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.reduce.js
 var es_array_reduce = __webpack_require__("13d5");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.ends-with.js
-var es_string_ends_with = __webpack_require__("8a79");
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.split.js
 var es_string_split = __webpack_require__("1276");
@@ -13438,12 +13438,12 @@ var FiatAmount_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_FiatAmount = (FiatAmount_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"68cbd2af-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Identicon.vue?vue&type=template&id=053228da&scoped=true&
-var Identiconvue_type_template_id_053228da_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"identicon"},[_c('img',{attrs:{"src":_vm.dataUrl}})])}
-var Identiconvue_type_template_id_053228da_scoped_true_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"68cbd2af-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Identicon.vue?vue&type=template&id=7d87c782&scoped=true&
+var Identiconvue_type_template_id_7d87c782_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"identicon"},[_c('img',{attrs:{"src":_vm.dataUrl}})])}
+var Identiconvue_type_template_id_7d87c782_scoped_true_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Identicon.vue?vue&type=template&id=053228da&scoped=true&
+// CONCATENATED MODULE: ./src/components/Identicon.vue?vue&type=template&id=7d87c782&scoped=true&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.join.js
 var es_array_join = __webpack_require__("a15b");
@@ -13451,11 +13451,11 @@ var es_array_join = __webpack_require__("a15b");
 // EXTERNAL MODULE: ./node_modules/@nimiq/iqons/dist/iqons.min.js
 var iqons_min = __webpack_require__("bfa7");
 
-// EXTERNAL MODULE: ./node_modules/@nimiq/iqons/dist/iqons.min.svg
-var dist_iqons_min = __webpack_require__("1625");
-var iqons_min_default = /*#__PURE__*/__webpack_require__.n(dist_iqons_min);
-
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--13-1!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Identicon.vue?vue&type=script&lang=ts&
+
+
+
+
 
 
 
@@ -13470,16 +13470,6 @@ var Identicon_1;
 
 
 
- // Detect Iqons.svgPath
-// @ts-ignore
-
-if (self.NIMIQ_IQONS_SVG_PATH) iqons_min["a" /* default */].svgPath = self.NIMIQ_IQONS_SVG_PATH;else {
-  if (iqons_min_default.a[0] === '"') {
-    iqons_min["a" /* default */].svgPath = iqons_min_default.a.substring(1, iqons_min_default.a.length - 1);
-  } else {
-    iqons_min["a" /* default */].svgPath = iqons_min_default.a;
-  }
-}
 
 var Identiconvue_type_script_lang_ts_Identicon = Identicon_1 =
 /*#__PURE__*/
@@ -13498,19 +13488,75 @@ function (_Vue) {
 
   _createClass(Identicon, [{
     key: "computeDataUrl",
-    value: function computeDataUrl(address, oldAddress) {
-      var _this2 = this;
+    value: function () {
+      var _computeDataUrl = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee(address, oldAddress) {
+        var _ref, svgPath;
 
-      if (this.address && Identicon_1.isUserFriendlyAddress(this.address)) {
-        iqons_min["a" /* default */].toDataUrl(Identicon_1.formatAddress(this.address)).then(function (dataUrl) {
-          _this2.dataUrl = dataUrl;
-        });
-      } else {
-        this.dataUrl = this.placeholderDataUrl;
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                if (!(this.address && Identicon_1.isUserFriendlyAddress(this.address))) {
+                  _context.next = 17;
+                  break;
+                }
+
+                if (!self.NIMIQ_IQONS_SVG_PATH) {
+                  _context.next = 6;
+                  break;
+                }
+
+                console.warn('Setting NIMIQ_IQONS_SVG_PATH is deprecated and support will be removed in the future. ' + 'Use setAssetPublicPath instead.'); // @ts-ignore
+
+                iqons_min["a" /* default */].svgPath = self.NIMIQ_IQONS_SVG_PATH;
+                _context.next = 12;
+                break;
+
+              case 6:
+                _context.next = 8;
+                return Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(null, "5f98", 7));
+
+              case 8:
+                _ref = _context.sent;
+                svgPath = _ref.default;
+
+                if (typeof self.NIMIQ_VUE_COMPONENTS_IMAGE_ASSET_PATH === 'string') {
+                  svgPath = svgPath.replace(__webpack_require__.p, self.NIMIQ_VUE_COMPONENTS_IMAGE_ASSET_PATH);
+                }
+
+                iqons_min["a" /* default */].svgPath = svgPath;
+
+              case 12:
+                _context.next = 14;
+                return iqons_min["a" /* default */].toDataUrl(Identicon_1.formatAddress(this.address));
+
+              case 14:
+                this.dataUrl = _context.sent;
+                _context.next = 18;
+                break;
+
+              case 17:
+                this.dataUrl = this.placeholderDataUrl;
+
+              case 18:
+                return _context.abrupt("return", true);
+
+              case 19:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function computeDataUrl(_x, _x2) {
+        return _computeDataUrl.apply(this, arguments);
       }
 
-      return true;
-    }
+      return computeDataUrl;
+    }()
   }, {
     key: "placeholderDataUrl",
     get: function get() {
@@ -13542,8 +13588,8 @@ Identiconvue_type_script_lang_ts_Identicon = Identicon_1 = __decorate([external_
 /* harmony default export */ var Identiconvue_type_script_lang_ts_ = (Identiconvue_type_script_lang_ts_Identicon);
 // CONCATENATED MODULE: ./src/components/Identicon.vue?vue&type=script&lang=ts&
  /* harmony default export */ var components_Identiconvue_type_script_lang_ts_ = (Identiconvue_type_script_lang_ts_); 
-// EXTERNAL MODULE: ./src/components/Identicon.vue?vue&type=style&index=0&id=053228da&scoped=true&lang=css&
-var Identiconvue_type_style_index_0_id_053228da_scoped_true_lang_css_ = __webpack_require__("386a");
+// EXTERNAL MODULE: ./src/components/Identicon.vue?vue&type=style&index=0&id=7d87c782&scoped=true&lang=css&
+var Identiconvue_type_style_index_0_id_7d87c782_scoped_true_lang_css_ = __webpack_require__("ada8");
 
 // CONCATENATED MODULE: ./src/components/Identicon.vue
 
@@ -13556,11 +13602,11 @@ var Identiconvue_type_style_index_0_id_053228da_scoped_true_lang_css_ = __webpac
 
 var Identicon_component = normalizeComponent(
   components_Identiconvue_type_script_lang_ts_,
-  Identiconvue_type_template_id_053228da_scoped_true_render,
-  Identiconvue_type_template_id_053228da_scoped_true_staticRenderFns,
+  Identiconvue_type_template_id_7d87c782_scoped_true_render,
+  Identiconvue_type_template_id_7d87c782_scoped_true_staticRenderFns,
   false,
   null,
-  "053228da",
+  "7d87c782",
   null
   
 )
@@ -14554,12 +14600,12 @@ var QrCode_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_QrCode = (QrCode_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"68cbd2af-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/QrScanner.vue?vue&type=template&id=0f31d4dc&scoped=true&
-var QrScannervue_type_template_id_0f31d4dc_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"qr-scanner nq-blue-bg"},[_c('video',{ref:"video",attrs:{"muted":"","autoplay":"","playsinline":"","width":"600","height":"600"},domProps:{"muted":true}}),_c('div',{ref:"overlay",staticClass:"overlay",class:{ inactive: _vm.cameraAccessFailed }},[_vm._t("default",[_c('svg',{attrs:{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 238 238"}},[_c('path',{attrs:{"fill":"none","stroke-linecap":"round","stroke-linejoin":"round","stroke-width":"4","d":"M31.3 2H10a8 8 0 0 0-8 8v21.3M206.8 2H228a8 8 0 0 1 8 8v21.3m0 175.4V228a8 8 0 0 1-8 8h-21.3m-175.4 0H10a8 8 0 0 1-8-8v-21.3"}})])])],2),_c('button',{staticClass:"nq-button-s inverse cancel-button",on:{"click":_vm._cancel}},[_vm._v(_vm._s(_vm.$t('Cancel')))]),_c('transition',{attrs:{"name":"fade"}},[(_vm.cameraAccessFailed)?_c('div',{staticClass:"camera-access-failed"},[(!_vm.hasCamera)?_c('div',{staticClass:"camera-access-failed-warning"},[_vm._v(" "+_vm._s(_vm.$t('Your device does not have an accessible camera.'))+" ")]):_c('div',[_c('div',{staticClass:"camera-access-failed-warning"},[_vm._v(" "+_vm._s(_vm.$t('Unblock the camera for this website to scan QR codes.'))+" ")]),(_vm.isMobileOrTablet)?_c('div',[(_vm.browser === 'chrome')?_c('div',[_c('I18n',{staticClass:"access-denied-instructions",attrs:{"path":"Click on {icon} and go to\\nSettings > Site Settings > Camera","tag":"div"},scopedSlots:_vm._u([{key:"icon",fn:function(){return [_c('span',{staticClass:"browser-menu-icon"})]},proxy:true}],null,false,1223065533)}),_c('div',{staticClass:"browser-menu-arrow"})],1):_c('div',{staticClass:"access-denied-instructions"},[_vm._v(" "+_vm._s(_vm.$t('Grant camera access when asked.'))+" ")])]):_c('div',{staticClass:"access-denied-instructions"},[(_vm.browser === 'safari')?_c('I18n',{attrs:{"path":"Click on {safari} and go to\\nSettings for this Website > Camera","tag":"div"},scopedSlots:_vm._u([{key:"safari",fn:function(){return [_c('b',[_vm._v("Safari")])]},proxy:true}],null,false,687307496)}):_c('I18n',{attrs:{"path":"Click on {icon} in the URL bar.","tag":"div"},scopedSlots:_vm._u([{key:"icon",fn:function(){return [(_vm.browser === 'chrome')?_c('span',{staticClass:"camera-icon-chrome"}):(_vm.browser === 'firefox')?_c('span',{staticClass:"camera-icon-firefox"}):_c('span',[_vm._v(_vm._s(_vm.$t('the camera icon')))])]},proxy:true}],null,false,2903711098)})],1)])]):_vm._e()])],1)}
-var QrScannervue_type_template_id_0f31d4dc_scoped_true_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"68cbd2af-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/QrScanner.vue?vue&type=template&id=5b05f1b5&scoped=true&
+var QrScannervue_type_template_id_5b05f1b5_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"qr-scanner nq-blue-bg"},[_c('video',{ref:"video",attrs:{"muted":"","autoplay":"","playsinline":"","width":"600","height":"600"},domProps:{"muted":true}}),_c('div',{ref:"overlay",staticClass:"overlay",class:{ inactive: _vm.cameraAccessFailed }},[_vm._t("default",[_c('svg',{attrs:{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 238 238"}},[_c('path',{attrs:{"fill":"none","stroke-linecap":"round","stroke-linejoin":"round","stroke-width":"4","d":"M31.3 2H10a8 8 0 0 0-8 8v21.3M206.8 2H228a8 8 0 0 1 8 8v21.3m0 175.4V228a8 8 0 0 1-8 8h-21.3m-175.4 0H10a8 8 0 0 1-8-8v-21.3"}})])])],2),_c('button',{staticClass:"nq-button-s inverse cancel-button",on:{"click":_vm._cancel}},[_vm._v(_vm._s(_vm.$t('Cancel')))]),_c('transition',{attrs:{"name":"fade"}},[(_vm.cameraAccessFailed)?_c('div',{staticClass:"camera-access-failed"},[(!_vm.hasCamera)?_c('div',{staticClass:"camera-access-failed-warning"},[_vm._v(" "+_vm._s(_vm.$t('Your device does not have an accessible camera.'))+" ")]):_c('div',[_c('div',{staticClass:"camera-access-failed-warning"},[_vm._v(" "+_vm._s(_vm.$t('Unblock the camera for this website to scan QR codes.'))+" ")]),(_vm.isMobileOrTablet)?_c('div',[(_vm.browser === 'chrome')?_c('div',[_c('I18n',{staticClass:"access-denied-instructions",attrs:{"path":"Click on {icon} and go to\\nSettings > Site Settings > Camera","tag":"div"},scopedSlots:_vm._u([{key:"icon",fn:function(){return [_c('span',{staticClass:"browser-menu-icon"})]},proxy:true}],null,false,1223065533)}),_c('div',{staticClass:"browser-menu-arrow"})],1):_c('div',{staticClass:"access-denied-instructions"},[_vm._v(" "+_vm._s(_vm.$t('Grant camera access when asked.'))+" ")])]):_c('div',{staticClass:"access-denied-instructions"},[(_vm.browser === 'safari')?_c('I18n',{attrs:{"path":"Click on {safari} and go to\\nSettings for this Website > Camera","tag":"div"},scopedSlots:_vm._u([{key:"safari",fn:function(){return [_c('b',[_vm._v("Safari")])]},proxy:true}],null,false,687307496)}):_c('I18n',{attrs:{"path":"Click on {icon} in the URL bar.","tag":"div"},scopedSlots:_vm._u([{key:"icon",fn:function(){return [(_vm.browser === 'chrome')?_c('span',{staticClass:"camera-icon-chrome"}):(_vm.browser === 'firefox')?_c('span',{staticClass:"camera-icon-firefox"}):_c('span',[_vm._v(_vm._s(_vm.$t('the camera icon')))])]},proxy:true}],null,false,2903711098)})],1)])]):_vm._e()])],1)}
+var QrScannervue_type_template_id_5b05f1b5_scoped_true_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/QrScanner.vue?vue&type=template&id=0f31d4dc&scoped=true&
+// CONCATENATED MODULE: ./src/components/QrScanner.vue?vue&type=template&id=5b05f1b5&scoped=true&
 
 // CONCATENATED MODULE: ./node_modules/qr-scanner/src/qr-scanner.js
 class qr_scanner_QrScanner {
@@ -15338,11 +15384,9 @@ var I18n_component = normalizeComponent(
 )
 
 /* harmony default export */ var i18n_I18n = (I18n_component.exports);
-// EXTERNAL MODULE: ./node_modules/file-loader/dist/cjs.js?name=[name].[ext]!./node_modules/qr-scanner/qr-scanner-worker.min.js
-var qr_scanner_worker_min = __webpack_require__("46f5");
-var qr_scanner_worker_min_default = /*#__PURE__*/__webpack_require__.n(qr_scanner_worker_min);
-
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--13-1!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/QrScanner.vue?vue&type=script&lang=ts&
+
+
 
 
 
@@ -15358,10 +15402,7 @@ var QrScanner_1;
 
 
 
- // Declare qr worker as asset using file-loader which copies the file to dist and binds the path to QrScannerWorker
 
-
-qr_scanner_QrScanner.WORKER_PATH = qr_scanner_worker_min_default.a;
 
 var QrScannervue_type_script_lang_ts_QrScanner = QrScanner_1 =
 /*#__PURE__*/
@@ -15384,27 +15425,56 @@ function (_Mixins) {
 
   _createClass(QrScanner, [{
     key: "mounted",
-    value: function mounted() {
-      var _this2 = this;
+    value: function () {
+      var _mounted = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee() {
+        var _this2 = this;
 
-      this.repositionOverlay = this.repositionOverlay.bind(this);
-      var $video = this.$refs.video;
-      this._scanner = new qr_scanner_QrScanner($video, function (result) {
-        return _this2._onResult(result);
-      });
-      $video.addEventListener('canplay', function () {
-        return $video.classList.add('ready');
-      });
-      window.addEventListener('resize', this.repositionOverlay);
-      qr_scanner_QrScanner.hasCamera().then(function (hasCamera) {
-        return _this2.hasCamera = hasCamera;
-      });
+        var _ref, $video;
 
-      if (this._isVisible()) {
-        this.start();
-        this.repositionOverlay();
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(null, "dd8e", 7));
+
+              case 2:
+                _ref = _context.sent;
+                qr_scanner_QrScanner.WORKER_PATH = _ref.default;
+                this.repositionOverlay = this.repositionOverlay.bind(this);
+                $video = this.$refs.video;
+                this._scanner = new qr_scanner_QrScanner($video, function (result) {
+                  return _this2._onResult(result);
+                });
+                $video.addEventListener('canplay', function () {
+                  return $video.classList.add('ready');
+                });
+                window.addEventListener('resize', this.repositionOverlay);
+                qr_scanner_QrScanner.hasCamera().then(function (hasCamera) {
+                  return _this2.hasCamera = hasCamera;
+                });
+
+                if (this._isVisible()) {
+                  this.start();
+                  this.repositionOverlay();
+                }
+
+              case 11:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function mounted() {
+        return _mounted.apply(this, arguments);
       }
-    }
+
+      return mounted;
+    }()
   }, {
     key: "destroyed",
     value: function destroyed() {
@@ -15419,15 +15489,15 @@ function (_Mixins) {
     value: function () {
       var _start = _asyncToGenerator(
       /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee() {
+      regeneratorRuntime.mark(function _callee2() {
         var _this3 = this;
 
-        return regeneratorRuntime.wrap(function _callee$(_context) {
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
-            switch (_context.prev = _context.next) {
+            switch (_context2.prev = _context2.next) {
               case 0:
-                _context.prev = 0;
-                _context.next = 3;
+                _context2.prev = 0;
+                _context2.next = 3;
                 return this._scanner.start();
 
               case 3:
@@ -15438,16 +15508,16 @@ function (_Mixins) {
                   this._cameraRetryTimer = null;
                 }
 
-                _context.next = 12;
+                _context2.next = 12;
                 break;
 
               case 7:
-                _context.prev = 7;
-                _context.t0 = _context["catch"](0);
+                _context2.prev = 7;
+                _context2.t0 = _context2["catch"](0);
                 this.cameraAccessFailed = true;
                 this.$emit("error"
                 /* ERROR */
-                , _context.t0);
+                , _context2.t0);
 
                 if (!this._cameraRetryTimer) {
                   this._cameraRetryTimer = window.setInterval(function () {
@@ -15456,14 +15526,14 @@ function (_Mixins) {
                 }
 
               case 12:
-                return _context.abrupt("return", !this.cameraAccessFailed);
+                return _context2.abrupt("return", !this.cameraAccessFailed);
 
               case 13:
               case "end":
-                return _context.stop();
+                return _context2.stop();
             }
           }
-        }, _callee, this, [[0, 7]]);
+        }, _callee2, this, [[0, 7]]);
       }));
 
       function start() {
@@ -15556,8 +15626,8 @@ QrScannervue_type_script_lang_ts_QrScanner = QrScanner_1 = __decorate([Object(ex
 /* harmony default export */ var QrScannervue_type_script_lang_ts_ = (QrScannervue_type_script_lang_ts_QrScanner);
 // CONCATENATED MODULE: ./src/components/QrScanner.vue?vue&type=script&lang=ts&
  /* harmony default export */ var components_QrScannervue_type_script_lang_ts_ = (QrScannervue_type_script_lang_ts_); 
-// EXTERNAL MODULE: ./src/components/QrScanner.vue?vue&type=style&index=0&id=0f31d4dc&scoped=true&lang=css&
-var QrScannervue_type_style_index_0_id_0f31d4dc_scoped_true_lang_css_ = __webpack_require__("4cbf");
+// EXTERNAL MODULE: ./src/components/QrScanner.vue?vue&type=style&index=0&id=5b05f1b5&scoped=true&lang=css&
+var QrScannervue_type_style_index_0_id_5b05f1b5_scoped_true_lang_css_ = __webpack_require__("7daf");
 
 // CONCATENATED MODULE: ./src/components/QrScanner.vue
 
@@ -15570,11 +15640,11 @@ var QrScannervue_type_style_index_0_id_0f31d4dc_scoped_true_lang_css_ = __webpac
 
 var QrScanner_component = normalizeComponent(
   components_QrScannervue_type_script_lang_ts_,
-  QrScannervue_type_template_id_0f31d4dc_scoped_true_render,
-  QrScannervue_type_template_id_0f31d4dc_scoped_true_staticRenderFns,
+  QrScannervue_type_template_id_5b05f1b5_scoped_true_render,
+  QrScannervue_type_template_id_5b05f1b5_scoped_true_staticRenderFns,
   false,
   null,
-  "0f31d4dc",
+  "5b05f1b5",
   null
   
 )
@@ -16368,6 +16438,8 @@ var Tooltip_component = normalizeComponent(
 
 /* harmony default export */ var components_Tooltip = (Tooltip_component.exports);
 // CONCATENATED MODULE: ./src/main.ts
+
+
 // Components
 // export { default as Account } from './components/Account.vue';
 // export { default as AccountDetails } from './components/AccountDetails.vue';
@@ -16403,6 +16475,24 @@ var Tooltip_component = normalizeComponent(
 
 
 
+/**
+ * Set a specific public path / base path (see https://webpack.js.org/guides/public-path/) from where assets like
+ * translation files, identicons or the qr scanner worker should be loaded. By default, this is the path from where
+ * the importing script is loaded, derived from the importing script's currentScript src.
+ *
+ * Optionally, you can define a different path for image assets.
+ */
+
+function setAssetPublicPath(path, imageAssetsPath) {
+  // See https://webpack.js.org/guides/public-path/#on-the-fly.
+  // Note that the default for build target "lib" is set via @vue/cli-service/lib/commands/build/setPublicPath.js and
+  // can not be overwritten via publicPath in vue.config.js.
+  __webpack_require__.p = "".concat(path).concat(!path.endsWith('/') ? '/' : '');
+
+  if (typeof imageAssetsPath === 'string') {
+    self.NIMIQ_VUE_COMPONENTS_IMAGE_ASSET_PATH = "".concat(imageAssetsPath).concat(!imageAssetsPath.endsWith('/') ? '/' : '');
+  }
+}
 // CONCATENATED MODULE: ./node_modules/@vue/cli-service/lib/commands/build/entry-lib-no-default.js
 /* concated harmony reexport AddressDisplay */__webpack_require__.d(__webpack_exports__, "AddressDisplay", function() { return components_AddressDisplay; });
 /* concated harmony reexport AddressInput */__webpack_require__.d(__webpack_exports__, "AddressInput", function() { return components_AddressInput; });
@@ -16446,6 +16536,7 @@ var Tooltip_component = normalizeComponent(
 /* concated harmony reexport ScanQrCodeIcon */__webpack_require__.d(__webpack_exports__, "ScanQrCodeIcon", function() { return ScanQrCodeIcon; });
 /* concated harmony reexport TransferIcon */__webpack_require__.d(__webpack_exports__, "TransferIcon", function() { return TransferIcon; });
 /* concated harmony reexport I18nMixin */__webpack_require__.d(__webpack_exports__, "I18nMixin", function() { return i18n_I18nMixin; });
+/* concated harmony reexport setAssetPublicPath */__webpack_require__.d(__webpack_exports__, "setAssetPublicPath", function() { return setAssetPublicPath; });
 
 
 

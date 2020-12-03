@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Last-Translator: Daniel, 2020\n"
-"Language-Team: Spanish (https://www.transifex.com/nimiq-foundation/teams/109388/es/)\n"
+"Language-Team: Spanish (https://www.transifex.com/nimiq-foundation/teams/110181/es/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"

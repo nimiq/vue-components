@@ -13,7 +13,8 @@
         "declarationDir": "dist/src",
         "baseUrl": ".",
         "types": [
-            "node"
+            "node",
+            "webpack-env"
         ],
         "paths": {
             "@/*": [

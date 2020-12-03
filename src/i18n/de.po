@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Last-Translator: Redexe <timo.niehoff@yahoo.de>, 2020\n"
-"Language-Team: German (https://www.transifex.com/nimiq-foundation/teams/109388/de/)\n"
+"Language-Team: German (https://www.transifex.com/nimiq-foundation/teams/110181/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
