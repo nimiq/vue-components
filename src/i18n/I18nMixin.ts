@@ -11,7 +11,9 @@ type I18n$tVariables = { [key: string]: string | number } | any[];
 @Component
 class I18nMixin extends Vue {
     private static readonly DEFAULT_LANGUAGE = 'en';
-    private static readonly SUPPORTED_LANGUAGES = [I18nMixin.DEFAULT_LANGUAGE, 'de', 'es', 'fr', 'zh'];
+    private static readonly SUPPORTED_LANGUAGES = [
+        I18nMixin.DEFAULT_LANGUAGE, 'de', 'es', 'fr', 'ru', 'zh', 'uk', 'nl',
+    ];
 
     /** Current active language */
     private static lang: string = I18nMixin.detectLanguage();

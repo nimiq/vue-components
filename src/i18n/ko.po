@@ -1,204 +1,198 @@
 # 
 # Translators:
-# Ricardo Barquero Carranza <richy@nimiq.com>, 2020
+# Kyungil Choi <hanpama@gmail.com>, 2020
 # Daniel, 2020
 # 
 msgid ""
 msgstr ""
 "Last-Translator: Daniel, 2020\n"
-"Language-Team: Spanish (https://www.transifex.com/nimiq-foundation/teams/110181/es/)\n"
+"Language-Team: Korean (https://www.transifex.com/nimiq-foundation/teams/110181/ko/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: ko\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: src/components/PaymentInfoLine.vue:77
 msgid "{amount} suggested network fee"
-msgstr "{amount} cuota de red sugerida"
+msgstr "{amount} 제안 네트워크 수수료"
 
 #: src/components/AccountSelector.vue:18
 msgid "{type} accounts cannot be used for this operation."
-msgstr "cuentas tipo {type} no se pueden utilizar para esta operación."
+msgstr "{type} 계정은 해당 작업에 사용될 수 없습니다."
 
 #: src/components/QrScanner.vue:11
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr "취소"
 
 #: src/components/Wallet.vue:24
 msgid "Change Password"
-msgstr "Cambiar Contraseña"
+msgstr "비밀번호 변경"
 
 #: src/components/QrScanner.vue:24
 msgid ""
 "Click on {icon} and go to\n"
 "Settings > Site Settings > Camera"
 msgstr ""
-"Haga click en {icon} y visite\n"
-"Ajustes > Ajustes del Sitio > Cámara"
+"{icon} 클릭 후\n"
+"설정 > 사이트 설정 > 카메라로 가세요"
 
 #: src/components/QrScanner.vue:44
 msgid "Click on {icon} in the URL bar."
-msgstr "Haga click en {icon} en la barra del navegador."
+msgstr "주소 표시줄의 {icon}을 클릭하세요"
 
 #: src/components/QrScanner.vue:39
 msgid ""
 "Click on {safari} and go to\n"
 "Settings for this Website > Camera"
 msgstr ""
-"Haga click en {safari} y visite\n"
-"Ajustes para esta Página> Cámara"
+"{safari} 클릭 후\n"
+"설정의 웹사이트 > 카메라로 가세요"
 
 #: src/components/AccountList.vue:43
 msgid "Contracts cannot be used for this operation."
-msgstr "Contratos no pueden ser utilizados para esta operación."
+msgstr "해당 작업에는 연락처를 사용할 수 없습니다."
 
 #: src/components/Copyable.vue:5 src/components/CopyableField.vue:21
 msgid "Copied"
-msgstr "Copiado"
+msgstr "복사됨"
 
 #: src/components/Wallet.vue:21
 msgid "Create Backup"
-msgstr "Crear un respaldo"
+msgstr "백업 생성"
 
 #: src/components/Timer.vue:95
 msgid "day"
-msgstr "día"
+msgstr "일"
 
 #: src/components/Timer.vue:96
 msgid "days"
-msgstr "días"
+msgstr "일"
 
 #: src/components/PaymentInfoLine.vue:45
 msgid "Effective rate"
-msgstr "Taza efectiva"
+msgstr "실효환율"
 
 #: src/components/AmountWithFee.vue:7
 msgid "fee"
-msgstr "cuota"
+msgstr "수수료"
 
 #: src/components/PageHeader.vue:7
 msgid "Go back"
-msgstr "Volver"
+msgstr "뒤로 가기"
 
 #: src/components/QrScanner.vue:34
 msgid "Grant camera access when asked."
-msgstr "De permiso a la cámara cuando se le pida"
+msgstr "카메라 접근 요청 시 승인해 주세요."
 
 #: src/components/Timer.vue:93
 msgid "hour"
-msgstr "hora"
+msgstr "시간"
 
 #: src/components/Timer.vue:94
 msgid "hours"
-msgstr "horas"
+msgstr "시간"
 
 #: src/components/AmountWithFee.vue:5
 msgid "Insufficient balance"
-msgstr "Balance insuficiente"
+msgstr "잔고 부족"
 
 #: src/components/AccountSelector.vue:188
 msgid "Legacy"
-msgstr "Versión Antigua"
+msgstr "구형"
 
 #: src/components/AccountSelector.vue:41
 msgid "Login to another account"
-msgstr "Inicie sesión con otra cuenta"
+msgstr "다른 계정으로 로그인"
 
 #: src/components/Wallet.vue:26
 msgid "Logout"
-msgstr "Cerrar sesión"
+msgstr "로그아웃"
 
 #: src/components/Timer.vue:91
 msgid "minute"
-msgstr "minuto"
+msgstr "분"
 
 #: src/components/Timer.vue:92
 msgid "minutes"
-msgstr "minutos"
+msgstr "분"
 
 #: src/components/LabelInput.vue:4 src/components/LabelInput.vue:8
 msgid "Name your address"
-msgstr "De nombre a su dirección"
+msgstr "주소에 이름 붙이기"
 
 #: src/components/PaymentInfoLine.vue:88
 msgid "network fee"
-msgstr "cuota de red"
+msgstr "네트워크 수수료"
 
 #: src/components/PaymentInfoLine.vue:60
 msgid "Nimiq provides this service free of charge."
-msgstr "Nimiq provee este servicio sin ningún costo."
+msgstr "Nimiq은 본 서비스를 무료로 제공합니다."
 
 #: src/components/PaymentInfoLine.vue:37
 msgid "Order amount"
-msgstr "Monto de la ordén"
+msgstr "주문 금액"
 
 #: src/components/Wallet.vue:23
 msgid "Rename"
-msgstr "Renombrar"
+msgstr "이름 바꾸기"
 
 #: src/components/Wallet.vue:18
 msgid "Save Login File"
-msgstr "Guardar Archivo de Sesión"
+msgstr "로그인 파일 저장"
 
 #: src/components/Timer.vue:89
 msgid "second"
-msgstr "segundo"
+msgstr "초"
 
 #: src/components/Timer.vue:90
 msgid "seconds"
-msgstr "segundos"
+msgstr "초"
 
 #: src/components/QrScanner.vue:48
 msgid "the camera icon"
-msgstr "el icono de cámara"
+msgstr "카메라 아이콘"
 
 #: src/components/AccountList.vue:44
 msgid "This address cannot be used for this operation."
-msgstr "Esta dirección no puede ser utilizada para esta operación."
+msgstr "해당 작업에는 이 주소를 사용할 수 없습니다."
 
 #: src/components/Timer.vue:44
 msgid "This offer expires in {timer}."
-msgstr "Esta oferta expira en {timer}."
+msgstr "이 제안은 {timer}에 만료됩니다."
 
 #: src/components/PaymentInfoLine.vue:63
 msgid "Total"
-msgstr "Total"
+msgstr "총계"
 
 #: src/components/QrScanner.vue:20
 msgid "Unblock the camera for this website to scan QR codes."
-msgstr "Desbloquee la cámara para esta página para poder escanear códigos QR."
+msgstr "QR 코드를 스캔하려면 이 사이트에서 카메라 차단을 해제해 주세요."
 
 #: src/components/PaymentInfoLine.vue:41
 msgid "Vendor crypto discount"
-msgstr "Descuento en criptomonedas del vendedor"
+msgstr "판매자 암호화폐 할인"
 
 #: src/components/PaymentInfoLine.vue:40
 msgid "Vendor crypto markup"
-msgstr "Margen en criptomonedas del vendedor"
+msgstr "판매자 암호화폐 할증"
 
 #: src/components/PaymentInfoLine.vue:281
 msgid ""
 "You are paying approx. {formattedRateDeviation} less than at the current "
 "market rate (coingecko.com)."
-msgstr ""
-"Esta pagando approx. {formattedRateDeviation} menos que la taza actual de "
-"mercado (coingecko.com)."
+msgstr "현재 시장가보다 약 {formattedRateDeviation} 낮은 가격을 지불하게 됩니다(coingecko.com)."
 
 #: src/components/PaymentInfoLine.vue:275
 msgid ""
 "You are paying approx. {formattedRateDeviation} more than at the current "
 "market rate (coingecko.com)."
-msgstr ""
-"Esta pagando approx. {formattedRateDeviation} más que la taza actual de "
-"mercado (coingecko.com)."
+msgstr "현재 시장가보다 약 {formattedRateDeviation} 높은 가격을 지불하게 됩니다(coingecko.com)."
 
 #: src/components/PaymentInfoLine.vue:267
 msgid ""
 "Your actual discount is approx. {formattedRateDeviation} compared to the "
 "current market rate (coingecko.com)."
-msgstr ""
-"Su descuento es approx. {formattedRateDeviation} comparado a la taza del "
-"mercado actual (coingecko.com)."
+msgstr "실제 할인가는 현재 시장가 기준 약 {formattedRateDeviation}입니다(coingecko.com)."
 
 #: src/components/QrScanner.vue:16
 msgid "Your device does not have an accessible camera."
-msgstr "Su dispositivo no tiene una cámara accesible."
+msgstr "기기에 이용 가능한 카메라가 없습니다."

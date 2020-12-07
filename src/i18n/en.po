@@ -10,28 +10,12 @@ msgstr ""
 msgid "{type} accounts cannot be used for this operation."
 msgstr ""
 
-#: src/components/SendTx.vue:124
-msgid "Add a public message..."
-msgstr ""
-
-#: src/components/SendTx.vue:131
-msgid "Awaiting Consensus..."
-msgstr ""
-
-#: src/components/SendTx.vue:96
-msgid "By adding a transation fee, you can influence how fast your transaction will be processed."
-msgstr ""
-
 #: src/components/QrScanner.vue:11
 msgid "Cancel"
 msgstr ""
 
 #: src/components/Wallet.vue:24
 msgid "Change Password"
-msgstr ""
-
-#: src/components/SendTx.vue:6
-msgid "Choose Sender"
 msgstr ""
 
 #: src/components/QrScanner.vue:24
@@ -59,10 +43,6 @@ msgstr ""
 msgid "Copied"
 msgstr ""
 
-#: src/components/SendTx.vue:68
-msgid "Create a Cashlink"
-msgstr ""
-
 #: src/components/Wallet.vue:21
 msgid "Create Backup"
 msgstr ""
@@ -79,20 +59,8 @@ msgstr ""
 msgid "Effective rate"
 msgstr ""
 
-#: src/components/SendTx.vue:61
-msgid "Enter address"
-msgstr ""
-
-#: src/components/SendTx.vue:209
-msgid "express"
-msgstr ""
-
 #: src/components/AmountWithFee.vue:7
 msgid "fee"
-msgstr ""
-
-#: src/components/SendTx.vue:199
-msgid "free"
 msgstr ""
 
 #: src/components/PageHeader.vue:7
@@ -111,10 +79,6 @@ msgstr ""
 msgid "hours"
 msgstr ""
 
-#: src/components/SendTx.vue:67
-msgid "If recipient has no Account yet:"
-msgstr ""
-
 #: src/components/AmountWithFee.vue:5
 msgid "Insufficient balance"
 msgstr ""
@@ -124,7 +88,7 @@ msgid "Legacy"
 msgstr ""
 
 #: src/components/AccountSelector.vue:41
-msgid "Login to another Account"
+msgid "Login to another account"
 msgstr ""
 
 #: src/components/Wallet.vue:26
@@ -137,11 +101,6 @@ msgstr ""
 
 #: src/components/Timer.vue:92
 msgid "minutes"
-msgstr ""
-
-#: src/components/SendTx.vue:22
-#: src/components/SendTx.vue:78
-msgid "Name this contact..."
 msgstr ""
 
 #: src/components/LabelInput.vue:4
@@ -157,24 +116,12 @@ msgstr ""
 msgid "Nimiq provides this service free of charge."
 msgstr ""
 
-#: src/components/SendTx.vue:108
-msgid "Open settings"
-msgstr ""
-
 #: src/components/PaymentInfoLine.vue:37
 msgid "Order amount"
 msgstr ""
 
 #: src/components/Wallet.vue:23
 msgid "Rename"
-msgstr ""
-
-#: src/components/SendTx.vue:31
-msgid "Save & Set Amount"
-msgstr ""
-
-#: src/components/SendTx.vue:86
-msgid "Save Contact"
 msgstr ""
 
 #: src/components/Wallet.vue:18
@@ -187,39 +134,6 @@ msgstr ""
 
 #: src/components/Timer.vue:90
 msgid "seconds"
-msgstr ""
-
-#: src/components/SendTx.vue:41
-msgid "Select a contact"
-msgstr ""
-
-#: src/components/SendTx.vue:49
-msgid "Send a transaction"
-msgstr ""
-
-#: src/components/SendTx.vue:134
-msgid "Send Transaction"
-msgstr ""
-
-#: src/components/SendTx.vue:133
-msgid "Sending Transaction..."
-msgstr ""
-
-#: src/components/SendTx.vue:107
-#: src/components/SendTx.vue:32
-msgid "Set Amount"
-msgstr ""
-
-#: src/components/SendTx.vue:101
-msgid "Set fee"
-msgstr ""
-
-#: src/components/SendTx.vue:95
-msgid "Speed up your transaction"
-msgstr ""
-
-#: src/components/SendTx.vue:204
-msgid "standard"
 msgstr ""
 
 #: src/components/QrScanner.vue:48
@@ -240,10 +154,6 @@ msgstr ""
 
 #: src/components/QrScanner.vue:20
 msgid "Unblock the camera for this website to scan QR codes."
-msgstr ""
-
-#: src/components/SendTx.vue:120
-msgid "Unnamed Contact"
 msgstr ""
 
 #: src/components/PaymentInfoLine.vue:41
