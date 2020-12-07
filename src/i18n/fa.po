@@ -1,0 +1,203 @@
+# 
+# Translators:
+# Daniel, 2020
+# 
+msgid ""
+msgstr ""
+"Last-Translator: Daniel, 2020\n"
+"Language-Team: Persian (https://www.transifex.com/nimiq-foundation/teams/110181/fa/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: fa\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: src/components/PaymentInfoLine.vue:77
+msgid "{amount} suggested network fee"
+msgstr "{amount} کارمزد پیشنهادی شبکه"
+
+#: src/components/AccountSelector.vue:18
+msgid "{type} accounts cannot be used for this operation."
+msgstr " حساب‌های کاربری {type} نمی توانند برای این عملیات استفاده شوند."
+
+#: src/components/QrScanner.vue:11
+msgid "Cancel"
+msgstr "لغو"
+
+#: src/components/Wallet.vue:24
+msgid "Change Password"
+msgstr "تغییر رمزعبور"
+
+#: src/components/QrScanner.vue:24
+msgid ""
+"Click on {icon} and go to\n"
+"Settings > Site Settings > Camera"
+msgstr ""
+"بر روی {icon} کلیک کنید و بروید به\n"
+"تنظیمات > تنظیمات سایت > دوربین"
+
+#: src/components/QrScanner.vue:44
+msgid "Click on {icon} in the URL bar."
+msgstr "بر روی {icon} در نوار آدرس کلیک کنید"
+
+#: src/components/QrScanner.vue:39
+msgid ""
+"Click on {safari} and go to\n"
+"Settings for this Website > Camera"
+msgstr ""
+"بر روی {safari} کلیک کنید و بروید به\n"
+"تنظیمات برای این وب‌سایت > دوربین"
+
+#: src/components/AccountList.vue:43
+msgid "Contracts cannot be used for this operation."
+msgstr "برای این عملیات نمی توان از قراردادها استفاده کرد."
+
+#: src/components/Copyable.vue:5 src/components/CopyableField.vue:21
+msgid "Copied"
+msgstr "کپی شد"
+
+#: src/components/Wallet.vue:21
+msgid "Create Backup"
+msgstr "ایجاد بک‌آپ"
+
+#: src/components/Timer.vue:95
+msgid "day"
+msgstr "روز"
+
+#: src/components/Timer.vue:96
+msgid "days"
+msgstr "روزها"
+
+#: src/components/PaymentInfoLine.vue:45
+msgid "Effective rate"
+msgstr "نرخ موثر"
+
+#: src/components/AmountWithFee.vue:7
+msgid "fee"
+msgstr "کارمزد"
+
+#: src/components/PageHeader.vue:7
+msgid "Go back"
+msgstr "برگرد"
+
+#: src/components/QrScanner.vue:34
+msgid "Grant camera access when asked."
+msgstr "زمانی که از شما خواسته شد به دوربین دسترسی دهید."
+
+#: src/components/Timer.vue:93
+msgid "hour"
+msgstr "ساعت"
+
+#: src/components/Timer.vue:94
+msgid "hours"
+msgstr "ساعت‌ها"
+
+#: src/components/AmountWithFee.vue:5
+msgid "Insufficient balance"
+msgstr "موجودی ناکافی"
+
+#: src/components/AccountSelector.vue:188
+msgid "Legacy"
+msgstr "نسخه ی قبلی"
+
+#: src/components/AccountSelector.vue:41
+msgid "Login to another account"
+msgstr "ورود به دیگر حساب کاربری"
+
+#: src/components/Wallet.vue:26
+msgid "Logout"
+msgstr "خروج"
+
+#: src/components/Timer.vue:91
+msgid "minute"
+msgstr "دقیقه"
+
+#: src/components/Timer.vue:92
+msgid "minutes"
+msgstr "دقایق"
+
+#: src/components/LabelInput.vue:4 src/components/LabelInput.vue:8
+msgid "Name your address"
+msgstr "آدرس خود را بنویسید"
+
+#: src/components/PaymentInfoLine.vue:88
+msgid "network fee"
+msgstr "کارمزد شبکه"
+
+#: src/components/PaymentInfoLine.vue:60
+msgid "Nimiq provides this service free of charge."
+msgstr "نیمیک این سرویس را به صورت رایگان ارائه می دهد."
+
+#: src/components/PaymentInfoLine.vue:37
+msgid "Order amount"
+msgstr "مقدار سفارش"
+
+#: src/components/Wallet.vue:23
+msgid "Rename"
+msgstr "تغییر نام"
+
+#: src/components/Wallet.vue:18
+msgid "Save Login File"
+msgstr "ذخیره فایل ورود"
+
+#: src/components/Timer.vue:89
+msgid "second"
+msgstr "ثانیه"
+
+#: src/components/Timer.vue:90
+msgid "seconds"
+msgstr "ثانیه‌ها"
+
+#: src/components/QrScanner.vue:48
+msgid "the camera icon"
+msgstr "آیکون دوربین"
+
+#: src/components/AccountList.vue:44
+msgid "This address cannot be used for this operation."
+msgstr "از این آدرس نمی توان برای این عملیات استفاده کرد."
+
+#: src/components/Timer.vue:44
+msgid "This offer expires in {timer}."
+msgstr "این پیشنهاد تا {timer} دیگر منقضی میشود."
+
+#: src/components/PaymentInfoLine.vue:63
+msgid "Total"
+msgstr "مجموع"
+
+#: src/components/QrScanner.vue:20
+msgid "Unblock the camera for this website to scan QR codes."
+msgstr "برای اسکن کدهای QR دوربین این وب‌سایت را رفع انسداد(unblock) کنید."
+
+#: src/components/PaymentInfoLine.vue:41
+msgid "Vendor crypto discount"
+msgstr "تخفیفات کریپتو فروشنده"
+
+#: src/components/PaymentInfoLine.vue:40
+msgid "Vendor crypto markup"
+msgstr "نشانه گذاری رمزنگاری فروشنده"
+
+#: src/components/PaymentInfoLine.vue:281
+msgid ""
+"You are paying approx. {formattedRateDeviation} less than at the current "
+"market rate (coingecko.com)."
+msgstr ""
+"در حال پرداخت هستید. {formattedRateDeviation} کمتر از نرخ فعلی بازار "
+"(coingecko.com)."
+
+#: src/components/PaymentInfoLine.vue:275
+msgid ""
+"You are paying approx. {formattedRateDeviation} more than at the current "
+"market rate (coingecko.com)."
+msgstr ""
+"در حال پرداخت هستید. {formattedRateDeviation} بیشتر از نرخ فعلی بازار "
+"(coingecko.com)."
+
+#: src/components/PaymentInfoLine.vue:267
+msgid ""
+"Your actual discount is approx. {formattedRateDeviation} compared to the "
+"current market rate (coingecko.com)."
+msgstr ""
+"تخفیف تقریبی شما.  {formattedRateDeviation} در مقایسه با نرخ فعلیه باز "
+"(coingecko.com)."
+
+#: src/components/QrScanner.vue:16
+msgid "Your device does not have an accessible camera."
+msgstr "دستگاه شما دوربین قابل دسترسی ندارد."
