@@ -1,0 +1,1 @@
+(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[51],{5801:function(e){e.exports=JSON.parse('{"Go back":"뒤로 가기"}')}}]);

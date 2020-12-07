@@ -1,0 +1,1 @@
+(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[25],{"633b":function(e){e.exports=JSON.parse('{"fee":"کارمزد","Insufficient balance":"موجودی ناکافی"}')}}]);

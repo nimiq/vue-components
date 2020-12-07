@@ -1,0 +1,1 @@
+(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[50],{"3bc8":function(e){e.exports=JSON.parse('{"Name your address":"주소에 이름 붙이기"}')}}]);
