@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/components/PaymentInfoLine.vue:77
 msgid "{amount} suggested network fee"
-msgstr "{amount} пропонована мережею комісія"
+msgstr "{amount} комісія запропонована мережею"
 
 #: src/components/AccountSelector.vue:18
 msgid "{type} accounts cannot be used for this operation."
@@ -101,7 +101,7 @@ msgstr "Старий формат"
 
 #: src/components/AccountSelector.vue:41
 msgid "Login to another account"
-msgstr "Увійти в інший рахунок"
+msgstr "Увійти на інший рахунок"
 
 #: src/components/Wallet.vue:26
 msgid "Logout"
