@@ -3881,6 +3881,17 @@ module.exports = function (it) {
 
 /***/ }),
 
+/***/ "82f1":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Timer_vue_vue_type_style_index_0_id_759e5ea6_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("e2be");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Timer_vue_vue_type_style_index_0_id_759e5ea6_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Timer_vue_vue_type_style_index_0_id_759e5ea6_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+ /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Timer_vue_vue_type_style_index_0_id_759e5ea6_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
 /***/ "8312":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9543,6 +9554,13 @@ addToUnscopables('keys');
 addToUnscopables('values');
 addToUnscopables('entries');
 
+
+/***/ }),
+
+/***/ "e2be":
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
 
 /***/ }),
 
@@ -15813,6 +15831,67 @@ var SmallPage_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_SmallPage = (SmallPage_component.exports);
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"68cbd2af-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Timer.vue?vue&type=template&id=759e5ea6&scoped=true&
+var Timervue_type_template_id_759e5ea6_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('Tooltip',_vm._b({staticClass:"timer",class:{
+        'time-shown': _vm.detailsShown || _vm.alwaysShowTime,
+        'little-time-left': _vm._progress >= .75,
+        'inverse-theme': _vm.theme === _vm.constructor.Themes.INVERSE,
+    },on:{"show":function($event){_vm.detailsShown = true},"hide":function($event){_vm.detailsShown = false}},scopedSlots:_vm._u([{key:"trigger",fn:function(){return [_c('svg',{attrs:{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 26 26"}},[_c('circle',{ref:"time-circle",staticClass:"time-circle",attrs:{"cx":"50%","cy":"50%","r":_vm.radius.currentValue,"stroke-dasharray":((_vm._timeCircleInfo.length) + " " + (_vm._timeCircleInfo.gap)),"stroke-dashoffset":_vm._timeCircleInfo.offset,"stroke-width":_vm._timeCircleInfo.strokeWidth}}),_c('circle',{staticClass:"filler-circle",attrs:{"cx":"50%","cy":"50%","r":_vm.radius.currentValue,"stroke-dasharray":((_vm._fillerCircleInfo.length) + " " + (_vm._fillerCircleInfo.gap)),"stroke-dashoffset":_vm._fillerCircleInfo.offset,"stroke-width":_vm._fillerCircleInfo.strokeWidth}}),_c('transition',{attrs:{"name":"transition-fade"}},[(!_vm.detailsShown && !_vm.alwaysShowTime)?_c('g',{staticClass:"info-exclamation-icon"},[_c('rect',{attrs:{"x":"12","y":"9","width":"2","height":"2","rx":"1"}}),_c('rect',{attrs:{"x":"12","y":"12.5","width":"2","height":"4.5","rx":"1"}})]):_c('text',{staticClass:"countdown",attrs:{"x":"50%","y":"50%"}},[_vm._v(" "+_vm._s(_vm._f("_toSimplifiedTime")(_vm._timeLeft,false))+" ")])])],1)]},proxy:true},{key:"default",fn:function(){return [_c('I18n',{attrs:{"path":"This offer expires in {timer}."},scopedSlots:_vm._u([{key:"timer",fn:function(){return [_vm._v(_vm._s(_vm._f("_toSimplifiedTime")(_vm._timeLeft,true)))]},proxy:true}])})]},proxy:true}])},'Tooltip',Object.assign({}, {preferredPosition: 'bottom right',
+        theme: _vm.theme},
+        _vm.tooltipProps,
+        {styles: Object.assign({}, {width: '18.25rem',
+            pointerEvents: 'none'},
+            (_vm.tooltipProps ? _vm.tooltipProps.styles : undefined))}),false))}
+var Timervue_type_template_id_759e5ea6_scoped_true_staticRenderFns = []
+
+
+// CONCATENATED MODULE: ./src/components/Timer.vue?vue&type=template&id=759e5ea6&scoped=true&
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.values.js
+var es_object_values = __webpack_require__("07ac");
+
+// CONCATENATED MODULE: ./node_modules/@nimiq/utils/dist/module/Tweenable.js
+class Tweenable {
+    constructor(targetValue = 0, startValue = targetValue, tweenTime = 0, startTime = Date.now(), easing = Tweenable.Easing.EASE_IN_OUT_CUBIC) {
+        this.targetValue = targetValue;
+        this.startValue = startValue;
+        this.tweenTime = tweenTime;
+        this.startTime = startTime;
+        this.easing = easing;
+    }
+    get currentValue() {
+        const easedProgress = this.easing(this.progress);
+        return this.startValue + (this.targetValue - this.startValue) * easedProgress;
+    }
+    get progress() {
+        if (this.tweenTime === 0)
+            return 1;
+        return Math.min(1, (Date.now() - this.startTime) / this.tweenTime);
+    }
+    get finished() {
+        return this.progress === 1;
+    }
+    tweenTo(targetValue, tweenTime = this.tweenTime) {
+        if (targetValue === this.targetValue)
+            return;
+        this.startValue = this.currentValue;
+        this.targetValue = targetValue;
+        this.startTime = Date.now();
+        this.tweenTime = tweenTime;
+    }
+}
+(function (Tweenable) {
+    // see https://gist.github.com/gre/1650294 for more easing functions
+    Tweenable.Easing = {
+        LINEAR: (t) => t,
+        EASE_IN_OUT_CUBIC: (t) => (t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1),
+    };
+})(Tweenable || (Tweenable = {}));
+var Tweenable$1 = Tweenable;
+
+/* harmony default export */ var module_Tweenable = (Tweenable$1);
+//# sourceMappingURL=Tweenable.js.map
+
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"68cbd2af-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Tooltip.vue?vue&type=template&id=24f93900&scoped=true&
 var Tooltipvue_type_template_id_24f93900_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"tooltip",class:[_vm.verticalPosition, {
         shown: _vm.isShown,
@@ -15826,9 +15905,6 @@ var Tooltipvue_type_template_id_24f93900_scoped_true_staticRenderFns = []
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.entries.js
 var es_object_entries = __webpack_require__("4fad");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.values.js
-var es_object_values = __webpack_require__("07ac");
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.filter.js
 var es_array_filter = __webpack_require__("4de4");
@@ -16437,6 +16513,454 @@ var Tooltip_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_Tooltip = (Tooltip_component.exports);
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--13-1!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Timer.vue?vue&type=script&lang=ts&
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var Timer_1;
+
+
+
+
+
+
+var TIME_STEPS = [{
+  unit: 'minute',
+  factor: 60
+}, {
+  unit: 'hour',
+  factor: 60
+}, {
+  unit: 'day',
+  factor: 24
+}];
+
+function _toSimplifiedTime(millis) {
+  var includeUnit = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+  // find appropriate unit, starting with second
+  var resultTime = millis / 1000;
+  var resultUnit = 'second';
+  var _iteratorNormalCompletion = true;
+  var _didIteratorError = false;
+  var _iteratorError = undefined;
+
+  try {
+    for (var _iterator = TIME_STEPS[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+      var _step$value = _step.value,
+          unit = _step$value.unit,
+          factor = _step$value.factor;
+      if (resultTime / factor < 1) break;
+      resultTime /= factor;
+      resultUnit = unit;
+    }
+  } catch (err) {
+    _didIteratorError = true;
+    _iteratorError = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion && _iterator.return != null) {
+        _iterator.return();
+      }
+    } finally {
+      if (_didIteratorError) {
+        throw _iteratorError;
+      }
+    }
+  }
+
+  resultTime = Math.floor(resultTime);
+
+  if (!includeUnit) {
+    return resultTime;
+  } else {
+    var i18nTime = {
+      get second() {
+        return i18n_I18nMixin.$t('Timer', 'second');
+      },
+
+      get seconds() {
+        return i18n_I18nMixin.$t('Timer', 'seconds');
+      },
+
+      get minute() {
+        return i18n_I18nMixin.$t('Timer', 'minute');
+      },
+
+      get minutes() {
+        return i18n_I18nMixin.$t('Timer', 'minutes');
+      },
+
+      get hour() {
+        return i18n_I18nMixin.$t('Timer', 'hour');
+      },
+
+      get hours() {
+        return i18n_I18nMixin.$t('Timer', 'hours');
+      },
+
+      get day() {
+        return i18n_I18nMixin.$t('Timer', 'day');
+      },
+
+      get days() {
+        return i18n_I18nMixin.$t('Timer', 'days');
+      }
+
+    };
+    resultUnit = i18nTime["".concat(resultUnit).concat(resultTime !== 1 ? 's' : '')];
+    return "".concat(resultTime, " ").concat(resultUnit);
+  }
+}
+
+var Timervue_type_script_lang_ts_Timer = Timer_1 =
+/*#__PURE__*/
+function (_Mixins) {
+  _inherits(Timer, _Mixins);
+
+  function Timer() {
+    var _this;
+
+    _classCallCheck(this, Timer);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Timer).apply(this, arguments));
+    _this.timeOffset = 0;
+    _this.sampledTime = 0;
+    _this.detailsShown = false; // While the radius r of the circle and the values stroke-dasharray, stroke-dashoffset and stroke-width that depend
+    // on the radius can be transitioned via css, the behavior on value update during an ongoing transition is not
+    // consistent (e.g. time update while animating on user hover or quick hover and unhover). Therefore animate via JS.
+
+    _this.radius = new module_Tweenable(_this.detailsShown || _this.alwaysShowTime ? Timer_1.BASE_RADIUS * Timer_1.RADIUS_GROWTH_FACTOR : Timer_1.BASE_RADIUS);
+    _this.fullCircleLength = 2 * Math.PI * _this.radius.currentValue;
+    _this.timeoutId = null;
+    _this.updateTimeoutId = null;
+    _this.requestAnimationFrameId = null;
+    _this.size = Timer_1.BASE_SIZE;
+    return _this;
+  }
+
+  _createClass(Timer, [{
+    key: "synchronize",
+    value: function synchronize(referenceTime) {
+      this.timeOffset = referenceTime - Date.now();
+    }
+  }, {
+    key: "mounted",
+    value: function mounted() {
+      var _this2 = this;
+
+      requestAnimationFrame(function () {
+        return _this2.size = _this2.$el.offsetWidth;
+      }); // in rAF to avoid forced reflow
+
+      this._onResize = this._onResize.bind(this);
+      window.addEventListener('resize', this._onResize);
+    }
+  }, {
+    key: "destroyed",
+    value: function destroyed() {
+      clearTimeout(this.timeoutId);
+      clearTimeout(this.updateTimeoutId);
+      cancelAnimationFrame(this.requestAnimationFrameId);
+      window.removeEventListener('resize', this._onResize);
+    }
+  }, {
+    key: "_calculateUpdateInterval",
+    value: function _calculateUpdateInterval() {
+      // Not a getter / computed prop to avoid unnecessary updates when not needed.
+      var scaleFactor = this.size / Timer_1.BASE_SIZE;
+      var circleLengthPixels = this.fullCircleLength * scaleFactor;
+      var steps = circleLengthPixels * 3; // update every .33 pixel change for smooth transitions
+
+      var minInterval = 1000 / 60; // up to 60 fps
+      // Constrain interval such that we don't skip time steps in the countdown for the respective time unit.
+
+      var timeLeft = this._timeLeft;
+      var totalTime = this._totalTime;
+      var updatesPerTimeStep = 2; // multiple updates per time step to avoid skipping a step by a delayed interval
+
+      var timeStep = 1000; // starting with seconds
+
+      var maxInterval = timeStep / updatesPerTimeStep;
+      var _iteratorNormalCompletion2 = true;
+      var _didIteratorError2 = false;
+      var _iteratorError2 = undefined;
+
+      try {
+        for (var _iterator2 = TIME_STEPS[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+          var factor = _step2.value.factor;
+          var nextTimeStep = timeStep * factor;
+          var nextMaxInterval = nextTimeStep / updatesPerTimeStep;
+          var nextInterval = Math.min(nextMaxInterval, Math.max(minInterval, totalTime / steps));
+
+          if ((timeLeft - nextInterval) / nextTimeStep < 1) {
+            // If the time left after nextInterval can't be expressed in nextTimeStep as a value >=1, stop. We check
+            // for the time after the next interval to avoid jumping for example from 70s (displayed as 1 minute)
+            // directly to 50s if the interval is 20s. Note that the behavior here resembles the one in
+            // _toSimplifiedTime.
+            if (timeLeft / nextTimeStep > 1) {
+              // If the value before the interval is still >1 in the next time unit still allow a larger jump than
+              // at the smaller time unit but set the maxInterval such that we jump no further than where the
+              // switch to the smaller unit happens, for example jump from 70s to 60s if the interval is 20s.
+              maxInterval = timeLeft - nextTimeStep;
+            }
+
+            break;
+          }
+
+          timeStep = nextTimeStep;
+          maxInterval = nextMaxInterval;
+        }
+      } catch (err) {
+        _didIteratorError2 = true;
+        _iteratorError2 = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
+            _iterator2.return();
+          }
+        } finally {
+          if (_didIteratorError2) {
+            throw _iteratorError2;
+          }
+        }
+      }
+
+      return Math.min(maxInterval, Math.max(minInterval, this._totalTime / steps));
+    }
+  }, {
+    key: "_setRadius",
+    value: function _setRadius() {
+      this.radius.tweenTo(this.detailsShown || this.alwaysShowTime ? Timer_1.RADIUS_GROWTH_FACTOR * Timer_1.BASE_RADIUS : Timer_1.BASE_RADIUS, 300);
+
+      this._rerender();
+    }
+  }, {
+    key: "_setTimer",
+    value: function _setTimer() {
+      var _this3 = this;
+
+      this.sampledTime = Date.now() + this.timeOffset;
+      clearTimeout(this.timeoutId);
+
+      if (this.startTime && this.endTime) {
+        this.timeoutId = window.setTimeout(function () {
+          return _this3.$emit(Timer_1.Events.END, _this3.endTime);
+        }, this.endTime - this.sampledTime);
+
+        this._rerender();
+      }
+    }
+  }, {
+    key: "_rerender",
+    value: function _rerender() {
+      var _this4 = this;
+
+      this.sampledTime = Date.now() + this.timeOffset;
+      this.fullCircleLength = 2 * Math.PI * this.radius.currentValue;
+      if (this._timeLeft === 0 && this.radius.finished) return;
+      clearTimeout(this.updateTimeoutId);
+      cancelAnimationFrame(this.requestAnimationFrameId);
+
+      if (!this.radius.finished) {
+        // animate radius with high frame rate
+        this.requestAnimationFrameId = requestAnimationFrame(function () {
+          return _this4._rerender();
+        });
+      } else {
+        // update with low frame rate
+        this.updateTimeoutId = window.setTimeout(function () {
+          return _this4._rerender();
+        }, this._calculateUpdateInterval());
+      }
+    }
+  }, {
+    key: "_onResize",
+    value: function _onResize() {
+      this.size = this.$el.offsetWidth;
+    }
+  }, {
+    key: "_totalTime",
+    get: function get() {
+      if (this.startTime === undefined || this.endTime === undefined) {
+        return 0;
+      } else {
+        return Math.max(0, this.endTime - this.startTime);
+      }
+    }
+  }, {
+    key: "_timeLeft",
+    get: function get() {
+      if (this.startTime === undefined || this.endTime === undefined) {
+        return 0;
+      } else {
+        return Math.max(0, Math.min(this._totalTime, this.endTime - this.sampledTime));
+      }
+    }
+  }, {
+    key: "_progress",
+    get: function get() {
+      if (this.startTime === undefined || this.endTime === undefined || this._totalTime === 0) {
+        return 0;
+      } else {
+        return 1 - this._timeLeft / this._totalTime;
+      }
+    }
+  }, {
+    key: "_timeCircleInfo",
+    get: function get() {
+      // Have a max length to make it more recognizable that this is a timer by never rendering a full circle.
+      // The rounded stroke ending rendered with radius strokeWidth/2 does not count towards the stroke length,
+      // therefore to get the desired gap of 1.5 strokeWidths, we use 2.5 strokeWidths.
+      var maxLength = this.fullCircleLength - 2.5 * this.strokeWidth;
+      var length = Math.min(maxLength, (1 - this._progress) * this.fullCircleLength);
+      var lengthWithLineCaps = length + this.strokeWidth; // add line caps with strokeWidth/2 radius
+
+      var gap = this.fullCircleLength - length; // The path grows clockwise starting on the right side. Offset by 90 degrees and gap to let path start with gap
+      // and end on top.
+
+      var offset = this.fullCircleLength / 4 - gap;
+      return {
+        length: length,
+        lengthWithLineCaps: lengthWithLineCaps,
+        gap: gap,
+        offset: offset,
+        strokeWidth: this.strokeWidth
+      };
+    }
+  }, {
+    key: "_fillerCircleInfo",
+    get: function get() {
+      // Filler circle should be rendered in the gap left by the time circle with a margin of strokeWidth. If there
+      // is not enough space, compensate by reducing the filler circle stroke width.
+      var availableSpace = this.fullCircleLength - this._timeCircleInfo.lengthWithLineCaps - 2 * this.strokeWidth;
+      var lengthWithLineCaps = Math.max(0, availableSpace);
+      var strokeWidth = Math.min(this.strokeWidth, lengthWithLineCaps);
+      var length = Math.max(0, lengthWithLineCaps - strokeWidth); // subtract rounded line caps
+
+      var gap = this.fullCircleLength - length;
+      var offset = this.fullCircleLength / 4 // rotate by 90 degrees
+      - this.strokeWidth / 2 // skip rounded line cap of time circle
+      - this.strokeWidth // margin
+      - strokeWidth / 2; // account for our own line cap
+
+      return {
+        length: length,
+        lengthWithLineCaps: lengthWithLineCaps,
+        gap: gap,
+        offset: offset,
+        strokeWidth: strokeWidth
+      };
+    }
+  }]);
+
+  return Timer;
+}(Object(external_vue_property_decorator_["Mixins"])(i18n_I18nMixin));
+
+Timervue_type_script_lang_ts_Timer.REM_FACTOR = 8; // size of 1rem
+
+Timervue_type_script_lang_ts_Timer.BASE_SIZE = 3.25 * Timer_1.REM_FACTOR;
+Timervue_type_script_lang_ts_Timer.BASE_RADIUS = Timer_1.REM_FACTOR;
+Timervue_type_script_lang_ts_Timer.RADIUS_GROWTH_FACTOR = 1.5;
+
+__decorate([Object(external_vue_property_decorator_["Prop"])(Number)], Timervue_type_script_lang_ts_Timer.prototype, "startTime", void 0);
+
+__decorate([Object(external_vue_property_decorator_["Prop"])(Number)], Timervue_type_script_lang_ts_Timer.prototype, "endTime", void 0);
+
+__decorate([Object(external_vue_property_decorator_["Prop"])({
+  type: Boolean,
+  default: true
+})], Timervue_type_script_lang_ts_Timer.prototype, "alwaysShowTime", void 0);
+
+__decorate([Object(external_vue_property_decorator_["Prop"])({
+  type: String,
+  default: 'normal',
+  validator: function validator(value) {
+    return Object.values(Timer_1.Themes).includes(value);
+  }
+})], Timervue_type_script_lang_ts_Timer.prototype, "theme", void 0);
+
+__decorate([Object(external_vue_property_decorator_["Prop"])({
+  type: Number,
+  default: 2
+})], Timervue_type_script_lang_ts_Timer.prototype, "strokeWidth", void 0);
+
+__decorate([Object(external_vue_property_decorator_["Prop"])(Object)], Timervue_type_script_lang_ts_Timer.prototype, "tooltipProps", void 0);
+
+__decorate([Object(external_vue_property_decorator_["Watch"])('detailsShown', {
+  immediate: true
+}), Object(external_vue_property_decorator_["Watch"])('alwaysShowTime')], Timervue_type_script_lang_ts_Timer.prototype, "_setRadius", null);
+
+__decorate([Object(external_vue_property_decorator_["Watch"])('startTime', {
+  immediate: true
+}), Object(external_vue_property_decorator_["Watch"])('endTime'), Object(external_vue_property_decorator_["Watch"])('timeOffset')], Timervue_type_script_lang_ts_Timer.prototype, "_setTimer", null);
+
+Timervue_type_script_lang_ts_Timer = Timer_1 = __decorate([Object(external_vue_property_decorator_["Component"])({
+  name: 'Timer',
+  filters: {
+    _toSimplifiedTime: _toSimplifiedTime
+  },
+  components: {
+    Tooltip: components_Tooltip,
+    I18n: i18n_I18n
+  }
+})], Timervue_type_script_lang_ts_Timer);
+
+(function (Timer) {
+  var Events;
+
+  (function (Events) {
+    Events["END"] = "end";
+  })(Events = Timer.Events || (Timer.Events = {}));
+
+  var Themes;
+
+  (function (Themes) {
+    Themes["NORMAL"] = "normal";
+    Themes["INVERSE"] = "inverse";
+  })(Themes = Timer.Themes || (Timer.Themes = {}));
+})(Timervue_type_script_lang_ts_Timer || (Timervue_type_script_lang_ts_Timer = {}));
+
+/* harmony default export */ var Timervue_type_script_lang_ts_ = (Timervue_type_script_lang_ts_Timer);
+// CONCATENATED MODULE: ./src/components/Timer.vue?vue&type=script&lang=ts&
+ /* harmony default export */ var components_Timervue_type_script_lang_ts_ = (Timervue_type_script_lang_ts_); 
+// EXTERNAL MODULE: ./src/components/Timer.vue?vue&type=style&index=0&id=759e5ea6&scoped=true&lang=css&
+var Timervue_type_style_index_0_id_759e5ea6_scoped_true_lang_css_ = __webpack_require__("82f1");
+
+// CONCATENATED MODULE: ./src/components/Timer.vue
+
+
+
+
+
+
+/* normalize component */
+
+var Timer_component = normalizeComponent(
+  components_Timervue_type_script_lang_ts_,
+  Timervue_type_template_id_759e5ea6_scoped_true_render,
+  Timervue_type_template_id_759e5ea6_scoped_true_staticRenderFns,
+  false,
+  null,
+  "759e5ea6",
+  null
+  
+)
+
+/* harmony default export */ var components_Timer = (Timer_component.exports);
 // CONCATENATED MODULE: ./src/main.ts
 
 
@@ -16468,7 +16992,7 @@ var Tooltip_component = normalizeComponent(
 
 
 
- // export { default as Timer } from './components/Timer.vue';
+
 
  // export { default as Wallet } from './components/Wallet.vue';
 // Comment out unused icons in the components/Icons.ts file
@@ -16512,6 +17036,7 @@ function setAssetPublicPath(path, imageAssetsPath) {
 /* concated harmony reexport QrScanner */__webpack_require__.d(__webpack_exports__, "QrScanner", function() { return components_QrScanner; });
 /* concated harmony reexport SelectBar */__webpack_require__.d(__webpack_exports__, "SelectBar", function() { return components_SelectBar; });
 /* concated harmony reexport SmallPage */__webpack_require__.d(__webpack_exports__, "SmallPage", function() { return components_SmallPage; });
+/* concated harmony reexport Timer */__webpack_require__.d(__webpack_exports__, "Timer", function() { return components_Timer; });
 /* concated harmony reexport Tooltip */__webpack_require__.d(__webpack_exports__, "Tooltip", function() { return components_Tooltip; });
 /* concated harmony reexport AlertTriangleIcon */__webpack_require__.d(__webpack_exports__, "AlertTriangleIcon", function() { return AlertTriangleIcon; });
 /* concated harmony reexport ArrowLeftIcon */__webpack_require__.d(__webpack_exports__, "ArrowLeftIcon", function() { return ArrowLeftIcon; });
