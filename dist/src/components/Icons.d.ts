@@ -22,4 +22,5 @@ export declare const LockLockedIcon: any;
 export declare const MenuDotsIcon: any;
 export declare const QrCodeIcon: any;
 export declare const ScanQrCodeIcon: any;
+export declare const StopwatchIcon: any;
 export declare const TransferIcon: any;
