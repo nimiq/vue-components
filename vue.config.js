@@ -9,6 +9,7 @@ const configureWebpack = {
     }
   },
   devtool: false,
+  node: false,
   plugins: [
     new SourceMapDevToolPlugin({
       // equivalent to devtool: 'source-map'; just that we don't generate sourcemaps for translation files as they

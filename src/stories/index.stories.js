@@ -830,16 +830,17 @@ storiesOf('Components', module)
             theme: select('theme', Object.values(Timer.Themes), Timer.Themes.NORMAL),
             alwaysShowTime: boolean('alwaysShowTime', true),
             tooltipProps: object('tooltipProps (json)', {}),
+            maxUnit: select('maxUnit', [undefined, 'second', 'minute', 'hour', 'day'], undefined),
         }),
         template: `
             <div>
-                <div :class="{ 'nq-blue-bg': theme === 'inverse' }" style="display: flex; align-items: center; padding: 7rem 3rem 10rem 12rem">
+                <div :class="{ 'nq-blue-bg': theme === 'inverse' || theme === 'white' }" style="display: flex; align-items: center; padding: 7rem 3rem 10rem 12rem">
                     <Timer :startTime="startTime" :endTime="endTime" :theme="theme" :alwaysShowTime="alwaysShowTime"
-                        :tooltipProps="tooltipProps" @end="timerEnded = true" style="margin: 2rem"/>
+                        :tooltipProps="tooltipProps" @end="timerEnded = true" style="margin: 2rem" :maxUnit="maxUnit"/>
                     <Timer :startTime="startTime" :endTime="endTime" :theme="theme" :alwaysShowTime="alwaysShowTime"
-                        :tooltipProps="tooltipProps" style="width: 10rem; margin: 2rem"/>
+                        :tooltipProps="tooltipProps" style="width: 10rem; margin: 2rem" :maxUnit="maxUnit"/>
                     <Timer :startTime="startTime" :endTime="endTime" :theme="theme" :alwaysShowTime="alwaysShowTime"
-                        :tooltipProps="tooltipProps" style="width: 20rem; margin: 2rem"/>
+                        :tooltipProps="tooltipProps" style="width: 20rem; margin: 2rem" :maxUnit="maxUnit"/>
                 </div>
                 <div v-if="startTime" style="margin: 1rem 2rem">Timer {{ timerEnded ? 'ended' : 'running' }}</div>
                 <div style="display: flex; flex-wrap: wrap; max-width: 95rem;">
@@ -849,6 +850,7 @@ storiesOf('Components', module)
                     <button class="nq-button" @click="startTimer(3 * 60 * 1000)">Start 3m Timer</button>
                     <button class="nq-button" @click="startTimer(15 * 60 * 1000)">Start 15m Timer</button>
                     <button class="nq-button" @click="startTimer(60 * 60 * 1000)">Start 1h Timer</button>
+                    <button class="nq-button" @click="startTimer(2 * 60 * 60 * 1000)">Start 2h Timer</button>
                 </div>
             </div>
         `,
@@ -912,4 +914,3 @@ storiesOf('Pages', module)
             `),
         };
     });
-
