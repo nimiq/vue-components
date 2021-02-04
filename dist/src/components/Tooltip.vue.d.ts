@@ -7,6 +7,7 @@ declare class Tooltip extends Vue {
         $el: HTMLElement;
     };
     disabled?: boolean;
+    noFocus?: boolean;
     /**
      * Preferred tooltip position as "[vertical] [horizontal]" or "[vertical]".
      */
