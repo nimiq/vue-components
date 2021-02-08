@@ -2,6 +2,7 @@ export { default as AddressDisplay } from './components/AddressDisplay.vue';
 export { default as AddressInput } from './components/AddressInput.vue';
 export { default as Amount } from './components/Amount.vue';
 export { default as AmountInput } from './components/AmountInput.vue';
+export { default as BottomOverlay } from './components/BottomOverlay.vue';
 export { default as CircleSpinner } from './components/CircleSpinner.vue';
 export { default as CloseButton } from './components/CloseButton.vue';
 export { default as Copyable } from './components/Copyable.vue';
