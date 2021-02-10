@@ -33,7 +33,7 @@ export default class AddressDisplay extends Vue {
         max-width: 28.25rem;
         box-sizing: content-box;
         font-family: 'Fira Mono', monospace;
-        color: rgba(31, 35, 72, .5); /* nimiq-blue with .5 opacity */
+        opacity: 0.5;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
