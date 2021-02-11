@@ -1,8 +1,8 @@
 <template>
     <div class="amount-with-fee">
-        <AmountInput class="value" v-model="liveAmount" :class="{invalid: !isValid && liveAmount > 0}"  ref="amountInput" />
+        <AmountInput class="value" v-model="liveAmount" :class="{invalid: !isValid && liveAmount > 0, 'empty': !liveAmount}"  ref="amountInput" />
         <div class="fee-section nq-text-s">
-            <div v-if="!isValid && liveAmount" class="nq-red"><slot name="insufficient-balance-error">{{ $t('Insufficient balance') }}</slot></div>
+            <div v-if="!isValid && liveAmount" class="nq-orange"><slot name="insufficient-balance-error">{{ $t('Insufficient balance') }}</slot></div>
             <div v-else-if="value.fee">
                 + <Amount :amount="value.fee" :minDecimals="0" :maxDecimals="5" /> {{ $t('fee') }}
             </div>
@@ -71,19 +71,32 @@ export default class AmountWithFee extends Mixins(I18nMixin) {
         align-items: baseline;
     }
 
-    .amount-input >>> input {
+    .amount-input >>> form .nq-input {
         padding-top: 0;
         padding-bottom: 0;
     }
 
+    .amount-input >>> form .nq-input:focus-within:hover,
+    .amount-input.empty >>> form .nq-input:hover {
+        --border-color: rgb(5, 130, 202, 0.3); /* Based on Nimiq Light Blue */
+    }
+    
+    .amount-input.invalid >>>  form .nq-input {
+        --border-color: rgb(252, 135, 2, 0.3); /* Based on Nimiq Orange */
+
+    }
+
+    .amount-input.invalid >>> form .nq-input:hover {
+        --border-color: rgb(252, 135, 2, 0.4); /* Based on Nimiq Orange */
+    }
+
     .amount-input.invalid >>> input,
     .amount-input.invalid >>> .nim {
-        border-color: rgb(216, 65, 51, 0.2); /* Based on Nimiq Red */
-        color: var(--nimiq-red) !important;
+        color: var(--nimiq-orange);
     }
 
     .fee-section {
-        color: rgba(31, 35, 72, 0.5);
+        color: rgba(31, 35, 72, 0.5); /* Based on Nimiq Blue */
         min-height: 2rem;
     }
 </style>
