@@ -127,7 +127,7 @@ export default class AmountInput extends Vue {
         padding: 0 0.25rem;
         max-width: 100%;
         text-align: center;
-        transition: width 50ms ease-out, color .2s var(--nimiq-ease);
+        transition: width 50ms ease-out, box-shadow .2s var(--nimiq-ease);
     }
 
     .full-width {
@@ -161,5 +161,9 @@ export default class AmountInput extends Vue {
         font-size: 4rem;
         font-weight: 700;
         line-height: 4.5rem;
+    }
+
+    .nq-input::placeholder {
+        transition: color .2s var(--nimiq-ease);
     }
 </style>
