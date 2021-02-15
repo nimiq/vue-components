@@ -1,100 +1,100 @@
 # 
 # Translators:
-# Talleyrand, 2020
-# Daniel, 2020
-# Matheo <matheo@nimiq.com>, 2020
+# Stefan, 2020
+# BlockchainShay <Shaylish@live.nl>, 2020
+# Daniel, 2021
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Matheo <matheo@nimiq.com>, 2020\n"
-"Language-Team: French (https://www.transifex.com/nimiq-foundation/teams/110181/fr/)\n"
+"Last-Translator: Daniel, 2021\n"
+"Language-Team: Dutch (https://www.transifex.com/nimiq-foundation/teams/110181/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: nl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: src/components/PaymentInfoLine.vue:77
 msgid "{amount} suggested network fee"
-msgstr "{amount} de frais de réseau suggéré"
+msgstr "{amount} voorgestelde netwerkkosten"
 
 #: src/components/AccountSelector.vue:18
 msgid "{type} accounts cannot be used for this operation."
-msgstr "Les comptes {type} ne peuvent pas être utilisés pour cette opération."
+msgstr "{type} accounts kunnen niet worden gebruikt voor deze handeling."
 
 #: src/components/QrScanner.vue:11
 msgid "Cancel"
-msgstr "Annuler"
+msgstr "Annuleren"
 
 #: src/components/Wallet.vue:24
 msgid "Change Password"
-msgstr "Changer de Mot de passe"
+msgstr "Wachtwoord wijzigen"
 
 #: src/components/QrScanner.vue:24
 msgid ""
 "Click on {icon} and go to\n"
 "Settings > Site Settings > Camera"
 msgstr ""
-"Cliquez sur {icon} et allez dans\n"
-"Paramètres > Paramètres de site > Appareil photo"
+"Klik op {icon} en ga naar\n"
+"Instellingen > Site Instellingen > Camera"
 
 #: src/components/QrScanner.vue:44
 msgid "Click on {icon} in the URL bar."
-msgstr "Cliquez sur {icon} dans la bar d'adresse."
+msgstr "Klik op {icon} in de URL bar."
 
 #: src/components/QrScanner.vue:39
 msgid ""
 "Click on {safari} and go to\n"
 "Settings for this Website > Camera"
 msgstr ""
-"Cliquez sur {safari} et rendez-vous dans \n"
-"Paramètres pour ce site > Caméra"
+"Klik op {safari} en ga naar\n"
+"Instellingen voor deze Website > Camera"
 
 #: src/components/AccountList.vue:43
 msgid "Contracts cannot be used for this operation."
-msgstr "Les Contrats ne peuvent pas être utilisés pour cette opération."
+msgstr "Contracten kunnen niet gebruikt worden voor deze operatie."
 
 #: src/components/Copyable.vue:5 src/components/CopyableField.vue:21
 msgid "Copied"
-msgstr "Copié"
+msgstr "Gekopieerd"
 
 #: src/components/Wallet.vue:21
 msgid "Create Backup"
-msgstr "Créer une Sauvegarde"
+msgstr "Maak een back-up"
 
 #: src/components/Timer.vue:95
 msgid "day"
-msgstr "jour"
+msgstr "dag"
 
 #: src/components/Timer.vue:96
 msgid "days"
-msgstr "jours"
+msgstr "dagen"
 
 #: src/components/PaymentInfoLine.vue:45
 msgid "Effective rate"
-msgstr "Taux effectif"
+msgstr "Effectief tarief"
 
 #: src/components/AmountWithFee.vue:7
 msgid "fee"
-msgstr "frais"
+msgstr "transactiekosten"
 
 #: src/components/PageHeader.vue:7
 msgid "Go back"
-msgstr "Retour"
+msgstr "Ga terug"
 
 #: src/components/QrScanner.vue:34
 msgid "Grant camera access when asked."
-msgstr "Accordez l'accès à la caméra lorsque cela vous est demandé."
+msgstr "Verleen cameratoegang wanneer daarom wordt gevraagd."
 
 #: src/components/Timer.vue:93
 msgid "hour"
-msgstr "heure"
+msgstr "uur"
 
 #: src/components/Timer.vue:94
 msgid "hours"
-msgstr "heures"
+msgstr "uren"
 
 #: src/components/AmountWithFee.vue:5
 msgid "Insufficient balance"
-msgstr "Solde insuffisant"
+msgstr "Onvoldoende salso"
 
 #: src/components/AccountSelector.vue:188
 msgid "Legacy"
@@ -102,43 +102,43 @@ msgstr "Legacy"
 
 #: src/components/AccountSelector.vue:41
 msgid "Login to another account"
-msgstr "Connexion à un autre compte"
+msgstr "Log in op een ander account"
 
 #: src/components/Wallet.vue:26
 msgid "Logout"
-msgstr "Déconnexion"
+msgstr "Uitloggen"
 
 #: src/components/Timer.vue:91
 msgid "minute"
-msgstr "minute"
+msgstr "minuut"
 
 #: src/components/Timer.vue:92
 msgid "minutes"
-msgstr "minutes"
+msgstr "minuten"
 
 #: src/components/LabelInput.vue:4 src/components/LabelInput.vue:8
 msgid "Name your address"
-msgstr "Nommez votre adresse"
+msgstr "Geef adres een naam"
 
 #: src/components/PaymentInfoLine.vue:88
 msgid "network fee"
-msgstr "frais de réseau"
+msgstr "netwerkkosten"
 
 #: src/components/PaymentInfoLine.vue:60
 msgid "Nimiq provides this service free of charge."
-msgstr "Nimiq fournit ce service gratuitement."
+msgstr "Nimiq biedt deze service gratis aan."
 
 #: src/components/PaymentInfoLine.vue:37
 msgid "Order amount"
-msgstr "Montant de la commande"
+msgstr "Orderbedrag"
 
 #: src/components/Wallet.vue:23
 msgid "Rename"
-msgstr "Renommer"
+msgstr "Hernoemen"
 
 #: src/components/Wallet.vue:18
 msgid "Save Login File"
-msgstr "Enregistrer le Fichier de Connexion"
+msgstr "Login File opslaan"
 
 #: src/components/Timer.vue:89
 msgid "second"
@@ -146,60 +146,60 @@ msgstr "seconde"
 
 #: src/components/Timer.vue:90
 msgid "seconds"
-msgstr "secondes"
+msgstr "seconden"
 
 #: src/components/QrScanner.vue:48
 msgid "the camera icon"
-msgstr "l'icône de caméra"
+msgstr "de camera icon"
 
 #: src/components/AccountList.vue:44
 msgid "This address cannot be used for this operation."
-msgstr "Cette adresse ne peut pas être utilisée pour cette opération."
+msgstr "Dit adres kan niet worden gebruikt voor deze handeling."
 
 #: src/components/Timer.vue:44
 msgid "This offer expires in {timer}."
-msgstr "Cette offre expire dans {timer}."
+msgstr "Deze aanbieding vervalt over {timer}."
 
 #: src/components/PaymentInfoLine.vue:63
 msgid "Total"
-msgstr "Total"
+msgstr "Totaal"
 
 #: src/components/QrScanner.vue:20
 msgid "Unblock the camera for this website to scan QR codes."
-msgstr "Débloquez la caméra pour ce site de façon à scanner les QR codes."
+msgstr "Deblokkeer de camera zodat deze website QR-codes kan scannen."
 
 #: src/components/PaymentInfoLine.vue:41
 msgid "Vendor crypto discount"
-msgstr "Crypto-remise"
+msgstr "Crypto leverancier korting"
 
 #: src/components/PaymentInfoLine.vue:40
 msgid "Vendor crypto markup"
-msgstr "Crypto-premium"
+msgstr "Markering van crypto-leveranciers"
 
 #: src/components/PaymentInfoLine.vue:281
 msgid ""
 "You are paying approx. {formattedRateDeviation} less than at the current "
 "market rate (coingecko.com)."
 msgstr ""
-"Vous payez environ {formattedRateDeviation} moins que le taux actuel du "
-"marché (coingecko.com)."
+"Je betaalt ongeveer {formattedRateDeviation} lager dan tegen de huidige "
+"marktkoers (coingecko.com)."
 
 #: src/components/PaymentInfoLine.vue:275
 msgid ""
 "You are paying approx. {formattedRateDeviation} more than at the current "
 "market rate (coingecko.com)."
 msgstr ""
-"Vous payez environ {formattedRateDeviation} plus que le taux actuel du "
-"marché (coingecko.com)."
+"Je betaalt ongeveer {formattedRateDeviation} meer dan tegen de huidige "
+"marktkoers (coingecko.com)."
 
 #: src/components/PaymentInfoLine.vue:267
 msgid ""
 "Your actual discount is approx. {formattedRateDeviation} compared to the "
 "current market rate (coingecko.com)."
 msgstr ""
-"Votre remise réelle est d'environ {formattedRateDeviation}  par rapport au "
-"taux actuel du marché (coingecko.com)."
+"Je daadwerkelijke korting is ca. {formattedRateDeviation} in vergelijking "
+"met de huidige marktkoers (coingecko.com)."
 
 #: src/components/QrScanner.vue:16
 msgid "Your device does not have an accessible camera."
-msgstr "Votre appareil n'a pas de caméra accessible."
+msgstr "Uw apparaat heeft geen toegankelijke camera."
