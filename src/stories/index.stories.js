@@ -555,7 +555,7 @@ storiesOf('Components', module)
         }
     })
     .add('BottomOverlay', () => {
-        const theme = select('theme', ['dark', 'light'], 'dark');
+        const theme = select('theme', ['dark', 'light', 'green'], 'dark');
         const showCloseButton = boolean('Show Close Button', true);
         return {
             components: {BottomOverlay},

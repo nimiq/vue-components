@@ -13,7 +13,7 @@
             @focus.stop="show()"
             @blur.stop="hide()"
             @click="onClick()"
-            :tabindex="disabled ? -1 : 0"
+            :tabindex="disabled || noFocus ? -1 : 0"
             class="trigger"
         >
             <slot v-if="!$slots.icon" name="trigger">
@@ -44,6 +44,7 @@ class Tooltip extends Vue {
      */
     @Prop(Object) public container?: Vue | {$el: HTMLElement};
     @Prop(Boolean) public disabled?: boolean;
+    @Prop(Boolean) public noFocus?: boolean;
 
     /**
      * Preferred tooltip position as "[vertical] [horizontal]" or "[vertical]".
