@@ -53,7 +53,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "NimiqVueComponents.umd." + ({"1":"lang-de-AccountList-json","2":"lang-de-AccountSelector-json","3":"lang-de-AmountWithFee-json","4":"lang-de-Copyable-json","5":"lang-de-CopyableField-json","6":"lang-de-LabelInput-json","7":"lang-de-PageHeader-json","8":"lang-de-PaymentInfoLine-json","9":"lang-de-QrScanner-json","10":"lang-de-Timer-json","11":"lang-de-Wallet-json","12":"lang-es-AccountList-json","13":"lang-es-AccountSelector-json","14":"lang-es-AmountWithFee-json","15":"lang-es-Copyable-json","16":"lang-es-CopyableField-json","17":"lang-es-LabelInput-json","18":"lang-es-PageHeader-json","19":"lang-es-PaymentInfoLine-json","20":"lang-es-QrScanner-json","21":"lang-es-Timer-json","22":"lang-es-Wallet-json","23":"lang-fr-AccountList-json","24":"lang-fr-AccountSelector-json","25":"lang-fr-AmountWithFee-json","26":"lang-fr-Copyable-json","27":"lang-fr-CopyableField-json","28":"lang-fr-LabelInput-json","29":"lang-fr-PageHeader-json","30":"lang-fr-PaymentInfoLine-json","31":"lang-fr-QrScanner-json","32":"lang-fr-Timer-json","33":"lang-fr-Wallet-json","34":"lang-ru-AccountList-json","35":"lang-ru-AccountSelector-json","36":"lang-ru-AmountWithFee-json","37":"lang-ru-Copyable-json","38":"lang-ru-CopyableField-json","39":"lang-ru-LabelInput-json","40":"lang-ru-PageHeader-json","41":"lang-ru-PaymentInfoLine-json","42":"lang-ru-QrScanner-json","43":"lang-ru-Timer-json","44":"lang-ru-Wallet-json","45":"lang-uk-AccountList-json","46":"lang-uk-AccountSelector-json","47":"lang-uk-AmountWithFee-json","48":"lang-uk-Copyable-json","49":"lang-uk-CopyableField-json","50":"lang-uk-LabelInput-json","51":"lang-uk-PageHeader-json","52":"lang-uk-PaymentInfoLine-json","53":"lang-uk-QrScanner-json","54":"lang-uk-Timer-json","55":"lang-uk-Wallet-json","56":"lang-zh-AccountList-json","57":"lang-zh-AccountSelector-json","58":"lang-zh-AmountWithFee-json","59":"lang-zh-Copyable-json","60":"lang-zh-CopyableField-json","61":"lang-zh-LabelInput-json","62":"lang-zh-PageHeader-json","63":"lang-zh-PaymentInfoLine-json","64":"lang-zh-QrScanner-json","65":"lang-zh-Timer-json","66":"lang-zh-Wallet-json"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "NimiqVueComponents.umd." + ({"1":"lang-de-AccountList-json","2":"lang-de-AccountSelector-json","3":"lang-de-AmountWithFee-json","4":"lang-de-Copyable-json","5":"lang-de-CopyableField-json","6":"lang-de-LabelInput-json","7":"lang-de-PageHeader-json","8":"lang-de-PaymentInfoLine-json","9":"lang-de-QrScanner-json","10":"lang-de-Timer-json","11":"lang-de-Wallet-json","12":"lang-es-AccountList-json","13":"lang-es-AccountSelector-json","14":"lang-es-AmountWithFee-json","15":"lang-es-Copyable-json","16":"lang-es-CopyableField-json","17":"lang-es-LabelInput-json","18":"lang-es-PageHeader-json","19":"lang-es-PaymentInfoLine-json","20":"lang-es-QrScanner-json","21":"lang-es-Timer-json","22":"lang-es-Wallet-json","23":"lang-fr-AccountList-json","24":"lang-fr-AccountSelector-json","25":"lang-fr-AmountWithFee-json","26":"lang-fr-Copyable-json","27":"lang-fr-CopyableField-json","28":"lang-fr-LabelInput-json","29":"lang-fr-PageHeader-json","30":"lang-fr-PaymentInfoLine-json","31":"lang-fr-QrScanner-json","32":"lang-fr-Timer-json","33":"lang-fr-Wallet-json","34":"lang-nl-AccountList-json","35":"lang-nl-AccountSelector-json","36":"lang-nl-AmountWithFee-json","37":"lang-nl-Copyable-json","38":"lang-nl-CopyableField-json","39":"lang-nl-LabelInput-json","40":"lang-nl-PageHeader-json","41":"lang-nl-PaymentInfoLine-json","42":"lang-nl-QrScanner-json","43":"lang-nl-Timer-json","44":"lang-nl-Wallet-json","45":"lang-ru-AccountList-json","46":"lang-ru-AccountSelector-json","47":"lang-ru-AmountWithFee-json","48":"lang-ru-Copyable-json","49":"lang-ru-CopyableField-json","50":"lang-ru-LabelInput-json","51":"lang-ru-PageHeader-json","52":"lang-ru-PaymentInfoLine-json","53":"lang-ru-QrScanner-json","54":"lang-ru-Timer-json","55":"lang-ru-Wallet-json","56":"lang-uk-AccountList-json","57":"lang-uk-AccountSelector-json","58":"lang-uk-AmountWithFee-json","59":"lang-uk-Copyable-json","60":"lang-uk-CopyableField-json","61":"lang-uk-LabelInput-json","62":"lang-uk-PageHeader-json","63":"lang-uk-PaymentInfoLine-json","64":"lang-uk-QrScanner-json","65":"lang-uk-Timer-json","66":"lang-uk-Wallet-json","67":"lang-zh-AccountList-json","68":"lang-zh-AccountSelector-json","69":"lang-zh-AmountWithFee-json","70":"lang-zh-Copyable-json","71":"lang-zh-CopyableField-json","72":"lang-zh-LabelInput-json","73":"lang-zh-PageHeader-json","74":"lang-zh-PaymentInfoLine-json","75":"lang-zh-QrScanner-json","76":"lang-zh-Timer-json","77":"lang-zh-Wallet-json"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -1734,137 +1734,181 @@ var map = {
 		"ec08",
 		33
 	],
+	"./nl/AccountList.json": [
+		"1644",
+		34
+	],
+	"./nl/AccountSelector.json": [
+		"600b",
+		35
+	],
+	"./nl/AmountWithFee.json": [
+		"0617",
+		36
+	],
+	"./nl/Copyable.json": [
+		"a136",
+		37
+	],
+	"./nl/CopyableField.json": [
+		"4fb8",
+		38
+	],
+	"./nl/LabelInput.json": [
+		"d183",
+		39
+	],
+	"./nl/PageHeader.json": [
+		"652c",
+		40
+	],
+	"./nl/PaymentInfoLine.json": [
+		"a231",
+		41
+	],
+	"./nl/QrScanner.json": [
+		"64dc",
+		42
+	],
+	"./nl/Timer.json": [
+		"84f0",
+		43
+	],
+	"./nl/Wallet.json": [
+		"63f5",
+		44
+	],
 	"./ru/AccountList.json": [
 		"e162",
-		34
+		45
 	],
 	"./ru/AccountSelector.json": [
 		"2153",
-		35
+		46
 	],
 	"./ru/AmountWithFee.json": [
 		"f212",
-		36
+		47
 	],
 	"./ru/Copyable.json": [
 		"d3a8",
-		37
+		48
 	],
 	"./ru/CopyableField.json": [
 		"580c",
-		38
+		49
 	],
 	"./ru/LabelInput.json": [
 		"ac46",
-		39
+		50
 	],
 	"./ru/PageHeader.json": [
 		"0773",
-		40
+		51
 	],
 	"./ru/PaymentInfoLine.json": [
 		"81c0",
-		41
+		52
 	],
 	"./ru/QrScanner.json": [
 		"b74a",
-		42
+		53
 	],
 	"./ru/Timer.json": [
 		"1d1a",
-		43
+		54
 	],
 	"./ru/Wallet.json": [
 		"da26",
-		44
+		55
 	],
 	"./uk/AccountList.json": [
 		"504a",
-		45
+		56
 	],
 	"./uk/AccountSelector.json": [
 		"2efd",
-		46
+		57
 	],
 	"./uk/AmountWithFee.json": [
 		"56dc",
-		47
+		58
 	],
 	"./uk/Copyable.json": [
 		"c38d",
-		48
+		59
 	],
 	"./uk/CopyableField.json": [
 		"f85b",
-		49
+		60
 	],
 	"./uk/LabelInput.json": [
 		"2cc2",
-		50
+		61
 	],
 	"./uk/PageHeader.json": [
 		"8d98",
-		51
+		62
 	],
 	"./uk/PaymentInfoLine.json": [
 		"cfaf",
-		52
+		63
 	],
 	"./uk/QrScanner.json": [
 		"8741",
-		53
+		64
 	],
 	"./uk/Timer.json": [
 		"f309",
-		54
+		65
 	],
 	"./uk/Wallet.json": [
 		"3f7a",
-		55
+		66
 	],
 	"./zh/AccountList.json": [
 		"bb4e",
-		56
+		67
 	],
 	"./zh/AccountSelector.json": [
 		"4634",
-		57
+		68
 	],
 	"./zh/AmountWithFee.json": [
 		"5f88",
-		58
+		69
 	],
 	"./zh/Copyable.json": [
 		"6a72",
-		59
+		70
 	],
 	"./zh/CopyableField.json": [
 		"afa7",
-		60
+		71
 	],
 	"./zh/LabelInput.json": [
 		"c7b6",
-		61
+		72
 	],
 	"./zh/PageHeader.json": [
 		"aee6",
-		62
+		73
 	],
 	"./zh/PaymentInfoLine.json": [
 		"6daa",
-		63
+		74
 	],
 	"./zh/QrScanner.json": [
 		"4e49",
-		64
+		75
 	],
 	"./zh/Timer.json": [
 		"813f",
-		65
+		76
 	],
 	"./zh/Wallet.json": [
 		"43f7",
-		66
+		77
 	]
 };
 function webpackAsyncContext(req) {
@@ -9063,7 +9107,7 @@ function (_Vue) {
 }(external_vue_property_decorator_["Vue"]);
 
 I18nMixin_I18nMixin.DEFAULT_LANGUAGE = 'en';
-I18nMixin_I18nMixin.SUPPORTED_LANGUAGES = [I18nMixin_1.DEFAULT_LANGUAGE, 'de', 'es', 'fr', 'ru', 'uk', 'zh'];
+I18nMixin_I18nMixin.SUPPORTED_LANGUAGES = [I18nMixin_1.DEFAULT_LANGUAGE, 'de', 'es', 'fr', 'nl', 'ru', 'uk', 'zh'];
 /** Current active language */
 
 I18nMixin_I18nMixin.lang = I18nMixin_1.detectLanguage();
