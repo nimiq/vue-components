@@ -11,6 +11,7 @@ declare class Timer extends Timer_base {
     theme: string;
     strokeWidth: number;
     tooltipProps?: object;
+    maxUnit?: string;
     synchronize(referenceTime: number): void;
     private timeOffset;
     private sampledTime;
@@ -40,7 +41,8 @@ declare namespace Timer {
     }
     enum Themes {
         NORMAL = "normal",
-        INVERSE = "inverse"
+        INVERSE = "inverse",
+        WHITE = "white"
     }
 }
 export default Timer;
