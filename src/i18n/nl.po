@@ -2,10 +2,11 @@
 # Translators:
 # Stefan, 2020
 # BlockchainShay <Shaylish@live.nl>, 2020
+# Daniel, 2021
 # 
 msgid ""
 msgstr ""
-"Last-Translator: BlockchainShay <Shaylish@live.nl>, 2020\n"
+"Last-Translator: Daniel, 2021\n"
 "Language-Team: Dutch (https://www.transifex.com/nimiq-foundation/teams/110181/nl/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: nl\n"
@@ -157,7 +158,7 @@ msgstr "Dit adres kan niet worden gebruikt voor deze handeling."
 
 #: src/components/Timer.vue:44
 msgid "This offer expires in {timer}."
-msgstr "Deze aanbieding vervalt over {timer}."
+msgstr "Deze aanbieding vervalt over {timer}."
 
 #: src/components/PaymentInfoLine.vue:63
 msgid "Total"

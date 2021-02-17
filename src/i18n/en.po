@@ -47,11 +47,11 @@ msgstr ""
 msgid "Create Backup"
 msgstr ""
 
-#: src/components/Timer.vue:95
+#: src/components/Timer.vue:96
 msgid "day"
 msgstr ""
 
-#: src/components/Timer.vue:96
+#: src/components/Timer.vue:97
 msgid "days"
 msgstr ""
 
@@ -71,11 +71,11 @@ msgstr ""
 msgid "Grant camera access when asked."
 msgstr ""
 
-#: src/components/Timer.vue:93
+#: src/components/Timer.vue:94
 msgid "hour"
 msgstr ""
 
-#: src/components/Timer.vue:94
+#: src/components/Timer.vue:95
 msgid "hours"
 msgstr ""
 
@@ -95,11 +95,11 @@ msgstr ""
 msgid "Logout"
 msgstr ""
 
-#: src/components/Timer.vue:91
+#: src/components/Timer.vue:92
 msgid "minute"
 msgstr ""
 
-#: src/components/Timer.vue:92
+#: src/components/Timer.vue:93
 msgid "minutes"
 msgstr ""
 
@@ -128,11 +128,11 @@ msgstr ""
 msgid "Save Login File"
 msgstr ""
 
-#: src/components/Timer.vue:89
+#: src/components/Timer.vue:90
 msgid "second"
 msgstr ""
 
-#: src/components/Timer.vue:90
+#: src/components/Timer.vue:91
 msgid "seconds"
 msgstr ""
 
@@ -144,7 +144,7 @@ msgstr ""
 msgid "This address cannot be used for this operation."
 msgstr ""
 
-#: src/components/Timer.vue:44
+#: src/components/Timer.vue:45
 msgid "This offer expires in {timer}."
 msgstr ""
 
