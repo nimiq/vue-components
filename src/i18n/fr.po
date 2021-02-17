@@ -1,6 +1,6 @@
 # 
 # Translators:
-# Talleyrand <baptistekugener@wanadoo.fr>, 2020
+# Talleyrand, 2020
 # Daniel, 2020
 # Matheo <matheo@nimiq.com>, 2020
 # 

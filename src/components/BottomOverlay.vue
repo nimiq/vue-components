@@ -1,7 +1,10 @@
 <template>
     <div class="bottom-overlay" :class="[theme, { 'has-close-button': hasCloseButton }]">
         <slot></slot>
-        <CloseButton v-if="hasCloseButton" class="close-button" @click="$emit(constructor.Events.CLOSE)" />
+        <CloseButton v-if="hasCloseButton"
+            class="close-button" :class="{'inverse': ['dark', 'green'].includes(theme)}"
+            @click="$emit(constructor.Events.CLOSE)"
+        />
     </div>
 </template>
 
@@ -14,7 +17,7 @@ class BottomOverlay extends Vue {
     @Prop({
         type: String,
         default: 'dark',
-        validator: (theme) => ['dark', 'light'].includes(theme),
+        validator: (theme) => ['dark', 'light', 'green'].includes(theme),
     })
     public theme!: string;
 
@@ -57,6 +60,11 @@ export default BottomOverlay;
         color: var(--nimiq-blue);
     }
 
+    .green {
+        background: var(--nimiq-green);
+        color: white;
+    }
+
     .has-close-button {
         padding-right: 6.5rem;
     }
@@ -67,8 +75,13 @@ export default BottomOverlay;
         right: 1.5rem;
     }
 
-    .dark .close-button {
-        color: white;
+    .green .close-button >>> .nq-icon {
+        opacity: 0.4;
+    }
+
+    .green .close-button:hover >>> .nq-icon,
+    .green .close-button:focus >>> .nq-icon {
+        opacity: 0.7;
     }
 
     @media (max-width: 912px) {

@@ -53,6 +53,8 @@ export default class AmountInput extends Vue {
 
     @Watch('value', { immediate: true })
     private updateValue(newValue: number) {
+        if (newValue === this.valueInLuna) return;
+        this.lastEmittedValue = newValue || 0;
         this.formattedValue = newValue ? (newValue / Math.pow(10, this.decimals)).toString() : '';
         this.updateWidth();
     }
