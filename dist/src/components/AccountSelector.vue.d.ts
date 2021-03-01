@@ -12,6 +12,12 @@ export interface AccountInfo {
     balance?: number;
     walletId?: string;
 }
+export interface BtcAddressInfo {
+    path: string;
+    address: string;
+    used: boolean;
+    balance?: number;
+}
 export interface WalletInfo {
     id: string;
     label: string;
@@ -19,6 +25,7 @@ export interface WalletInfo {
     contracts: ContractInfo[];
     type: number;
     keyMissing: boolean;
+    btcXPub?: string;
 }
 declare const AccountSelector_base: import("vue-class-component/lib/declarations").VueClass<I18nMixin>;
 export default class AccountSelector extends AccountSelector_base {
@@ -30,6 +37,7 @@ export default class AccountSelector extends AccountSelector_base {
     private disableLegacyAccounts?;
     private disableBip39Accounts?;
     private disableLedgerAccounts?;
+    private highlightBitcoinAccounts?;
     private allowLogin;
     private shownTooltip;
     private hideTooltipTimeout;
