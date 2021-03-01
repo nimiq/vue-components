@@ -381,6 +381,7 @@ storiesOf('Components', module)
         const disableLegacyAccounts = boolean('disableLegacyAccounts', false);
         const disableBip39Accounts = boolean('disableBip39Accounts', false);
         const disableLedgerAccounts = boolean('disableLedgerAccounts', false);
+        const highlightBitcoinAccounts = boolean('highlightBitcoinAccounts', true);
         const allowLogin = boolean('allowLogin', true);
         const disabledAddress = text('blacklist address', 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1');
 
@@ -395,13 +396,13 @@ storiesOf('Components', module)
                             userFriendlyAddress: 'NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM',
                             label: 'Primary account',
                             balance: 12023110,
-                            path: "44'/242'/0'/0'",
+                            path: "m/44'/242'/0'/0'",
                         },
                         {
                             userFriendlyAddress: 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1',
                             label: 'HODL account',
                             balance: 2712415141213,
-                            path: "44'/242'/0'/1'",
+                            path: "m/44'/242'/0'/1'",
                         },
                     ],
                     contracts: [
@@ -411,6 +412,14 @@ storiesOf('Components', module)
                             balance: 777777777,
                         },
                     ],
+                    btcAddresses: {
+                        external: [{
+                            address: 'bc1qemayc9vfheuvmr5pzf8mk5yrttm0pu2xeuyd77',
+                            used: false,
+                            path: "m/44'/0'/0'/0/0"
+                        }],
+                        internal: [],
+                    },
                 },
             ],
             minBalance,
@@ -419,6 +428,7 @@ storiesOf('Components', module)
             disableLegacyAccounts,
             disableBip39Accounts,
             disableLedgerAccounts,
+            highlightBitcoinAccounts,
             allowLogin,
             disabledAddress
         };
@@ -437,6 +447,14 @@ storiesOf('Components', module)
                     }
                 ],
                 contracts: [],
+                btcAddresses: {
+                    external: [{
+                        address: 'bc1qemayc9vfheuvmr5pzf8mk5yrttm0pu2xeuyd77',
+                        used: false,
+                        path: "m/44'/0'/0'/0/0"
+                    }],
+                    internal: [],
+                },
             });
         }
 
@@ -450,8 +468,8 @@ storiesOf('Components', module)
             template: `<AccountSelector @account-selected="accountSelected" @login="login" :wallets="wallets"
                 :minBalance="minBalance" :decimals="decimals" :disableContracts="disableContracts"
                 :disableLegacyAccounts="disableLegacyAccounts" :disableBip39Accounts="disableBip39Accounts"
-                :disableLedgerAccounts="disableLedgerAccounts" :allowLogin="allowLogin"
-                :disabledAddresses="[disabledAddress]" />`
+                :disableLedgerAccounts="disableLedgerAccounts" :highlightBitcoinAccounts="highlightBitcoinAccounts"
+                :allowLogin="allowLogin" :disabledAddresses="[disabledAddress]" />`
         };
     })
     .add('AddressDisplay', () => {
