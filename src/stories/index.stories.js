@@ -388,7 +388,7 @@ storiesOf('Components', module)
         const demoData = {
             wallets: [
                 {
-                    id: 'helloworld',
+                    id: 'bip39-wallet-id',
                     label: 'Keyguard Wallet',
                     type: 2, // BIP39
                     accounts: [
@@ -412,14 +412,7 @@ storiesOf('Components', module)
                             balance: 777777777,
                         },
                     ],
-                    btcAddresses: {
-                        external: [{
-                            address: 'bc1qemayc9vfheuvmr5pzf8mk5yrttm0pu2xeuyd77',
-                            used: false,
-                            path: "m/44'/0'/0'/0/0"
-                        }],
-                        internal: [],
-                    },
+                    btcXPub: 'zpub...',
                 },
             ],
             minBalance,
@@ -435,7 +428,7 @@ storiesOf('Components', module)
 
         if (demoType === 'multiple-accounts') {
             demoData.wallets.unshift({
-                id: 'helloword2',
+                id: 'ledger-wallet-id',
                 label: 'Ledger Wallet',
                 type: 3, // LEDGER
                 accounts: [
@@ -447,14 +440,21 @@ storiesOf('Components', module)
                     }
                 ],
                 contracts: [],
-                btcAddresses: {
-                    external: [{
-                        address: 'bc1qemayc9vfheuvmr5pzf8mk5yrttm0pu2xeuyd77',
-                        used: false,
-                        path: "m/44'/0'/0'/0/0"
-                    }],
-                    internal: [],
-                },
+                btcXPub: 'zpub...',
+            });
+            demoData.wallets.unshift({
+                id: 'legacy-wallet-id',
+                label: 'Legacy Wallet',
+                type: 1, // LEGACY
+                accounts: [
+                    {
+                        userFriendlyAddress: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
+                        label: 'My Ledger Account',
+                        balance: 876543210,
+                        path: "44'/242'/0'/0'",
+                    }
+                ],
+                contracts: [],
             });
         }
 
