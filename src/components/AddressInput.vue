@@ -299,7 +299,7 @@ export default class AddressInput extends Vue {
         text-transform: uppercase;
         /* the width of rendered letters may slightly differ across different browsers on different OSs. To compensate
         for that we apply a letter-spacing based on the deviation from a reference value */
-        letter-spacing: calc(1.8rem - 1ch);
+        letter-spacing: calc(1.8rem - 0.6em); /* 1ch changed to 0.6em, 'ch' in 'calc' making Safari 14.5 crash */
         word-spacing: calc(var(--block-gap) / 2);
         color: var(--nimiq-light-blue);
         background: transparent;

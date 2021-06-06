@@ -12,12 +12,6 @@ export interface AccountInfo {
     balance?: number;
     walletId?: string;
 }
-export interface BtcAddressInfo {
-    path: string;
-    address: string;
-    used: boolean;
-    balance?: number;
-}
 export interface WalletInfo {
     id: string;
     label: string;
