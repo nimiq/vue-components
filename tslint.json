@@ -19,6 +19,7 @@
     "no-consecutive-blank-lines": [false],
     "curly": [true, "ignore-same-line"],
     "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore"],
-    "member-ordering": false
+    "member-ordering": false,
+    "no-namespace": false
   }
 }

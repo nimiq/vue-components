@@ -1,0 +1,205 @@
+# 
+# Translators:
+# Vad <vjuruss@gmail.com>, 2020
+# Пётр Павлович <faentoad@gmail.com>, 2020
+# 
+msgid ""
+msgstr ""
+"Last-Translator: Пётр Павлович <faentoad@gmail.com>, 2020\n"
+"Language-Team: Russian (https://www.transifex.com/nimiq-foundation/teams/110181/ru/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: ru\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: src/components/PaymentInfoLine.vue:77
+msgid "{amount} suggested network fee"
+msgstr "{amount} предлагаемая комиссия сети"
+
+#: src/components/AccountSelector.vue:18
+msgid "{type} accounts cannot be used for this operation."
+msgstr ""
+"Аккаунты данного типа {type} не могут быть использованы для этой операции."
+
+#: src/components/QrScanner.vue:11
+msgid "Cancel"
+msgstr "Отменить"
+
+#: src/components/Wallet.vue:24
+msgid "Change Password"
+msgstr "Сменить пароль"
+
+#: src/components/QrScanner.vue:24
+msgid ""
+"Click on {icon} and go to\n"
+"Settings > Site Settings > Camera"
+msgstr ""
+"Нажмите на {icon} и перейдите в\n"
+"Настройки > Настройки сайта > Камера"
+
+#: src/components/QrScanner.vue:44
+msgid "Click on {icon} in the URL bar."
+msgstr "Нажмите на {icon} в адресной строке."
+
+#: src/components/QrScanner.vue:39
+msgid ""
+"Click on {safari} and go to\n"
+"Settings for this Website > Camera"
+msgstr ""
+"Нажмите на {safari} и перейдите в\n"
+"Настройки для данного Веб-сайта > Камера"
+
+#: src/components/AccountList.vue:43
+msgid "Contracts cannot be used for this operation."
+msgstr "Контракты не могут быть использованы для этой операции."
+
+#: src/components/Copyable.vue:5 src/components/CopyableField.vue:21
+msgid "Copied"
+msgstr "Скопировано"
+
+#: src/components/Wallet.vue:21
+msgid "Create Backup"
+msgstr "Создать резервную копию"
+
+#: src/components/Timer.vue:95
+msgid "day"
+msgstr "день"
+
+#: src/components/Timer.vue:96
+msgid "days"
+msgstr "дней"
+
+#: src/components/PaymentInfoLine.vue:45
+msgid "Effective rate"
+msgstr "Курс конвертации"
+
+#: src/components/AmountWithFee.vue:7
+msgid "fee"
+msgstr "комиссия"
+
+#: src/components/PageHeader.vue:7
+msgid "Go back"
+msgstr "Назад"
+
+#: src/components/QrScanner.vue:34
+msgid "Grant camera access when asked."
+msgstr "Предоставьте доступ к камере, когда вас об этом попросят."
+
+#: src/components/Timer.vue:93
+msgid "hour"
+msgstr "час"
+
+#: src/components/Timer.vue:94
+msgid "hours"
+msgstr "часов"
+
+#: src/components/AmountWithFee.vue:5
+msgid "Insufficient balance"
+msgstr "Недостаточный баланс"
+
+#: src/components/AccountSelector.vue:188
+msgid "Legacy"
+msgstr "\"старый\""
+
+#: src/components/AccountSelector.vue:41
+msgid "Login to another account"
+msgstr "Вход в другой аккаунт"
+
+#: src/components/Wallet.vue:26
+msgid "Logout"
+msgstr "Выйти"
+
+#: src/components/Timer.vue:91
+msgid "minute"
+msgstr "минута"
+
+#: src/components/Timer.vue:92
+msgid "minutes"
+msgstr "минут"
+
+#: src/components/LabelInput.vue:4 src/components/LabelInput.vue:8
+msgid "Name your address"
+msgstr "Как вы назовёте свой адрес?"
+
+#: src/components/PaymentInfoLine.vue:88
+msgid "network fee"
+msgstr "комиссия сети"
+
+#: src/components/PaymentInfoLine.vue:60
+msgid "Nimiq provides this service free of charge."
+msgstr "Nimiq предоставляет эту услугу бесплатно."
+
+#: src/components/PaymentInfoLine.vue:37
+msgid "Order amount"
+msgstr "Сумма заказа"
+
+#: src/components/Wallet.vue:23
+msgid "Rename"
+msgstr "Переименовать"
+
+#: src/components/Wallet.vue:18
+msgid "Save Login File"
+msgstr "Сохранить Файл Авторизации"
+
+#: src/components/Timer.vue:89
+msgid "second"
+msgstr "секунда"
+
+#: src/components/Timer.vue:90
+msgid "seconds"
+msgstr "секунд"
+
+#: src/components/QrScanner.vue:48
+msgid "the camera icon"
+msgstr "значок камеры"
+
+#: src/components/AccountList.vue:44
+msgid "This address cannot be used for this operation."
+msgstr "Этот адрес не может быть использован для данной операции."
+
+#: src/components/Timer.vue:44
+msgid "This offer expires in {timer}."
+msgstr "Срок действия этого предложения истекает через {timer}."
+
+#: src/components/PaymentInfoLine.vue:63
+msgid "Total"
+msgstr "Итого"
+
+#: src/components/QrScanner.vue:20
+msgid "Unblock the camera for this website to scan QR codes."
+msgstr "Разблокируйте камеру для этого сайта, чтобы сканировать QR-коды."
+
+#: src/components/PaymentInfoLine.vue:41
+msgid "Vendor crypto discount"
+msgstr "Скидка вендора криптовалюты"
+
+#: src/components/PaymentInfoLine.vue:40
+msgid "Vendor crypto markup"
+msgstr "Маркап вендора криптовалюты"
+
+#: src/components/PaymentInfoLine.vue:281
+msgid ""
+"You are paying approx. {formattedRateDeviation} less than at the current "
+"market rate (coingecko.com)."
+msgstr ""
+"Вы платите приблизительно на {formattedRateDeviation}  меньше, чем по "
+"текущему рыночному курсу (coingecko.com)."
+
+#: src/components/PaymentInfoLine.vue:275
+msgid ""
+"You are paying approx. {formattedRateDeviation} more than at the current "
+"market rate (coingecko.com)."
+msgstr ""
+"Вы платите приблизительно нв {formattedRateDeviation}  больше, чем по "
+"текущему рыночному курсу (coingecko.com)."
+
+#: src/components/PaymentInfoLine.vue:267
+msgid ""
+"Your actual discount is approx. {formattedRateDeviation} compared to the "
+"current market rate (coingecko.com)."
+msgstr ""
+"Ваш фактический дисконт составляет приблизительно {formattedRateDeviation} "
+"по сравнению с текущим рыночным курсом (coingecko.com)."
+
+#: src/components/QrScanner.vue:16
+msgid "Your device does not have an accessible camera."
+msgstr "Камера вашего устройства недоступна."

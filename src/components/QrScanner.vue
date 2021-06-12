@@ -8,44 +8,46 @@
                 </svg>
             </slot>
         </div>
-        <button class="nq-button-s inverse cancel-button" @click="_cancel">Cancel</button>
+        <button class="nq-button-s inverse cancel-button" @click="_cancel">{{ $t('Cancel') }}</button>
 
         <transition name="fade">
             <div v-if="cameraAccessFailed" class="camera-access-failed">
                 <div v-if="!hasCamera" class="camera-access-failed-warning">
-                    Your device does not have an accessible camera.
+                    {{ $t('Your device does not have an accessible camera.') }}
                 </div>
                 <div v-else>
                     <div class="camera-access-failed-warning">
-                        Unblock the camera for this website to scan QR codes.
+                        {{ $t('Unblock the camera for this website to scan QR codes.') }}
                     </div>
                     <div v-if="isMobileOrTablet">
                         <div v-if="browser === 'chrome'">
-                            <div class="access-denied-instructions">
-                                Click on <span class="browser-menu-icon"></span> and go to
-                                <br>
-                                Settings > Site Settings > Camera
-                            </div>
+                            <I18n path="Click on {icon} and go to\nSettings > Site Settings > Camera" tag="div"
+                                class="access-denied-instructions">
+                                <template #icon>
+                                    <span class="browser-menu-icon"></span>
+                                </template>
+                            </I18n>
                             <div class="browser-menu-arrow"></div>
                         </div>
                         <div v-else class="access-denied-instructions">
                             <!-- Mobile safari and mobile firefox ask on every camera request -->
-                            Grant camera access when asked.
+                            {{ $t('Grant camera access when asked.') }}
                         </div>
                     </div>
                     <div v-else class="access-denied-instructions">
-                        <div v-if="browser === 'safari'">
-                            Click on <b>Safari</b> and go to
-                            <br>
-                            Settings for this Website > Camera
-                        </div>
-                        <div v-else>
-                            Click on
-                            <span v-if="browser === 'chrome'" class="camera-icon-chrome"></span>
-                            <span v-else-if="browser === 'firefox'" class="camera-icon-firefox"></span>
-                            <span v-else>the camera icon</span>
-                            in the URL bar.
-                        </div>
+                        <I18n v-if="browser === 'safari'"
+                            path="Click on {safari} and go to\nSettings for this Website > Camera" tag="div">
+                            <template #safari>
+                                <b>Safari</b>
+                            </template>
+                        </I18n>
+                        <I18n v-else path="Click on {icon} in the URL bar." tag="div">
+                            <template #icon>
+                                <span v-if="browser === 'chrome'" class="camera-icon-chrome"></span>
+                                <span v-else-if="browser === 'firefox'" class="camera-icon-firefox"></span>
+                                <span v-else>{{ $t('the camera icon') }}</span>
+                            </template>
+                        </I18n>
                     </div>
                 </div>
             </div>
@@ -56,16 +58,17 @@
 <script lang="ts">
 // TODO could use IntersectionObserver api to start scanner when visible
 
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Mixins, Prop } from 'vue-property-decorator';
 import QrScannerLib from 'qr-scanner';
 import { BrowserDetection } from '@nimiq/utils';
+import I18nMixin from '../i18n/I18nMixin';
+import I18n from '../i18n/I18n.vue';
 
-// Declare qr worker as asset using file-loader which copies the file to dist and binds the path to QrScannerWorker
-import QrScannerWorker from '!!file-loader?name=[name].[ext]!../../node_modules/qr-scanner/qr-scanner-worker.min.js';
-QrScannerLib.WORKER_PATH = QrScannerWorker;
-
-@Component
-class QrScanner extends Vue {
+@Component({
+    name: 'QrScanner',
+    components: { I18n },
+})
+class QrScanner extends Mixins(I18nMixin) {
     @Prop({ type: Number, default: 7000 }) public reportFrequency!: number;
     @Prop(Function) public validate?: (scanResult: string) => boolean;
 
@@ -78,7 +81,15 @@ class QrScanner extends Vue {
     private _lastResultTime: number = 0;
     private _cameraRetryTimer?: number;
 
-    private mounted() {
+    private async mounted() {
+        // Use file-loader to copy the worker to dist and set the path to where the file is located. Instead of a normal
+        // import use a dynamic import at creation time of a QrScanner to give apps the opportunity to adapt the base
+        // path via setAssetPublicPath before the path is being determined. Using webpackMode: 'eager' to avoid creating
+        // an additional chunk and to let the import resolve immediately.
+        ({ default: QrScannerLib.WORKER_PATH } = await import(
+            /* webpackMode: 'eager' */
+            '!!file-loader?name=[name].[hash:8].[ext]!../../node_modules/qr-scanner/qr-scanner-worker.min.js'));
+
         this.repositionOverlay = this.repositionOverlay.bind(this);
         const $video = this.$refs.video as HTMLVideoElement;
         this._scanner = new QrScannerLib($video, (result) => this._onResult(result));
@@ -245,7 +256,7 @@ export default QrScanner;
         bottom: 3rem;
         left: 50%;
         transform: translateX(-50%);
-        color: inherit;
+        color: var(--nimiq-blue);
     }
 
     .cancel-button:hover,
@@ -278,6 +289,7 @@ export default QrScanner;
         width: calc(100% - 4rem);
         transform: translateX(-50%);
         line-height: 1.7;
+        white-space: pre-line;
     }
 
     .browser-menu-icon,

@@ -1,13 +1,14 @@
 <template>
-    <div class="amount-input">
+    <div class="amount-input" :class="{'has-value': valueInLuna > 0, 'focussed': isFocussed}">
         <form class="label-input" @submit.prevent ref="fullWidth">
             <span class="width-finder width-placeholder" ref="widthPlaceholder">{{placeholder}}</span>
-            <div v-if="maxFontSize" class="full-width" :class="{'width-finder': maxWidth > 0}" >Width</div>
+            <div v-if="maxFontSize" class="full-width" :class="{'width-finder': maxWidth > 0}">Width</div>
             <span class="width-finder width-value" ref="widthValue">{{formattedValue || ''}}</span>
-            <input type="text" class="nq-input nq-light-blue vanishing"
+            <input type="text" inputmode="decimal" class="nq-input" :class="vanishing"
                 :placeholder="placeholder"
                 :style="{width: `${this.width}px`, fontSize: `${this.fontSize}rem`}"
                 v-model="formattedValue"
+                @focus="isFocussed = true" @blur="isFocussed = false"
                 ref="input">
         </form>
         <span class="nim">NIM</span>
@@ -15,8 +16,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
-import { Utf8Tools } from '@nimiq/utils';
+import { Component, Prop, Watch, Vue } from 'vue-property-decorator';
 
 @Component
 export default class AmountInput extends Vue {
@@ -25,11 +25,13 @@ export default class AmountInput extends Vue {
         input: HTMLInputElement,
         widthPlaceholder: HTMLSpanElement,
         widthValue: HTMLSpanElement,
-    }
+    };
 
     @Prop({type: Number}) private value?: number;
     @Prop({type: Number, default: 8}) private maxFontSize!: number;
     @Prop({type: String, default: '0'}) private placeholder!: string;
+    @Prop({type: Boolean, default: false}) private vanishing!: boolean;
+    @Prop({type: Number, default: 5}) private decimals!: number;
 
     private liveValue: string = '';
     private lastEmittedValue = 0;
@@ -37,6 +39,7 @@ export default class AmountInput extends Vue {
     private fontSize = this.maxFontSize;
     private maxWidth = 0;
     private valueInLuna = 0;
+    private isFocussed = false;
 
     public async mounted() {
         if (this.maxFontSize) {
@@ -50,7 +53,9 @@ export default class AmountInput extends Vue {
 
     @Watch('value', { immediate: true })
     private updateValue(newValue: number) {
-        this.formattedValue = newValue ? (newValue / 1e5).toString() : '';
+        if (newValue === this.valueInLuna) return;
+        this.lastEmittedValue = newValue || 0;
+        this.formattedValue = newValue ? (newValue / Math.pow(10, this.decimals)).toString() : '';
         this.updateWidth();
     }
 
@@ -81,12 +86,12 @@ export default class AmountInput extends Vue {
         }
 
         value = value.replace(/\,/, '.');
-        const regExp = new RegExp(/(\d*)(\.(\d{0,5}))?/g);
+        const regExp = new RegExp(`(\\d*)(\\.(\\d{0,${this.decimals}}))?`, 'g'); // Backslashes are escaped
         const regExpResult = regExp.exec(value)!;
         if (regExpResult[1] || regExpResult[2]) {
             this.liveValue = `${regExpResult[1] ? regExpResult[1] : '0'}${regExpResult[2] ? regExpResult[2] : ''}`;
             this.valueInLuna = Number(
-                `${regExpResult[1]}${regExpResult[2] ? regExpResult[3].padEnd(5, '0') : '00000'}`,
+                `${regExpResult[1]}${(regExpResult[2] ? regExpResult[3] : '').padEnd(this.decimals, '0')}`,
             );
         }
 
@@ -119,10 +124,10 @@ export default class AmountInput extends Vue {
     }
 
     input {
-        padding: 1rem 0.25rem;
+        padding: 0 0.25rem;
         max-width: 100%;
-        transition: width 50ms ease-out;
         text-align: center;
+        transition: width 50ms ease-out, color .2s var(--nimiq-ease);
     }
 
     .full-width {
@@ -135,6 +140,16 @@ export default class AmountInput extends Vue {
         justify-content: center;
         width: 100%;
         font-size: 8rem;
+        color: rgba(31, 35, 72, 0.5); /* Based on Nimiq Blue */
+        transition: color .2s var(--nimiq-ease);
+    }
+
+    .amount-input.has-value {
+        color: var(--nimiq-blue);
+    }
+
+    .amount-input.focussed {
+        color: var(--nimiq-light-blue);
     }
 
     .amount-input form {
@@ -146,6 +161,5 @@ export default class AmountInput extends Vue {
         font-size: 4rem;
         font-weight: 700;
         line-height: 4.5rem;
-        color: var(--nimiq-light-blue);
     }
 </style>

@@ -1,0 +1,198 @@
+# 
+# Translators:
+# Sven <sven@nimiq.com>, 2020
+# Daniel, 2020
+# 
+msgid ""
+msgstr ""
+"Last-Translator: Daniel, 2020\n"
+"Language-Team: Chinese (https://www.transifex.com/nimiq-foundation/teams/110181/zh/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: zh\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/components/PaymentInfoLine.vue:77
+msgid "{amount} suggested network fee"
+msgstr "{amount} 建议的网络费用"
+
+#: src/components/AccountSelector.vue:18
+msgid "{type} accounts cannot be used for this operation."
+msgstr "{type} 个帐户不适用于此操作"
+
+#: src/components/QrScanner.vue:11
+msgid "Cancel"
+msgstr "取消"
+
+#: src/components/Wallet.vue:24
+msgid "Change Password"
+msgstr "更改密码"
+
+#: src/components/QrScanner.vue:24
+msgid ""
+"Click on {icon} and go to\n"
+"Settings > Site Settings > Camera"
+msgstr ""
+"点击 {icon}，进入\n"
+"设置 > 网站设置 > 相机"
+
+#: src/components/QrScanner.vue:44
+msgid "Click on {icon} in the URL bar."
+msgstr "点击网址栏中的 {icon}"
+
+#: src/components/QrScanner.vue:39
+msgid ""
+"Click on {safari} and go to\n"
+"Settings for this Website > Camera"
+msgstr ""
+"点击 {safari} 并转到\n"
+"此网站的设置>相机"
+
+#: src/components/AccountList.vue:43
+msgid "Contracts cannot be used for this operation."
+msgstr "合同不适用于此操作"
+
+#: src/components/Copyable.vue:5 src/components/CopyableField.vue:21
+msgid "Copied"
+msgstr "已复制"
+
+#: src/components/Wallet.vue:21
+msgid "Create Backup"
+msgstr "创建备份"
+
+#: src/components/Timer.vue:95
+msgid "day"
+msgstr "天"
+
+#: src/components/Timer.vue:96
+msgid "days"
+msgstr "天"
+
+#: src/components/PaymentInfoLine.vue:45
+msgid "Effective rate"
+msgstr "有效率"
+
+#: src/components/AmountWithFee.vue:7
+msgid "fee"
+msgstr "费用"
+
+#: src/components/PageHeader.vue:7
+msgid "Go back"
+msgstr "返回"
+
+#: src/components/QrScanner.vue:34
+msgid "Grant camera access when asked."
+msgstr "在询问时，授予摄像机访问权限"
+
+#: src/components/Timer.vue:93
+msgid "hour"
+msgstr "时"
+
+#: src/components/Timer.vue:94
+msgid "hours"
+msgstr "时"
+
+#: src/components/AmountWithFee.vue:5
+msgid "Insufficient balance"
+msgstr "余额不足"
+
+#: src/components/AccountSelector.vue:188
+msgid "Legacy"
+msgstr "传统"
+
+#: src/components/AccountSelector.vue:41
+msgid "Login to another account"
+msgstr "登录另一个帐户"
+
+#: src/components/Wallet.vue:26
+msgid "Logout"
+msgstr "登出"
+
+#: src/components/Timer.vue:91
+msgid "minute"
+msgstr "分"
+
+#: src/components/Timer.vue:92
+msgid "minutes"
+msgstr "分"
+
+#: src/components/LabelInput.vue:4 src/components/LabelInput.vue:8
+msgid "Name your address"
+msgstr "命名您的地址"
+
+#: src/components/PaymentInfoLine.vue:88
+msgid "network fee"
+msgstr "网络费"
+
+#: src/components/PaymentInfoLine.vue:60
+msgid "Nimiq provides this service free of charge."
+msgstr "Nimiq免费提供此服务"
+
+#: src/components/PaymentInfoLine.vue:37
+msgid "Order amount"
+msgstr "订单金额"
+
+#: src/components/Wallet.vue:23
+msgid "Rename"
+msgstr "重新命名"
+
+#: src/components/Wallet.vue:18
+msgid "Save Login File"
+msgstr "储存登录文件"
+
+#: src/components/Timer.vue:89
+msgid "second"
+msgstr "秒"
+
+#: src/components/Timer.vue:90
+msgid "seconds"
+msgstr "秒"
+
+#: src/components/QrScanner.vue:48
+msgid "the camera icon"
+msgstr "相机图标"
+
+#: src/components/AccountList.vue:44
+msgid "This address cannot be used for this operation."
+msgstr "此地址不适用于此操作"
+
+#: src/components/Timer.vue:44
+msgid "This offer expires in {timer}."
+msgstr "此价格将在 {timer} 后过期"
+
+#: src/components/PaymentInfoLine.vue:63
+msgid "Total"
+msgstr "总共"
+
+#: src/components/QrScanner.vue:20
+msgid "Unblock the camera for this website to scan QR codes."
+msgstr "打开此网站相机的使用权限以扫描QR码"
+
+#: src/components/PaymentInfoLine.vue:41
+msgid "Vendor crypto discount"
+msgstr "供应商的加密货币折扣"
+
+#: src/components/PaymentInfoLine.vue:40
+msgid "Vendor crypto markup"
+msgstr "供应商加密货币标记"
+
+#: src/components/PaymentInfoLine.vue:281
+msgid ""
+"You are paying approx. {formattedRateDeviation} less than at the current "
+"market rate (coingecko.com)."
+msgstr "您正在支付约 {formattedRateDeviation} 低于当前市场的价格（coingecko.com）"
+
+#: src/components/PaymentInfoLine.vue:275
+msgid ""
+"You are paying approx. {formattedRateDeviation} more than at the current "
+"market rate (coingecko.com)."
+msgstr "您正在支付约 {formattedRateDeviation} 高于当前市场的价格（coingecko.com）"
+
+#: src/components/PaymentInfoLine.vue:267
+msgid ""
+"Your actual discount is approx. {formattedRateDeviation} compared to the "
+"current market rate (coingecko.com)."
+msgstr "您的实际折扣约为 {formattedRateDeviation} 与当前市场价格（coingecko.com）的比较"
+
+#: src/components/QrScanner.vue:16
+msgid "Your device does not have an accessible camera."
+msgstr "您的设备没有可访问的相机"

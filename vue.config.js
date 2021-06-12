@@ -1,10 +1,25 @@
+// Note that this config is used for `build` but not for `storybook` or `build-storybook` scripts
+
+const SourceMapDevToolPlugin = require('webpack').SourceMapDevToolPlugin;
+
 const configureWebpack = {
   resolve: {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
     }
-  }
-}
+  },
+  devtool: false,
+  node: false,
+  plugins: [
+    new SourceMapDevToolPlugin({
+      // equivalent to devtool: 'source-map'; just that we don't generate sourcemaps for translation files as they
+      // contain no actual mappings when generated.
+      filename: '[name].js.map',
+      namespace: 'NimiqVueComponents',
+      exclude: /lang-.*-json\.js/,
+    }),
+  ],
+};
 
 if (process.argv.includes('build')) {
   configureWebpack.externals = {
@@ -41,7 +56,7 @@ const chainWebpack = config => {
           .loader(svgDefaultHandler.get('loader'))
           .options(svgDefaultHandler.get('options'))
           .end()
-        .end()
+        .end();
 }
 
 module.exports = { configureWebpack, chainWebpack };

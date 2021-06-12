@@ -1,28 +1,39 @@
 <template>
     <div class="account-selector">
-        <div class="container" :class="{'extra-spacing': wallets.length === 1}">
-            <div v-for="wallet in sortedWallets" :key="wallet.id"
-                :class="{
-                    'disabled-account': _isAccountDisabled(wallet),
-                    'highlighted-disabled-account': highlightedDisabledAccount === wallet,
-                }"
-            >
+        <div ref="container" class="container" :class="{'extra-spacing': wallets.length === 1}">
+            <div v-for="wallet in sortedWallets" :key="wallet.id">
                 <div v-if="wallets.length > 1 || _isAccountDisabled(wallet)" class="wallet-label">
-                    <div>
-                        <span class="nq-label">{{ wallet.label }}</span>
-                        <div v-if="_isAccountDisabled(wallet)" class="warning-disabled-account nq-label">
-                            (Incompatible with this operation)
-                        </div>
+                    <div class="nq-label">
+                        {{ wallet.label }}
+                        <span v-if="highlightBitcoinAccounts && wallet.btcXPub" class="btc-pill">BTC</span>
                     </div>
+                    <Tooltip
+                        v-if="_isAccountDisabled(wallet)"
+                        :ref="`tooltip-${wallet.id}`"
+                        v-bind="{
+                            ...tooltipProps,
+                            styles: {
+                                width: '25.25rem',
+                                ...tooltipProps.styles,
+                            },
+                        }"
+                    >
+                        {{ $t(
+                            '{type} accounts cannot be used for this operation.',
+                            { type: _getAccountTypeName(wallet)},
+                        ) }}
+                    </Tooltip>
                 </div>
                 <AccountList
-                    :accounts="wallet | listAccountsAndContracts | sortAccountsAndContracts(minBalance, disableContracts)"
+                    :accounts="wallet | listAccountsAndContracts
+                        | sortAccountsAndContracts(minBalance, disableContracts, disabledAddresses)"
                     :disabledAddresses="disabledAddresses"
                     :walletId="wallet.id"
                     :minBalance="minBalance"
                     :decimals="decimals"
                     :disableContracts="disableContracts"
                     :disabled="_isAccountDisabled(wallet)"
+                    :tooltipProps="tooltipProps"
                     @account-selected="accountSelected"
                     @click.native="_accountClicked(wallet)"
                 />
@@ -30,14 +41,16 @@
         </div>
 
         <div class="footer">
-            <button v-if="allowLogin" class="nq-button-s" @click="login">Login to another Account</button>
+            <button v-if="allowLogin" class="nq-button-s" @click="login">{{ $t('Login to another account') }}</button>
         </div>
     </div>
 </template>
 
 <script lang="ts">
-import {Component, Emit, Prop, Vue} from 'vue-property-decorator';
+import {Component, Mixins, Emit, Prop} from 'vue-property-decorator';
 import AccountList from './AccountList.vue';
+import Tooltip from './Tooltip.vue';
+import I18nMixin from '../i18n/I18nMixin';
 
 // This is a reduced list of properties, for convenience
 export interface ContractInfo {
@@ -63,10 +76,12 @@ export interface WalletInfo {
     contracts: ContractInfo[];
     type: number;
     keyMissing: boolean;
+    btcXPub?: string;
 }
 
 @Component({
-    components: {AccountList},
+    name: 'AccountSelector',
+    components: {AccountList, Tooltip},
     filters: {
         listAccountsAndContracts(wallet: WalletInfo): Array<AccountInfo|ContractInfo> {
             return [ ...wallet.accounts.values(), ...wallet.contracts ];
@@ -75,6 +90,7 @@ export interface WalletInfo {
             accounts: Array<AccountInfo|ContractInfo>,
             minBalance?: number,
             disableContracts?: boolean,
+            disabledAddresses?: string[],
         ): Array<AccountInfo|ContractInfo> => {
             if (!minBalance) return accounts;
 
@@ -85,6 +101,12 @@ export interface WalletInfo {
                 if (aIsDisabledContract && !bIsDisabledContract) return 1;
                 if (!aIsDisabledContract && bIsDisabledContract) return -1;
 
+                // sort disabled addresses below other addresses
+                const aIsDisabledAddress = disabledAddresses && disabledAddresses.includes(a.userFriendlyAddress);
+                const bIsDisabledAddress = disabledAddresses && disabledAddresses.includes(b.userFriendlyAddress);
+                if (aIsDisabledAddress && !bIsDisabledAddress) return 1;
+                if (!aIsDisabledAddress && bIsDisabledAddress) return -1;
+
                 // sort accounts with insufficient funds below accounts with enough balance
                 if ((!a.balance || a.balance < minBalance) && b.balance && b.balance >= minBalance) return 1;
                 if ((!b.balance || b.balance < minBalance) && a.balance && a.balance >= minBalance) return -1;
@@ -94,19 +116,33 @@ export interface WalletInfo {
         },
     },
 })
-export default class AccountSelector extends Vue {
+export default class AccountSelector extends Mixins(I18nMixin) {
     @Prop(Array) private wallets!: WalletInfo[];
-    @Prop({type: Array, default: []}) public disabledAddresses!: string[];
+    @Prop({type: Array, default: () => []}) public disabledAddresses!: string[];
     @Prop(Number) private decimals?: number;
     @Prop(Number) private minBalance?: number;
     @Prop(Boolean) private disableContracts?: boolean;
     @Prop(Boolean) private disableLegacyAccounts?: boolean;
     @Prop(Boolean) private disableBip39Accounts?: boolean;
     @Prop(Boolean) private disableLedgerAccounts?: boolean;
+    @Prop(Boolean) private highlightBitcoinAccounts?: boolean;
     @Prop({type: Boolean, default: true}) private allowLogin!: boolean;
 
-    private highlightedDisabledAccount: WalletInfo | null = null;
-    private highlightedDisabledAccountTimeout: number = -1;
+    private shownTooltip: Tooltip | null = null;
+    private hideTooltipTimeout: number = -1;
+    private tooltipProps: any = {
+        container: null, // set in mounted hook
+        preferredPosition: 'bottom right',
+        margin: {
+            left: 16,
+            right: 16,
+            top: 32, // avoid that tooltips get affected by mask image
+            bottom: 32,
+        },
+        styles: {
+            pointerEvents: 'none',
+        },
+    };
 
     private get sortedWallets(): WalletInfo[] {
         return this.wallets.slice(0).sort((a: WalletInfo, b: WalletInfo): number => {
@@ -132,6 +168,12 @@ export default class AccountSelector extends Vue {
         });
     }
 
+    private mounted() {
+        this.tooltipProps.container = {
+            $el: this.$refs.container as HTMLElement,
+        };
+    }
+
     @Emit()
     // tslint:disable-next-line no-empty
     private accountSelected(walletId: string, address: string) {}
@@ -146,12 +188,31 @@ export default class AccountSelector extends Vue {
             || this.disableLedgerAccounts && account.type === 3 /* LEDGER */;
     }
 
-    private _accountClicked(account: WalletInfo) {
-        if (!this._isAccountDisabled(account)) return;
+    private _getAccountTypeName(account: WalletInfo): string {
+        switch (account.type) {
+            case 1: return this.$t('Legacy');
+            case 2: return 'Keyguard';
+            case 3: return 'Ledger';
+            default: throw new Error(`Unknown account type ${account.type}`);
+        }
+    }
 
-        window.clearTimeout(this.highlightedDisabledAccountTimeout);
-        this.highlightedDisabledAccount = account;
-        this.highlightedDisabledAccountTimeout = window.setTimeout(() => this.highlightedDisabledAccount = null, 300);
+    private _accountClicked(account: WalletInfo) {
+        window.clearTimeout(this.hideTooltipTimeout);
+        const tooltip = this.$refs[`tooltip-${account.id}`]
+            ? (this.$refs[`tooltip-${account.id}`] as Tooltip[])[0]
+            : null;
+        if (this.shownTooltip && this.shownTooltip !== tooltip) {
+            this.shownTooltip.hide(/* force */ false);
+        }
+        if (tooltip) {
+            tooltip.show();
+            this.hideTooltipTimeout = window.setTimeout(() => {
+                tooltip.hide(/* force */ false);
+                this.shownTooltip = null;
+            }, 2000);
+        }
+        this.shownTooltip = tooltip;
     }
 }
 </script>
@@ -170,27 +231,12 @@ export default class AccountSelector extends Vue {
         padding-top: 0.5rem;
         padding-bottom: 4rem;
         flex-grow: 1;
-        mask-image: linear-gradient(0deg , rgba(255,255,255,0), rgba(255,255,255, 1) 4rem, rgba(255,255,255,1) calc(100% - 4rem), rgba(255,255,255,0));
+        mask-image: linear-gradient(0deg , rgba(255,255,255,0), rgba(255,255,255, 1) 4rem,
+            rgba(255,255,255,1) calc(100% - 4rem), rgba(255,255,255,0));
     }
 
     .container.extra-spacing {
         padding-top: 3rem;
-    }
-
-    .disabled-account > .wallet-label .nq-label {
-        opacity: .4;
-    }
-
-    .disabled-account .warning-disabled-account {
-        padding-top: .5rem;
-        text-transform: none;
-        line-height: 1.2;
-        transition: opacity .3s ease, color .3s ease;
-    }
-
-    .disabled-account.highlighted-disabled-account .warning-disabled-account {
-        color: var(--nimiq-red);
-        opacity: 1;
     }
 
     .wallet-label {
@@ -202,7 +248,10 @@ export default class AccountSelector extends Vue {
 
     .wallet-label .nq-label {
         margin: 0;
-        margin-right: 2rem;
+    }
+
+    .wallet-label .tooltip {
+        margin-left: 1rem;
     }
 
     .wallet-label::after {
@@ -210,7 +259,18 @@ export default class AccountSelector extends Vue {
         display: block;
         flex-grow: 1;
         height: 1px;
+        margin-left: 2rem;
         background: rgba(31, 35, 72, 0.1);
+    }
+
+    .btc-pill {
+        background: #F7931A; /* Bitcoin orange */
+        color: white;
+        font-weight: bold;
+        font-size: 1.5rem;
+        padding: 0.25rem 0.75rem;
+        border-radius: 2rem;
+        margin-left: 0.25rem;
     }
 
     .footer {

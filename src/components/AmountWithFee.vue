@@ -2,24 +2,28 @@
     <div class="amount-with-fee">
         <AmountInput class="value" v-model="liveAmount" :class="{invalid: !isValid && liveAmount > 0}"  ref="amountInput" />
         <div class="fee-section nq-text-s">
-            <div v-if="!isValid && liveAmount" class="nq-red"><slot name="insufficient-balance-error">Insufficient balance</slot></div>
+            <div v-if="!isValid && liveAmount" class="nq-red"><slot name="insufficient-balance-error">{{ $t('Insufficient balance') }}</slot></div>
             <div v-else-if="value.fee">
-                + <Amount :amount="value.fee" :minDecimals="0" :maxDecimals="5" /> fee
+                + <Amount :amount="value.fee" :minDecimals="0" :maxDecimals="5" /> {{ $t('fee') }}
             </div>
         </div>
     </div>
 </template>
 
 <script lang="ts">
-import { Component, Emit, Prop, Vue, Watch } from 'vue-property-decorator';
+import { Component, Mixins, Prop, Watch } from 'vue-property-decorator';
 import Amount from './Amount.vue';
 import AmountInput from './AmountInput.vue';
+import I18nMixin from '../i18n/I18nMixin';
 
-@Component({components: {
-    Amount,
-    AmountInput,
-}})
-export default class AmountWithFee extends Vue {
+@Component({
+    name: 'AmountWithFee',
+    components: {
+        Amount,
+        AmountInput,
+    },
+})
+export default class AmountWithFee extends Mixins(I18nMixin) {
     @Prop({
         type: Object,
         default: () => ({amount: 0, fee: 0, isValid: false}),

@@ -1,40 +1,33 @@
 import {storiesOf} from '@storybook/vue';
 import {action} from '@storybook/addon-actions';
 import {boolean, number, text, object, select, withKnobs} from '@storybook/addon-knobs';
-import bigInt from 'big-integer';
+
+import '@nimiq/style/nimiq-style.min.css';
 
 import Account from '../components/Account.vue';
 import AccountDetails from '../components/AccountDetails.vue';
 import AccountList from '../components/AccountList.vue';
 import AccountSelector from '../components/AccountSelector.vue';
-import Address from '../components/Address.vue';
 import AddressDisplay from '../components/AddressDisplay.vue';
 import AddressInput from '../components/AddressInput.vue';
 import AccountRing from '../components/AccountRing.vue';
 import Amount from '../components/Amount.vue';
 import AmountInput from '../components/AmountInput.vue';
-import AmountWithDetails from '../components/AmountWithDetails.vue';
 import AmountWithFee from '../components/AmountWithFee.vue';
 import BottomOverlay from '../components/BottomOverlay.vue';
 import Carousel from '../components/Carousel.vue';
 import CircleSpinner from '../components/CircleSpinner.vue';
 import CloseButton from '../components/CloseButton.vue';
-import Contact from '../components/Contact.vue';
-import ContactList from '../components/ContactList.vue';
-import ContactShortcuts from '../components/ContactShortcuts.vue';
 import Copyable from '../components/Copyable.vue';
 import CopyableField from '../components/CopyableField.vue';
 import FiatAmount from '../components/FiatAmount.vue';
 import Identicon from '../components/Identicon.vue';
 import LabelInput from '../components/LabelInput.vue';
 import Wallet from '../components/Wallet.vue';
-import WalletList from '../components/WalletList.vue';
-import WalletMenu from '../components/WalletMenu.vue';
 import PaymentInfoLine from '../components/PaymentInfoLine.vue';
 import QrCode from '../components/QrCode.vue';
 import QrScanner from '../components/QrScanner.vue';
 import SelectBar from '../components/SelectBar.vue';
-import SendTx from '../components/SendTx.vue';
 import SmallPage from '../components/SmallPage.vue';
 import Timer from '../components/Timer.vue';
 import Tooltip from '../components/Tooltip.vue';
@@ -42,7 +35,6 @@ import PageHeader from '../components/PageHeader.vue';
 import PageBody from '../components/PageBody.vue';
 import PageFooter from '../components/PageFooter.vue';
 import LoadingSpinner from '../components/LoadingSpinner.vue';
-import MigrationWelcome from '../components/MigrationWelcome.vue';
 import * as Icons from '../components/Icons';
 
 function windowTemplate(slot) {
@@ -84,73 +76,61 @@ storiesOf('Basic', module)
     })
     .add('AmountInput', () => {
         const value = number('Value', 0);
+        const decimals = number('Decimals', 5);
         return {
             components: { AmountInput },
             data() {
                 return {
                     value,
+                    decimals,
                 };
             },
             methods: {
                 input: action('input'),
             },
-            template: `<AmountInput :value="value" @input="input"/>`,
+            template: `<AmountInput :value="value" :decimals="decimals" @input="input"/>`,
         };
     })
     .add('FiatAmount', () => {
         const amount = number('amount', 12345.67);
         const currency = text('currency', 'eur');
+        const maxRelativeDeviation = number('maxRelativeDeviation', .1);
         const locale = text('locale', navigator.language);
+        const hideDecimals = boolean('hideDecimals', false);
 
         return {
             components: {FiatAmount},
-            data: () => ({ amount, currency, locale }),
-            template: `<FiatAmount :amount="amount" :currency="currency" :locale="locale" />`,
+            data: () => ({ amount, currency, maxRelativeDeviation, locale, hideDecimals }),
+            template: `<FiatAmount :amount="amount" :currency="currency" :maxRelativeDeviation="maxRelativeDeviation"
+                :locale="locale" :hideDecimals="hideDecimals" />`,
         };
     })
-    .add('Icons', () => {
-        return {
-            components: Icons,
-            template: `
-                <div style="font-size: 40px; color: var(--nimiq-blue); padding: 16px;">
-                    <AlertTriangleIcon/>
-                    <ArrowLeftSmallIcon/>
-                    <ArrowLeftIcon/>
-                    <ArrowRightSmallIcon/>
-                    <ArrowRightIcon/>
-                    <BrowserLoginIcon/>
-                    <CaretRightSmallIcon/>
-                    <CheckmarkIcon/>
-                    <CloseIcon/>
-                    <ContactsIcon/>
-                    <CopyIcon/>
-                    <DownloadIcon/>
-                    <FaceNeutralIcon/>
-                    <FaceSadIcon/>
-                    <FireIcon/>
-                    <GearIcon/>
-                    <HexagonIcon/>
-                    <InfoCircleIcon/>
-                    <KeysIcon/>
-                    <LedgerIcon/>
-                    <LockLockedIcon/>
-                    <LockUnlockedIcon/>
-                    <LoginIcon/>
-                    <MenuDotsIcon/>
-                    <PaperEditIcon/>
-                    <PlusCircleIcon/>
-                    <QrCodeIcon/>
-                    <QuestionmarkIcon/>
-                    <ScanQrCodeIcon/>
-                    <SettingsIcon/>
-                    <ShredderIcon/>
-                    <SkullIcon/>
-                    <TransferIcon/>
-                    <ViewOffIcon/>
-                    <ViewIcon/>
-                </div>`,
-        };
-    })
+    .add('Icons', () => ({
+        components: { ...Icons, Tooltip },
+        functional: true,
+        render: (createElement) => {
+            const icons = Object.entries(Icons).map(([name, icon]) => createElement(Tooltip, {
+                props: {
+                    container: { $el: document.body },
+                    preferredPosition: 'bottom right',
+                    styles: {
+                        pointerEvents: 'none',
+                    },
+                },
+                style: { margin: '4px' },
+                scopedSlots: {
+                    trigger: () => createElement(icon),
+                    default: () => name,
+                }
+            }));
+            return createElement('div', {
+                style: {
+                    fontSize: '40px',
+                    padding: '16px',
+                }
+            }, icons);
+        },
+    }))
     .add('Identicon', () => {
         const address = text('address', 'NQ07 0000 00000000 0000 0000 0000 0000 0000');
         return {
@@ -162,13 +142,21 @@ storiesOf('Basic', module)
         };
     })
     .add('LabelInput', () => {
+        const disabled = boolean('Disabled', false);
+        const value = text('Value', '');
         return {
             components: {LabelInput},
+            data() {
+                return {
+                    value,
+                    disabled,
+                };
+            },
             methods: {
                 changed: action('changed'),
                 input: action('input'),
             },
-            template: `<LabelInput placeholder="Name this account..." @changed="changed" @input="input"/>`,
+            template: `<LabelInput @changed="changed" @input="input" v-model="value" :disabled="disabled"/>`,
         };
     })
     .add('LabelInput (restricted to 63 bytes)', () => {
@@ -228,45 +216,72 @@ storiesOf('Basic', module)
         }
     })
     .add('Tooltip', () => {
-        const fontSize = number('Font size (rem)', 3);
-        const useReference = boolean('Use referenceFrame', true);
+        const useContainer = boolean('Use container', true);
+        const preferredPosition = text('preferredPosition', 'top right');
+        const margin = object('margin (json)', {});
+        const autoWidth = boolean('autoWidth', false);
+        const disabled = boolean('disabled', false);
+        const theme = select('theme', Object.values(Tooltip.Themes), Tooltip.Themes.NORMAL);
+        const styles = object('styles (json)', {});
+        const fontSize = number('External font size (rem)', 3);
         return {
             data() {
                 return {
-                    refsLoaded: false,
-                    message: '',
+                    useContainer,
+                    preferredPosition,
+                    margin,
+                    autoWidth,
+                    disabled,
+                    theme,
+                    styles,
                     fontSize,
-                    useReference,
+                    refsLoaded: false,
+                    shown: false,
                 };
             },
             computed: {
-                target() {
+                container() {
                     if(this.refsLoaded)
-                        return this.$refs.target;
+                        return this.$refs.container;
                     else return null;
                 },
-                style() {
-                    return {
-                        fontSize: this.fontSize + 'rem',
-                    };
-                }
             },
             mounted() {
                 this.refsLoaded = true;
             },
-            components: { SmallPage, PageHeader, PageBody, Tooltip, Icons, Account, LabelInput },
-            template: windowTemplate`<SmallPage>
+            components: { SmallPage, PageHeader, PageBody, Tooltip, Account },
+            template: windowTemplate`<SmallPage :class="{ 'nq-blue-bg': theme === 'inverse' }">
                             <PageHeader>Test</PageHeader>
-                            <PageBody style="overflow-y: scroll; position:relative;" ref="target">
-                                <div style="height:300px"></div>
+                            <PageBody ref="container" style="overflow-y: scroll; background: rgba(127,127,127,.1)">
+                                <div style="height:320px"></div>
                                 <div style="max-width: 100%; display: flex; align-items: center;">
-                                    <LabelInput v-model="message" style="display: inline;"/>
-                                    <Tooltip :reference="useReference ? target : undefined" :style="style">
-                                        <div style="font-size: 2rem;">
+                                    <button class="nq-button-s" :class="[theme]" @click="$refs.tooltip.show()">
+                                        Show
+                                    </button>
+                                    &nbsp;or&nbsp;
+                                    <button class="nq-button-s" :class="[theme]" @click="$refs.tooltip.hide()">
+                                        hide
+                                    </button>
+                                    &nbsp;or hover me:&nbsp;
+                                    <Tooltip ref="tooltip"
+                                        :container="useContainer ? container : undefined"
+                                        :preferredPosition="preferredPosition"
+                                        :margin="margin"
+                                        :autoWidth="autoWidth"
+                                        :disabled="disabled"
+                                        :theme="theme"
+                                        :styles="styles"
+                                        :style="{ fontSize: fontSize + 'rem' }"
+                                        @show="shown = true"
+                                        @hide="shown = false">
+                                        <div style="font-size: 2rem; min-width: 25rem">
                                             This is the Tooltip I was talking about.
                                             <Account address="NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM" />
                                         </div>
                                     </Tooltip>
+                                </div>
+                                <div>
+                                    Shown: {{shown}}
                                 </div>
                                 <div style="height:3000px"></div>
                             </PageBody>
@@ -308,6 +323,7 @@ storiesOf('Components', module)
         const disableContracts = boolean('disableContracts', false);
         const disabled = boolean('disabled', false);
         const disabledAddress = text('blacklist address', 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1');
+        const tooltipProps = object('tooltipProps (json)', {});
         return {
             components: {AccountList},
             methods: {
@@ -346,11 +362,12 @@ storiesOf('Components', module)
                     editable,
                     disableContracts,
                     disabled,
+                    tooltipProps,
                 };
             },
             template: `<AccountList @account-selected="accountSelected" :accounts="accounts" walletId="helloworld1"
                 :minBalance="minBalance" :decimals="decimals" :editable="editable" :disableContracts="disableContracts"
-                :disabled="disabled" :disabledAddresses="[disabledAddress]" />`
+                :disabled="disabled" :disabledAddresses="[disabledAddress]" :tooltipProps="tooltipProps" />`
         };
     })
     .add('AccountSelector', () => {
@@ -364,13 +381,14 @@ storiesOf('Components', module)
         const disableLegacyAccounts = boolean('disableLegacyAccounts', false);
         const disableBip39Accounts = boolean('disableBip39Accounts', false);
         const disableLedgerAccounts = boolean('disableLedgerAccounts', false);
+        const highlightBitcoinAccounts = boolean('highlightBitcoinAccounts', true);
         const allowLogin = boolean('allowLogin', true);
         const disabledAddress = text('blacklist address', 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1');
 
         const demoData = {
             wallets: [
                 {
-                    id: 'helloworld',
+                    id: 'bip39-wallet-id',
                     label: 'Keyguard Wallet',
                     type: 2, // BIP39
                     accounts: [
@@ -378,13 +396,13 @@ storiesOf('Components', module)
                             userFriendlyAddress: 'NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM',
                             label: 'Primary account',
                             balance: 12023110,
-                            path: "44'/242'/0'/0'",
+                            path: "m/44'/242'/0'/0'",
                         },
                         {
                             userFriendlyAddress: 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1',
                             label: 'HODL account',
                             balance: 2712415141213,
-                            path: "44'/242'/0'/1'",
+                            path: "m/44'/242'/0'/1'",
                         },
                     ],
                     contracts: [
@@ -394,6 +412,7 @@ storiesOf('Components', module)
                             balance: 777777777,
                         },
                     ],
+                    btcXPub: 'zpub...',
                 },
             ],
             minBalance,
@@ -402,13 +421,14 @@ storiesOf('Components', module)
             disableLegacyAccounts,
             disableBip39Accounts,
             disableLedgerAccounts,
+            highlightBitcoinAccounts,
             allowLogin,
             disabledAddress
         };
 
         if (demoType === 'multiple-accounts') {
             demoData.wallets.unshift({
-                id: 'helloword2',
+                id: 'ledger-wallet-id',
                 label: 'Ledger Wallet',
                 type: 3, // LEDGER
                 accounts: [
@@ -416,6 +436,21 @@ storiesOf('Components', module)
                         userFriendlyAddress: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
                         label: 'My Ledger Account',
                         balance: 9876543210,
+                        path: "44'/242'/0'/0'",
+                    }
+                ],
+                contracts: [],
+                btcXPub: 'zpub...',
+            });
+            demoData.wallets.unshift({
+                id: 'legacy-wallet-id',
+                label: 'Legacy Wallet',
+                type: 1, // LEGACY
+                accounts: [
+                    {
+                        userFriendlyAddress: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
+                        label: 'My Ledger Account',
+                        balance: 876543210,
                         path: "44'/242'/0'/0'",
                     }
                 ],
@@ -433,29 +468,18 @@ storiesOf('Components', module)
             template: `<AccountSelector @account-selected="accountSelected" @login="login" :wallets="wallets"
                 :minBalance="minBalance" :decimals="decimals" :disableContracts="disableContracts"
                 :disableLegacyAccounts="disableLegacyAccounts" :disableBip39Accounts="disableBip39Accounts"
-                :disableLedgerAccounts="disableLedgerAccounts" :allowLogin="allowLogin"
-                :disabledAddresses="[disabledAddress]" />`
-        };
-    })
-    .add('Address', () => {
-        const address = text('address', 'NQ07 0000 00000000 0000 0000 0000 0000 0000');
-        return {
-            components: {Address},
-            data() {
-                return { address };
-            },
-            template: `<Address :address="address"/>`,
+                :disableLedgerAccounts="disableLedgerAccounts" :highlightBitcoinAccounts="highlightBitcoinAccounts"
+                :allowLogin="allowLogin" :disabledAddresses="[disabledAddress]" />`
         };
     })
     .add('AddressDisplay', () => {
+        const address = text('address', 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE');
+        const copyable = boolean('copyable', false);
         return {
-            data() {
-                return {
-                    address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE',
-                };
-            },
+            data: () => ({ address, copyable }),
             components: {AddressDisplay},
-            template: `<AddressDisplay :address="address"/>`,
+            template: `<AddressDisplay :address="address" :copyable="copyable"
+                style="margin-top: 7rem; margin-left: 2rem;" />`,
         };
     })
     .add('AddressInput', () => {
@@ -467,8 +491,12 @@ storiesOf('Components', module)
                     lastValidAddress: null,
                 };
             },
+            methods: {
+                input: action('input'),
+                paste: action('paste'),
+            },
             template: `<div>
-                <AddressInput v-model="address" @address="lastValidAddress = $event" />
+                <AddressInput v-model="address" @input="input" @address="lastValidAddress = $event" @paste="paste" />
                 <div>Current address: {{ address }}</div>
                 <div>valid?: {{ address === lastValidAddress }}</div>
             </div>`,
@@ -529,16 +557,6 @@ storiesOf('Components', module)
             template: `<AccountRing :addresses="addresses" :animate="true"/>`,
         };
     })
-    .add('AmountWithDetails', () => {
-        const amount = number('amount', 199862);
-        const networkFee = number('networkFee', 138);
-        const networkFeeEditable = boolean('networkFeeEditable', false);
-        const digits = number('digits', 2, {range: true, min: 0, max: 5, step: 1});
-        return {
-            components: {AmountWithDetails},
-            template: `<div style="padding-left: 20rem"><AmountWithDetails :decimals="${digits}" :amount="${amount}" :networkFee="${networkFee}" :networkFeeEditable="${networkFeeEditable}"/></div>`,
-        };
-    })
     .add('AmountWithFee',() => {
         const maxBalance = number('Maximum balance', 102000000);
         const amountAndFee = object('Amount and Fee', {amount: 100000, fee: 0, isValid: true});
@@ -555,7 +573,7 @@ storiesOf('Components', module)
         }
     })
     .add('BottomOverlay', () => {
-        const theme = select('theme', ['dark', 'light'], 'dark');
+        const theme = select('theme', ['dark', 'light', 'green'], 'dark');
         const showCloseButton = boolean('Show Close Button', true);
         return {
             components: {BottomOverlay},
@@ -620,129 +638,15 @@ storiesOf('Components', module)
             template: `<CloseButton class="top-right" @click="click"/>`,
         };
     })
-    .add('Contact', () => {
-        const label = text('label', 'Burn address');
-        const address = text('address', 'NQ07 0000 00000000 0000 0000 0000 0000 0000');
-        const showOptions = boolean('showOptions', false);
-        return {
-            components: {Contact},
-            methods: {
-                onSelect: action('select'),
-                onChange: action('change'),
-                onDelete: action('delete'),
-            },
-            data() {
-                return { address };
-            },
-            template: `<Contact label="${label}" :address="address" :show-options="${showOptions}" @select="onSelect" @change="onChange" @delete="onDelete"/>`,
-        };
-    })
-    .add('ContactList', () => {
-        // setup knobs
-        const contacts = object('Contacts', [{
-            label: 'Nimiq Bar',
-            address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
-        }, {
-            label: 'Nimiq Shop',
-            address: 'NQ26 XM1G BFAD PACE R5L0 C85L 6143 FD8L 82U9',
-        }, {
-            label: 'Nimiq Foundation',
-            address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF',
-        }, {
-            label: 'Nimiq Charity',
-            address: 'NQ19 YG54 46TX EHGQ D2R2 V8XA JX84 UFG0 S0MC',
-        }]);
-
-        return {
-            components: { ContactList },
-            data: () => ({
-                contacts
-            }),
-            methods: {
-                onSelect: action('select'),
-                onSet: action('set'),
-                onRemove: action('remove'),
-                onNotification: action('notification'),
-                addNewContact() {
-                    this.$refs.contactList.addNewContact();
-                },
-                abortNewContact() {
-                    this.$refs.contactList.abortNewContact();
-                },
-                toggleManaging() {
-                    this.$refs.contactList.toggleManaging();
-                },
-                exportContacts() {
-                    this.$refs.contactList.export();
-                },
-                importContacts() {
-                    this.$refs.contactList.import();
-                },
-                clearSearch() {
-                    this.$refs.contactList.clearSearch();
-                },
-                reset() {
-                    this.$refs.contactList.reset();
-                },
-            },
-            template: `
-                <div>
-                    <ContactList ref="contactList" :contacts="contacts" @select-contact="onSelect" @set-contact="onSet"
-                        @remove-contact="onRemove" @notification="onNotification"></ContactList>
-                    <hr>
-                    <!--
-                    note: while knobs also offers the functionality to add buttons to the knobs panel, the preview
-                    iframe gets completely rerendered whenever one is pressed, destroying the old ContactList instance.
-                    Therefore, we create our own buttons in the template to trigger methods on the current
-                    ContactList instance.
-                    -->
-                    <button class="nq-button" @click="addNewContact">Add New Contact</button>
-                    <button class="nq-button" @click="abortNewContact">Abort New Contact</button>
-                    <button class="nq-button" @click="toggleManaging">Toggle Managing</button>
-                    <button class="nq-button" @click="exportContacts">Export</button>
-                    <button class="nq-button" @click="importContacts">Import</button>
-                    <button class="nq-button" @click="clearSearch">Clear Search</button>
-                    <button class="nq-button" @click="reset">Reset</button>
-                </div>
-            `
-        };
-    })
-    .add('ContactShortcuts', () => {
-        // setup knobs
-        const contacts = object('Contacts', [{
-            label: 'Nimiq Bar',
-            address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
-        }, {
-            label: 'Nimiq Shop',
-            address: 'NQ26 XM1G BFAD PACE R5L0 C85L 6143 FD8L 82U9',
-        }, {
-            label: 'Nimiq Foundation',
-            address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF',
-        }, {
-            label: 'Nimiq Charity',
-            address: 'NQ19 YG54 46TX EHGQ D2R2 V8XA JX84 UFG0 S0MC',
-        }]);
-
-        return {
-            components: { ContactShortcuts },
-            data: () => ({
-                contacts
-
-            }),
-            methods: {
-            },
-            template: `<ContactShortcuts :contacts="contacts"/>`,
-        };
-    })
     .add('Copyable', () => ({
         components: { Copyable },
         template: `
             <div>
-                <Copyable ref="copyable">I'm a text you can copy.</Copyable>
+                <Copyable ref="copyable" style="margin-top: 7rem;">I'm a text you can copy.</Copyable>
                 <Copyable>
                     I'm a copyable text<br>with <b>child nodes</b>.
                 </Copyable>
-                <Copyable text="Surprise!!!" style="margin-top: 7rem">When you click me you get a surprise!</Copyable>
+                <Copyable text="Surprise!!!">When you click me you get a surprise!</Copyable>
                 <button class="nq-button" style="margin-top: 7rem; margin-left: 1rem" @click="$refs.copyable.copy()">
                     Click me to trigger a copy via code
                 </button>
@@ -755,20 +659,22 @@ storiesOf('Components', module)
             a: 'Value a',
             b: 'Lorem ipsum dolor sit amet, consectetur adipiscing',
         });
+        const small = boolean('small', false);
 
         return {
             components: {CopyableField},
-            data: () => ({ label, value }),
+            data: () => ({ label, value, small }),
             template: `
                 <CopyableField
                     :label="label"
                     :value="value"
+                    :small="small"
                     style="color: white; background: var(--nimiq-blue-bg); width: 50rem"
                 />
             `,
         };
     })
-    .add('Wallet', () => {
+    .add('Wallet (deprecated)', () => {
         const label = text('label', 'Main Wallet');
         const id = text('id', '47ee824fc910');
         const type = select('type', ['legacy', 'bip39', 'ledger'], 'bip39');
@@ -812,175 +718,6 @@ storiesOf('Components', module)
                             />`
         };
     })
-    .add('WalletList', () => {
-        const activeWalletId = select('Active Wallet', ['account_1', 'account_2', 'account_3', 'account_4'], 'account_1');
-        return {
-            components: {WalletList},
-            methods: {
-                walletSelected: action('wallet-selected'),
-                exportFile: action('export-file'),
-                exportWords: action('export-words'),
-                rename: action('rename'),
-                changePassword: action('change-password'),
-                logout: action('logout'),
-            },
-            data() {
-                return {
-                    activeWalletId: activeWalletId,
-                    wallets: [
-                        {
-                            id: 'account_1',
-                            label: 'My old Account',
-                            accounts: [
-                                {address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE'},
-                            ],
-                            type: 1, // LEGACY
-                            fileExported: false,
-                            wordsExported: true,
-                            balance: 300000 * 1e5,
-                        }, {
-                            id: 'account_2',
-                            label: 'Standard Account',
-                            accounts: [
-                                {address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE'},
-                                {address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK'},
-                                {address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF'},
-                            ],
-                            type: 2, // BIP39
-                            fileExported: true,
-                            wordsExported: false,
-                            balance: 101 * 1e5,
-                        }, {
-                            id: 'account_3',
-                            label: 'Keyguard Account',
-                            accounts: [
-                                {address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE'},
-                                {address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK'},
-                                {address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF'},
-                            ],
-                            type: 2, // BIP39
-                            fileExported: false,
-                            wordsExported: true,
-                            balance: 101 * 1e5,
-                        }, {
-                            id: 'account_4',
-                            label: 'Ledger Account',
-                            accounts: [
-                                {address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE'},
-                                {address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK'},
-                                {address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF'},
-                            ],
-                            type: 3, // LEDGER
-                            balance: 553452 * 1e5,
-                        }
-                    ]
-                };
-            },
-            template: `<WalletList
-                :wallets="wallets"
-                :activeWalletId="activeWalletId"
-                @wallet-selected="walletSelected"
-                @export-file="exportFile"
-                @export-words="exportWords"
-                @rename="rename"
-                @change-password="changePassword"
-                @logout="logout"/>
-            `,
-        };
-    })
-    .add('WalletMenu', () => {
-        const activeWalletId = select('Active Wallet', ['account_0', 'account_1', 'account_2', 'account_3', 'account_4'], 'account_3');
-        return {
-            components: {WalletMenu},
-            methods: {
-                walletSelected: action('wallet-selected'),
-                exportFile: action('export-file'),
-                exportWords: action('export-words'),
-                rename: action('rename'),
-                changePassword: action('change-password'),
-                logout: action('logout'),
-                settings: action('settings'),
-                addAccount: action('add-account'),
-            },
-            data() {
-                return {
-                    activeWalletId: activeWalletId,
-                    wallets: [
-                        {
-                            id: 'account_0',
-                            label: 'NIM Activation',
-                            accounts: [
-                                {address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF'},
-                            ],
-                            type: 1, // LEGACY
-                            fileExported: false,
-                            wordsExported: true,
-                            balance: 300000 * 1e5,
-                        }, {
-                            id: 'account_1',
-                            label: 'My first account',
-                            accounts: [
-                                {address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE'},
-                            ],
-                            type: 1, // LEGACY
-                            fileExported: false,
-                            wordsExported: true,
-                            balance: 300000 * 1e5,
-                        }, {
-                            id: 'account_2',
-                            label: 'Oversized account label',
-                            accounts: [
-                                {address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF'},
-                                {address: 'NQ21 SM4X BC54 M72X H53H U0QH BRU2 KBM9 MU39'},
-                            ],
-                            type: 2, // BIP39
-                            fileExported: true,
-                            wordsExported: false,
-                            balance: 202 * 1e5,
-                        }, {
-                            id: 'account_3',
-                            label: 'My account',
-                            accounts: [
-                                {address: 'NQ36 V3GH CHUE RRDR 7619 HP76 465T CHQP 8UBC'},
-                                {address: 'NQ51 S9JC PS9V HH2U 7TX7 7JM7 DF7L HP8P SNTR'},
-                                {address: 'NQ67 E735 CV8L SB7C EEFC YMXR GY93 4DGV XNU0'},
-                                {address: 'NQ75 FDH0 ESFS 5RU2 KHBE 38H5 AMPE 10EC N5UB'},
-                                {address: 'NQ24 X1KN U7A9 QCQH EJYF YYB6 UCYG UAP5 UB5C'},
-                                {address: 'NQ82 83XN EBQE V75B 8P23 SKBE YD3L 615U D8RG'},
-                                {address: 'NQ82 83XN EBQE V75B 8P23 SKBE YD3L 615U D8RG'},
-                            ],
-                            type: 2, // BIP39
-                            fileExported: false,
-                            wordsExported: true,
-                            balance: 1000000 * 1e5,
-                        }, {
-                            id: 'account_4',
-                            label: 'Ledger Account',
-                            accounts: [
-                                {address: 'NQ27 CSF9 0677 EJHY NE4G 55EQ R84L 09E0 KJT3'},
-                            ],
-                            type: 3, // LEDGER
-                            fileExported: false,
-                            wordsExported: false,
-                            balance: 553452 * 1e5,
-                        }
-                    ]
-                };
-            },
-            template: windowTemplate(`<WalletMenu
-                :wallets="wallets"
-                :active-wallet-id="activeWalletId"
-                @wallet-selected="walletSelected"
-                @export-file="exportFile"
-                @export-words="exportWords"
-                @rename="rename"
-                @change-password="changePassword"
-                @logout="logout"
-                @settings="settings"
-                @add-account="addAccount"
-            />`)
-        };
-    })
     .add('PaymentInfoLine', () => {
         const theme = select('theme', Object.values(PaymentInfoLine.Themes), PaymentInfoLine.Themes.NORMAL);
         const cryptoAmount = {
@@ -993,19 +730,26 @@ storiesOf('Components', module)
             currency: text('fiatAmount.currency', 'EUR'),
         };
         if (fiatAmount.amount < 0) fiatAmount = null;
+        let vendorMarkup = number('vendor markup (-1 for unset)', -1);
+        if (vendorMarkup === -1) vendorMarkup = null;
+        let networkFee = number('network fee (-1 for unset)', -1);
+        if (networkFee === -1) networkFee = null;
         const origin = text('origin', 'https://shop.nimiq.com');
         const address = text('address', 'NQ07 0000 00000000 0000 0000 0000 0000 0000');
         const shopLogo = text('shopLogo', 'https://pbs.twimg.com/profile_images/1150268408287698945/x4f3ITmx_400x400.png');
         let startTime = number('startTime', Date.now());
-        let expires = number('expires (-1 for unset)', -1);
-        if (expires < 0) expires = null;
+        let endTime = number('endTime (-1 for unset)', -1);
+        if (endTime === -1) endTime = null;
 
         return {
             components: {PaymentInfoLine},
-            data: () => ({ cryptoAmount, fiatAmount, origin, address, shopLogo, startTime, expires, theme }),
+            data: () => ({
+                cryptoAmount, fiatAmount, vendorMarkup, networkFee, origin, address, shopLogo, startTime, endTime, theme
+            }),
             template: `<div style="max-width: 420px" :class="{ 'nq-blue-bg': theme === 'inverse' }">
                 <PaymentInfoLine :cryptoAmount="cryptoAmount" :fiatAmount="fiatAmount"
-                :origin="origin" :address="address" :shopLogoUrl="shopLogo" :startTime="startTime" :expires="expires"
+                :vendorMarkup="vendorMarkup" :networkFee="networkFee"
+                :origin="origin" :address="address" :shopLogoUrl="shopLogo" :startTime="startTime" :endTime="endTime"
                 :theme="theme"/>
             </div>`,
         };
@@ -1104,13 +848,19 @@ storiesOf('Components', module)
             endTime: 0,
             timerEnded: false,
             theme: select('theme', Object.values(Timer.Themes), Timer.Themes.NORMAL),
+            alwaysShowTime: boolean('alwaysShowTime', true),
+            tooltipProps: object('tooltipProps (json)', {}),
+            maxUnit: select('maxUnit', [undefined, 'second', 'minute', 'hour', 'day'], undefined),
         }),
         template: `
             <div>
-                <div :class="{ 'nq-blue-bg': theme === 'inverse' }" style="display: flex; align-items: center; padding: 7rem 3rem 10rem 12rem">
-                    <Timer :startTime="startTime" :endTime="endTime" :theme="theme" @end="timerEnded = true" style="margin: 2rem"/>
-                    <Timer :startTime="startTime" :endTime="endTime" :theme="theme" style="width: 10rem; margin: 2rem"/>
-                    <Timer :startTime="startTime" :endTime="endTime" :theme="theme" style="width: 20rem; margin: 2rem"/>
+                <div :class="{ 'nq-blue-bg': theme === 'inverse' || theme === 'white' }" style="display: flex; align-items: center; padding: 7rem 3rem 10rem 12rem">
+                    <Timer :startTime="startTime" :endTime="endTime" :theme="theme" :alwaysShowTime="alwaysShowTime"
+                        :tooltipProps="tooltipProps" @end="timerEnded = true" style="margin: 2rem" :maxUnit="maxUnit"/>
+                    <Timer :startTime="startTime" :endTime="endTime" :theme="theme" :alwaysShowTime="alwaysShowTime"
+                        :tooltipProps="tooltipProps" style="width: 10rem; margin: 2rem" :maxUnit="maxUnit"/>
+                    <Timer :startTime="startTime" :endTime="endTime" :theme="theme" :alwaysShowTime="alwaysShowTime"
+                        :tooltipProps="tooltipProps" style="width: 20rem; margin: 2rem" :maxUnit="maxUnit"/>
                 </div>
                 <div v-if="startTime" style="margin: 1rem 2rem">Timer {{ timerEnded ? 'ended' : 'running' }}</div>
                 <div style="display: flex; flex-wrap: wrap; max-width: 95rem;">
@@ -1120,6 +870,7 @@ storiesOf('Components', module)
                     <button class="nq-button" @click="startTimer(3 * 60 * 1000)">Start 3m Timer</button>
                     <button class="nq-button" @click="startTimer(15 * 60 * 1000)">Start 15m Timer</button>
                     <button class="nq-button" @click="startTimer(60 * 60 * 1000)">Start 1h Timer</button>
+                    <button class="nq-button" @click="startTimer(2 * 60 * 60 * 1000)">Start 2h Timer</button>
                 </div>
             </div>
         `,
@@ -1182,103 +933,4 @@ storiesOf('Pages', module)
                 </small-page>
             `),
         };
-    })
-    .add('MigrationWelcome', () => {
-        const link = text('Link', 'https://medium.com/nimiq-network');
-        return {
-            components: {MigrationWelcome},
-            data() {
-                return { link };
-            },
-            methods: {
-                finished: action('finished'),
-            },
-            template: windowTemplate(`<migration-welcome :link="link" @finished="finished"></migration-welcome>`),
-        };
-    })
-    .add('SendTx', () => {
-        const valueIsReadonly = boolean('Value is readonly', false);
-        const messageIsReadonly = boolean('Message is readonly', false);
-        const value = number('Value', 0);
-        const message = text('Message', '');
-        const isLoading = boolean('Loading?', false);
-        const contacts = object('Contacts', [{
-            label: 'Nimiq Bar',
-            address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
-        }, {
-            label: 'Nimiq Shop',
-            address: 'NQ26 XM1G BFAD PACE R5L0 C85L 6143 FD8L 82U9',
-        }, {
-            label: 'Nimiq Charity Foundation',
-            address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF',
-        }, {
-            label: 'Nimiq Charity',
-            address: 'NQ19 YG54 46TX EHGQ D2R2 V8XA JX84 UFG0 S0MC',
-        }]);
-        const wallet = object('Wallet', {
-            id: 'helloworld',
-            label: 'Keyguard Wallet',
-            type: 2, // BIP39
-            accounts: new Map([
-                ['NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM', {
-                    userFriendlyAddress: 'NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM',
-                    label: 'Primary account',
-                    balance: 12023110,
-                    path: "44'/242'/0'/0'",
-                }],
-                ['NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1', {
-                    userFriendlyAddress: 'NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1',
-                    label: 'HODL account',
-                    balance: 2712415141213,
-                    path: "44'/242'/0'/1'",
-                }],
-            ]),
-            contracts: [
-                {
-                    userFriendlyAddress: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE',
-                    label: 'My Vesting Contract',
-                    balance: 777777777,
-                },
-            ],
-        });
-        const addresses = [...wallet.accounts.values()]
-            .map(addr => ({address: addr.userFriendlyAddress, label: addr.label}))
-            .concat(wallet.contracts.map(contr => ({address: contr.userFriendlyAddress, label: contr.label})));
-        return {
-            components: { SendTx },
-            data: () => ({
-                contacts,
-                wallet,
-                addresses,
-                value,
-                valueIsReadonly,
-                message,
-                messageIsReadonly,
-                isLoading,
-            }),
-            methods: {
-                contactAdded: action('contactAdded'),
-                sendTx: action('sendTx'),
-                login: action('login'),
-                scanQr: action('scanQr'),
-                createCashlink: action('createCashlink'),
-            },
-            template:  windowTemplate(`<SendTx
-                :contacts="contacts"
-                :wallet="wallet"
-                :addresses="addresses"
-                :validityStartHeight="987654"
-                :value="value"
-                :valueIsReadonly="valueIsReadonly"
-                :message="message"
-                :messageIsReadonly="messageIsReadonly"
-                :is-loading="isLoading"
-                @login="login"
-                @scan-qr="scanQr"
-                @send-tx="sendTx"
-                @contact-added="contactAdded"
-                @create-cashlink="createCashlink"
-                />`),
-        };
     });
-
