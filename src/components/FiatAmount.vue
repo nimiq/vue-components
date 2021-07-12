@@ -37,6 +37,7 @@ export default class FiatAmount extends Vue {
     })
     public locale?: string;
 
+    // If set takes precedence over maxRelativeDeviation.
     @Prop({
         type: Boolean,
         default: false,
@@ -82,6 +83,7 @@ export default class FiatAmount extends Vue {
             formattingOptions.minimumFractionDigits = decimals ? decimals.length + 1 : 1;
         } while (relativeDeviation > this.maxRelativeDeviation
             && formattingOptions.minimumFractionDigits <= 20 // maximum allowed value for minimumFractionDigits
+            && !this.hideDecimals
         );
 
         // apply integer grouping
