@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[110],{1399:function(e){e.exports={day:"день",days:"днів",hour:"година",hours:"годин",minute:"хвилина",minutes:"хвилин",second:"секунда",seconds:"секунд","This offer expires in {timer}.":"Термін дії цієї пропозиції закінчується через {timer}."}}}]);
+//# sourceMappingURL=lang-uk-Timer-json.6c9423e6a15f0138adeb.bundle.js.map

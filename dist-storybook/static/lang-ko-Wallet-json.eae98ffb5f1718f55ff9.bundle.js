@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[45],{1331:function(e){e.exports={"Change Password":"비밀번호 변경","Create Backup":"백업 생성",Logout:"로그아웃",Rename:"이름 바꾸기","Save Login File":"로그인 파일 저장"}}}]);
-//# sourceMappingURL=lang-ko-Wallet-json.eae98ffb5f1718f55ff9.bundle.js.map

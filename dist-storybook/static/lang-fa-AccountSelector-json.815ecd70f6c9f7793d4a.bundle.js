@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[25],{1314:function(o){o.exports={"{type} accounts cannot be used for this operation.":" حساب‌های کاربری {type} نمی توانند برای این عملیات استفاده شوند.",Legacy:"نسخه ی قبلی","Login to another account":"ورود به دیگر حساب کاربری"}}}]);
+//# sourceMappingURL=lang-fa-AccountSelector-json.815ecd70f6c9f7793d4a.bundle.js.map

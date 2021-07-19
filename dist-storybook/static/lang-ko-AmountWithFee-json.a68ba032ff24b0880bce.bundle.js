@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[37],{1323:function(n){n.exports={fee:"수수료","Insufficient balance":"잔고 부족"}}}]);
-//# sourceMappingURL=lang-ko-AmountWithFee-json.a68ba032ff24b0880bce.bundle.js.map

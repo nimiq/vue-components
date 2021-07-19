@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[66],{1352:function(e){e.exports={day:"天",days:"天",hour:"时",hours:"时",minute:"分",minutes:"分",second:"秒",seconds:"秒","This offer expires in {timer}.":"此价格将在 {timer} 后过期"}}}]);
-//# sourceMappingURL=lang-zh-Timer-json.059db3e82e750e6525b8.bundle.js.map
