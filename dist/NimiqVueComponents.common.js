@@ -1749,97 +1749,6 @@ module.exports = !!Object.getOwnPropertySymbols && !fails(function () {
 
 /***/ }),
 
-/***/ "4d63":
-/***/ (function(module, exports, __webpack_require__) {
-
-var DESCRIPTORS = __webpack_require__("83ab");
-var global = __webpack_require__("da84");
-var isForced = __webpack_require__("94ca");
-var inheritIfRequired = __webpack_require__("7156");
-var defineProperty = __webpack_require__("9bf2").f;
-var getOwnPropertyNames = __webpack_require__("241c").f;
-var isRegExp = __webpack_require__("44e7");
-var getFlags = __webpack_require__("ad6d");
-var stickyHelpers = __webpack_require__("9f7f");
-var redefine = __webpack_require__("6eeb");
-var fails = __webpack_require__("d039");
-var setInternalState = __webpack_require__("69f3").set;
-var setSpecies = __webpack_require__("2626");
-var wellKnownSymbol = __webpack_require__("b622");
-
-var MATCH = wellKnownSymbol('match');
-var NativeRegExp = global.RegExp;
-var RegExpPrototype = NativeRegExp.prototype;
-var re1 = /a/g;
-var re2 = /a/g;
-
-// "new" should create a new object, old webkit bug
-var CORRECT_NEW = new NativeRegExp(re1) !== re1;
-
-var UNSUPPORTED_Y = stickyHelpers.UNSUPPORTED_Y;
-
-var FORCED = DESCRIPTORS && isForced('RegExp', (!CORRECT_NEW || UNSUPPORTED_Y || fails(function () {
-  re2[MATCH] = false;
-  // RegExp constructor can alter flags and IsRegExp works correct with @@match
-  return NativeRegExp(re1) != re1 || NativeRegExp(re2) == re2 || NativeRegExp(re1, 'i') != '/a/i';
-})));
-
-// `RegExp` constructor
-// https://tc39.github.io/ecma262/#sec-regexp-constructor
-if (FORCED) {
-  var RegExpWrapper = function RegExp(pattern, flags) {
-    var thisIsRegExp = this instanceof RegExpWrapper;
-    var patternIsRegExp = isRegExp(pattern);
-    var flagsAreUndefined = flags === undefined;
-    var sticky;
-
-    if (!thisIsRegExp && patternIsRegExp && pattern.constructor === RegExpWrapper && flagsAreUndefined) {
-      return pattern;
-    }
-
-    if (CORRECT_NEW) {
-      if (patternIsRegExp && !flagsAreUndefined) pattern = pattern.source;
-    } else if (pattern instanceof RegExpWrapper) {
-      if (flagsAreUndefined) flags = getFlags.call(pattern);
-      pattern = pattern.source;
-    }
-
-    if (UNSUPPORTED_Y) {
-      sticky = !!flags && flags.indexOf('y') > -1;
-      if (sticky) flags = flags.replace(/y/g, '');
-    }
-
-    var result = inheritIfRequired(
-      CORRECT_NEW ? new NativeRegExp(pattern, flags) : NativeRegExp(pattern, flags),
-      thisIsRegExp ? this : RegExpPrototype,
-      RegExpWrapper
-    );
-
-    if (UNSUPPORTED_Y && sticky) setInternalState(result, { sticky: sticky });
-
-    return result;
-  };
-  var proxy = function (key) {
-    key in RegExpWrapper || defineProperty(RegExpWrapper, key, {
-      configurable: true,
-      get: function () { return NativeRegExp[key]; },
-      set: function (it) { NativeRegExp[key] = it; }
-    });
-  };
-  var keys = getOwnPropertyNames(NativeRegExp);
-  var index = 0;
-  while (keys.length > index) proxy(keys[index++]);
-  RegExpPrototype.constructor = RegExpWrapper;
-  RegExpWrapper.prototype = RegExpPrototype;
-  redefine(global, 'RegExp', RegExpWrapper);
-}
-
-// https://tc39.github.io/ecma262/#sec-get-regexp-@@species
-setSpecies('RegExp');
-
-
-/***/ }),
-
 /***/ "4d64":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6698,7 +6607,7 @@ var es_array_concat = __webpack_require__("99af");
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.ends-with.js
 var es_string_ends_with = __webpack_require__("8a79");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"e36cd04a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CircleSpinner.vue?vue&type=template&id=2bc59fa8&scoped=true&functional=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"72553ca7-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CircleSpinner.vue?vue&type=template&id=2bc59fa8&scoped=true&functional=true&
 var render = function (_h,_vm) {var _c=_vm._c;return _c('svg',{staticClass:"circle-spinner",attrs:{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 18 18","width":"18","height":"18","fill":"none","stroke-width":"2","stroke-linecap":"round"}},[_c('path',{attrs:{"stroke":"#0582CA","d":"M9,1c4.42,0,8,3.58,8,8"}}),_c('path',{attrs:{"stroke":"#1F2348","opacity":".3","d":"M4.27,2.56C2.29,4.01,1,6.35,1,9c0,4.42,3.58,8,8,8c2.65,0,4.99-1.29,6.44-3.27"}})])}
 var staticRenderFns = []
 
@@ -6828,7 +6737,7 @@ var component = normalizeComponent(
 )
 
 /* harmony default export */ var CircleSpinner = (component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"e36cd04a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CloseButton.vue?vue&type=template&id=f70dd1ae&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"72553ca7-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CloseButton.vue?vue&type=template&id=f70dd1ae&scoped=true&
 var CloseButtonvue_type_template_id_f70dd1ae_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('button',{staticClass:"close-button nq-button-s",on:{"click":_vm.click,"mousedown":function($event){$event.preventDefault();}}},[_c('CloseIcon')],1)}
 var CloseButtonvue_type_template_id_f70dd1ae_scoped_true_staticRenderFns = []
 
@@ -7546,7 +7455,7 @@ var CloseButton_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_CloseButton = (CloseButton_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"e36cd04a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CopyableField.vue?vue&type=template&id=23ed6b92&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"72553ca7-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CopyableField.vue?vue&type=template&id=23ed6b92&scoped=true&
 var CopyableFieldvue_type_template_id_23ed6b92_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"copyable-field",class:{ small: _vm.small }},[(_vm.label)?_c('span',{staticClass:"nq-label"},[_vm._v(_vm._s(_vm.label))]):_vm._e(),_c('div',{staticClass:"copyable-field-content",class:{ 'simple-value': !_vm.isKeyedValue, copied: _vm.copied },on:{"click":_vm.copy}},[_c('div',{ref:"value-container",staticClass:"value-container",style:({ fontSize: _vm.fontSize+'rem' })},[_c('span',{ref:"value",staticClass:"value"},[_vm._v(" "+_vm._s(_vm.isKeyedValue ? _vm.value[_vm.currentKey] : _vm.value)+" ")])]),_vm._l(((_vm.isKeyedValue ? Object.keys(_vm.value) : [])),function(key){return _c('button',{staticClass:"nq-button-s",class:{
                 inverse: _vm.currentKey === key,
                 'single-key': _vm.hasSingleKey,
@@ -8217,21 +8126,18 @@ var CopyableField_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_CopyableField = (CopyableField_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"e36cd04a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/FiatAmount.vue?vue&type=template&id=d41a7aea&
-var FiatAmountvue_type_template_id_d41a7aea_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"fiat-amount"},[_vm._v(" "+_vm._s(_vm._currencyString)+" ")])}
-var FiatAmountvue_type_template_id_d41a7aea_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"72553ca7-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/FiatAmount.vue?vue&type=template&id=4e1e2a40&
+var FiatAmountvue_type_template_id_4e1e2a40_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"fiat-amount"},[_vm._v(" "+_vm._s(_vm._currencyString)+" ")])}
+var FiatAmountvue_type_template_id_4e1e2a40_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/FiatAmount.vue?vue&type=template&id=d41a7aea&
+// CONCATENATED MODULE: ./src/components/FiatAmount.vue?vue&type=template&id=4e1e2a40&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.number.constructor.js
 var es_number_constructor = __webpack_require__("a9e3");
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.number.parse-float.js
 var es_number_parse_float = __webpack_require__("c35a");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.regexp.constructor.js
-var es_regexp_constructor = __webpack_require__("4d63");
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.match.js
 var es_string_match = __webpack_require__("466d");
@@ -8291,78 +8197,361 @@ function _slicedToArray(arr, i) {
 }
 // CONCATENATED MODULE: ./node_modules/@nimiq/utils/dist/module/CurrencyInfo.js
 class CurrencyInfo {
-    /**
-     * @param {string} currencyCode 3-letter currency code
-     * @param {number} [decimals] How many decimal positions the currency has
-     * @param {string} [name] The currency's name, e.g. euros
-     * @param {string} [symbol] The currency's symbol, e.g. € or CA$
-     * @throws If currency code is not a well-formed currency code.
-     */
-    constructor(currencyCode, decimals, name, symbol) {
+    constructor(currencyCode, decimalsOrLocaleOrOptions, name, symbol) {
+        let decimals;
+        let locale;
+        if (typeof decimalsOrLocaleOrOptions === 'number') {
+            decimals = decimalsOrLocaleOrOptions;
+        }
+        else if (typeof decimalsOrLocaleOrOptions === 'string') {
+            locale = decimalsOrLocaleOrOptions;
+        }
+        else if (typeof decimalsOrLocaleOrOptions === 'object') {
+            ({ decimals, name, symbol, locale } = decimalsOrLocaleOrOptions);
+        }
+        this.code = currencyCode.toUpperCase();
+        // Get the country from the currency code which is typically (but not necessarily) the first two letters,
+        // see https://en.wikipedia.org/wiki/ISO_4217#National_currencies.
+        const currencyCountry = this.code.substring(0, 2);
+        const nameLocalesToTry = [
+            ...(locale ? [locale] : []),
+            `${navigator.language.substring(0, 2)}-${currencyCountry}`,
+            navigator.language,
+            'en-US',
+        ];
+        // also normalizes the locales
+        [this.locale] = 'DisplayNames' in Intl
+            // @ts-ignore TODO use proper types once https://github.com/microsoft/TypeScript/pull/44022 is available
+            ? Intl.DisplayNames.supportedLocalesOf(nameLocalesToTry)
+            : Intl.NumberFormat.supportedLocalesOf(nameLocalesToTry);
+        const isAutoGenerated = decimals === undefined && name === undefined && symbol === undefined;
+        const cacheKey = `${this.code} ${this.locale}`;
+        const cachedCurrencyInfo = CurrencyInfo.CACHED_AUTO_GENERATED_CURRENCY_INFOS[cacheKey];
+        if (isAutoGenerated && cachedCurrencyInfo) {
+            return cachedCurrencyInfo;
+        }
+        let formattedString;
         const formatterOptions = {
             style: 'currency',
             currency: currencyCode,
             useGrouping: false,
+            numberingSystem: 'latn',
         };
-        this.code = currencyCode.toUpperCase();
-        // Note that toLocaleString throws for not well-formatted currency codes
-        // (see https://www.ecma-international.org/ecma-402/1.0/#sec-6.3.1).
-        // Using regex parsing instead of NumberFormat.formatToParts which has less browser support.
-        let regexMatch = (0).toLocaleString('en-US', { currencyDisplay: 'symbol', ...formatterOptions }).match(CurrencyInfo.NUMBER_FORMAT_REGEX);
-        this.decimals = decimals !== undefined
-            ? decimals
-            : regexMatch
-                ? (regexMatch[2] || '').length
-                : 2;
-        this.symbol = symbol !== undefined
-            ? symbol
-            : CurrencyInfo.EXTRA_SYMBOLS[this.code] || (regexMatch && regexMatch[1]) || this.code;
         if (name !== undefined) {
             this.name = name;
-            return;
         }
-        regexMatch = (0).toLocaleString('en-US', { currencyDisplay: 'name', ...formatterOptions }).match(CurrencyInfo.NUMBER_FORMAT_REGEX);
-        this.name = regexMatch ? regexMatch[3] || this.code : this.code;
+        else if (cachedCurrencyInfo) {
+            this.name = cachedCurrencyInfo.name;
+        }
+        else if ('DisplayNames' in Intl) {
+            // Use DisplayNames if available as it provides better names.
+            // @ts-ignore TODO use proper types once https://github.com/microsoft/TypeScript/pull/44022 is merged
+            this.name = new Intl.DisplayNames(this.locale, { type: 'currency' }).of(currencyCode);
+        }
+        else {
+            // Note that toLocaleString throws for not well-formatted currency codes
+            // (see https://www.ecma-international.org/ecma-402/1.0/#sec-6.3.1).
+            formattedString = (0).toLocaleString(this.locale, { currencyDisplay: 'name', ...formatterOptions });
+            // Using regex parsing instead of NumberFormat.formatToParts which has less browser support.
+            this.name = formattedString.replace(CurrencyInfo.NUMBER_REGEX, '').trim();
+        }
+        if (symbol !== undefined) {
+            this.symbol = symbol;
+        }
+        else if (cachedCurrencyInfo) {
+            this.symbol = cachedCurrencyInfo.symbol;
+        }
+        else {
+            const extraSymbol = CurrencyInfo.EXTRA_SYMBOLS[this.code];
+            if (typeof extraSymbol === 'string') {
+                this.symbol = extraSymbol;
+            }
+            else if (Array.isArray(extraSymbol)) {
+                // Use right-to-left currency symbols only if a right-to-left locale was used and explicitly requested.
+                const useRightToLeft = this.locale === locale
+                    && CurrencyInfo.RIGHT_TO_LEFT_DETECTION_REGEX.test(this.name);
+                this.symbol = extraSymbol[useRightToLeft ? 1 : 0];
+            }
+            else {
+                formattedString = (0).toLocaleString(
+                // Unless a locale was specifically requested, use `en-${currencyCountry}` for the symbol detection
+                // instead of this.locale which is based on navigator.language, as the EXTRA_SYMBOLS have been
+                // created based on en.
+                [
+                    ...(locale ? [locale] : []),
+                    `en-${currencyCountry}`,
+                    'en',
+                ], { currencyDisplay: 'narrowSymbol', ...formatterOptions });
+                this.symbol = formattedString.replace(CurrencyInfo.NUMBER_REGEX, '').trim();
+            }
+        }
+        if (decimals !== undefined) {
+            this.decimals = decimals;
+        }
+        else if (cachedCurrencyInfo) {
+            this.decimals = cachedCurrencyInfo.decimals;
+        }
+        else if (CurrencyInfo.CUSTOM_DECIMAL_LESS_CURRENCIES.has(this.code)) {
+            this.decimals = 0;
+        }
+        else {
+            if (!formattedString) {
+                // As we only need the number, the used locale and currencyDisplay don't matter.
+                formattedString = (0).toLocaleString('en', formatterOptions);
+            }
+            const numberMatch = formattedString.match(CurrencyInfo.NUMBER_REGEX);
+            this.decimals = numberMatch ? (numberMatch[1] || '').length : 2;
+        }
+        if (isAutoGenerated) {
+            CurrencyInfo.CACHED_AUTO_GENERATED_CURRENCY_INFOS[cacheKey] = this;
+        }
     }
 }
+// This is a manually curated list which was created mainly from
+// https://en.wikipedia.org/wiki/List_of_circulating_currencies with help of the following script run
+// on that wikipedia page. Note that we don't just use the ISO 4217 list of currency codes directly, as
+// it includes some additional codes which are not actual fiat currency codes (see
+// https://en.wikipedia.org/wiki/ISO_4217#X_currencies). Also note that there are also already nicely
+// parsable npm packages like https://github.com/bengourley/currency-symbol-map/blob/master/map.js
+// or https://github.com/smirzaei/currency-formatter/blob/master/currencies.json. However, they both
+// seem to be less accurate than the Wikipedia article (see e.g. KGS), missing some currencies (e.g. MRU)
+// and contain some non-fiat currencies like crypto currencies. When unsure about a currency sign, also
+// consult https://en.wikipedia.org/wiki/Currency_symbol#List_of_currency_symbols_currently_in_use.
+//
+// const EXTRA_SYMBOLS = {
+//     as defined below
+// };
+//
+// function parseWikipediaCurrencyList() {
+//     const sectionHeadline = document.querySelector('#List_of_circulating_currencies_by_state_or_territory')
+//         .closest('h2');
+//     const table = ((el) => {
+//         while (el.tagName !== 'TABLE') el = el.nextElementSibling;
+//         return el;
+//     })(sectionHeadline);
+//
+//     const currencySymbols = {};
+//
+//     for (const row of table.querySelectorAll('tbody tr')) {
+//         // count columns from the end because not all rows have the same number of columns as on some rows, the
+//         // first column is omitted if the cell in the first column of a previous row spans multiple rows.
+//         const code = row.children[row.childElementCount - 3].textContent.trim();
+//         if (code.includes('[G]') // an inofficial currency code not registered in ISO 4217
+//             || code.includes('none')
+//         ) continue;
+//         const symbols = row.children[row.childElementCount - 4].textContent.trim()
+//             .replace(/\[.+]/g, '') // remove comments
+//             .split(/ or |, /);
+//         if (symbols.length === 1 && symbols[0].includes('none')) continue;
+//
+//         var entry = currencySymbols[code] || [];
+//         symbols.forEach((symbol) => {
+//             if (!entry.includes(symbol)) entry.push(symbol);
+//         });
+//         currencySymbols[code] = entry;
+//     }
+//
+//     return currencySymbols;
+// }
+//
+// // simplified from CurrencyInfo and removed checking for navigator.language to remove the dependency of this code
+// // snippet from the tester's browser language.
+// function getBrowserCurrencySymbol(currencyCode) {
+//     const currencyCountry = currencyCode.substring(0, 2);
+//
+//     const [locale] = Intl.NumberFormat.supportedLocalesOf([ // also normalizes the locales
+//         `en-${currencyCountry}`, // English as spoken in currency country
+//         'en-US', // en-US as last resort
+//     ]);
+//     const formatterOptions = {
+//         style: 'currency',
+//         currency: currencyCode,
+//         useGrouping: false,
+//         numberingSystem: 'latn',
+//     };
+//
+//     let formattedString = (0).toLocaleString(
+//         locale,
+//         { currencyDisplay: 'narrowSymbol', ...formatterOptions },
+//     );
+//
+//     return formattedString.replace(/\d+(?:\D(\d+))?/, '').trim();
+// }
+//
+// function isRightToLeft(s){
+//     return /[\u0591-\u07FF\uFB1D-\uFDFD\uFE70-\uFEFC]/.test(s);
+// };
+//
+// const referenceCurrencySymbols = parseWikipediaCurrencyList();
+// for (const currency of Object.keys(referenceCurrencySymbols).sort()) {
+//     const referenceSymbols = referenceCurrencySymbols[currency];
+//     const extraSymbols = !EXTRA_SYMBOLS[currency]
+//         ? []
+//         : Array.isArray(EXTRA_SYMBOLS[currency])
+//             ? EXTRA_SYMBOLS[currency]
+//             : [EXTRA_SYMBOLS[currency]];
+//     const browserSymbol = getBrowserCurrencySymbol(currency);
+//
+//     if (extraSymbols.length) {
+//         if (referenceSymbols.includes(browserSymbol) && !isRightToLeft(browserSymbol)) {
+//             console.warn(`${currency}: potentially unnecessary definition in EXTRA_SYMBOLS. `
+//                 + `Reference symbols are ${referenceSymbols}; extra symbols are ${extraSymbols}; `
+//                 + `browser symbol is ${browserSymbol}.`);
+//         } else {
+//             console.info(`${currency}: manually defined via EXTRA_SYMBOLS. `
+//                 + `Reference symbols are ${referenceSymbols}; extra symbols are ${extraSymbols}; `
+//                 + `browser symbol is ${browserSymbol}.`);
+//         }
+//
+//         if (!extraSymbols.some((symbol) => referenceSymbols.includes(symbol))) {
+//             console.warn(`${currency}: mismatch between reference symbols and EXTRA_SYMBOLS. `
+//                 + `Reference symbols are ${referenceSymbols}; extra symbols are ${extraSymbols}; `
+//                 + `browser symbol is ${browserSymbol}.`);
+//         }
+//     } else {
+//         if (!referenceSymbols.includes(browserSymbol) && browserSymbol === currency) {
+//             console.warn(`${currency}: missing in EXTRA_SYMBOLS. `
+//                 + `Reference symbols are ${referenceSymbols}; browser symbol is ${browserSymbol}. `
+//                 + `Add as ${currency}: ${referenceSymbols.length > 1
+//                     ? `['${referenceSymbols.join(`', '`)}']`
+//                     : `'${referenceSymbols}'`},`);
+//         } else {
+//             console.info(`${currency}: Saved explicit definition of extra symbol.  `
+//                 + `Reference symbols are ${referenceSymbols}; `
+//                 + `browser symbol is ${browserSymbol}.`);
+//         }
+//
+//         if (isRightToLeft(browserSymbol)) {
+//             console.warn(`${currency}: browser symbol is right to left. `
+//                 + `Reference symbols are ${referenceSymbols}; extra symbols are ${extraSymbols}; `
+//                 + `browser symbol is ${browserSymbol}.`);
+//         }
+//     }
+// }
 CurrencyInfo.EXTRA_SYMBOLS = {
-    AED: 'د.إ',
-    ARS: '$',
-    BDT: '৳',
-    BHD: 'BD',
-    BMD: '$',
+    AED: ['DH', 'د.إ'],
+    AFN: ['Afs', '؋'],
+    ALL: 'L',
+    ANG: 'ƒ',
+    AWG: 'ƒ',
+    BGN: 'лв.',
+    BHD: ['BD', '.د.ب'],
+    BTN: 'Nu.',
+    BYN: 'Br',
+    CDF: 'Fr',
     CHF: 'Fr.',
-    CLP: '$',
-    CZK: 'Kč',
-    DKK: 'Kr.',
-    HUF: 'Ft',
-    IDR: 'Rp',
-    KWD: 'KD',
-    LKR: 'Rs',
-    MMK: 'K',
-    MYR: 'RM',
-    NOK: 'kr',
-    PHP: '₱',
+    CVE: '$',
+    DJF: 'Fr',
+    DZD: ['DA', 'د.ج'],
+    EGP: ['£', 'ج.م'],
+    ETB: 'Br',
+    HTG: 'G',
+    IQD: ['ID', 'ع.د'],
+    IRR: ['RI', '﷼'],
+    JOD: ['JD', 'د.ا'],
+    KES: 'Sh',
+    KGS: '\u20c0',
+    KWD: ['KD', 'د.ك'],
+    LBP: ['LL', 'ل.ل'],
+    LSL: 'M',
+    LYD: ['LD', 'ل.د'],
+    MAD: ['DH', 'درهم'],
+    MDL: 'L',
+    MKD: 'ден',
+    MMK: 'Ks',
+    MRU: 'UM',
+    MVR: ['Rf', '.ރ'],
+    MZN: 'MT',
+    NPR: 'रु',
+    OMR: ['R.O.', 'ر.ع.'],
+    PAB: 'B/.',
+    PEN: 'S/',
     PKR: '₨',
-    PLN: 'zł',
-    RUB: '₽',
-    SAR: 'SR',
-    SEK: 'kr',
-    SGD: 'S$',
-    THB: '฿',
-    TRY: '₺',
-    UAH: '₴',
-    VEF: 'Bs',
-    ZAR: 'R',
+    QAR: ['QR', 'ر.ق'],
+    RSD: 'дин.',
+    SAR: ['SR', '﷼'],
+    SDG: ['£SD', 'ج.س.'],
+    SOS: 'Sh.',
+    TJS: 'SM',
+    TMT: 'm',
+    TND: ['DT', 'د.ت'],
+    UZS: 'сум',
+    VES: 'Bs.',
+    WST: 'T',
+    XPF: '₣',
+    YER: ['RI', '﷼'],
 };
-// Regex for en-US formatted currency strings (supporting both currency symbol and currency name)
-CurrencyInfo.NUMBER_FORMAT_REGEX = new RegExp('^'
-    + '([^\\d\\s]+)?' // currency symbol in front of number
-    + '\\s?' // Potential whitespace. en-US adds a whitespace for example in 'XYZ 1.00' but not in 'CA$1.00'
-    + '\\d+' // integer part with useGrouping: false
-    + '(?:\\D(\\d+))?' // fractional part, can be empty
-    + '(?:\\s(.+))?' // currency name after number
-    + '$');
+// Some currencies have been devalued so much by inflation that their sub-units have been removed from circulation
+// or are effectively not being used anymore. This is not for all currencies reflected yet in toLocaleString, such
+// that we mark some currencies manually as decimal-less. This list has been assembled manually from the list of all
+// circulating currencies (https://en.wikipedia.org/wiki/List_of_circulating_currencies) by first reducing it to
+// currencies that still have decimals via the following script, and then looking through their Wikipedia articles.
+//
+// const referenceCurrencySymbols = parseWikipediaCurrencyList(); // as defined above
+// for (const currency of Object.keys(referenceCurrencySymbols).sort()) {
+//     const country = currency.substring(0, 2);
+//     const formatted = (2).toLocaleString([`en-${country}`], {
+//         style: 'currency',
+//         currency: currency,
+//         currencyDisplay: 'narrowSymbol',
+//         numberingSystem: 'latn',
+//     });
+//     const numberMatch = formatted.match(/\d+(?:\D(\d+))?/);
+//     const decimals = numberMatch ? (numberMatch[1] || '').length : 2;
+//     if (!decimals) continue;
+//     console.log(`${currency} - ${decimals}\n`);
+// }
+CurrencyInfo.CUSTOM_DECIMAL_LESS_CURRENCIES = new Set([
+    'AMD',
+    'AOA',
+    'ARS',
+    'BDT',
+    'BTN',
+    'CDF',
+    'COP',
+    'CRC',
+    'CVE',
+    'CZK',
+    'DOP',
+    'DZD',
+    'GMD',
+    'GYD',
+    'HUF',
+    'IDR',
+    'INR',
+    'JMD',
+    'KES',
+    'KGS',
+    'KHR',
+    'KZT',
+    'LKR',
+    'MAD',
+    'MKD',
+    'MNT',
+    'MOP',
+    'MWK',
+    'MXN',
+    'NGN',
+    'NOK',
+    'NPR',
+    'PHP',
+    'PKR',
+    'RUB',
+    'SEK',
+    'TWD',
+    'TZS',
+    'UAH',
+    'UYU',
+    'UZS',
+    'VES',
+]);
+// Cache auto-generated CurrencyInfos such that they do not need to be recalculated.
+CurrencyInfo.CACHED_AUTO_GENERATED_CURRENCY_INFOS = {};
+// Regex for detecting the number with optional decimals in a formatted string for useGrouping: false
+CurrencyInfo.NUMBER_REGEX = /\d+(?:\D(\d+))?/;
+// Simplified and adapted from https://stackoverflow.com/a/14824756.
+// Note that this rtl detection is incomplete but good enough for our needs.
+CurrencyInfo.RIGHT_TO_LEFT_DETECTION_REGEX = /[\u0591-\u07FF\uFB1D-\uFDFD\uFE70-\uFEFC]/;
 
 
 //# sourceMappingURL=CurrencyInfo.js.map
@@ -8486,9 +8675,6 @@ function toNonScientificNumberString(value) {
 
 
 
-
-
-
 var FiatAmount_1;
 
 
@@ -8506,8 +8692,10 @@ function (_Vue) {
   }
 
   _createClass(FiatAmount, [{
-    key: "_currencyToLocale",
-    value: function _currencyToLocale(currency) {
+    key: "_getPositioningLocale",
+    value: function _getPositioningLocale(currency) {
+      // Try to guess a locale which positions the currency symbol in a way typical for countries, where the currency
+      // is used, e.g. 1.00€ for eur; $1.00 for usd.
       currency = currency.toLowerCase();
 
       switch (currency) {
@@ -8523,38 +8711,41 @@ function (_Vue) {
           return 'zh';
 
         default:
+          // Return the country from the currency code which is typically (but not necessarily) the first two
+          // letters (see https://en.wikipedia.org/wiki/ISO_4217#National_currencies), in the hope that it
+          // coincides with a locale.
+          // TODO oftentimes this results in the wrong locale, e.g. ARS (Argentinan Peso) -> AR (Arabic),
+          //  CAD (Canadian Dollar) -> CA (Catalan). Can we come up with a better heuristic?
           return currency.substr(0, 2);
       }
     }
   }, {
     key: "_currencyString",
     get: function get() {
+      var positioningLocale = this._getPositioningLocale(this.currency); // Only create CurrencyInfo for a specific locale if a locale was requested, otherwise use default behavior.
+      // Don't use positioningLocale as it's just a rough guess for a language typical for a country where the
+      // currency is used and might result in using a language that the user does not understand.
+
+
+      var currencyInfo = new CurrencyInfo(this.currency, this.locale || undefined);
       var formattingOptions = {
         style: 'currency',
         currency: this.currency,
-        currencyDisplay: 'symbol',
+        currencyDisplay: 'code',
         useGrouping: false,
-        // start with decimal count typical for this.currency, e.g. 2 for eur
-        minimumFractionDigits: this.hideDecimals ? 0 : undefined,
-        maximumFractionDigits: this.hideDecimals ? 0 : undefined
+        numberingSystem: 'latn',
+        // start with decimal count typical for this.currency, e.g. 2 for eur, unless hideDecimals was requested
+        minimumFractionDigits: this.hideDecimals ? 0 : currencyInfo.decimals,
+        maximumFractionDigits: this.hideDecimals ? 0 : currencyInfo.decimals
       };
       var formatted;
       var integers;
       var relativeDeviation;
 
       do {
-        formatted = this.amount.toLocaleString(["".concat(this.locale || this._currencyToLocale(this.currency), "-u-nu-latn"), "".concat(navigator.language, "-u-nu-latn"), 'en-US'], formattingOptions) // Enforce a dot as decimal separator for consistency and parseFloat. Using capturing groups instead of
+        formatted = this.amount.toLocaleString([this.locale || positioningLocale, positioningLocale, "".concat(navigator.language.substring(0, 2), "-").concat(positioningLocale), navigator.language, "en-".concat(positioningLocale), 'en'], formattingOptions) // Enforce a dot as decimal separator for consistency and parseFloat. Using capturing groups instead of
         // lookahead/lookbehind to avoid browser support limitations.
         .replace(FiatAmount_1.DECIMAL_SEPARATOR_REGEX, '$1.$2');
-
-        if (formatted.includes(this.currency.toUpperCase())) {
-          var symbol = new CurrencyInfo(this.currency).symbol; // Replace prefixed currency code including space, with the symbol and an unbreaking zero-width space
-
-          formatted = formatted.replace(new RegExp("".concat(this.currency.toUpperCase(), "\\s")), "".concat(symbol, "\uFEFF")); // Replace suffixed currency code, preserving the non-breaking space
-
-          formatted = formatted.replace(this.currency.toUpperCase(), symbol);
-        }
-
         var regexMatch = formatted.match(FiatAmount_1.NUMBER_REGEX);
 
         var _regexMatch = _slicedToArray(regexMatch, 5),
@@ -8569,10 +8760,24 @@ function (_Vue) {
         integers = regexMatch[2];
         var formattedNumber = "".concat(sign || '').concat(integers).concat(decimalsIncludingSeparator || '');
         relativeDeviation = Math.abs((this.amount - Number.parseFloat(formattedNumber)) / this.amount);
-        formattingOptions.minimumFractionDigits = decimals ? decimals.length + 1 : 1;
-      } while (relativeDeviation > this.maxRelativeDeviation && formattingOptions.minimumFractionDigits <= 20 // maximum allowed value for minimumFractionDigits
-      ); // apply integer grouping
+        var nextDecimals = decimals ? decimals.length + 1 : 1;
+        formattingOptions.minimumFractionDigits = nextDecimals;
+        formattingOptions.maximumFractionDigits = nextDecimals;
+      } while (relativeDeviation > this.maxRelativeDeviation && formattingOptions.minimumFractionDigits <= 20 // max for minimumFractionDigits and maximumFractionDigits
+      && !this.hideDecimals); // Replace the currency code with our custom currency symbol.
 
+
+      formatted = formatted.replace(FiatAmount_1.CURRENCY_CODE_REGEX, function (match, position) {
+        if (position !== 0 || !FiatAmount_1.SYMBOL_TRAILING_ALPHA_REGEX.test(currencyInfo.symbol)) {
+          // For trailing currency symbol or currency symbol that does not end with a latin letter or dot do not
+          // append a space, e.g.: 1.00 € (EUR), $1.00 (USD), R$1.00 (BRL), ₼1.00 (AZN), ৳1 (BDT), S/1.00 (PEN)
+          return currencyInfo.symbol;
+        } // For leading currency symbol that ends with a latin letter or dot, add a (non-breaking) space, e.g.
+        // KM 1.00 (BAM), B/. 1.00 (PAB), лв. 1.00 (BGN), kr 1.00 (DKK)
+
+
+        return "".concat(currencyInfo.symbol, "\xA0");
+      }); // apply integer grouping
 
       if (integers.length <= 4) return formatted;
       return formatted.replace(integers, new FormattableNumber(integers).toString(true));
@@ -8584,6 +8789,8 @@ function (_Vue) {
 
 FiatAmountvue_type_script_lang_ts_FiatAmount.NUMBER_REGEX = /(-)?\D*(\d+)(\.(\d+))?/;
 FiatAmountvue_type_script_lang_ts_FiatAmount.DECIMAL_SEPARATOR_REGEX = /(\d)\D(\d)/;
+FiatAmountvue_type_script_lang_ts_FiatAmount.CURRENCY_CODE_REGEX = /[A-Z]{3}\s?/i;
+FiatAmountvue_type_script_lang_ts_FiatAmount.SYMBOL_TRAILING_ALPHA_REGEX = /[A-Z.]$/i;
 
 __decorate([Object(external_vue_property_decorator_["Prop"])({
   type: Number,
@@ -8624,8 +8831,8 @@ FiatAmountvue_type_script_lang_ts_FiatAmount = FiatAmount_1 = __decorate([extern
 
 var FiatAmount_component = normalizeComponent(
   components_FiatAmountvue_type_script_lang_ts_,
-  FiatAmountvue_type_template_id_d41a7aea_render,
-  FiatAmountvue_type_template_id_d41a7aea_staticRenderFns,
+  FiatAmountvue_type_template_id_4e1e2a40_render,
+  FiatAmountvue_type_template_id_4e1e2a40_staticRenderFns,
   false,
   null,
   null,
@@ -8634,7 +8841,7 @@ var FiatAmount_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_FiatAmount = (FiatAmount_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"e36cd04a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SmallPage.vue?vue&type=template&id=1d450cf2&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"72553ca7-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SmallPage.vue?vue&type=template&id=1d450cf2&scoped=true&
 var SmallPagevue_type_template_id_1d450cf2_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"small-page nq-card"},[_vm._t("default")],2)}
 var SmallPagevue_type_template_id_1d450cf2_scoped_true_staticRenderFns = []
 
@@ -8691,7 +8898,7 @@ var SmallPage_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_SmallPage = (SmallPage_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"e36cd04a-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Tooltip.vue?vue&type=template&id=71bfa335&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"72553ca7-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Tooltip.vue?vue&type=template&id=71bfa335&scoped=true&
 var Tooltipvue_type_template_id_71bfa335_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"tooltip",class:[_vm.verticalPosition, {
         shown: _vm.isShown,
         'transition-position': _vm.transitionPosition,
