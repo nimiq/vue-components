@@ -1971,6 +1971,13 @@ module.exports = global;
 
 /***/ }),
 
+/***/ "444c":
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
 /***/ "44ad":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4273,13 +4280,6 @@ module.exports = patchedExec;
 
 /***/ }),
 
-/***/ "936b":
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-
 /***/ "94a7":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6032,17 +6032,6 @@ $({ target: 'RegExp', proto: true, forced: /./.exec !== exec }, {
 
 /***/ }),
 
-/***/ "ac2e":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Timer_vue_vue_type_style_index_0_id_69609981_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("936b");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Timer_vue_vue_type_style_index_0_id_69609981_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Timer_vue_vue_type_style_index_0_id_69609981_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
- /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Timer_vue_vue_type_style_index_0_id_69609981_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
 /***/ "ac61":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6476,6 +6465,17 @@ module.exports = !fails(function () {
   return Object.isExtensible(Object.preventExtensions({}));
 });
 
+
+/***/ }),
+
+/***/ "bc1a":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Timer_vue_vue_type_style_index_0_id_a31a785a_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("444c");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Timer_vue_vue_type_style_index_0_id_a31a785a_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Timer_vue_vue_type_style_index_0_id_a31a785a_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+ /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Timer_vue_vue_type_style_index_0_id_a31a785a_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -8314,7 +8314,7 @@ var es_array_concat = __webpack_require__("99af");
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.ends-with.js
 var es_string_ends_with = __webpack_require__("8a79");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"190b01da-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/AddressDisplay.vue?vue&type=template&id=1c9646e4&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"72553ca7-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/AddressDisplay.vue?vue&type=template&id=1c9646e4&scoped=true&
 var AddressDisplayvue_type_template_id_1c9646e4_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c(_vm.copyable ? 'Copyable' : 'div',{tag:"component",staticClass:"address-display",attrs:{"text":_vm.chunks.join(' ').toUpperCase()}},_vm._l((_vm.chunks),function(chunk,index){return _c('span',{key:chunk + index,staticClass:"chunk"},[_vm._v(_vm._s(chunk)),_c('span',{staticClass:"space"})])}),0)}
 var staticRenderFns = []
 
@@ -8643,7 +8643,7 @@ function __importDefault(mod) {
 // EXTERNAL MODULE: external "vue-property-decorator"
 var external_vue_property_decorator_ = __webpack_require__("01a6");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"190b01da-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Copyable.vue?vue&type=template&id=46b36f4e&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"72553ca7-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Copyable.vue?vue&type=template&id=46b36f4e&scoped=true&
 var Copyablevue_type_template_id_46b36f4e_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"copyable",class:{ copied: _vm.copied },attrs:{"tabindex":"0"},on:{"click":_vm.copy}},[_c('div',{staticClass:"background"}),_vm._t("default"),_c('div',{ref:"tooltip",staticClass:"tooltip"},[_vm._v(_vm._s(_vm.$t('Copied')))])],2)}
 var Copyablevue_type_template_id_46b36f4e_scoped_true_staticRenderFns = []
 
@@ -9419,7 +9419,7 @@ var AddressDisplay_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_AddressDisplay = (AddressDisplay_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"190b01da-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/AddressInput.vue?vue&type=template&id=094d84ae&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"72553ca7-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/AddressInput.vue?vue&type=template&id=094d84ae&scoped=true&
 var AddressInputvue_type_template_id_094d84ae_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"address-input"},[_c('textarea',{ref:"textarea",attrs:{"placeholder":"NQ","spellcheck":"false","autocomplete":"off"},on:{"keydown":_vm._onKeyDown,"input":_vm._onInput,"paste":_vm._onPaste,"cut":_vm._onCut,"copy":_vm._formatClipboard,"click":_vm._updateSelection,"select":_vm._updateSelection,"blur":_vm._updateSelection,"focus":_vm._onFocus}}),_vm._l((9),function(i){return [_c('div',{key:("block-" + i),staticClass:"block",class:{
             focused: _vm._isBlockFocused(i - 1),
             invisible: _vm._isBlockFilled(i - 1),
@@ -9821,7 +9821,7 @@ var AddressInput_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_AddressInput = (AddressInput_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"190b01da-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Amount.vue?vue&type=template&id=26cbc180&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"72553ca7-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Amount.vue?vue&type=template&id=26cbc180&scoped=true&
 var Amountvue_type_template_id_26cbc180_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"amount",class:{ approx: _vm.showApprox && _vm.isApprox }},[_vm._v(" "+_vm._s(_vm.formattedAmount)+" "),_c('span',{staticClass:"currency",class:_vm.currency},[_vm._v(_vm._s(_vm.ticker))])])}
 var Amountvue_type_template_id_26cbc180_scoped_true_staticRenderFns = []
 
@@ -10087,7 +10087,7 @@ var Amount_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_Amount = (Amount_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"190b01da-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/AmountInput.vue?vue&type=template&id=37572fbf&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"72553ca7-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/AmountInput.vue?vue&type=template&id=37572fbf&scoped=true&
 var AmountInputvue_type_template_id_37572fbf_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"amount-input",class:{'has-value': _vm.valueInLuna > 0, 'focussed': _vm.isFocussed}},[_c('form',{ref:"fullWidth",staticClass:"label-input",on:{"submit":function($event){$event.preventDefault();}}},[_c('span',{ref:"widthPlaceholder",staticClass:"width-finder width-placeholder"},[_vm._v(_vm._s(_vm.placeholder))]),(_vm.maxFontSize)?_c('div',{staticClass:"full-width",class:{'width-finder': _vm.maxWidth > 0}},[_vm._v("Width")]):_vm._e(),_c('span',{ref:"widthValue",staticClass:"width-finder width-value"},[_vm._v(_vm._s(_vm.formattedValue || ''))]),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.formattedValue),expression:"formattedValue"}],ref:"input",staticClass:"nq-input",class:_vm.vanishing,style:({width: ((this.width) + "px"), fontSize: ((this.fontSize) + "rem")}),attrs:{"type":"text","inputmode":"decimal","placeholder":_vm.placeholder},domProps:{"value":(_vm.formattedValue)},on:{"focus":function($event){_vm.isFocussed = true},"blur":function($event){_vm.isFocussed = false},"input":function($event){if($event.target.composing){ return; }_vm.formattedValue=$event.target.value}}})]),_c('span',{staticClass:"nim"},[_vm._v("NIM")])])}
 var AmountInputvue_type_template_id_37572fbf_scoped_true_staticRenderFns = []
 
@@ -10316,14 +10316,14 @@ var AmountInput_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_AmountInput = (AmountInput_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"190b01da-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/BottomOverlay.vue?vue&type=template&id=10321bd4&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"72553ca7-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/BottomOverlay.vue?vue&type=template&id=10321bd4&scoped=true&
 var BottomOverlayvue_type_template_id_10321bd4_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"bottom-overlay",class:[_vm.theme, { 'has-close-button': _vm.hasCloseButton }]},[_vm._t("default"),(_vm.hasCloseButton)?_c('CloseButton',{staticClass:"close-button",class:{'inverse': ['dark', 'green'].includes(_vm.theme)},on:{"click":function($event){return _vm.$emit(_vm.constructor.Events.CLOSE)}}}):_vm._e()],2)}
 var BottomOverlayvue_type_template_id_10321bd4_scoped_true_staticRenderFns = []
 
 
 // CONCATENATED MODULE: ./src/components/BottomOverlay.vue?vue&type=template&id=10321bd4&scoped=true&
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"190b01da-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CloseButton.vue?vue&type=template&id=f70dd1ae&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"72553ca7-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CloseButton.vue?vue&type=template&id=f70dd1ae&scoped=true&
 var CloseButtonvue_type_template_id_f70dd1ae_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('button',{staticClass:"close-button nq-button-s",on:{"click":_vm.click,"mousedown":function($event){$event.preventDefault();}}},[_c('CloseIcon')],1)}
 var CloseButtonvue_type_template_id_f70dd1ae_scoped_true_staticRenderFns = []
 
@@ -11255,7 +11255,7 @@ var BottomOverlay_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_BottomOverlay = (BottomOverlay_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"190b01da-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CircleSpinner.vue?vue&type=template&id=2bc59fa8&scoped=true&functional=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"72553ca7-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CircleSpinner.vue?vue&type=template&id=2bc59fa8&scoped=true&functional=true&
 var CircleSpinnervue_type_template_id_2bc59fa8_scoped_true_functional_true_render = function (_h,_vm) {var _c=_vm._c;return _c('svg',{staticClass:"circle-spinner",attrs:{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 18 18","width":"18","height":"18","fill":"none","stroke-width":"2","stroke-linecap":"round"}},[_c('path',{attrs:{"stroke":"#0582CA","d":"M9,1c4.42,0,8,3.58,8,8"}}),_c('path',{attrs:{"stroke":"#1F2348","opacity":".3","d":"M4.27,2.56C2.29,4.01,1,6.35,1,9c0,4.42,3.58,8,8,8c2.65,0,4.99-1.29,6.44-3.27"}})])}
 var CircleSpinnervue_type_template_id_2bc59fa8_scoped_true_functional_true_staticRenderFns = []
 
@@ -11290,12 +11290,12 @@ var CircleSpinner_component = normalizeComponent(
 )
 
 /* harmony default export */ var CircleSpinner = (CircleSpinner_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"190b01da-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/FiatAmount.vue?vue&type=template&id=d41a7aea&
-var FiatAmountvue_type_template_id_d41a7aea_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"fiat-amount"},[_vm._v(" "+_vm._s(_vm._currencyString)+" ")])}
-var FiatAmountvue_type_template_id_d41a7aea_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"72553ca7-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/FiatAmount.vue?vue&type=template&id=4e1e2a40&
+var FiatAmountvue_type_template_id_4e1e2a40_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"fiat-amount"},[_vm._v(" "+_vm._s(_vm._currencyString)+" ")])}
+var FiatAmountvue_type_template_id_4e1e2a40_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/FiatAmount.vue?vue&type=template&id=d41a7aea&
+// CONCATENATED MODULE: ./src/components/FiatAmount.vue?vue&type=template&id=4e1e2a40&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.number.parse-float.js
 var es_number_parse_float = __webpack_require__("c35a");
@@ -11355,86 +11355,366 @@ function _slicedToArray(arr, i) {
 }
 // CONCATENATED MODULE: ./node_modules/@nimiq/utils/dist/module/CurrencyInfo.js
 class CurrencyInfo {
-    /**
-     * @param {string} currencyCode 3-letter currency code
-     * @param {number} [decimals] How many decimal positions the currency has
-     * @param {string} [name] The currency's name, e.g. euros
-     * @param {string} [symbol] The currency's symbol, e.g. € or CA$
-     * @throws If currency code is not a well-formed currency code.
-     */
-    constructor(currencyCode, decimals, name, symbol) {
+    constructor(currencyCode, decimalsOrLocaleOrOptions, name, symbol) {
+        let decimals;
+        let locale;
+        if (typeof decimalsOrLocaleOrOptions === 'number') {
+            decimals = decimalsOrLocaleOrOptions;
+        }
+        else if (typeof decimalsOrLocaleOrOptions === 'string') {
+            locale = decimalsOrLocaleOrOptions;
+        }
+        else if (typeof decimalsOrLocaleOrOptions === 'object') {
+            ({ decimals, name, symbol, locale } = decimalsOrLocaleOrOptions);
+        }
+        this.code = currencyCode.toUpperCase();
+        // Get the country from the currency code which is typically (but not necessarily) the first two letters,
+        // see https://en.wikipedia.org/wiki/ISO_4217#National_currencies.
+        const currencyCountry = this.code.substring(0, 2);
+        const nameLocalesToTry = [
+            ...(locale ? [locale] : []),
+            `${navigator.language.substring(0, 2)}-${currencyCountry}`,
+            navigator.language,
+            'en-US',
+        ];
+        // also normalizes the locales
+        [this.locale] = 'DisplayNames' in Intl
+            // @ts-ignore TODO use proper types once https://github.com/microsoft/TypeScript/pull/44022 is available
+            ? Intl.DisplayNames.supportedLocalesOf(nameLocalesToTry)
+            : Intl.NumberFormat.supportedLocalesOf(nameLocalesToTry);
+        const isAutoGenerated = decimals === undefined && name === undefined && symbol === undefined;
+        const cacheKey = `${this.code} ${this.locale}`;
+        const cachedCurrencyInfo = CurrencyInfo.CACHED_AUTO_GENERATED_CURRENCY_INFOS[cacheKey];
+        if (isAutoGenerated && cachedCurrencyInfo) {
+            return cachedCurrencyInfo;
+        }
+        let formattedString;
         const formatterOptions = {
             style: 'currency',
             currency: currencyCode,
             useGrouping: false,
+            numberingSystem: 'latn',
         };
-        this.code = currencyCode.toUpperCase();
-        // Note that toLocaleString throws for not well-formatted currency codes
-        // (see https://www.ecma-international.org/ecma-402/1.0/#sec-6.3.1).
-        // Using regex parsing instead of NumberFormat.formatToParts which has less browser support.
-        let regexMatch = (0).toLocaleString('en-US', { currencyDisplay: 'symbol', ...formatterOptions }).match(CurrencyInfo.NUMBER_FORMAT_REGEX);
-        this.decimals = decimals !== undefined
-            ? decimals
-            : regexMatch
-                ? (regexMatch[2] || '').length
-                : 2;
-        this.symbol = symbol !== undefined
-            ? symbol
-            : CurrencyInfo.EXTRA_SYMBOLS[this.code] || (regexMatch && regexMatch[1]) || this.code;
         if (name !== undefined) {
             this.name = name;
-            return;
         }
-        regexMatch = (0).toLocaleString('en-US', { currencyDisplay: 'name', ...formatterOptions }).match(CurrencyInfo.NUMBER_FORMAT_REGEX);
-        this.name = regexMatch ? regexMatch[3] || this.code : this.code;
+        else if (cachedCurrencyInfo) {
+            this.name = cachedCurrencyInfo.name;
+        }
+        else if ('DisplayNames' in Intl) {
+            // Use DisplayNames if available as it provides better names.
+            // @ts-ignore TODO use proper types once https://github.com/microsoft/TypeScript/pull/44022 is merged
+            this.name = new Intl.DisplayNames(this.locale, { type: 'currency' }).of(currencyCode);
+        }
+        else {
+            // Note that toLocaleString throws for not well-formatted currency codes
+            // (see https://www.ecma-international.org/ecma-402/1.0/#sec-6.3.1).
+            formattedString = (0).toLocaleString(this.locale, { currencyDisplay: 'name', ...formatterOptions });
+            // Using regex parsing instead of NumberFormat.formatToParts which has less browser support.
+            this.name = formattedString.replace(CurrencyInfo.NUMBER_REGEX, '').trim();
+        }
+        if (symbol !== undefined) {
+            this.symbol = symbol;
+        }
+        else if (cachedCurrencyInfo) {
+            this.symbol = cachedCurrencyInfo.symbol;
+        }
+        else {
+            const extraSymbol = CurrencyInfo.EXTRA_SYMBOLS[this.code];
+            if (typeof extraSymbol === 'string') {
+                this.symbol = extraSymbol;
+            }
+            else if (Array.isArray(extraSymbol)) {
+                // Use right-to-left currency symbols only if a right-to-left locale was used and explicitly requested.
+                const useRightToLeft = this.locale === locale
+                    && CurrencyInfo.RIGHT_TO_LEFT_DETECTION_REGEX.test(this.name);
+                this.symbol = extraSymbol[useRightToLeft ? 1 : 0];
+            }
+            else {
+                formattedString = (0).toLocaleString(
+                // Unless a locale was specifically requested, use `en-${currencyCountry}` for the symbol detection
+                // instead of this.locale which is based on navigator.language, as the EXTRA_SYMBOLS have been
+                // created based on en.
+                [
+                    ...(locale ? [locale] : []),
+                    `en-${currencyCountry}`,
+                    'en',
+                ], { currencyDisplay: 'narrowSymbol', ...formatterOptions });
+                this.symbol = formattedString.replace(CurrencyInfo.NUMBER_REGEX, '').trim();
+            }
+        }
+        if (decimals !== undefined) {
+            this.decimals = decimals;
+        }
+        else if (cachedCurrencyInfo) {
+            this.decimals = cachedCurrencyInfo.decimals;
+        }
+        else if (CurrencyInfo.CUSTOM_DECIMAL_LESS_CURRENCIES.has(this.code)) {
+            this.decimals = 0;
+        }
+        else {
+            if (!formattedString) {
+                // As we only need the number, the used locale and currencyDisplay don't matter.
+                formattedString = (0).toLocaleString('en', formatterOptions);
+            }
+            const numberMatch = formattedString.match(CurrencyInfo.NUMBER_REGEX);
+            this.decimals = numberMatch ? (numberMatch[1] || '').length : 2;
+        }
+        if (isAutoGenerated) {
+            CurrencyInfo.CACHED_AUTO_GENERATED_CURRENCY_INFOS[cacheKey] = this;
+        }
     }
 }
+// This is a manually curated list which was created mainly from
+// https://en.wikipedia.org/wiki/List_of_circulating_currencies with help of the following script run
+// on that wikipedia page. Note that we don't just use the ISO 4217 list of currency codes directly, as
+// it includes some additional codes which are not actual fiat currency codes (see
+// https://en.wikipedia.org/wiki/ISO_4217#X_currencies). Also note that there are also already nicely
+// parsable npm packages like https://github.com/bengourley/currency-symbol-map/blob/master/map.js
+// or https://github.com/smirzaei/currency-formatter/blob/master/currencies.json. However, they both
+// seem to be less accurate than the Wikipedia article (see e.g. KGS), missing some currencies (e.g. MRU)
+// and contain some non-fiat currencies like crypto currencies. When unsure about a currency sign, also
+// consult https://en.wikipedia.org/wiki/Currency_symbol#List_of_currency_symbols_currently_in_use.
+//
+// const EXTRA_SYMBOLS = {
+//     as defined below
+// };
+//
+// function parseWikipediaCurrencyList() {
+//     const sectionHeadline = document.querySelector('#List_of_circulating_currencies_by_state_or_territory')
+//         .closest('h2');
+//     const table = ((el) => {
+//         while (el.tagName !== 'TABLE') el = el.nextElementSibling;
+//         return el;
+//     })(sectionHeadline);
+//
+//     const currencySymbols = {};
+//
+//     for (const row of table.querySelectorAll('tbody tr')) {
+//         // count columns from the end because not all rows have the same number of columns as on some rows, the
+//         // first column is omitted if the cell in the first column of a previous row spans multiple rows.
+//         const code = row.children[row.childElementCount - 3].textContent.trim();
+//         if (code.includes('[G]') // an inofficial currency code not registered in ISO 4217
+//             || code.includes('none')
+//         ) continue;
+//         const symbols = row.children[row.childElementCount - 4].textContent.trim()
+//             .replace(/\[.+]/g, '') // remove comments
+//             .split(/ or |, /);
+//         if (symbols.length === 1 && symbols[0].includes('none')) continue;
+//
+//         var entry = currencySymbols[code] || [];
+//         symbols.forEach((symbol) => {
+//             if (!entry.includes(symbol)) entry.push(symbol);
+//         });
+//         currencySymbols[code] = entry;
+//     }
+//
+//     return currencySymbols;
+// }
+//
+// // simplified from CurrencyInfo and removed checking for navigator.language to remove the dependency of this code
+// // snippet from the tester's browser language.
+// function getBrowserCurrencySymbol(currencyCode) {
+//     const currencyCountry = currencyCode.substring(0, 2);
+//
+//     const [locale] = Intl.NumberFormat.supportedLocalesOf([ // also normalizes the locales
+//         `en-${currencyCountry}`, // English as spoken in currency country
+//         'en-US', // en-US as last resort
+//     ]);
+//     const formatterOptions = {
+//         style: 'currency',
+//         currency: currencyCode,
+//         useGrouping: false,
+//         numberingSystem: 'latn',
+//     };
+//
+//     let formattedString = (0).toLocaleString(
+//         locale,
+//         { currencyDisplay: 'narrowSymbol', ...formatterOptions },
+//     );
+//
+//     return formattedString.replace(/\d+(?:\D(\d+))?/, '').trim();
+// }
+//
+// function isRightToLeft(s){
+//     return /[\u0591-\u07FF\uFB1D-\uFDFD\uFE70-\uFEFC]/.test(s);
+// };
+//
+// const referenceCurrencySymbols = parseWikipediaCurrencyList();
+// for (const currency of Object.keys(referenceCurrencySymbols).sort()) {
+//     const referenceSymbols = referenceCurrencySymbols[currency];
+//     const extraSymbols = !EXTRA_SYMBOLS[currency]
+//         ? []
+//         : Array.isArray(EXTRA_SYMBOLS[currency])
+//             ? EXTRA_SYMBOLS[currency]
+//             : [EXTRA_SYMBOLS[currency]];
+//     const browserSymbol = getBrowserCurrencySymbol(currency);
+//
+//     if (extraSymbols.length) {
+//         if (referenceSymbols.includes(browserSymbol) && !isRightToLeft(browserSymbol)) {
+//             console.warn(`${currency}: potentially unnecessary definition in EXTRA_SYMBOLS. `
+//                 + `Reference symbols are ${referenceSymbols}; extra symbols are ${extraSymbols}; `
+//                 + `browser symbol is ${browserSymbol}.`);
+//         } else {
+//             console.info(`${currency}: manually defined via EXTRA_SYMBOLS. `
+//                 + `Reference symbols are ${referenceSymbols}; extra symbols are ${extraSymbols}; `
+//                 + `browser symbol is ${browserSymbol}.`);
+//         }
+//
+//         if (!extraSymbols.some((symbol) => referenceSymbols.includes(symbol))) {
+//             console.warn(`${currency}: mismatch between reference symbols and EXTRA_SYMBOLS. `
+//                 + `Reference symbols are ${referenceSymbols}; extra symbols are ${extraSymbols}; `
+//                 + `browser symbol is ${browserSymbol}.`);
+//         }
+//     } else {
+//         if (!referenceSymbols.includes(browserSymbol) && browserSymbol === currency) {
+//             console.warn(`${currency}: missing in EXTRA_SYMBOLS. `
+//                 + `Reference symbols are ${referenceSymbols}; browser symbol is ${browserSymbol}. `
+//                 + `Add as ${currency}: ${referenceSymbols.length > 1
+//                     ? `['${referenceSymbols.join(`', '`)}']`
+//                     : `'${referenceSymbols}'`},`);
+//         } else {
+//             console.info(`${currency}: Saved explicit definition of extra symbol.  `
+//                 + `Reference symbols are ${referenceSymbols}; `
+//                 + `browser symbol is ${browserSymbol}.`);
+//         }
+//
+//         if (isRightToLeft(browserSymbol)) {
+//             console.warn(`${currency}: browser symbol is right to left. `
+//                 + `Reference symbols are ${referenceSymbols}; extra symbols are ${extraSymbols}; `
+//                 + `browser symbol is ${browserSymbol}.`);
+//         }
+//     }
+// }
 CurrencyInfo.EXTRA_SYMBOLS = {
-    AED: 'د.إ',
-    ARS: '$',
-    BDT: '৳',
-    BHD: 'BD',
-    BMD: '$',
+    AED: ['DH', 'د.إ'],
+    AFN: ['Afs', '؋'],
+    ALL: 'L',
+    ANG: 'ƒ',
+    AWG: 'ƒ',
+    BGN: 'лв.',
+    BHD: ['BD', '.د.ب'],
+    BTN: 'Nu.',
+    BYN: 'Br',
+    CDF: 'Fr',
     CHF: 'Fr.',
-    CLP: '$',
-    CZK: 'Kč',
-    DKK: 'Kr.',
-    HUF: 'Ft',
-    IDR: 'Rp',
-    KWD: 'KD',
-    LKR: 'Rs',
-    MMK: 'K',
-    MYR: 'RM',
-    NOK: 'kr',
-    PHP: '₱',
+    CVE: '$',
+    DJF: 'Fr',
+    DZD: ['DA', 'د.ج'],
+    EGP: ['£', 'ج.م'],
+    ETB: 'Br',
+    HTG: 'G',
+    IQD: ['ID', 'ع.د'],
+    IRR: ['RI', '﷼'],
+    JOD: ['JD', 'د.ا'],
+    KES: 'Sh',
+    KGS: '\u20c0',
+    KWD: ['KD', 'د.ك'],
+    LBP: ['LL', 'ل.ل'],
+    LSL: 'M',
+    LYD: ['LD', 'ل.د'],
+    MAD: ['DH', 'درهم'],
+    MDL: 'L',
+    MKD: 'ден',
+    MMK: 'Ks',
+    MRU: 'UM',
+    MVR: ['Rf', '.ރ'],
+    MZN: 'MT',
+    NPR: 'रु',
+    OMR: ['R.O.', 'ر.ع.'],
+    PAB: 'B/.',
+    PEN: 'S/',
     PKR: '₨',
-    PLN: 'zł',
-    RUB: '₽',
-    SAR: 'SR',
-    SEK: 'kr',
-    SGD: 'S$',
-    THB: '฿',
-    TRY: '₺',
-    UAH: '₴',
-    VEF: 'Bs',
-    ZAR: 'R',
+    QAR: ['QR', 'ر.ق'],
+    RSD: 'дин.',
+    SAR: ['SR', '﷼'],
+    SDG: ['£SD', 'ج.س.'],
+    SOS: 'Sh.',
+    TJS: 'SM',
+    TMT: 'm',
+    TND: ['DT', 'د.ت'],
+    UZS: 'сум',
+    VES: 'Bs.',
+    WST: 'T',
+    XPF: '₣',
+    YER: ['RI', '﷼'],
 };
-// Regex for en-US formatted currency strings (supporting both currency symbol and currency name)
-CurrencyInfo.NUMBER_FORMAT_REGEX = new RegExp('^'
-    + '([^\\d\\s]+)?' // currency symbol in front of number
-    + '\\s?' // Potential whitespace. en-US adds a whitespace for example in 'XYZ 1.00' but not in 'CA$1.00'
-    + '\\d+' // integer part with useGrouping: false
-    + '(?:\\D(\\d+))?' // fractional part, can be empty
-    + '(?:\\s(.+))?' // currency name after number
-    + '$');
+// Some currencies have been devalued so much by inflation that their sub-units have been removed from circulation
+// or are effectively not being used anymore. This is not for all currencies reflected yet in toLocaleString, such
+// that we mark some currencies manually as decimal-less. This list has been assembled manually from the list of all
+// circulating currencies (https://en.wikipedia.org/wiki/List_of_circulating_currencies) by first reducing it to
+// currencies that still have decimals via the following script, and then looking through their Wikipedia articles.
+//
+// const referenceCurrencySymbols = parseWikipediaCurrencyList(); // as defined above
+// for (const currency of Object.keys(referenceCurrencySymbols).sort()) {
+//     const country = currency.substring(0, 2);
+//     const formatted = (2).toLocaleString([`en-${country}`], {
+//         style: 'currency',
+//         currency: currency,
+//         currencyDisplay: 'narrowSymbol',
+//         numberingSystem: 'latn',
+//     });
+//     const numberMatch = formatted.match(/\d+(?:\D(\d+))?/);
+//     const decimals = numberMatch ? (numberMatch[1] || '').length : 2;
+//     if (!decimals) continue;
+//     console.log(`${currency} - ${decimals}\n`);
+// }
+CurrencyInfo.CUSTOM_DECIMAL_LESS_CURRENCIES = new Set([
+    'AMD',
+    'AOA',
+    'ARS',
+    'BDT',
+    'BTN',
+    'CDF',
+    'COP',
+    'CRC',
+    'CVE',
+    'CZK',
+    'DOP',
+    'DZD',
+    'GMD',
+    'GYD',
+    'HUF',
+    'IDR',
+    'INR',
+    'JMD',
+    'KES',
+    'KGS',
+    'KHR',
+    'KZT',
+    'LKR',
+    'MAD',
+    'MKD',
+    'MNT',
+    'MOP',
+    'MWK',
+    'MXN',
+    'NGN',
+    'NOK',
+    'NPR',
+    'PHP',
+    'PKR',
+    'RUB',
+    'SEK',
+    'TWD',
+    'TZS',
+    'UAH',
+    'UYU',
+    'UZS',
+    'VES',
+]);
+// Cache auto-generated CurrencyInfos such that they do not need to be recalculated.
+CurrencyInfo.CACHED_AUTO_GENERATED_CURRENCY_INFOS = {};
+// Regex for detecting the number with optional decimals in a formatted string for useGrouping: false
+CurrencyInfo.NUMBER_REGEX = /\d+(?:\D(\d+))?/;
+// Simplified and adapted from https://stackoverflow.com/a/14824756.
+// Note that this rtl detection is incomplete but good enough for our needs.
+CurrencyInfo.RIGHT_TO_LEFT_DETECTION_REGEX = /[\u0591-\u07FF\uFB1D-\uFDFD\uFE70-\uFEFC]/;
 
 
 //# sourceMappingURL=CurrencyInfo.js.map
 
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--13-1!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/FiatAmount.vue?vue&type=script&lang=ts&
-
-
-
 
 
 
@@ -11466,8 +11746,10 @@ function (_Vue) {
   }
 
   _createClass(FiatAmount, [{
-    key: "_currencyToLocale",
-    value: function _currencyToLocale(currency) {
+    key: "_getPositioningLocale",
+    value: function _getPositioningLocale(currency) {
+      // Try to guess a locale which positions the currency symbol in a way typical for countries, where the currency
+      // is used, e.g. 1.00€ for eur; $1.00 for usd.
       currency = currency.toLowerCase();
 
       switch (currency) {
@@ -11483,38 +11765,41 @@ function (_Vue) {
           return 'zh';
 
         default:
+          // Return the country from the currency code which is typically (but not necessarily) the first two
+          // letters (see https://en.wikipedia.org/wiki/ISO_4217#National_currencies), in the hope that it
+          // coincides with a locale.
+          // TODO oftentimes this results in the wrong locale, e.g. ARS (Argentinan Peso) -> AR (Arabic),
+          //  CAD (Canadian Dollar) -> CA (Catalan). Can we come up with a better heuristic?
           return currency.substr(0, 2);
       }
     }
   }, {
     key: "_currencyString",
     get: function get() {
+      var positioningLocale = this._getPositioningLocale(this.currency); // Only create CurrencyInfo for a specific locale if a locale was requested, otherwise use default behavior.
+      // Don't use positioningLocale as it's just a rough guess for a language typical for a country where the
+      // currency is used and might result in using a language that the user does not understand.
+
+
+      var currencyInfo = new CurrencyInfo(this.currency, this.locale || undefined);
       var formattingOptions = {
         style: 'currency',
         currency: this.currency,
-        currencyDisplay: 'symbol',
+        currencyDisplay: 'code',
         useGrouping: false,
-        // start with decimal count typical for this.currency, e.g. 2 for eur
-        minimumFractionDigits: this.hideDecimals ? 0 : undefined,
-        maximumFractionDigits: this.hideDecimals ? 0 : undefined
+        numberingSystem: 'latn',
+        // start with decimal count typical for this.currency, e.g. 2 for eur, unless hideDecimals was requested
+        minimumFractionDigits: this.hideDecimals ? 0 : currencyInfo.decimals,
+        maximumFractionDigits: this.hideDecimals ? 0 : currencyInfo.decimals
       };
       var formatted;
       var integers;
       var relativeDeviation;
 
       do {
-        formatted = this.amount.toLocaleString(["".concat(this.locale || this._currencyToLocale(this.currency), "-u-nu-latn"), "".concat(navigator.language, "-u-nu-latn"), 'en-US'], formattingOptions) // Enforce a dot as decimal separator for consistency and parseFloat. Using capturing groups instead of
+        formatted = this.amount.toLocaleString([this.locale || positioningLocale, positioningLocale, "".concat(navigator.language.substring(0, 2), "-").concat(positioningLocale), navigator.language, "en-".concat(positioningLocale), 'en'], formattingOptions) // Enforce a dot as decimal separator for consistency and parseFloat. Using capturing groups instead of
         // lookahead/lookbehind to avoid browser support limitations.
         .replace(FiatAmount_1.DECIMAL_SEPARATOR_REGEX, '$1.$2');
-
-        if (formatted.includes(this.currency.toUpperCase())) {
-          var symbol = new CurrencyInfo(this.currency).symbol; // Replace prefixed currency code including space, with the symbol and an unbreaking zero-width space
-
-          formatted = formatted.replace(new RegExp("".concat(this.currency.toUpperCase(), "\\s")), "".concat(symbol, "\uFEFF")); // Replace suffixed currency code, preserving the non-breaking space
-
-          formatted = formatted.replace(this.currency.toUpperCase(), symbol);
-        }
-
         var regexMatch = formatted.match(FiatAmount_1.NUMBER_REGEX);
 
         var _regexMatch = _slicedToArray(regexMatch, 5),
@@ -11529,10 +11814,24 @@ function (_Vue) {
         integers = regexMatch[2];
         var formattedNumber = "".concat(sign || '').concat(integers).concat(decimalsIncludingSeparator || '');
         relativeDeviation = Math.abs((this.amount - Number.parseFloat(formattedNumber)) / this.amount);
-        formattingOptions.minimumFractionDigits = decimals ? decimals.length + 1 : 1;
-      } while (relativeDeviation > this.maxRelativeDeviation && formattingOptions.minimumFractionDigits <= 20 // maximum allowed value for minimumFractionDigits
-      ); // apply integer grouping
+        var nextDecimals = decimals ? decimals.length + 1 : 1;
+        formattingOptions.minimumFractionDigits = nextDecimals;
+        formattingOptions.maximumFractionDigits = nextDecimals;
+      } while (relativeDeviation > this.maxRelativeDeviation && formattingOptions.minimumFractionDigits <= 20 // max for minimumFractionDigits and maximumFractionDigits
+      && !this.hideDecimals); // Replace the currency code with our custom currency symbol.
 
+
+      formatted = formatted.replace(FiatAmount_1.CURRENCY_CODE_REGEX, function (match, position) {
+        if (position !== 0 || !FiatAmount_1.SYMBOL_TRAILING_ALPHA_REGEX.test(currencyInfo.symbol)) {
+          // For trailing currency symbol or currency symbol that does not end with a latin letter or dot do not
+          // append a space, e.g.: 1.00 € (EUR), $1.00 (USD), R$1.00 (BRL), ₼1.00 (AZN), ৳1 (BDT), S/1.00 (PEN)
+          return currencyInfo.symbol;
+        } // For leading currency symbol that ends with a latin letter or dot, add a (non-breaking) space, e.g.
+        // KM 1.00 (BAM), B/. 1.00 (PAB), лв. 1.00 (BGN), kr 1.00 (DKK)
+
+
+        return "".concat(currencyInfo.symbol, "\xA0");
+      }); // apply integer grouping
 
       if (integers.length <= 4) return formatted;
       return formatted.replace(integers, new FormattableNumber(integers).toString(true));
@@ -11544,6 +11843,8 @@ function (_Vue) {
 
 FiatAmountvue_type_script_lang_ts_FiatAmount.NUMBER_REGEX = /(-)?\D*(\d+)(\.(\d+))?/;
 FiatAmountvue_type_script_lang_ts_FiatAmount.DECIMAL_SEPARATOR_REGEX = /(\d)\D(\d)/;
+FiatAmountvue_type_script_lang_ts_FiatAmount.CURRENCY_CODE_REGEX = /[A-Z]{3}\s?/i;
+FiatAmountvue_type_script_lang_ts_FiatAmount.SYMBOL_TRAILING_ALPHA_REGEX = /[A-Z.]$/i;
 
 __decorate([Object(external_vue_property_decorator_["Prop"])({
   type: Number,
@@ -11584,8 +11885,8 @@ FiatAmountvue_type_script_lang_ts_FiatAmount = FiatAmount_1 = __decorate([extern
 
 var FiatAmount_component = normalizeComponent(
   components_FiatAmountvue_type_script_lang_ts_,
-  FiatAmountvue_type_template_id_d41a7aea_render,
-  FiatAmountvue_type_template_id_d41a7aea_staticRenderFns,
+  FiatAmountvue_type_template_id_4e1e2a40_render,
+  FiatAmountvue_type_template_id_4e1e2a40_staticRenderFns,
   false,
   null,
   null,
@@ -11594,7 +11895,7 @@ var FiatAmount_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_FiatAmount = (FiatAmount_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"190b01da-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Identicon.vue?vue&type=template&id=7d87c782&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"72553ca7-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Identicon.vue?vue&type=template&id=7d87c782&scoped=true&
 var Identiconvue_type_template_id_7d87c782_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"identicon"},[_c('img',{attrs:{"src":_vm.dataUrl}})])}
 var Identiconvue_type_template_id_7d87c782_scoped_true_staticRenderFns = []
 
@@ -11768,7 +12069,7 @@ var Identicon_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_Identicon = (Identicon_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"190b01da-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/LabelInput.vue?vue&type=template&id=0ff1b768&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"72553ca7-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/LabelInput.vue?vue&type=template&id=0ff1b768&scoped=true&
 var LabelInputvue_type_template_id_0ff1b768_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('form',{staticClass:"label-input",class:{disabled: _vm.disabled},on:{"submit":function($event){$event.preventDefault();return _vm.onBlur($event)}}},[_c('span',{ref:"widthPlaceholder",staticClass:"width-finder width-placeholder"},[_vm._v(_vm._s(_vm.placeholder || _vm.$t('Name your address')))]),_c('span',{ref:"widthValue",staticClass:"width-finder width-value"},[_vm._v(_vm._s(_vm.liveValue))]),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.liveValue),expression:"liveValue"}],ref:"input",staticClass:"nq-input",class:{'vanishing': _vm.vanishing},style:({width: ((this.width) + "px")}),attrs:{"type":"text","placeholder":_vm.placeholder || _vm.$t('Name your address'),"disabled":_vm.disabled},domProps:{"value":(_vm.liveValue)},on:{"input":[function($event){if($event.target.composing){ return; }_vm.liveValue=$event.target.value},_vm.onInput],"blur":_vm.onBlur,"paste":function($event){return _vm.$emit('paste', $event)}}})])}
 var LabelInputvue_type_template_id_0ff1b768_scoped_true_staticRenderFns = []
 
@@ -12209,7 +12510,7 @@ var LabelInput_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_LabelInput = (LabelInput_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"190b01da-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/LoadingSpinner.vue?vue&type=template&id=4da3784e&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"72553ca7-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/LoadingSpinner.vue?vue&type=template&id=4da3784e&scoped=true&
 var LoadingSpinnervue_type_template_id_4da3784e_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('svg',{staticClass:"loading-spinner",attrs:{"height":"48","width":"54","viewBox":"0 0 54 48","color":"inherit"}},[_c('path',{attrs:{"id":"big-hex","d":"M51.9,21.9L41.3,3.6c-0.8-1.3-2.2-2.1-3.7-2.1H16.4c-1.5,0-2.9,0.8-3.7,2.1L2.1,21.9c-0.8,1.3-0.8,2.9,0,4.2 l10.6,18.3c0.8,1.3,2.2,2.1,3.7,2.1h21.3c1.5,0,2.9-0.8,3.7-2.1l10.6-18.3C52.7,24.8,52.7,23.2,51.9,21.9z","stroke":"currentColor","stroke-width":"3","fill":"none","stroke-linecap":"round","opacity":"0.4","stroke-dasharray":"92.5 60"}}),_c('path',{attrs:{"id":"small-hex","d":"M51.9,21.9L41.3,3.6c-0.8-1.3-2.2-2.1-3.7-2.1H16.4c-1.5,0-2.9,0.8-3.7,2.1L2.1,21.9c-0.8,1.3-0.8,2.9,0,4.2 l10.6,18.3c0.8,1.3,2.2,2.1,3.7,2.1h21.3c1.5,0,2.9-0.8,3.7-2.1l10.6-18.3C52.7,24.8,52.7,23.2,51.9,21.9z","stroke":"currentColor","stroke-width":"3","fill":"none","stroke-linecap":"round","stroke-dasharray":"47.5 105"}})])}
 var LoadingSpinnervue_type_template_id_4da3784e_scoped_true_staticRenderFns = []
 
@@ -12266,7 +12567,7 @@ var LoadingSpinner_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_LoadingSpinner = (LoadingSpinner_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"190b01da-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/PageBody.vue?vue&type=template&id=0b286594&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"72553ca7-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/PageBody.vue?vue&type=template&id=0b286594&scoped=true&
 var PageBodyvue_type_template_id_0b286594_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"page-body nq-card-body"},[_vm._t("default")],2)}
 var PageBodyvue_type_template_id_0b286594_scoped_true_staticRenderFns = []
 
@@ -12323,7 +12624,7 @@ var PageBody_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_PageBody = (PageBody_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"190b01da-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/PageFooter.vue?vue&type=template&id=3c6ba3a4&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"72553ca7-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/PageFooter.vue?vue&type=template&id=3c6ba3a4&scoped=true&
 var PageFootervue_type_template_id_3c6ba3a4_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"page-footer nq-card-footer"},[_vm._t("default")],2)}
 var PageFootervue_type_template_id_3c6ba3a4_scoped_true_staticRenderFns = []
 
@@ -12380,7 +12681,7 @@ var PageFooter_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_PageFooter = (PageFooter_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"190b01da-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/PageHeader.vue?vue&type=template&id=53c0243a&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"72553ca7-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/PageHeader.vue?vue&type=template&id=53c0243a&scoped=true&
 var PageHeadervue_type_template_id_53c0243a_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"page-header nq-card-header",class:_vm.progressIndicator ? 'has-progress-indicator' : ''},[(_vm.progressIndicator)?_c('div',{staticClass:"progress-indicator"},_vm._l((_vm.progressSteps),function(thisStep){return _c('div',{key:thisStep,staticClass:"indicator",class:thisStep <= _vm.step ? 'active' : ''})}),0):_vm._e(),(_vm.backArrow)?_c('a',{staticClass:"page-header-back-button",attrs:{"href":"#","title":_vm.$t('Go back')},on:{"click":function($event){$event.preventDefault();return _vm.$emit('back')}}},[_c('ArrowLeftIcon')],1):_vm._e(),_c('h1',{staticClass:"nq-h1"},[_vm._t("default")],2),_vm._t("more")],2)}
 var PageHeadervue_type_template_id_53c0243a_scoped_true_staticRenderFns = []
 
@@ -12479,12 +12780,12 @@ var PageHeader_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_PageHeader = (PageHeader_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"190b01da-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/QrCode.vue?vue&type=template&id=15576f68&
-var QrCodevue_type_template_id_15576f68_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (!!_vm.data)?_c('canvas'):_vm._e()}
-var QrCodevue_type_template_id_15576f68_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"72553ca7-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/QrCode.vue?vue&type=template&id=778bc790&
+var QrCodevue_type_template_id_778bc790_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (!!_vm.data)?_c('canvas',{staticClass:"qr-code"}):_vm._e()}
+var QrCodevue_type_template_id_778bc790_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/QrCode.vue?vue&type=template&id=15576f68&
+// CONCATENATED MODULE: ./src/components/QrCode.vue?vue&type=template&id=778bc790&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.every.js
 var es_array_every = __webpack_require__("a623");
@@ -12746,8 +13047,8 @@ QrCodevue_type_script_lang_ts_QrCode = __decorate([external_vue_property_decorat
 
 var QrCode_component = normalizeComponent(
   components_QrCodevue_type_script_lang_ts_,
-  QrCodevue_type_template_id_15576f68_render,
-  QrCodevue_type_template_id_15576f68_staticRenderFns,
+  QrCodevue_type_template_id_778bc790_render,
+  QrCodevue_type_template_id_778bc790_staticRenderFns,
   false,
   null,
   null,
@@ -12756,7 +13057,7 @@ var QrCode_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_QrCode = (QrCode_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"190b01da-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/QrScanner.vue?vue&type=template&id=5b05f1b5&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"72553ca7-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/QrScanner.vue?vue&type=template&id=5b05f1b5&scoped=true&
 var QrScannervue_type_template_id_5b05f1b5_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"qr-scanner nq-blue-bg"},[_c('video',{ref:"video",attrs:{"muted":"","autoplay":"","playsinline":"","width":"600","height":"600"},domProps:{"muted":true}}),_c('div',{ref:"overlay",staticClass:"overlay",class:{ inactive: _vm.cameraAccessFailed }},[_vm._t("default",[_c('svg',{attrs:{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 238 238"}},[_c('path',{attrs:{"fill":"none","stroke-linecap":"round","stroke-linejoin":"round","stroke-width":"4","d":"M31.3 2H10a8 8 0 0 0-8 8v21.3M206.8 2H228a8 8 0 0 1 8 8v21.3m0 175.4V228a8 8 0 0 1-8 8h-21.3m-175.4 0H10a8 8 0 0 1-8-8v-21.3"}})])])],2),_c('button',{staticClass:"nq-button-s inverse cancel-button",on:{"click":_vm._cancel}},[_vm._v(_vm._s(_vm.$t('Cancel')))]),_c('transition',{attrs:{"name":"fade"}},[(_vm.cameraAccessFailed)?_c('div',{staticClass:"camera-access-failed"},[(!_vm.hasCamera)?_c('div',{staticClass:"camera-access-failed-warning"},[_vm._v(" "+_vm._s(_vm.$t('Your device does not have an accessible camera.'))+" ")]):_c('div',[_c('div',{staticClass:"camera-access-failed-warning"},[_vm._v(" "+_vm._s(_vm.$t('Unblock the camera for this website to scan QR codes.'))+" ")]),(_vm.isMobileOrTablet)?_c('div',[(_vm.browser === 'chrome')?_c('div',[_c('I18n',{staticClass:"access-denied-instructions",attrs:{"path":"Click on {icon} and go to\\nSettings > Site Settings > Camera","tag":"div"},scopedSlots:_vm._u([{key:"icon",fn:function(){return [_c('span',{staticClass:"browser-menu-icon"})]},proxy:true}],null,false,1223065533)}),_c('div',{staticClass:"browser-menu-arrow"})],1):_c('div',{staticClass:"access-denied-instructions"},[_vm._v(" "+_vm._s(_vm.$t('Grant camera access when asked.'))+" ")])]):_c('div',{staticClass:"access-denied-instructions"},[(_vm.browser === 'safari')?_c('I18n',{attrs:{"path":"Click on {safari} and go to\\nSettings for this Website > Camera","tag":"div"},scopedSlots:_vm._u([{key:"safari",fn:function(){return [_c('b',[_vm._v("Safari")])]},proxy:true}],null,false,687307496)}):_c('I18n',{attrs:{"path":"Click on {icon} in the URL bar.","tag":"div"},scopedSlots:_vm._u([{key:"icon",fn:function(){return [(_vm.browser === 'chrome')?_c('span',{staticClass:"camera-icon-chrome"}):(_vm.browser === 'firefox')?_c('span',{staticClass:"camera-icon-firefox"}):_c('span',[_vm._v(_vm._s(_vm.$t('the camera icon')))])]},proxy:true}],null,false,2903711098)})],1)])]):_vm._e()])],1)}
 var QrScannervue_type_template_id_5b05f1b5_scoped_true_staticRenderFns = []
 
@@ -13806,7 +14107,7 @@ var QrScanner_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_QrScanner = (QrScanner_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"190b01da-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SelectBar.vue?vue&type=template&id=632b1400&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"72553ca7-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SelectBar.vue?vue&type=template&id=632b1400&scoped=true&
 var SelectBarvue_type_template_id_632b1400_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"select-bar"},_vm._l((_vm.options),function(option){return _c('div',{key:option.value},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.selectedOption),expression:"selectedOption"}],attrs:{"type":"radio","name":_vm.name,"id":option.value},domProps:{"value":option,"checked":_vm._q(_vm.selectedOption,option)},on:{"change":function($event){_vm.selectedOption=option}}}),_c('label',{staticClass:"nq-label",class:_vm.getColor(option),attrs:{"for":option.value}},[_vm._v(_vm._s(option.text))])])}),0)}
 var SelectBarvue_type_template_id_632b1400_scoped_true_staticRenderFns = []
 
@@ -13912,7 +14213,7 @@ var SelectBar_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_SelectBar = (SelectBar_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"190b01da-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SmallPage.vue?vue&type=template&id=1d450cf2&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"72553ca7-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SmallPage.vue?vue&type=template&id=1d450cf2&scoped=true&
 var SmallPagevue_type_template_id_1d450cf2_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"small-page nq-card"},[_vm._t("default")],2)}
 var SmallPagevue_type_template_id_1d450cf2_scoped_true_staticRenderFns = []
 
@@ -13969,22 +14270,22 @@ var SmallPage_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_SmallPage = (SmallPage_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"190b01da-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Timer.vue?vue&type=template&id=69609981&scoped=true&
-var Timervue_type_template_id_69609981_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('Tooltip',_vm._b({staticClass:"timer",class:{
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"72553ca7-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Timer.vue?vue&type=template&id=a31a785a&scoped=true&
+var Timervue_type_template_id_a31a785a_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('Tooltip',_vm._b({staticClass:"timer",class:{
         'time-shown': _vm.detailsShown || _vm.alwaysShowTime,
         'little-time-left': _vm._progress >= .75,
         'inverse-theme': _vm.theme === _vm.constructor.Themes.INVERSE,
         'white-theme': _vm.theme === _vm.constructor.Themes.WHITE,
     },on:{"show":function($event){_vm.detailsShown = true},"hide":function($event){_vm.detailsShown = false}},scopedSlots:_vm._u([{key:"trigger",fn:function(){return [_c('svg',{attrs:{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 26 26"}},[_c('circle',{ref:"time-circle",staticClass:"time-circle",attrs:{"cx":"50%","cy":"50%","r":_vm.radius.currentValue,"stroke-dasharray":((_vm._timeCircleInfo.length) + " " + (_vm._timeCircleInfo.gap)),"stroke-dashoffset":_vm._timeCircleInfo.offset,"stroke-width":_vm._timeCircleInfo.strokeWidth}}),_c('circle',{staticClass:"filler-circle",attrs:{"cx":"50%","cy":"50%","r":_vm.radius.currentValue,"stroke-dasharray":((_vm._fillerCircleInfo.length) + " " + (_vm._fillerCircleInfo.gap)),"stroke-dashoffset":_vm._fillerCircleInfo.offset,"stroke-width":_vm._fillerCircleInfo.strokeWidth}}),_c('transition',{attrs:{"name":"transition-fade"}},[(!_vm.detailsShown && !_vm.alwaysShowTime)?_c('g',{staticClass:"info-exclamation-icon"},[_c('rect',{attrs:{"x":"12","y":"9","width":"2","height":"2","rx":"1"}}),_c('rect',{attrs:{"x":"12","y":"12.5","width":"2","height":"4.5","rx":"1"}})]):_c('text',{staticClass:"countdown",attrs:{"x":"50%","y":"50%"}},[_vm._v(" "+_vm._s(_vm._f("_toSimplifiedTime")(_vm._timeLeft,false, _vm.maxUnit))+" ")])])],1)]},proxy:true},{key:"default",fn:function(){return [_c('I18n',{attrs:{"path":"This offer expires in {timer}."},scopedSlots:_vm._u([{key:"timer",fn:function(){return [_vm._v(_vm._s(_vm._f("_toSimplifiedTime")(_vm._timeLeft,true, _vm.maxUnit)))]},proxy:true}])})]},proxy:true}])},'Tooltip',Object.assign({}, {preferredPosition: 'bottom right',
-        theme: _vm.theme === 'inverse' || 'white' ? 'inverse' : 'normal'},
+        theme: _vm.theme === _vm.constructor.Themes.INVERSE || _vm.theme  === _vm.constructor.Themes.WHITE ? 'inverse' : 'normal'},
         _vm.tooltipProps,
         {styles: Object.assign({}, {width: '18.25rem',
             pointerEvents: 'none'},
             (_vm.tooltipProps ? _vm.tooltipProps.styles : undefined))}),false))}
-var Timervue_type_template_id_69609981_scoped_true_staticRenderFns = []
+var Timervue_type_template_id_a31a785a_scoped_true_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Timer.vue?vue&type=template&id=69609981&scoped=true&
+// CONCATENATED MODULE: ./src/components/Timer.vue?vue&type=template&id=a31a785a&scoped=true&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.values.js
 var es_object_values = __webpack_require__("07ac");
@@ -14031,7 +14332,7 @@ var Tweenable$1 = Tweenable;
 /* harmony default export */ var module_Tweenable = (Tweenable$1);
 //# sourceMappingURL=Tweenable.js.map
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"190b01da-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Tooltip.vue?vue&type=template&id=71bfa335&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"72553ca7-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Tooltip.vue?vue&type=template&id=71bfa335&scoped=true&
 var Tooltipvue_type_template_id_71bfa335_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"tooltip",class:[_vm.verticalPosition, {
         shown: _vm.isShown,
         'transition-position': _vm.transitionPosition,
@@ -15088,8 +15389,8 @@ Timervue_type_script_lang_ts_Timer = Timer_1 = __decorate([Object(external_vue_p
 /* harmony default export */ var Timervue_type_script_lang_ts_ = (Timervue_type_script_lang_ts_Timer);
 // CONCATENATED MODULE: ./src/components/Timer.vue?vue&type=script&lang=ts&
  /* harmony default export */ var components_Timervue_type_script_lang_ts_ = (Timervue_type_script_lang_ts_); 
-// EXTERNAL MODULE: ./src/components/Timer.vue?vue&type=style&index=0&id=69609981&scoped=true&lang=css&
-var Timervue_type_style_index_0_id_69609981_scoped_true_lang_css_ = __webpack_require__("ac2e");
+// EXTERNAL MODULE: ./src/components/Timer.vue?vue&type=style&index=0&id=a31a785a&scoped=true&lang=css&
+var Timervue_type_style_index_0_id_a31a785a_scoped_true_lang_css_ = __webpack_require__("bc1a");
 
 // CONCATENATED MODULE: ./src/components/Timer.vue
 
@@ -15102,11 +15403,11 @@ var Timervue_type_style_index_0_id_69609981_scoped_true_lang_css_ = __webpack_re
 
 var Timer_component = normalizeComponent(
   components_Timervue_type_script_lang_ts_,
-  Timervue_type_template_id_69609981_scoped_true_render,
-  Timervue_type_template_id_69609981_scoped_true_staticRenderFns,
+  Timervue_type_template_id_a31a785a_scoped_true_render,
+  Timervue_type_template_id_a31a785a_scoped_true_staticRenderFns,
   false,
   null,
-  "69609981",
+  "a31a785a",
   null
   
 )

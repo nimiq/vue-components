@@ -39,7 +39,7 @@ msgid "Contracts cannot be used for this operation."
 msgstr ""
 
 #: src/components/Copyable.vue:5
-#: src/components/CopyableField.vue:21
+#: src/components/CopyableField.vue:20
 msgid "Copied"
 msgstr ""
 

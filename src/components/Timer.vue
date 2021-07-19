@@ -2,7 +2,7 @@
     <Tooltip class="timer"
         v-bind="{
             preferredPosition: 'bottom right',
-            theme: theme === 'inverse' || 'white' ? 'inverse' : 'normal',
+            theme: theme === constructor.Themes.INVERSE || theme  === constructor.Themes.WHITE ? 'inverse' : 'normal',
             ...tooltipProps,
             styles: {
                 width: '18.25rem',
@@ -43,7 +43,7 @@
         </template>
         <template #default>
             <I18n path="This offer expires in {timer}.">
-                <template #timer>{{ _timeLeft | _toSimplifiedTime(true, maxUnit) }}</template>
+                <template #timer>{{ _timeLeft | _toSimplifiedTime(true, maxUnit) }}</template>
             </I18n>
         </template>
     </Tooltip>

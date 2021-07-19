@@ -659,14 +659,16 @@ storiesOf('Components', module)
             a: 'Value a',
             b: 'Lorem ipsum dolor sit amet, consectetur adipiscing',
         });
+        const small = boolean('small', false);
 
         return {
             components: {CopyableField},
-            data: () => ({ label, value }),
+            data: () => ({ label, value, small }),
             template: `
                 <CopyableField
                     :label="label"
                     :value="value"
+                    :small="small"
                     style="color: white; background: var(--nimiq-blue-bg); width: 50rem"
                 />
             `,
