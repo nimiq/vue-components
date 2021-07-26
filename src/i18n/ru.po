@@ -15,7 +15,7 @@ msgstr ""
 msgid "{amount} suggested network fee"
 msgstr "{amount} предлагаемая комиссия сети"
 
-#: src/components/AccountSelector.vue:18
+#: src/components/AccountSelector.vue:21
 msgid "{type} accounts cannot be used for this operation."
 msgstr ""
 "Аккаунты данного типа {type} не могут быть использованы для этой операции."
@@ -52,7 +52,7 @@ msgstr ""
 msgid "Contracts cannot be used for this operation."
 msgstr "Контракты не могут быть использованы для этой операции."
 
-#: src/components/Copyable.vue:5 src/components/CopyableField.vue:21
+#: src/components/Copyable.vue:5 src/components/CopyableField.vue:20
 msgid "Copied"
 msgstr "Скопировано"
 
@@ -60,11 +60,11 @@ msgstr "Скопировано"
 msgid "Create Backup"
 msgstr "Создать резервную копию"
 
-#: src/components/Timer.vue:95
+#: src/components/Timer.vue:96
 msgid "day"
 msgstr "день"
 
-#: src/components/Timer.vue:96
+#: src/components/Timer.vue:97
 msgid "days"
 msgstr "дней"
 
@@ -84,11 +84,11 @@ msgstr "Назад"
 msgid "Grant camera access when asked."
 msgstr "Предоставьте доступ к камере, когда вас об этом попросят."
 
-#: src/components/Timer.vue:93
+#: src/components/Timer.vue:94
 msgid "hour"
 msgstr "час"
 
-#: src/components/Timer.vue:94
+#: src/components/Timer.vue:95
 msgid "hours"
 msgstr "часов"
 
@@ -96,11 +96,11 @@ msgstr "часов"
 msgid "Insufficient balance"
 msgstr "Недостаточный баланс"
 
-#: src/components/AccountSelector.vue:188
+#: src/components/AccountSelector.vue:193
 msgid "Legacy"
 msgstr "\"старый\""
 
-#: src/components/AccountSelector.vue:41
+#: src/components/AccountSelector.vue:44
 msgid "Login to another account"
 msgstr "Вход в другой аккаунт"
 
@@ -108,11 +108,11 @@ msgstr "Вход в другой аккаунт"
 msgid "Logout"
 msgstr "Выйти"
 
-#: src/components/Timer.vue:91
+#: src/components/Timer.vue:92
 msgid "minute"
 msgstr "минута"
 
-#: src/components/Timer.vue:92
+#: src/components/Timer.vue:93
 msgid "minutes"
 msgstr "минут"
 
@@ -140,11 +140,11 @@ msgstr "Переименовать"
 msgid "Save Login File"
 msgstr "Сохранить Файл Авторизации"
 
-#: src/components/Timer.vue:89
+#: src/components/Timer.vue:90
 msgid "second"
 msgstr "секунда"
 
-#: src/components/Timer.vue:90
+#: src/components/Timer.vue:91
 msgid "seconds"
 msgstr "секунд"
 
@@ -156,7 +156,7 @@ msgstr "значок камеры"
 msgid "This address cannot be used for this operation."
 msgstr "Этот адрес не может быть использован для данной операции."
 
-#: src/components/Timer.vue:44
+#: src/components/Timer.vue:45
 msgid "This offer expires in {timer}."
 msgstr "Срок действия этого предложения истекает через {timer}."
 
