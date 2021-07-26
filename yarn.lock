@@ -965,10 +965,10 @@
   resolved "https://registry.yarnpkg.com/@nimiq/style/-/style-0.8.2.tgz#140ab7cbe71a9b1db6e0bca34ba880cfff64037a"
   integrity sha512-nQjMQjmU3ZuYRMG+8uADM/fVv6Taq70qKdPGuRR/gLUJZMg/2qxZaGHDikg4kVNLFbo9pjzjotJDMqtNwlVSew==
 
-"@nimiq/utils@^0.8.0":
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/@nimiq/utils/-/utils-0.8.0.tgz#c3ba61ab64765f174bee96f1f51754b9b27640ee"
-  integrity sha512-qSVmX72nTo3sRP74MRwAL7OR0iWYZQmTU0hk/gYUVv8DRqFFlguim8yTVYsIS0izvAZU8L1OlrXg+D9O2mGhkw==
+"@nimiq/utils@^0.8.1":
+  version "0.8.1"
+  resolved "https://registry.yarnpkg.com/@nimiq/utils/-/utils-0.8.1.tgz#4d9c10bdf7dd5bfd0732f8dee13974c14921654d"
+  integrity sha512-SfGxFDMoZumKrOS330eKuC/E3FWEYEzDLD6gbhkhtFZ4I2EoS5Qz+lFnNaWVpwWxfuDE8rBjZNSUrCzsSQIupA==
   dependencies:
     big-integer "^1.6.44"
 
