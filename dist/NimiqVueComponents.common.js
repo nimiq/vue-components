@@ -6783,7 +6783,7 @@ var es_array_concat = __webpack_require__("99af");
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.ends-with.js
 var es_string_ends_with = __webpack_require__("8a79");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"c3f1c5a4-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CircleSpinner.vue?vue&type=template&id=2bc59fa8&scoped=true&functional=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"9ac4ab74-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CircleSpinner.vue?vue&type=template&id=2bc59fa8&scoped=true&functional=true&
 var render = function (_h,_vm) {var _c=_vm._c;return _c('svg',{staticClass:"circle-spinner",attrs:{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 18 18","width":"18","height":"18","fill":"none","stroke-width":"2","stroke-linecap":"round"}},[_c('path',{attrs:{"stroke":"#0582CA","d":"M9,1c4.42,0,8,3.58,8,8"}}),_c('path',{attrs:{"stroke":"#1F2348","opacity":".3","d":"M4.27,2.56C2.29,4.01,1,6.35,1,9c0,4.42,3.58,8,8,8c2.65,0,4.99-1.29,6.44-3.27"}})])}
 var staticRenderFns = []
 
@@ -6913,7 +6913,7 @@ var component = normalizeComponent(
 )
 
 /* harmony default export */ var CircleSpinner = (component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"c3f1c5a4-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CloseButton.vue?vue&type=template&id=f70dd1ae&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"9ac4ab74-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CloseButton.vue?vue&type=template&id=f70dd1ae&scoped=true&
 var CloseButtonvue_type_template_id_f70dd1ae_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('button',{staticClass:"close-button nq-button-s",on:{"click":_vm.click,"mousedown":function($event){$event.preventDefault();}}},[_c('CloseIcon')],1)}
 var CloseButtonvue_type_template_id_f70dd1ae_scoped_true_staticRenderFns = []
 
@@ -7631,7 +7631,7 @@ var CloseButton_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_CloseButton = (CloseButton_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"c3f1c5a4-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CopyableField.vue?vue&type=template&id=23ed6b92&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"9ac4ab74-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CopyableField.vue?vue&type=template&id=23ed6b92&scoped=true&
 var CopyableFieldvue_type_template_id_23ed6b92_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"copyable-field",class:{ small: _vm.small }},[(_vm.label)?_c('span',{staticClass:"nq-label"},[_vm._v(_vm._s(_vm.label))]):_vm._e(),_c('div',{staticClass:"copyable-field-content",class:{ 'simple-value': !_vm.isKeyedValue, copied: _vm.copied },on:{"click":_vm.copy}},[_c('div',{ref:"value-container",staticClass:"value-container",style:({ fontSize: _vm.fontSize+'rem' })},[_c('span',{ref:"value",staticClass:"value"},[_vm._v(" "+_vm._s(_vm.isKeyedValue ? _vm.value[_vm.currentKey] : _vm.value)+" ")])]),_vm._l(((_vm.isKeyedValue ? Object.keys(_vm.value) : [])),function(key){return _c('button',{staticClass:"nq-button-s",class:{
                 inverse: _vm.currentKey === key,
                 'single-key': _vm.hasSingleKey,
@@ -8302,7 +8302,7 @@ var CopyableField_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_CopyableField = (CopyableField_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"c3f1c5a4-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/FiatAmount.vue?vue&type=template&id=4e1e2a40&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"9ac4ab74-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/FiatAmount.vue?vue&type=template&id=4e1e2a40&
 var FiatAmountvue_type_template_id_4e1e2a40_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"fiat-amount"},[_vm._v(" "+_vm._s(_vm._currencyString)+" ")])}
 var FiatAmountvue_type_template_id_4e1e2a40_staticRenderFns = []
 
@@ -8374,6 +8374,9 @@ function _slicedToArray(arr, i) {
 // CONCATENATED MODULE: ./node_modules/@nimiq/utils/dist/module/CurrencyInfo.js
 class CurrencyInfo {
     constructor(currencyCode, decimalsOrLocaleOrOptions, name, symbol) {
+        if (!CurrencyInfo.CURRENCY_CODE_REGEX.test(currencyCode)) {
+            throw new Error(`Invalid currency code ${currencyCode}`);
+        }
         let decimals;
         let locale;
         if (typeof decimalsOrLocaleOrOptions === 'number') {
@@ -8395,14 +8398,19 @@ class CurrencyInfo {
             navigator.language,
             'en-US',
         ];
-        const supportsDisplayNames = 'DisplayNames' in Intl
-            // @ts-ignore: the `polyfilled` property is just added by the @formatjs polyfill
-            && !Intl.DisplayNames.polyfilled; // @formatjs/intl-displaynames polyfill is causing issues
+        let supportsDisplayNames = 'DisplayNames' in Intl;
         // also normalizes the locales
         [this.locale] = supportsDisplayNames
             // @ts-ignore TODO use proper types once https://github.com/microsoft/TypeScript/pull/44022 is available
             ? Intl.DisplayNames.supportedLocalesOf(nameLocalesToTry)
             : Intl.NumberFormat.supportedLocalesOf(nameLocalesToTry);
+        if (supportsDisplayNames && !this.locale) {
+            // DisplayNames does not support any of the tried locales, not even en. This can happen especially if
+            // DisplayNames was polyfilled, e.g. by @formatjs/intl-displaynames, but no data was (lazy)loaded for any
+            // of our locales.
+            supportsDisplayNames = false;
+            [this.locale] = Intl.NumberFormat.supportedLocalesOf(nameLocalesToTry);
+        }
         const isAutoGenerated = decimals === undefined && name === undefined && symbol === undefined;
         const cacheKey = `${this.code} ${this.locale}`;
         const cachedCurrencyInfo = CurrencyInfo.CACHED_AUTO_GENERATED_CURRENCY_INFOS[cacheKey];
@@ -8423,16 +8431,21 @@ class CurrencyInfo {
             this.name = cachedCurrencyInfo.name;
         }
         else if (supportsDisplayNames) {
-            // Use DisplayNames if available as it provides better names.
-            // @ts-ignore TODO use proper types once https://github.com/microsoft/TypeScript/pull/44022 is merged
-            this.name = new Intl.DisplayNames(this.locale, { type: 'currency' }).of(currencyCode);
+            try {
+                // Use DisplayNames if available as it provides better names.
+                // @ts-ignore TODO use proper types once https://github.com/microsoft/TypeScript/pull/44022 is merged
+                this.name = new Intl.DisplayNames(this.locale, { type: 'currency' }).of(currencyCode);
+            }
+            catch (e) {
+                // Ignore and continue with if block below.
+            }
         }
-        else {
-            // Note that toLocaleString throws for not well-formatted currency codes
-            // (see https://www.ecma-international.org/ecma-402/1.0/#sec-6.3.1).
-            formattedString = (0).toLocaleString(this.locale, { currencyDisplay: 'name', ...formatterOptions });
-            // Using regex parsing instead of NumberFormat.formatToParts which has less browser support.
-            this.name = formattedString.replace(CurrencyInfo.NUMBER_REGEX, '').trim();
+        if (!this.name) {
+            formattedString = CurrencyInfo.failsafeNumberToLocaleString(0, this.locale, { currencyDisplay: 'name', ...formatterOptions });
+            this.name = formattedString
+                // Using regex parsing instead of NumberFormat.formatToParts which has less browser support.
+                ? formattedString.replace(CurrencyInfo.NUMBER_REGEX, '').trim()
+                : this.code;
         }
         if (symbol !== undefined) {
             this.symbol = symbol;
@@ -8460,14 +8473,14 @@ class CurrencyInfo {
                     `en-${currencyCountry}`,
                     'en',
                 ];
-                try {
-                    formattedString = (0).toLocaleString(symbolLocalesToTry, { currencyDisplay: 'narrowSymbol', ...formatterOptions });
+                const symbolFormattedString = CurrencyInfo.failsafeNumberToLocaleString(0, symbolLocalesToTry, { currencyDisplay: 'narrowSymbol', ...formatterOptions }) || CurrencyInfo.failsafeNumberToLocaleString(0, symbolLocalesToTry, { currencyDisplay: 'symbol', ...formatterOptions });
+                if (symbolFormattedString) {
+                    formattedString = symbolFormattedString;
+                    this.symbol = formattedString.replace(CurrencyInfo.NUMBER_REGEX, '').trim();
                 }
-                catch (e) {
-                    // on old browsers that do not support currencyDisplay narrowSymbol yet, fallback to symbol.
-                    formattedString = (0).toLocaleString(symbolLocalesToTry, { currencyDisplay: 'symbol', ...formatterOptions });
+                else {
+                    this.symbol = this.code;
                 }
-                this.symbol = formattedString.replace(CurrencyInfo.NUMBER_REGEX, '').trim();
             }
         }
         if (decimals !== undefined) {
@@ -8480,15 +8493,29 @@ class CurrencyInfo {
             this.decimals = 0;
         }
         else {
-            if (!formattedString) {
-                // As we only need the number, the used locale and currencyDisplay don't matter.
-                formattedString = (0).toLocaleString('en', formatterOptions);
+            // As we only need the number, the used locale and currencyDisplay don't matter.
+            formattedString = formattedString || CurrencyInfo.failsafeNumberToLocaleString(0, 'en', { currencyDisplay: 'code', ...formatterOptions });
+            if (formattedString) {
+                const numberMatch = formattedString.match(CurrencyInfo.NUMBER_REGEX);
+                this.decimals = numberMatch ? (numberMatch[1] || '').length : 2;
             }
-            const numberMatch = formattedString.match(CurrencyInfo.NUMBER_REGEX);
-            this.decimals = numberMatch ? (numberMatch[1] || '').length : 2;
+            else {
+                this.decimals = 2;
+            }
         }
         if (isAutoGenerated) {
             CurrencyInfo.CACHED_AUTO_GENERATED_CURRENCY_INFOS[cacheKey] = this;
+        }
+    }
+    static failsafeNumberToLocaleString(value, locales, options) {
+        try {
+            // toLocaleString can fail for example for invalid locales or currency codes or unsupported currencyDisplay
+            // options in older browsers. Older Chrome versions also had a bug, where some option combinations lead to
+            // a "Internal error. Icu error." exception.
+            return value.toLocaleString(locales, options);
+        }
+        catch (e) {
+            return null;
         }
     }
 }
@@ -8732,6 +8759,8 @@ CurrencyInfo.CUSTOM_DECIMAL_LESS_CURRENCIES = new Set([
 ]);
 // Cache auto-generated CurrencyInfos such that they do not need to be recalculated.
 CurrencyInfo.CACHED_AUTO_GENERATED_CURRENCY_INFOS = {};
+// Regex for detecting valid currency codes.
+CurrencyInfo.CURRENCY_CODE_REGEX = /[A-Z]{3}/i;
 // Regex for detecting the number with optional decimals in a formatted string for useGrouping: false
 CurrencyInfo.NUMBER_REGEX = /\d+(?:\D(\d+))?/;
 // Simplified and adapted from https://stackoverflow.com/a/14824756.
@@ -9026,7 +9055,7 @@ var FiatAmount_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_FiatAmount = (FiatAmount_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"c3f1c5a4-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SmallPage.vue?vue&type=template&id=1d450cf2&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"9ac4ab74-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SmallPage.vue?vue&type=template&id=1d450cf2&scoped=true&
 var SmallPagevue_type_template_id_1d450cf2_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"small-page nq-card"},[_vm._t("default")],2)}
 var SmallPagevue_type_template_id_1d450cf2_scoped_true_staticRenderFns = []
 
@@ -9083,7 +9112,7 @@ var SmallPage_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_SmallPage = (SmallPage_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"c3f1c5a4-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Tooltip.vue?vue&type=template&id=71bfa335&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"9ac4ab74-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Tooltip.vue?vue&type=template&id=71bfa335&scoped=true&
 var Tooltipvue_type_template_id_71bfa335_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"tooltip",class:[_vm.verticalPosition, {
         shown: _vm.isShown,
         'transition-position': _vm.transitionPosition,
