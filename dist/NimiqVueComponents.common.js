@@ -44,7 +44,7 @@ module.exports =
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "NimiqVueComponents.common." + ({"1":"lang-de-AccountList-json","2":"lang-de-AccountSelector-json","3":"lang-de-AmountWithFee-json","4":"lang-de-Copyable-json","5":"lang-de-CopyableField-json","6":"lang-de-LabelInput-json","7":"lang-de-PageHeader-json","8":"lang-de-PaymentInfoLine-json","9":"lang-de-QrScanner-json","10":"lang-de-Timer-json","11":"lang-de-Wallet-json","12":"lang-es-AccountList-json","13":"lang-es-AccountSelector-json","14":"lang-es-AmountWithFee-json","15":"lang-es-Copyable-json","16":"lang-es-CopyableField-json","17":"lang-es-LabelInput-json","18":"lang-es-PageHeader-json","19":"lang-es-PaymentInfoLine-json","20":"lang-es-QrScanner-json","21":"lang-es-Timer-json","22":"lang-es-Wallet-json","23":"lang-fa-AccountList-json","24":"lang-fa-AccountSelector-json","25":"lang-fa-AmountWithFee-json","26":"lang-fa-Copyable-json","27":"lang-fa-CopyableField-json","28":"lang-fa-LabelInput-json","29":"lang-fa-PageHeader-json","30":"lang-fa-PaymentInfoLine-json","31":"lang-fa-QrScanner-json","32":"lang-fa-Timer-json","33":"lang-fa-Wallet-json","34":"lang-fil-AccountList-json","35":"lang-fil-AccountSelector-json","36":"lang-fil-AmountWithFee-json","37":"lang-fil-Copyable-json","38":"lang-fil-CopyableField-json","39":"lang-fil-LabelInput-json","40":"lang-fil-PageHeader-json","41":"lang-fil-PaymentInfoLine-json","42":"lang-fil-QrScanner-json","43":"lang-fil-Timer-json","44":"lang-fil-Wallet-json","45":"lang-fr-AccountList-json","46":"lang-fr-AccountSelector-json","47":"lang-fr-AmountWithFee-json","48":"lang-fr-Copyable-json","49":"lang-fr-CopyableField-json","50":"lang-fr-LabelInput-json","51":"lang-fr-PageHeader-json","52":"lang-fr-PaymentInfoLine-json","53":"lang-fr-QrScanner-json","54":"lang-fr-Timer-json","55":"lang-fr-Wallet-json","56":"lang-it-AccountList-json","57":"lang-it-AccountSelector-json","58":"lang-it-AmountWithFee-json","59":"lang-it-Copyable-json","60":"lang-it-CopyableField-json","61":"lang-it-LabelInput-json","62":"lang-it-PageHeader-json","63":"lang-it-PaymentInfoLine-json","64":"lang-it-QrScanner-json","65":"lang-it-Timer-json","66":"lang-it-Wallet-json","67":"lang-ko-AccountList-json","68":"lang-ko-AccountSelector-json","69":"lang-ko-AmountWithFee-json","70":"lang-ko-Copyable-json","71":"lang-ko-CopyableField-json","72":"lang-ko-LabelInput-json","73":"lang-ko-PageHeader-json","74":"lang-ko-PaymentInfoLine-json","75":"lang-ko-QrScanner-json","76":"lang-ko-Timer-json","77":"lang-ko-Wallet-json","78":"lang-nl-AccountList-json","79":"lang-nl-AccountSelector-json","80":"lang-nl-AmountWithFee-json","81":"lang-nl-Copyable-json","82":"lang-nl-CopyableField-json","83":"lang-nl-LabelInput-json","84":"lang-nl-PageHeader-json","85":"lang-nl-PaymentInfoLine-json","86":"lang-nl-QrScanner-json","87":"lang-nl-Timer-json","88":"lang-nl-Wallet-json","89":"lang-ru-AccountList-json","90":"lang-ru-AccountSelector-json","91":"lang-ru-AmountWithFee-json","92":"lang-ru-Copyable-json","93":"lang-ru-CopyableField-json","94":"lang-ru-LabelInput-json","95":"lang-ru-PageHeader-json","96":"lang-ru-PaymentInfoLine-json","97":"lang-ru-QrScanner-json","98":"lang-ru-Timer-json","99":"lang-ru-Wallet-json","100":"lang-uk-AccountList-json","101":"lang-uk-AccountSelector-json","102":"lang-uk-AmountWithFee-json","103":"lang-uk-Copyable-json","104":"lang-uk-CopyableField-json","105":"lang-uk-LabelInput-json","106":"lang-uk-PageHeader-json","107":"lang-uk-PaymentInfoLine-json","108":"lang-uk-QrScanner-json","109":"lang-uk-Timer-json","110":"lang-uk-Wallet-json","111":"lang-zh-AccountList-json","112":"lang-zh-AccountSelector-json","113":"lang-zh-AmountWithFee-json","114":"lang-zh-Copyable-json","115":"lang-zh-CopyableField-json","116":"lang-zh-LabelInput-json","117":"lang-zh-PageHeader-json","118":"lang-zh-PaymentInfoLine-json","119":"lang-zh-QrScanner-json","120":"lang-zh-Timer-json","121":"lang-zh-Wallet-json"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "NimiqVueComponents.common." + ({"1":"lang-de-AccountList-json","2":"lang-de-AccountSelector-json","3":"lang-de-AmountWithFee-json","4":"lang-de-Copyable-json","5":"lang-de-CopyableField-json","6":"lang-de-LabelInput-json","7":"lang-de-PageHeader-json","8":"lang-de-PaymentInfoLine-json","9":"lang-de-QrScanner-json","10":"lang-de-Timer-json","11":"lang-de-Wallet-json","12":"lang-es-AccountList-json","13":"lang-es-AccountSelector-json","14":"lang-es-AmountWithFee-json","15":"lang-es-Copyable-json","16":"lang-es-CopyableField-json","17":"lang-es-LabelInput-json","18":"lang-es-PageHeader-json","19":"lang-es-PaymentInfoLine-json","20":"lang-es-QrScanner-json","21":"lang-es-Timer-json","22":"lang-es-Wallet-json","23":"lang-fil-AccountList-json","24":"lang-fil-AccountSelector-json","25":"lang-fil-AmountWithFee-json","26":"lang-fil-Copyable-json","27":"lang-fil-CopyableField-json","28":"lang-fil-LabelInput-json","29":"lang-fil-PageHeader-json","30":"lang-fil-PaymentInfoLine-json","31":"lang-fil-QrScanner-json","32":"lang-fil-Timer-json","33":"lang-fil-Wallet-json","34":"lang-fr-AccountList-json","35":"lang-fr-AccountSelector-json","36":"lang-fr-AmountWithFee-json","37":"lang-fr-Copyable-json","38":"lang-fr-CopyableField-json","39":"lang-fr-LabelInput-json","40":"lang-fr-PageHeader-json","41":"lang-fr-PaymentInfoLine-json","42":"lang-fr-QrScanner-json","43":"lang-fr-Timer-json","44":"lang-fr-Wallet-json","45":"lang-nl-AccountList-json","46":"lang-nl-AccountSelector-json","47":"lang-nl-AmountWithFee-json","48":"lang-nl-Copyable-json","49":"lang-nl-CopyableField-json","50":"lang-nl-LabelInput-json","51":"lang-nl-PageHeader-json","52":"lang-nl-PaymentInfoLine-json","53":"lang-nl-QrScanner-json","54":"lang-nl-Timer-json","55":"lang-nl-Wallet-json","56":"lang-ru-AccountList-json","57":"lang-ru-AccountSelector-json","58":"lang-ru-AmountWithFee-json","59":"lang-ru-Copyable-json","60":"lang-ru-CopyableField-json","61":"lang-ru-LabelInput-json","62":"lang-ru-PageHeader-json","63":"lang-ru-PaymentInfoLine-json","64":"lang-ru-QrScanner-json","65":"lang-ru-Timer-json","66":"lang-ru-Wallet-json","67":"lang-uk-AccountList-json","68":"lang-uk-AccountSelector-json","69":"lang-uk-AmountWithFee-json","70":"lang-uk-Copyable-json","71":"lang-uk-CopyableField-json","72":"lang-uk-LabelInput-json","73":"lang-uk-PageHeader-json","74":"lang-uk-PaymentInfoLine-json","75":"lang-uk-QrScanner-json","76":"lang-uk-Timer-json","77":"lang-uk-Wallet-json","78":"lang-zh-AccountList-json","79":"lang-zh-AccountSelector-json","80":"lang-zh-AmountWithFee-json","81":"lang-zh-Copyable-json","82":"lang-zh-CopyableField-json","83":"lang-zh-LabelInput-json","84":"lang-zh-PageHeader-json","85":"lang-zh-PaymentInfoLine-json","86":"lang-zh-QrScanner-json","87":"lang-zh-Timer-json","88":"lang-zh-Wallet-json"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -1692,401 +1692,269 @@ var map = {
 		"ca03",
 		22
 	],
-	"./fa/AccountList.json": [
-		"e768",
-		23
-	],
-	"./fa/AccountSelector.json": [
-		"18ee",
-		24
-	],
-	"./fa/AmountWithFee.json": [
-		"633b",
-		25
-	],
-	"./fa/Copyable.json": [
-		"9662",
-		26
-	],
-	"./fa/CopyableField.json": [
-		"79b0",
-		27
-	],
-	"./fa/LabelInput.json": [
-		"0eef",
-		28
-	],
-	"./fa/PageHeader.json": [
-		"b928",
-		29
-	],
-	"./fa/PaymentInfoLine.json": [
-		"6244",
-		30
-	],
-	"./fa/QrScanner.json": [
-		"7322",
-		31
-	],
-	"./fa/Timer.json": [
-		"622f",
-		32
-	],
-	"./fa/Wallet.json": [
-		"e25d",
-		33
-	],
 	"./fil/AccountList.json": [
 		"0e31",
-		34
+		23
 	],
 	"./fil/AccountSelector.json": [
 		"f44e",
-		35
+		24
 	],
 	"./fil/AmountWithFee.json": [
 		"ea65",
-		36
+		25
 	],
 	"./fil/Copyable.json": [
 		"1f5a",
-		37
+		26
 	],
 	"./fil/CopyableField.json": [
 		"4250",
-		38
+		27
 	],
 	"./fil/LabelInput.json": [
 		"b450",
-		39
+		28
 	],
 	"./fil/PageHeader.json": [
 		"3184",
-		40
+		29
 	],
 	"./fil/PaymentInfoLine.json": [
 		"c8fd",
-		41
+		30
 	],
 	"./fil/QrScanner.json": [
 		"c35d",
-		42
+		31
 	],
 	"./fil/Timer.json": [
 		"0b50",
-		43
+		32
 	],
 	"./fil/Wallet.json": [
 		"bd98",
-		44
+		33
 	],
 	"./fr/AccountList.json": [
 		"40c8",
-		45
+		34
 	],
 	"./fr/AccountSelector.json": [
 		"d939",
-		46
+		35
 	],
 	"./fr/AmountWithFee.json": [
 		"615f",
-		47
+		36
 	],
 	"./fr/Copyable.json": [
 		"bad1",
-		48
+		37
 	],
 	"./fr/CopyableField.json": [
 		"c50a",
-		49
+		38
 	],
 	"./fr/LabelInput.json": [
 		"24a7",
-		50
+		39
 	],
 	"./fr/PageHeader.json": [
 		"014a",
-		51
+		40
 	],
 	"./fr/PaymentInfoLine.json": [
 		"fe91",
-		52
+		41
 	],
 	"./fr/QrScanner.json": [
 		"35cb",
-		53
+		42
 	],
 	"./fr/Timer.json": [
 		"894c",
-		54
+		43
 	],
 	"./fr/Wallet.json": [
 		"ec08",
-		55
-	],
-	"./it/AccountList.json": [
-		"6cfb",
-		56
-	],
-	"./it/AccountSelector.json": [
-		"3163",
-		57
-	],
-	"./it/AmountWithFee.json": [
-		"cee3",
-		58
-	],
-	"./it/Copyable.json": [
-		"0438",
-		59
-	],
-	"./it/CopyableField.json": [
-		"4fdc",
-		60
-	],
-	"./it/LabelInput.json": [
-		"159e",
-		61
-	],
-	"./it/PageHeader.json": [
-		"7349",
-		62
-	],
-	"./it/PaymentInfoLine.json": [
-		"8180",
-		63
-	],
-	"./it/QrScanner.json": [
-		"bdec",
-		64
-	],
-	"./it/Timer.json": [
-		"dd97",
-		65
-	],
-	"./it/Wallet.json": [
-		"50bf",
-		66
-	],
-	"./ko/AccountList.json": [
-		"a4e2",
-		67
-	],
-	"./ko/AccountSelector.json": [
-		"f367",
-		68
-	],
-	"./ko/AmountWithFee.json": [
-		"afb1",
-		69
-	],
-	"./ko/Copyable.json": [
-		"2f73",
-		70
-	],
-	"./ko/CopyableField.json": [
-		"facd",
-		71
-	],
-	"./ko/LabelInput.json": [
-		"3bc8",
-		72
-	],
-	"./ko/PageHeader.json": [
-		"5801",
-		73
-	],
-	"./ko/PaymentInfoLine.json": [
-		"a39b",
-		74
-	],
-	"./ko/QrScanner.json": [
-		"e7f1",
-		75
-	],
-	"./ko/Timer.json": [
-		"6127",
-		76
-	],
-	"./ko/Wallet.json": [
-		"b1e8",
-		77
+		44
 	],
 	"./nl/AccountList.json": [
 		"1644",
-		78
+		45
 	],
 	"./nl/AccountSelector.json": [
 		"600b",
-		79
+		46
 	],
 	"./nl/AmountWithFee.json": [
 		"0617",
-		80
+		47
 	],
 	"./nl/Copyable.json": [
 		"a136",
-		81
+		48
 	],
 	"./nl/CopyableField.json": [
 		"4fb8",
-		82
+		49
 	],
 	"./nl/LabelInput.json": [
 		"d183",
-		83
+		50
 	],
 	"./nl/PageHeader.json": [
 		"652c",
-		84
+		51
 	],
 	"./nl/PaymentInfoLine.json": [
 		"a231",
-		85
+		52
 	],
 	"./nl/QrScanner.json": [
 		"64dc",
-		86
+		53
 	],
 	"./nl/Timer.json": [
 		"84f0",
-		87
+		54
 	],
 	"./nl/Wallet.json": [
 		"63f5",
-		88
+		55
 	],
 	"./ru/AccountList.json": [
 		"e162",
-		89
+		56
 	],
 	"./ru/AccountSelector.json": [
 		"2153",
-		90
+		57
 	],
 	"./ru/AmountWithFee.json": [
 		"f212",
-		91
+		58
 	],
 	"./ru/Copyable.json": [
 		"d3a8",
-		92
+		59
 	],
 	"./ru/CopyableField.json": [
 		"580c",
-		93
+		60
 	],
 	"./ru/LabelInput.json": [
 		"ac46",
-		94
+		61
 	],
 	"./ru/PageHeader.json": [
 		"0773",
-		95
+		62
 	],
 	"./ru/PaymentInfoLine.json": [
 		"81c0",
-		96
+		63
 	],
 	"./ru/QrScanner.json": [
 		"b74a",
-		97
+		64
 	],
 	"./ru/Timer.json": [
 		"1d1a",
-		98
+		65
 	],
 	"./ru/Wallet.json": [
 		"da26",
-		99
+		66
 	],
 	"./uk/AccountList.json": [
 		"504a",
-		100
+		67
 	],
 	"./uk/AccountSelector.json": [
 		"2efd",
-		101
+		68
 	],
 	"./uk/AmountWithFee.json": [
 		"56dc",
-		102
+		69
 	],
 	"./uk/Copyable.json": [
 		"c38d",
-		103
+		70
 	],
 	"./uk/CopyableField.json": [
 		"f85b",
-		104
+		71
 	],
 	"./uk/LabelInput.json": [
 		"2cc2",
-		105
+		72
 	],
 	"./uk/PageHeader.json": [
 		"8d98",
-		106
+		73
 	],
 	"./uk/PaymentInfoLine.json": [
 		"cfaf",
-		107
+		74
 	],
 	"./uk/QrScanner.json": [
 		"8741",
-		108
+		75
 	],
 	"./uk/Timer.json": [
 		"f309",
-		109
+		76
 	],
 	"./uk/Wallet.json": [
 		"3f7a",
-		110
+		77
 	],
 	"./zh/AccountList.json": [
 		"bb4e",
-		111
+		78
 	],
 	"./zh/AccountSelector.json": [
 		"4634",
-		112
+		79
 	],
 	"./zh/AmountWithFee.json": [
 		"5f88",
-		113
+		80
 	],
 	"./zh/Copyable.json": [
 		"6a72",
-		114
+		81
 	],
 	"./zh/CopyableField.json": [
 		"afa7",
-		115
+		82
 	],
 	"./zh/LabelInput.json": [
 		"c7b6",
-		116
+		83
 	],
 	"./zh/PageHeader.json": [
 		"aee6",
-		117
+		84
 	],
 	"./zh/PaymentInfoLine.json": [
 		"6daa",
-		118
+		85
 	],
 	"./zh/QrScanner.json": [
 		"4e49",
-		119
+		86
 	],
 	"./zh/Timer.json": [
 		"813f",
-		120
+		87
 	],
 	"./zh/Wallet.json": [
 		"43f7",
-		121
+		88
 	]
 };
 function webpackAsyncContext(req) {
@@ -7527,7 +7395,7 @@ module.exports = function(originalModule) {
 /***/ "dd8e":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "qr-scanner-worker.min.b4a169d0.js";
+module.exports = __webpack_require__.p + "qr-scanner-worker.min.6d1cadcf.js";
 
 /***/ }),
 
@@ -8481,7 +8349,7 @@ var es_array_concat = __webpack_require__("99af");
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.ends-with.js
 var es_string_ends_with = __webpack_require__("8a79");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"9ac4ab74-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/AddressDisplay.vue?vue&type=template&id=1c9646e4&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/AddressDisplay.vue?vue&type=template&id=1c9646e4&scoped=true&
 var AddressDisplayvue_type_template_id_1c9646e4_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c(_vm.copyable ? 'Copyable' : 'div',{tag:"component",staticClass:"address-display",attrs:{"text":_vm.chunks.join(' ').toUpperCase()}},_vm._l((_vm.chunks),function(chunk,index){return _c('span',{key:chunk + index,staticClass:"chunk"},[_vm._v(_vm._s(chunk)),_c('span',{staticClass:"space"})])}),0)}
 var staticRenderFns = []
 
@@ -8810,7 +8678,7 @@ function __importDefault(mod) {
 // EXTERNAL MODULE: external "vue-property-decorator"
 var external_vue_property_decorator_ = __webpack_require__("01a6");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"9ac4ab74-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Copyable.vue?vue&type=template&id=46b36f4e&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Copyable.vue?vue&type=template&id=46b36f4e&scoped=true&
 var Copyablevue_type_template_id_46b36f4e_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"copyable",class:{ copied: _vm.copied },attrs:{"tabindex":"0"},on:{"click":_vm.copy}},[_c('div',{staticClass:"background"}),_vm._t("default"),_c('div',{ref:"tooltip",staticClass:"tooltip"},[_vm._v(_vm._s(_vm.$t('Copied')))])],2)}
 var Copyablevue_type_template_id_46b36f4e_scoped_true_staticRenderFns = []
 
@@ -9586,7 +9454,7 @@ var AddressDisplay_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_AddressDisplay = (AddressDisplay_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"9ac4ab74-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/AddressInput.vue?vue&type=template&id=094d84ae&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/AddressInput.vue?vue&type=template&id=094d84ae&scoped=true&
 var AddressInputvue_type_template_id_094d84ae_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"address-input"},[_c('textarea',{ref:"textarea",attrs:{"placeholder":"NQ","spellcheck":"false","autocomplete":"off"},on:{"keydown":_vm._onKeyDown,"input":_vm._onInput,"paste":_vm._onPaste,"cut":_vm._onCut,"copy":_vm._formatClipboard,"click":_vm._updateSelection,"select":_vm._updateSelection,"blur":_vm._updateSelection,"focus":_vm._onFocus}}),_vm._l((9),function(i){return [_c('div',{key:("block-" + i),staticClass:"block",class:{
             focused: _vm._isBlockFocused(i - 1),
             invisible: _vm._isBlockFilled(i - 1),
@@ -9988,7 +9856,7 @@ var AddressInput_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_AddressInput = (AddressInput_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"9ac4ab74-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Amount.vue?vue&type=template&id=26cbc180&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Amount.vue?vue&type=template&id=26cbc180&scoped=true&
 var Amountvue_type_template_id_26cbc180_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"amount",class:{ approx: _vm.showApprox && _vm.isApprox }},[_vm._v(" "+_vm._s(_vm.formattedAmount)+" "),_c('span',{staticClass:"currency",class:_vm.currency},[_vm._v(_vm._s(_vm.ticker))])])}
 var Amountvue_type_template_id_26cbc180_scoped_true_staticRenderFns = []
 
@@ -10254,7 +10122,7 @@ var Amount_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_Amount = (Amount_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"9ac4ab74-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/AmountInput.vue?vue&type=template&id=37572fbf&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/AmountInput.vue?vue&type=template&id=37572fbf&scoped=true&
 var AmountInputvue_type_template_id_37572fbf_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"amount-input",class:{'has-value': _vm.valueInLuna > 0, 'focussed': _vm.isFocussed}},[_c('form',{ref:"fullWidth",staticClass:"label-input",on:{"submit":function($event){$event.preventDefault();}}},[_c('span',{ref:"widthPlaceholder",staticClass:"width-finder width-placeholder"},[_vm._v(_vm._s(_vm.placeholder))]),(_vm.maxFontSize)?_c('div',{staticClass:"full-width",class:{'width-finder': _vm.maxWidth > 0}},[_vm._v("Width")]):_vm._e(),_c('span',{ref:"widthValue",staticClass:"width-finder width-value"},[_vm._v(_vm._s(_vm.formattedValue || ''))]),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.formattedValue),expression:"formattedValue"}],ref:"input",staticClass:"nq-input",class:_vm.vanishing,style:({width: ((this.width) + "px"), fontSize: ((this.fontSize) + "rem")}),attrs:{"type":"text","inputmode":"decimal","placeholder":_vm.placeholder},domProps:{"value":(_vm.formattedValue)},on:{"focus":function($event){_vm.isFocussed = true},"blur":function($event){_vm.isFocussed = false},"input":function($event){if($event.target.composing){ return; }_vm.formattedValue=$event.target.value}}})]),_c('span',{staticClass:"nim"},[_vm._v("NIM")])])}
 var AmountInputvue_type_template_id_37572fbf_scoped_true_staticRenderFns = []
 
@@ -10483,14 +10351,14 @@ var AmountInput_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_AmountInput = (AmountInput_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"9ac4ab74-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/BottomOverlay.vue?vue&type=template&id=10321bd4&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/BottomOverlay.vue?vue&type=template&id=10321bd4&scoped=true&
 var BottomOverlayvue_type_template_id_10321bd4_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"bottom-overlay",class:[_vm.theme, { 'has-close-button': _vm.hasCloseButton }]},[_vm._t("default"),(_vm.hasCloseButton)?_c('CloseButton',{staticClass:"close-button",class:{'inverse': ['dark', 'green'].includes(_vm.theme)},on:{"click":function($event){return _vm.$emit(_vm.constructor.Events.CLOSE)}}}):_vm._e()],2)}
 var BottomOverlayvue_type_template_id_10321bd4_scoped_true_staticRenderFns = []
 
 
 // CONCATENATED MODULE: ./src/components/BottomOverlay.vue?vue&type=template&id=10321bd4&scoped=true&
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"9ac4ab74-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CloseButton.vue?vue&type=template&id=f70dd1ae&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CloseButton.vue?vue&type=template&id=f70dd1ae&scoped=true&
 var CloseButtonvue_type_template_id_f70dd1ae_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('button',{staticClass:"close-button nq-button-s",on:{"click":_vm.click,"mousedown":function($event){$event.preventDefault();}}},[_c('CloseIcon')],1)}
 var CloseButtonvue_type_template_id_f70dd1ae_scoped_true_staticRenderFns = []
 
@@ -11422,7 +11290,7 @@ var BottomOverlay_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_BottomOverlay = (BottomOverlay_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"9ac4ab74-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CircleSpinner.vue?vue&type=template&id=2bc59fa8&scoped=true&functional=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CircleSpinner.vue?vue&type=template&id=2bc59fa8&scoped=true&functional=true&
 var CircleSpinnervue_type_template_id_2bc59fa8_scoped_true_functional_true_render = function (_h,_vm) {var _c=_vm._c;return _c('svg',{staticClass:"circle-spinner",attrs:{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 18 18","width":"18","height":"18","fill":"none","stroke-width":"2","stroke-linecap":"round"}},[_c('path',{attrs:{"stroke":"#0582CA","d":"M9,1c4.42,0,8,3.58,8,8"}}),_c('path',{attrs:{"stroke":"#1F2348","opacity":".3","d":"M4.27,2.56C2.29,4.01,1,6.35,1,9c0,4.42,3.58,8,8,8c2.65,0,4.99-1.29,6.44-3.27"}})])}
 var CircleSpinnervue_type_template_id_2bc59fa8_scoped_true_functional_true_staticRenderFns = []
 
@@ -11457,7 +11325,7 @@ var CircleSpinner_component = normalizeComponent(
 )
 
 /* harmony default export */ var CircleSpinner = (CircleSpinner_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"9ac4ab74-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/FiatAmount.vue?vue&type=template&id=4e1e2a40&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/FiatAmount.vue?vue&type=template&id=4e1e2a40&
 var FiatAmountvue_type_template_id_4e1e2a40_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"fiat-amount"},[_vm._v(" "+_vm._s(_vm._currencyString)+" ")])}
 var FiatAmountvue_type_template_id_4e1e2a40_staticRenderFns = []
 
@@ -12100,7 +11968,7 @@ var FiatAmount_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_FiatAmount = (FiatAmount_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"9ac4ab74-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Identicon.vue?vue&type=template&id=7d87c782&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Identicon.vue?vue&type=template&id=7d87c782&scoped=true&
 var Identiconvue_type_template_id_7d87c782_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"identicon"},[_c('img',{attrs:{"src":_vm.dataUrl}})])}
 var Identiconvue_type_template_id_7d87c782_scoped_true_staticRenderFns = []
 
@@ -12274,7 +12142,7 @@ var Identicon_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_Identicon = (Identicon_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"9ac4ab74-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/LabelInput.vue?vue&type=template&id=0ff1b768&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/LabelInput.vue?vue&type=template&id=0ff1b768&scoped=true&
 var LabelInputvue_type_template_id_0ff1b768_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('form',{staticClass:"label-input",class:{disabled: _vm.disabled},on:{"submit":function($event){$event.preventDefault();return _vm.onBlur($event)}}},[_c('span',{ref:"widthPlaceholder",staticClass:"width-finder width-placeholder"},[_vm._v(_vm._s(_vm.placeholder || _vm.$t('Name your address')))]),_c('span',{ref:"widthValue",staticClass:"width-finder width-value"},[_vm._v(_vm._s(_vm.liveValue))]),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.liveValue),expression:"liveValue"}],ref:"input",staticClass:"nq-input",class:{'vanishing': _vm.vanishing},style:({width: ((this.width) + "px")}),attrs:{"type":"text","placeholder":_vm.placeholder || _vm.$t('Name your address'),"disabled":_vm.disabled},domProps:{"value":(_vm.liveValue)},on:{"input":[function($event){if($event.target.composing){ return; }_vm.liveValue=$event.target.value},_vm.onInput],"blur":_vm.onBlur,"paste":function($event){return _vm.$emit('paste', $event)}}})])}
 var LabelInputvue_type_template_id_0ff1b768_scoped_true_staticRenderFns = []
 
@@ -12715,7 +12583,7 @@ var LabelInput_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_LabelInput = (LabelInput_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"9ac4ab74-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/LoadingSpinner.vue?vue&type=template&id=4da3784e&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/LoadingSpinner.vue?vue&type=template&id=4da3784e&scoped=true&
 var LoadingSpinnervue_type_template_id_4da3784e_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('svg',{staticClass:"loading-spinner",attrs:{"height":"48","width":"54","viewBox":"0 0 54 48","color":"inherit"}},[_c('path',{attrs:{"id":"big-hex","d":"M51.9,21.9L41.3,3.6c-0.8-1.3-2.2-2.1-3.7-2.1H16.4c-1.5,0-2.9,0.8-3.7,2.1L2.1,21.9c-0.8,1.3-0.8,2.9,0,4.2 l10.6,18.3c0.8,1.3,2.2,2.1,3.7,2.1h21.3c1.5,0,2.9-0.8,3.7-2.1l10.6-18.3C52.7,24.8,52.7,23.2,51.9,21.9z","stroke":"currentColor","stroke-width":"3","fill":"none","stroke-linecap":"round","opacity":"0.4","stroke-dasharray":"92.5 60"}}),_c('path',{attrs:{"id":"small-hex","d":"M51.9,21.9L41.3,3.6c-0.8-1.3-2.2-2.1-3.7-2.1H16.4c-1.5,0-2.9,0.8-3.7,2.1L2.1,21.9c-0.8,1.3-0.8,2.9,0,4.2 l10.6,18.3c0.8,1.3,2.2,2.1,3.7,2.1h21.3c1.5,0,2.9-0.8,3.7-2.1l10.6-18.3C52.7,24.8,52.7,23.2,51.9,21.9z","stroke":"currentColor","stroke-width":"3","fill":"none","stroke-linecap":"round","stroke-dasharray":"47.5 105"}})])}
 var LoadingSpinnervue_type_template_id_4da3784e_scoped_true_staticRenderFns = []
 
@@ -12772,7 +12640,7 @@ var LoadingSpinner_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_LoadingSpinner = (LoadingSpinner_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"9ac4ab74-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/PageBody.vue?vue&type=template&id=0b286594&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/PageBody.vue?vue&type=template&id=0b286594&scoped=true&
 var PageBodyvue_type_template_id_0b286594_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"page-body nq-card-body"},[_vm._t("default")],2)}
 var PageBodyvue_type_template_id_0b286594_scoped_true_staticRenderFns = []
 
@@ -12829,7 +12697,7 @@ var PageBody_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_PageBody = (PageBody_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"9ac4ab74-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/PageFooter.vue?vue&type=template&id=3c6ba3a4&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/PageFooter.vue?vue&type=template&id=3c6ba3a4&scoped=true&
 var PageFootervue_type_template_id_3c6ba3a4_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"page-footer nq-card-footer"},[_vm._t("default")],2)}
 var PageFootervue_type_template_id_3c6ba3a4_scoped_true_staticRenderFns = []
 
@@ -12886,7 +12754,7 @@ var PageFooter_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_PageFooter = (PageFooter_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"9ac4ab74-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/PageHeader.vue?vue&type=template&id=53c0243a&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/PageHeader.vue?vue&type=template&id=53c0243a&scoped=true&
 var PageHeadervue_type_template_id_53c0243a_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"page-header nq-card-header",class:_vm.progressIndicator ? 'has-progress-indicator' : ''},[(_vm.progressIndicator)?_c('div',{staticClass:"progress-indicator"},_vm._l((_vm.progressSteps),function(thisStep){return _c('div',{key:thisStep,staticClass:"indicator",class:thisStep <= _vm.step ? 'active' : ''})}),0):_vm._e(),(_vm.backArrow)?_c('a',{staticClass:"page-header-back-button",attrs:{"href":"#","title":_vm.$t('Go back')},on:{"click":function($event){$event.preventDefault();return _vm.$emit('back')}}},[_c('ArrowLeftIcon')],1):_vm._e(),_c('h1',{staticClass:"nq-h1"},[_vm._t("default")],2),_vm._t("more")],2)}
 var PageHeadervue_type_template_id_53c0243a_scoped_true_staticRenderFns = []
 
@@ -12985,7 +12853,7 @@ var PageHeader_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_PageHeader = (PageHeader_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"9ac4ab74-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/QrCode.vue?vue&type=template&id=778bc790&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/QrCode.vue?vue&type=template&id=778bc790&
 var QrCodevue_type_template_id_778bc790_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (!!_vm.data)?_c('canvas',{staticClass:"qr-code"}):_vm._e()}
 var QrCodevue_type_template_id_778bc790_staticRenderFns = []
 
@@ -13262,7 +13130,7 @@ var QrCode_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_QrCode = (QrCode_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"9ac4ab74-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/QrScanner.vue?vue&type=template&id=5b05f1b5&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/QrScanner.vue?vue&type=template&id=5b05f1b5&scoped=true&
 var QrScannervue_type_template_id_5b05f1b5_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"qr-scanner nq-blue-bg"},[_c('video',{ref:"video",attrs:{"muted":"","autoplay":"","playsinline":"","width":"600","height":"600"},domProps:{"muted":true}}),_c('div',{ref:"overlay",staticClass:"overlay",class:{ inactive: _vm.cameraAccessFailed }},[_vm._t("default",[_c('svg',{attrs:{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 238 238"}},[_c('path',{attrs:{"fill":"none","stroke-linecap":"round","stroke-linejoin":"round","stroke-width":"4","d":"M31.3 2H10a8 8 0 0 0-8 8v21.3M206.8 2H228a8 8 0 0 1 8 8v21.3m0 175.4V228a8 8 0 0 1-8 8h-21.3m-175.4 0H10a8 8 0 0 1-8-8v-21.3"}})])])],2),_c('button',{staticClass:"nq-button-s inverse cancel-button",on:{"click":_vm._cancel}},[_vm._v(_vm._s(_vm.$t('Cancel')))]),_c('transition',{attrs:{"name":"fade"}},[(_vm.cameraAccessFailed)?_c('div',{staticClass:"camera-access-failed"},[(!_vm.hasCamera)?_c('div',{staticClass:"camera-access-failed-warning"},[_vm._v(" "+_vm._s(_vm.$t('Your device does not have an accessible camera.'))+" ")]):_c('div',[_c('div',{staticClass:"camera-access-failed-warning"},[_vm._v(" "+_vm._s(_vm.$t('Unblock the camera for this website to scan QR codes.'))+" ")]),(_vm.isMobileOrTablet)?_c('div',[(_vm.browser === 'chrome')?_c('div',[_c('I18n',{staticClass:"access-denied-instructions",attrs:{"path":"Click on {icon} and go to\\nSettings > Site Settings > Camera","tag":"div"},scopedSlots:_vm._u([{key:"icon",fn:function(){return [_c('span',{staticClass:"browser-menu-icon"})]},proxy:true}],null,false,1223065533)}),_c('div',{staticClass:"browser-menu-arrow"})],1):_c('div',{staticClass:"access-denied-instructions"},[_vm._v(" "+_vm._s(_vm.$t('Grant camera access when asked.'))+" ")])]):_c('div',{staticClass:"access-denied-instructions"},[(_vm.browser === 'safari')?_c('I18n',{attrs:{"path":"Click on {safari} and go to\\nSettings for this Website > Camera","tag":"div"},scopedSlots:_vm._u([{key:"safari",fn:function(){return [_c('b',[_vm._v("Safari")])]},proxy:true}],null,false,687307496)}):_c('I18n',{attrs:{"path":"Click on {icon} in the URL bar.","tag":"div"},scopedSlots:_vm._u([{key:"icon",fn:function(){return [(_vm.browser === 'chrome')?_c('span',{staticClass:"camera-icon-chrome"}):(_vm.browser === 'firefox')?_c('span',{staticClass:"camera-icon-firefox"}):_c('span',[_vm._v(_vm._s(_vm.$t('the camera icon')))])]},proxy:true}],null,false,2903711098)})],1)])]):_vm._e()])],1)}
 var QrScannervue_type_template_id_5b05f1b5_scoped_true_staticRenderFns = []
 
@@ -13273,61 +13141,124 @@ var QrScannervue_type_template_id_5b05f1b5_scoped_true_staticRenderFns = []
 class qr_scanner_QrScanner {
     /* async */
     static hasCamera() {
-        if (!navigator.mediaDevices) return Promise.resolve(false);
-        // note that enumerateDevices can always be called and does not prompt the user for permission. However, device
-        // labels are only readable if served via https and an active media stream exists or permanent permission is
-        // given. That doesn't matter for us though as we don't require labels.
-        return navigator.mediaDevices.enumerateDevices()
-            .then(devices => devices.some(device => device.kind === 'videoinput'))
+        return qr_scanner_QrScanner.listCameras(false)
+            .then(cameras => !!cameras.length)
             .catch(() => false);
+    }
+
+    /* async */
+    static listCameras(requestLabels = false) {
+        if (!navigator.mediaDevices) return Promise.resolve([]);
+
+        // Note that enumerateDevices can always be called and does not prompt the user for permission.
+        // However, enumerateDevices only includes device labels if served via https and an active media stream exists
+        // or permission to access the camera was given. Therefore, ask for camera permission by opening a stream, if
+        // labels were requested.
+        let openedStream = null;
+        return (requestLabels
+            ? navigator.mediaDevices.getUserMedia({ audio: false, video: true })
+                .then(stream => openedStream = stream)
+                // Fail gracefully, especially if the device has no camera or on mobile when the camera is already in
+                // use and some browsers disallow a second stream.
+                .catch(() => {})
+            : Promise.resolve()
+        )
+            .then(() => navigator.mediaDevices.enumerateDevices())
+            .then(devices => devices.filter(device => device.kind === 'videoinput').map((device, i) => ({
+                id: device.deviceId,
+                label: device.label || (i === 0 ? 'Default Camera' : `Camera ${i + 1}`),
+            })))
+            .finally(() => {
+                // close the stream we just opened for getting camera access for listing the device labels
+                if (!openedStream) return;
+                for (const track of openedStream.getTracks()) {
+                    track.stop();
+                    openedStream.removeTrack(track);
+                }
+            });
     }
 
     constructor(
         video,
         onDecode,
-        canvasSizeOrOnDecodeError = this._onDecodeError.bind(this),
-        canvasSize = qr_scanner_QrScanner.DEFAULT_CANVAS_SIZE,
-        preferredFacingMode = 'environment'
+        canvasSizeOrOnDecodeError = this._onDecodeError,
+        canvasSizeOrCalculateScanRegion = this._calculateScanRegion,
+        preferredCamera = 'environment'
     ) {
         this.$video = video;
         this.$canvas = document.createElement('canvas');
         this._onDecode = onDecode;
-        this._preferredFacingMode = preferredFacingMode;
+        this._legacyCanvasSize = qr_scanner_QrScanner.DEFAULT_CANVAS_SIZE;
+        this._preferredCamera = preferredCamera;
         this._active = false;
         this._paused = false;
         this._flashOn = false;
 
         if (typeof canvasSizeOrOnDecodeError === 'number') {
-            // legacy function signature where canvas size is the third argument
-            canvasSize = canvasSizeOrOnDecodeError;
+            // legacy function signature where the third argument is the canvas size
+            this._legacyCanvasSize = canvasSizeOrOnDecodeError;
             console.warn('You\'re using a deprecated version of the QrScanner constructor which will be removed in '
                 + 'the future');
         } else {
             this._onDecodeError = canvasSizeOrOnDecodeError;
         }
 
-        this.$canvas.width = canvasSize;
-        this.$canvas.height = canvasSize;
-        this._sourceRect = {
-            x: 0,
-            y: 0,
-            width: canvasSize,
-            height: canvasSize
-        };
+        if (typeof canvasSizeOrCalculateScanRegion === 'number') {
+            // legacy function signature where the fourth argument is the canvas size
+            this._legacyCanvasSize = canvasSizeOrCalculateScanRegion;
+            console.warn('You\'re using a deprecated version of the QrScanner constructor which will be removed in '
+                + 'the future');
+        } else {
+            this._calculateScanRegion = canvasSizeOrCalculateScanRegion;
+        }
 
-        this._updateSourceRect = this._updateSourceRect.bind(this);
+        this._scanRegion = this._calculateScanRegion(video);
+
         this._onPlay = this._onPlay.bind(this);
+        this._onLoadedMetaData = this._onLoadedMetaData.bind(this);
         this._onVisibilityChange = this._onVisibilityChange.bind(this);
 
+        video.disablePictureInPicture = true;
         // Allow inline playback on iPhone instead of requiring full screen playback,
         // see https://webkit.org/blog/6784/new-video-policies-for-ios/
-        this.$video.playsInline = true;
+        video.playsInline = true;
         // Allow play() on iPhone without requiring a user gesture. Should not really be needed as camera stream
         // includes no audio, but just to be safe.
-        this.$video.muted = true;
-        this.$video.disablePictureInPicture = true;
-        this.$video.addEventListener('loadedmetadata', this._updateSourceRect);
-        this.$video.addEventListener('play', this._onPlay);
+        video.muted = true;
+
+        // Avoid Safari stopping the video stream on a hidden video.
+        // See https://github.com/cozmo/jsQR/issues/185
+        let shouldHideVideo = false;
+        if (video.hidden) {
+            video.hidden = false;
+            shouldHideVideo = true;
+        }
+        if (!document.body.contains(video)) {
+            document.body.appendChild(video);
+            shouldHideVideo = true;
+        }
+        requestAnimationFrame(() => {
+            // Checking in requestAnimationFrame which should avoid a potential additional re-flow for getComputedStyle.
+            const computedStyle = window.getComputedStyle(video);
+            if (computedStyle.display === 'none') {
+                video.style.setProperty('display', 'block', 'important');
+                shouldHideVideo = true;
+            }
+            if (computedStyle.visibility !== 'visible') {
+                video.style.setProperty('visibility', 'visible', 'important');
+                shouldHideVideo = true;
+            }
+            if (shouldHideVideo) {
+                // Hide the video in a way that doesn't cause Safari to stop the playback.
+                console.warn('QrScanner has overwritten the video hiding style to avoid Safari stopping the playback.');
+                video.style.opacity = 0;
+                video.style.width = 0;
+                video.style.height = 0;
+            }
+        });
+
+        video.addEventListener('play', this._onPlay);
+        video.addEventListener('loadedmetadata', this._onLoadedMetaData);
         document.addEventListener('visibilitychange', this._onVisibilityChange);
 
         this._qrEnginePromise = qr_scanner_QrScanner.createQrEngine();
@@ -13335,23 +13266,25 @@ class qr_scanner_QrScanner {
 
     /* async */
     hasFlash() {
-        if (!('ImageCapture' in window)) {
-            return Promise.resolve(false);
-        }
-
-        const track = this.$video.srcObject ? this.$video.srcObject.getVideoTracks()[0] : null;
-        if (!track) {
-            return Promise.reject('Camera not started or not available');
-        }
-
-        const imageCapture = new ImageCapture(track);
-        return imageCapture.getPhotoCapabilities()
-            .then((result) => {
-                return result.fillLightMode.includes('flash');
+        let openedStream = null;
+        return (this.$video.srcObject
+            ? Promise.resolve(this.$video.srcObject.getVideoTracks()[0])
+            : this._getCameraStream().then(({ stream }) => {
+                console.warn('Call hasFlash after successfully starting the scanner to avoid creating '
+                    + 'a temporary video stream');
+                openedStream = stream;
+                return stream.getVideoTracks()[0];
             })
-            .catch((error) => {
-                console.warn(error);
-                return false;
+        )
+            .then((track) => 'torch' in track.getSettings())
+            .catch(() => false)
+            .finally(() => {
+                // close the stream we just opened for detecting whether it supports flash
+                if (!openedStream) return;
+                for (const track of openedStream.getTracks()) {
+                    track.stop();
+                    openedStream.removeTrack(track);
+                }
             });
     }
 
@@ -13361,21 +13294,42 @@ class qr_scanner_QrScanner {
 
     /* async */
     toggleFlash() {
-      return this._setFlash(!this._flashOn);
-    }
-
-    /* async */
-    turnFlashOff() {
-      return this._setFlash(false);
+        if (this._flashOn) {
+            return this.turnFlashOff();
+        } else {
+            return this.turnFlashOn();
+        }
     }
 
     /* async */
     turnFlashOn() {
-      return this._setFlash(true);
+        if (this._flashOn) return Promise.resolve();
+        this._flashOn = true;
+        if (!this._active || this._paused) return Promise.resolve(); // flash will be turned on later on .start()
+        return this.hasFlash().then((hasFlash) => {
+            if (!hasFlash) return Promise.reject('No flash available');
+            // Note that the video track is guaranteed to exist at this point
+            return this.$video.srcObject.getVideoTracks()[0].applyConstraints({
+                advanced: [{ torch: true }],
+            });
+        }).catch(() => {
+            this._flashOn = false;
+            throw e;
+        });
+    }
+
+    /* async */
+    turnFlashOff() {
+        if (!this._flashOn) return;
+        // applyConstraints with torch: false does not work to turn the flashlight off, as a stream's torch stays
+        // continuously on, see https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackConstraints#torch. Therefore,
+        // we have to stop the stream to turn the flashlight off.
+        this._flashOn = false;
+        return this._restartVideoStream();
     }
 
     destroy() {
-        this.$video.removeEventListener('loadedmetadata', this._updateSourceRect);
+        this.$video.removeEventListener('loadedmetadata', this._onLoadedMetaData);
         this.$video.removeEventListener('play', this._onPlay);
         document.removeEventListener('visibilitychange', this._onVisibilityChange);
 
@@ -13393,33 +13347,28 @@ class qr_scanner_QrScanner {
             console.warn('The camera stream is only accessible if the page is transferred via https.');
         }
         this._active = true;
-        this._paused = false;
         if (document.hidden) {
             // camera will be started as soon as tab is in foreground
             return Promise.resolve();
         }
-        clearTimeout(this._offTimeout);
-        this._offTimeout = null;
+        this._paused = false;
         if (this.$video.srcObject) {
             // camera stream already/still set
             this.$video.play();
             return Promise.resolve();
         }
 
-        let facingMode = this._preferredFacingMode;
-        return this._getCameraStream(facingMode, true)
-            .catch(() => {
-                // We (probably) don't have a camera of the requested facing mode
-                facingMode = facingMode === 'environment' ? 'user' : 'environment';
-                return this._getCameraStream(); // throws if camera is not accessible (e.g. due to not https)
-            })
-            .then(stream => {
-                // Try to determine the facing mode from the stream, otherwise use our guess. Note that the guess is not
-                // always accurate as Safari returns cameras of different facing mode, even for exact constraints.
-                facingMode = this._getFacingMode(stream) || facingMode;
+        return this._getCameraStream()
+            .then(({ stream, facingMode }) => {
                 this.$video.srcObject = stream;
                 this.$video.play();
                 this._setVideoMirror(facingMode);
+
+                // Restart the flash if it was previously on
+                if (this._flashOn) {
+                    this._flashOn = false; // force turnFlashOn to restart the flash
+                    this.turnFlashOn().catch(() => {});
+                }
             })
             .catch(e => {
                 this._active = false;
@@ -13432,28 +13381,47 @@ class qr_scanner_QrScanner {
         this._active = false;
     }
 
-    pause() {
+    /* async */
+    pause(stopStreamImmediately = false) {
         this._paused = true;
         if (!this._active) {
-            return;
+            return Promise.resolve(true);
         }
         this.$video.pause();
-        if (this._offTimeout) {
-            return;
-        }
-        this._offTimeout = setTimeout(() => {
+
+        const stopStream = () => {
             const tracks = this.$video.srcObject ? this.$video.srcObject.getTracks() : [];
             for (const track of tracks) {
                 track.stop(); //  note that this will also automatically turn the flashlight off
+                this.$video.srcObject.removeTrack(track);
             }
             this.$video.srcObject = null;
-            this._offTimeout = null;
-        }, 300);
+        };
+
+        if (stopStreamImmediately) {
+            stopStream();
+            return Promise.resolve(true);
+        }
+
+        return new Promise((resolve) => setTimeout(resolve, 300))
+            .then(() => {
+                if (!this._paused) return false;
+                stopStream();
+                return true;
+            });
     }
 
     /* async */
-    static scanImage(imageOrFileOrUrl, sourceRect=null, qrEngine=null, canvas=null, fixedCanvasSize=false,
-                     alsoTryWithoutSourceRect=false) {
+    setCamera(facingModeOrDeviceId) {
+        if (facingModeOrDeviceId === this._preferredCamera) return Promise.resolve();
+        this._preferredCamera = facingModeOrDeviceId;
+        // Restart the scanner with the new camera which will also update the video mirror and the scan region.
+        return this._restartVideoStream();
+    }
+
+    /* async */
+    static scanImage(imageOrFileOrUrl, scanRegion=null, qrEngine=null, canvas=null, disallowCanvasResizing=false,
+                     alsoTryWithoutScanRegion=false) {
         const gotExternalWorker = qrEngine instanceof Worker;
 
         let promise = Promise.all([
@@ -13462,7 +13430,7 @@ class qr_scanner_QrScanner {
         ]).then(([engine, image]) => {
             qrEngine = engine;
             let canvasContext;
-            [canvas, canvasContext] = this._drawToCanvas(image, sourceRect, canvas, fixedCanvasSize);
+            [canvas, canvasContext] = this._drawToCanvas(image, scanRegion, canvas, disallowCanvasResizing);
 
             if (qrEngine instanceof Worker) {
                 if (!gotExternalWorker) {
@@ -13514,8 +13482,9 @@ class qr_scanner_QrScanner {
             }
         });
 
-        if (sourceRect && alsoTryWithoutSourceRect) {
-            promise = promise.catch(() => qr_scanner_QrScanner.scanImage(imageOrFileOrUrl, null, qrEngine, canvas, fixedCanvasSize));
+        if (scanRegion && alsoTryWithoutScanRegion) {
+            promise = promise.catch(() =>
+                qr_scanner_QrScanner.scanImage(imageOrFileOrUrl, null, qrEngine, canvas, disallowCanvasResizing));
         }
 
         promise = promise.finally(() => {
@@ -13544,7 +13513,10 @@ class qr_scanner_QrScanner {
 
     /* async */
     static createQrEngine(workerPath = qr_scanner_QrScanner.WORKER_PATH) {
-        return ('BarcodeDetector' in window ? BarcodeDetector.getSupportedFormats() : Promise.resolve([]))
+        return ('BarcodeDetector' in window && BarcodeDetector.getSupportedFormats
+            ? BarcodeDetector.getSupportedFormats()
+            : Promise.resolve([])
+        )
             .then((supportedFormats) => supportedFormats.indexOf('qr_code') !== -1
                 ? new BarcodeDetector({ formats: ['qr_code'] })
                 : new Worker(workerPath)
@@ -13552,8 +13524,12 @@ class qr_scanner_QrScanner {
     }
 
     _onPlay() {
-        this._updateSourceRect();
+        this._scanRegion = this._calculateScanRegion(this.$video);
         this._scanFrame();
+    }
+
+    _onLoadedMetaData() {
+        this._scanRegion = this._calculateScanRegion(this.$video);
     }
 
     _onVisibilityChange() {
@@ -13564,12 +13540,18 @@ class qr_scanner_QrScanner {
         }
     }
 
-    _updateSourceRect() {
-        const smallestDimension = Math.min(this.$video.videoWidth, this.$video.videoHeight);
-        const sourceRectSize = Math.round(2 / 3 * smallestDimension);
-        this._sourceRect.width = this._sourceRect.height = sourceRectSize;
-        this._sourceRect.x = (this.$video.videoWidth - sourceRectSize) / 2;
-        this._sourceRect.y = (this.$video.videoHeight - sourceRectSize) / 2;
+    _calculateScanRegion(video) {
+        // Default scan region calculation. Note that this can be overwritten in the constructor.
+        const smallestDimension = Math.min(video.videoWidth, video.videoHeight);
+        const scanRegionSize = Math.round(2 / 3 * smallestDimension);
+        return {
+            x: Math.round((video.videoWidth - scanRegionSize) / 2),
+            y: Math.round((video.videoHeight - scanRegionSize) / 2),
+            width: scanRegionSize,
+            height: scanRegionSize,
+            downScaledWidth: this._legacyCanvasSize,
+            downScaledHeight: this._legacyCanvasSize,
+        };
     }
 
     _scanFrame() {
@@ -13585,7 +13567,7 @@ class qr_scanner_QrScanner {
                 return;
             }
             this._qrEnginePromise
-                .then((qrEngine) => qr_scanner_QrScanner.scanImage(this.$video, this._sourceRect, qrEngine, this.$canvas, true))
+                .then((qrEngine) => qr_scanner_QrScanner.scanImage(this.$video, this._scanRegion, qrEngine, this.$canvas))
                 .then(this._onDecode, (error) => {
                     if (!this._active) return;
                     const errorMessage = error.message || error;
@@ -13605,40 +13587,56 @@ class qr_scanner_QrScanner {
         console.log(error);
     }
 
-    _getCameraStream(facingMode, exact = false) {
-        const constraintsToTry = [{
+    /* async */
+    _getCameraStream() {
+        if (!navigator.mediaDevices) {
+            return Promise.reject('Camera not found.');
+        }
+
+        const preferenceType = this._preferredCamera === 'environment' || this._preferredCamera === 'user'
+            ? 'facingMode'
+            : 'deviceId';
+        const constraintsWithoutCamera = [{
             width: { min: 1024 }
         }, {
             width: { min: 768 }
         }, {}];
+        const constraintsWithCamera = constraintsWithoutCamera.map((constraint) => Object.assign({}, constraint, {
+            [preferenceType]: { exact: this._preferredCamera },
+        }));
 
-        if (facingMode) {
-            if (exact) {
-                facingMode = { exact: facingMode };
-            }
-            constraintsToTry.forEach(constraint => constraint.facingMode = facingMode);
-        }
-        return this._getMatchingCameraStream(constraintsToTry);
-    }
-
-    _getMatchingCameraStream(constraintsToTry) {
-        if (!navigator.mediaDevices || constraintsToTry.length === 0) {
-            return Promise.reject('Camera not found.');
-        }
-        return navigator.mediaDevices.getUserMedia({
-            video: constraintsToTry.shift()
-        }).catch(() => this._getMatchingCameraStream(constraintsToTry));
+        // First try constraints with camera, then without camera. Using reduceRight as the Promise is build in a
+        // bottom up fashion.
+        return [...constraintsWithCamera, ...constraintsWithoutCamera].reduceRight((fallback, constraint) =>
+            () => navigator.mediaDevices.getUserMedia({ video: constraint, audio: false })
+                .then((stream) => ({
+                    stream,
+                    // Try to determine the facing mode from the stream, otherwise use a guess or 'environment' as
+                    // default. Note that the guess is not always accurate as Safari returns cameras of different facing
+                    // mode, even for exact facingMode constraints.
+                    facingMode: this._getFacingMode(stream)
+                        || (constraint.facingMode
+                            ? this._preferredCamera // _preferredCamera is a facing mode and we are able to fulfill it
+                            : (this._preferredCamera === 'environment'
+                                ? 'user' // switch as _preferredCamera was environment but we are not able to fulfill it
+                                : 'environment' // switch from unfulfilled user facingMode or default to environment
+                            )
+                        ),
+                }))
+                .catch(fallback),
+            () => Promise.reject('Camera not found.')
+        )();
     }
 
     /* async */
-    _setFlash(on) {
-        return this.hasFlash().then((hasFlash) => {
-            if (!hasFlash) return Promise.reject('No flash available');
-            // Note that the video track is guaranteed to exist at this point
-            return this.$video.srcObject.getVideoTracks()[0].applyConstraints({
-                advanced: [{ torch: on }],
-            });
-        }).then(() => this._flashOn = on);
+    _restartVideoStream() {
+        // Note that we always pause the stream and not only if !this._paused as even if this._paused === true, the
+        // stream might still be running, as it's by default only stopped after a delay of 300ms.
+        const wasPaused = this._paused;
+        return this.pause(true).then((paused) => {
+            if (!paused || wasPaused || !this._active) return;
+            return this.start();
+        });
     }
 
     _setVideoMirror(facingMode) {
@@ -13658,19 +13656,37 @@ class qr_scanner_QrScanner {
                 : null; // unknown
     }
 
-    static _drawToCanvas(image, sourceRect=null, canvas=null, fixedCanvasSize=false) {
+    static _drawToCanvas(image, scanRegion=null, canvas=null, disallowCanvasResizing=false) {
         canvas = canvas || document.createElement('canvas');
-        const sourceRectX = sourceRect && sourceRect.x? sourceRect.x : 0;
-        const sourceRectY = sourceRect && sourceRect.y? sourceRect.y : 0;
-        const sourceRectWidth = sourceRect && sourceRect.width? sourceRect.width : image.width || image.videoWidth;
-        const sourceRectHeight = sourceRect && sourceRect.height? sourceRect.height : image.height || image.videoHeight;
-        if (!fixedCanvasSize && (canvas.width !== sourceRectWidth || canvas.height !== sourceRectHeight)) {
-            canvas.width = sourceRectWidth;
-            canvas.height = sourceRectHeight;
+        const scanRegionX = scanRegion && scanRegion.x? scanRegion.x : 0;
+        const scanRegionY = scanRegion && scanRegion.y? scanRegion.y : 0;
+        const scanRegionWidth = scanRegion && scanRegion.width? scanRegion.width : image.width || image.videoWidth;
+        const scanRegionHeight = scanRegion && scanRegion.height? scanRegion.height : image.height || image.videoHeight;
+
+        if (!disallowCanvasResizing) {
+            const canvasWidth = scanRegion && scanRegion.downScaledWidth
+                ? scanRegion.downScaledWidth
+                : scanRegionWidth;
+            const canvasHeight = scanRegion && scanRegion.downScaledHeight
+                ? scanRegion.downScaledHeight
+                : scanRegionHeight;
+            // Setting the canvas width or height clears the canvas, even if the values didn't change, therefore only
+            // set them if they actually changed.
+            if (canvas.width !== canvasWidth) {
+                canvas.width = canvasWidth;
+            }
+            if (canvas.height !== canvasHeight) {
+                canvas.height = canvasHeight;
+            }
         }
+
         const context = canvas.getContext('2d', { alpha: false });
         context.imageSmoothingEnabled = false; // gives less blurry images
-        context.drawImage(image, sourceRectX, sourceRectY, sourceRectWidth, sourceRectHeight, 0, 0, canvas.width, canvas.height);
+        context.drawImage(
+            image,
+            scanRegionX, scanRegionY, scanRegionWidth, scanRegionHeight,
+            0, 0, canvas.width, canvas.height
+        );
         return [canvas, context];
     }
 
@@ -14312,7 +14328,7 @@ var QrScanner_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_QrScanner = (QrScanner_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"9ac4ab74-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SelectBar.vue?vue&type=template&id=632b1400&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SelectBar.vue?vue&type=template&id=632b1400&scoped=true&
 var SelectBarvue_type_template_id_632b1400_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"select-bar"},_vm._l((_vm.options),function(option){return _c('div',{key:option.value},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.selectedOption),expression:"selectedOption"}],attrs:{"type":"radio","name":_vm.name,"id":option.value},domProps:{"value":option,"checked":_vm._q(_vm.selectedOption,option)},on:{"change":function($event){_vm.selectedOption=option}}}),_c('label',{staticClass:"nq-label",class:_vm.getColor(option),attrs:{"for":option.value}},[_vm._v(_vm._s(option.text))])])}),0)}
 var SelectBarvue_type_template_id_632b1400_scoped_true_staticRenderFns = []
 
@@ -14418,7 +14434,7 @@ var SelectBar_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_SelectBar = (SelectBar_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"9ac4ab74-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SmallPage.vue?vue&type=template&id=1d450cf2&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SmallPage.vue?vue&type=template&id=1d450cf2&scoped=true&
 var SmallPagevue_type_template_id_1d450cf2_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"small-page nq-card"},[_vm._t("default")],2)}
 var SmallPagevue_type_template_id_1d450cf2_scoped_true_staticRenderFns = []
 
@@ -14475,7 +14491,7 @@ var SmallPage_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_SmallPage = (SmallPage_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"9ac4ab74-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Timer.vue?vue&type=template&id=a31a785a&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Timer.vue?vue&type=template&id=a31a785a&scoped=true&
 var Timervue_type_template_id_a31a785a_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('Tooltip',_vm._b({staticClass:"timer",class:{
         'time-shown': _vm.detailsShown || _vm.alwaysShowTime,
         'little-time-left': _vm._progress >= .75,
@@ -14537,7 +14553,7 @@ var Tweenable$1 = Tweenable;
 /* harmony default export */ var module_Tweenable = (Tweenable$1);
 //# sourceMappingURL=Tweenable.js.map
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"9ac4ab74-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Tooltip.vue?vue&type=template&id=71bfa335&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Tooltip.vue?vue&type=template&id=71bfa335&scoped=true&
 var Tooltipvue_type_template_id_71bfa335_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"tooltip",class:[_vm.verticalPosition, {
         shown: _vm.isShown,
         'transition-position': _vm.transitionPosition,
