@@ -2,7 +2,7 @@
     <Tooltip class="timer"
         v-bind="{
             preferredPosition: 'bottom right',
-            theme,
+            theme: theme === constructor.Themes.INVERSE || theme  === constructor.Themes.WHITE ? 'inverse' : 'normal',
             ...tooltipProps,
             styles: {
                 width: '18.25rem',
@@ -16,6 +16,7 @@
             'time-shown': detailsShown || alwaysShowTime,
             'little-time-left': _progress >= .75,
             'inverse-theme': theme === constructor.Themes.INVERSE,
+            'white-theme': theme === constructor.Themes.WHITE,
         }"
     >
         <template #trigger>
@@ -35,14 +36,14 @@
                         <rect x="12" y="12.5" width="2" height="4.5" rx="1" />
                     </g>
                     <text v-else class="countdown" x="50%" y="50%">
-                        {{ _timeLeft | _toSimplifiedTime(false) }}
+                        {{ _timeLeft | _toSimplifiedTime(false, maxUnit) }}
                     </text>
                 </transition>
             </svg>
         </template>
         <template #default>
             <I18n path="This offer expires in {timer}.">
-                <template #timer>{{ _timeLeft | _toSimplifiedTime(true) }}</template>
+                <template #timer>{{ _timeLeft | _toSimplifiedTime(true, maxUnit) }}</template>
             </I18n>
         </template>
     </Tooltip>
@@ -69,14 +70,14 @@ const TIME_STEPS = [
     { unit: 'day', factor: 24 },
 ];
 
-function _toSimplifiedTime(millis: number, includeUnit?: true): string;
-function _toSimplifiedTime(millis: number, includeUnit: false): number;
-function _toSimplifiedTime(millis: number, includeUnit: boolean = true): number | string {
+function _toSimplifiedTime(millis: number, includeUnit?: true, maxUnit?: string): string;
+function _toSimplifiedTime(millis: number, includeUnit: false, maxUnit?: string): number;
+function _toSimplifiedTime(millis: number, includeUnit: boolean = true, maxUnit?: string): number | string {
     // find appropriate unit, starting with second
     let resultTime = millis / 1000;
     let resultUnit = 'second';
     for (const { unit, factor } of TIME_STEPS) {
-        if (resultTime / factor < 1) break;
+        if (resultTime / factor < 1 || resultUnit === maxUnit) break;
         resultTime /= factor;
         resultUnit = unit;
     }
@@ -138,6 +139,13 @@ class Timer extends Mixins(I18nMixin) {
     public strokeWidth!: number;
 
     @Prop(Object) public tooltipProps?: object;
+
+    @Prop({
+        type: String,
+        required: false,
+        validator: (value: any) => [undefined, 'second', 'minute', 'hour', 'day'].includes(value),
+    })
+    public maxUnit?: string;
 
     public synchronize(referenceTime: number) {
         this.timeOffset = referenceTime - Date.now();
@@ -313,6 +321,7 @@ namespace Timer { // tslint:disable-line no-namespace
     export enum Themes {
         NORMAL = 'normal',
         INVERSE = 'inverse',
+        WHITE = 'white',
     }
 }
 
@@ -352,7 +361,8 @@ export default Timer;
         transition: stroke .3s var(--nimiq-ease), opacity .3s var(--nimiq-ease);
     }
 
-    .inverse-theme circle {
+    .inverse-theme circle,
+    .white-theme circle {
         stroke: white;
     }
 
@@ -373,9 +383,14 @@ export default Timer;
         stroke: var(--nimiq-light-blue-on-dark, var(--nimiq-light-blue));
     }
 
-    .inverse-theme.time-shown .filler-circle {
-        opacity: 0;
+    .white-theme.time-shown:not(.little-time-left) .time-circle {
+        stroke: rgba(255, 255, 255, 0.4);
     }
+
+    /* .inverse-theme.time-shown .filler-circle,
+    .white-theme.time-shown .filler-circle {
+        opacity: 0;
+    } */
 
     .little-time-left .time-circle {
         stroke: var(--nimiq-orange);
@@ -389,7 +404,8 @@ export default Timer;
         transition: fill .3s var(--nimiq-ease), opacity .3s var(--nimiq-ease), transform .3s var(--nimiq-ease);
     }
 
-    .inverse-theme .info-exclamation-icon {
+    .inverse-theme .info-exclamation-icon,
+    .white-theme .info-exclamation-icon {
         fill: white;
     }
 
@@ -410,6 +426,10 @@ export default Timer;
 
     .inverse-theme .countdown {
         fill: var(--nimiq-light-blue-on-dark, var(--nimiq-light-blue));
+    }
+
+    .white-theme .countdown {
+        fill: rgba(255, 255, 255, 0.6);
     }
 
     .little-time-left .countdown {

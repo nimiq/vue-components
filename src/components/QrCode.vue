@@ -1,5 +1,5 @@
 <template>
-    <canvas v-if="!!data"></canvas>
+    <canvas v-if="!!data" class="qr-code"></canvas>
 </template>
 
 <script lang="ts">
@@ -110,4 +110,3 @@
         }
     }
 </script>
-

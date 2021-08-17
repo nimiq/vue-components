@@ -1,5 +1,5 @@
 <template>
-    <form class="label-input" @submit.prevent="onBlur">
+    <form class="label-input" @submit.prevent="onBlur" :class="{disabled}">
         <span class="width-finder width-placeholder" ref="widthPlaceholder">{{
             placeholder || $t('Name your address')
         }}</span>
@@ -8,8 +8,10 @@
             :placeholder="placeholder || $t('Name your address')"
             :style="{width: `${this.width}px`}"
             v-model="liveValue"
+            :disabled="disabled"
             @input="onInput"
             @blur="onBlur"
+            @paste="$emit('paste', $event)"
             ref="input">
     </form>
 </template>
@@ -25,6 +27,7 @@ export default class LabelInput extends Mixins(I18nMixin) {
     @Prop({type: String, default: ''}) private value!: string;
     @Prop({type: String}) private placeholder?: string;
     @Prop({type: Boolean, default: false}) private vanishing!: boolean;
+    @Prop({type: Boolean, default: false}) private disabled!: boolean;
 
     private liveValue: string = '';
     private lastValue: string = '';
@@ -105,5 +108,9 @@ export default class LabelInput extends Mixins(I18nMixin) {
         transition:
             color .2s ease, box-shadow .2s ease, /* Copied from Nimiq Styles */
             width 50ms ease-out;
+    }
+
+    input:disabled {
+        pointer-events: none; /* Prevent hover effects */
     }
 </style>

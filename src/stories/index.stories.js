@@ -2,38 +2,32 @@ import {storiesOf} from '@storybook/vue';
 import {action} from '@storybook/addon-actions';
 import {boolean, number, text, object, select, withKnobs} from '@storybook/addon-knobs';
 
+import '@nimiq/style/nimiq-style.min.css';
+
 import Account from '../components/Account.vue';
 import AccountDetails from '../components/AccountDetails.vue';
 import AccountList from '../components/AccountList.vue';
 import AccountSelector from '../components/AccountSelector.vue';
-import Address from '../components/Address.vue';
 import AddressDisplay from '../components/AddressDisplay.vue';
 import AddressInput from '../components/AddressInput.vue';
 import AccountRing from '../components/AccountRing.vue';
 import Amount from '../components/Amount.vue';
 import AmountInput from '../components/AmountInput.vue';
-import AmountWithDetails from '../components/AmountWithDetails.vue';
 import AmountWithFee from '../components/AmountWithFee.vue';
 import BottomOverlay from '../components/BottomOverlay.vue';
 import Carousel from '../components/Carousel.vue';
 import CircleSpinner from '../components/CircleSpinner.vue';
 import CloseButton from '../components/CloseButton.vue';
-import Contact from '../components/Contact.vue';
-import ContactList from '../components/ContactList.vue';
-import ContactShortcuts from '../components/ContactShortcuts.vue';
 import Copyable from '../components/Copyable.vue';
 import CopyableField from '../components/CopyableField.vue';
 import FiatAmount from '../components/FiatAmount.vue';
 import Identicon from '../components/Identicon.vue';
 import LabelInput from '../components/LabelInput.vue';
 import Wallet from '../components/Wallet.vue';
-import WalletList from '../components/WalletList.vue';
-import WalletMenu from '../components/WalletMenu.vue';
 import PaymentInfoLine from '../components/PaymentInfoLine.vue';
 import QrCode from '../components/QrCode.vue';
 import QrScanner from '../components/QrScanner.vue';
 import SelectBar from '../components/SelectBar.vue';
-import SendTx from '../components/SendTx.vue';
 import SmallPage from '../components/SmallPage.vue';
 import Timer from '../components/Timer.vue';
 import Tooltip from '../components/Tooltip.vue';
@@ -41,10 +35,7 @@ import PageHeader from '../components/PageHeader.vue';
 import PageBody from '../components/PageBody.vue';
 import PageFooter from '../components/PageFooter.vue';
 import LoadingSpinner from '../components/LoadingSpinner.vue';
-import MigrationWelcome from '../components/MigrationWelcome.vue';
 import * as Icons from '../components/Icons';
-
-import '@nimiq/style/nimiq-style.min.css';
 
 function windowTemplate(slot) {
     return `
@@ -105,12 +96,13 @@ storiesOf('Basic', module)
         const currency = text('currency', 'eur');
         const maxRelativeDeviation = number('maxRelativeDeviation', .1);
         const locale = text('locale', navigator.language);
+        const hideDecimals = boolean('hideDecimals', false);
 
         return {
             components: {FiatAmount},
-            data: () => ({ amount, currency, maxRelativeDeviation, locale }),
+            data: () => ({ amount, currency, maxRelativeDeviation, locale, hideDecimals }),
             template: `<FiatAmount :amount="amount" :currency="currency" :maxRelativeDeviation="maxRelativeDeviation"
-                :locale="locale" />`,
+                :locale="locale" :hideDecimals="hideDecimals" />`,
         };
     })
     .add('Icons', () => ({
@@ -150,13 +142,21 @@ storiesOf('Basic', module)
         };
     })
     .add('LabelInput', () => {
+        const disabled = boolean('Disabled', false);
+        const value = text('Value', '');
         return {
             components: {LabelInput},
+            data() {
+                return {
+                    value,
+                    disabled,
+                };
+            },
             methods: {
                 changed: action('changed'),
                 input: action('input'),
             },
-            template: `<LabelInput @changed="changed" @input="input"/>`,
+            template: `<LabelInput @changed="changed" @input="input" v-model="value" :disabled="disabled"/>`,
         };
     })
     .add('LabelInput (restricted to 63 bytes)', () => {
@@ -381,13 +381,14 @@ storiesOf('Components', module)
         const disableLegacyAccounts = boolean('disableLegacyAccounts', false);
         const disableBip39Accounts = boolean('disableBip39Accounts', false);
         const disableLedgerAccounts = boolean('disableLedgerAccounts', false);
+        const highlightBitcoinAccounts = boolean('highlightBitcoinAccounts', true);
         const allowLogin = boolean('allowLogin', true);
         const disabledAddress = text('blacklist address', 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1');
 
         const demoData = {
             wallets: [
                 {
-                    id: 'helloworld',
+                    id: 'bip39-wallet-id',
                     label: 'Keyguard Wallet',
                     type: 2, // BIP39
                     accounts: [
@@ -395,13 +396,13 @@ storiesOf('Components', module)
                             userFriendlyAddress: 'NQ55 VDTM 6PVTN672 SECN JKVD 9KE4 SD91 PCCM',
                             label: 'Primary account',
                             balance: 12023110,
-                            path: "44'/242'/0'/0'",
+                            path: "m/44'/242'/0'/0'",
                         },
                         {
                             userFriendlyAddress: 'NQ33 DH76 PHUKJ41Q LX3A U4E0 M0BM QJH9 QQL1',
                             label: 'HODL account',
                             balance: 2712415141213,
-                            path: "44'/242'/0'/1'",
+                            path: "m/44'/242'/0'/1'",
                         },
                     ],
                     contracts: [
@@ -411,6 +412,7 @@ storiesOf('Components', module)
                             balance: 777777777,
                         },
                     ],
+                    btcXPub: 'zpub...',
                 },
             ],
             minBalance,
@@ -419,13 +421,14 @@ storiesOf('Components', module)
             disableLegacyAccounts,
             disableBip39Accounts,
             disableLedgerAccounts,
+            highlightBitcoinAccounts,
             allowLogin,
             disabledAddress
         };
 
         if (demoType === 'multiple-accounts') {
             demoData.wallets.unshift({
-                id: 'helloword2',
+                id: 'ledger-wallet-id',
                 label: 'Ledger Wallet',
                 type: 3, // LEDGER
                 accounts: [
@@ -433,6 +436,21 @@ storiesOf('Components', module)
                         userFriendlyAddress: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
                         label: 'My Ledger Account',
                         balance: 9876543210,
+                        path: "44'/242'/0'/0'",
+                    }
+                ],
+                contracts: [],
+                btcXPub: 'zpub...',
+            });
+            demoData.wallets.unshift({
+                id: 'legacy-wallet-id',
+                label: 'Legacy Wallet',
+                type: 1, // LEGACY
+                accounts: [
+                    {
+                        userFriendlyAddress: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
+                        label: 'My Ledger Account',
+                        balance: 876543210,
                         path: "44'/242'/0'/0'",
                     }
                 ],
@@ -450,29 +468,18 @@ storiesOf('Components', module)
             template: `<AccountSelector @account-selected="accountSelected" @login="login" :wallets="wallets"
                 :minBalance="minBalance" :decimals="decimals" :disableContracts="disableContracts"
                 :disableLegacyAccounts="disableLegacyAccounts" :disableBip39Accounts="disableBip39Accounts"
-                :disableLedgerAccounts="disableLedgerAccounts" :allowLogin="allowLogin"
-                :disabledAddresses="[disabledAddress]" />`
-        };
-    })
-    .add('Address (deprecated)', () => {
-        const address = text('address', 'NQ07 0000 00000000 0000 0000 0000 0000 0000');
-        return {
-            components: {Address},
-            data() {
-                return { address };
-            },
-            template: `<Address :address="address"/>`,
+                :disableLedgerAccounts="disableLedgerAccounts" :highlightBitcoinAccounts="highlightBitcoinAccounts"
+                :allowLogin="allowLogin" :disabledAddresses="[disabledAddress]" />`
         };
     })
     .add('AddressDisplay', () => {
+        const address = text('address', 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE');
+        const copyable = boolean('copyable', false);
         return {
-            data() {
-                return {
-                    address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE',
-                };
-            },
+            data: () => ({ address, copyable }),
             components: {AddressDisplay},
-            template: `<AddressDisplay :address="address"/>`,
+            template: `<AddressDisplay :address="address" :copyable="copyable"
+                style="margin-top: 7rem; margin-left: 2rem;" />`,
         };
     })
     .add('AddressInput', () => {
@@ -550,16 +557,6 @@ storiesOf('Components', module)
             template: `<AccountRing :addresses="addresses" :animate="true"/>`,
         };
     })
-    .add('AmountWithDetails (deprecated)', () => {
-        const amount = number('amount', 199862);
-        const networkFee = number('networkFee', 138);
-        const networkFeeEditable = boolean('networkFeeEditable', false);
-        const digits = number('digits', 2, {range: true, min: 0, max: 5, step: 1});
-        return {
-            components: {AmountWithDetails},
-            template: `<div style="padding-left: 20rem"><AmountWithDetails :decimals="${digits}" :amount="${amount}" :networkFee="${networkFee}" :networkFeeEditable="${networkFeeEditable}"/></div>`,
-        };
-    })
     .add('AmountWithFee',() => {
         const maxBalance = number('Maximum balance', 102000000);
         const amountAndFee = object('Amount and Fee', {amount: 100000, fee: 0, isValid: true});
@@ -576,7 +573,7 @@ storiesOf('Components', module)
         }
     })
     .add('BottomOverlay', () => {
-        const theme = select('theme', ['dark', 'light'], 'dark');
+        const theme = select('theme', ['dark', 'light', 'green'], 'dark');
         const showCloseButton = boolean('Show Close Button', true);
         return {
             components: {BottomOverlay},
@@ -641,120 +638,6 @@ storiesOf('Components', module)
             template: `<CloseButton class="top-right" @click="click"/>`,
         };
     })
-    .add('Contact (deprecated)', () => {
-        const label = text('label', 'Burn address');
-        const address = text('address', 'NQ07 0000 00000000 0000 0000 0000 0000 0000');
-        const showOptions = boolean('showOptions', false);
-        return {
-            components: {Contact},
-            methods: {
-                onSelect: action('select'),
-                onChange: action('change'),
-                onDelete: action('delete'),
-            },
-            data() {
-                return { address };
-            },
-            template: `<Contact label="${label}" :address="address" :show-options="${showOptions}" @select="onSelect" @change="onChange" @delete="onDelete"/>`,
-        };
-    })
-    .add('ContactList (deprecated)', () => {
-        // setup knobs
-        const contacts = object('Contacts', [{
-            label: 'Nimiq Bar',
-            address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
-        }, {
-            label: 'Nimiq Shop',
-            address: 'NQ26 XM1G BFAD PACE R5L0 C85L 6143 FD8L 82U9',
-        }, {
-            label: 'Nimiq Foundation',
-            address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF',
-        }, {
-            label: 'Nimiq Charity',
-            address: 'NQ19 YG54 46TX EHGQ D2R2 V8XA JX84 UFG0 S0MC',
-        }]);
-
-        return {
-            components: { ContactList },
-            data: () => ({
-                contacts
-            }),
-            methods: {
-                onSelect: action('select'),
-                onSet: action('set'),
-                onRemove: action('remove'),
-                onNotification: action('notification'),
-                addNewContact() {
-                    this.$refs.contactList.addNewContact();
-                },
-                abortNewContact() {
-                    this.$refs.contactList.abortNewContact();
-                },
-                toggleManaging() {
-                    this.$refs.contactList.toggleManaging();
-                },
-                exportContacts() {
-                    this.$refs.contactList.export();
-                },
-                importContacts() {
-                    this.$refs.contactList.import();
-                },
-                clearSearch() {
-                    this.$refs.contactList.clearSearch();
-                },
-                reset() {
-                    this.$refs.contactList.reset();
-                },
-            },
-            template: `
-                <div>
-                    <ContactList ref="contactList" :contacts="contacts" @select-contact="onSelect" @set-contact="onSet"
-                        @remove-contact="onRemove" @notification="onNotification"></ContactList>
-                    <hr>
-                    <!--
-                    note: while knobs also offers the functionality to add buttons to the knobs panel, the preview
-                    iframe gets completely rerendered whenever one is pressed, destroying the old ContactList instance.
-                    Therefore, we create our own buttons in the template to trigger methods on the current
-                    ContactList instance.
-                    -->
-                    <button class="nq-button" @click="addNewContact">Add New Contact</button>
-                    <button class="nq-button" @click="abortNewContact">Abort New Contact</button>
-                    <button class="nq-button" @click="toggleManaging">Toggle Managing</button>
-                    <button class="nq-button" @click="exportContacts">Export</button>
-                    <button class="nq-button" @click="importContacts">Import</button>
-                    <button class="nq-button" @click="clearSearch">Clear Search</button>
-                    <button class="nq-button" @click="reset">Reset</button>
-                </div>
-            `
-        };
-    })
-    .add('ContactShortcuts (deprecated)', () => {
-        // setup knobs
-        const contacts = object('Contacts', [{
-            label: 'Nimiq Bar',
-            address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
-        }, {
-            label: 'Nimiq Shop',
-            address: 'NQ26 XM1G BFAD PACE R5L0 C85L 6143 FD8L 82U9',
-        }, {
-            label: 'Nimiq Foundation',
-            address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF',
-        }, {
-            label: 'Nimiq Charity',
-            address: 'NQ19 YG54 46TX EHGQ D2R2 V8XA JX84 UFG0 S0MC',
-        }]);
-
-        return {
-            components: { ContactShortcuts },
-            data: () => ({
-                contacts
-
-            }),
-            methods: {
-            },
-            template: `<ContactShortcuts :contacts="contacts"/>`,
-        };
-    })
     .add('Copyable', () => ({
         components: { Copyable },
         template: `
@@ -770,39 +653,28 @@ storiesOf('Components', module)
             </div>
         `,
     }))
-    .add('Copyable Address', () => ({
-        data() {
-            return {
-                address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE',
-            };
-        },
-        components: { Copyable, AddressDisplay },
-        template: `
-            <Copyable style="margin-top: 7rem; margin-left: 2rem; display: inline-block;">
-                <AddressDisplay :address="address"/>
-            </Copyable>
-        `,
-    }))
     .add('CopyableField', () => {
         const label = text('label', '');
         const value = object('value (number, json string or json object)', {
             a: 'Value a',
             b: 'Lorem ipsum dolor sit amet, consectetur adipiscing',
         });
+        const small = boolean('small', false);
 
         return {
             components: {CopyableField},
-            data: () => ({ label, value }),
+            data: () => ({ label, value, small }),
             template: `
                 <CopyableField
                     :label="label"
                     :value="value"
+                    :small="small"
                     style="color: white; background: var(--nimiq-blue-bg); width: 50rem"
                 />
             `,
         };
     })
-    .add('Wallet', () => {
+    .add('Wallet (deprecated)', () => {
         const label = text('label', 'Main Wallet');
         const id = text('id', '47ee824fc910');
         const type = select('type', ['legacy', 'bip39', 'ledger'], 'bip39');
@@ -844,175 +716,6 @@ storiesOf('Components', module)
                                @change-password="changePassword"
                                @logout="logout"
                             />`
-        };
-    })
-    .add('WalletList (deprecated)', () => {
-        const activeWalletId = select('Active Wallet', ['account_1', 'account_2', 'account_3', 'account_4'], 'account_1');
-        return {
-            components: {WalletList},
-            methods: {
-                walletSelected: action('wallet-selected'),
-                exportFile: action('export-file'),
-                exportWords: action('export-words'),
-                rename: action('rename'),
-                changePassword: action('change-password'),
-                logout: action('logout'),
-            },
-            data() {
-                return {
-                    activeWalletId: activeWalletId,
-                    wallets: [
-                        {
-                            id: 'account_1',
-                            label: 'My old Account',
-                            accounts: [
-                                {address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE'},
-                            ],
-                            type: 1, // LEGACY
-                            fileExported: false,
-                            wordsExported: true,
-                            balance: 300000 * 1e5,
-                        }, {
-                            id: 'account_2',
-                            label: 'Standard Account',
-                            accounts: [
-                                {address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE'},
-                                {address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK'},
-                                {address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF'},
-                            ],
-                            type: 2, // BIP39
-                            fileExported: true,
-                            wordsExported: false,
-                            balance: 101 * 1e5,
-                        }, {
-                            id: 'account_3',
-                            label: 'Keyguard Account',
-                            accounts: [
-                                {address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE'},
-                                {address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK'},
-                                {address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF'},
-                            ],
-                            type: 2, // BIP39
-                            fileExported: false,
-                            wordsExported: true,
-                            balance: 101 * 1e5,
-                        }, {
-                            id: 'account_4',
-                            label: 'Ledger Account',
-                            accounts: [
-                                {address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE'},
-                                {address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK'},
-                                {address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF'},
-                            ],
-                            type: 3, // LEDGER
-                            balance: 553452 * 1e5,
-                        }
-                    ]
-                };
-            },
-            template: `<WalletList
-                :wallets="wallets"
-                :activeWalletId="activeWalletId"
-                @wallet-selected="walletSelected"
-                @export-file="exportFile"
-                @export-words="exportWords"
-                @rename="rename"
-                @change-password="changePassword"
-                @logout="logout"/>
-            `,
-        };
-    })
-    .add('WalletMenu (deprecated)', () => {
-        const activeWalletId = select('Active Wallet', ['account_0', 'account_1', 'account_2', 'account_3', 'account_4'], 'account_3');
-        return {
-            components: {WalletMenu},
-            methods: {
-                walletSelected: action('wallet-selected'),
-                exportFile: action('export-file'),
-                exportWords: action('export-words'),
-                rename: action('rename'),
-                changePassword: action('change-password'),
-                logout: action('logout'),
-                settings: action('settings'),
-                addAccount: action('add-account'),
-            },
-            data() {
-                return {
-                    activeWalletId: activeWalletId,
-                    wallets: [
-                        {
-                            id: 'account_0',
-                            label: 'NIM Activation',
-                            accounts: [
-                                {address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF'},
-                            ],
-                            type: 1, // LEGACY
-                            fileExported: false,
-                            wordsExported: true,
-                            balance: 300000 * 1e5,
-                        }, {
-                            id: 'account_1',
-                            label: 'My first account',
-                            accounts: [
-                                {address: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE'},
-                            ],
-                            type: 1, // LEGACY
-                            fileExported: false,
-                            wordsExported: true,
-                            balance: 300000 * 1e5,
-                        }, {
-                            id: 'account_2',
-                            label: 'Oversized account label',
-                            accounts: [
-                                {address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF'},
-                                {address: 'NQ21 SM4X BC54 M72X H53H U0QH BRU2 KBM9 MU39'},
-                            ],
-                            type: 2, // BIP39
-                            fileExported: true,
-                            wordsExported: false,
-                            balance: 202 * 1e5,
-                        }, {
-                            id: 'account_3',
-                            label: 'My account',
-                            accounts: [
-                                {address: 'NQ36 V3GH CHUE RRDR 7619 HP76 465T CHQP 8UBC'},
-                                {address: 'NQ51 S9JC PS9V HH2U 7TX7 7JM7 DF7L HP8P SNTR'},
-                                {address: 'NQ67 E735 CV8L SB7C EEFC YMXR GY93 4DGV XNU0'},
-                                {address: 'NQ75 FDH0 ESFS 5RU2 KHBE 38H5 AMPE 10EC N5UB'},
-                                {address: 'NQ24 X1KN U7A9 QCQH EJYF YYB6 UCYG UAP5 UB5C'},
-                                {address: 'NQ82 83XN EBQE V75B 8P23 SKBE YD3L 615U D8RG'},
-                                {address: 'NQ82 83XN EBQE V75B 8P23 SKBE YD3L 615U D8RG'},
-                            ],
-                            type: 2, // BIP39
-                            fileExported: false,
-                            wordsExported: true,
-                            balance: 1000000 * 1e5,
-                        }, {
-                            id: 'account_4',
-                            label: 'Ledger Account',
-                            accounts: [
-                                {address: 'NQ27 CSF9 0677 EJHY NE4G 55EQ R84L 09E0 KJT3'},
-                            ],
-                            type: 3, // LEDGER
-                            fileExported: false,
-                            wordsExported: false,
-                            balance: 553452 * 1e5,
-                        }
-                    ]
-                };
-            },
-            template: windowTemplate(`<WalletMenu
-                :wallets="wallets"
-                :active-wallet-id="activeWalletId"
-                @wallet-selected="walletSelected"
-                @export-file="exportFile"
-                @export-words="exportWords"
-                @rename="rename"
-                @change-password="changePassword"
-                @logout="logout"
-                @settings="settings"
-                @add-account="addAccount"
-            />`)
         };
     })
     .add('PaymentInfoLine', () => {
@@ -1147,16 +850,17 @@ storiesOf('Components', module)
             theme: select('theme', Object.values(Timer.Themes), Timer.Themes.NORMAL),
             alwaysShowTime: boolean('alwaysShowTime', true),
             tooltipProps: object('tooltipProps (json)', {}),
+            maxUnit: select('maxUnit', [undefined, 'second', 'minute', 'hour', 'day'], undefined),
         }),
         template: `
             <div>
-                <div :class="{ 'nq-blue-bg': theme === 'inverse' }" style="display: flex; align-items: center; padding: 7rem 3rem 10rem 12rem">
+                <div :class="{ 'nq-blue-bg': theme === 'inverse' || theme === 'white' }" style="display: flex; align-items: center; padding: 7rem 3rem 10rem 12rem">
                     <Timer :startTime="startTime" :endTime="endTime" :theme="theme" :alwaysShowTime="alwaysShowTime"
-                        :tooltipProps="tooltipProps" @end="timerEnded = true" style="margin: 2rem"/>
+                        :tooltipProps="tooltipProps" @end="timerEnded = true" style="margin: 2rem" :maxUnit="maxUnit"/>
                     <Timer :startTime="startTime" :endTime="endTime" :theme="theme" :alwaysShowTime="alwaysShowTime"
-                        :tooltipProps="tooltipProps" style="width: 10rem; margin: 2rem"/>
+                        :tooltipProps="tooltipProps" style="width: 10rem; margin: 2rem" :maxUnit="maxUnit"/>
                     <Timer :startTime="startTime" :endTime="endTime" :theme="theme" :alwaysShowTime="alwaysShowTime"
-                        :tooltipProps="tooltipProps" style="width: 20rem; margin: 2rem"/>
+                        :tooltipProps="tooltipProps" style="width: 20rem; margin: 2rem" :maxUnit="maxUnit"/>
                 </div>
                 <div v-if="startTime" style="margin: 1rem 2rem">Timer {{ timerEnded ? 'ended' : 'running' }}</div>
                 <div style="display: flex; flex-wrap: wrap; max-width: 95rem;">
@@ -1166,6 +870,7 @@ storiesOf('Components', module)
                     <button class="nq-button" @click="startTimer(3 * 60 * 1000)">Start 3m Timer</button>
                     <button class="nq-button" @click="startTimer(15 * 60 * 1000)">Start 15m Timer</button>
                     <button class="nq-button" @click="startTimer(60 * 60 * 1000)">Start 1h Timer</button>
+                    <button class="nq-button" @click="startTimer(2 * 60 * 60 * 1000)">Start 2h Timer</button>
                 </div>
             </div>
         `,
@@ -1228,103 +933,4 @@ storiesOf('Pages', module)
                 </small-page>
             `),
         };
-    })
-    .add('MigrationWelcome (deprecated)', () => {
-        const link = text('Link', 'https://medium.com/nimiq-network');
-        return {
-            components: {MigrationWelcome},
-            data() {
-                return { link };
-            },
-            methods: {
-                finished: action('finished'),
-            },
-            template: windowTemplate(`<migration-welcome :link="link" @finished="finished"></migration-welcome>`),
-        };
-    })
-    .add('SendTx', () => {
-        const valueIsReadonly = boolean('Value is readonly', false);
-        const messageIsReadonly = boolean('Message is readonly', false);
-        const value = number('Value', 0);
-        const message = text('Message', '');
-        const isLoading = boolean('Loading?', false);
-        const contacts = object('Contacts', [{
-            label: 'Nimiq Bar',
-            address: 'NQ76 F8M9 1VJ9 K88B TXDY ADT3 F08D QLHY UULK',
-        }, {
-            label: 'Nimiq Shop',
-            address: 'NQ26 XM1G BFAD PACE R5L0 C85L 6143 FD8L 82U9',
-        }, {
-            label: 'Nimiq Charity Foundation',
-            address: 'NQ09 VF5Y 1PKV MRM4 5LE1 55KV P6R2 GXYJ XYQF',
-        }, {
-            label: 'Nimiq Charity',
-            address: 'NQ19 YG54 46TX EHGQ D2R2 V8XA JX84 UFG0 S0MC',
-        }]);
-        const wallet = object('Wallet', {
-            id: 'helloworld',
-            label: 'Keyguard Wallet',
-            type: 2, // BIP39
-            accounts: new Map([
-                ['NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM', {
-                    userFriendlyAddress: 'NQ55 VDTM 6PVT N672 SECN JKVD 9KE4 SD91 PCCM',
-                    label: 'Primary account',
-                    balance: 12023110,
-                    path: "44'/242'/0'/0'",
-                }],
-                ['NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1', {
-                    userFriendlyAddress: 'NQ33 DH76 PHUK J41Q LX3A U4E0 M0BM QJH9 QQL1',
-                    label: 'HODL account',
-                    balance: 2712415141213,
-                    path: "44'/242'/0'/1'",
-                }],
-            ]),
-            contracts: [
-                {
-                    userFriendlyAddress: 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE',
-                    label: 'My Vesting Contract',
-                    balance: 777777777,
-                },
-            ],
-        });
-        const addresses = [...wallet.accounts.values()]
-            .map(addr => ({address: addr.userFriendlyAddress, label: addr.label}))
-            .concat(wallet.contracts.map(contr => ({address: contr.userFriendlyAddress, label: contr.label})));
-        return {
-            components: { SendTx },
-            data: () => ({
-                contacts,
-                wallet,
-                addresses,
-                value,
-                valueIsReadonly,
-                message,
-                messageIsReadonly,
-                isLoading,
-            }),
-            methods: {
-                contactAdded: action('contactAdded'),
-                sendTx: action('sendTx'),
-                login: action('login'),
-                scanQr: action('scanQr'),
-                createCashlink: action('createCashlink'),
-            },
-            template:  windowTemplate(`<SendTx
-                :contacts="contacts"
-                :wallet="wallet"
-                :addresses="addresses"
-                :validityStartHeight="987654"
-                :value="value"
-                :valueIsReadonly="valueIsReadonly"
-                :message="message"
-                :messageIsReadonly="messageIsReadonly"
-                :is-loading="isLoading"
-                @login="login"
-                @scan-qr="scanQr"
-                @send-tx="sendTx"
-                @contact-added="contactAdded"
-                @create-cashlink="createCashlink"
-                />`),
-        };
     });
-

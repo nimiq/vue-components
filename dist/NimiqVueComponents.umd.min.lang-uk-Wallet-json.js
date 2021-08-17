@@ -1,0 +1,1 @@
+(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[77],{"3f7a":function(e){e.exports=JSON.parse('{"Change Password":"Змінити пароль","Create Backup":"Створити резервну копію","Logout":"Вийти","Rename":"Перейменувати","Save Login File":"Зберегти файл-ключ"}')}}]);

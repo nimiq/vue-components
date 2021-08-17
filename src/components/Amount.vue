@@ -1,7 +1,7 @@
 <template>
     <span class="amount" :class="{ approx: showApprox && isApprox }">
         {{ formattedAmount }}
-        <span class="currency" :class="currency">{{currency}}</span>
+        <span class="currency" :class="currency">{{ticker}}</span>
     </span>
 </template>
 
@@ -67,6 +67,15 @@ export default class Amount extends Vue {
         return !new FormattableNumber(this.amount).moveDecimalSeparator(-this.currencyDecimals)
             .equals(this.formattedAmount.replace(/\s/g, ''));
     }
+
+    private get ticker() {
+        if (this.currency === 'tnim') return 'tNIM';
+
+        if (this.currency === 'mbtc') return 'mBTC';
+        if (this.currency === 'tbtc') return 'tBTC';
+
+        return this.currency.toUpperCase();
+    }
 }
 </script>
 
@@ -78,9 +87,5 @@ export default class Amount extends Vue {
     .amount.approx::before {
         content: '~ ';
         opacity: 0.5;
-    }
-
-    .currency {
-        text-transform: uppercase;
     }
 </style>

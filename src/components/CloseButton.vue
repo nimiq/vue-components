@@ -1,5 +1,5 @@
 <template>
-    <button class="close-button nq-button-s" @click="click">
+    <button class="close-button nq-button-s" @click="click" @mousedown.prevent>
         <CloseIcon/>
     </button>
 </template>

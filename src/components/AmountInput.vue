@@ -4,7 +4,7 @@
             <span class="width-finder width-placeholder" ref="widthPlaceholder">{{placeholder}}</span>
             <div v-if="maxFontSize" class="full-width" :class="{'width-finder': maxWidth > 0}">Width</div>
             <span class="width-finder width-value" ref="widthValue">{{formattedValue || ''}}</span>
-            <input type="text" inputmode="numeric" class="nq-input" :class="vanishing"
+            <input type="text" inputmode="decimal" class="nq-input" :class="vanishing"
                 :placeholder="placeholder"
                 :style="{width: `${this.width}px`, fontSize: `${this.fontSize}rem`}"
                 v-model="formattedValue"
@@ -53,6 +53,8 @@ export default class AmountInput extends Vue {
 
     @Watch('value', { immediate: true })
     private updateValue(newValue: number) {
+        if (newValue === this.valueInLuna) return;
+        this.lastEmittedValue = newValue || 0;
         this.formattedValue = newValue ? (newValue / Math.pow(10, this.decimals)).toString() : '';
         this.updateWidth();
     }

@@ -1,0 +1,1 @@
+(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[66],{da26:function(e){e.exports=JSON.parse('{"Change Password":"Сменить пароль","Create Backup":"Создать резервную копию","Logout":"Выйти","Rename":"Переименовать","Save Login File":"Сохранить Файл Авторизации"}')}}]);

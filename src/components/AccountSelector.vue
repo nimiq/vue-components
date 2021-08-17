@@ -3,7 +3,10 @@
         <div ref="container" class="container" :class="{'extra-spacing': wallets.length === 1}">
             <div v-for="wallet in sortedWallets" :key="wallet.id">
                 <div v-if="wallets.length > 1 || _isAccountDisabled(wallet)" class="wallet-label">
-                    <div class="nq-label">{{ wallet.label }}</div>
+                    <div class="nq-label">
+                        {{ wallet.label }}
+                        <span v-if="highlightBitcoinAccounts && wallet.btcXPub" class="btc-pill">BTC</span>
+                    </div>
                     <Tooltip
                         v-if="_isAccountDisabled(wallet)"
                         :ref="`tooltip-${wallet.id}`"
@@ -38,7 +41,7 @@
         </div>
 
         <div class="footer">
-            <button v-if="allowLogin" class="nq-button-s" @click="login">{{ $t('Login to another Account') }}</button>
+            <button v-if="allowLogin" class="nq-button-s" @click="login">{{ $t('Login to another account') }}</button>
         </div>
     </div>
 </template>
@@ -73,6 +76,7 @@ export interface WalletInfo {
     contracts: ContractInfo[];
     type: number;
     keyMissing: boolean;
+    btcXPub?: string;
 }
 
 @Component({
@@ -121,6 +125,7 @@ export default class AccountSelector extends Mixins(I18nMixin) {
     @Prop(Boolean) private disableLegacyAccounts?: boolean;
     @Prop(Boolean) private disableBip39Accounts?: boolean;
     @Prop(Boolean) private disableLedgerAccounts?: boolean;
+    @Prop(Boolean) private highlightBitcoinAccounts?: boolean;
     @Prop({type: Boolean, default: true}) private allowLogin!: boolean;
 
     private shownTooltip: Tooltip | null = null;
@@ -256,6 +261,16 @@ export default class AccountSelector extends Mixins(I18nMixin) {
         height: 1px;
         margin-left: 2rem;
         background: rgba(31, 35, 72, 0.1);
+    }
+
+    .btc-pill {
+        background: #F7931A; /* Bitcoin orange */
+        color: white;
+        font-weight: bold;
+        font-size: 1.5rem;
+        padding: 0.25rem 0.75rem;
+        border-radius: 2rem;
+        margin-left: 0.25rem;
     }
 
     .footer {
