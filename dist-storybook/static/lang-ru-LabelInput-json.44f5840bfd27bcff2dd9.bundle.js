@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[95],{1384:function(o){o.exports={"Name your address":"Как вы назовёте свой адрес?"}}}]);
-//# sourceMappingURL=lang-ru-LabelInput-json.44f5840bfd27bcff2dd9.bundle.js.map

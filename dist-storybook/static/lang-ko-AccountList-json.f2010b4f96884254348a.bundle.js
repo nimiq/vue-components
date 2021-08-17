@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[68],{1357:function(o){o.exports={"Contracts cannot be used for this operation.":"해당 작업에는 연락처를 사용할 수 없습니다.","This address cannot be used for this operation.":"해당 작업에는 이 주소를 사용할 수 없습니다."}}}]);
-//# sourceMappingURL=lang-ko-AccountList-json.f2010b4f96884254348a.bundle.js.map

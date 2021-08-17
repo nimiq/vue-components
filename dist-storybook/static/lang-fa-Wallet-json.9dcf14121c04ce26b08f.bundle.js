@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[34],{1323:function(e){e.exports={"Change Password":"تغییر رمزعبور","Create Backup":"ایجاد بک‌آپ",Logout:"خروج",Rename:"تغییر نام","Save Login File":"ذخیره فایل ورود"}}}]);
-//# sourceMappingURL=lang-fa-Wallet-json.9dcf14121c04ce26b08f.bundle.js.map

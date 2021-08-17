@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[70],{1356:function(n){n.exports={fee:"комісія","Insufficient balance":"Недостатній баланс"}}}]);
+//# sourceMappingURL=lang-uk-AmountWithFee-json.6b0f18e9cc3b43efea15.bundle.js.map

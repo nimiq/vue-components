@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[36],{1325:function(a){a.exports={"{type} accounts cannot be used for this operation.":"{type} accounts hindi maaaring gamitin sa operasyon na ito.",Legacy:"Legasiya","Login to another account":"Login sa iba pang account"}}}]);
-//# sourceMappingURL=lang-fil-AccountSelector-json.851b61d9ca8bdeb14ca7.bundle.js.map

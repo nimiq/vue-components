@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[26],{1315:function(n){n.exports={fee:"کارمزد","Insufficient balance":"موجودی ناکافی"}}}]);
-//# sourceMappingURL=lang-fa-AmountWithFee-json.2dce4f1f94c360364c63.bundle.js.map
