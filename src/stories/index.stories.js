@@ -483,12 +483,14 @@ storiesOf('Components', module)
         };
     })
     .add('AddressInput', () => {
+        const allowDomains = boolean('Allow Domains', true);
         return {
             components: {AddressInput},
             data() {
                 return {
                     address: '',
                     lastValidAddress: null,
+                    allowDomains,
                 };
             },
             methods: {
@@ -496,7 +498,7 @@ storiesOf('Components', module)
                 paste: action('paste'),
             },
             template: `<div>
-                <AddressInput v-model="address" @input="input" @address="lastValidAddress = $event" @paste="paste" />
+                <AddressInput v-model="address" :allowDomains="allowDomains" @input="input" @address="lastValidAddress = $event" @paste="paste" />
                 <div>Current address: {{ address }}</div>
                 <div>valid?: {{ address === lastValidAddress }}</div>
             </div>`,
