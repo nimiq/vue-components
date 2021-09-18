@@ -15,7 +15,7 @@
             }" :key="`connector-${i}`"></div>
         </template>
 
-        <template v-if="supportsMixBlendMode">
+        <template v-if="willBeAddress && supportsMixBlendMode">
             <template v-for="row in 3">
                 <template v-for="column in 3">
                     <div class="color-overlay" :style="{
@@ -66,7 +66,6 @@ export default class AddressInput extends Vue {
             // We return the original character without transforming it to uppercase to improve compatibility with some
             // browsers that struggle with undo/redo of manipulated input. The actual transformation to uppercase is then
             // done via CSS and when the value is exported
-            console.log('Testing ADDRESS:', value + char, regex.test(value + char))
             if (regex.test(value + char)) return char;
             else return; // reject character
         } else {
@@ -386,16 +385,16 @@ export default class AddressInput extends Vue {
     }
 
     @supports (mix-blend-mode: screen) {
-        textarea {
+        textarea.will-be-address {
             color: black; /* the actual color will be set via mix-blend-mode */
         }
 
-        textarea::selection {
+        textarea.will-be-address::selection {
             color: white;
             background: #561a51; /* a color that in combination with mix-blend-mode yields a color close to the default */
         }
 
-        textarea::-moz-selection {
+        textarea.will-be-address::-moz-selection {
             background: #411d68; /* a color that in combination with mix-blend-mode yields a color close to the default */
         }
 
