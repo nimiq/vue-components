@@ -12,13 +12,26 @@
                     <div class="color-overlay" :style="{
                         /* Hidden when placeholder shown. Visibility instead of v-if to avoid flickering in Firefox */
                         visibility: currentValue ? 'visible' : 'hidden',
-                        left: `calc(${column - 1} * (var(--block-width) + var(--block-gap)) + .25rem)`,
-                        top: `calc(${row - 1} * (var(--block-height) + var(--block-gap)) + .25rem)`,
+                        left: `calc(${column - 1} * (var(--block-width) + var(--block-gap-h)) + var(--block-gap-h) - 0.25rem)`,
+                        top: `calc(${row - 1} * (var(--block-height) + var(--block-gap-v)) + var(--block-gap-v) + 0.25rem)`,
                         background: `var(--nimiq-${_isBlockFocused((row - 1) * 3 + (column - 1)) ? 'light-' : ''}blue)`,
                     }" :key="`color-${row}-${column}`"></div>
                 </template>
             </template>
         </template>
+
+        <svg width="210" height="99" viewBox="0 0 210 99" fill="none" xmlns="http://www.w3.org/2000/svg" class="grid">
+            <g stroke-width="1.5" stroke-linecap="round">
+                <line x1="67.75" y1="0.75" x2="67.75" y2="22.25"/>
+                <line x1="67.75" y1="37.75" x2="67.75" y2="60.25"/>
+                <line x1="67.75" y1="75.75" x2="67.75" y2="98.25"/>
+                <line x1="0.75" y1="30.25" x2="209.25" y2="30.25"/>
+                <line x1="0.75" y1="68.25" x2="209.25" y2="68.25"/>
+                <line x1="143.75" y1="37.75" x2="143.75" y2="60.25"/>
+                <line x1="143.75" y1="0.75" x2="143.75" y2="22.25"/>
+                <line x1="143.75" y1="75.75" x2="143.75" y2="98.25"/>
+            </g>
+        </svg>
     </div>
 </template>
 
@@ -280,17 +293,31 @@ export default class AddressInput extends Vue {
         --font-size: 3rem;
         --block-height: 4.125rem;
         --block-width: 8.5rem;
-        --block-gap: 1rem;
+        --block-gap-v: 0.75rem;
+        --block-gap-h: 1rem;
 
-        width: calc(3 * var(--block-width) + 2 * var(--block-gap));
-        height: calc(3 * var(--block-height) + 2 * var(--block-gap));
+        width: calc(3 * var(--block-width) + 3 * var(--block-gap-h));
+        height: calc(3 * var(--block-height) + 3.5 * var(--block-gap-v));
         position: relative;
         flex-wrap: wrap;
         display: grid;
-        grid-template-columns: repeat(2, var(--block-width) var(--block-gap)) var(--block-width);
+        grid-template-columns: repeat(2, var(--block-width) var(--block-gap-h)) var(--block-width);
         grid-template-rows: repeat(3, var(--block-height));
-        grid-row-gap: var(--block-gap);
+        grid-gap: var(--block-gap-v) var(--block-gap-h);
         background: white; /* Note: our text coloring with mix-blend-mode only works on white background */
+
+        border-radius: 0.5rem;
+        --border-color: rgba(31, 35, 72, 0.1); /* Based on Nimiq Blue */
+        box-shadow: inset 0 0 0 1.5px var(--border-color);
+        transition: box-shadow .2s ease;
+    }
+
+    .address-input:hover {
+        --border-color: rgba(31, 35, 72, 0.14); /* Based on Nimiq Blue */
+    }
+
+    .address-input:focus-within {
+        --border-color: rgba(5, 130, 202, 0.4); /* Based on Nimiq Light Blue */
     }
 
     .address-input.invalid {
@@ -309,14 +336,14 @@ export default class AddressInput extends Vue {
     }
 
     textarea {
-        --line-height: calc(var(--block-height) + var(--block-gap));
+        --line-height: calc(var(--block-height) + var(--block-gap-v));
 
         position: absolute;
         width: 100%;
         height: calc(3 * var(--line-height));
         line-height: var(--line-height);
-        top: calc(var(--font-size) / 24 * -3); /* -3px at default font size */
-        left: calc(var(--font-size) / 24 * 5); /* 5px at default font size */
+        top: calc(var(--font-size) / 24 + var(--block-gap-v) / 2); /* -3px at default font size */
+        left: calc(var(--font-size) / 24 * 5 + var(--block-gap-h) / 2); /* 5px at default font size */
         padding: 0;
         margin: 0;
         border: none;
@@ -331,16 +358,33 @@ export default class AddressInput extends Vue {
         /* the width of rendered letters may slightly differ across different browsers on different OSs. To compensate
         for that we apply a letter-spacing based on the deviation from a reference value */
         letter-spacing: calc(1.8rem - 0.6em); /* 1ch changed to 0.6em, 'ch' in 'calc' making Safari 14.5 crash */
-        word-spacing: calc(var(--block-gap) / 2);
-        color: var(--nimiq-light-blue);
+        word-spacing: calc(var(--block-gap-h) / 2);
+        color: var(--nimiq-blue);
         background: transparent;
+        transition: color 0.2s ease;
+    }
+
+    textarea:focus {
+        color: var(--nimiq-light-blue);
     }
 
     textarea.will-be-address {
         text-transform: uppercase;
         /* Mask image to make selections visible only within blocks. Using mask image instead clip path to be able to
         click onto the textarea on the invisible areas too */
-        mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 123"><rect x="-1" y="6" width="61" height="27"/><rect x="75" y="6" width="61" height="27"/><rect x="151" y="6" width="61" height="27"/><rect x="-1" y="47" width="61" height="27"/><rect x="75" y="47" width="61" height="27"/><rect x="151" y="47" width="61" height="27"/><rect x="-1" y="88" width="61" height="27"/><rect x="75" y="88" width="61" height="27"/><rect x="151" y="88" width="61" height="27"/></svg>');
+        mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 123"><rect x="-1" y="6" width="62" height="28"/><rect x="79" y="6" width="62" height="28"/><rect x="159" y="6" width="62" height="28"/><rect x="-1" y="47" width="62" height="28"/><rect x="79" y="47" width="62" height="28"/><rect x="159" y="47" width="62" height="28"/><rect x="-1" y="88" width="62" height="28"/><rect x="79" y="88" width="62" height="28"/><rect x="159" y="88" width="62" height="28"/></svg>');
+    }
+
+    .grid {
+        position: absolute;
+        top: calc(var(--font-size) / 24 * 8 + var(--block-gap-v) / 2);
+        left: calc(var(--font-size) / 24 * 5 + var(--block-gap-h) / 2);
+        stroke: var(--border-color);
+        transition: stroke .2s ease, opacity 0.2s ease;
+    }
+
+    textarea:focus ~ .grid {
+        opacity: 0.5;
     }
 
     @supports (mix-blend-mode: screen) {
