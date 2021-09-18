@@ -1,5 +1,5 @@
 <template>
-    <div class="address-input">
+    <div class="address-input" :class="{'is-domain': isDomain}">
         <textarea ref="textarea" spellcheck="false" autocomplete="off"
             :class="{'will-be-address': willBeAddress}"
             @keydown="_onKeyDown" @input="_onInput" @paste="_onPaste" @cut="_onCut" @copy="_formatClipboard"
@@ -160,6 +160,10 @@ export default class AddressInput extends Vue {
         return !this.allowDomains || AddressInput._willBeAddress(this.currentValue);
     }
 
+    private get isDomain() {
+        return this.currentValue.length >= 3 && !this.willBeAddress;
+    }
+
     private mounted() {
         // trigger initial value change. Not using immediate watcher as it already fires before mounted.
         this._onExternalValueChange();
@@ -299,17 +303,17 @@ export default class AddressInput extends Vue {
         width: calc(3 * var(--block-width) + 3 * var(--block-gap-h));
         height: calc(3 * var(--block-height) + 3.5 * var(--block-gap-v));
         position: relative;
-        flex-wrap: wrap;
-        display: grid;
-        grid-template-columns: repeat(2, var(--block-width) var(--block-gap-h)) var(--block-width);
-        grid-template-rows: repeat(3, var(--block-height));
-        grid-gap: var(--block-gap-v) var(--block-gap-h);
         background: white; /* Note: our text coloring with mix-blend-mode only works on white background */
 
         border-radius: 0.5rem;
         --border-color: rgba(31, 35, 72, 0.1); /* Based on Nimiq Blue */
         box-shadow: inset 0 0 0 1.5px var(--border-color);
-        transition: box-shadow .2s ease;
+        transition: box-shadow .2s ease, height 0.3s var(--nimiq-ease);
+        overflow: hidden;
+    }
+
+    .address-input.is-domain {
+        height: calc(var(--block-height) + 2 * var(--block-gap-v));
     }
 
     .address-input:hover {
@@ -364,6 +368,12 @@ export default class AddressInput extends Vue {
         transition: color 0.2s ease;
     }
 
+    .is-domain textarea {
+        height: var(--line-height);
+        white-space: nowrap;
+        width: calc(100% - 2 * var(--block-gap-h))
+    }
+
     textarea:focus {
         color: var(--nimiq-light-blue);
     }
@@ -385,6 +395,10 @@ export default class AddressInput extends Vue {
 
     textarea:focus ~ .grid {
         opacity: 0.5;
+    }
+
+    .is-domain .grid {
+        opacity: 0 !important;
     }
 
     @supports (mix-blend-mode: screen) {
