@@ -1,6 +1,7 @@
 <template>
     <div class="address-input">
         <textarea ref="textarea" spellcheck="false" autocomplete="off"
+            :class="{'will-be-address': willBeAddress}"
             @keydown="_onKeyDown" @input="_onInput" @paste="_onPaste" @cut="_onCut" @copy="_formatClipboard"
             @click="_updateSelection" @select="_updateSelection" @blur="_updateSelection" @focus="_onFocus"
         ></textarea>
@@ -46,57 +47,85 @@ export default class AddressInput extends Vue {
     private static readonly ADDRESS_MAX_LENGTH = AddressInput.ADDRESS_MAX_LENGTH_WITHOUT_SPACES + 8;
 
     // definiton of the parse method for input-format (https://github.com/catamphetamine/input-format#usage)
-    private static _parse(char: string, value: string) {
-        // Handle I, O, W, Z which are the only characters missing in Nimiq's Base 32 address alphabet
-        switch (char.toUpperCase()) {
-            case 'I': char = '1'; break;
-            case 'O': char = '0'; break;
-            case 'Z': char = '2'; break;
-            case 'W': return; // reject character
+    private static _parse(char: string, value: string, allowDomains = false) {
+        if (!allowDomains || AddressInput._willBeAddress(value + char)) {
+            // Handle I, O, W, Z which are the only characters missing in Nimiq's Base 32 address alphabet
+            switch (char.toUpperCase()) {
+                case 'I': char = '1'; break;
+                case 'O': char = '0'; break;
+                case 'Z': char = '2'; break;
+                case 'W': return; // reject character
+            }
+
+            const regex = new RegExp('^('
+                + 'N(Q?)' // NQ at the beginning
+                + '|NQ\\d{1,2}' // first two characters after starting NQ must be digits
+                + `|NQ\\d{2}[0-9A-Z]{1,${AddressInput.ADDRESS_MAX_LENGTH_WITHOUT_SPACES - 4}}` // valid address < max length
+                + ')$', 'i');
+
+            // We return the original character without transforming it to uppercase to improve compatibility with some
+            // browsers that struggle with undo/redo of manipulated input. The actual transformation to uppercase is then
+            // done via CSS and when the value is exported
+            console.log('Testing ADDRESS:', value + char, regex.test(value + char))
+            if (regex.test(value + char)) return char;
+            else return; // reject character
+        } else {
+            // Reject non-URL formats while allowing typing URLs character by character
+            /**
+             * [-a-z0-9]    Allow hyphens, english letters and numbers
+             * [a-z0-9]\.   Require a character or letter before the period (to prevent a period directly after a hyphen)
+             * [a-z]        Only allow characters, no numbers, after the period
+             */
+            if (/^[-a-z0-9]*([a-z0-9]\.[a-z]*)?$/i.test(value + char)) return char;
+            else return; // reject character
         }
-
-        const regex = new RegExp('^('
-            + 'N(Q?)' // NQ at the beginning
-            + '|NQ\\d{1,2}' // first two characters after starting NQ must be digits
-            + `|NQ\\d{2}[0-9A-Z]{1,${AddressInput.ADDRESS_MAX_LENGTH_WITHOUT_SPACES - 4}}` // valid address < max length
-            + ')$', 'i');
-
-        // We return the original character without transforming it to uppercase to improve compatibility with some
-        // browsers that struggle with undo/redo of manipulated input. The actual transformation to uppercase is then
-        // done via CSS and when the value is exported
-        if (regex.test(value + char)) return char;
-        else return; // reject character
     }
 
     // definiton of the format method for input-format (https://github.com/catamphetamine/input-format#usage)
-    private static _format(value: string) {
-        if (value !== '' && value.toUpperCase() !== 'N') {
-            value = AddressInput._stripWhitespace(value)
-                .replace(/.{4}/g, (match, offset) => `${match}${(offset + 4) % 12 ? ' ' : '\n'}`) // form blocks
-                .substring(0, AddressInput.ADDRESS_MAX_LENGTH); // discarding the new line after last block
+    private static _format(value: string, allowDomains = false) {
+        if (!allowDomains || AddressInput._willBeAddress(value)) {
+            if (value !== '' && value.toUpperCase() !== 'N') {
+                value = AddressInput._stripWhitespace(value)
+                    .replace(/.{4}/g, (match, offset) => `${match}${(offset + 4) % 12 ? ' ' : '\n'}`) // form blocks
+                    .substring(0, AddressInput.ADDRESS_MAX_LENGTH); // discarding the new line after last block
 
-            if (value.endsWith(' ')) {
-                // The word spacing set via css is only applied to spaces that are actually between words which is not
-                // the case for an ending space and the caret after an ending space therefore gets rendered at the wrong
-                // position. To avoid that we add a zero-width space as an artificial word. We do not add that to the
-                // template returned to input-format though to avoid it being interpreted as a typed character which
-                // would place the caret after the zero width space.
-                value += '\u200B';
+                if (value.endsWith(' ')) {
+                    // The word spacing set via css is only applied to spaces that are actually between words which is not
+                    // the case for an ending space and the caret after an ending space therefore gets rendered at the wrong
+                    // position. To avoid that we add a zero-width space as an artificial word. We do not add that to the
+                    // template returned to input-format though to avoid it being interpreted as a typed character which
+                    // would place the caret after the zero width space.
+                    value += '\u200B';
+                }
             }
+            return {
+                text: value,
+                template: 'wwww wwww wwww\nwwww wwww wwww\nwwww wwww wwww', // used by input-format to position caret. Using
+                // w as placeholder instead of default x as w is not in our address alphabet.
+            };
+        } else {
+            return {
+                text: value,
+            };
         }
-        return {
-            text: value,
-            template: 'wwww wwww wwww\nwwww wwww wwww\nwwww wwww wwww', // used by input-format to position caret. Using
-            // w as placeholder instead of default x as w is not in our address alphabet.
-        };
     }
 
     private static _stripWhitespace(value: string) {
         return value.replace(/\s|\u200B/g, ''); // normal whitespace, tabs, newlines or zero-width whitespace
     }
 
-    private static _exportValue(value: string) {
-        return value.toUpperCase().replace(/\n/g, ' ').replace(/\u200B/g, '');
+    private static _exportValue(value: string, allowDomains = false) {
+        if (!allowDomains || AddressInput._willBeAddress(value)) {
+            return value.toUpperCase().replace(/\n/g, ' ').replace(/\u200B/g, '');
+        } else {
+            return value.replace(/\n/g, '').replace(/\u200B/g, '');
+        }
+    }
+
+    private static _willBeAddress(value: string): boolean {
+        if (value.length < 3) return false;
+        if (value.toUpperCase().startsWith('NQ') && !isNaN(parseInt(value[2], 10))) return true;
+        return false;
     }
 
     // value that can be bound to via v-model
@@ -109,6 +138,9 @@ export default class AddressInput extends Vue {
     @Prop(Boolean)
     public autofocus?: boolean;
 
+    @Prop(Boolean)
+    public allowDomains?: boolean;
+
     public $refs: { textarea: HTMLTextAreaElement };
 
     public focus(scrollIntoView = false) {
@@ -120,6 +152,10 @@ export default class AddressInput extends Vue {
     private selectionStartBlock: number = -1;
     private selectionEndBlock: number = -1;
     private supportsMixBlendMode: boolean = CSS.supports('mix-blend-mode', 'screen');
+
+    private get willBeAddress() {
+        return !this.allowDomains || AddressInput._willBeAddress(this.currentValue);
+    }
 
     private mounted() {
         // trigger initial value change. Not using immediate watcher as it already fires before mounted.
@@ -144,21 +180,33 @@ export default class AddressInput extends Vue {
         // could also be using format-input's parse and format helpers that preserve caret position but as we're not
         // interested in that, we calculate the formatted value manually
         const parsedValue = this.value.split('').reduce((parsed, char) =>
-            parsed + (AddressInput._parse(char, parsed) || ''), '');
-        this.$refs.textarea.value = AddressInput._format(parsedValue).text; // moves the caret to the end
+            parsed + (AddressInput._parse(char, parsed, this.allowDomains) || ''), '');
+        this.$refs.textarea.value = AddressInput._format(parsedValue, this.allowDomains).text; // moves the caret to the end
 
         this._afterChange(parsedValue);
     }
 
     private _onKeyDown(e: KeyboardEvent) {
-        inputFormatOnKeyDown(e, this.$refs.textarea, AddressInput._parse, AddressInput._format, this._afterChange);
+        inputFormatOnKeyDown(
+            e,
+            this.$refs.textarea,
+            (char: string, value: string) => AddressInput._parse(char, value, this.allowDomains),
+            (value: string) => AddressInput._format(value, this.allowDomains),
+            this._afterChange,
+        );
         setTimeout(() => this._updateSelection(), 10); // for arrow keys in Firefox
     }
 
     private _onInput(e: KeyboardEvent & { inputType?: string }) {
         if (e.inputType === 'deleteByDrag') return; // we'll handle the subsequent insertFromDrop
         const textarea = this.$refs.textarea;
-        inputFormatOnChange(e, textarea, AddressInput._parse, AddressInput._format, this._afterChange);
+        inputFormatOnChange(
+            e,
+            textarea,
+            (char: string, value: string) => AddressInput._parse(char, value, this.allowDomains),
+            (value: string) => AddressInput._format(value, this.allowDomains),
+            this._afterChange,
+        );
     }
 
     private _onPaste(e: ClipboardEvent) {
@@ -166,11 +214,23 @@ export default class AddressInput extends Vue {
         const pastedData = clipboardData ? clipboardData.getData('text/plain') : '';
         this.$emit('paste', e, pastedData);
 
-        inputFormatOnPaste(e, this.$refs.textarea, AddressInput._parse, AddressInput._format, this._afterChange);
+        inputFormatOnPaste(
+            e,
+            this.$refs.textarea,
+            (char: string, value: string) => AddressInput._parse(char, value, this.allowDomains),
+            (value: string) => AddressInput._format(value, this.allowDomains),
+            this._afterChange,
+        );
     }
 
     private _onCut(e: ClipboardEvent) {
-        inputFormatOnCut(e, this.$refs.textarea, AddressInput._parse, AddressInput._format, this._afterChange);
+        inputFormatOnCut(
+            e,
+            this.$refs.textarea,
+            (char: string, value: string) => AddressInput._parse(char, value, this.allowDomains),
+            (value: string) => AddressInput._format(value, this.allowDomains),
+            this._afterChange,
+        );
         this._formatClipboard();
     }
 
@@ -184,7 +244,7 @@ export default class AddressInput extends Vue {
         // preventDefault() which then results in the need to reimplement the behavior for cutting text and has side
         // effects like the change not being added to the undo history. Therefore we let the browser do the default
         // behavior but overwrite the clipboard afterwards.
-        const text = AddressInput._exportValue(document.getSelection()!.toString());
+        const text = AddressInput._exportValue(document.getSelection()!.toString(), this.allowDomains);
         setTimeout(() => Clipboard.copy(text));
     }
 
@@ -198,14 +258,16 @@ export default class AddressInput extends Vue {
             textarea.selectionStart += 1; // this also moves the selectionEnd as they were equal
         }
 
-        this.currentValue = AddressInput._exportValue(this.$refs.textarea.value);
+        this.currentValue = AddressInput._exportValue(this.$refs.textarea.value, this.allowDomains);
         this.$emit('input', this.currentValue); // emit event compatible with v-model
 
-        const isValid = ValidationUtils.isValidAddress(this.currentValue);
-        if (isValid) this.$emit('address', this.currentValue);
+        if (AddressInput._willBeAddress(value)) {
+            const isValid = ValidationUtils.isValidAddress(this.currentValue);
+            if (isValid) this.$emit('address', this.currentValue);
 
-        // if user entered a full address that is not valid give him a visual feedback
-        this.$el.classList.toggle('invalid', this.currentValue.length === AddressInput.ADDRESS_MAX_LENGTH && !isValid);
+            // if user entered a full address that is not valid give him a visual feedback
+            this.$el.classList.toggle('invalid', this.currentValue.length === AddressInput.ADDRESS_MAX_LENGTH && !isValid);
+        }
     }
 
     private _updateSelection() {
@@ -280,13 +342,16 @@ export default class AddressInput extends Vue {
         spaces at correct width in some browsers */
         font-family: Fira Mono, 'monospace';
         font-size: var(--font-size);
-        text-transform: uppercase;
         /* the width of rendered letters may slightly differ across different browsers on different OSs. To compensate
         for that we apply a letter-spacing based on the deviation from a reference value */
         letter-spacing: calc(1.8rem - 0.6em); /* 1ch changed to 0.6em, 'ch' in 'calc' making Safari 14.5 crash */
         word-spacing: calc(var(--block-gap) / 2);
         color: var(--nimiq-light-blue);
         background: transparent;
+    }
+
+    textarea.will-be-address {
+        text-transform: uppercase;
         /* Mask image to make selections visible only within blocks. Using mask image instead clip path to be able to
         click onto the textarea on the invisible areas too */
         mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 123"><rect x="-1" y="6" width="61" height="27"/><rect x="75" y="6" width="61" height="27"/><rect x="151" y="6" width="61" height="27"/><rect x="-1" y="47" width="61" height="27"/><rect x="75" y="47" width="61" height="27"/><rect x="151" y="47" width="61" height="27"/><rect x="-1" y="88" width="61" height="27"/><rect x="75" y="88" width="61" height="27"/><rect x="151" y="88" width="61" height="27"/></svg>');
