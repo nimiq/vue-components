@@ -5,15 +5,6 @@
             @keydown="_onKeyDown" @input="_onInput" @paste="_onPaste" @cut="_onCut" @copy="_formatClipboard"
             @click="_updateSelection" @select="_updateSelection" @blur="_updateSelection" @focus="_onFocus"
         ></textarea>
-        <template v-for="i in 9">
-            <div class="block" :class="{
-                focused: _isBlockFocused(i - 1),
-                invisible: _isBlockFilled(i - 1),
-            }" :key="`block-${i}`"></div>
-            <div v-if="i % 3" class="block-connector" :class="{
-                invisible: _isBlockFilled(i - 1) && !_isBlockFocused(i - 1) || _isBlockFilled(i) && !_isBlockFocused(i),
-            }" :key="`connector-${i}`"></div>
-        </template>
 
         <template v-if="willBeAddress && supportsMixBlendMode">
             <template v-for="row in 3">
@@ -281,10 +272,6 @@ export default class AddressInput extends Vue {
     private _isBlockFocused(blockIndex: number) {
         return this.selectionStartBlock <= blockIndex && blockIndex <= this.selectionEndBlock;
     }
-
-    private _isBlockFilled(blockIndex: number) {
-        return this.currentValue.length >= blockIndex * 5 + 4;
-    }
 }
 </script>
 
@@ -354,34 +341,6 @@ export default class AddressInput extends Vue {
         /* Mask image to make selections visible only within blocks. Using mask image instead clip path to be able to
         click onto the textarea on the invisible areas too */
         mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 123"><rect x="-1" y="6" width="61" height="27"/><rect x="75" y="6" width="61" height="27"/><rect x="151" y="6" width="61" height="27"/><rect x="-1" y="47" width="61" height="27"/><rect x="75" y="47" width="61" height="27"/><rect x="151" y="47" width="61" height="27"/><rect x="-1" y="88" width="61" height="27"/><rect x="75" y="88" width="61" height="27"/><rect x="151" y="88" width="61" height="27"/></svg>');
-    }
-
-    .block {
-        border: .25rem solid var(--nimiq-blue);
-        border-radius: .5rem;
-        opacity: .1;
-    }
-
-    .block.focused {
-        opacity: .16;
-        border-color: var(--nimiq-light-blue);
-    }
-
-    .block-connector {
-        width: var(--block-gap);
-        height: .25rem;
-        background: var(--nimiq-blue);
-        align-self: center;
-        opacity: .1;
-    }
-
-    .block,
-    .block-connector {
-        transition: opacity .2s var(--nimiq-ease), border .2s var(--nimiq-ease);
-    }
-
-    .invisible {
-        opacity: 0;
     }
 
     @supports (mix-blend-mode: screen) {
