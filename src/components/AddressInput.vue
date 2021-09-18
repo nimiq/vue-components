@@ -1,6 +1,6 @@
 <template>
     <div class="address-input">
-        <textarea ref="textarea" placeholder="NQ" spellcheck="false" autocomplete="off"
+        <textarea ref="textarea" spellcheck="false" autocomplete="off"
             @keydown="_onKeyDown" @input="_onInput" @paste="_onPaste" @cut="_onCut" @copy="_formatClipboard"
             @click="_updateSelection" @select="_updateSelection" @blur="_updateSelection" @focus="_onFocus"
         ></textarea>
@@ -59,7 +59,6 @@ export default class AddressInput extends Vue {
             + 'N(Q?)' // NQ at the beginning
             + '|NQ\\d{1,2}' // first two characters after starting NQ must be digits
             + `|NQ\\d{2}[0-9A-Z]{1,${AddressInput.ADDRESS_MAX_LENGTH_WITHOUT_SPACES - 4}}` // valid address < max length
-            + '|\\d' // Allow a single digit. It will then get expanded by a leading NQ.
             + ')$', 'i');
 
         // We return the original character without transforming it to uppercase to improve compatibility with some
@@ -72,9 +71,7 @@ export default class AddressInput extends Vue {
     // definiton of the format method for input-format (https://github.com/catamphetamine/input-format#usage)
     private static _format(value: string) {
         if (value !== '' && value.toUpperCase() !== 'N') {
-            // If user typed a valid character and not typed N to start NQ, enforce NQ and form blocks
             value = AddressInput._stripWhitespace(value)
-                .replace(/^N?Q?/i, 'NQ') // enforce NQ at the beginning
                 .replace(/.{4}/g, (match, offset) => `${match}${(offset + 4) % 12 ? ' ' : '\n'}`) // form blocks
                 .substring(0, AddressInput.ADDRESS_MAX_LENGTH); // discarding the new line after last block
 
@@ -161,11 +158,6 @@ export default class AddressInput extends Vue {
     private _onInput(e: KeyboardEvent & { inputType?: string }) {
         if (e.inputType === 'deleteByDrag') return; // we'll handle the subsequent insertFromDrop
         const textarea = this.$refs.textarea;
-        if (e.inputType === 'historyRedo' && textarea.value.length >= 2 && !textarea.value.startsWith('NQ')) {
-            // Redo has problems when redoing an edit where NQ was added automatically. We make sure here to correctly
-            // apply the NQ again.
-            textarea.value = `NQ${textarea.value.substring(2)}`;
-        }
         inputFormatOnChange(e, textarea, AddressInput._parse, AddressInput._format, this._afterChange);
     }
 
@@ -197,16 +189,8 @@ export default class AddressInput extends Vue {
     }
 
     private _afterChange(value: string) {
-        // value is the unformatted value (i.e. the concatenation of characters returned by _parse). It includes NQ
-        // if NQ was already added to the textarea before the current change but is not included if it is getting
-        // automatically added just in our current change.
+        // value is the unformatted value (i.e. the concatenation of characters returned by _parse)
         const textarea = this.$refs.textarea;
-
-        // have to move caret or selection by two to account for the NQ automatically added to the formatted text
-        if (!value.startsWith('NQ')) {
-            textarea.selectionEnd += 2;
-            textarea.selectionStart += 2;
-        }
 
         // if selection is a caret in front of a space or new line move caret behind it
         if (textarea.selectionStart === textarea.selectionEnd
@@ -306,36 +290,6 @@ export default class AddressInput extends Vue {
         /* Mask image to make selections visible only within blocks. Using mask image instead clip path to be able to
         click onto the textarea on the invisible areas too */
         mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 123"><rect x="-1" y="6" width="61" height="27"/><rect x="75" y="6" width="61" height="27"/><rect x="151" y="6" width="61" height="27"/><rect x="-1" y="47" width="61" height="27"/><rect x="75" y="47" width="61" height="27"/><rect x="151" y="47" width="61" height="27"/><rect x="-1" y="88" width="61" height="27"/><rect x="75" y="88" width="61" height="27"/><rect x="151" y="88" width="61" height="27"/></svg>');
-    }
-
-    ::-webkit-input-placeholder {
-        opacity: .6;
-    }
-    ::-ms-input-placeholder {
-        opacity: .6;
-    }
-    ::-moz-placeholder {
-        opacity: .6;
-    }
-    ::placeholder {
-        opacity: .6;
-    }
-
-    textarea:focus::-webkit-input-placeholder {
-        transition: color .2s var(--nimiq-ease);
-        color: var(--nimiq-light-blue);
-    }
-    textarea:focus::-ms-input-placeholder {
-        transition: color .2s var(--nimiq-ease);
-        color: var(--nimiq-light-blue);
-    }
-    textarea:focus::-moz-placeholder {
-        transition: color .2s var(--nimiq-ease);
-        color: var(--nimiq-light-blue);
-    }
-    textarea:focus::placeholder {
-        transition: color .2s var(--nimiq-ease);
-        color: var(--nimiq-light-blue);
     }
 
     .block {
