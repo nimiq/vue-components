@@ -1,0 +1,1 @@
+(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[67],{bb4e:function(e){e.exports=JSON.parse('{"Contracts cannot be used for this operation.":"合同不适用于此操作","This address cannot be used for this operation.":"该地址不适用此操作"}')}}]);

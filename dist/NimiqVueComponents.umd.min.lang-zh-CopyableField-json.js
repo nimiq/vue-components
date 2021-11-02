@@ -1,0 +1,1 @@
+(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[71],{afa7:function(e){e.exports=JSON.parse('{"Copied":"已复制"}')}}]);
