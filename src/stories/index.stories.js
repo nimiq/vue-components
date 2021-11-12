@@ -562,16 +562,27 @@ storiesOf('Components', module)
     .add('AmountWithFee',() => {
         const maxBalance = number('Maximum balance', 102000000);
         const amountAndFee = object('Amount and Fee', {amount: 100000, fee: 0, isValid: true});
+        const fiatAmount = number('Fiat amount', 100);
+        const fiatCurrency = text('Fiat currency', 'eur');
 
         return {
             data() {
                 return {
                     maxBalance,
                     amountAndFee,
+                    fiatAmount,
+                    fiatCurrency,
                 }
             },
             components: {AmountWithFee},
-            template: `<div style="padding-left: 20rem"><AmountWithFee :available-balance="maxBalance" v-model="amountAndFee" /></div>`,
+            template: `<div style="padding-left: 20rem">
+                <AmountWithFee
+                    :available-balance="maxBalance"
+                    v-model="amountAndFee"
+                    :fiatAmount="fiatAmount"
+                    :fiatCurrency="fiatCurrency"
+                />
+            </div>`,
         }
     })
     .add('BottomOverlay', () => {

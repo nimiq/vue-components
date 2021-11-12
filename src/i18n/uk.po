@@ -71,7 +71,7 @@ msgstr "днів"
 msgid "Effective rate"
 msgstr "Фактична ставка"
 
-#: src/components/AmountWithFee.vue:7
+#: src/components/AmountWithFee.vue:11
 msgid "fee"
 msgstr "комісія"
 
