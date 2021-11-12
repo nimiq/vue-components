@@ -4,10 +4,11 @@
 # Sebastian Langer <basti@b-compu.de>, 2020
 # Daniel, 2020
 # Redexe <timo.niehoff@yahoo.de>, 2020
+# Huriye <huriyegoek@gmx.de>, 2021
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Redexe <timo.niehoff@yahoo.de>, 2020\n"
+"Last-Translator: Huriye <huriyegoek@gmx.de>, 2021\n"
 "Language-Team: German (https://www.transifex.com/nimiq-foundation/teams/110181/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de\n"
@@ -39,7 +40,7 @@ msgstr ""
 
 #: src/components/QrScanner.vue:44
 msgid "Click on {icon} in the URL bar."
-msgstr "Klicke auf {icon} in der Addressleiste."
+msgstr "Klicke auf {icon} in der Adressleiste."
 
 #: src/components/QrScanner.vue:39
 msgid ""
@@ -73,7 +74,7 @@ msgstr "Tage"
 msgid "Effective rate"
 msgstr "Effektiver Wechselkurs"
 
-#: src/components/AmountWithFee.vue:7
+#: src/components/AmountWithFee.vue:11
 msgid "fee"
 msgstr "Gebühr"
 
@@ -151,7 +152,7 @@ msgstr "Sekunden"
 
 #: src/components/QrScanner.vue:48
 msgid "the camera icon"
-msgstr "das Kamera Symbol"
+msgstr "das Kamera-Symbol"
 
 #: src/components/AccountList.vue:44
 msgid "This address cannot be used for this operation."
