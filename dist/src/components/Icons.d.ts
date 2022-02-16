@@ -12,6 +12,7 @@ export declare const CheckmarkIcon: any;
 export declare const CheckmarkSmallIcon: any;
 export declare const CloseIcon: any;
 export declare const ContactsIcon: any;
+export declare const DownloadIcon: any;
 export declare const FaceNeutralIcon: any;
 export declare const FaceSadIcon: any;
 export declare const GearIcon: any;

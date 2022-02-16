@@ -11255,6 +11255,35 @@ var es_object_assign = __webpack_require__("cca6");
         }
       });
     
+// CONCATENATED MODULE: ./node_modules/@nimiq/style/src/icons/download.svg
+
+      /* harmony default export */ var download = ({
+        functional: true,
+        render(_h, _vm) {
+          const { _c, _v, data, children = [] } = _vm;
+
+          const {
+            class: classNames,
+            staticClass,
+            style,
+            staticStyle,
+            attrs = {},
+            ...rest
+          } = data;
+
+          return _c(
+            'svg',
+            {
+              class: [classNames,staticClass],
+              style: [style,staticStyle],
+              attrs: Object.assign({"width":"20","height":"20","viewBox":"0 0 20 20","xmlns":"http://www.w3.org/2000/svg"}, attrs),
+              ...rest,
+            },
+            children.concat([_c('path',{attrs:{"d":"M15.36 11.38a.83.83 0 0 0-.59-1.42h-3.31a.2.2 0 0 1-.2-.2V1.24a1.25 1.25 0 1 0-2.5 0v8.5c0 .12-.1.2-.22.2H5.23a.83.83 0 0 0-.59 1.43l4.77 4.77c.33.33.86.33 1.18 0l4.77-4.77zM16.02 18.75c0-.69-.55-1.25-1.25-1.25H5.23a1.25 1.25 0 1 0 0 2.5h9.54c.7 0 1.25-.56 1.25-1.25z","fill":"currentColor"}})])
+          )
+        }
+      });
+    
 // CONCATENATED MODULE: ./node_modules/@nimiq/style/src/icons/face-neutral.svg
 
       /* harmony default export */ var face_neutral = ({
@@ -11726,7 +11755,7 @@ var IconBase = function IconBase(component) {
 
  // import Copy from '@nimiq/style/src/icons/copy.svg';
 // import Cross from '@nimiq/style/src/icons/cross.svg';
-// import Download from '@nimiq/style/src/icons/download.svg';
+
 
 
 
@@ -11769,8 +11798,8 @@ var CheckmarkSmallIcon = IconBase(checkmark_small);
 var CloseIcon = IconBase(icons_close);
 var ContactsIcon = IconBase(contacts); // export const CopyIcon = IconBase(Copy);
 // export const CrossIcon = IconBase(Cross);
-// export const DownloadIcon = IconBase(Download);
 
+var DownloadIcon = IconBase(download);
 var FaceNeutralIcon = IconBase(face_neutral);
 var FaceSadIcon = IconBase(face_sad);
 var GearIcon = IconBase(gear);
@@ -18653,6 +18682,7 @@ function setAssetPublicPath(path, imageAssetsPath) {
 /* concated harmony reexport CheckmarkSmallIcon */__webpack_require__.d(__webpack_exports__, "CheckmarkSmallIcon", function() { return CheckmarkSmallIcon; });
 /* concated harmony reexport CloseIcon */__webpack_require__.d(__webpack_exports__, "CloseIcon", function() { return CloseIcon; });
 /* concated harmony reexport ContactsIcon */__webpack_require__.d(__webpack_exports__, "ContactsIcon", function() { return ContactsIcon; });
+/* concated harmony reexport DownloadIcon */__webpack_require__.d(__webpack_exports__, "DownloadIcon", function() { return DownloadIcon; });
 /* concated harmony reexport FaceNeutralIcon */__webpack_require__.d(__webpack_exports__, "FaceNeutralIcon", function() { return FaceNeutralIcon; });
 /* concated harmony reexport FaceSadIcon */__webpack_require__.d(__webpack_exports__, "FaceSadIcon", function() { return FaceSadIcon; });
 /* concated harmony reexport GearIcon */__webpack_require__.d(__webpack_exports__, "GearIcon", function() { return GearIcon; });
