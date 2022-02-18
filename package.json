@@ -26,7 +26,7 @@
     "big-integer": "^1.6.44",
     "input-format": "^0.2.8",
     "qr-creator": "^1.0.0",
-    "qr-scanner": "^1.3.0",
+    "qr-scanner": "https://github.com/nimiq/qr-scanner#c1db54cc7af06525de20392a1450424f6d35a929",
     "vue": "^2.6.11",
     "vue-property-decorator": "^8.4.0"
   },
