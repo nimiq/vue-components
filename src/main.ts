@@ -6,7 +6,7 @@
 // export { default as AccountSelector } from './components/AccountSelector.vue';
 // export { default as AddressDisplay } from './components/AddressDisplay.vue';
 // export { default as AddressInput } from './components/AddressInput.vue';
-// export { default as Amount } from './components/Amount.vue';
+export { default as Amount } from './components/Amount.vue';
 // export { default as AmountInput } from './components/AmountInput.vue';
 // export { default as AmountWithFee } from './components/AmountWithFee.vue';
 // export { default as BottomOverlay } from './components/BottomOverlay.vue';
@@ -23,7 +23,7 @@ export { default as FiatAmount } from './components/FiatAmount.vue';
 // export { default as PageFooter } from './components/PageFooter.vue';
 // export { default as PageHeader } from './components/PageHeader.vue';
 // export { default as PaymentInfoLine } from './components/PaymentInfoLine.vue';
-// export { default as QrCode } from './components/QrCode.vue';
+export { default as QrCode } from './components/QrCode.vue';
 // export { default as QrScanner } from './components/QrScanner.vue';
 // export { default as SelectBar } from './components/SelectBar.vue';
 export { default as SmallPage } from './components/SmallPage.vue';
