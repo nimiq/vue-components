@@ -483,12 +483,14 @@ storiesOf('Components', module)
         };
     })
     .add('AddressInput', () => {
+        const allowDomains = boolean('Allow Domains', true);
         return {
             components: {AddressInput},
             data() {
                 return {
                     address: '',
                     lastValidAddress: null,
+                    allowDomains,
                 };
             },
             methods: {
@@ -496,7 +498,7 @@ storiesOf('Components', module)
                 paste: action('paste'),
             },
             template: `<div>
-                <AddressInput v-model="address" @input="input" @address="lastValidAddress = $event" @paste="paste" />
+                <AddressInput v-model="address" :allowDomains="allowDomains" @input="input" @address="lastValidAddress = $event" @paste="paste" />
                 <div>Current address: {{ address }}</div>
                 <div>valid?: {{ address === lastValidAddress }}</div>
             </div>`,
@@ -560,16 +562,27 @@ storiesOf('Components', module)
     .add('AmountWithFee',() => {
         const maxBalance = number('Maximum balance', 102000000);
         const amountAndFee = object('Amount and Fee', {amount: 100000, fee: 0, isValid: true});
+        const fiatAmount = number('Fiat amount', 100);
+        const fiatCurrency = text('Fiat currency', 'eur');
 
         return {
             data() {
                 return {
                     maxBalance,
                     amountAndFee,
+                    fiatAmount,
+                    fiatCurrency,
                 }
             },
             components: {AmountWithFee},
-            template: `<div style="padding-left: 20rem"><AmountWithFee :available-balance="maxBalance" v-model="amountAndFee" /></div>`,
+            template: `<div style="padding-left: 20rem">
+                <AmountWithFee
+                    :available-balance="maxBalance"
+                    v-model="amountAndFee"
+                    :fiatAmount="fiatAmount"
+                    :fiatCurrency="fiatCurrency"
+                />
+            </div>`,
         }
     })
     .add('BottomOverlay', () => {
