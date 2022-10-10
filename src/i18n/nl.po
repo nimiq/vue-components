@@ -16,7 +16,7 @@ msgstr ""
 msgid "{amount} suggested network fee"
 msgstr "{amount} voorgestelde netwerkkosten"
 
-#: src/components/AccountSelector.vue:18
+#: src/components/AccountSelector.vue:21
 msgid "{type} accounts cannot be used for this operation."
 msgstr "{type} accounts kunnen niet worden gebruikt voor deze handeling."
 
@@ -52,7 +52,7 @@ msgstr ""
 msgid "Contracts cannot be used for this operation."
 msgstr "Contracten kunnen niet gebruikt worden voor deze operatie."
 
-#: src/components/Copyable.vue:5 src/components/CopyableField.vue:21
+#: src/components/Copyable.vue:5 src/components/CopyableField.vue:20
 msgid "Copied"
 msgstr "Gekopieerd"
 
@@ -60,11 +60,11 @@ msgstr "Gekopieerd"
 msgid "Create Backup"
 msgstr "Maak een back-up"
 
-#: src/components/Timer.vue:95
+#: src/components/Timer.vue:96
 msgid "day"
 msgstr "dag"
 
-#: src/components/Timer.vue:96
+#: src/components/Timer.vue:97
 msgid "days"
 msgstr "dagen"
 
@@ -72,7 +72,7 @@ msgstr "dagen"
 msgid "Effective rate"
 msgstr "Effectief tarief"
 
-#: src/components/AmountWithFee.vue:7
+#: src/components/AmountWithFee.vue:11
 msgid "fee"
 msgstr "transactiekosten"
 
@@ -84,11 +84,11 @@ msgstr "Ga terug"
 msgid "Grant camera access when asked."
 msgstr "Verleen cameratoegang wanneer daarom wordt gevraagd."
 
-#: src/components/Timer.vue:93
+#: src/components/Timer.vue:94
 msgid "hour"
 msgstr "uur"
 
-#: src/components/Timer.vue:94
+#: src/components/Timer.vue:95
 msgid "hours"
 msgstr "uren"
 
@@ -96,11 +96,11 @@ msgstr "uren"
 msgid "Insufficient balance"
 msgstr "Onvoldoende salso"
 
-#: src/components/AccountSelector.vue:188
+#: src/components/AccountSelector.vue:193
 msgid "Legacy"
 msgstr "Legacy"
 
-#: src/components/AccountSelector.vue:41
+#: src/components/AccountSelector.vue:44
 msgid "Login to another account"
 msgstr "Log in op een ander account"
 
@@ -108,11 +108,11 @@ msgstr "Log in op een ander account"
 msgid "Logout"
 msgstr "Uitloggen"
 
-#: src/components/Timer.vue:91
+#: src/components/Timer.vue:92
 msgid "minute"
 msgstr "minuut"
 
-#: src/components/Timer.vue:92
+#: src/components/Timer.vue:93
 msgid "minutes"
 msgstr "minuten"
 
@@ -140,11 +140,11 @@ msgstr "Hernoemen"
 msgid "Save Login File"
 msgstr "Login File opslaan"
 
-#: src/components/Timer.vue:89
+#: src/components/Timer.vue:90
 msgid "second"
 msgstr "seconde"
 
-#: src/components/Timer.vue:90
+#: src/components/Timer.vue:91
 msgid "seconds"
 msgstr "seconden"
 
@@ -156,7 +156,7 @@ msgstr "de camera icon"
 msgid "This address cannot be used for this operation."
 msgstr "Dit adres kan niet worden gebruikt voor deze handeling."
 
-#: src/components/Timer.vue:44
+#: src/components/Timer.vue:45
 msgid "This offer expires in {timer}."
 msgstr "Deze aanbieding vervalt over {timer}."
 

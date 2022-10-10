@@ -1,6 +1,6 @@
 <template>
-    <div class="copyable-field">
-        <span class="nq-label" v-if="label">{{label}}</span>
+    <div class="copyable-field" :class="{ small }">
+        <span class="nq-label" v-if="label">{{ label }}</span>
         <div class="copyable-field-content" :class="{ 'simple-value': !isKeyedValue, copied }" @click="copy">
             <div ref="value-container" class="value-container" :style="{ fontSize: fontSize+'rem' }">
                 <span ref="value" class="value">
@@ -9,8 +9,7 @@
             </div>
             <button
                 class="nq-button-s"
-                v-if="isKeyedValue"
-                v-for="key in Object.keys(value)"
+                v-for="key in (isKeyedValue ? Object.keys(value) : [])"
                 @click.stop="currentKey = key"
                 :class="{
                     inverse: currentKey === key,
@@ -31,6 +30,7 @@ import I18nMixin from '../i18n/I18nMixin';
 @Component({ name: 'CopyableField' })
 export default class CopyableField extends Mixins(I18nMixin) {
     private static readonly DEFAULT_FONT_SIZE = 3; // in rem
+    private static readonly DEFAULT_FONT_SIZE_SMALL = 2.5; // in rem
 
     @Prop({
         required: true,
@@ -42,8 +42,11 @@ export default class CopyableField extends Mixins(I18nMixin) {
     @Prop(String)
     public label?: string;
 
+    @Prop({ type: Boolean, default: false })
+    public small!: boolean;
+
     private currentKey: string = '';
-    private fontSize: number = CopyableField.DEFAULT_FONT_SIZE;
+    private fontSize: number = this.small ? CopyableField.DEFAULT_FONT_SIZE_SMALL : CopyableField.DEFAULT_FONT_SIZE;
     private copied: boolean = false;
     private _copiedResetTimeout: number | undefined;
 
@@ -76,16 +79,18 @@ export default class CopyableField extends Mixins(I18nMixin) {
     }
 
     @Watch('currentKey')
+    @Watch('small')
     private async _updateFontSize() {
         await Vue.nextTick(); // let Vue render the component first
         const valueContainer = this.$refs['value-container'] as HTMLDivElement;
         const valueElement = this.$refs.value as HTMLSpanElement;
-        valueElement.style.fontSize = `${CopyableField.DEFAULT_FONT_SIZE}rem`;
+        const defaultFontSize = this.small ? CopyableField.DEFAULT_FONT_SIZE_SMALL : CopyableField.DEFAULT_FONT_SIZE;
+        valueElement.style.fontSize = `${defaultFontSize}rem`;
         const availableWidth = valueContainer.offsetWidth;
         const referenceWidth = valueElement.offsetWidth;
         const scaleFactor =  availableWidth / referenceWidth;
         valueElement.style.fontSize = '';
-        this.fontSize = Math.min(CopyableField.DEFAULT_FONT_SIZE, CopyableField.DEFAULT_FONT_SIZE * scaleFactor);
+        this.fontSize = Math.min(defaultFontSize, defaultFontSize * scaleFactor);
     }
 
     private copy() {
@@ -130,6 +135,11 @@ export default class CopyableField extends Mixins(I18nMixin) {
         cursor: pointer;
         background: rgba(255, 255, 255, 0.1);
         transition-property: background;
+    }
+
+    .small .copyable-field-content {
+        height: 5rem;
+        line-height: 5rem;
     }
 
     .copy-notice {
@@ -184,6 +194,11 @@ export default class CopyableField extends Mixins(I18nMixin) {
         background: transparent;
     }
 
+    .small button {
+        height: 3rem;
+        line-height: 3rem;
+    }
+
     .copied button {
         opacity: 0;
     }
@@ -214,5 +229,10 @@ export default class CopyableField extends Mixins(I18nMixin) {
     .nq-label {
         margin-top: 3rem;
         margin-bottom: 2rem;
+    }
+
+    .small .nq-label {
+        margin-top: 2.75rem;
+        margin-bottom: 1.75rem;
     }
 </style>

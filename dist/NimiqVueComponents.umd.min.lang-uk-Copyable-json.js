@@ -1,1 +1,1 @@
-(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[81],{c38d:function(e){e.exports=JSON.parse('{"Copied":"Скопійовано"}')}}]);
+(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[92],{c38d:function(e){e.exports=JSON.parse('{"Copied":"Скопійовано"}')}}]);

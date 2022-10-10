@@ -14,7 +14,7 @@ msgstr ""
 msgid "{amount} suggested network fee"
 msgstr "{amount} کارمزد پیشنهادی شبکه"
 
-#: src/components/AccountSelector.vue:18
+#: src/components/AccountSelector.vue:21
 msgid "{type} accounts cannot be used for this operation."
 msgstr " حساب‌های کاربری {type} نمی توانند برای این عملیات استفاده شوند."
 
@@ -50,7 +50,7 @@ msgstr ""
 msgid "Contracts cannot be used for this operation."
 msgstr "برای این عملیات نمی توان از قراردادها استفاده کرد."
 
-#: src/components/Copyable.vue:5 src/components/CopyableField.vue:21
+#: src/components/Copyable.vue:5 src/components/CopyableField.vue:20
 msgid "Copied"
 msgstr "کپی شد"
 
@@ -58,11 +58,11 @@ msgstr "کپی شد"
 msgid "Create Backup"
 msgstr "ایجاد بک‌آپ"
 
-#: src/components/Timer.vue:95
+#: src/components/Timer.vue:96
 msgid "day"
 msgstr "روز"
 
-#: src/components/Timer.vue:96
+#: src/components/Timer.vue:97
 msgid "days"
 msgstr "روزها"
 
@@ -70,7 +70,7 @@ msgstr "روزها"
 msgid "Effective rate"
 msgstr "نرخ موثر"
 
-#: src/components/AmountWithFee.vue:7
+#: src/components/AmountWithFee.vue:11
 msgid "fee"
 msgstr "کارمزد"
 
@@ -82,11 +82,11 @@ msgstr "برگرد"
 msgid "Grant camera access when asked."
 msgstr "زمانی که از شما خواسته شد به دوربین دسترسی دهید."
 
-#: src/components/Timer.vue:93
+#: src/components/Timer.vue:94
 msgid "hour"
 msgstr "ساعت"
 
-#: src/components/Timer.vue:94
+#: src/components/Timer.vue:95
 msgid "hours"
 msgstr "ساعت‌ها"
 
@@ -94,11 +94,11 @@ msgstr "ساعت‌ها"
 msgid "Insufficient balance"
 msgstr "موجودی ناکافی"
 
-#: src/components/AccountSelector.vue:188
+#: src/components/AccountSelector.vue:193
 msgid "Legacy"
 msgstr "نسخه ی قبلی"
 
-#: src/components/AccountSelector.vue:41
+#: src/components/AccountSelector.vue:44
 msgid "Login to another account"
 msgstr "ورود به دیگر حساب کاربری"
 
@@ -106,11 +106,11 @@ msgstr "ورود به دیگر حساب کاربری"
 msgid "Logout"
 msgstr "خروج"
 
-#: src/components/Timer.vue:91
+#: src/components/Timer.vue:92
 msgid "minute"
 msgstr "دقیقه"
 
-#: src/components/Timer.vue:92
+#: src/components/Timer.vue:93
 msgid "minutes"
 msgstr "دقایق"
 
@@ -138,11 +138,11 @@ msgstr "تغییر نام"
 msgid "Save Login File"
 msgstr "ذخیره فایل ورود"
 
-#: src/components/Timer.vue:89
+#: src/components/Timer.vue:90
 msgid "second"
 msgstr "ثانیه"
 
-#: src/components/Timer.vue:90
+#: src/components/Timer.vue:91
 msgid "seconds"
 msgstr "ثانیه‌ها"
 
@@ -154,7 +154,7 @@ msgstr "آیکون دوربین"
 msgid "This address cannot be used for this operation."
 msgstr "از این آدرس نمی توان برای این عملیات استفاده کرد."
 
-#: src/components/Timer.vue:44
+#: src/components/Timer.vue:45
 msgid "This offer expires in {timer}."
 msgstr "این پیشنهاد تا {timer} دیگر منقضی میشود."
 

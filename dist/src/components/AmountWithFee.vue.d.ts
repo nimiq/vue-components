@@ -3,6 +3,8 @@ declare const AmountWithFee_base: import("vue-class-component/lib/declarations")
 export default class AmountWithFee extends AmountWithFee_base {
     private value;
     private availableBalance;
+    private fiatAmount;
+    private fiatCurrency;
     private liveAmount;
     mounted(): void;
     private watchAvailableAmountChange;

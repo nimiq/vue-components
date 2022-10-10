@@ -6,7 +6,7 @@ msgstr ""
 msgid "{amount} suggested network fee"
 msgstr ""
 
-#: src/components/AccountSelector.vue:18
+#: src/components/AccountSelector.vue:21
 msgid "{type} accounts cannot be used for this operation."
 msgstr ""
 
@@ -39,7 +39,7 @@ msgid "Contracts cannot be used for this operation."
 msgstr ""
 
 #: src/components/Copyable.vue:5
-#: src/components/CopyableField.vue:21
+#: src/components/CopyableField.vue:20
 msgid "Copied"
 msgstr ""
 
@@ -59,7 +59,7 @@ msgstr ""
 msgid "Effective rate"
 msgstr ""
 
-#: src/components/AmountWithFee.vue:7
+#: src/components/AmountWithFee.vue:11
 msgid "fee"
 msgstr ""
 
@@ -83,11 +83,11 @@ msgstr ""
 msgid "Insufficient balance"
 msgstr ""
 
-#: src/components/AccountSelector.vue:188
+#: src/components/AccountSelector.vue:193
 msgid "Legacy"
 msgstr ""
 
-#: src/components/AccountSelector.vue:41
+#: src/components/AccountSelector.vue:44
 msgid "Login to another account"
 msgstr ""
 

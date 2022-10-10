@@ -10,13 +10,13 @@ msgstr ""
 "Language-Team: French (https://www.transifex.com/nimiq-foundation/teams/110181/fr/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #: src/components/PaymentInfoLine.vue:77
 msgid "{amount} suggested network fee"
 msgstr "{amount} de frais de réseau suggéré"
 
-#: src/components/AccountSelector.vue:18
+#: src/components/AccountSelector.vue:21
 msgid "{type} accounts cannot be used for this operation."
 msgstr "Les comptes {type} ne peuvent pas être utilisés pour cette opération."
 
@@ -52,7 +52,7 @@ msgstr ""
 msgid "Contracts cannot be used for this operation."
 msgstr "Les Contrats ne peuvent pas être utilisés pour cette opération."
 
-#: src/components/Copyable.vue:5 src/components/CopyableField.vue:21
+#: src/components/Copyable.vue:5 src/components/CopyableField.vue:20
 msgid "Copied"
 msgstr "Copié"
 
@@ -60,11 +60,11 @@ msgstr "Copié"
 msgid "Create Backup"
 msgstr "Créer une Sauvegarde"
 
-#: src/components/Timer.vue:95
+#: src/components/Timer.vue:96
 msgid "day"
 msgstr "jour"
 
-#: src/components/Timer.vue:96
+#: src/components/Timer.vue:97
 msgid "days"
 msgstr "jours"
 
@@ -72,7 +72,7 @@ msgstr "jours"
 msgid "Effective rate"
 msgstr "Taux effectif"
 
-#: src/components/AmountWithFee.vue:7
+#: src/components/AmountWithFee.vue:11
 msgid "fee"
 msgstr "frais"
 
@@ -84,11 +84,11 @@ msgstr "Retour"
 msgid "Grant camera access when asked."
 msgstr "Accordez l'accès à la caméra lorsque cela vous est demandé."
 
-#: src/components/Timer.vue:93
+#: src/components/Timer.vue:94
 msgid "hour"
 msgstr "heure"
 
-#: src/components/Timer.vue:94
+#: src/components/Timer.vue:95
 msgid "hours"
 msgstr "heures"
 
@@ -96,11 +96,11 @@ msgstr "heures"
 msgid "Insufficient balance"
 msgstr "Solde insuffisant"
 
-#: src/components/AccountSelector.vue:188
+#: src/components/AccountSelector.vue:193
 msgid "Legacy"
 msgstr "Legacy"
 
-#: src/components/AccountSelector.vue:41
+#: src/components/AccountSelector.vue:44
 msgid "Login to another account"
 msgstr "Connexion à un autre compte"
 
@@ -108,11 +108,11 @@ msgstr "Connexion à un autre compte"
 msgid "Logout"
 msgstr "Déconnexion"
 
-#: src/components/Timer.vue:91
+#: src/components/Timer.vue:92
 msgid "minute"
 msgstr "minute"
 
-#: src/components/Timer.vue:92
+#: src/components/Timer.vue:93
 msgid "minutes"
 msgstr "minutes"
 
@@ -140,11 +140,11 @@ msgstr "Renommer"
 msgid "Save Login File"
 msgstr "Enregistrer le Fichier de Connexion"
 
-#: src/components/Timer.vue:89
+#: src/components/Timer.vue:90
 msgid "second"
 msgstr "seconde"
 
-#: src/components/Timer.vue:90
+#: src/components/Timer.vue:91
 msgid "seconds"
 msgstr "secondes"
 
@@ -156,7 +156,7 @@ msgstr "l'icône de caméra"
 msgid "This address cannot be used for this operation."
 msgstr "Cette adresse ne peut pas être utilisée pour cette opération."
 
-#: src/components/Timer.vue:44
+#: src/components/Timer.vue:45
 msgid "This offer expires in {timer}."
 msgstr "Cette offre expire dans {timer}."
 
