@@ -1,23 +1,22 @@
 # 
 # Translators:
-# Ricardo Barquero Carranza <richy@nimiq.com>, 2020
-# Daniel, 2020
+# Inês Marques Gomes, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Daniel, 2020\n"
-"Language-Team: Spanish (https://www.transifex.com/nimiq-foundation/teams/110181/es/)\n"
+"Last-Translator: Inês Marques Gomes, 2022\n"
+"Language-Team: Portuguese (https://www.transifex.com/nimiq-foundation/teams/110181/pt/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Language: es\n"
-"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+"Language: pt\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #: src/components/PaymentInfoLine.vue:77
 msgid "{amount} suggested network fee"
-msgstr "{amount} cuota de red sugerida"
+msgstr "{amount} taxa de rede sugerida"
 
 #: src/components/AccountSelector.vue:21
 msgid "{type} accounts cannot be used for this operation."
-msgstr "cuentas tipo {type} no se pueden utilizar para esta operación."
+msgstr "Contas {type} não podem ser usadas para esta operação."
 
 #: src/components/QrScanner.vue:11
 msgid "Cancel"
@@ -25,31 +24,31 @@ msgstr "Cancelar"
 
 #: src/components/Wallet.vue:24
 msgid "Change Password"
-msgstr "Cambiar Contraseña"
+msgstr "Mudar Palavra Passe"
 
 #: src/components/QrScanner.vue:24
 msgid ""
 "Click on {icon} and go to\n"
 "Settings > Site Settings > Camera"
 msgstr ""
-"Haga click en {icon} y visite\n"
-"Ajustes > Ajustes del Sitio > Cámara"
+"Clicar na {icon} e ir para\n"
+"Definições > Definições do site > Câmara"
 
 #: src/components/QrScanner.vue:44
 msgid "Click on {icon} in the URL bar."
-msgstr "Haga click en {icon} en la barra del navegador."
+msgstr "Clicar na {icon} na barra de URL."
 
 #: src/components/QrScanner.vue:39
 msgid ""
 "Click on {safari} and go to\n"
 "Settings for this Website > Camera"
 msgstr ""
-"Haga click en {safari} y visite\n"
-"Ajustes para esta Página> Cámara"
+"Clica na {safari} e ir para\n"
+"Definições para este site > Câmara"
 
 #: src/components/AccountList.vue:43
 msgid "Contracts cannot be used for this operation."
-msgstr "Contratos no pueden ser utilizados para esta operación."
+msgstr "Contratos não podem ser usados para esta operação."
 
 #: src/components/Copyable.vue:5 src/components/CopyableField.vue:20
 msgid "Copied"
@@ -57,31 +56,31 @@ msgstr "Copiado"
 
 #: src/components/Wallet.vue:21
 msgid "Create Backup"
-msgstr "Crear un respaldo"
+msgstr "Criar Backup"
 
 #: src/components/Timer.vue:96
 msgid "day"
-msgstr "día"
+msgstr "dia"
 
 #: src/components/Timer.vue:97
 msgid "days"
-msgstr "días"
+msgstr "dias"
 
 #: src/components/PaymentInfoLine.vue:45
 msgid "Effective rate"
-msgstr "Taza efectiva"
+msgstr "Taxa efetiva"
 
 #: src/components/AmountWithFee.vue:11
 msgid "fee"
-msgstr "cuota"
+msgstr "taxa"
 
 #: src/components/PageHeader.vue:7
 msgid "Go back"
-msgstr "Volver"
+msgstr "Voltar"
 
 #: src/components/QrScanner.vue:34
 msgid "Grant camera access when asked."
-msgstr "De permiso a la cámara cuando se le pida"
+msgstr "Conceda acesso à câmara quando solicitado."
 
 #: src/components/Timer.vue:94
 msgid "hour"
@@ -93,19 +92,19 @@ msgstr "horas"
 
 #: src/components/AmountWithFee.vue:5
 msgid "Insufficient balance"
-msgstr "Balance insuficiente"
+msgstr "Saldo insuficiente"
 
 #: src/components/AccountSelector.vue:193
 msgid "Legacy"
-msgstr "Versión Antigua"
+msgstr "Legacy"
 
 #: src/components/AccountSelector.vue:44
 msgid "Login to another account"
-msgstr "Inicie sesión con otra cuenta"
+msgstr "Login noutra conta"
 
 #: src/components/Wallet.vue:26
 msgid "Logout"
-msgstr "Cerrar sesión"
+msgstr "Logout"
 
 #: src/components/Timer.vue:92
 msgid "minute"
@@ -117,27 +116,27 @@ msgstr "minutos"
 
 #: src/components/LabelInput.vue:4 src/components/LabelInput.vue:8
 msgid "Name your address"
-msgstr "De nombre a su dirección"
+msgstr "Dê um nome ao seu endereço"
 
 #: src/components/PaymentInfoLine.vue:88
 msgid "network fee"
-msgstr "cuota de red"
+msgstr "taxa de rede"
 
 #: src/components/PaymentInfoLine.vue:60
 msgid "Nimiq provides this service free of charge."
-msgstr "Nimiq provee este servicio sin ningún costo."
+msgstr "A Nimiq oferece este serviço."
 
 #: src/components/PaymentInfoLine.vue:37
 msgid "Order amount"
-msgstr "Monto de la ordén"
+msgstr "Valor do pedido"
 
 #: src/components/Wallet.vue:23
 msgid "Rename"
-msgstr "Renombrar"
+msgstr "Mudar de nome"
 
 #: src/components/Wallet.vue:18
 msgid "Save Login File"
-msgstr "Guardar Archivo de Sesión"
+msgstr "Salvar Ficheiro de Login"
 
 #: src/components/Timer.vue:90
 msgid "second"
@@ -149,15 +148,15 @@ msgstr "segundos"
 
 #: src/components/QrScanner.vue:48
 msgid "the camera icon"
-msgstr "el icono de cámara"
+msgstr "ícone da câmara"
 
 #: src/components/AccountList.vue:44
 msgid "This address cannot be used for this operation."
-msgstr "Esta dirección no puede ser utilizada para esta operación."
+msgstr "Este endereço não pode ser usado para esta operação."
 
 #: src/components/Timer.vue:45
 msgid "This offer expires in {timer}."
-msgstr "Esta oferta expira en {timer}."
+msgstr "Esta oferta expira em   {timer}"
 
 #: src/components/PaymentInfoLine.vue:63
 msgid "Total"
@@ -165,40 +164,40 @@ msgstr "Total"
 
 #: src/components/QrScanner.vue:20
 msgid "Unblock the camera for this website to scan QR codes."
-msgstr "Desbloquee la cámara para esta página para poder escanear códigos QR."
+msgstr "Desbloquear a câmara para o site digitalizar os QR codes."
 
 #: src/components/PaymentInfoLine.vue:41
 msgid "Vendor crypto discount"
-msgstr "Descuento en criptomonedas del vendedor"
+msgstr "Desconto do fornecedor da cripto"
 
 #: src/components/PaymentInfoLine.vue:40
 msgid "Vendor crypto markup"
-msgstr "Margen en criptomonedas del vendedor"
+msgstr "Acerto de preço do fornecedor da criptomoeda"
 
 #: src/components/PaymentInfoLine.vue:281
 msgid ""
 "You are paying approx. {formattedRateDeviation} less than at the current "
 "market rate (coingecko.com)."
 msgstr ""
-"Esta pagando approx. {formattedRateDeviation} menos que la taza actual de "
-"mercado (coingecko.com)."
+"Está a pagar aproximadamente {formattedRateDeviation} a menos que a taxa do "
+"mercado atual (coingecko.com)."
 
 #: src/components/PaymentInfoLine.vue:275
 msgid ""
 "You are paying approx. {formattedRateDeviation} more than at the current "
 "market rate (coingecko.com)."
 msgstr ""
-"Esta pagando approx. {formattedRateDeviation} más que la taza actual de "
-"mercado (coingecko.com)."
+"Está a pagar aproximadamente {formattedRateDeviation} a mais que a taxa "
+"atual do mercado (coingecko.com)."
 
 #: src/components/PaymentInfoLine.vue:267
 msgid ""
 "Your actual discount is approx. {formattedRateDeviation} compared to the "
 "current market rate (coingecko.com)."
 msgstr ""
-"Su descuento es approx. {formattedRateDeviation} comparado a la taza del "
-"mercado actual (coingecko.com)."
+"O seu desconto é aproximadamente {formattedRateDeviation} comparado com a "
+"taxa atual do mercado (coingecko.com)."
 
 #: src/components/QrScanner.vue:16
 msgid "Your device does not have an accessible camera."
-msgstr "Su dispositivo no tiene una cámara accesible."
+msgstr "O seu dispositivo não tem uma câmara acessível."
