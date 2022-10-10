@@ -1,203 +1,203 @@
 # 
 # Translators:
-# Daniel, 2020
+# Inês Marques Gomes, 2022
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Daniel, 2020\n"
-"Language-Team: Persian (https://www.transifex.com/nimiq-foundation/teams/110181/fa/)\n"
+"Last-Translator: Inês Marques Gomes, 2022\n"
+"Language-Team: Portuguese (https://www.transifex.com/nimiq-foundation/teams/110181/pt/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Language: fa\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: pt\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #: src/components/PaymentInfoLine.vue:77
 msgid "{amount} suggested network fee"
-msgstr "{amount} کارمزد پیشنهادی شبکه"
+msgstr "{amount} taxa de rede sugerida"
 
 #: src/components/AccountSelector.vue:21
 msgid "{type} accounts cannot be used for this operation."
-msgstr " حساب‌های کاربری {type} نمی توانند برای این عملیات استفاده شوند."
+msgstr "Contas {type} não podem ser usadas para esta operação."
 
 #: src/components/QrScanner.vue:11
 msgid "Cancel"
-msgstr "لغو"
+msgstr "Cancelar"
 
 #: src/components/Wallet.vue:24
 msgid "Change Password"
-msgstr "تغییر رمزعبور"
+msgstr "Mudar Palavra Passe"
 
 #: src/components/QrScanner.vue:24
 msgid ""
 "Click on {icon} and go to\n"
 "Settings > Site Settings > Camera"
 msgstr ""
-"بر روی {icon} کلیک کنید و بروید به\n"
-"تنظیمات > تنظیمات سایت > دوربین"
+"Clicar na {icon} e ir para\n"
+"Definições > Definições do site > Câmara"
 
 #: src/components/QrScanner.vue:44
 msgid "Click on {icon} in the URL bar."
-msgstr "بر روی {icon} در نوار آدرس کلیک کنید"
+msgstr "Clicar na {icon} na barra de URL."
 
 #: src/components/QrScanner.vue:39
 msgid ""
 "Click on {safari} and go to\n"
 "Settings for this Website > Camera"
 msgstr ""
-"بر روی {safari} کلیک کنید و بروید به\n"
-"تنظیمات برای این وب‌سایت > دوربین"
+"Clica na {safari} e ir para\n"
+"Definições para este site > Câmara"
 
 #: src/components/AccountList.vue:43
 msgid "Contracts cannot be used for this operation."
-msgstr "برای این عملیات نمی توان از قراردادها استفاده کرد."
+msgstr "Contratos não podem ser usados para esta operação."
 
 #: src/components/Copyable.vue:5 src/components/CopyableField.vue:20
 msgid "Copied"
-msgstr "کپی شد"
+msgstr "Copiado"
 
 #: src/components/Wallet.vue:21
 msgid "Create Backup"
-msgstr "ایجاد بک‌آپ"
+msgstr "Criar Backup"
 
 #: src/components/Timer.vue:96
 msgid "day"
-msgstr "روز"
+msgstr "dia"
 
 #: src/components/Timer.vue:97
 msgid "days"
-msgstr "روزها"
+msgstr "dias"
 
 #: src/components/PaymentInfoLine.vue:45
 msgid "Effective rate"
-msgstr "نرخ موثر"
+msgstr "Taxa efetiva"
 
 #: src/components/AmountWithFee.vue:11
 msgid "fee"
-msgstr "کارمزد"
+msgstr "taxa"
 
 #: src/components/PageHeader.vue:7
 msgid "Go back"
-msgstr "برگرد"
+msgstr "Voltar"
 
 #: src/components/QrScanner.vue:34
 msgid "Grant camera access when asked."
-msgstr "زمانی که از شما خواسته شد به دوربین دسترسی دهید."
+msgstr "Conceda acesso à câmara quando solicitado."
 
 #: src/components/Timer.vue:94
 msgid "hour"
-msgstr "ساعت"
+msgstr "hora"
 
 #: src/components/Timer.vue:95
 msgid "hours"
-msgstr "ساعت‌ها"
+msgstr "horas"
 
 #: src/components/AmountWithFee.vue:5
 msgid "Insufficient balance"
-msgstr "موجودی ناکافی"
+msgstr "Saldo insuficiente"
 
 #: src/components/AccountSelector.vue:193
 msgid "Legacy"
-msgstr "نسخه ی قبلی"
+msgstr "Legacy"
 
 #: src/components/AccountSelector.vue:44
 msgid "Login to another account"
-msgstr "ورود به دیگر حساب کاربری"
+msgstr "Login noutra conta"
 
 #: src/components/Wallet.vue:26
 msgid "Logout"
-msgstr "خروج"
+msgstr "Logout"
 
 #: src/components/Timer.vue:92
 msgid "minute"
-msgstr "دقیقه"
+msgstr "minuto"
 
 #: src/components/Timer.vue:93
 msgid "minutes"
-msgstr "دقایق"
+msgstr "minutos"
 
 #: src/components/LabelInput.vue:4 src/components/LabelInput.vue:8
 msgid "Name your address"
-msgstr "آدرس خود را بنویسید"
+msgstr "Dê um nome ao seu endereço"
 
 #: src/components/PaymentInfoLine.vue:88
 msgid "network fee"
-msgstr "کارمزد شبکه"
+msgstr "taxa de rede"
 
 #: src/components/PaymentInfoLine.vue:60
 msgid "Nimiq provides this service free of charge."
-msgstr "نیمیک این سرویس را به صورت رایگان ارائه می دهد."
+msgstr "A Nimiq oferece este serviço."
 
 #: src/components/PaymentInfoLine.vue:37
 msgid "Order amount"
-msgstr "مقدار سفارش"
+msgstr "Valor do pedido"
 
 #: src/components/Wallet.vue:23
 msgid "Rename"
-msgstr "تغییر نام"
+msgstr "Mudar de nome"
 
 #: src/components/Wallet.vue:18
 msgid "Save Login File"
-msgstr "ذخیره فایل ورود"
+msgstr "Salvar Ficheiro de Login"
 
 #: src/components/Timer.vue:90
 msgid "second"
-msgstr "ثانیه"
+msgstr "segundo"
 
 #: src/components/Timer.vue:91
 msgid "seconds"
-msgstr "ثانیه‌ها"
+msgstr "segundos"
 
 #: src/components/QrScanner.vue:48
 msgid "the camera icon"
-msgstr "آیکون دوربین"
+msgstr "ícone da câmara"
 
 #: src/components/AccountList.vue:44
 msgid "This address cannot be used for this operation."
-msgstr "از این آدرس نمی توان برای این عملیات استفاده کرد."
+msgstr "Este endereço não pode ser usado para esta operação."
 
 #: src/components/Timer.vue:45
 msgid "This offer expires in {timer}."
-msgstr "این پیشنهاد تا {timer} دیگر منقضی میشود."
+msgstr "Esta oferta expira em   {timer}"
 
 #: src/components/PaymentInfoLine.vue:63
 msgid "Total"
-msgstr "مجموع"
+msgstr "Total"
 
 #: src/components/QrScanner.vue:20
 msgid "Unblock the camera for this website to scan QR codes."
-msgstr "برای اسکن کدهای QR دوربین این وب‌سایت را رفع انسداد(unblock) کنید."
+msgstr "Desbloquear a câmara para o site digitalizar os QR codes."
 
 #: src/components/PaymentInfoLine.vue:41
 msgid "Vendor crypto discount"
-msgstr "تخفیفات کریپتو فروشنده"
+msgstr "Desconto do fornecedor da cripto"
 
 #: src/components/PaymentInfoLine.vue:40
 msgid "Vendor crypto markup"
-msgstr "نشانه گذاری رمزنگاری فروشنده"
+msgstr "Acerto de preço do fornecedor da criptomoeda"
 
 #: src/components/PaymentInfoLine.vue:281
 msgid ""
 "You are paying approx. {formattedRateDeviation} less than at the current "
 "market rate (coingecko.com)."
 msgstr ""
-"در حال پرداخت هستید. {formattedRateDeviation} کمتر از نرخ فعلی بازار "
-"(coingecko.com)."
+"Está a pagar aproximadamente {formattedRateDeviation} a menos que a taxa do "
+"mercado atual (coingecko.com)."
 
 #: src/components/PaymentInfoLine.vue:275
 msgid ""
 "You are paying approx. {formattedRateDeviation} more than at the current "
 "market rate (coingecko.com)."
 msgstr ""
-"در حال پرداخت هستید. {formattedRateDeviation} بیشتر از نرخ فعلی بازار "
-"(coingecko.com)."
+"Está a pagar aproximadamente {formattedRateDeviation} a mais que a taxa "
+"atual do mercado (coingecko.com)."
 
 #: src/components/PaymentInfoLine.vue:267
 msgid ""
 "Your actual discount is approx. {formattedRateDeviation} compared to the "
 "current market rate (coingecko.com)."
 msgstr ""
-"تخفیف تقریبی شما.  {formattedRateDeviation} در مقایسه با نرخ فعلیه باز "
-"(coingecko.com)."
+"O seu desconto é aproximadamente {formattedRateDeviation} comparado com a "
+"taxa atual do mercado (coingecko.com)."
 
 #: src/components/QrScanner.vue:16
 msgid "Your device does not have an accessible camera."
-msgstr "دستگاه شما دوربین قابل دسترسی ندارد."
+msgstr "O seu dispositivo não tem uma câmara acessível."

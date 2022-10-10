@@ -13,7 +13,7 @@ class I18nMixin extends Vue {
     private static readonly DEFAULT_LANGUAGE = 'en';
     private static readonly SUPPORTED_LANGUAGES = [
         I18nMixin.DEFAULT_LANGUAGE,
-        'de', 'es', 'fr', 'nl', 'ru', 'uk', 'zh',
+        'de', 'es', 'fr', 'nl', 'pt', 'ru', 'uk', 'zh',
     ];
 
     /** Current active language */

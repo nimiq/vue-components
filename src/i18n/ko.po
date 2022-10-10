@@ -15,7 +15,7 @@ msgstr ""
 msgid "{amount} suggested network fee"
 msgstr "{amount} 제안 네트워크 수수료"
 
-#: src/components/AccountSelector.vue:18
+#: src/components/AccountSelector.vue:21
 msgid "{type} accounts cannot be used for this operation."
 msgstr "{type} 계정은 해당 작업에 사용될 수 없습니다."
 
@@ -51,7 +51,7 @@ msgstr ""
 msgid "Contracts cannot be used for this operation."
 msgstr "해당 작업에는 연락처를 사용할 수 없습니다."
 
-#: src/components/Copyable.vue:5 src/components/CopyableField.vue:21
+#: src/components/Copyable.vue:5 src/components/CopyableField.vue:20
 msgid "Copied"
 msgstr "복사됨"
 
@@ -59,11 +59,11 @@ msgstr "복사됨"
 msgid "Create Backup"
 msgstr "백업 생성"
 
-#: src/components/Timer.vue:95
+#: src/components/Timer.vue:96
 msgid "day"
 msgstr "일"
 
-#: src/components/Timer.vue:96
+#: src/components/Timer.vue:97
 msgid "days"
 msgstr "일"
 
@@ -71,7 +71,7 @@ msgstr "일"
 msgid "Effective rate"
 msgstr "실효환율"
 
-#: src/components/AmountWithFee.vue:7
+#: src/components/AmountWithFee.vue:11
 msgid "fee"
 msgstr "수수료"
 
@@ -83,11 +83,11 @@ msgstr "뒤로 가기"
 msgid "Grant camera access when asked."
 msgstr "카메라 접근 요청 시 승인해 주세요."
 
-#: src/components/Timer.vue:93
+#: src/components/Timer.vue:94
 msgid "hour"
 msgstr "시간"
 
-#: src/components/Timer.vue:94
+#: src/components/Timer.vue:95
 msgid "hours"
 msgstr "시간"
 
@@ -95,11 +95,11 @@ msgstr "시간"
 msgid "Insufficient balance"
 msgstr "잔고 부족"
 
-#: src/components/AccountSelector.vue:188
+#: src/components/AccountSelector.vue:193
 msgid "Legacy"
 msgstr "구형"
 
-#: src/components/AccountSelector.vue:41
+#: src/components/AccountSelector.vue:44
 msgid "Login to another account"
 msgstr "다른 계정으로 로그인"
 
@@ -107,11 +107,11 @@ msgstr "다른 계정으로 로그인"
 msgid "Logout"
 msgstr "로그아웃"
 
-#: src/components/Timer.vue:91
+#: src/components/Timer.vue:92
 msgid "minute"
 msgstr "분"
 
-#: src/components/Timer.vue:92
+#: src/components/Timer.vue:93
 msgid "minutes"
 msgstr "분"
 
@@ -139,11 +139,11 @@ msgstr "이름 바꾸기"
 msgid "Save Login File"
 msgstr "로그인 파일 저장"
 
-#: src/components/Timer.vue:89
+#: src/components/Timer.vue:90
 msgid "second"
 msgstr "초"
 
-#: src/components/Timer.vue:90
+#: src/components/Timer.vue:91
 msgid "seconds"
 msgstr "초"
 
@@ -155,7 +155,7 @@ msgstr "카메라 아이콘"
 msgid "This address cannot be used for this operation."
 msgstr "해당 작업에는 이 주소를 사용할 수 없습니다."
 
-#: src/components/Timer.vue:44
+#: src/components/Timer.vue:45
 msgid "This offer expires in {timer}."
 msgstr "이 제안은 {timer}에 만료됩니다."
 
