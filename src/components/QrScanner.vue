@@ -82,14 +82,6 @@ class QrScanner extends Mixins(I18nMixin) {
     private _cameraRetryTimer?: number;
 
     private async mounted() {
-        // Use file-loader to copy the worker to dist and set the path to where the file is located. Instead of a normal
-        // import use a dynamic import at creation time of a QrScanner to give apps the opportunity to adapt the base
-        // path via setAssetPublicPath before the path is being determined. Using webpackMode: 'eager' to avoid creating
-        // an additional chunk and to let the import resolve immediately.
-        ({ default: QrScannerLib.WORKER_PATH } = await import(
-            /* webpackMode: 'eager' */
-            '!!file-loader?name=[name].[hash:8].[ext]!../../node_modules/qr-scanner/qr-scanner-worker.min.js'));
-
         this.repositionOverlay = this.repositionOverlay.bind(this);
         const $video = this.$refs.video as HTMLVideoElement;
         this._scanner = new QrScannerLib($video, (result) => this._onResult(result));

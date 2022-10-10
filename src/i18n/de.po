@@ -4,10 +4,11 @@
 # Sebastian Langer <basti@b-compu.de>, 2020
 # Daniel, 2020
 # Redexe <timo.niehoff@yahoo.de>, 2020
+# Huriye <huriyegoek@gmx.de>, 2021
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Redexe <timo.niehoff@yahoo.de>, 2020\n"
+"Last-Translator: Huriye <huriyegoek@gmx.de>, 2021\n"
 "Language-Team: German (https://www.transifex.com/nimiq-foundation/teams/110181/de/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de\n"
@@ -17,7 +18,7 @@ msgstr ""
 msgid "{amount} suggested network fee"
 msgstr "{amount} empfohlene Netzwerkgebühr"
 
-#: src/components/AccountSelector.vue:18
+#: src/components/AccountSelector.vue:21
 msgid "{type} accounts cannot be used for this operation."
 msgstr "{type}-Konten können für diese Aktion nicht verwendet werden."
 
@@ -39,7 +40,7 @@ msgstr ""
 
 #: src/components/QrScanner.vue:44
 msgid "Click on {icon} in the URL bar."
-msgstr "Klicke auf {icon} in der Addressleiste."
+msgstr "Klicke auf {icon} in der Adressleiste."
 
 #: src/components/QrScanner.vue:39
 msgid ""
@@ -53,7 +54,7 @@ msgstr ""
 msgid "Contracts cannot be used for this operation."
 msgstr "Smart-Contracts können für diese Aktion nicht verwendet werden."
 
-#: src/components/Copyable.vue:5 src/components/CopyableField.vue:21
+#: src/components/Copyable.vue:5 src/components/CopyableField.vue:20
 msgid "Copied"
 msgstr "Kopiert"
 
@@ -61,11 +62,11 @@ msgstr "Kopiert"
 msgid "Create Backup"
 msgstr "Backup erstellen"
 
-#: src/components/Timer.vue:95
+#: src/components/Timer.vue:96
 msgid "day"
 msgstr "Tag"
 
-#: src/components/Timer.vue:96
+#: src/components/Timer.vue:97
 msgid "days"
 msgstr "Tage"
 
@@ -73,7 +74,7 @@ msgstr "Tage"
 msgid "Effective rate"
 msgstr "Effektiver Wechselkurs"
 
-#: src/components/AmountWithFee.vue:7
+#: src/components/AmountWithFee.vue:11
 msgid "fee"
 msgstr "Gebühr"
 
@@ -85,11 +86,11 @@ msgstr "Zurück"
 msgid "Grant camera access when asked."
 msgstr "Bestätige den Zugriff auf deine Kamera, wenn du danach gefragt wirst."
 
-#: src/components/Timer.vue:93
+#: src/components/Timer.vue:94
 msgid "hour"
 msgstr "Stunde"
 
-#: src/components/Timer.vue:94
+#: src/components/Timer.vue:95
 msgid "hours"
 msgstr "Stunden"
 
@@ -97,11 +98,11 @@ msgstr "Stunden"
 msgid "Insufficient balance"
 msgstr "Dein Guthaben reicht nicht aus."
 
-#: src/components/AccountSelector.vue:188
+#: src/components/AccountSelector.vue:193
 msgid "Legacy"
 msgstr "Legacy"
 
-#: src/components/AccountSelector.vue:41
+#: src/components/AccountSelector.vue:44
 msgid "Login to another account"
 msgstr "In ein anderes Konto einloggen"
 
@@ -109,11 +110,11 @@ msgstr "In ein anderes Konto einloggen"
 msgid "Logout"
 msgstr "Ausloggen"
 
-#: src/components/Timer.vue:91
+#: src/components/Timer.vue:92
 msgid "minute"
 msgstr "Minute"
 
-#: src/components/Timer.vue:92
+#: src/components/Timer.vue:93
 msgid "minutes"
 msgstr "Minuten"
 
@@ -141,23 +142,23 @@ msgstr "Umbenennen"
 msgid "Save Login File"
 msgstr "Login-Datei speichern"
 
-#: src/components/Timer.vue:89
+#: src/components/Timer.vue:90
 msgid "second"
 msgstr "Sekunde"
 
-#: src/components/Timer.vue:90
+#: src/components/Timer.vue:91
 msgid "seconds"
 msgstr "Sekunden"
 
 #: src/components/QrScanner.vue:48
 msgid "the camera icon"
-msgstr "das Kamera Symbol"
+msgstr "das Kamera-Symbol"
 
 #: src/components/AccountList.vue:44
 msgid "This address cannot be used for this operation."
 msgstr "Diese Adresse kann für diese Aktion nicht verwendet werden."
 
-#: src/components/Timer.vue:44
+#: src/components/Timer.vue:45
 msgid "This offer expires in {timer}."
 msgstr "Dieses Angebot endet in {timer}."
 
