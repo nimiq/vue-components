@@ -72,7 +72,7 @@ msgstr "jours"
 msgid "Effective rate"
 msgstr "Taux effectif"
 
-#: src/components/AmountWithFee.vue:7
+#: src/components/AmountWithFee.vue:11
 msgid "fee"
 msgstr "frais"
 

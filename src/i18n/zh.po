@@ -71,7 +71,7 @@ msgstr "天"
 msgid "Effective rate"
 msgstr "有效汇率"
 
-#: src/components/AmountWithFee.vue:7
+#: src/components/AmountWithFee.vue:11
 msgid "fee"
 msgstr "费用"
 
@@ -117,7 +117,7 @@ msgstr "分"
 
 #: src/components/LabelInput.vue:4 src/components/LabelInput.vue:8
 msgid "Name your address"
-msgstr "命名您的地址"
+msgstr "命名你的地址"
 
 #: src/components/PaymentInfoLine.vue:88
 msgid "network fee"
@@ -179,20 +179,20 @@ msgstr "供应商加密货币标记"
 msgid ""
 "You are paying approx. {formattedRateDeviation} less than at the current "
 "market rate (coingecko.com)."
-msgstr "您正在支付约{formattedRateDeviation}低于当前市场的价格（coingecko.com）"
+msgstr "你正在支付约{formattedRateDeviation}低于当前市场的价格（coingecko.com）"
 
 #: src/components/PaymentInfoLine.vue:275
 msgid ""
 "You are paying approx. {formattedRateDeviation} more than at the current "
 "market rate (coingecko.com)."
-msgstr "您正在支付约{formattedRateDeviation}高于当前市场的价格（coingecko.com）"
+msgstr "你正在支付约{formattedRateDeviation}高于当前市场的价格（coingecko.com）"
 
 #: src/components/PaymentInfoLine.vue:267
 msgid ""
 "Your actual discount is approx. {formattedRateDeviation} compared to the "
 "current market rate (coingecko.com)."
-msgstr "您的实际折扣约为{formattedRateDeviation}与当前市场价格（coingecko.com）的比较"
+msgstr "你的实际折扣约为{formattedRateDeviation}与当前市场价格（coingecko.com）的比较"
 
 #: src/components/QrScanner.vue:16
 msgid "Your device does not have an accessible camera."
-msgstr "您的设备没有可访问的相机"
+msgstr "你的设备没有可访问的相机"

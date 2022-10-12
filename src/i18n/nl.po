@@ -72,7 +72,7 @@ msgstr "dagen"
 msgid "Effective rate"
 msgstr "Effectief tarief"
 
-#: src/components/AmountWithFee.vue:7
+#: src/components/AmountWithFee.vue:11
 msgid "fee"
 msgstr "transactiekosten"
 

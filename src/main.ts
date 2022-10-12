@@ -44,8 +44,8 @@ declare global {
 
 /**
  * Set a specific public path / base path (see https://webpack.js.org/guides/public-path/) from where assets like
- * translation files, identicons or the qr scanner worker should be loaded. By default, this is the path from where
- * the importing script is loaded, derived from the importing script's currentScript src.
+ * translation files or identicons should be loaded. By default, this is the path from where the importing script is
+ * loaded, derived from the importing script's currentScript src.
  *
  * Optionally, you can define a different path for image assets.
  */
