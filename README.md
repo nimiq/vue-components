@@ -26,9 +26,9 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const plugins = [
     new CopyWebpackPlugin([
-        // for translation files
+        // for translation files and additional, unnamed js chunks (currently only the qr scanner worker)
         {
-            from: 'node_modules/@nimiq/vue-components/dist/NimiqVueComponents.umd.min.lang-*.js',
+            from: 'node_modules/@nimiq/vue-components/dist/NimiqVueComponents.umd.min.+(lang-*|[0-9]).js',
             to: './',
             flatten: true,
             transformPath(path) {
@@ -41,12 +41,6 @@ const plugins = [
         // for the identicons
         {
             from: 'node_modules/@nimiq/vue-components/dist/iqons.min.*.svg',
-            to: './',
-            flatten: true,
-        },
-        // for the QR scanner
-        {
-            from: 'node_modules/@nimiq/vue-components/dist/qr-scanner-worker.min.*.js',
             to: './',
             flatten: true,
         },

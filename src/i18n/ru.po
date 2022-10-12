@@ -1,11 +1,11 @@
 # 
 # Translators:
 # Vad <vjuruss@gmail.com>, 2020
-# Пётр Павлович <faentoad@gmail.com>, 2020
+# Пётр Павлович, 2020
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Пётр Павлович <faentoad@gmail.com>, 2020\n"
+"Last-Translator: Пётр Павлович, 2020\n"
 "Language-Team: Russian (https://www.transifex.com/nimiq-foundation/teams/110181/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ru\n"
@@ -72,7 +72,7 @@ msgstr "дней"
 msgid "Effective rate"
 msgstr "Курс конвертации"
 
-#: src/components/AmountWithFee.vue:7
+#: src/components/AmountWithFee.vue:11
 msgid "fee"
 msgstr "комиссия"
 

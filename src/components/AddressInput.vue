@@ -1,32 +1,37 @@
 <template>
-    <div class="address-input">
-        <textarea ref="textarea" placeholder="NQ" spellcheck="false" autocomplete="off"
+    <div class="address-input" :class="{'is-domain': isDomain}">
+        <textarea ref="textarea" spellcheck="false" autocomplete="off"
+            :class="{'will-be-address': willBeAddress}"
             @keydown="_onKeyDown" @input="_onInput" @paste="_onPaste" @cut="_onCut" @copy="_formatClipboard"
             @click="_updateSelection" @select="_updateSelection" @blur="_updateSelection" @focus="_onFocus"
         ></textarea>
-        <template v-for="i in 9">
-            <div class="block" :class="{
-                focused: _isBlockFocused(i - 1),
-                invisible: _isBlockFilled(i - 1),
-            }" :key="`block-${i}`"></div>
-            <div v-if="i % 3" class="block-connector" :class="{
-                invisible: _isBlockFilled(i - 1) && !_isBlockFocused(i - 1) || _isBlockFilled(i) && !_isBlockFocused(i),
-            }" :key="`connector-${i}`"></div>
-        </template>
 
-        <template v-if="supportsMixBlendMode">
+        <template v-if="willBeAddress && supportsMixBlendMode">
             <template v-for="row in 3">
                 <template v-for="column in 3">
                     <div class="color-overlay" :style="{
                         /* Hidden when placeholder shown. Visibility instead of v-if to avoid flickering in Firefox */
                         visibility: currentValue ? 'visible' : 'hidden',
-                        left: `calc(${column - 1} * (var(--block-width) + var(--block-gap)) + .25rem)`,
-                        top: `calc(${row - 1} * (var(--block-height) + var(--block-gap)) + .25rem)`,
+                        left: `calc(${column - 1} * (var(--block-width) + var(--block-gap-h)) + var(--block-gap-h) - 0.25rem)`,
+                        top: `calc(${row - 1} * (var(--block-height) + var(--block-gap-v)) + var(--block-gap-v) + 0.25rem)`,
                         background: `var(--nimiq-${_isBlockFocused((row - 1) * 3 + (column - 1)) ? 'light-' : ''}blue)`,
                     }" :key="`color-${row}-${column}`"></div>
                 </template>
             </template>
         </template>
+
+        <svg width="210" height="99" viewBox="0 0 210 99" fill="none" xmlns="http://www.w3.org/2000/svg" class="grid">
+            <g stroke-width="1.5" stroke-linecap="round">
+                <line x1="67.75" y1="0.75" x2="67.75" y2="22.25"/>
+                <line x1="67.75" y1="37.75" x2="67.75" y2="60.25"/>
+                <line x1="67.75" y1="75.75" x2="67.75" y2="98.25"/>
+                <line x1="0.75" y1="30.25" x2="209.25" y2="30.25"/>
+                <line x1="0.75" y1="68.25" x2="209.25" y2="68.25"/>
+                <line x1="143.75" y1="37.75" x2="143.75" y2="60.25"/>
+                <line x1="143.75" y1="0.75" x2="143.75" y2="22.25"/>
+                <line x1="143.75" y1="75.75" x2="143.75" y2="98.25"/>
+            </g>
+        </svg>
     </div>
 </template>
 
@@ -46,60 +51,84 @@ export default class AddressInput extends Vue {
     private static readonly ADDRESS_MAX_LENGTH = AddressInput.ADDRESS_MAX_LENGTH_WITHOUT_SPACES + 8;
 
     // definiton of the parse method for input-format (https://github.com/catamphetamine/input-format#usage)
-    private static _parse(char: string, value: string) {
-        // Handle I, O, W, Z which are the only characters missing in Nimiq's Base 32 address alphabet
-        switch (char.toUpperCase()) {
-            case 'I': char = '1'; break;
-            case 'O': char = '0'; break;
-            case 'Z': char = '2'; break;
-            case 'W': return; // reject character
+    private static _parse(char: string, value: string, allowDomains = false) {
+        if (!allowDomains || AddressInput._willBeAddress(value + char)) {
+            // Handle I, O, W, Z which are the only characters missing in Nimiq's Base 32 address alphabet
+            switch (char.toUpperCase()) {
+                case 'I': char = '1'; break;
+                case 'O': char = '0'; break;
+                case 'Z': char = '2'; break;
+                case 'W': return; // reject character
+            }
+
+            const regex = new RegExp('^('
+                + 'N(Q?)' // NQ at the beginning
+                + '|NQ\\d{1,2}' // first two characters after starting NQ must be digits
+                + `|NQ\\d{2}[0-9A-Z]{1,${AddressInput.ADDRESS_MAX_LENGTH_WITHOUT_SPACES - 4}}` // valid address < max length
+                + ')$', 'i');
+
+            // We return the original character without transforming it to uppercase to improve compatibility with some
+            // browsers that struggle with undo/redo of manipulated input. The actual transformation to uppercase is then
+            // done via CSS and when the value is exported
+            if (regex.test(value + char)) return char;
+            else return; // reject character
+        } else {
+            // Reject non-URL formats while allowing typing URLs character by character
+            /**
+             * [-a-z0-9]    Allow hyphens, english letters and numbers
+             * [a-z0-9]\.   Require a character or letter before the period (to prevent a period directly after a hyphen)
+             * [a-z]        Only allow characters, no numbers, after the period
+             */
+            if (/^[-a-z0-9]*([a-z0-9]\.[a-z]*)?$/i.test(value + char)) return char;
+            else return; // reject character
         }
-
-        const regex = new RegExp('^('
-            + 'N(Q?)' // NQ at the beginning
-            + '|NQ\\d{1,2}' // first two characters after starting NQ must be digits
-            + `|NQ\\d{2}[0-9A-Z]{1,${AddressInput.ADDRESS_MAX_LENGTH_WITHOUT_SPACES - 4}}` // valid address < max length
-            + '|\\d' // Allow a single digit. It will then get expanded by a leading NQ.
-            + ')$', 'i');
-
-        // We return the original character without transforming it to uppercase to improve compatibility with some
-        // browsers that struggle with undo/redo of manipulated input. The actual transformation to uppercase is then
-        // done via CSS and when the value is exported
-        if (regex.test(value + char)) return char;
-        else return; // reject character
     }
 
     // definiton of the format method for input-format (https://github.com/catamphetamine/input-format#usage)
-    private static _format(value: string) {
-        if (value !== '' && value.toUpperCase() !== 'N') {
-            // If user typed a valid character and not typed N to start NQ, enforce NQ and form blocks
-            value = AddressInput._stripWhitespace(value)
-                .replace(/^N?Q?/i, 'NQ') // enforce NQ at the beginning
-                .replace(/.{4}/g, (match, offset) => `${match}${(offset + 4) % 12 ? ' ' : '\n'}`) // form blocks
-                .substring(0, AddressInput.ADDRESS_MAX_LENGTH); // discarding the new line after last block
+    private static _format(value: string, allowDomains = false) {
+        if (!allowDomains || AddressInput._willBeAddress(value)) {
+            if (value !== '' && value.toUpperCase() !== 'N') {
+                value = AddressInput._stripWhitespace(value)
+                    .replace(/.{4}/g, (match, offset) => `${match}${(offset + 4) % 12 ? ' ' : '\n'}`) // form blocks
+                    .substring(0, AddressInput.ADDRESS_MAX_LENGTH); // discarding the new line after last block
 
-            if (value.endsWith(' ')) {
-                // The word spacing set via css is only applied to spaces that are actually between words which is not
-                // the case for an ending space and the caret after an ending space therefore gets rendered at the wrong
-                // position. To avoid that we add a zero-width space as an artificial word. We do not add that to the
-                // template returned to input-format though to avoid it being interpreted as a typed character which
-                // would place the caret after the zero width space.
-                value += '\u200B';
+                if (value.endsWith(' ')) {
+                    // The word spacing set via css is only applied to spaces that are actually between words which is not
+                    // the case for an ending space and the caret after an ending space therefore gets rendered at the wrong
+                    // position. To avoid that we add a zero-width space as an artificial word. We do not add that to the
+                    // template returned to input-format though to avoid it being interpreted as a typed character which
+                    // would place the caret after the zero width space.
+                    value += '\u200B';
+                }
             }
+            return {
+                text: value,
+                template: 'wwww wwww wwww\nwwww wwww wwww\nwwww wwww wwww', // used by input-format to position caret. Using
+                // w as placeholder instead of default x as w is not in our address alphabet.
+            };
+        } else {
+            return {
+                text: value,
+            };
         }
-        return {
-            text: value,
-            template: 'wwww wwww wwww\nwwww wwww wwww\nwwww wwww wwww', // used by input-format to position caret. Using
-            // w as placeholder instead of default x as w is not in our address alphabet.
-        };
     }
 
     private static _stripWhitespace(value: string) {
         return value.replace(/\s|\u200B/g, ''); // normal whitespace, tabs, newlines or zero-width whitespace
     }
 
-    private static _exportValue(value: string) {
-        return value.toUpperCase().replace(/\n/g, ' ').replace(/\u200B/g, '');
+    private static _exportValue(value: string, allowDomains = false) {
+        if (!allowDomains || AddressInput._willBeAddress(value)) {
+            return value.toUpperCase().replace(/\n/g, ' ').replace(/\u200B/g, '');
+        } else {
+            return value.replace(/\n/g, '').replace(/\u200B/g, '');
+        }
+    }
+
+    private static _willBeAddress(value: string): boolean {
+        if (value.length < 3) return false;
+        if (value.toUpperCase().startsWith('NQ') && !isNaN(parseInt(value[2], 10))) return true;
+        return false;
     }
 
     // value that can be bound to via v-model
@@ -112,6 +141,9 @@ export default class AddressInput extends Vue {
     @Prop(Boolean)
     public autofocus?: boolean;
 
+    @Prop(Boolean)
+    public allowDomains?: boolean;
+
     public $refs: { textarea: HTMLTextAreaElement };
 
     public focus(scrollIntoView = false) {
@@ -123,6 +155,14 @@ export default class AddressInput extends Vue {
     private selectionStartBlock: number = -1;
     private selectionEndBlock: number = -1;
     private supportsMixBlendMode: boolean = CSS.supports('mix-blend-mode', 'screen');
+
+    private get willBeAddress() {
+        return !this.allowDomains || AddressInput._willBeAddress(this.currentValue);
+    }
+
+    private get isDomain() {
+        return this.currentValue.length >= 3 && !this.willBeAddress;
+    }
 
     private mounted() {
         // trigger initial value change. Not using immediate watcher as it already fires before mounted.
@@ -147,26 +187,33 @@ export default class AddressInput extends Vue {
         // could also be using format-input's parse and format helpers that preserve caret position but as we're not
         // interested in that, we calculate the formatted value manually
         const parsedValue = this.value.split('').reduce((parsed, char) =>
-            parsed + (AddressInput._parse(char, parsed) || ''), '');
-        this.$refs.textarea.value = AddressInput._format(parsedValue).text; // moves the caret to the end
+            parsed + (AddressInput._parse(char, parsed, this.allowDomains) || ''), '');
+        this.$refs.textarea.value = AddressInput._format(parsedValue, this.allowDomains).text; // moves the caret to the end
 
         this._afterChange(parsedValue);
     }
 
     private _onKeyDown(e: KeyboardEvent) {
-        inputFormatOnKeyDown(e, this.$refs.textarea, AddressInput._parse, AddressInput._format, this._afterChange);
+        inputFormatOnKeyDown(
+            e,
+            this.$refs.textarea,
+            (char: string, value: string) => AddressInput._parse(char, value, this.allowDomains),
+            (value: string) => AddressInput._format(value, this.allowDomains),
+            this._afterChange,
+        );
         setTimeout(() => this._updateSelection(), 10); // for arrow keys in Firefox
     }
 
     private _onInput(e: KeyboardEvent & { inputType?: string }) {
         if (e.inputType === 'deleteByDrag') return; // we'll handle the subsequent insertFromDrop
         const textarea = this.$refs.textarea;
-        if (e.inputType === 'historyRedo' && textarea.value.length >= 2 && !textarea.value.startsWith('NQ')) {
-            // Redo has problems when redoing an edit where NQ was added automatically. We make sure here to correctly
-            // apply the NQ again.
-            textarea.value = `NQ${textarea.value.substring(2)}`;
-        }
-        inputFormatOnChange(e, textarea, AddressInput._parse, AddressInput._format, this._afterChange);
+        inputFormatOnChange(
+            e,
+            textarea,
+            (char: string, value: string) => AddressInput._parse(char, value, this.allowDomains),
+            (value: string) => AddressInput._format(value, this.allowDomains),
+            this._afterChange,
+        );
     }
 
     private _onPaste(e: ClipboardEvent) {
@@ -174,11 +221,23 @@ export default class AddressInput extends Vue {
         const pastedData = clipboardData ? clipboardData.getData('text/plain') : '';
         this.$emit('paste', e, pastedData);
 
-        inputFormatOnPaste(e, this.$refs.textarea, AddressInput._parse, AddressInput._format, this._afterChange);
+        inputFormatOnPaste(
+            e,
+            this.$refs.textarea,
+            (char: string, value: string) => AddressInput._parse(char, value, this.allowDomains),
+            (value: string) => AddressInput._format(value, this.allowDomains),
+            this._afterChange,
+        );
     }
 
     private _onCut(e: ClipboardEvent) {
-        inputFormatOnCut(e, this.$refs.textarea, AddressInput._parse, AddressInput._format, this._afterChange);
+        inputFormatOnCut(
+            e,
+            this.$refs.textarea,
+            (char: string, value: string) => AddressInput._parse(char, value, this.allowDomains),
+            (value: string) => AddressInput._format(value, this.allowDomains),
+            this._afterChange,
+        );
         this._formatClipboard();
     }
 
@@ -192,21 +251,13 @@ export default class AddressInput extends Vue {
         // preventDefault() which then results in the need to reimplement the behavior for cutting text and has side
         // effects like the change not being added to the undo history. Therefore we let the browser do the default
         // behavior but overwrite the clipboard afterwards.
-        const text = AddressInput._exportValue(document.getSelection()!.toString());
+        const text = AddressInput._exportValue(document.getSelection()!.toString(), this.allowDomains);
         setTimeout(() => Clipboard.copy(text));
     }
 
     private _afterChange(value: string) {
-        // value is the unformatted value (i.e. the concatenation of characters returned by _parse). It includes NQ
-        // if NQ was already added to the textarea before the current change but is not included if it is getting
-        // automatically added just in our current change.
+        // value is the unformatted value (i.e. the concatenation of characters returned by _parse)
         const textarea = this.$refs.textarea;
-
-        // have to move caret or selection by two to account for the NQ automatically added to the formatted text
-        if (!value.startsWith('NQ')) {
-            textarea.selectionEnd += 2;
-            textarea.selectionStart += 2;
-        }
 
         // if selection is a caret in front of a space or new line move caret behind it
         if (textarea.selectionStart === textarea.selectionEnd
@@ -214,14 +265,16 @@ export default class AddressInput extends Vue {
             textarea.selectionStart += 1; // this also moves the selectionEnd as they were equal
         }
 
-        this.currentValue = AddressInput._exportValue(this.$refs.textarea.value);
+        this.currentValue = AddressInput._exportValue(this.$refs.textarea.value, this.allowDomains);
         this.$emit('input', this.currentValue); // emit event compatible with v-model
 
-        const isValid = ValidationUtils.isValidAddress(this.currentValue);
-        if (isValid) this.$emit('address', this.currentValue);
+        if (AddressInput._willBeAddress(value)) {
+            const isValid = ValidationUtils.isValidAddress(this.currentValue);
+            if (isValid) this.$emit('address', this.currentValue);
 
-        // if user entered a full address that is not valid give him a visual feedback
-        this.$el.classList.toggle('invalid', this.currentValue.length === AddressInput.ADDRESS_MAX_LENGTH && !isValid);
+            // if user entered a full address that is not valid give him a visual feedback
+            this.$el.classList.toggle('invalid', this.currentValue.length === AddressInput.ADDRESS_MAX_LENGTH && !isValid);
+        }
     }
 
     private _updateSelection() {
@@ -236,10 +289,6 @@ export default class AddressInput extends Vue {
     private _isBlockFocused(blockIndex: number) {
         return this.selectionStartBlock <= blockIndex && blockIndex <= this.selectionEndBlock;
     }
-
-    private _isBlockFilled(blockIndex: number) {
-        return this.currentValue.length >= blockIndex * 5 + 4;
-    }
 }
 </script>
 
@@ -248,17 +297,31 @@ export default class AddressInput extends Vue {
         --font-size: 3rem;
         --block-height: 4.125rem;
         --block-width: 8.5rem;
-        --block-gap: 1rem;
+        --block-gap-v: 0.75rem;
+        --block-gap-h: 1rem;
 
-        width: calc(3 * var(--block-width) + 2 * var(--block-gap));
-        height: calc(3 * var(--block-height) + 2 * var(--block-gap));
+        width: calc(3 * var(--block-width) + 3 * var(--block-gap-h));
+        height: calc(3 * var(--block-height) + 3.5 * var(--block-gap-v));
         position: relative;
-        flex-wrap: wrap;
-        display: grid;
-        grid-template-columns: repeat(2, var(--block-width) var(--block-gap)) var(--block-width);
-        grid-template-rows: repeat(3, var(--block-height));
-        grid-row-gap: var(--block-gap);
         background: white; /* Note: our text coloring with mix-blend-mode only works on white background */
+
+        border-radius: 0.5rem;
+        --border-color: rgba(31, 35, 72, 0.1); /* Based on Nimiq Blue */
+        box-shadow: inset 0 0 0 1.5px var(--border-color);
+        transition: box-shadow .2s ease, height 0.3s var(--nimiq-ease);
+        overflow: hidden;
+    }
+
+    .address-input.is-domain {
+        height: calc(var(--block-height) + 2 * var(--block-gap-v));
+    }
+
+    .address-input:hover {
+        --border-color: rgba(31, 35, 72, 0.14); /* Based on Nimiq Blue */
+    }
+
+    .address-input:focus-within {
+        --border-color: rgba(5, 130, 202, 0.4); /* Based on Nimiq Light Blue */
     }
 
     .address-input.invalid {
@@ -277,14 +340,14 @@ export default class AddressInput extends Vue {
     }
 
     textarea {
-        --line-height: calc(var(--block-height) + var(--block-gap));
+        --line-height: calc(var(--block-height) + var(--block-gap-v));
 
         position: absolute;
         width: 100%;
         height: calc(3 * var(--line-height));
         line-height: var(--line-height);
-        top: calc(var(--font-size) / 24 * -3); /* -3px at default font size */
-        left: calc(var(--font-size) / 24 * 5); /* 5px at default font size */
+        top: calc(var(--font-size) / 24 + var(--block-gap-v) / 2); /* -3px at default font size */
+        left: calc(var(--font-size) / 24 * 5 + var(--block-gap-h) / 2); /* 5px at default font size */
         padding: 0;
         margin: 0;
         border: none;
@@ -296,87 +359,59 @@ export default class AddressInput extends Vue {
         spaces at correct width in some browsers */
         font-family: Fira Mono, 'monospace';
         font-size: var(--font-size);
-        text-transform: uppercase;
         /* the width of rendered letters may slightly differ across different browsers on different OSs. To compensate
         for that we apply a letter-spacing based on the deviation from a reference value */
         letter-spacing: calc(1.8rem - 0.6em); /* 1ch changed to 0.6em, 'ch' in 'calc' making Safari 14.5 crash */
-        word-spacing: calc(var(--block-gap) / 2);
-        color: var(--nimiq-light-blue);
+        word-spacing: calc(var(--block-gap-h) / 2);
+        color: var(--nimiq-blue);
         background: transparent;
+        transition: color 0.2s ease;
+    }
+
+    .is-domain textarea {
+        height: var(--line-height);
+        white-space: nowrap;
+        width: calc(100% - 2 * var(--block-gap-h))
+    }
+
+    textarea:focus {
+        color: var(--nimiq-light-blue);
+    }
+
+    textarea.will-be-address {
+        text-transform: uppercase;
         /* Mask image to make selections visible only within blocks. Using mask image instead clip path to be able to
         click onto the textarea on the invisible areas too */
-        mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 123"><rect x="-1" y="6" width="61" height="27"/><rect x="75" y="6" width="61" height="27"/><rect x="151" y="6" width="61" height="27"/><rect x="-1" y="47" width="61" height="27"/><rect x="75" y="47" width="61" height="27"/><rect x="151" y="47" width="61" height="27"/><rect x="-1" y="88" width="61" height="27"/><rect x="75" y="88" width="61" height="27"/><rect x="151" y="88" width="61" height="27"/></svg>');
+        mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 123"><rect x="-1" y="6" width="62" height="28"/><rect x="79" y="6" width="62" height="28"/><rect x="159" y="6" width="62" height="28"/><rect x="-1" y="47" width="62" height="28"/><rect x="79" y="47" width="62" height="28"/><rect x="159" y="47" width="62" height="28"/><rect x="-1" y="88" width="62" height="28"/><rect x="79" y="88" width="62" height="28"/><rect x="159" y="88" width="62" height="28"/></svg>');
     }
 
-    ::-webkit-input-placeholder {
-        opacity: .6;
-    }
-    ::-ms-input-placeholder {
-        opacity: .6;
-    }
-    ::-moz-placeholder {
-        opacity: .6;
-    }
-    ::placeholder {
-        opacity: .6;
+    .grid {
+        position: absolute;
+        top: calc(var(--font-size) / 24 * 8 + var(--block-gap-v) / 2);
+        left: calc(var(--font-size) / 24 * 5 + var(--block-gap-h) / 2);
+        stroke: var(--border-color);
+        transition: stroke .2s ease, opacity 0.2s ease;
     }
 
-    textarea:focus::-webkit-input-placeholder {
-        transition: color .2s var(--nimiq-ease);
-        color: var(--nimiq-light-blue);
-    }
-    textarea:focus::-ms-input-placeholder {
-        transition: color .2s var(--nimiq-ease);
-        color: var(--nimiq-light-blue);
-    }
-    textarea:focus::-moz-placeholder {
-        transition: color .2s var(--nimiq-ease);
-        color: var(--nimiq-light-blue);
-    }
-    textarea:focus::placeholder {
-        transition: color .2s var(--nimiq-ease);
-        color: var(--nimiq-light-blue);
+    textarea:focus ~ .grid {
+        opacity: 0.5;
     }
 
-    .block {
-        border: .25rem solid var(--nimiq-blue);
-        border-radius: .5rem;
-        opacity: .1;
-    }
-
-    .block.focused {
-        opacity: .16;
-        border-color: var(--nimiq-light-blue);
-    }
-
-    .block-connector {
-        width: var(--block-gap);
-        height: .25rem;
-        background: var(--nimiq-blue);
-        align-self: center;
-        opacity: .1;
-    }
-
-    .block,
-    .block-connector {
-        transition: opacity .2s var(--nimiq-ease), border .2s var(--nimiq-ease);
-    }
-
-    .invisible {
-        opacity: 0;
+    .is-domain .grid {
+        opacity: 0 !important;
     }
 
     @supports (mix-blend-mode: screen) {
-        textarea {
+        textarea.will-be-address {
             color: black; /* the actual color will be set via mix-blend-mode */
         }
 
-        textarea::selection {
+        textarea.will-be-address::selection {
             color: white;
             background: #561a51; /* a color that in combination with mix-blend-mode yields a color close to the default */
         }
 
-        textarea::-moz-selection {
+        textarea.will-be-address::-moz-selection {
             background: #411d68; /* a color that in combination with mix-blend-mode yields a color close to the default */
         }
 

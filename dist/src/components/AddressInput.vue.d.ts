@@ -6,8 +6,10 @@ export default class AddressInput extends Vue {
     private static _format;
     private static _stripWhitespace;
     private static _exportValue;
+    private static _willBeAddress;
     value: string;
     autofocus?: boolean;
+    allowDomains?: boolean;
     $refs: {
         textarea: HTMLTextAreaElement;
     };
@@ -16,6 +18,8 @@ export default class AddressInput extends Vue {
     private selectionStartBlock;
     private selectionEndBlock;
     private supportsMixBlendMode;
+    private get willBeAddress();
+    private get isDomain();
     private mounted;
     private destroyed;
     private _onExternalValueChange;
@@ -28,5 +32,4 @@ export default class AddressInput extends Vue {
     private _afterChange;
     private _updateSelection;
     private _isBlockFocused;
-    private _isBlockFilled;
 }

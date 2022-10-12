@@ -44,7 +44,7 @@ module.exports =
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "NimiqVueComponents.common." + ({"1":"lang-de-AccountList-json","2":"lang-de-AccountSelector-json","3":"lang-de-AmountWithFee-json","4":"lang-de-Copyable-json","5":"lang-de-CopyableField-json","6":"lang-de-LabelInput-json","7":"lang-de-PageHeader-json","8":"lang-de-PaymentInfoLine-json","9":"lang-de-QrScanner-json","10":"lang-de-Timer-json","11":"lang-de-Wallet-json","12":"lang-es-AccountList-json","13":"lang-es-AccountSelector-json","14":"lang-es-AmountWithFee-json","15":"lang-es-Copyable-json","16":"lang-es-CopyableField-json","17":"lang-es-LabelInput-json","18":"lang-es-PageHeader-json","19":"lang-es-PaymentInfoLine-json","20":"lang-es-QrScanner-json","21":"lang-es-Timer-json","22":"lang-es-Wallet-json","23":"lang-fil-AccountList-json","24":"lang-fil-AccountSelector-json","25":"lang-fil-AmountWithFee-json","26":"lang-fil-Copyable-json","27":"lang-fil-CopyableField-json","28":"lang-fil-LabelInput-json","29":"lang-fil-PageHeader-json","30":"lang-fil-PaymentInfoLine-json","31":"lang-fil-QrScanner-json","32":"lang-fil-Timer-json","33":"lang-fil-Wallet-json","34":"lang-fr-AccountList-json","35":"lang-fr-AccountSelector-json","36":"lang-fr-AmountWithFee-json","37":"lang-fr-Copyable-json","38":"lang-fr-CopyableField-json","39":"lang-fr-LabelInput-json","40":"lang-fr-PageHeader-json","41":"lang-fr-PaymentInfoLine-json","42":"lang-fr-QrScanner-json","43":"lang-fr-Timer-json","44":"lang-fr-Wallet-json","45":"lang-nl-AccountList-json","46":"lang-nl-AccountSelector-json","47":"lang-nl-AmountWithFee-json","48":"lang-nl-Copyable-json","49":"lang-nl-CopyableField-json","50":"lang-nl-LabelInput-json","51":"lang-nl-PageHeader-json","52":"lang-nl-PaymentInfoLine-json","53":"lang-nl-QrScanner-json","54":"lang-nl-Timer-json","55":"lang-nl-Wallet-json","56":"lang-ru-AccountList-json","57":"lang-ru-AccountSelector-json","58":"lang-ru-AmountWithFee-json","59":"lang-ru-Copyable-json","60":"lang-ru-CopyableField-json","61":"lang-ru-LabelInput-json","62":"lang-ru-PageHeader-json","63":"lang-ru-PaymentInfoLine-json","64":"lang-ru-QrScanner-json","65":"lang-ru-Timer-json","66":"lang-ru-Wallet-json","67":"lang-uk-AccountList-json","68":"lang-uk-AccountSelector-json","69":"lang-uk-AmountWithFee-json","70":"lang-uk-Copyable-json","71":"lang-uk-CopyableField-json","72":"lang-uk-LabelInput-json","73":"lang-uk-PageHeader-json","74":"lang-uk-PaymentInfoLine-json","75":"lang-uk-QrScanner-json","76":"lang-uk-Timer-json","77":"lang-uk-Wallet-json","78":"lang-zh-AccountList-json","79":"lang-zh-AccountSelector-json","80":"lang-zh-AmountWithFee-json","81":"lang-zh-Copyable-json","82":"lang-zh-CopyableField-json","83":"lang-zh-LabelInput-json","84":"lang-zh-PageHeader-json","85":"lang-zh-PaymentInfoLine-json","86":"lang-zh-QrScanner-json","87":"lang-zh-Timer-json","88":"lang-zh-Wallet-json"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "NimiqVueComponents.common." + ({"1":"lang-de-AccountList-json","2":"lang-de-AccountSelector-json","3":"lang-de-AmountWithFee-json","4":"lang-de-Copyable-json","5":"lang-de-CopyableField-json","6":"lang-de-LabelInput-json","7":"lang-de-PageHeader-json","8":"lang-de-PaymentInfoLine-json","9":"lang-de-QrScanner-json","10":"lang-de-Timer-json","11":"lang-de-Wallet-json","12":"lang-es-AccountList-json","13":"lang-es-AccountSelector-json","14":"lang-es-AmountWithFee-json","15":"lang-es-Copyable-json","16":"lang-es-CopyableField-json","17":"lang-es-LabelInput-json","18":"lang-es-PageHeader-json","19":"lang-es-PaymentInfoLine-json","20":"lang-es-QrScanner-json","21":"lang-es-Timer-json","22":"lang-es-Wallet-json","23":"lang-fr-AccountList-json","24":"lang-fr-AccountSelector-json","25":"lang-fr-AmountWithFee-json","26":"lang-fr-Copyable-json","27":"lang-fr-CopyableField-json","28":"lang-fr-LabelInput-json","29":"lang-fr-PageHeader-json","30":"lang-fr-PaymentInfoLine-json","31":"lang-fr-QrScanner-json","32":"lang-fr-Timer-json","33":"lang-fr-Wallet-json","34":"lang-nl-AccountList-json","35":"lang-nl-AccountSelector-json","36":"lang-nl-AmountWithFee-json","37":"lang-nl-Copyable-json","38":"lang-nl-CopyableField-json","39":"lang-nl-LabelInput-json","40":"lang-nl-PageHeader-json","41":"lang-nl-PaymentInfoLine-json","42":"lang-nl-QrScanner-json","43":"lang-nl-Timer-json","44":"lang-nl-Wallet-json","45":"lang-ru-AccountList-json","46":"lang-ru-AccountSelector-json","47":"lang-ru-AmountWithFee-json","48":"lang-ru-Copyable-json","49":"lang-ru-CopyableField-json","50":"lang-ru-LabelInput-json","51":"lang-ru-PageHeader-json","52":"lang-ru-PaymentInfoLine-json","53":"lang-ru-QrScanner-json","54":"lang-ru-Timer-json","55":"lang-ru-Wallet-json","56":"lang-uk-AccountList-json","57":"lang-uk-AccountSelector-json","58":"lang-uk-AmountWithFee-json","59":"lang-uk-Copyable-json","60":"lang-uk-CopyableField-json","61":"lang-uk-LabelInput-json","62":"lang-uk-PageHeader-json","63":"lang-uk-PaymentInfoLine-json","64":"lang-uk-QrScanner-json","65":"lang-uk-Timer-json","66":"lang-uk-Wallet-json","67":"lang-zh-AccountList-json","68":"lang-zh-AccountSelector-json","69":"lang-zh-AmountWithFee-json","70":"lang-zh-Copyable-json","71":"lang-zh-CopyableField-json","72":"lang-zh-LabelInput-json","73":"lang-zh-PageHeader-json","74":"lang-zh-PaymentInfoLine-json","75":"lang-zh-QrScanner-json","76":"lang-zh-Timer-json","77":"lang-zh-Wallet-json"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -339,6 +339,17 @@ $({ target: 'Object', stat: true }, {
   }
 });
 
+
+/***/ }),
+
+/***/ "0c04":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AmountWithFee_vue_vue_type_style_index_0_id_0015d247_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("298b");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AmountWithFee_vue_vue_type_style_index_0_id_0015d247_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AmountWithFee_vue_vue_type_style_index_0_id_0015d247_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+ /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AmountWithFee_vue_vue_type_style_index_0_id_0015d247_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -1119,6 +1130,13 @@ module.exports = function (CONSTRUCTOR_NAME) {
 
 /***/ }),
 
+/***/ "298b":
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
 /***/ "2a22":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1628,17 +1646,6 @@ defineIterator(String, 'String', function (iterated) {
 
 /***/ }),
 
-/***/ "3f35":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddressInput_vue_vue_type_style_index_0_id_094d84ae_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("fd9e");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddressInput_vue_vue_type_style_index_0_id_094d84ae_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddressInput_vue_vue_type_style_index_0_id_094d84ae_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
- /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddressInput_vue_vue_type_style_index_0_id_094d84ae_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
 /***/ "3f8c":
 /***/ (function(module, exports) {
 
@@ -1739,269 +1746,225 @@ var map = {
 		"ca03",
 		22
 	],
-	"./fil/AccountList.json": [
-		"0e31",
-		23
-	],
-	"./fil/AccountSelector.json": [
-		"f44e",
-		24
-	],
-	"./fil/AmountWithFee.json": [
-		"ea65",
-		25
-	],
-	"./fil/Copyable.json": [
-		"1f5a",
-		26
-	],
-	"./fil/CopyableField.json": [
-		"4250",
-		27
-	],
-	"./fil/LabelInput.json": [
-		"b450",
-		28
-	],
-	"./fil/PageHeader.json": [
-		"3184",
-		29
-	],
-	"./fil/PaymentInfoLine.json": [
-		"c8fd",
-		30
-	],
-	"./fil/QrScanner.json": [
-		"c35d",
-		31
-	],
-	"./fil/Timer.json": [
-		"0b50",
-		32
-	],
-	"./fil/Wallet.json": [
-		"bd98",
-		33
-	],
 	"./fr/AccountList.json": [
 		"40c8",
-		34
+		23
 	],
 	"./fr/AccountSelector.json": [
 		"d939",
-		35
+		24
 	],
 	"./fr/AmountWithFee.json": [
 		"615f",
-		36
+		25
 	],
 	"./fr/Copyable.json": [
 		"bad1",
-		37
+		26
 	],
 	"./fr/CopyableField.json": [
 		"c50a",
-		38
+		27
 	],
 	"./fr/LabelInput.json": [
 		"24a7",
-		39
+		28
 	],
 	"./fr/PageHeader.json": [
 		"014a",
-		40
+		29
 	],
 	"./fr/PaymentInfoLine.json": [
 		"fe91",
-		41
+		30
 	],
 	"./fr/QrScanner.json": [
 		"35cb",
-		42
+		31
 	],
 	"./fr/Timer.json": [
 		"894c",
-		43
+		32
 	],
 	"./fr/Wallet.json": [
 		"ec08",
-		44
+		33
 	],
 	"./nl/AccountList.json": [
 		"1644",
-		45
+		34
 	],
 	"./nl/AccountSelector.json": [
 		"600b",
-		46
+		35
 	],
 	"./nl/AmountWithFee.json": [
 		"0617",
-		47
+		36
 	],
 	"./nl/Copyable.json": [
 		"a136",
-		48
+		37
 	],
 	"./nl/CopyableField.json": [
 		"4fb8",
-		49
+		38
 	],
 	"./nl/LabelInput.json": [
 		"d183",
-		50
+		39
 	],
 	"./nl/PageHeader.json": [
 		"652c",
-		51
+		40
 	],
 	"./nl/PaymentInfoLine.json": [
 		"a231",
-		52
+		41
 	],
 	"./nl/QrScanner.json": [
 		"64dc",
-		53
+		42
 	],
 	"./nl/Timer.json": [
 		"84f0",
-		54
+		43
 	],
 	"./nl/Wallet.json": [
 		"63f5",
-		55
+		44
 	],
 	"./ru/AccountList.json": [
 		"e162",
-		56
+		45
 	],
 	"./ru/AccountSelector.json": [
 		"2153",
-		57
+		46
 	],
 	"./ru/AmountWithFee.json": [
 		"f212",
-		58
+		47
 	],
 	"./ru/Copyable.json": [
 		"d3a8",
-		59
+		48
 	],
 	"./ru/CopyableField.json": [
 		"580c",
-		60
+		49
 	],
 	"./ru/LabelInput.json": [
 		"ac46",
-		61
+		50
 	],
 	"./ru/PageHeader.json": [
 		"0773",
-		62
+		51
 	],
 	"./ru/PaymentInfoLine.json": [
 		"81c0",
-		63
+		52
 	],
 	"./ru/QrScanner.json": [
 		"b74a",
-		64
+		53
 	],
 	"./ru/Timer.json": [
 		"1d1a",
-		65
+		54
 	],
 	"./ru/Wallet.json": [
 		"da26",
-		66
+		55
 	],
 	"./uk/AccountList.json": [
 		"504a",
-		67
+		56
 	],
 	"./uk/AccountSelector.json": [
 		"2efd",
-		68
+		57
 	],
 	"./uk/AmountWithFee.json": [
 		"56dc",
-		69
+		58
 	],
 	"./uk/Copyable.json": [
 		"c38d",
-		70
+		59
 	],
 	"./uk/CopyableField.json": [
 		"f85b",
-		71
+		60
 	],
 	"./uk/LabelInput.json": [
 		"2cc2",
-		72
+		61
 	],
 	"./uk/PageHeader.json": [
 		"8d98",
-		73
+		62
 	],
 	"./uk/PaymentInfoLine.json": [
 		"cfaf",
-		74
+		63
 	],
 	"./uk/QrScanner.json": [
 		"8741",
-		75
+		64
 	],
 	"./uk/Timer.json": [
 		"f309",
-		76
+		65
 	],
 	"./uk/Wallet.json": [
 		"3f7a",
-		77
+		66
 	],
 	"./zh/AccountList.json": [
 		"bb4e",
-		78
+		67
 	],
 	"./zh/AccountSelector.json": [
 		"4634",
-		79
+		68
 	],
 	"./zh/AmountWithFee.json": [
 		"5f88",
-		80
+		69
 	],
 	"./zh/Copyable.json": [
 		"6a72",
-		81
+		70
 	],
 	"./zh/CopyableField.json": [
 		"afa7",
-		82
+		71
 	],
 	"./zh/LabelInput.json": [
 		"c7b6",
-		83
+		72
 	],
 	"./zh/PageHeader.json": [
 		"aee6",
-		84
+		73
 	],
 	"./zh/PaymentInfoLine.json": [
 		"6daa",
-		85
+		74
 	],
 	"./zh/QrScanner.json": [
 		"4e49",
-		86
+		75
 	],
 	"./zh/Timer.json": [
 		"813f",
-		87
+		76
 	],
 	"./zh/Wallet.json": [
 		"43f7",
-		88
+		77
 	]
 };
 function webpackAsyncContext(req) {
@@ -2234,13 +2197,6 @@ module.exports = function (O, defaultConstructor) {
   return C === undefined || (S = anObject(C)[SPECIES]) == undefined ? defaultConstructor : aFunction(S);
 };
 
-
-/***/ }),
-
-/***/ "4873":
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
 
 /***/ }),
 
@@ -3366,6 +3322,17 @@ module.exports = function (originalArray, length) {
 
 /***/ }),
 
+/***/ "6938":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_QrScanner_vue_vue_type_style_index_0_id_48a6ec42_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("edb8");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_QrScanner_vue_vue_type_style_index_0_id_48a6ec42_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_QrScanner_vue_vue_type_style_index_0_id_48a6ec42_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+ /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_QrScanner_vue_vue_type_style_index_0_id_48a6ec42_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
 /***/ "69f3":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3829,17 +3796,6 @@ module.exports = Object.create || function create(O, Properties) {
   return Properties === undefined ? result : defineProperties(result, Properties);
 };
 
-
-/***/ }),
-
-/***/ "7daf":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_QrScanner_vue_vue_type_style_index_0_id_5b05f1b5_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("4873");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_QrScanner_vue_vue_type_style_index_0_id_5b05f1b5_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_QrScanner_vue_vue_type_style_index_0_id_5b05f1b5_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
- /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_QrScanner_vue_vue_type_style_index_0_id_5b05f1b5_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -4335,17 +4291,6 @@ function format(value, caret, formatter) {
 	return { text: text, caret: caret };
 }
 //# sourceMappingURL=format.js.map
-
-/***/ }),
-
-/***/ "8d52":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AmountWithFee_vue_vue_type_style_index_0_id_21bb9556_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("c24c");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AmountWithFee_vue_vue_type_style_index_0_id_21bb9556_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AmountWithFee_vue_vue_type_style_index_0_id_21bb9556_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
- /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AmountWithFee_vue_vue_type_style_index_0_id_21bb9556_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -6826,13 +6771,6 @@ module.exports = function (input, PREFERRED_STRING) {
 
 /***/ }),
 
-/***/ "c24c":
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-
 /***/ "c35a":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6853,6 +6791,13 @@ $({ target: 'Number', stat: true, forced: Number.parseFloat != parseFloat }, {
 
 module.exports = false;
 
+
+/***/ }),
+
+/***/ "c494":
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
 
 /***/ }),
 
@@ -7617,6 +7562,13 @@ module.exports = DomParser;
 
 /***/ }),
 
+/***/ "da3b":
+/***/ (function(module, exports) {
+
+module.exports = Object.assign(import('/node_modules/qr-scanner/qr-scanner-worker.min.js'), { __esModule: true });;
+
+/***/ }),
+
 /***/ "da84":
 /***/ (function(module, exports) {
 
@@ -7714,13 +7666,6 @@ module.exports = function(originalModule) {
 	return module;
 };
 
-
-/***/ }),
-
-/***/ "dd8e":
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "qr-scanner-worker.min.6d1cadcf.js";
 
 /***/ }),
 
@@ -7946,6 +7891,17 @@ module.exports = function (target, src, options) {
   return target;
 };
 
+
+/***/ }),
+
+/***/ "e2d3":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddressInput_vue_vue_type_style_index_0_id_38d900e8_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("c494");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddressInput_vue_vue_type_style_index_0_id_38d900e8_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddressInput_vue_vue_type_style_index_0_id_38d900e8_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+ /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddressInput_vue_vue_type_style_index_0_id_38d900e8_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -8442,6 +8398,13 @@ module.exports = function (it) {
 
 /***/ }),
 
+/***/ "edb8":
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
 /***/ "f069":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8716,7 +8679,7 @@ var es_array_concat = __webpack_require__("99af");
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.ends-with.js
 var es_string_ends_with = __webpack_require__("8a79");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Account.vue?vue&type=template&id=579aeff3&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"101b3dcf-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Account.vue?vue&type=template&id=579aeff3&scoped=true&
 var Accountvue_type_template_id_579aeff3_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"account",class:[{ editable: _vm.editable }, _vm.layout, {cashlink: _vm.displayAsCashlink}]},[_c('div',{staticClass:"identicon-and-label"},[(_vm.showImage)?_c('img',{staticClass:"identicon account-image",attrs:{"src":_vm.image},on:{"error":function($event){_vm.showImage = false}}}):(_vm.displayAsCashlink)?_c('div',{staticClass:"identicon"},[_c('div',{staticClass:"nq-blue-bg"},[_c('svg',{attrs:{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 64 64","fill":"none","stroke":"white","stroke-linecap":"round","stroke-width":"2.5"}},[_c('path',{attrs:{"d":"M40.25 23.25v-.5a6.5 6.5 0 0 0-6.5-6.5h-3.5a6.5 6.5 0 0 0-6.5 6.5v6.5a6.5 6.5 0 0 0 6.5 6.5h2"}}),_c('path',{attrs:{"d":"M23.75 40.75v.5a6.5 6.5 0 0 0 6.5 6.5h3.5a6.5 6.5 0 0 0 6.5-6.5v-6.5a6.5 6.5 0 0 0-6.5-6.5h-2"}}),_c('path',{attrs:{"d":"M32 11.25v4M32 48.75v4"}})])])]):(_vm._isNimiqAddress)?_c('Identicon',{attrs:{"address":_vm.address}}):_vm._e(),(!_vm.editable)?_c('div',{staticClass:"label",class:{ 'address-font': _vm._isLabelNimiqAddress }},[_vm._v(_vm._s(_vm.label))]):_c('div',{staticClass:"label editable",class:{ 'address-font': _vm._isLabelNimiqAddress }},[_c('LabelInput',{ref:"label",attrs:{"maxBytes":63,"value":_vm.label,"placeholder":_vm.placeholder},on:{"input":_vm.changed}})],1),(_vm.layout === 'column' && _vm.walletLabel)?_c('div',{staticClass:"nq-label wallet-label"},[_vm._v(_vm._s(_vm.walletLabel))]):_vm._e()],1),(_vm.balance || _vm.balance === 0)?_c('Amount',{staticClass:"balance",attrs:{"amount":_vm.balance,"decimals":_vm.decimals}}):_vm._e()],1)}
 var staticRenderFns = []
 
@@ -9039,7 +9002,7 @@ function __importDefault(mod) {
 // EXTERNAL MODULE: external "vue-property-decorator"
 var external_vue_property_decorator_ = __webpack_require__("01a6");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Identicon.vue?vue&type=template&id=7d87c782&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"101b3dcf-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Identicon.vue?vue&type=template&id=7d87c782&scoped=true&
 var Identiconvue_type_template_id_7d87c782_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"identicon"},[_c('img',{attrs:{"src":_vm.dataUrl}})])}
 var Identiconvue_type_template_id_7d87c782_scoped_true_staticRenderFns = []
 
@@ -9430,7 +9393,7 @@ var component = normalizeComponent(
 )
 
 /* harmony default export */ var components_Identicon = (component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Amount.vue?vue&type=template&id=26cbc180&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"101b3dcf-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Amount.vue?vue&type=template&id=26cbc180&scoped=true&
 var Amountvue_type_template_id_26cbc180_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"amount",class:{ approx: _vm.showApprox && _vm.isApprox }},[_vm._v(" "+_vm._s(_vm.formattedAmount)+" "),_c('span',{staticClass:"currency",class:_vm.currency},[_vm._v(_vm._s(_vm.ticker))])])}
 var Amountvue_type_template_id_26cbc180_scoped_true_staticRenderFns = []
 
@@ -9699,7 +9662,7 @@ var Amount_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_Amount = (Amount_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/LabelInput.vue?vue&type=template&id=0ff1b768&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"101b3dcf-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/LabelInput.vue?vue&type=template&id=0ff1b768&scoped=true&
 var LabelInputvue_type_template_id_0ff1b768_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('form',{staticClass:"label-input",class:{disabled: _vm.disabled},on:{"submit":function($event){$event.preventDefault();return _vm.onBlur($event)}}},[_c('span',{ref:"widthPlaceholder",staticClass:"width-finder width-placeholder"},[_vm._v(_vm._s(_vm.placeholder || _vm.$t('Name your address')))]),_c('span',{ref:"widthValue",staticClass:"width-finder width-value"},[_vm._v(_vm._s(_vm.liveValue))]),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.liveValue),expression:"liveValue"}],ref:"input",staticClass:"nq-input",class:{'vanishing': _vm.vanishing},style:({width: ((this.width) + "px")}),attrs:{"type":"text","placeholder":_vm.placeholder || _vm.$t('Name your address'),"disabled":_vm.disabled},domProps:{"value":(_vm.liveValue)},on:{"input":[function($event){if($event.target.composing){ return; }_vm.liveValue=$event.target.value},_vm.onInput],"blur":_vm.onBlur,"paste":function($event){return _vm.$emit('paste', $event)}}})])}
 var LabelInputvue_type_template_id_0ff1b768_scoped_true_staticRenderFns = []
 
@@ -10640,14 +10603,14 @@ var Account_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_Account = (Account_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/AccountDetails.vue?vue&type=template&id=4d576866&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"101b3dcf-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/AccountDetails.vue?vue&type=template&id=4d576866&scoped=true&
 var AccountDetailsvue_type_template_id_4d576866_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"account-details"},[_c('CloseButton',{staticClass:"top-right",on:{"click":_vm.close}}),_c('Account',{ref:"account",attrs:{"layout":"column","address":_vm.address,"image":_vm.image,"label":_vm.label !== _vm.address ? _vm.label : '',"walletLabel":_vm.walletLabel,"balance":_vm.balance,"editable":_vm.editable,"placeholder":_vm.placeholder},on:{"changed":_vm.changed}}),_c('AddressDisplay',{attrs:{"address":_vm.address,"copyable":""}})],1)}
 var AccountDetailsvue_type_template_id_4d576866_scoped_true_staticRenderFns = []
 
 
 // CONCATENATED MODULE: ./src/components/AccountDetails.vue?vue&type=template&id=4d576866&scoped=true&
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/AddressDisplay.vue?vue&type=template&id=1c9646e4&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"101b3dcf-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/AddressDisplay.vue?vue&type=template&id=1c9646e4&scoped=true&
 var AddressDisplayvue_type_template_id_1c9646e4_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c(_vm.copyable ? 'Copyable' : 'div',{tag:"component",staticClass:"address-display",attrs:{"text":_vm.chunks.join(' ').toUpperCase()}},_vm._l((_vm.chunks),function(chunk,index){return _c('span',{key:chunk + index,staticClass:"chunk"},[_vm._v(_vm._s(chunk)),_c('span',{staticClass:"space"})])}),0)}
 var AddressDisplayvue_type_template_id_1c9646e4_scoped_true_staticRenderFns = []
 
@@ -10657,7 +10620,7 @@ var AddressDisplayvue_type_template_id_1c9646e4_scoped_true_staticRenderFns = []
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.fill.js
 var es_array_fill = __webpack_require__("cb29");
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Copyable.vue?vue&type=template&id=46b36f4e&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"101b3dcf-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Copyable.vue?vue&type=template&id=46b36f4e&scoped=true&
 var Copyablevue_type_template_id_46b36f4e_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"copyable",class:{ copied: _vm.copied },attrs:{"tabindex":"0"},on:{"click":_vm.copy}},[_c('div',{staticClass:"background"}),_vm._t("default"),_c('div',{ref:"tooltip",staticClass:"tooltip"},[_vm._v(_vm._s(_vm.$t('Copied')))])],2)}
 var Copyablevue_type_template_id_46b36f4e_scoped_true_staticRenderFns = []
 
@@ -10919,7 +10882,7 @@ var AddressDisplay_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_AddressDisplay = (AddressDisplay_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CloseButton.vue?vue&type=template&id=f70dd1ae&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"101b3dcf-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CloseButton.vue?vue&type=template&id=f70dd1ae&scoped=true&
 var CloseButtonvue_type_template_id_f70dd1ae_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('button',{staticClass:"close-button nq-button-s",on:{"click":_vm.click,"mousedown":function($event){$event.preventDefault();}}},[_c('CloseIcon')],1)}
 var CloseButtonvue_type_template_id_f70dd1ae_scoped_true_staticRenderFns = []
 
@@ -12293,7 +12256,7 @@ var AccountDetails_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_AccountDetails = (AccountDetails_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/AccountList.vue?vue&type=template&id=4a1e75b7&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"101b3dcf-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/AccountList.vue?vue&type=template&id=4a1e75b7&scoped=true&
 var AccountListvue_type_template_id_4a1e75b7_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"account-list"},_vm._l((_vm.accounts),function(account){return _c(!_vm._isDisabled(account) && !_vm.editable ? 'a' : 'div',{key:account.userFriendlyAddress,tag:"component",staticClass:"account-entry",class:{
             'disabled': _vm._isDisabled(account),
             'has-tooltip': _vm._hasTooltip(account),
@@ -12311,7 +12274,7 @@ var AccountListvue_type_template_id_4a1e75b7_scoped_true_staticRenderFns = []
 
 // CONCATENATED MODULE: ./src/components/AccountList.vue?vue&type=template&id=4a1e75b7&scoped=true&
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Tooltip.vue?vue&type=template&id=71bfa335&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"101b3dcf-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Tooltip.vue?vue&type=template&id=71bfa335&scoped=true&
 var Tooltipvue_type_template_id_71bfa335_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"tooltip",class:[_vm.verticalPosition, {
         shown: _vm.isShown,
         'transition-position': _vm.transitionPosition,
@@ -13173,7 +13136,7 @@ var AccountList_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_AccountList = (AccountList_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/AccountRing.vue?vue&type=template&id=693b8320&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"101b3dcf-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/AccountRing.vue?vue&type=template&id=693b8320&scoped=true&
 var AccountRingvue_type_template_id_693b8320_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"account-ring"},_vm._l((6),function(n){return _c('div',{key:n,staticClass:"account"},[_c('Identicon',{class:{ 'pop-in': _vm.animate && _vm.addresses.length >= n },attrs:{"address":_vm.addresses[n - 1]}})],1)}),0)}
 var AccountRingvue_type_template_id_693b8320_scoped_true_staticRenderFns = []
 
@@ -13247,7 +13210,7 @@ var AccountRing_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_AccountRing = (AccountRing_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/AccountSelector.vue?vue&type=template&id=19de60f3&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"101b3dcf-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/AccountSelector.vue?vue&type=template&id=19de60f3&scoped=true&
 var AccountSelectorvue_type_template_id_19de60f3_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"account-selector"},[_c('div',{ref:"container",staticClass:"container",class:{'extra-spacing': _vm.wallets.length === 1}},_vm._l((_vm.sortedWallets),function(wallet){return _c('div',{key:wallet.id},[(_vm.wallets.length > 1 || _vm._isAccountDisabled(wallet))?_c('div',{staticClass:"wallet-label"},[_c('div',{staticClass:"nq-label"},[_vm._v(" "+_vm._s(wallet.label)+" "),(_vm.highlightBitcoinAccounts && wallet.btcXPub)?_c('span',{staticClass:"btc-pill"},[_vm._v("BTC")]):_vm._e()]),(_vm._isAccountDisabled(wallet))?_c('Tooltip',_vm._b({ref:("tooltip-" + (wallet.id)),refInFor:true},'Tooltip',Object.assign({}, _vm.tooltipProps,
                         {styles: Object.assign({}, {width: '25.25rem'},
                             _vm.tooltipProps.styles)}),false),[_vm._v(" "+_vm._s(_vm.$t( '{type} accounts cannot be used for this operation.', { type: _vm._getAccountTypeName(wallet)} ))+" ")]):_vm._e()],1):_vm._e(),_c('AccountList',{attrs:{"accounts":_vm._f("sortAccountsAndContracts")(_vm._f("listAccountsAndContracts")(wallet),_vm.minBalance, _vm.disableContracts, _vm.disabledAddresses),"disabledAddresses":_vm.disabledAddresses,"walletId":wallet.id,"minBalance":_vm.minBalance,"decimals":_vm.decimals,"disableContracts":_vm.disableContracts,"disabled":_vm._isAccountDisabled(wallet),"tooltipProps":_vm.tooltipProps},on:{"account-selected":_vm.accountSelected},nativeOn:{"click":function($event){return _vm._accountClicked(wallet)}}})],1)}),0),_c('div',{staticClass:"footer"},[(_vm.allowLogin)?_c('button',{staticClass:"nq-button-s",on:{"click":_vm.login}},[_vm._v(_vm._s(_vm.$t('Login to another account')))]):_vm._e()])])}
@@ -13543,23 +13506,18 @@ var AccountSelector_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_AccountSelector = (AccountSelector_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/AddressInput.vue?vue&type=template&id=094d84ae&scoped=true&
-var AddressInputvue_type_template_id_094d84ae_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"address-input"},[_c('textarea',{ref:"textarea",attrs:{"placeholder":"NQ","spellcheck":"false","autocomplete":"off"},on:{"keydown":_vm._onKeyDown,"input":_vm._onInput,"paste":_vm._onPaste,"cut":_vm._onCut,"copy":_vm._formatClipboard,"click":_vm._updateSelection,"select":_vm._updateSelection,"blur":_vm._updateSelection,"focus":_vm._onFocus}}),_vm._l((9),function(i){return [_c('div',{key:("block-" + i),staticClass:"block",class:{
-            focused: _vm._isBlockFocused(i - 1),
-            invisible: _vm._isBlockFilled(i - 1),
-        }}),(i % 3)?_c('div',{key:("connector-" + i),staticClass:"block-connector",class:{
-            invisible: _vm._isBlockFilled(i - 1) && !_vm._isBlockFocused(i - 1) || _vm._isBlockFilled(i) && !_vm._isBlockFocused(i),
-        }}):_vm._e()]}),(_vm.supportsMixBlendMode)?[_vm._l((3),function(row){return [_vm._l((3),function(column){return [_c('div',{key:("color-" + row + "-" + column),staticClass:"color-overlay",style:({
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"101b3dcf-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/AddressInput.vue?vue&type=template&id=38d900e8&scoped=true&
+var AddressInputvue_type_template_id_38d900e8_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"address-input",class:{'is-domain': _vm.isDomain}},[_c('textarea',{ref:"textarea",class:{'will-be-address': _vm.willBeAddress},attrs:{"spellcheck":"false","autocomplete":"off"},on:{"keydown":_vm._onKeyDown,"input":_vm._onInput,"paste":_vm._onPaste,"cut":_vm._onCut,"copy":_vm._formatClipboard,"click":_vm._updateSelection,"select":_vm._updateSelection,"blur":_vm._updateSelection,"focus":_vm._onFocus}}),(_vm.willBeAddress && _vm.supportsMixBlendMode)?[_vm._l((3),function(row){return [_vm._l((3),function(column){return [_c('div',{key:("color-" + row + "-" + column),staticClass:"color-overlay",style:({
                     /* Hidden when placeholder shown. Visibility instead of v-if to avoid flickering in Firefox */
                     visibility: _vm.currentValue ? 'visible' : 'hidden',
-                    left: ("calc(" + (column - 1) + " * (var(--block-width) + var(--block-gap)) + .25rem)"),
-                    top: ("calc(" + (row - 1) + " * (var(--block-height) + var(--block-gap)) + .25rem)"),
+                    left: ("calc(" + (column - 1) + " * (var(--block-width) + var(--block-gap-h)) + var(--block-gap-h) - 0.25rem)"),
+                    top: ("calc(" + (row - 1) + " * (var(--block-height) + var(--block-gap-v)) + var(--block-gap-v) + 0.25rem)"),
                     background: ("var(--nimiq-" + (_vm._isBlockFocused((row - 1) * 3 + (column - 1)) ? 'light-' : '') + "blue)"),
-                })})]})]})]:_vm._e()],2)}
-var AddressInputvue_type_template_id_094d84ae_scoped_true_staticRenderFns = []
+                })})]})]})]:_vm._e(),_c('svg',{staticClass:"grid",attrs:{"width":"210","height":"99","viewBox":"0 0 210 99","fill":"none","xmlns":"http://www.w3.org/2000/svg"}},[_c('g',{attrs:{"stroke-width":"1.5","stroke-linecap":"round"}},[_c('line',{attrs:{"x1":"67.75","y1":"0.75","x2":"67.75","y2":"22.25"}}),_c('line',{attrs:{"x1":"67.75","y1":"37.75","x2":"67.75","y2":"60.25"}}),_c('line',{attrs:{"x1":"67.75","y1":"75.75","x2":"67.75","y2":"98.25"}}),_c('line',{attrs:{"x1":"0.75","y1":"30.25","x2":"209.25","y2":"30.25"}}),_c('line',{attrs:{"x1":"0.75","y1":"68.25","x2":"209.25","y2":"68.25"}}),_c('line',{attrs:{"x1":"143.75","y1":"37.75","x2":"143.75","y2":"60.25"}}),_c('line',{attrs:{"x1":"143.75","y1":"0.75","x2":"143.75","y2":"22.25"}}),_c('line',{attrs:{"x1":"143.75","y1":"75.75","x2":"143.75","y2":"98.25"}})])])],2)}
+var AddressInputvue_type_template_id_38d900e8_scoped_true_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/AddressInput.vue?vue&type=template&id=094d84ae&scoped=true&
+// CONCATENATED MODULE: ./src/components/AddressInput.vue?vue&type=template&id=38d900e8&scoped=true&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.reduce.js
 var es_array_reduce = __webpack_require__("13d5");
@@ -13641,64 +13599,81 @@ function (_Vue) {
   }, {
     key: "_onExternalValueChange",
     value: function _onExternalValueChange() {
+      var _this2 = this;
+
       if (AddressInput_1._stripWhitespace(this.value) === AddressInput_1._stripWhitespace(this.currentValue)) return; // could also be using format-input's parse and format helpers that preserve caret position but as we're not
       // interested in that, we calculate the formatted value manually
 
       var parsedValue = this.value.split('').reduce(function (parsed, char) {
-        return parsed + (AddressInput_1._parse(char, parsed) || '');
+        return parsed + (AddressInput_1._parse(char, parsed, _this2.allowDomains) || '');
       }, '');
-      this.$refs.textarea.value = AddressInput_1._format(parsedValue).text; // moves the caret to the end
+      this.$refs.textarea.value = AddressInput_1._format(parsedValue, this.allowDomains).text; // moves the caret to the end
 
       this._afterChange(parsedValue);
     }
   }, {
     key: "_onKeyDown",
     value: function _onKeyDown(e) {
-      var _this2 = this;
+      var _this3 = this;
 
-      Object(input_control["onKeyDown"])(e, this.$refs.textarea, AddressInput_1._parse, AddressInput_1._format, this._afterChange);
+      Object(input_control["onKeyDown"])(e, this.$refs.textarea, function (char, value) {
+        return AddressInput_1._parse(char, value, _this3.allowDomains);
+      }, function (value) {
+        return AddressInput_1._format(value, _this3.allowDomains);
+      }, this._afterChange);
       setTimeout(function () {
-        return _this2._updateSelection();
+        return _this3._updateSelection();
       }, 10); // for arrow keys in Firefox
     }
   }, {
     key: "_onInput",
     value: function _onInput(e) {
+      var _this4 = this;
+
       if (e.inputType === 'deleteByDrag') return; // we'll handle the subsequent insertFromDrop
 
       var textarea = this.$refs.textarea;
-
-      if (e.inputType === 'historyRedo' && textarea.value.length >= 2 && !textarea.value.startsWith('NQ')) {
-        // Redo has problems when redoing an edit where NQ was added automatically. We make sure here to correctly
-        // apply the NQ again.
-        textarea.value = "NQ".concat(textarea.value.substring(2));
-      }
-
-      Object(input_control["onChange"])(e, textarea, AddressInput_1._parse, AddressInput_1._format, this._afterChange);
+      Object(input_control["onChange"])(e, textarea, function (char, value) {
+        return AddressInput_1._parse(char, value, _this4.allowDomains);
+      }, function (value) {
+        return AddressInput_1._format(value, _this4.allowDomains);
+      }, this._afterChange);
     }
   }, {
     key: "_onPaste",
     value: function _onPaste(e) {
+      var _this5 = this;
+
       var clipboardData = e.clipboardData;
       var pastedData = clipboardData ? clipboardData.getData('text/plain') : '';
       this.$emit('paste', e, pastedData);
-      Object(input_control["onPaste"])(e, this.$refs.textarea, AddressInput_1._parse, AddressInput_1._format, this._afterChange);
+      Object(input_control["onPaste"])(e, this.$refs.textarea, function (char, value) {
+        return AddressInput_1._parse(char, value, _this5.allowDomains);
+      }, function (value) {
+        return AddressInput_1._format(value, _this5.allowDomains);
+      }, this._afterChange);
     }
   }, {
     key: "_onCut",
     value: function _onCut(e) {
-      Object(input_control["onCut"])(e, this.$refs.textarea, AddressInput_1._parse, AddressInput_1._format, this._afterChange);
+      var _this6 = this;
+
+      Object(input_control["onCut"])(e, this.$refs.textarea, function (char, value) {
+        return AddressInput_1._parse(char, value, _this6.allowDomains);
+      }, function (value) {
+        return AddressInput_1._format(value, _this6.allowDomains);
+      }, this._afterChange);
 
       this._formatClipboard();
     }
   }, {
     key: "_onFocus",
     value: function _onFocus() {
-      var _this3 = this;
+      var _this7 = this;
 
       // have to add a delay because the textarea is not focused yet at this point
       setTimeout(function () {
-        return _this3._updateSelection();
+        return _this7._updateSelection();
       });
     }
   }, {
@@ -13708,7 +13683,7 @@ function (_Vue) {
       // preventDefault() which then results in the need to reimplement the behavior for cutting text and has side
       // effects like the change not being added to the undo history. Therefore we let the browser do the default
       // behavior but overwrite the clipboard afterwards.
-      var text = AddressInput_1._exportValue(document.getSelection().toString());
+      var text = AddressInput_1._exportValue(document.getSelection().toString(), this.allowDomains);
 
       setTimeout(function () {
         return Clipboard.copy(text);
@@ -13717,28 +13692,22 @@ function (_Vue) {
   }, {
     key: "_afterChange",
     value: function _afterChange(value) {
-      // value is the unformatted value (i.e. the concatenation of characters returned by _parse). It includes NQ
-      // if NQ was already added to the textarea before the current change but is not included if it is getting
-      // automatically added just in our current change.
-      var textarea = this.$refs.textarea; // have to move caret or selection by two to account for the NQ automatically added to the formatted text
-
-      if (!value.startsWith('NQ')) {
-        textarea.selectionEnd += 2;
-        textarea.selectionStart += 2;
-      } // if selection is a caret in front of a space or new line move caret behind it
-
+      // value is the unformatted value (i.e. the concatenation of characters returned by _parse)
+      var textarea = this.$refs.textarea; // if selection is a caret in front of a space or new line move caret behind it
 
       if (textarea.selectionStart === textarea.selectionEnd && (textarea.value[textarea.selectionStart] === ' ' || textarea.value[textarea.selectionStart] === '\n')) {
         textarea.selectionStart += 1; // this also moves the selectionEnd as they were equal
       }
 
-      this.currentValue = AddressInput_1._exportValue(this.$refs.textarea.value);
+      this.currentValue = AddressInput_1._exportValue(this.$refs.textarea.value, this.allowDomains);
       this.$emit('input', this.currentValue); // emit event compatible with v-model
 
-      var isValid = ValidationUtils.isValidAddress(this.currentValue);
-      if (isValid) this.$emit('address', this.currentValue); // if user entered a full address that is not valid give him a visual feedback
+      if (AddressInput_1._willBeAddress(value)) {
+        var isValid = ValidationUtils.isValidAddress(this.currentValue);
+        if (isValid) this.$emit('address', this.currentValue); // if user entered a full address that is not valid give him a visual feedback
 
-      this.$el.classList.toggle('invalid', this.currentValue.length === AddressInput_1.ADDRESS_MAX_LENGTH && !isValid);
+        this.$el.classList.toggle('invalid', this.currentValue.length === AddressInput_1.ADDRESS_MAX_LENGTH && !isValid);
+      }
     }
   }, {
     key: "_updateSelection",
@@ -13756,68 +13725,91 @@ function (_Vue) {
       return this.selectionStartBlock <= blockIndex && blockIndex <= this.selectionEndBlock;
     }
   }, {
-    key: "_isBlockFilled",
-    value: function _isBlockFilled(blockIndex) {
-      return this.currentValue.length >= blockIndex * 5 + 4;
+    key: "willBeAddress",
+    get: function get() {
+      return !this.allowDomains || AddressInput_1._willBeAddress(this.currentValue);
+    }
+  }, {
+    key: "isDomain",
+    get: function get() {
+      return this.currentValue.length >= 3 && !this.willBeAddress;
     }
   }], [{
     key: "_parse",
     value: function _parse(char, value) {
-      // Handle I, O, W, Z which are the only characters missing in Nimiq's Base 32 address alphabet
-      switch (char.toUpperCase()) {
-        case 'I':
-          char = '1';
-          break;
+      var allowDomains = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
-        case 'O':
-          char = '0';
-          break;
+      if (!allowDomains || AddressInput_1._willBeAddress(value + char)) {
+        // Handle I, O, W, Z which are the only characters missing in Nimiq's Base 32 address alphabet
+        switch (char.toUpperCase()) {
+          case 'I':
+            char = '1';
+            break;
 
-        case 'Z':
-          char = '2';
-          break;
+          case 'O':
+            char = '0';
+            break;
 
-        case 'W':
-          return;
-        // reject character
+          case 'Z':
+            char = '2';
+            break;
+
+          case 'W':
+            return;
+          // reject character
+        }
+
+        var regex = new RegExp('^(' + 'N(Q?)' // NQ at the beginning
+        + '|NQ\\d{1,2}' // first two characters after starting NQ must be digits
+        + "|NQ\\d{2}[0-9A-Z]{1,".concat(AddressInput_1.ADDRESS_MAX_LENGTH_WITHOUT_SPACES - 4, "}") // valid address < max length
+        + ')$', 'i'); // We return the original character without transforming it to uppercase to improve compatibility with some
+        // browsers that struggle with undo/redo of manipulated input. The actual transformation to uppercase is then
+        // done via CSS and when the value is exported
+
+        if (regex.test(value + char)) return char;else return; // reject character
+      } else {
+        // Reject non-URL formats while allowing typing URLs character by character
+
+        /**
+         * [-a-z0-9]    Allow hyphens, english letters and numbers
+         * [a-z0-9]\.   Require a character or letter before the period (to prevent a period directly after a hyphen)
+         * [a-z]        Only allow characters, no numbers, after the period
+         */
+        if (/^[-a-z0-9]*([a-z0-9]\.[a-z]*)?$/i.test(value + char)) return char;else return; // reject character
       }
-
-      var regex = new RegExp('^(' + 'N(Q?)' // NQ at the beginning
-      + '|NQ\\d{1,2}' // first two characters after starting NQ must be digits
-      + "|NQ\\d{2}[0-9A-Z]{1,".concat(AddressInput_1.ADDRESS_MAX_LENGTH_WITHOUT_SPACES - 4, "}") // valid address < max length
-      + '|\\d' // Allow a single digit. It will then get expanded by a leading NQ.
-      + ')$', 'i'); // We return the original character without transforming it to uppercase to improve compatibility with some
-      // browsers that struggle with undo/redo of manipulated input. The actual transformation to uppercase is then
-      // done via CSS and when the value is exported
-
-      if (regex.test(value + char)) return char;else return; // reject character
     } // definiton of the format method for input-format (https://github.com/catamphetamine/input-format#usage)
 
   }, {
     key: "_format",
     value: function _format(value) {
-      if (value !== '' && value.toUpperCase() !== 'N') {
-        // If user typed a valid character and not typed N to start NQ, enforce NQ and form blocks
-        value = AddressInput_1._stripWhitespace(value).replace(/^N?Q?/i, 'NQ') // enforce NQ at the beginning
-        .replace(/.{4}/g, function (match, offset) {
-          return "".concat(match).concat((offset + 4) % 12 ? ' ' : '\n');
-        }) // form blocks
-        .substring(0, AddressInput_1.ADDRESS_MAX_LENGTH); // discarding the new line after last block
+      var allowDomains = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
 
-        if (value.endsWith(' ')) {
-          // The word spacing set via css is only applied to spaces that are actually between words which is not
-          // the case for an ending space and the caret after an ending space therefore gets rendered at the wrong
-          // position. To avoid that we add a zero-width space as an artificial word. We do not add that to the
-          // template returned to input-format though to avoid it being interpreted as a typed character which
-          // would place the caret after the zero width space.
-          value += "\u200B";
+      if (!allowDomains || AddressInput_1._willBeAddress(value)) {
+        if (value !== '' && value.toUpperCase() !== 'N') {
+          value = AddressInput_1._stripWhitespace(value).replace(/.{4}/g, function (match, offset) {
+            return "".concat(match).concat((offset + 4) % 12 ? ' ' : '\n');
+          }) // form blocks
+          .substring(0, AddressInput_1.ADDRESS_MAX_LENGTH); // discarding the new line after last block
+
+          if (value.endsWith(' ')) {
+            // The word spacing set via css is only applied to spaces that are actually between words which is not
+            // the case for an ending space and the caret after an ending space therefore gets rendered at the wrong
+            // position. To avoid that we add a zero-width space as an artificial word. We do not add that to the
+            // template returned to input-format though to avoid it being interpreted as a typed character which
+            // would place the caret after the zero width space.
+            value += "\u200B";
+          }
         }
-      }
 
-      return {
-        text: value,
-        template: 'wwww wwww wwww\nwwww wwww wwww\nwwww wwww wwww'
-      };
+        return {
+          text: value,
+          template: 'wwww wwww wwww\nwwww wwww wwww\nwwww wwww wwww'
+        };
+      } else {
+        return {
+          text: value
+        };
+      }
     }
   }, {
     key: "_stripWhitespace",
@@ -13827,7 +13819,20 @@ function (_Vue) {
   }, {
     key: "_exportValue",
     value: function _exportValue(value) {
-      return value.toUpperCase().replace(/\n/g, ' ').replace(/\u200B/g, '');
+      var allowDomains = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+      if (!allowDomains || AddressInput_1._willBeAddress(value)) {
+        return value.toUpperCase().replace(/\n/g, ' ').replace(/\u200B/g, '');
+      } else {
+        return value.replace(/\n/g, '').replace(/\u200B/g, '');
+      }
+    }
+  }, {
+    key: "_willBeAddress",
+    value: function _willBeAddress(value) {
+      if (value.length < 3) return false;
+      if (value.toUpperCase().startsWith('NQ') && !isNaN(parseInt(value[2], 10))) return true;
+      return false;
     }
   }]);
 
@@ -13844,14 +13849,16 @@ __decorate([Object(external_vue_property_decorator_["Prop"])({
 
 __decorate([Object(external_vue_property_decorator_["Prop"])(Boolean)], AddressInputvue_type_script_lang_ts_AddressInput.prototype, "autofocus", void 0);
 
+__decorate([Object(external_vue_property_decorator_["Prop"])(Boolean)], AddressInputvue_type_script_lang_ts_AddressInput.prototype, "allowDomains", void 0);
+
 __decorate([Object(external_vue_property_decorator_["Watch"])('value')], AddressInputvue_type_script_lang_ts_AddressInput.prototype, "_onExternalValueChange", null);
 
 AddressInputvue_type_script_lang_ts_AddressInput = AddressInput_1 = __decorate([external_vue_property_decorator_["Component"]], AddressInputvue_type_script_lang_ts_AddressInput);
 /* harmony default export */ var AddressInputvue_type_script_lang_ts_ = (AddressInputvue_type_script_lang_ts_AddressInput);
 // CONCATENATED MODULE: ./src/components/AddressInput.vue?vue&type=script&lang=ts&
  /* harmony default export */ var components_AddressInputvue_type_script_lang_ts_ = (AddressInputvue_type_script_lang_ts_); 
-// EXTERNAL MODULE: ./src/components/AddressInput.vue?vue&type=style&index=0&id=094d84ae&scoped=true&lang=css&
-var AddressInputvue_type_style_index_0_id_094d84ae_scoped_true_lang_css_ = __webpack_require__("3f35");
+// EXTERNAL MODULE: ./src/components/AddressInput.vue?vue&type=style&index=0&id=38d900e8&scoped=true&lang=css&
+var AddressInputvue_type_style_index_0_id_38d900e8_scoped_true_lang_css_ = __webpack_require__("e2d3");
 
 // CONCATENATED MODULE: ./src/components/AddressInput.vue
 
@@ -13864,17 +13871,17 @@ var AddressInputvue_type_style_index_0_id_094d84ae_scoped_true_lang_css_ = __web
 
 var AddressInput_component = normalizeComponent(
   components_AddressInputvue_type_script_lang_ts_,
-  AddressInputvue_type_template_id_094d84ae_scoped_true_render,
-  AddressInputvue_type_template_id_094d84ae_scoped_true_staticRenderFns,
+  AddressInputvue_type_template_id_38d900e8_scoped_true_render,
+  AddressInputvue_type_template_id_38d900e8_scoped_true_staticRenderFns,
   false,
   null,
-  "094d84ae",
+  "38d900e8",
   null
   
 )
 
 /* harmony default export */ var components_AddressInput = (AddressInput_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/AmountInput.vue?vue&type=template&id=37572fbf&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"101b3dcf-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/AmountInput.vue?vue&type=template&id=37572fbf&scoped=true&
 var AmountInputvue_type_template_id_37572fbf_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"amount-input",class:{'has-value': _vm.valueInLuna > 0, 'focussed': _vm.isFocussed}},[_c('form',{ref:"fullWidth",staticClass:"label-input",on:{"submit":function($event){$event.preventDefault();}}},[_c('span',{ref:"widthPlaceholder",staticClass:"width-finder width-placeholder"},[_vm._v(_vm._s(_vm.placeholder))]),(_vm.maxFontSize)?_c('div',{staticClass:"full-width",class:{'width-finder': _vm.maxWidth > 0}},[_vm._v("Width")]):_vm._e(),_c('span',{ref:"widthValue",staticClass:"width-finder width-value"},[_vm._v(_vm._s(_vm.formattedValue || ''))]),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.formattedValue),expression:"formattedValue"}],ref:"input",staticClass:"nq-input",class:_vm.vanishing,style:({width: ((this.width) + "px"), fontSize: ((this.fontSize) + "rem")}),attrs:{"type":"text","inputmode":"decimal","placeholder":_vm.placeholder},domProps:{"value":(_vm.formattedValue)},on:{"focus":function($event){_vm.isFocussed = true},"blur":function($event){_vm.isFocussed = false},"input":function($event){if($event.target.composing){ return; }_vm.formattedValue=$event.target.value}}})]),_c('span',{staticClass:"nim"},[_vm._v("NIM")])])}
 var AmountInputvue_type_template_id_37572fbf_scoped_true_staticRenderFns = []
 
@@ -14103,1032 +14110,14 @@ var AmountInput_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_AmountInput = (AmountInput_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/AmountWithFee.vue?vue&type=template&id=21bb9556&scoped=true&
-var AmountWithFeevue_type_template_id_21bb9556_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"amount-with-fee"},[_c('AmountInput',{ref:"amountInput",staticClass:"value",class:{invalid: !_vm.isValid && _vm.liveAmount > 0},model:{value:(_vm.liveAmount),callback:function ($$v) {_vm.liveAmount=$$v},expression:"liveAmount"}}),_c('div',{staticClass:"fee-section nq-text-s"},[(!_vm.isValid && _vm.liveAmount)?_c('div',{staticClass:"nq-red"},[_vm._t("insufficient-balance-error",[_vm._v(_vm._s(_vm.$t('Insufficient balance')))])],2):(_vm.value.fee)?_c('div',[_vm._v(" + "),_c('Amount',{attrs:{"amount":_vm.value.fee,"minDecimals":0,"maxDecimals":5}}),_vm._v(" "+_vm._s(_vm.$t('fee'))+" ")],1):_vm._e()])],1)}
-var AmountWithFeevue_type_template_id_21bb9556_scoped_true_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"101b3dcf-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/AmountWithFee.vue?vue&type=template&id=0015d247&scoped=true&
+var AmountWithFeevue_type_template_id_0015d247_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"amount-with-fee"},[_c('AmountInput',{ref:"amountInput",staticClass:"value",class:{invalid: !_vm.isValid && _vm.liveAmount > 0},model:{value:(_vm.liveAmount),callback:function ($$v) {_vm.liveAmount=$$v},expression:"liveAmount"}}),_c('div',{staticClass:"fee-section nq-text-s"},[(!_vm.isValid && _vm.liveAmount)?_c('div',{staticClass:"nq-red"},[_vm._t("insufficient-balance-error",[_vm._v(_vm._s(_vm.$t('Insufficient balance')))])],2):_c('div',[(_vm.fiatAmount !== null && _vm.fiatCurrency)?_c('span',{staticClass:"fiat"},[_vm._v(" ~"),_c('FiatAmount',{attrs:{"amount":_vm.fiatAmount,"currency":_vm.fiatCurrency}})],1):_vm._e(),(_vm.value.fee)?_c('span',{staticClass:"fee"},[_vm._v(" + "),_c('Amount',{attrs:{"amount":_vm.value.fee,"minDecimals":0,"maxDecimals":5}}),_vm._v(" "+_vm._s(_vm.$t('fee'))+" ")],1):_vm._e()])])],1)}
+var AmountWithFeevue_type_template_id_0015d247_scoped_true_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/AmountWithFee.vue?vue&type=template&id=21bb9556&scoped=true&
+// CONCATENATED MODULE: ./src/components/AmountWithFee.vue?vue&type=template&id=0015d247&scoped=true&
 
-// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--13-1!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/AmountWithFee.vue?vue&type=script&lang=ts&
-
-
-
-
-
-
-
-
-
-
-
-
-var AmountWithFeevue_type_script_lang_ts_AmountWithFee =
-/*#__PURE__*/
-function (_Mixins) {
-  _inherits(AmountWithFee, _Mixins);
-
-  function AmountWithFee() {
-    var _this;
-
-    _classCallCheck(this, AmountWithFee);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(AmountWithFee).apply(this, arguments));
-    _this.liveAmount = _this.value.amount;
-    return _this;
-  }
-
-  _createClass(AmountWithFee, [{
-    key: "mounted",
-    value: function mounted() {
-      this.watchAmountChange(this.liveAmount);
-    }
-  }, {
-    key: "watchAvailableAmountChange",
-    value: function watchAvailableAmountChange(value) {
-      this.$emit('input', {
-        amount: this.liveAmount,
-        fee: this.value.fee,
-        isValid: this.isValid
-      });
-    }
-  }, {
-    key: "watchAmountChange",
-    value: function watchAmountChange(value) {
-      this.$emit('input', {
-        amount: this.liveAmount,
-        fee: this.value.fee,
-        isValid: this.isValid
-      });
-    }
-  }, {
-    key: "focus",
-    value: function focus() {
-      this.$refs.amountInput.focus();
-    }
-  }, {
-    key: "isValid",
-    get: function get() {
-      return this.liveAmount > 0 && this.liveAmount + this.value.fee <= this.availableBalance;
-    }
-  }]);
-
-  return AmountWithFee;
-}(Object(external_vue_property_decorator_["Mixins"])(i18n_I18nMixin));
-
-__decorate([Object(external_vue_property_decorator_["Prop"])({
-  type: Object,
-  default: function _default() {
-    return {
-      amount: 0,
-      fee: 0,
-      isValid: false
-    };
-  }
-})], AmountWithFeevue_type_script_lang_ts_AmountWithFee.prototype, "value", void 0);
-
-__decorate([Object(external_vue_property_decorator_["Prop"])({
-  type: Number,
-  default: 0
-})], AmountWithFeevue_type_script_lang_ts_AmountWithFee.prototype, "availableBalance", void 0);
-
-__decorate([Object(external_vue_property_decorator_["Watch"])('isValid', {
-  immediate: true
-})], AmountWithFeevue_type_script_lang_ts_AmountWithFee.prototype, "watchAvailableAmountChange", null);
-
-__decorate([Object(external_vue_property_decorator_["Watch"])('liveAmount', {
-  immediate: true
-})], AmountWithFeevue_type_script_lang_ts_AmountWithFee.prototype, "watchAmountChange", null);
-
-AmountWithFeevue_type_script_lang_ts_AmountWithFee = __decorate([Object(external_vue_property_decorator_["Component"])({
-  name: 'AmountWithFee',
-  components: {
-    Amount: components_Amount,
-    AmountInput: components_AmountInput
-  }
-})], AmountWithFeevue_type_script_lang_ts_AmountWithFee);
-/* harmony default export */ var AmountWithFeevue_type_script_lang_ts_ = (AmountWithFeevue_type_script_lang_ts_AmountWithFee);
-// CONCATENATED MODULE: ./src/components/AmountWithFee.vue?vue&type=script&lang=ts&
- /* harmony default export */ var components_AmountWithFeevue_type_script_lang_ts_ = (AmountWithFeevue_type_script_lang_ts_); 
-// EXTERNAL MODULE: ./src/components/AmountWithFee.vue?vue&type=style&index=0&id=21bb9556&scoped=true&lang=css&
-var AmountWithFeevue_type_style_index_0_id_21bb9556_scoped_true_lang_css_ = __webpack_require__("8d52");
-
-// CONCATENATED MODULE: ./src/components/AmountWithFee.vue
-
-
-
-
-
-
-/* normalize component */
-
-var AmountWithFee_component = normalizeComponent(
-  components_AmountWithFeevue_type_script_lang_ts_,
-  AmountWithFeevue_type_template_id_21bb9556_scoped_true_render,
-  AmountWithFeevue_type_template_id_21bb9556_scoped_true_staticRenderFns,
-  false,
-  null,
-  "21bb9556",
-  null
-  
-)
-
-/* harmony default export */ var components_AmountWithFee = (AmountWithFee_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/BottomOverlay.vue?vue&type=template&id=10321bd4&scoped=true&
-var BottomOverlayvue_type_template_id_10321bd4_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"bottom-overlay",class:[_vm.theme, { 'has-close-button': _vm.hasCloseButton }]},[_vm._t("default"),(_vm.hasCloseButton)?_c('CloseButton',{staticClass:"close-button",class:{'inverse': ['dark', 'green'].includes(_vm.theme)},on:{"click":function($event){return _vm.$emit(_vm.constructor.Events.CLOSE)}}}):_vm._e()],2)}
-var BottomOverlayvue_type_template_id_10321bd4_scoped_true_staticRenderFns = []
-
-
-// CONCATENATED MODULE: ./src/components/BottomOverlay.vue?vue&type=template&id=10321bd4&scoped=true&
-
-// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--13-1!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/BottomOverlay.vue?vue&type=script&lang=ts&
-
-
-
-
-
-
-
-
-
-
-var BottomOverlayvue_type_script_lang_ts_BottomOverlay =
-/*#__PURE__*/
-function (_Vue) {
-  _inherits(BottomOverlay, _Vue);
-
-  function BottomOverlay() {
-    var _this;
-
-    _classCallCheck(this, BottomOverlay);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(BottomOverlay).apply(this, arguments));
-    _this.hasCloseButton = false;
-    return _this;
-  }
-
-  _createClass(BottomOverlay, [{
-    key: "_onListenerChange",
-    value: function _onListenerChange() {
-      this.hasCloseButton = !!this.$listeners.close;
-    }
-  }]);
-
-  return BottomOverlay;
-}(external_vue_property_decorator_["Vue"]);
-
-__decorate([Object(external_vue_property_decorator_["Prop"])({
-  type: String,
-  default: 'dark',
-  validator: function validator(theme) {
-    return ['dark', 'light', 'green'].includes(theme);
-  }
-})], BottomOverlayvue_type_script_lang_ts_BottomOverlay.prototype, "theme", void 0);
-
-__decorate([Object(external_vue_property_decorator_["Watch"])('$listeners.close', {
-  immediate: true
-})], BottomOverlayvue_type_script_lang_ts_BottomOverlay.prototype, "_onListenerChange", null);
-
-BottomOverlayvue_type_script_lang_ts_BottomOverlay = __decorate([Object(external_vue_property_decorator_["Component"])({
-  components: {
-    CloseButton: components_CloseButton
-  }
-})], BottomOverlayvue_type_script_lang_ts_BottomOverlay);
-
-(function (BottomOverlay) {
-  var Events;
-
-  (function (Events) {
-    Events["CLOSE"] = "close";
-  })(Events = BottomOverlay.Events || (BottomOverlay.Events = {}));
-})(BottomOverlayvue_type_script_lang_ts_BottomOverlay || (BottomOverlayvue_type_script_lang_ts_BottomOverlay = {}));
-
-/* harmony default export */ var BottomOverlayvue_type_script_lang_ts_ = (BottomOverlayvue_type_script_lang_ts_BottomOverlay);
-// CONCATENATED MODULE: ./src/components/BottomOverlay.vue?vue&type=script&lang=ts&
- /* harmony default export */ var components_BottomOverlayvue_type_script_lang_ts_ = (BottomOverlayvue_type_script_lang_ts_); 
-// EXTERNAL MODULE: ./src/components/BottomOverlay.vue?vue&type=style&index=0&id=10321bd4&scoped=true&lang=css&
-var BottomOverlayvue_type_style_index_0_id_10321bd4_scoped_true_lang_css_ = __webpack_require__("f83f");
-
-// CONCATENATED MODULE: ./src/components/BottomOverlay.vue
-
-
-
-
-
-
-/* normalize component */
-
-var BottomOverlay_component = normalizeComponent(
-  components_BottomOverlayvue_type_script_lang_ts_,
-  BottomOverlayvue_type_template_id_10321bd4_scoped_true_render,
-  BottomOverlayvue_type_template_id_10321bd4_scoped_true_staticRenderFns,
-  false,
-  null,
-  "10321bd4",
-  null
-  
-)
-
-/* harmony default export */ var components_BottomOverlay = (BottomOverlay_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Carousel.vue?vue&type=template&id=c078661e&scoped=true&
-var Carouselvue_type_template_id_c078661e_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"carousel",class:{ disabled: _vm.disabled }},_vm._l((_vm.entries),function(entry,index){return _c('div',{key:index,ref:entry,refInFor:true,class:{ selected: _vm.effectiveSelected === entry },on:{"click":function($event){!_vm.disabled && _vm._updateSelection(entry)},"focusin":function($event){!_vm.disabled && _vm._updateSelection(entry)}}},[_vm._t(entry)],2)}),0)}
-var Carouselvue_type_template_id_c078661e_scoped_true_staticRenderFns = []
-
-
-// CONCATENATED MODULE: ./src/components/Carousel.vue?vue&type=template&id=c078661e&scoped=true&
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.map.js
-var es_map = __webpack_require__("4ec9");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.math.sign.js
-var es_math_sign = __webpack_require__("2af1");
-
-// CONCATENATED MODULE: ./node_modules/@nimiq/utils/dist/module/Tweenable.js
-class Tweenable {
-    constructor(targetValue = 0, startValue = targetValue, tweenTime = 0, startTime = Date.now(), easing = Tweenable.Easing.EASE_IN_OUT_CUBIC) {
-        this.targetValue = targetValue;
-        this.startValue = startValue;
-        this.tweenTime = tweenTime;
-        this.startTime = startTime;
-        this.easing = easing;
-    }
-    get currentValue() {
-        const easedProgress = this.easing(this.progress);
-        return this.startValue + (this.targetValue - this.startValue) * easedProgress;
-    }
-    get progress() {
-        if (this.tweenTime === 0)
-            return 1;
-        return Math.min(1, (Date.now() - this.startTime) / this.tweenTime);
-    }
-    get finished() {
-        return this.progress === 1;
-    }
-    tweenTo(targetValue, tweenTime = this.tweenTime) {
-        if (targetValue === this.targetValue)
-            return;
-        this.startValue = this.currentValue;
-        this.targetValue = targetValue;
-        this.startTime = Date.now();
-        this.tweenTime = tweenTime;
-    }
-}
-(function (Tweenable) {
-    // see https://gist.github.com/gre/1650294 for more easing functions
-    Tweenable.Easing = {
-        LINEAR: (t) => t,
-        EASE_IN_OUT_CUBIC: (t) => (t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1),
-    };
-})(Tweenable || (Tweenable = {}));
-var Tweenable$1 = Tweenable;
-
-/* harmony default export */ var module_Tweenable = (Tweenable$1);
-//# sourceMappingURL=Tweenable.js.map
-
-// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--13-1!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Carousel.vue?vue&type=script&lang=ts&
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var Carouselvue_type_script_lang_ts_Carousel =
-/*#__PURE__*/
-function (_Vue) {
-  _inherits(Carousel, _Vue);
-
-  function Carousel() {
-    var _this;
-
-    _classCallCheck(this, Carousel);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Carousel).apply(this, arguments));
-    _this.effectiveSelected = '';
-    _this.radius = new module_Tweenable();
-    _this.rotations = new Map(); // map entry -> rotation
-
-    _this.requestAnimationFrameId = null;
-    return _this;
-  }
-
-  _createClass(Carousel, [{
-    key: "mounted",
-    value: function () {
-      var _mounted = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee() {
-        return regeneratorRuntime.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                this._onKeydown = this._onKeydown.bind(this);
-                document.addEventListener('keydown', this._onKeydown); // trigger these manually instead of via immediate watcher to avoid animating on first render
-
-                _context.next = 4;
-                return this.updateDimensions(false);
-
-              case 4:
-                this._updateSelection(this.selected);
-
-                this._updateRotations(false);
-
-              case 6:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this);
-      }));
-
-      function mounted() {
-        return _mounted.apply(this, arguments);
-      }
-
-      return mounted;
-    }()
-  }, {
-    key: "destroyed",
-    value: function destroyed() {
-      document.removeEventListener('keydown', this._onKeydown);
-      if (this.requestAnimationFrameId === null) return;
-      cancelAnimationFrame(this.requestAnimationFrameId);
-    }
-  }, {
-    key: "updateDimensions",
-    value: function () {
-      var _updateDimensions = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee2() {
-        var newWatcherValueOrTween,
-            tween,
-            largestHeight,
-            largestMinDistance,
-            i,
-            _this$$refs$this$entr,
-            el1,
-            _this$$refs$this$entr2,
-            el2,
-            minDistance,
-            centerAngle,
-            radius,
-            _args2 = arguments;
-
-        return regeneratorRuntime.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                newWatcherValueOrTween = _args2.length > 0 && _args2[0] !== undefined ? _args2[0] : true;
-                tween = typeof newWatcherValueOrTween === 'boolean' ? newWatcherValueOrTween : true;
-                _context2.next = 4;
-                return external_vue_property_decorator_["Vue"].nextTick();
-
-              case 4:
-                // let Vue render new entries
-                largestHeight = 0;
-                largestMinDistance = 0;
-
-                for (i = 0; i < this.entries.length; ++i) {
-                  _this$$refs$this$entr = _slicedToArray(this.$refs[this.entries[i]], 1), el1 = _this$$refs$this$entr[0];
-                  _this$$refs$this$entr2 = _slicedToArray(this.$refs[this.entries[(i + 1) % this.entries.length]], 1), el2 = _this$$refs$this$entr2[0];
-                  largestHeight = Math.max(largestHeight, el1.offsetHeight);
-                  minDistance = el1.offsetWidth / 2 + el2.offsetWidth / 2 + this.entryMargin;
-                  largestMinDistance = Math.max(largestMinDistance, minDistance);
-                } // Choose radius big enough such that two items can be rendered side by side without overlapping.
-                // Calculate on a right triangle formed by radius, half distance and perpendicular from center point
-                // to distance line.
-
-
-                centerAngle = 2 * Math.PI / this._totalPositionCount / 2; // angle at circle center point
-
-                radius = largestMinDistance / 2 / Math.sin(centerAngle);
-                this.radius.tweenTo(radius, tween ? this.animationDuration : 0);
-                this.$el.style.minHeight = "".concat(largestHeight, "px");
-
-                this._rerender();
-
-              case 12:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2, this);
-      }));
-
-      function updateDimensions() {
-        return _updateDimensions.apply(this, arguments);
-      }
-
-      return updateDimensions;
-    }()
-  }, {
-    key: "_onEntriesChange",
-    value: function () {
-      var _onEntriesChange2 = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee3() {
-        return regeneratorRuntime.wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                _context3.next = 2;
-                return this.updateDimensions();
-
-              case 2:
-                this._updateSelection(this.effectiveSelected); // re-validate
-
-
-                this._updateRotations();
-
-              case 4:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3, this);
-      }));
-
-      function _onEntriesChange() {
-        return _onEntriesChange2.apply(this, arguments);
-      }
-
-      return _onEntriesChange;
-    }()
-  }, {
-    key: "_updateSelection",
-    value: function _updateSelection(newSelection) {
-      var oldSelection = this.effectiveSelected;
-      var isNewSelectionValid = this.entries.includes(newSelection);
-      var isOldSelectionValid = this.entries.includes(oldSelection);
-
-      if (isNewSelectionValid) {
-        this.effectiveSelected = newSelection;
-      } else if (!isOldSelectionValid) {
-        this.effectiveSelected = this.entries[0];
-      } // else keep the old selection
-
-
-      if (this.effectiveSelected !== oldSelection) {
-        this.$emit('select', this.effectiveSelected);
-      }
-    }
-  }, {
-    key: "_updateRotations",
-    value: function _updateRotations() {
-      var newWatcherValueOrTween = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
-      var previousWatcherValue = arguments.length > 1 ? arguments[1] : undefined;
-      var tween = typeof newWatcherValueOrTween === 'boolean' && typeof previousWatcherValue === 'undefined' ? newWatcherValueOrTween // specified whether to tween
-      : true; // did not specify whether to tween or method was called as a watcher (default to true)
-      // clean up removed entries
-
-      var _iteratorNormalCompletion = true;
-      var _didIteratorError = false;
-      var _iteratorError = undefined;
-
-      try {
-        for (var _iterator = this.rotations.keys()[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-          var entry = _step.value;
-          if (this.entries.includes(entry)) continue;
-          this.rotations.delete(entry);
-        } // update rotations
-
-      } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion && _iterator.return != null) {
-            _iterator.return();
-          }
-        } finally {
-          if (_didIteratorError) {
-            throw _iteratorError;
-          }
-        }
-      }
-
-      var _iteratorNormalCompletion2 = true;
-      var _didIteratorError2 = false;
-      var _iteratorError2 = undefined;
-
-      try {
-        for (var _iterator2 = this.entries[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-          var _entry = _step2.value;
-          var rotation = this.rotations.get(_entry) || new module_Tweenable();
-          var tweenTime = tween ? this.animationDuration : 0;
-          rotation.tweenTo(this._calculateTargetRotation(_entry, rotation.currentValue), tweenTime);
-          this.rotations.set(_entry, rotation);
-        }
-      } catch (err) {
-        _didIteratorError2 = true;
-        _iteratorError2 = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
-            _iterator2.return();
-          }
-        } finally {
-          if (_didIteratorError2) {
-            throw _iteratorError2;
-          }
-        }
-      }
-
-      this._rerender();
-    }
-    /**
-     * @param entry
-     * @param currentRotation - Rotation in radians
-     * @private
-     */
-
-  }, {
-    key: "_calculateTargetRotation",
-    value: function _calculateTargetRotation(entry, currentRotation) {
-      if (this.disabled && entry !== this.effectiveSelected) {
-        // hide not selected entries at other end of circle
-        return currentRotation + this._calculateRotationInClosestDirection(currentRotation, Math.PI);
-      }
-
-      var stepSize = 2 * Math.PI / this._totalPositionCount;
-      var entryIndex = this.entries.indexOf(entry);
-      var selectedIndex = this.entries.indexOf(this.effectiveSelected);
-      var offset = entryIndex - selectedIndex;
-
-      if (this._hasDummyPosition && offset > this._totalPositionCount / 2) {
-        // skip dummy position
-        offset += 1;
-      }
-
-      return currentRotation + this._calculateRotationInClosestDirection(currentRotation, offset * stepSize);
-    }
-  }, {
-    key: "_rerender",
-    value: function _rerender() {
-      var _this2 = this;
-
-      if (this.requestAnimationFrameId !== null) return;
-      this.requestAnimationFrameId = requestAnimationFrame(function () {
-        var zCoordinatesForEntries = [];
-        var finished = _this2.radius.finished;
-        var _iteratorNormalCompletion3 = true;
-        var _didIteratorError3 = false;
-        var _iteratorError3 = undefined;
-
-        try {
-          for (var _iterator3 = _this2.rotations[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-            var _step3$value = _slicedToArray(_step3.value, 2),
-                entry = _step3$value[0],
-                rotation = _step3$value[1];
-
-            var currentRotation = rotation.currentValue;
-            var currentRadius = _this2.radius.currentValue;
-            var x = Math.sin(currentRotation) * currentRadius;
-            var z = Math.cos(currentRotation) * currentRadius - currentRadius;
-
-            var _this2$$refs$entry = _slicedToArray(_this2.$refs[entry], 1),
-                _el = _this2$$refs$entry[0];
-
-            _el.style.transform = "translate3d(calc(".concat(x, "px - 50%),-50%,").concat(z, "px)");
-            _el.style.display = _this2._shouldHide(entry) ? 'none' : '';
-            zCoordinatesForEntries.push([entry, z]);
-            finished = finished && rotation.finished;
-          } // Note that instead of setting z-index manually, we could use transform-style: preserve-3d to order
-          // automatically by z coordinate. But unfortunately, this makes the entries not clickable anymore.
-
-        } catch (err) {
-          _didIteratorError3 = true;
-          _iteratorError3 = err;
-        } finally {
-          try {
-            if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
-              _iterator3.return();
-            }
-          } finally {
-            if (_didIteratorError3) {
-              throw _iteratorError3;
-            }
-          }
-        }
-
-        zCoordinatesForEntries.sort(function (_ref, _ref2) {
-          var _ref3 = _slicedToArray(_ref, 2),
-              z1 = _ref3[1];
-
-          var _ref4 = _slicedToArray(_ref2, 2),
-              z2 = _ref4[1];
-
-          return z1 - z2;
-        });
-
-        for (var i = 0; i < zCoordinatesForEntries.length; ++i) {
-          var _this2$$refs$zCoordin = _slicedToArray(_this2.$refs[zCoordinatesForEntries[i][0]], 1),
-              el = _this2$$refs$zCoordin[0];
-
-          el.style.zIndex = "".concat(i);
-        }
-
-        _this2.requestAnimationFrameId = null;
-        if (!finished) _this2._rerender();
-      });
-    }
-  }, {
-    key: "_calculateRotationInClosestDirection",
-    value: function _calculateRotationInClosestDirection(fromAngle, toAngle) {
-      // angle offset modulo full rotations
-      var rotation = (toAngle - fromAngle) % (2 * Math.PI); // determine rotation in opposite direction (subtracting or adding a full circle depending on direction (sign))
-
-      var rotationOppositeDirection = rotation - Math.sign(rotation) * 2 * Math.PI;
-
-      if (Math.abs(Math.abs(rotation) - Math.abs(rotationOppositeDirection)) < 1e-10) {
-        // in case of ambiguity chose a default direction
-        return Math.min(rotation, rotationOppositeDirection);
-      } else if (Math.abs(rotation) < Math.abs(rotationOppositeDirection)) {
-        return rotation;
-      } else {
-        return rotationOppositeDirection;
-      }
-    }
-  }, {
-    key: "_shouldHide",
-    value: function _shouldHide(entry) {
-      var rotation = this.rotations.get(entry);
-      if (!rotation || !this.disabled && !this.hideBackgroundEntries) return false;
-      var absoluteRotation = Math.abs(this._calculateRotationInClosestDirection(0, rotation.currentValue));
-
-      if (this.disabled) {
-        // Hide disabled elements once they reached the opposite end of the circle, also to avoid that they are
-        // still reachable via tab. While they're animating to get there, display them even when they're in the
-        // back part of the circle.
-        return Math.abs(absoluteRotation - Math.PI) < 1e-10;
-      } else if (this.hideBackgroundEntries) {
-        // Hide entries in the back part of the circle as these will not be visible behind the front entries
-        var stepSize = 2 * Math.PI / this._totalPositionCount;
-        var threshold = Math.PI / 2 + stepSize / (this._totalPositionCount - 1); // just a heuristic but works ok
-
-        return absoluteRotation > threshold;
-      }
-    }
-  }, {
-    key: "_onKeydown",
-    value: function _onKeydown(event) {
-      var target = event.target;
-      if (this.disabled || target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || this.rotations.values().next().value.progress < .5 // block if previous change not animated far enough
-      ) return;
-      var currentIndex = this.entries.indexOf(this.effectiveSelected);
-      var newIndex;
-
-      if (event.key === 'ArrowLeft') {
-        newIndex = (currentIndex - 1 + this.entries.length) % this.entries.length;
-      } else if (event.key === 'ArrowRight') {
-        newIndex = (currentIndex + 1) % this.entries.length;
-      } else {
-        return;
-      }
-
-      this._updateSelection(this.entries[newIndex]);
-    }
-  }, {
-    key: "_hasDummyPosition",
-    get: function get() {
-      // add dummy to avoid that second entry is hidden exactly behind selected item on opposite side of circle.
-      return this.entries.length <= 2;
-    }
-  }, {
-    key: "_totalPositionCount",
-    get: function get() {
-      return this.entries.length + (this._hasDummyPosition ? 1 : 0);
-    }
-  }]);
-
-  return Carousel;
-}(external_vue_property_decorator_["Vue"]);
-
-__decorate([Object(external_vue_property_decorator_["Prop"])({
-  type: Array,
-  default: function _default() {
-    return [];
-  },
-  validator: function validator(entries) {
-    return Array.isArray(entries) && entries.length > 0 && !entries.some(function (entry) {
-      return typeof entry !== 'string';
-    });
-  }
-})], Carouselvue_type_script_lang_ts_Carousel.prototype, "entries", void 0);
-
-__decorate([Object(external_vue_property_decorator_["Prop"])(String)], Carouselvue_type_script_lang_ts_Carousel.prototype, "selected", void 0);
-
-__decorate([Object(external_vue_property_decorator_["Prop"])({
-  type: Number,
-  default: 16
-})], Carouselvue_type_script_lang_ts_Carousel.prototype, "entryMargin", void 0);
-
-__decorate([Object(external_vue_property_decorator_["Prop"])({
-  type: Number,
-  default: 1000
-})], Carouselvue_type_script_lang_ts_Carousel.prototype, "animationDuration", void 0);
-
-__decorate([Object(external_vue_property_decorator_["Prop"])({
-  type: Boolean,
-  default: false
-})], Carouselvue_type_script_lang_ts_Carousel.prototype, "hideBackgroundEntries", void 0);
-
-__decorate([Object(external_vue_property_decorator_["Prop"])({
-  type: Boolean,
-  default: false
-})], Carouselvue_type_script_lang_ts_Carousel.prototype, "disabled", void 0);
-
-__decorate([Object(external_vue_property_decorator_["Watch"])('entryMargin')], Carouselvue_type_script_lang_ts_Carousel.prototype, "updateDimensions", null);
-
-__decorate([Object(external_vue_property_decorator_["Watch"])('entries')], Carouselvue_type_script_lang_ts_Carousel.prototype, "_onEntriesChange", null);
-
-__decorate([Object(external_vue_property_decorator_["Watch"])('selected')], Carouselvue_type_script_lang_ts_Carousel.prototype, "_updateSelection", null);
-
-__decorate([Object(external_vue_property_decorator_["Watch"])('effectiveSelected'), Object(external_vue_property_decorator_["Watch"])('disabled')], Carouselvue_type_script_lang_ts_Carousel.prototype, "_updateRotations", null);
-
-__decorate([Object(external_vue_property_decorator_["Watch"])('hideBackgroundEntries')], Carouselvue_type_script_lang_ts_Carousel.prototype, "_rerender", null);
-
-Carouselvue_type_script_lang_ts_Carousel = __decorate([external_vue_property_decorator_["Component"]], Carouselvue_type_script_lang_ts_Carousel);
-/* harmony default export */ var Carouselvue_type_script_lang_ts_ = (Carouselvue_type_script_lang_ts_Carousel);
-// CONCATENATED MODULE: ./src/components/Carousel.vue?vue&type=script&lang=ts&
- /* harmony default export */ var components_Carouselvue_type_script_lang_ts_ = (Carouselvue_type_script_lang_ts_); 
-// EXTERNAL MODULE: ./src/components/Carousel.vue?vue&type=style&index=0&id=c078661e&scoped=true&lang=css&
-var Carouselvue_type_style_index_0_id_c078661e_scoped_true_lang_css_ = __webpack_require__("83dd");
-
-// CONCATENATED MODULE: ./src/components/Carousel.vue
-
-
-
-
-
-
-/* normalize component */
-
-var Carousel_component = normalizeComponent(
-  components_Carouselvue_type_script_lang_ts_,
-  Carouselvue_type_template_id_c078661e_scoped_true_render,
-  Carouselvue_type_template_id_c078661e_scoped_true_staticRenderFns,
-  false,
-  null,
-  "c078661e",
-  null
-  
-)
-
-/* harmony default export */ var components_Carousel = (Carousel_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CircleSpinner.vue?vue&type=template&id=2bc59fa8&scoped=true&functional=true&
-var CircleSpinnervue_type_template_id_2bc59fa8_scoped_true_functional_true_render = function (_h,_vm) {var _c=_vm._c;return _c('svg',{staticClass:"circle-spinner",attrs:{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 18 18","width":"18","height":"18","fill":"none","stroke-width":"2","stroke-linecap":"round"}},[_c('path',{attrs:{"stroke":"#0582CA","d":"M9,1c4.42,0,8,3.58,8,8"}}),_c('path',{attrs:{"stroke":"#1F2348","opacity":".3","d":"M4.27,2.56C2.29,4.01,1,6.35,1,9c0,4.42,3.58,8,8,8c2.65,0,4.99-1.29,6.44-3.27"}})])}
-var CircleSpinnervue_type_template_id_2bc59fa8_scoped_true_functional_true_staticRenderFns = []
-
-
-// CONCATENATED MODULE: ./src/components/CircleSpinner.vue?vue&type=template&id=2bc59fa8&scoped=true&functional=true&
-
-// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--13-1!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CircleSpinner.vue?vue&type=script&lang=ts&
-/* harmony default export */ var CircleSpinnervue_type_script_lang_ts_ = ({});
-// CONCATENATED MODULE: ./src/components/CircleSpinner.vue?vue&type=script&lang=ts&
- /* harmony default export */ var components_CircleSpinnervue_type_script_lang_ts_ = (CircleSpinnervue_type_script_lang_ts_); 
-// EXTERNAL MODULE: ./src/components/CircleSpinner.vue?vue&type=style&index=0&id=2bc59fa8&scoped=true&lang=css&
-var CircleSpinnervue_type_style_index_0_id_2bc59fa8_scoped_true_lang_css_ = __webpack_require__("702c");
-
-// CONCATENATED MODULE: ./src/components/CircleSpinner.vue
-
-
-
-
-
-
-/* normalize component */
-
-var CircleSpinner_component = normalizeComponent(
-  components_CircleSpinnervue_type_script_lang_ts_,
-  CircleSpinnervue_type_template_id_2bc59fa8_scoped_true_functional_true_render,
-  CircleSpinnervue_type_template_id_2bc59fa8_scoped_true_functional_true_staticRenderFns,
-  true,
-  null,
-  "2bc59fa8",
-  null
-  
-)
-
-/* harmony default export */ var CircleSpinner = (CircleSpinner_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CopyableField.vue?vue&type=template&id=23ed6b92&scoped=true&
-var CopyableFieldvue_type_template_id_23ed6b92_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"copyable-field",class:{ small: _vm.small }},[(_vm.label)?_c('span',{staticClass:"nq-label"},[_vm._v(_vm._s(_vm.label))]):_vm._e(),_c('div',{staticClass:"copyable-field-content",class:{ 'simple-value': !_vm.isKeyedValue, copied: _vm.copied },on:{"click":_vm.copy}},[_c('div',{ref:"value-container",staticClass:"value-container",style:({ fontSize: _vm.fontSize+'rem' })},[_c('span',{ref:"value",staticClass:"value"},[_vm._v(" "+_vm._s(_vm.isKeyedValue ? _vm.value[_vm.currentKey] : _vm.value)+" ")])]),_vm._l(((_vm.isKeyedValue ? Object.keys(_vm.value) : [])),function(key){return _c('button',{staticClass:"nq-button-s",class:{
-                inverse: _vm.currentKey === key,
-                'single-key': _vm.hasSingleKey,
-            },attrs:{"tabindex":_vm.hasSingleKey ? -1 : 0},on:{"click":function($event){$event.stopPropagation();_vm.currentKey = key}}},[_vm._v(_vm._s(key))])}),_c('div',{staticClass:"copy-notice"},[_vm._v(_vm._s(_vm.$t('Copied')))])],2)])}
-var CopyableFieldvue_type_template_id_23ed6b92_scoped_true_staticRenderFns = []
-
-
-// CONCATENATED MODULE: ./src/components/CopyableField.vue?vue&type=template&id=23ed6b92&scoped=true&
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.small.js
-var es_string_small = __webpack_require__("c96a");
-
-// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--13-1!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CopyableField.vue?vue&type=script&lang=ts&
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var CopyableField_1;
-
-
-
-
-
-var CopyableFieldvue_type_script_lang_ts_CopyableField = CopyableField_1 =
-/*#__PURE__*/
-function (_Mixins) {
-  _inherits(CopyableField, _Mixins);
-
-  function CopyableField() {
-    var _this;
-
-    _classCallCheck(this, CopyableField);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(CopyableField).apply(this, arguments));
-    _this.currentKey = '';
-    _this.fontSize = _this.small ? CopyableField_1.DEFAULT_FONT_SIZE_SMALL : CopyableField_1.DEFAULT_FONT_SIZE;
-    _this.copied = false;
-    return _this;
-  }
-
-  _createClass(CopyableField, [{
-    key: "mounted",
-    value: function mounted() {
-      this._updateFontSize = this._updateFontSize.bind(this);
-      window.addEventListener('resize', this._updateFontSize);
-
-      this._updateFontSize();
-    }
-  }, {
-    key: "destroyed",
-    value: function destroyed() {
-      window.removeEventListener('resize', this._updateFontSize);
-    }
-  }, {
-    key: "_onValueChange",
-    value: function _onValueChange() {
-      var keys = this.isKeyedValue ? Object.keys(this.value) : [];
-
-      if (keys.length > 0 && (!this.currentKey || !keys.includes(this.currentKey))) {
-        this.currentKey = keys[0]; // will also trigger _updateFontSize
-      } else {
-        this._updateFontSize(); // trigger manually
-
-      }
-    }
-  }, {
-    key: "_updateFontSize",
-    value: function () {
-      var _updateFontSize2 = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee() {
-        var valueContainer, valueElement, defaultFontSize, availableWidth, referenceWidth, scaleFactor;
-        return regeneratorRuntime.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.next = 2;
-                return external_vue_property_decorator_["Vue"].nextTick();
-
-              case 2:
-                // let Vue render the component first
-                valueContainer = this.$refs['value-container'];
-                valueElement = this.$refs.value;
-                defaultFontSize = this.small ? CopyableField_1.DEFAULT_FONT_SIZE_SMALL : CopyableField_1.DEFAULT_FONT_SIZE;
-                valueElement.style.fontSize = "".concat(defaultFontSize, "rem");
-                availableWidth = valueContainer.offsetWidth;
-                referenceWidth = valueElement.offsetWidth;
-                scaleFactor = availableWidth / referenceWidth;
-                valueElement.style.fontSize = '';
-                this.fontSize = Math.min(defaultFontSize, defaultFontSize * scaleFactor);
-
-              case 11:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this);
-      }));
-
-      function _updateFontSize() {
-        return _updateFontSize2.apply(this, arguments);
-      }
-
-      return _updateFontSize;
-    }()
-  }, {
-    key: "copy",
-    value: function copy() {
-      var _this2 = this;
-
-      Clipboard.copy(this.isKeyedValue ? this.value[this.currentKey].toString() : this.value.toString());
-      this.copied = true;
-      window.clearTimeout(this._copiedResetTimeout);
-      this._copiedResetTimeout = window.setTimeout(function () {
-        _this2.copied = false;
-      }, 500);
-    }
-  }, {
-    key: "isKeyedValue",
-    get: function get() {
-      return typeof this.value !== 'string' && typeof this.value !== 'number';
-    }
-  }, {
-    key: "hasSingleKey",
-    get: function get() {
-      return this.isKeyedValue && Object.keys(this.value).length === 1;
-    }
-  }]);
-
-  return CopyableField;
-}(Object(external_vue_property_decorator_["Mixins"])(i18n_I18nMixin));
-
-CopyableFieldvue_type_script_lang_ts_CopyableField.DEFAULT_FONT_SIZE = 3; // in rem
-
-CopyableFieldvue_type_script_lang_ts_CopyableField.DEFAULT_FONT_SIZE_SMALL = 2.5; // in rem
-
-__decorate([Object(external_vue_property_decorator_["Prop"])({
-  required: true,
-  validator: function validator(value) {
-    return typeof value === 'string' || typeof value === 'number' || _typeof(value) === 'object' && Object.keys(value).length > 0;
-  }
-})], CopyableFieldvue_type_script_lang_ts_CopyableField.prototype, "value", void 0);
-
-__decorate([Object(external_vue_property_decorator_["Prop"])(String)], CopyableFieldvue_type_script_lang_ts_CopyableField.prototype, "label", void 0);
-
-__decorate([Object(external_vue_property_decorator_["Prop"])({
-  type: Boolean,
-  default: false
-})], CopyableFieldvue_type_script_lang_ts_CopyableField.prototype, "small", void 0);
-
-__decorate([Object(external_vue_property_decorator_["Watch"])('value', {
-  immediate: true
-})], CopyableFieldvue_type_script_lang_ts_CopyableField.prototype, "_onValueChange", null);
-
-__decorate([Object(external_vue_property_decorator_["Watch"])('currentKey'), Object(external_vue_property_decorator_["Watch"])('small')], CopyableFieldvue_type_script_lang_ts_CopyableField.prototype, "_updateFontSize", null);
-
-CopyableFieldvue_type_script_lang_ts_CopyableField = CopyableField_1 = __decorate([Object(external_vue_property_decorator_["Component"])({
-  name: 'CopyableField'
-})], CopyableFieldvue_type_script_lang_ts_CopyableField);
-/* harmony default export */ var CopyableFieldvue_type_script_lang_ts_ = (CopyableFieldvue_type_script_lang_ts_CopyableField);
-// CONCATENATED MODULE: ./src/components/CopyableField.vue?vue&type=script&lang=ts&
- /* harmony default export */ var components_CopyableFieldvue_type_script_lang_ts_ = (CopyableFieldvue_type_script_lang_ts_); 
-// EXTERNAL MODULE: ./src/components/CopyableField.vue?vue&type=style&index=0&id=23ed6b92&scoped=true&lang=css&
-var CopyableFieldvue_type_style_index_0_id_23ed6b92_scoped_true_lang_css_ = __webpack_require__("ca9d");
-
-// CONCATENATED MODULE: ./src/components/CopyableField.vue
-
-
-
-
-
-
-/* normalize component */
-
-var CopyableField_component = normalizeComponent(
-  components_CopyableFieldvue_type_script_lang_ts_,
-  CopyableFieldvue_type_template_id_23ed6b92_scoped_true_render,
-  CopyableFieldvue_type_template_id_23ed6b92_scoped_true_staticRenderFns,
-  false,
-  null,
-  "23ed6b92",
-  null
-  
-)
-
-/* harmony default export */ var components_CopyableField = (CopyableField_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/FiatAmount.vue?vue&type=template&id=4e1e2a40&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"101b3dcf-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/FiatAmount.vue?vue&type=template&id=4e1e2a40&
 var FiatAmountvue_type_template_id_4e1e2a40_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"fiat-amount"},[_vm._v(" "+_vm._s(_vm._currencyString)+" ")])}
 var FiatAmountvue_type_template_id_4e1e2a40_staticRenderFns = []
 
@@ -15718,7 +14707,1031 @@ var FiatAmount_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_FiatAmount = (FiatAmount_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/LoadingSpinner.vue?vue&type=template&id=4da3784e&scoped=true&
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--13-1!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/AmountWithFee.vue?vue&type=script&lang=ts&
+
+
+
+
+
+
+
+
+
+
+
+
+
+var AmountWithFeevue_type_script_lang_ts_AmountWithFee =
+/*#__PURE__*/
+function (_Mixins) {
+  _inherits(AmountWithFee, _Mixins);
+
+  function AmountWithFee() {
+    var _this;
+
+    _classCallCheck(this, AmountWithFee);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(AmountWithFee).apply(this, arguments));
+    _this.liveAmount = _this.value.amount;
+    return _this;
+  }
+
+  _createClass(AmountWithFee, [{
+    key: "mounted",
+    value: function mounted() {
+      this.watchAmountChange(this.liveAmount);
+    }
+  }, {
+    key: "watchAvailableAmountChange",
+    value: function watchAvailableAmountChange(value) {
+      this.$emit('input', {
+        amount: this.liveAmount,
+        fee: this.value.fee,
+        isValid: this.isValid
+      });
+    }
+  }, {
+    key: "watchAmountChange",
+    value: function watchAmountChange(value) {
+      this.$emit('input', {
+        amount: this.liveAmount,
+        fee: this.value.fee,
+        isValid: this.isValid
+      });
+    }
+  }, {
+    key: "focus",
+    value: function focus() {
+      this.$refs.amountInput.focus();
+    }
+  }, {
+    key: "isValid",
+    get: function get() {
+      return this.liveAmount > 0 && this.liveAmount + this.value.fee <= this.availableBalance;
+    }
+  }]);
+
+  return AmountWithFee;
+}(Object(external_vue_property_decorator_["Mixins"])(i18n_I18nMixin));
+
+__decorate([Object(external_vue_property_decorator_["Prop"])({
+  type: Object,
+  default: function _default() {
+    return {
+      amount: 0,
+      fee: 0,
+      isValid: false
+    };
+  }
+})], AmountWithFeevue_type_script_lang_ts_AmountWithFee.prototype, "value", void 0);
+
+__decorate([Object(external_vue_property_decorator_["Prop"])({
+  type: Number,
+  default: 0
+})], AmountWithFeevue_type_script_lang_ts_AmountWithFee.prototype, "availableBalance", void 0);
+
+__decorate([Object(external_vue_property_decorator_["Prop"])(Number)], AmountWithFeevue_type_script_lang_ts_AmountWithFee.prototype, "fiatAmount", void 0);
+
+__decorate([Object(external_vue_property_decorator_["Prop"])(String)], AmountWithFeevue_type_script_lang_ts_AmountWithFee.prototype, "fiatCurrency", void 0);
+
+__decorate([Object(external_vue_property_decorator_["Watch"])('isValid', {
+  immediate: true
+})], AmountWithFeevue_type_script_lang_ts_AmountWithFee.prototype, "watchAvailableAmountChange", null);
+
+__decorate([Object(external_vue_property_decorator_["Watch"])('liveAmount', {
+  immediate: true
+})], AmountWithFeevue_type_script_lang_ts_AmountWithFee.prototype, "watchAmountChange", null);
+
+AmountWithFeevue_type_script_lang_ts_AmountWithFee = __decorate([Object(external_vue_property_decorator_["Component"])({
+  name: 'AmountWithFee',
+  components: {
+    Amount: components_Amount,
+    AmountInput: components_AmountInput,
+    FiatAmount: components_FiatAmount
+  }
+})], AmountWithFeevue_type_script_lang_ts_AmountWithFee);
+/* harmony default export */ var AmountWithFeevue_type_script_lang_ts_ = (AmountWithFeevue_type_script_lang_ts_AmountWithFee);
+// CONCATENATED MODULE: ./src/components/AmountWithFee.vue?vue&type=script&lang=ts&
+ /* harmony default export */ var components_AmountWithFeevue_type_script_lang_ts_ = (AmountWithFeevue_type_script_lang_ts_); 
+// EXTERNAL MODULE: ./src/components/AmountWithFee.vue?vue&type=style&index=0&id=0015d247&scoped=true&lang=css&
+var AmountWithFeevue_type_style_index_0_id_0015d247_scoped_true_lang_css_ = __webpack_require__("0c04");
+
+// CONCATENATED MODULE: ./src/components/AmountWithFee.vue
+
+
+
+
+
+
+/* normalize component */
+
+var AmountWithFee_component = normalizeComponent(
+  components_AmountWithFeevue_type_script_lang_ts_,
+  AmountWithFeevue_type_template_id_0015d247_scoped_true_render,
+  AmountWithFeevue_type_template_id_0015d247_scoped_true_staticRenderFns,
+  false,
+  null,
+  "0015d247",
+  null
+  
+)
+
+/* harmony default export */ var components_AmountWithFee = (AmountWithFee_component.exports);
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"101b3dcf-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/BottomOverlay.vue?vue&type=template&id=10321bd4&scoped=true&
+var BottomOverlayvue_type_template_id_10321bd4_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"bottom-overlay",class:[_vm.theme, { 'has-close-button': _vm.hasCloseButton }]},[_vm._t("default"),(_vm.hasCloseButton)?_c('CloseButton',{staticClass:"close-button",class:{'inverse': ['dark', 'green'].includes(_vm.theme)},on:{"click":function($event){return _vm.$emit(_vm.constructor.Events.CLOSE)}}}):_vm._e()],2)}
+var BottomOverlayvue_type_template_id_10321bd4_scoped_true_staticRenderFns = []
+
+
+// CONCATENATED MODULE: ./src/components/BottomOverlay.vue?vue&type=template&id=10321bd4&scoped=true&
+
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--13-1!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/BottomOverlay.vue?vue&type=script&lang=ts&
+
+
+
+
+
+
+
+
+
+
+var BottomOverlayvue_type_script_lang_ts_BottomOverlay =
+/*#__PURE__*/
+function (_Vue) {
+  _inherits(BottomOverlay, _Vue);
+
+  function BottomOverlay() {
+    var _this;
+
+    _classCallCheck(this, BottomOverlay);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(BottomOverlay).apply(this, arguments));
+    _this.hasCloseButton = false;
+    return _this;
+  }
+
+  _createClass(BottomOverlay, [{
+    key: "_onListenerChange",
+    value: function _onListenerChange() {
+      this.hasCloseButton = !!this.$listeners.close;
+    }
+  }]);
+
+  return BottomOverlay;
+}(external_vue_property_decorator_["Vue"]);
+
+__decorate([Object(external_vue_property_decorator_["Prop"])({
+  type: String,
+  default: 'dark',
+  validator: function validator(theme) {
+    return ['dark', 'light', 'green'].includes(theme);
+  }
+})], BottomOverlayvue_type_script_lang_ts_BottomOverlay.prototype, "theme", void 0);
+
+__decorate([Object(external_vue_property_decorator_["Watch"])('$listeners.close', {
+  immediate: true
+})], BottomOverlayvue_type_script_lang_ts_BottomOverlay.prototype, "_onListenerChange", null);
+
+BottomOverlayvue_type_script_lang_ts_BottomOverlay = __decorate([Object(external_vue_property_decorator_["Component"])({
+  components: {
+    CloseButton: components_CloseButton
+  }
+})], BottomOverlayvue_type_script_lang_ts_BottomOverlay);
+
+(function (BottomOverlay) {
+  var Events;
+
+  (function (Events) {
+    Events["CLOSE"] = "close";
+  })(Events = BottomOverlay.Events || (BottomOverlay.Events = {}));
+})(BottomOverlayvue_type_script_lang_ts_BottomOverlay || (BottomOverlayvue_type_script_lang_ts_BottomOverlay = {}));
+
+/* harmony default export */ var BottomOverlayvue_type_script_lang_ts_ = (BottomOverlayvue_type_script_lang_ts_BottomOverlay);
+// CONCATENATED MODULE: ./src/components/BottomOverlay.vue?vue&type=script&lang=ts&
+ /* harmony default export */ var components_BottomOverlayvue_type_script_lang_ts_ = (BottomOverlayvue_type_script_lang_ts_); 
+// EXTERNAL MODULE: ./src/components/BottomOverlay.vue?vue&type=style&index=0&id=10321bd4&scoped=true&lang=css&
+var BottomOverlayvue_type_style_index_0_id_10321bd4_scoped_true_lang_css_ = __webpack_require__("f83f");
+
+// CONCATENATED MODULE: ./src/components/BottomOverlay.vue
+
+
+
+
+
+
+/* normalize component */
+
+var BottomOverlay_component = normalizeComponent(
+  components_BottomOverlayvue_type_script_lang_ts_,
+  BottomOverlayvue_type_template_id_10321bd4_scoped_true_render,
+  BottomOverlayvue_type_template_id_10321bd4_scoped_true_staticRenderFns,
+  false,
+  null,
+  "10321bd4",
+  null
+  
+)
+
+/* harmony default export */ var components_BottomOverlay = (BottomOverlay_component.exports);
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"101b3dcf-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Carousel.vue?vue&type=template&id=c078661e&scoped=true&
+var Carouselvue_type_template_id_c078661e_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"carousel",class:{ disabled: _vm.disabled }},_vm._l((_vm.entries),function(entry,index){return _c('div',{key:index,ref:entry,refInFor:true,class:{ selected: _vm.effectiveSelected === entry },on:{"click":function($event){!_vm.disabled && _vm._updateSelection(entry)},"focusin":function($event){!_vm.disabled && _vm._updateSelection(entry)}}},[_vm._t(entry)],2)}),0)}
+var Carouselvue_type_template_id_c078661e_scoped_true_staticRenderFns = []
+
+
+// CONCATENATED MODULE: ./src/components/Carousel.vue?vue&type=template&id=c078661e&scoped=true&
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.map.js
+var es_map = __webpack_require__("4ec9");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.math.sign.js
+var es_math_sign = __webpack_require__("2af1");
+
+// CONCATENATED MODULE: ./node_modules/@nimiq/utils/dist/module/Tweenable.js
+class Tweenable {
+    constructor(targetValue = 0, startValue = targetValue, tweenTime = 0, startTime = Date.now(), easing = Tweenable.Easing.EASE_IN_OUT_CUBIC) {
+        this.targetValue = targetValue;
+        this.startValue = startValue;
+        this.tweenTime = tweenTime;
+        this.startTime = startTime;
+        this.easing = easing;
+    }
+    get currentValue() {
+        const easedProgress = this.easing(this.progress);
+        return this.startValue + (this.targetValue - this.startValue) * easedProgress;
+    }
+    get progress() {
+        if (this.tweenTime === 0)
+            return 1;
+        return Math.min(1, (Date.now() - this.startTime) / this.tweenTime);
+    }
+    get finished() {
+        return this.progress === 1;
+    }
+    tweenTo(targetValue, tweenTime = this.tweenTime) {
+        if (targetValue === this.targetValue)
+            return;
+        this.startValue = this.currentValue;
+        this.targetValue = targetValue;
+        this.startTime = Date.now();
+        this.tweenTime = tweenTime;
+    }
+}
+(function (Tweenable) {
+    // see https://gist.github.com/gre/1650294 for more easing functions
+    Tweenable.Easing = {
+        LINEAR: (t) => t,
+        EASE_IN_OUT_CUBIC: (t) => (t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1),
+    };
+})(Tweenable || (Tweenable = {}));
+var Tweenable$1 = Tweenable;
+
+/* harmony default export */ var module_Tweenable = (Tweenable$1);
+//# sourceMappingURL=Tweenable.js.map
+
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--13-1!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Carousel.vue?vue&type=script&lang=ts&
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var Carouselvue_type_script_lang_ts_Carousel =
+/*#__PURE__*/
+function (_Vue) {
+  _inherits(Carousel, _Vue);
+
+  function Carousel() {
+    var _this;
+
+    _classCallCheck(this, Carousel);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Carousel).apply(this, arguments));
+    _this.effectiveSelected = '';
+    _this.radius = new module_Tweenable();
+    _this.rotations = new Map(); // map entry -> rotation
+
+    _this.requestAnimationFrameId = null;
+    return _this;
+  }
+
+  _createClass(Carousel, [{
+    key: "mounted",
+    value: function () {
+      var _mounted = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee() {
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                this._onKeydown = this._onKeydown.bind(this);
+                document.addEventListener('keydown', this._onKeydown); // trigger these manually instead of via immediate watcher to avoid animating on first render
+
+                _context.next = 4;
+                return this.updateDimensions(false);
+
+              case 4:
+                this._updateSelection(this.selected);
+
+                this._updateRotations(false);
+
+              case 6:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function mounted() {
+        return _mounted.apply(this, arguments);
+      }
+
+      return mounted;
+    }()
+  }, {
+    key: "destroyed",
+    value: function destroyed() {
+      document.removeEventListener('keydown', this._onKeydown);
+      if (this.requestAnimationFrameId === null) return;
+      cancelAnimationFrame(this.requestAnimationFrameId);
+    }
+  }, {
+    key: "updateDimensions",
+    value: function () {
+      var _updateDimensions = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee2() {
+        var newWatcherValueOrTween,
+            tween,
+            largestHeight,
+            largestMinDistance,
+            i,
+            _this$$refs$this$entr,
+            el1,
+            _this$$refs$this$entr2,
+            el2,
+            minDistance,
+            centerAngle,
+            radius,
+            _args2 = arguments;
+
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                newWatcherValueOrTween = _args2.length > 0 && _args2[0] !== undefined ? _args2[0] : true;
+                tween = typeof newWatcherValueOrTween === 'boolean' ? newWatcherValueOrTween : true;
+                _context2.next = 4;
+                return external_vue_property_decorator_["Vue"].nextTick();
+
+              case 4:
+                // let Vue render new entries
+                largestHeight = 0;
+                largestMinDistance = 0;
+
+                for (i = 0; i < this.entries.length; ++i) {
+                  _this$$refs$this$entr = _slicedToArray(this.$refs[this.entries[i]], 1), el1 = _this$$refs$this$entr[0];
+                  _this$$refs$this$entr2 = _slicedToArray(this.$refs[this.entries[(i + 1) % this.entries.length]], 1), el2 = _this$$refs$this$entr2[0];
+                  largestHeight = Math.max(largestHeight, el1.offsetHeight);
+                  minDistance = el1.offsetWidth / 2 + el2.offsetWidth / 2 + this.entryMargin;
+                  largestMinDistance = Math.max(largestMinDistance, minDistance);
+                } // Choose radius big enough such that two items can be rendered side by side without overlapping.
+                // Calculate on a right triangle formed by radius, half distance and perpendicular from center point
+                // to distance line.
+
+
+                centerAngle = 2 * Math.PI / this._totalPositionCount / 2; // angle at circle center point
+
+                radius = largestMinDistance / 2 / Math.sin(centerAngle);
+                this.radius.tweenTo(radius, tween ? this.animationDuration : 0);
+                this.$el.style.minHeight = "".concat(largestHeight, "px");
+
+                this._rerender();
+
+              case 12:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function updateDimensions() {
+        return _updateDimensions.apply(this, arguments);
+      }
+
+      return updateDimensions;
+    }()
+  }, {
+    key: "_onEntriesChange",
+    value: function () {
+      var _onEntriesChange2 = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee3() {
+        return regeneratorRuntime.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return this.updateDimensions();
+
+              case 2:
+                this._updateSelection(this.effectiveSelected); // re-validate
+
+
+                this._updateRotations();
+
+              case 4:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
+      }));
+
+      function _onEntriesChange() {
+        return _onEntriesChange2.apply(this, arguments);
+      }
+
+      return _onEntriesChange;
+    }()
+  }, {
+    key: "_updateSelection",
+    value: function _updateSelection(newSelection) {
+      var oldSelection = this.effectiveSelected;
+      var isNewSelectionValid = this.entries.includes(newSelection);
+      var isOldSelectionValid = this.entries.includes(oldSelection);
+
+      if (isNewSelectionValid) {
+        this.effectiveSelected = newSelection;
+      } else if (!isOldSelectionValid) {
+        this.effectiveSelected = this.entries[0];
+      } // else keep the old selection
+
+
+      if (this.effectiveSelected !== oldSelection) {
+        this.$emit('select', this.effectiveSelected);
+      }
+    }
+  }, {
+    key: "_updateRotations",
+    value: function _updateRotations() {
+      var newWatcherValueOrTween = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+      var previousWatcherValue = arguments.length > 1 ? arguments[1] : undefined;
+      var tween = typeof newWatcherValueOrTween === 'boolean' && typeof previousWatcherValue === 'undefined' ? newWatcherValueOrTween // specified whether to tween
+      : true; // did not specify whether to tween or method was called as a watcher (default to true)
+      // clean up removed entries
+
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = this.rotations.keys()[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var entry = _step.value;
+          if (this.entries.includes(entry)) continue;
+          this.rotations.delete(entry);
+        } // update rotations
+
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return != null) {
+            _iterator.return();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
+
+      var _iteratorNormalCompletion2 = true;
+      var _didIteratorError2 = false;
+      var _iteratorError2 = undefined;
+
+      try {
+        for (var _iterator2 = this.entries[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+          var _entry = _step2.value;
+          var rotation = this.rotations.get(_entry) || new module_Tweenable();
+          var tweenTime = tween ? this.animationDuration : 0;
+          rotation.tweenTo(this._calculateTargetRotation(_entry, rotation.currentValue), tweenTime);
+          this.rotations.set(_entry, rotation);
+        }
+      } catch (err) {
+        _didIteratorError2 = true;
+        _iteratorError2 = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
+            _iterator2.return();
+          }
+        } finally {
+          if (_didIteratorError2) {
+            throw _iteratorError2;
+          }
+        }
+      }
+
+      this._rerender();
+    }
+    /**
+     * @param entry
+     * @param currentRotation - Rotation in radians
+     * @private
+     */
+
+  }, {
+    key: "_calculateTargetRotation",
+    value: function _calculateTargetRotation(entry, currentRotation) {
+      if (this.disabled && entry !== this.effectiveSelected) {
+        // hide not selected entries at other end of circle
+        return currentRotation + this._calculateRotationInClosestDirection(currentRotation, Math.PI);
+      }
+
+      var stepSize = 2 * Math.PI / this._totalPositionCount;
+      var entryIndex = this.entries.indexOf(entry);
+      var selectedIndex = this.entries.indexOf(this.effectiveSelected);
+      var offset = entryIndex - selectedIndex;
+
+      if (this._hasDummyPosition && offset > this._totalPositionCount / 2) {
+        // skip dummy position
+        offset += 1;
+      }
+
+      return currentRotation + this._calculateRotationInClosestDirection(currentRotation, offset * stepSize);
+    }
+  }, {
+    key: "_rerender",
+    value: function _rerender() {
+      var _this2 = this;
+
+      if (this.requestAnimationFrameId !== null) return;
+      this.requestAnimationFrameId = requestAnimationFrame(function () {
+        var zCoordinatesForEntries = [];
+        var finished = _this2.radius.finished;
+        var _iteratorNormalCompletion3 = true;
+        var _didIteratorError3 = false;
+        var _iteratorError3 = undefined;
+
+        try {
+          for (var _iterator3 = _this2.rotations[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+            var _step3$value = _slicedToArray(_step3.value, 2),
+                entry = _step3$value[0],
+                rotation = _step3$value[1];
+
+            var currentRotation = rotation.currentValue;
+            var currentRadius = _this2.radius.currentValue;
+            var x = Math.sin(currentRotation) * currentRadius;
+            var z = Math.cos(currentRotation) * currentRadius - currentRadius;
+
+            var _this2$$refs$entry = _slicedToArray(_this2.$refs[entry], 1),
+                _el = _this2$$refs$entry[0];
+
+            _el.style.transform = "translate3d(calc(".concat(x, "px - 50%),-50%,").concat(z, "px)");
+            _el.style.display = _this2._shouldHide(entry) ? 'none' : '';
+            zCoordinatesForEntries.push([entry, z]);
+            finished = finished && rotation.finished;
+          } // Note that instead of setting z-index manually, we could use transform-style: preserve-3d to order
+          // automatically by z coordinate. But unfortunately, this makes the entries not clickable anymore.
+
+        } catch (err) {
+          _didIteratorError3 = true;
+          _iteratorError3 = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
+              _iterator3.return();
+            }
+          } finally {
+            if (_didIteratorError3) {
+              throw _iteratorError3;
+            }
+          }
+        }
+
+        zCoordinatesForEntries.sort(function (_ref, _ref2) {
+          var _ref3 = _slicedToArray(_ref, 2),
+              z1 = _ref3[1];
+
+          var _ref4 = _slicedToArray(_ref2, 2),
+              z2 = _ref4[1];
+
+          return z1 - z2;
+        });
+
+        for (var i = 0; i < zCoordinatesForEntries.length; ++i) {
+          var _this2$$refs$zCoordin = _slicedToArray(_this2.$refs[zCoordinatesForEntries[i][0]], 1),
+              el = _this2$$refs$zCoordin[0];
+
+          el.style.zIndex = "".concat(i);
+        }
+
+        _this2.requestAnimationFrameId = null;
+        if (!finished) _this2._rerender();
+      });
+    }
+  }, {
+    key: "_calculateRotationInClosestDirection",
+    value: function _calculateRotationInClosestDirection(fromAngle, toAngle) {
+      // angle offset modulo full rotations
+      var rotation = (toAngle - fromAngle) % (2 * Math.PI); // determine rotation in opposite direction (subtracting or adding a full circle depending on direction (sign))
+
+      var rotationOppositeDirection = rotation - Math.sign(rotation) * 2 * Math.PI;
+
+      if (Math.abs(Math.abs(rotation) - Math.abs(rotationOppositeDirection)) < 1e-10) {
+        // in case of ambiguity chose a default direction
+        return Math.min(rotation, rotationOppositeDirection);
+      } else if (Math.abs(rotation) < Math.abs(rotationOppositeDirection)) {
+        return rotation;
+      } else {
+        return rotationOppositeDirection;
+      }
+    }
+  }, {
+    key: "_shouldHide",
+    value: function _shouldHide(entry) {
+      var rotation = this.rotations.get(entry);
+      if (!rotation || !this.disabled && !this.hideBackgroundEntries) return false;
+      var absoluteRotation = Math.abs(this._calculateRotationInClosestDirection(0, rotation.currentValue));
+
+      if (this.disabled) {
+        // Hide disabled elements once they reached the opposite end of the circle, also to avoid that they are
+        // still reachable via tab. While they're animating to get there, display them even when they're in the
+        // back part of the circle.
+        return Math.abs(absoluteRotation - Math.PI) < 1e-10;
+      } else if (this.hideBackgroundEntries) {
+        // Hide entries in the back part of the circle as these will not be visible behind the front entries
+        var stepSize = 2 * Math.PI / this._totalPositionCount;
+        var threshold = Math.PI / 2 + stepSize / (this._totalPositionCount - 1); // just a heuristic but works ok
+
+        return absoluteRotation > threshold;
+      }
+    }
+  }, {
+    key: "_onKeydown",
+    value: function _onKeydown(event) {
+      var target = event.target;
+      if (this.disabled || target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || this.rotations.values().next().value.progress < .5 // block if previous change not animated far enough
+      ) return;
+      var currentIndex = this.entries.indexOf(this.effectiveSelected);
+      var newIndex;
+
+      if (event.key === 'ArrowLeft') {
+        newIndex = (currentIndex - 1 + this.entries.length) % this.entries.length;
+      } else if (event.key === 'ArrowRight') {
+        newIndex = (currentIndex + 1) % this.entries.length;
+      } else {
+        return;
+      }
+
+      this._updateSelection(this.entries[newIndex]);
+    }
+  }, {
+    key: "_hasDummyPosition",
+    get: function get() {
+      // add dummy to avoid that second entry is hidden exactly behind selected item on opposite side of circle.
+      return this.entries.length <= 2;
+    }
+  }, {
+    key: "_totalPositionCount",
+    get: function get() {
+      return this.entries.length + (this._hasDummyPosition ? 1 : 0);
+    }
+  }]);
+
+  return Carousel;
+}(external_vue_property_decorator_["Vue"]);
+
+__decorate([Object(external_vue_property_decorator_["Prop"])({
+  type: Array,
+  default: function _default() {
+    return [];
+  },
+  validator: function validator(entries) {
+    return Array.isArray(entries) && entries.length > 0 && !entries.some(function (entry) {
+      return typeof entry !== 'string';
+    });
+  }
+})], Carouselvue_type_script_lang_ts_Carousel.prototype, "entries", void 0);
+
+__decorate([Object(external_vue_property_decorator_["Prop"])(String)], Carouselvue_type_script_lang_ts_Carousel.prototype, "selected", void 0);
+
+__decorate([Object(external_vue_property_decorator_["Prop"])({
+  type: Number,
+  default: 16
+})], Carouselvue_type_script_lang_ts_Carousel.prototype, "entryMargin", void 0);
+
+__decorate([Object(external_vue_property_decorator_["Prop"])({
+  type: Number,
+  default: 1000
+})], Carouselvue_type_script_lang_ts_Carousel.prototype, "animationDuration", void 0);
+
+__decorate([Object(external_vue_property_decorator_["Prop"])({
+  type: Boolean,
+  default: false
+})], Carouselvue_type_script_lang_ts_Carousel.prototype, "hideBackgroundEntries", void 0);
+
+__decorate([Object(external_vue_property_decorator_["Prop"])({
+  type: Boolean,
+  default: false
+})], Carouselvue_type_script_lang_ts_Carousel.prototype, "disabled", void 0);
+
+__decorate([Object(external_vue_property_decorator_["Watch"])('entryMargin')], Carouselvue_type_script_lang_ts_Carousel.prototype, "updateDimensions", null);
+
+__decorate([Object(external_vue_property_decorator_["Watch"])('entries')], Carouselvue_type_script_lang_ts_Carousel.prototype, "_onEntriesChange", null);
+
+__decorate([Object(external_vue_property_decorator_["Watch"])('selected')], Carouselvue_type_script_lang_ts_Carousel.prototype, "_updateSelection", null);
+
+__decorate([Object(external_vue_property_decorator_["Watch"])('effectiveSelected'), Object(external_vue_property_decorator_["Watch"])('disabled')], Carouselvue_type_script_lang_ts_Carousel.prototype, "_updateRotations", null);
+
+__decorate([Object(external_vue_property_decorator_["Watch"])('hideBackgroundEntries')], Carouselvue_type_script_lang_ts_Carousel.prototype, "_rerender", null);
+
+Carouselvue_type_script_lang_ts_Carousel = __decorate([external_vue_property_decorator_["Component"]], Carouselvue_type_script_lang_ts_Carousel);
+/* harmony default export */ var Carouselvue_type_script_lang_ts_ = (Carouselvue_type_script_lang_ts_Carousel);
+// CONCATENATED MODULE: ./src/components/Carousel.vue?vue&type=script&lang=ts&
+ /* harmony default export */ var components_Carouselvue_type_script_lang_ts_ = (Carouselvue_type_script_lang_ts_); 
+// EXTERNAL MODULE: ./src/components/Carousel.vue?vue&type=style&index=0&id=c078661e&scoped=true&lang=css&
+var Carouselvue_type_style_index_0_id_c078661e_scoped_true_lang_css_ = __webpack_require__("83dd");
+
+// CONCATENATED MODULE: ./src/components/Carousel.vue
+
+
+
+
+
+
+/* normalize component */
+
+var Carousel_component = normalizeComponent(
+  components_Carouselvue_type_script_lang_ts_,
+  Carouselvue_type_template_id_c078661e_scoped_true_render,
+  Carouselvue_type_template_id_c078661e_scoped_true_staticRenderFns,
+  false,
+  null,
+  "c078661e",
+  null
+  
+)
+
+/* harmony default export */ var components_Carousel = (Carousel_component.exports);
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"101b3dcf-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CircleSpinner.vue?vue&type=template&id=2bc59fa8&scoped=true&functional=true&
+var CircleSpinnervue_type_template_id_2bc59fa8_scoped_true_functional_true_render = function (_h,_vm) {var _c=_vm._c;return _c('svg',{staticClass:"circle-spinner",attrs:{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 18 18","width":"18","height":"18","fill":"none","stroke-width":"2","stroke-linecap":"round"}},[_c('path',{attrs:{"stroke":"#0582CA","d":"M9,1c4.42,0,8,3.58,8,8"}}),_c('path',{attrs:{"stroke":"#1F2348","opacity":".3","d":"M4.27,2.56C2.29,4.01,1,6.35,1,9c0,4.42,3.58,8,8,8c2.65,0,4.99-1.29,6.44-3.27"}})])}
+var CircleSpinnervue_type_template_id_2bc59fa8_scoped_true_functional_true_staticRenderFns = []
+
+
+// CONCATENATED MODULE: ./src/components/CircleSpinner.vue?vue&type=template&id=2bc59fa8&scoped=true&functional=true&
+
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--13-1!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CircleSpinner.vue?vue&type=script&lang=ts&
+/* harmony default export */ var CircleSpinnervue_type_script_lang_ts_ = ({});
+// CONCATENATED MODULE: ./src/components/CircleSpinner.vue?vue&type=script&lang=ts&
+ /* harmony default export */ var components_CircleSpinnervue_type_script_lang_ts_ = (CircleSpinnervue_type_script_lang_ts_); 
+// EXTERNAL MODULE: ./src/components/CircleSpinner.vue?vue&type=style&index=0&id=2bc59fa8&scoped=true&lang=css&
+var CircleSpinnervue_type_style_index_0_id_2bc59fa8_scoped_true_lang_css_ = __webpack_require__("702c");
+
+// CONCATENATED MODULE: ./src/components/CircleSpinner.vue
+
+
+
+
+
+
+/* normalize component */
+
+var CircleSpinner_component = normalizeComponent(
+  components_CircleSpinnervue_type_script_lang_ts_,
+  CircleSpinnervue_type_template_id_2bc59fa8_scoped_true_functional_true_render,
+  CircleSpinnervue_type_template_id_2bc59fa8_scoped_true_functional_true_staticRenderFns,
+  true,
+  null,
+  "2bc59fa8",
+  null
+  
+)
+
+/* harmony default export */ var CircleSpinner = (CircleSpinner_component.exports);
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"101b3dcf-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CopyableField.vue?vue&type=template&id=23ed6b92&scoped=true&
+var CopyableFieldvue_type_template_id_23ed6b92_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"copyable-field",class:{ small: _vm.small }},[(_vm.label)?_c('span',{staticClass:"nq-label"},[_vm._v(_vm._s(_vm.label))]):_vm._e(),_c('div',{staticClass:"copyable-field-content",class:{ 'simple-value': !_vm.isKeyedValue, copied: _vm.copied },on:{"click":_vm.copy}},[_c('div',{ref:"value-container",staticClass:"value-container",style:({ fontSize: _vm.fontSize+'rem' })},[_c('span',{ref:"value",staticClass:"value"},[_vm._v(" "+_vm._s(_vm.isKeyedValue ? _vm.value[_vm.currentKey] : _vm.value)+" ")])]),_vm._l(((_vm.isKeyedValue ? Object.keys(_vm.value) : [])),function(key){return _c('button',{staticClass:"nq-button-s",class:{
+                inverse: _vm.currentKey === key,
+                'single-key': _vm.hasSingleKey,
+            },attrs:{"tabindex":_vm.hasSingleKey ? -1 : 0},on:{"click":function($event){$event.stopPropagation();_vm.currentKey = key}}},[_vm._v(_vm._s(key))])}),_c('div',{staticClass:"copy-notice"},[_vm._v(_vm._s(_vm.$t('Copied')))])],2)])}
+var CopyableFieldvue_type_template_id_23ed6b92_scoped_true_staticRenderFns = []
+
+
+// CONCATENATED MODULE: ./src/components/CopyableField.vue?vue&type=template&id=23ed6b92&scoped=true&
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.small.js
+var es_string_small = __webpack_require__("c96a");
+
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--13-1!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/CopyableField.vue?vue&type=script&lang=ts&
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var CopyableField_1;
+
+
+
+
+
+var CopyableFieldvue_type_script_lang_ts_CopyableField = CopyableField_1 =
+/*#__PURE__*/
+function (_Mixins) {
+  _inherits(CopyableField, _Mixins);
+
+  function CopyableField() {
+    var _this;
+
+    _classCallCheck(this, CopyableField);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(CopyableField).apply(this, arguments));
+    _this.currentKey = '';
+    _this.fontSize = _this.small ? CopyableField_1.DEFAULT_FONT_SIZE_SMALL : CopyableField_1.DEFAULT_FONT_SIZE;
+    _this.copied = false;
+    return _this;
+  }
+
+  _createClass(CopyableField, [{
+    key: "mounted",
+    value: function mounted() {
+      this._updateFontSize = this._updateFontSize.bind(this);
+      window.addEventListener('resize', this._updateFontSize);
+
+      this._updateFontSize();
+    }
+  }, {
+    key: "destroyed",
+    value: function destroyed() {
+      window.removeEventListener('resize', this._updateFontSize);
+    }
+  }, {
+    key: "_onValueChange",
+    value: function _onValueChange() {
+      var keys = this.isKeyedValue ? Object.keys(this.value) : [];
+
+      if (keys.length > 0 && (!this.currentKey || !keys.includes(this.currentKey))) {
+        this.currentKey = keys[0]; // will also trigger _updateFontSize
+      } else {
+        this._updateFontSize(); // trigger manually
+
+      }
+    }
+  }, {
+    key: "_updateFontSize",
+    value: function () {
+      var _updateFontSize2 = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee() {
+        var valueContainer, valueElement, defaultFontSize, availableWidth, referenceWidth, scaleFactor;
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return external_vue_property_decorator_["Vue"].nextTick();
+
+              case 2:
+                // let Vue render the component first
+                valueContainer = this.$refs['value-container'];
+                valueElement = this.$refs.value;
+                defaultFontSize = this.small ? CopyableField_1.DEFAULT_FONT_SIZE_SMALL : CopyableField_1.DEFAULT_FONT_SIZE;
+                valueElement.style.fontSize = "".concat(defaultFontSize, "rem");
+                availableWidth = valueContainer.offsetWidth;
+                referenceWidth = valueElement.offsetWidth;
+                scaleFactor = availableWidth / referenceWidth;
+                valueElement.style.fontSize = '';
+                this.fontSize = Math.min(defaultFontSize, defaultFontSize * scaleFactor);
+
+              case 11:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function _updateFontSize() {
+        return _updateFontSize2.apply(this, arguments);
+      }
+
+      return _updateFontSize;
+    }()
+  }, {
+    key: "copy",
+    value: function copy() {
+      var _this2 = this;
+
+      Clipboard.copy(this.isKeyedValue ? this.value[this.currentKey].toString() : this.value.toString());
+      this.copied = true;
+      window.clearTimeout(this._copiedResetTimeout);
+      this._copiedResetTimeout = window.setTimeout(function () {
+        _this2.copied = false;
+      }, 500);
+    }
+  }, {
+    key: "isKeyedValue",
+    get: function get() {
+      return typeof this.value !== 'string' && typeof this.value !== 'number';
+    }
+  }, {
+    key: "hasSingleKey",
+    get: function get() {
+      return this.isKeyedValue && Object.keys(this.value).length === 1;
+    }
+  }]);
+
+  return CopyableField;
+}(Object(external_vue_property_decorator_["Mixins"])(i18n_I18nMixin));
+
+CopyableFieldvue_type_script_lang_ts_CopyableField.DEFAULT_FONT_SIZE = 3; // in rem
+
+CopyableFieldvue_type_script_lang_ts_CopyableField.DEFAULT_FONT_SIZE_SMALL = 2.5; // in rem
+
+__decorate([Object(external_vue_property_decorator_["Prop"])({
+  required: true,
+  validator: function validator(value) {
+    return typeof value === 'string' || typeof value === 'number' || _typeof(value) === 'object' && Object.keys(value).length > 0;
+  }
+})], CopyableFieldvue_type_script_lang_ts_CopyableField.prototype, "value", void 0);
+
+__decorate([Object(external_vue_property_decorator_["Prop"])(String)], CopyableFieldvue_type_script_lang_ts_CopyableField.prototype, "label", void 0);
+
+__decorate([Object(external_vue_property_decorator_["Prop"])({
+  type: Boolean,
+  default: false
+})], CopyableFieldvue_type_script_lang_ts_CopyableField.prototype, "small", void 0);
+
+__decorate([Object(external_vue_property_decorator_["Watch"])('value', {
+  immediate: true
+})], CopyableFieldvue_type_script_lang_ts_CopyableField.prototype, "_onValueChange", null);
+
+__decorate([Object(external_vue_property_decorator_["Watch"])('currentKey'), Object(external_vue_property_decorator_["Watch"])('small')], CopyableFieldvue_type_script_lang_ts_CopyableField.prototype, "_updateFontSize", null);
+
+CopyableFieldvue_type_script_lang_ts_CopyableField = CopyableField_1 = __decorate([Object(external_vue_property_decorator_["Component"])({
+  name: 'CopyableField'
+})], CopyableFieldvue_type_script_lang_ts_CopyableField);
+/* harmony default export */ var CopyableFieldvue_type_script_lang_ts_ = (CopyableFieldvue_type_script_lang_ts_CopyableField);
+// CONCATENATED MODULE: ./src/components/CopyableField.vue?vue&type=script&lang=ts&
+ /* harmony default export */ var components_CopyableFieldvue_type_script_lang_ts_ = (CopyableFieldvue_type_script_lang_ts_); 
+// EXTERNAL MODULE: ./src/components/CopyableField.vue?vue&type=style&index=0&id=23ed6b92&scoped=true&lang=css&
+var CopyableFieldvue_type_style_index_0_id_23ed6b92_scoped_true_lang_css_ = __webpack_require__("ca9d");
+
+// CONCATENATED MODULE: ./src/components/CopyableField.vue
+
+
+
+
+
+
+/* normalize component */
+
+var CopyableField_component = normalizeComponent(
+  components_CopyableFieldvue_type_script_lang_ts_,
+  CopyableFieldvue_type_template_id_23ed6b92_scoped_true_render,
+  CopyableFieldvue_type_template_id_23ed6b92_scoped_true_staticRenderFns,
+  false,
+  null,
+  "23ed6b92",
+  null
+  
+)
+
+/* harmony default export */ var components_CopyableField = (CopyableField_component.exports);
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"101b3dcf-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/LoadingSpinner.vue?vue&type=template&id=4da3784e&scoped=true&
 var LoadingSpinnervue_type_template_id_4da3784e_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('svg',{staticClass:"loading-spinner",attrs:{"height":"48","width":"54","viewBox":"0 0 54 48","color":"inherit"}},[_c('path',{attrs:{"id":"big-hex","d":"M51.9,21.9L41.3,3.6c-0.8-1.3-2.2-2.1-3.7-2.1H16.4c-1.5,0-2.9,0.8-3.7,2.1L2.1,21.9c-0.8,1.3-0.8,2.9,0,4.2 l10.6,18.3c0.8,1.3,2.2,2.1,3.7,2.1h21.3c1.5,0,2.9-0.8,3.7-2.1l10.6-18.3C52.7,24.8,52.7,23.2,51.9,21.9z","stroke":"currentColor","stroke-width":"3","fill":"none","stroke-linecap":"round","opacity":"0.4","stroke-dasharray":"92.5 60"}}),_c('path',{attrs:{"id":"small-hex","d":"M51.9,21.9L41.3,3.6c-0.8-1.3-2.2-2.1-3.7-2.1H16.4c-1.5,0-2.9,0.8-3.7,2.1L2.1,21.9c-0.8,1.3-0.8,2.9,0,4.2 l10.6,18.3c0.8,1.3,2.2,2.1,3.7,2.1h21.3c1.5,0,2.9-0.8,3.7-2.1l10.6-18.3C52.7,24.8,52.7,23.2,51.9,21.9z","stroke":"currentColor","stroke-width":"3","fill":"none","stroke-linecap":"round","stroke-dasharray":"47.5 105"}})])}
 var LoadingSpinnervue_type_template_id_4da3784e_scoped_true_staticRenderFns = []
 
@@ -15775,7 +15788,7 @@ var LoadingSpinner_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_LoadingSpinner = (LoadingSpinner_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/PageBody.vue?vue&type=template&id=0b286594&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"101b3dcf-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/PageBody.vue?vue&type=template&id=0b286594&scoped=true&
 var PageBodyvue_type_template_id_0b286594_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"page-body nq-card-body"},[_vm._t("default")],2)}
 var PageBodyvue_type_template_id_0b286594_scoped_true_staticRenderFns = []
 
@@ -15832,7 +15845,7 @@ var PageBody_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_PageBody = (PageBody_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/PageFooter.vue?vue&type=template&id=3c6ba3a4&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"101b3dcf-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/PageFooter.vue?vue&type=template&id=3c6ba3a4&scoped=true&
 var PageFootervue_type_template_id_3c6ba3a4_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"page-footer nq-card-footer"},[_vm._t("default")],2)}
 var PageFootervue_type_template_id_3c6ba3a4_scoped_true_staticRenderFns = []
 
@@ -15889,7 +15902,7 @@ var PageFooter_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_PageFooter = (PageFooter_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/PageHeader.vue?vue&type=template&id=53c0243a&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"101b3dcf-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/PageHeader.vue?vue&type=template&id=53c0243a&scoped=true&
 var PageHeadervue_type_template_id_53c0243a_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"page-header nq-card-header",class:_vm.progressIndicator ? 'has-progress-indicator' : ''},[(_vm.progressIndicator)?_c('div',{staticClass:"progress-indicator"},_vm._l((_vm.progressSteps),function(thisStep){return _c('div',{key:thisStep,staticClass:"indicator",class:thisStep <= _vm.step ? 'active' : ''})}),0):_vm._e(),(_vm.backArrow)?_c('a',{staticClass:"page-header-back-button",attrs:{"href":"#","title":_vm.$t('Go back')},on:{"click":function($event){$event.preventDefault();return _vm.$emit('back')}}},[_c('ArrowLeftIcon')],1):_vm._e(),_c('h1',{staticClass:"nq-h1"},[_vm._t("default")],2),_vm._t("more")],2)}
 var PageHeadervue_type_template_id_53c0243a_scoped_true_staticRenderFns = []
 
@@ -15988,7 +16001,7 @@ var PageHeader_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_PageHeader = (PageHeader_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/PaymentInfoLine.vue?vue&type=template&id=48a22442&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"101b3dcf-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/PaymentInfoLine.vue?vue&type=template&id=48a22442&scoped=true&
 var PaymentInfoLinevue_type_template_id_48a22442_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"info-line",class:{ 'inverse-theme': _vm.theme === _vm.constructor.Themes.INVERSE }},[_c('div',{staticClass:"amounts",on:{"mouseenter":function($event){_vm.$refs['price-tooltip'] && _vm.$refs['price-tooltip'].show()},"mouseleave":function($event){_vm.$refs['price-tooltip'] && _vm.$refs['price-tooltip'].hide()},"click":function($event){_vm.$refs['price-tooltip'] && Date.now() - _vm.lastTooltipToggle > 200 && _vm.$refs['price-tooltip'].toggle()}}},[_c('Amount',{attrs:{"currency":_vm.cryptoAmount.currency,"amount":_vm.cryptoAmount.amount,"currencyDecimals":_vm.cryptoAmount.decimals,"minDecimals":0,"maxDecimals":Math.min(4, _vm.cryptoAmount.decimals)}}),(_vm.fiatAmount)?_c('Tooltip',{ref:"price-tooltip",staticClass:"price-tooltip",attrs:{"container":_vm.$parent,"preferredPosition":"bottom left","margin":{ left: 8 },"styles":{
                 minWidth: '37rem',
                 padding: '2rem',
@@ -16256,7 +16269,7 @@ async function _fetch(input, init) {
 
 //# sourceMappingURL=FiatApi.js.map
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Timer.vue?vue&type=template&id=a31a785a&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"101b3dcf-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Timer.vue?vue&type=template&id=a31a785a&scoped=true&
 var Timervue_type_template_id_a31a785a_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('Tooltip',_vm._b({staticClass:"timer",class:{
         'time-shown': _vm.detailsShown || _vm.alwaysShowTime,
         'little-time-left': _vm._progress >= .75,
@@ -17182,7 +17195,7 @@ var PaymentInfoLine_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_PaymentInfoLine = (PaymentInfoLine_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/QrCode.vue?vue&type=template&id=778bc790&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"101b3dcf-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/QrCode.vue?vue&type=template&id=778bc790&
 var QrCodevue_type_template_id_778bc790_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (!!_vm.data)?_c('canvas',{staticClass:"qr-code"}):_vm._e()}
 var QrCodevue_type_template_id_778bc790_staticRenderFns = []
 
@@ -17453,628 +17466,45 @@ var QrCode_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_QrCode = (QrCode_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/QrScanner.vue?vue&type=template&id=5b05f1b5&scoped=true&
-var QrScannervue_type_template_id_5b05f1b5_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"qr-scanner nq-blue-bg"},[_c('video',{ref:"video",attrs:{"muted":"","autoplay":"","playsinline":"","width":"600","height":"600"},domProps:{"muted":true}}),_c('div',{ref:"overlay",staticClass:"overlay",class:{ inactive: _vm.cameraAccessFailed }},[_vm._t("default",[_c('svg',{attrs:{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 238 238"}},[_c('path',{attrs:{"fill":"none","stroke-linecap":"round","stroke-linejoin":"round","stroke-width":"4","d":"M31.3 2H10a8 8 0 0 0-8 8v21.3M206.8 2H228a8 8 0 0 1 8 8v21.3m0 175.4V228a8 8 0 0 1-8 8h-21.3m-175.4 0H10a8 8 0 0 1-8-8v-21.3"}})])])],2),_c('button',{staticClass:"nq-button-s inverse cancel-button",on:{"click":_vm._cancel}},[_vm._v(_vm._s(_vm.$t('Cancel')))]),_c('transition',{attrs:{"name":"fade"}},[(_vm.cameraAccessFailed)?_c('div',{staticClass:"camera-access-failed"},[(!_vm.hasCamera)?_c('div',{staticClass:"camera-access-failed-warning"},[_vm._v(" "+_vm._s(_vm.$t('Your device does not have an accessible camera.'))+" ")]):_c('div',[_c('div',{staticClass:"camera-access-failed-warning"},[_vm._v(" "+_vm._s(_vm.$t('Unblock the camera for this website to scan QR codes.'))+" ")]),(_vm.isMobileOrTablet)?_c('div',[(_vm.browser === 'chrome')?_c('div',[_c('I18n',{staticClass:"access-denied-instructions",attrs:{"path":"Click on {icon} and go to\\nSettings > Site Settings > Camera","tag":"div"},scopedSlots:_vm._u([{key:"icon",fn:function(){return [_c('span',{staticClass:"browser-menu-icon"})]},proxy:true}],null,false,1223065533)}),_c('div',{staticClass:"browser-menu-arrow"})],1):_c('div',{staticClass:"access-denied-instructions"},[_vm._v(" "+_vm._s(_vm.$t('Grant camera access when asked.'))+" ")])]):_c('div',{staticClass:"access-denied-instructions"},[(_vm.browser === 'safari')?_c('I18n',{attrs:{"path":"Click on {safari} and go to\\nSettings for this Website > Camera","tag":"div"},scopedSlots:_vm._u([{key:"safari",fn:function(){return [_c('b',[_vm._v("Safari")])]},proxy:true}],null,false,687307496)}):_c('I18n',{attrs:{"path":"Click on {icon} in the URL bar.","tag":"div"},scopedSlots:_vm._u([{key:"icon",fn:function(){return [(_vm.browser === 'chrome')?_c('span',{staticClass:"camera-icon-chrome"}):(_vm.browser === 'firefox')?_c('span',{staticClass:"camera-icon-firefox"}):_c('span',[_vm._v(_vm._s(_vm.$t('the camera icon')))])]},proxy:true}],null,false,2903711098)})],1)])]):_vm._e()])],1)}
-var QrScannervue_type_template_id_5b05f1b5_scoped_true_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"101b3dcf-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/QrScanner.vue?vue&type=template&id=48a6ec42&scoped=true&
+var QrScannervue_type_template_id_48a6ec42_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"qr-scanner nq-blue-bg"},[_c('video',{ref:"video",attrs:{"muted":"","autoplay":"","playsinline":"","width":"600","height":"600"},domProps:{"muted":true}}),_c('div',{ref:"overlay",staticClass:"overlay",class:{ inactive: _vm.cameraAccessFailed }},[_vm._t("default",[_c('svg',{attrs:{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 238 238"}},[_c('path',{attrs:{"fill":"none","stroke-linecap":"round","stroke-linejoin":"round","stroke-width":"4","d":"M31.3 2H10a8 8 0 0 0-8 8v21.3M206.8 2H228a8 8 0 0 1 8 8v21.3m0 175.4V228a8 8 0 0 1-8 8h-21.3m-175.4 0H10a8 8 0 0 1-8-8v-21.3"}})])])],2),_c('button',{staticClass:"nq-button-s inverse cancel-button",on:{"click":_vm._cancel}},[_vm._v(_vm._s(_vm.$t('Cancel')))]),_c('transition',{attrs:{"name":"fade"}},[(_vm.cameraAccessFailed)?_c('div',{staticClass:"camera-access-failed"},[(!_vm.hasCamera)?_c('div',{staticClass:"camera-access-failed-warning"},[_vm._v(" "+_vm._s(_vm.$t('Your device does not have an accessible camera.'))+" ")]):_c('div',[_c('div',{staticClass:"camera-access-failed-warning"},[_vm._v(" "+_vm._s(_vm.$t('Unblock the camera for this website to scan QR codes.'))+" ")]),(_vm.isMobileOrTablet)?_c('div',[(_vm.browser === 'chrome')?_c('div',[_c('I18n',{staticClass:"access-denied-instructions",attrs:{"path":"Click on {icon} and go to\\nSettings > Site Settings > Camera","tag":"div"},scopedSlots:_vm._u([{key:"icon",fn:function(){return [_c('span',{staticClass:"browser-menu-icon"})]},proxy:true}],null,false,1223065533)}),_c('div',{staticClass:"browser-menu-arrow"})],1):_c('div',{staticClass:"access-denied-instructions"},[_vm._v(" "+_vm._s(_vm.$t('Grant camera access when asked.'))+" ")])]):_c('div',{staticClass:"access-denied-instructions"},[(_vm.browser === 'safari')?_c('I18n',{attrs:{"path":"Click on {safari} and go to\\nSettings for this Website > Camera","tag":"div"},scopedSlots:_vm._u([{key:"safari",fn:function(){return [_c('b',[_vm._v("Safari")])]},proxy:true}],null,false,687307496)}):_c('I18n',{attrs:{"path":"Click on {icon} in the URL bar.","tag":"div"},scopedSlots:_vm._u([{key:"icon",fn:function(){return [(_vm.browser === 'chrome')?_c('span',{staticClass:"camera-icon-chrome"}):(_vm.browser === 'firefox')?_c('span',{staticClass:"camera-icon-firefox"}):_c('span',[_vm._v(_vm._s(_vm.$t('the camera icon')))])]},proxy:true}],null,false,2903711098)})],1)])]):_vm._e()])],1)}
+var QrScannervue_type_template_id_48a6ec42_scoped_true_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/QrScanner.vue?vue&type=template&id=5b05f1b5&scoped=true&
+// CONCATENATED MODULE: ./src/components/QrScanner.vue?vue&type=template&id=48a6ec42&scoped=true&
 
-// CONCATENATED MODULE: ./node_modules/qr-scanner/src/qr-scanner.js
-class qr_scanner_QrScanner {
-    /* async */
-    static hasCamera() {
-        return qr_scanner_QrScanner.listCameras(false)
-            .then(cameras => !!cameras.length)
-            .catch(() => false);
-    }
-
-    /* async */
-    static listCameras(requestLabels = false) {
-        if (!navigator.mediaDevices) return Promise.resolve([]);
-
-        // Note that enumerateDevices can always be called and does not prompt the user for permission.
-        // However, enumerateDevices only includes device labels if served via https and an active media stream exists
-        // or permission to access the camera was given. Therefore, ask for camera permission by opening a stream, if
-        // labels were requested.
-        let openedStream = null;
-        return (requestLabels
-            ? navigator.mediaDevices.getUserMedia({ audio: false, video: true })
-                .then(stream => openedStream = stream)
-                // Fail gracefully, especially if the device has no camera or on mobile when the camera is already in
-                // use and some browsers disallow a second stream.
-                .catch(() => {})
-            : Promise.resolve()
-        )
-            .then(() => navigator.mediaDevices.enumerateDevices())
-            .then(devices => devices.filter(device => device.kind === 'videoinput').map((device, i) => ({
-                id: device.deviceId,
-                label: device.label || (i === 0 ? 'Default Camera' : `Camera ${i + 1}`),
-            })))
-            .finally(() => {
-                // close the stream we just opened for getting camera access for listing the device labels
-                if (!openedStream) return;
-                for (const track of openedStream.getTracks()) {
-                    track.stop();
-                    openedStream.removeTrack(track);
-                }
-            });
-    }
-
-    constructor(
-        video,
-        onDecode,
-        canvasSizeOrOnDecodeError = this._onDecodeError,
-        canvasSizeOrCalculateScanRegion = this._calculateScanRegion,
-        preferredCamera = 'environment'
-    ) {
-        this.$video = video;
-        this.$canvas = document.createElement('canvas');
-        this._onDecode = onDecode;
-        this._legacyCanvasSize = qr_scanner_QrScanner.DEFAULT_CANVAS_SIZE;
-        this._preferredCamera = preferredCamera;
-        this._active = false;
-        this._paused = false;
-        this._flashOn = false;
-
-        if (typeof canvasSizeOrOnDecodeError === 'number') {
-            // legacy function signature where the third argument is the canvas size
-            this._legacyCanvasSize = canvasSizeOrOnDecodeError;
-            console.warn('You\'re using a deprecated version of the QrScanner constructor which will be removed in '
-                + 'the future');
-        } else {
-            this._onDecodeError = canvasSizeOrOnDecodeError;
-        }
-
-        if (typeof canvasSizeOrCalculateScanRegion === 'number') {
-            // legacy function signature where the fourth argument is the canvas size
-            this._legacyCanvasSize = canvasSizeOrCalculateScanRegion;
-            console.warn('You\'re using a deprecated version of the QrScanner constructor which will be removed in '
-                + 'the future');
-        } else {
-            this._calculateScanRegion = canvasSizeOrCalculateScanRegion;
-        }
-
-        this._scanRegion = this._calculateScanRegion(video);
-
-        this._onPlay = this._onPlay.bind(this);
-        this._onLoadedMetaData = this._onLoadedMetaData.bind(this);
-        this._onVisibilityChange = this._onVisibilityChange.bind(this);
-
-        video.disablePictureInPicture = true;
-        // Allow inline playback on iPhone instead of requiring full screen playback,
-        // see https://webkit.org/blog/6784/new-video-policies-for-ios/
-        video.playsInline = true;
-        // Allow play() on iPhone without requiring a user gesture. Should not really be needed as camera stream
-        // includes no audio, but just to be safe.
-        video.muted = true;
-
-        // Avoid Safari stopping the video stream on a hidden video.
-        // See https://github.com/cozmo/jsQR/issues/185
-        let shouldHideVideo = false;
-        if (video.hidden) {
-            video.hidden = false;
-            shouldHideVideo = true;
-        }
-        if (!document.body.contains(video)) {
-            document.body.appendChild(video);
-            shouldHideVideo = true;
-        }
-        requestAnimationFrame(() => {
-            // Checking in requestAnimationFrame which should avoid a potential additional re-flow for getComputedStyle.
-            const computedStyle = window.getComputedStyle(video);
-            if (computedStyle.display === 'none') {
-                video.style.setProperty('display', 'block', 'important');
-                shouldHideVideo = true;
-            }
-            if (computedStyle.visibility !== 'visible') {
-                video.style.setProperty('visibility', 'visible', 'important');
-                shouldHideVideo = true;
-            }
-            if (shouldHideVideo) {
-                // Hide the video in a way that doesn't cause Safari to stop the playback.
-                console.warn('QrScanner has overwritten the video hiding style to avoid Safari stopping the playback.');
-                video.style.opacity = 0;
-                video.style.width = 0;
-                video.style.height = 0;
-            }
-        });
-
-        video.addEventListener('play', this._onPlay);
-        video.addEventListener('loadedmetadata', this._onLoadedMetaData);
-        document.addEventListener('visibilitychange', this._onVisibilityChange);
-
-        this._qrEnginePromise = qr_scanner_QrScanner.createQrEngine();
-    }
-
-    /* async */
-    hasFlash() {
-        let openedStream = null;
-        return (this.$video.srcObject
-            ? Promise.resolve(this.$video.srcObject.getVideoTracks()[0])
-            : this._getCameraStream().then(({ stream }) => {
-                console.warn('Call hasFlash after successfully starting the scanner to avoid creating '
-                    + 'a temporary video stream');
-                openedStream = stream;
-                return stream.getVideoTracks()[0];
-            })
-        )
-            .then((track) => 'torch' in track.getSettings())
-            .catch(() => false)
-            .finally(() => {
-                // close the stream we just opened for detecting whether it supports flash
-                if (!openedStream) return;
-                for (const track of openedStream.getTracks()) {
-                    track.stop();
-                    openedStream.removeTrack(track);
-                }
-            });
-    }
-
-    isFlashOn() {
-      return this._flashOn;
-    }
-
-    /* async */
-    toggleFlash() {
-        if (this._flashOn) {
-            return this.turnFlashOff();
-        } else {
-            return this.turnFlashOn();
-        }
-    }
-
-    /* async */
-    turnFlashOn() {
-        if (this._flashOn) return Promise.resolve();
-        this._flashOn = true;
-        if (!this._active || this._paused) return Promise.resolve(); // flash will be turned on later on .start()
-        return this.hasFlash().then((hasFlash) => {
-            if (!hasFlash) return Promise.reject('No flash available');
-            // Note that the video track is guaranteed to exist at this point
-            return this.$video.srcObject.getVideoTracks()[0].applyConstraints({
-                advanced: [{ torch: true }],
-            });
-        }).catch(() => {
-            this._flashOn = false;
-            throw e;
-        });
-    }
-
-    /* async */
-    turnFlashOff() {
-        if (!this._flashOn) return;
-        // applyConstraints with torch: false does not work to turn the flashlight off, as a stream's torch stays
-        // continuously on, see https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackConstraints#torch. Therefore,
-        // we have to stop the stream to turn the flashlight off.
-        this._flashOn = false;
-        return this._restartVideoStream();
-    }
-
-    destroy() {
-        this.$video.removeEventListener('loadedmetadata', this._onLoadedMetaData);
-        this.$video.removeEventListener('play', this._onPlay);
-        document.removeEventListener('visibilitychange', this._onVisibilityChange);
-
-        this.stop();
-        qr_scanner_QrScanner._postWorkerMessage(this._qrEnginePromise, 'close');
-    }
-
-    /* async */
-    start() {
-        if (this._active && !this._paused) {
-            return Promise.resolve();
-        }
-        if (window.location.protocol !== 'https:') {
-            // warn but try starting the camera anyways
-            console.warn('The camera stream is only accessible if the page is transferred via https.');
-        }
-        this._active = true;
-        if (document.hidden) {
-            // camera will be started as soon as tab is in foreground
-            return Promise.resolve();
-        }
-        this._paused = false;
-        if (this.$video.srcObject) {
-            // camera stream already/still set
-            this.$video.play();
-            return Promise.resolve();
-        }
-
-        return this._getCameraStream()
-            .then(({ stream, facingMode }) => {
-                this.$video.srcObject = stream;
-                this.$video.play();
-                this._setVideoMirror(facingMode);
-
-                // Restart the flash if it was previously on
-                if (this._flashOn) {
-                    this._flashOn = false; // force turnFlashOn to restart the flash
-                    this.turnFlashOn().catch(() => {});
-                }
-            })
-            .catch(e => {
-                this._active = false;
-                throw e;
-            });
-    }
-
-    stop() {
-        this.pause();
-        this._active = false;
-    }
-
-    /* async */
-    pause(stopStreamImmediately = false) {
-        this._paused = true;
-        if (!this._active) {
-            return Promise.resolve(true);
-        }
-        this.$video.pause();
-
-        const stopStream = () => {
-            const tracks = this.$video.srcObject ? this.$video.srcObject.getTracks() : [];
-            for (const track of tracks) {
-                track.stop(); //  note that this will also automatically turn the flashlight off
-                this.$video.srcObject.removeTrack(track);
-            }
-            this.$video.srcObject = null;
-        };
-
-        if (stopStreamImmediately) {
-            stopStream();
-            return Promise.resolve(true);
-        }
-
-        return new Promise((resolve) => setTimeout(resolve, 300))
-            .then(() => {
-                if (!this._paused) return false;
-                stopStream();
-                return true;
-            });
-    }
-
-    /* async */
-    setCamera(facingModeOrDeviceId) {
-        if (facingModeOrDeviceId === this._preferredCamera) return Promise.resolve();
-        this._preferredCamera = facingModeOrDeviceId;
-        // Restart the scanner with the new camera which will also update the video mirror and the scan region.
-        return this._restartVideoStream();
-    }
-
-    /* async */
-    static scanImage(imageOrFileOrUrl, scanRegion=null, qrEngine=null, canvas=null, disallowCanvasResizing=false,
-                     alsoTryWithoutScanRegion=false) {
-        const gotExternalWorker = qrEngine instanceof Worker;
-
-        let promise = Promise.all([
-            qrEngine || qr_scanner_QrScanner.createQrEngine(),
-            qr_scanner_QrScanner._loadImage(imageOrFileOrUrl),
-        ]).then(([engine, image]) => {
-            qrEngine = engine;
-            let canvasContext;
-            [canvas, canvasContext] = this._drawToCanvas(image, scanRegion, canvas, disallowCanvasResizing);
-
-            if (qrEngine instanceof Worker) {
-                if (!gotExternalWorker) {
-                    // Enable scanning of inverted color qr codes. Not using _postWorkerMessage as it's async
-                    qrEngine.postMessage({ type: 'inversionMode', data: 'both' });
-                }
-                return new Promise((resolve, reject) => {
-                    let timeout, onMessage, onError;
-                    onMessage = event => {
-                        if (event.data.type !== 'qrResult') {
-                            return;
-                        }
-                        qrEngine.removeEventListener('message', onMessage);
-                        qrEngine.removeEventListener('error', onError);
-                        clearTimeout(timeout);
-                        if (event.data.data !== null) {
-                            resolve(event.data.data);
-                        } else {
-                            reject(qr_scanner_QrScanner.NO_QR_CODE_FOUND);
-                        }
-                    };
-                    onError = (e) => {
-                        qrEngine.removeEventListener('message', onMessage);
-                        qrEngine.removeEventListener('error', onError);
-                        clearTimeout(timeout);
-                        const errorMessage = !e ? 'Unknown Error' : (e.message || e);
-                        reject('Scanner error: ' + errorMessage);
-                    };
-                    qrEngine.addEventListener('message', onMessage);
-                    qrEngine.addEventListener('error', onError);
-                    timeout = setTimeout(() => onError('timeout'), 10000);
-                    const imageData = canvasContext.getImageData(0, 0, canvas.width, canvas.height);
-                    qrEngine.postMessage({
-                        type: 'decode',
-                        data: imageData
-                    }, [imageData.data.buffer]);
-                });
-            } else {
-                return new Promise((resolve, reject) => {
-                    const timeout = setTimeout(() => reject('Scanner error: timeout'), 10000);
-                    qrEngine.detect(canvas).then(scanResults => {
-                        if (!scanResults.length) {
-                            reject(qr_scanner_QrScanner.NO_QR_CODE_FOUND);
-                        } else {
-                            resolve(scanResults[0].rawValue);
-                        }
-                    }).catch((e) => reject('Scanner error: ' + (e.message || e))).finally(() => clearTimeout(timeout));
-                });
-            }
-        });
-
-        if (scanRegion && alsoTryWithoutScanRegion) {
-            promise = promise.catch(() =>
-                qr_scanner_QrScanner.scanImage(imageOrFileOrUrl, null, qrEngine, canvas, disallowCanvasResizing));
-        }
-
-        promise = promise.finally(() => {
-            if (gotExternalWorker) return;
-            qr_scanner_QrScanner._postWorkerMessage(qrEngine, 'close');
-        });
-
-        return promise;
-    }
-
-    setGrayscaleWeights(red, green, blue, useIntegerApproximation = true) {
-        // Note that for the native BarcodeDecoder, this is a no-op. However, the native implementations work also
-        // well with colored qr codes.
-        qr_scanner_QrScanner._postWorkerMessage(
-            this._qrEnginePromise,
-            'grayscaleWeights',
-            { red, green, blue, useIntegerApproximation }
-        );
-    }
-
-    setInversionMode(inversionMode) {
-        // Note that for the native BarcodeDecoder, this is a no-op. However, the native implementations scan normal
-        // and inverted qr codes by default
-        qr_scanner_QrScanner._postWorkerMessage(this._qrEnginePromise, 'inversionMode', inversionMode);
-    }
-
-    /* async */
-    static createQrEngine(workerPath = qr_scanner_QrScanner.WORKER_PATH) {
-        return ('BarcodeDetector' in window && BarcodeDetector.getSupportedFormats
-            ? BarcodeDetector.getSupportedFormats()
-            : Promise.resolve([])
-        )
-            .then((supportedFormats) => supportedFormats.indexOf('qr_code') !== -1
-                ? new BarcodeDetector({ formats: ['qr_code'] })
-                : new Worker(workerPath)
-            );
-    }
-
-    _onPlay() {
-        this._scanRegion = this._calculateScanRegion(this.$video);
-        this._scanFrame();
-    }
-
-    _onLoadedMetaData() {
-        this._scanRegion = this._calculateScanRegion(this.$video);
-    }
-
-    _onVisibilityChange() {
-        if (document.hidden) {
-            this.pause();
-        } else if (this._active) {
-            this.start();
-        }
-    }
-
-    _calculateScanRegion(video) {
-        // Default scan region calculation. Note that this can be overwritten in the constructor.
-        const smallestDimension = Math.min(video.videoWidth, video.videoHeight);
-        const scanRegionSize = Math.round(2 / 3 * smallestDimension);
-        return {
-            x: Math.round((video.videoWidth - scanRegionSize) / 2),
-            y: Math.round((video.videoHeight - scanRegionSize) / 2),
-            width: scanRegionSize,
-            height: scanRegionSize,
-            downScaledWidth: this._legacyCanvasSize,
-            downScaledHeight: this._legacyCanvasSize,
-        };
-    }
-
-    _scanFrame() {
-        if (!this._active || this.$video.paused || this.$video.ended) return false;
-        // using requestAnimationFrame to avoid scanning if tab is in background
-        requestAnimationFrame(() => {
-            if (this.$video.readyState <= 1) {
-                // Skip scans until the video is ready as drawImage() only works correctly on a video with readyState
-                // > 1, see https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawImage#Notes.
-                // This also avoids false positives for videos paused after a successful scan which remains visible on
-                // the canvas until the video is started again and ready.
-                this._scanFrame();
-                return;
-            }
-            this._qrEnginePromise
-                .then((qrEngine) => qr_scanner_QrScanner.scanImage(this.$video, this._scanRegion, qrEngine, this.$canvas))
-                .then(this._onDecode, (error) => {
-                    if (!this._active) return;
-                    const errorMessage = error.message || error;
-                    if (errorMessage.indexOf('service unavailable') !== -1) {
-                        // When the native BarcodeDetector crashed, create a new one
-                        this._qrEnginePromise = qr_scanner_QrScanner.createQrEngine();
-                    }
-                    this._onDecodeError(error);
-                })
-                .then(() => this._scanFrame());
-        });
-    }
-
-    _onDecodeError(error) {
-        // default error handler; can be overwritten in the constructor
-        if (error === qr_scanner_QrScanner.NO_QR_CODE_FOUND) return;
-        console.log(error);
-    }
-
-    /* async */
-    _getCameraStream() {
-        if (!navigator.mediaDevices) {
-            return Promise.reject('Camera not found.');
-        }
-
-        const preferenceType = this._preferredCamera === 'environment' || this._preferredCamera === 'user'
-            ? 'facingMode'
-            : 'deviceId';
-        const constraintsWithoutCamera = [{
-            width: { min: 1024 }
-        }, {
-            width: { min: 768 }
-        }, {}];
-        const constraintsWithCamera = constraintsWithoutCamera.map((constraint) => Object.assign({}, constraint, {
-            [preferenceType]: { exact: this._preferredCamera },
-        }));
-
-        // First try constraints with camera, then without camera. Using reduceRight as the Promise is build in a
-        // bottom up fashion.
-        return [...constraintsWithCamera, ...constraintsWithoutCamera].reduceRight((fallback, constraint) =>
-            () => navigator.mediaDevices.getUserMedia({ video: constraint, audio: false })
-                .then((stream) => ({
-                    stream,
-                    // Try to determine the facing mode from the stream, otherwise use a guess or 'environment' as
-                    // default. Note that the guess is not always accurate as Safari returns cameras of different facing
-                    // mode, even for exact facingMode constraints.
-                    facingMode: this._getFacingMode(stream)
-                        || (constraint.facingMode
-                            ? this._preferredCamera // _preferredCamera is a facing mode and we are able to fulfill it
-                            : (this._preferredCamera === 'environment'
-                                ? 'user' // switch as _preferredCamera was environment but we are not able to fulfill it
-                                : 'environment' // switch from unfulfilled user facingMode or default to environment
-                            )
-                        ),
-                }))
-                .catch(fallback),
-            () => Promise.reject('Camera not found.')
-        )();
-    }
-
-    /* async */
-    _restartVideoStream() {
-        // Note that we always pause the stream and not only if !this._paused as even if this._paused === true, the
-        // stream might still be running, as it's by default only stopped after a delay of 300ms.
-        const wasPaused = this._paused;
-        return this.pause(true).then((paused) => {
-            if (!paused || wasPaused || !this._active) return;
-            return this.start();
-        });
-    }
-
-    _setVideoMirror(facingMode) {
-        // in user facing mode mirror the video to make it easier for the user to position the QR code
-        const scaleFactor = facingMode==='user'? -1 : 1;
-        this.$video.style.transform = 'scaleX(' + scaleFactor + ')';
-    }
-
-    _getFacingMode(videoStream) {
-        const videoTrack = videoStream.getVideoTracks()[0];
-        if (!videoTrack) return null; // unknown
-        // inspired by https://github.com/JodusNodus/react-qr-reader/blob/master/src/getDeviceId.js#L13
-        return /rear|back|environment/i.test(videoTrack.label)
-            ? 'environment'
-            : /front|user|face/i.test(videoTrack.label)
-                ? 'user'
-                : null; // unknown
-    }
-
-    static _drawToCanvas(image, scanRegion=null, canvas=null, disallowCanvasResizing=false) {
-        canvas = canvas || document.createElement('canvas');
-        const scanRegionX = scanRegion && scanRegion.x? scanRegion.x : 0;
-        const scanRegionY = scanRegion && scanRegion.y? scanRegion.y : 0;
-        const scanRegionWidth = scanRegion && scanRegion.width? scanRegion.width : image.width || image.videoWidth;
-        const scanRegionHeight = scanRegion && scanRegion.height? scanRegion.height : image.height || image.videoHeight;
-
-        if (!disallowCanvasResizing) {
-            const canvasWidth = scanRegion && scanRegion.downScaledWidth
-                ? scanRegion.downScaledWidth
-                : scanRegionWidth;
-            const canvasHeight = scanRegion && scanRegion.downScaledHeight
-                ? scanRegion.downScaledHeight
-                : scanRegionHeight;
-            // Setting the canvas width or height clears the canvas, even if the values didn't change, therefore only
-            // set them if they actually changed.
-            if (canvas.width !== canvasWidth) {
-                canvas.width = canvasWidth;
-            }
-            if (canvas.height !== canvasHeight) {
-                canvas.height = canvasHeight;
-            }
-        }
-
-        const context = canvas.getContext('2d', { alpha: false });
-        context.imageSmoothingEnabled = false; // gives less blurry images
-        context.drawImage(
-            image,
-            scanRegionX, scanRegionY, scanRegionWidth, scanRegionHeight,
-            0, 0, canvas.width, canvas.height
-        );
-        return [canvas, context];
-    }
-
-    /* async */
-    static _loadImage(imageOrFileOrBlobOrUrl) {
-        if (imageOrFileOrBlobOrUrl instanceof HTMLCanvasElement || imageOrFileOrBlobOrUrl instanceof HTMLVideoElement
-            || window.ImageBitmap && imageOrFileOrBlobOrUrl instanceof window.ImageBitmap
-            || window.OffscreenCanvas && imageOrFileOrBlobOrUrl instanceof window.OffscreenCanvas) {
-            return Promise.resolve(imageOrFileOrBlobOrUrl);
-        } else if (imageOrFileOrBlobOrUrl instanceof Image) {
-            return qr_scanner_QrScanner._awaitImageLoad(imageOrFileOrBlobOrUrl).then(() => imageOrFileOrBlobOrUrl);
-        } else if (imageOrFileOrBlobOrUrl instanceof File || imageOrFileOrBlobOrUrl instanceof Blob
-            || imageOrFileOrBlobOrUrl instanceof URL || typeof(imageOrFileOrBlobOrUrl)==='string') {
-            const image = new Image();
-            if (imageOrFileOrBlobOrUrl instanceof File || imageOrFileOrBlobOrUrl instanceof Blob) {
-                image.src = URL.createObjectURL(imageOrFileOrBlobOrUrl);
-            } else {
-                image.src = imageOrFileOrBlobOrUrl;
-            }
-            return qr_scanner_QrScanner._awaitImageLoad(image).then(() => {
-                if (imageOrFileOrBlobOrUrl instanceof File || imageOrFileOrBlobOrUrl instanceof Blob) {
-                    URL.revokeObjectURL(image.src);
-                }
-                return image;
-            });
-        } else {
-            return Promise.reject('Unsupported image type.');
-        }
-    }
-
-    /* async */
-    static _awaitImageLoad(image) {
-        return new Promise((resolve, reject) => {
-            if (image.complete && image.naturalWidth!==0) {
-                // already loaded
-                resolve();
-            } else {
-                let onLoad, onError;
-                onLoad = () => {
-                    image.removeEventListener('load', onLoad);
-                    image.removeEventListener('error', onError);
-                    resolve();
-                };
-                onError = () => {
-                    image.removeEventListener('load', onLoad);
-                    image.removeEventListener('error', onError);
-                    reject('Image load error');
-                };
-                image.addEventListener('load', onLoad);
-                image.addEventListener('error', onError);
-            }
-        });
-    }
-
-    /* async */
-    static _postWorkerMessage(qrEngineOrQrEnginePromise, type, data) {
-        return Promise.resolve(qrEngineOrQrEnginePromise).then((qrEngine) => {
-            if (!(qrEngine instanceof Worker)) return;
-            qrEngine.postMessage({ type, data });
-        });
-    }
-}
-qr_scanner_QrScanner.DEFAULT_CANVAS_SIZE = 400;
-qr_scanner_QrScanner.NO_QR_CODE_FOUND = 'No QR code found';
-qr_scanner_QrScanner.WORKER_PATH = 'qr-scanner-worker.min.js';
+// CONCATENATED MODULE: ./node_modules/qr-scanner/qr-scanner.min.js
+class qr_scanner_min_e{constructor(a,b,c,d,f){this._legacyCanvasSize=qr_scanner_min_e.DEFAULT_CANVAS_SIZE;this._preferredCamera="environment";this._maxScansPerSecond=25;this._lastScanTimestamp=-1;this._destroyed=this._flashOn=this._paused=this._active=!1;this.$video=a;this.$canvas=document.createElement("canvas");c&&"object"===typeof c?this._onDecode=b:(c||d||f?console.warn("You're using a deprecated version of the QrScanner constructor which will be removed in the future"):console.warn("Note that the type of the scan result passed to onDecode will change in the future. To already switch to the new api today, you can pass returnDetailedScanResult: true."),
+this._legacyOnDecode=b);b="object"===typeof c?c:{};this._onDecodeError=b.onDecodeError||("function"===typeof c?c:this._onDecodeError);this._calculateScanRegion=b.calculateScanRegion||("function"===typeof d?d:this._calculateScanRegion);this._preferredCamera=b.preferredCamera||f||this._preferredCamera;this._legacyCanvasSize="number"===typeof c?c:"number"===typeof d?d:this._legacyCanvasSize;this._maxScansPerSecond=b.maxScansPerSecond||this._maxScansPerSecond;this._onPlay=this._onPlay.bind(this);this._onLoadedMetaData=
+this._onLoadedMetaData.bind(this);this._onVisibilityChange=this._onVisibilityChange.bind(this);this._updateOverlay=this._updateOverlay.bind(this);a.disablePictureInPicture=!0;a.playsInline=!0;a.muted=!0;let h=!1;a.hidden&&(a.hidden=!1,h=!0);document.body.contains(a)||(document.body.appendChild(a),h=!0);c=a.parentElement;if(b.highlightScanRegion||b.highlightCodeOutline){d=!!b.overlay;this.$overlay=b.overlay||document.createElement("div");f=this.$overlay.style;f.position="absolute";f.display="none";
+f.pointerEvents="none";this.$overlay.classList.add("scan-region-highlight");if(!d&&b.highlightScanRegion){this.$overlay.innerHTML='<svg class="scan-region-highlight-svg" viewBox="0 0 238 238" preserveAspectRatio="none" style="position:absolute;width:100%;height:100%;left:0;top:0;fill:none;stroke:#e9b213;stroke-width:4;stroke-linecap:round;stroke-linejoin:round"><path d="M31 2H10a8 8 0 0 0-8 8v21M207 2h21a8 8 0 0 1 8 8v21m0 176v21a8 8 0 0 1-8 8h-21m-176 0H10a8 8 0 0 1-8-8v-21"/></svg>';try{this.$overlay.firstElementChild.animate({transform:["scale(.98)",
+"scale(1.01)"]},{duration:400,iterations:Infinity,direction:"alternate",easing:"ease-in-out"})}catch(m){}c.insertBefore(this.$overlay,this.$video.nextSibling)}b.highlightCodeOutline&&(this.$overlay.insertAdjacentHTML("beforeend",'<svg class="code-outline-highlight" preserveAspectRatio="none" style="display:none;width:100%;height:100%;fill:none;stroke:#e9b213;stroke-width:5;stroke-dasharray:25;stroke-linecap:round;stroke-linejoin:round"><polygon/></svg>'),this.$codeOutlineHighlight=this.$overlay.lastElementChild)}this._scanRegion=
+this._calculateScanRegion(a);requestAnimationFrame(()=>{let m=window.getComputedStyle(a);"none"===m.display&&(a.style.setProperty("display","block","important"),h=!0);"visible"!==m.visibility&&(a.style.setProperty("visibility","visible","important"),h=!0);h&&(console.warn("QrScanner has overwritten the video hiding style to avoid Safari stopping the playback."),a.style.opacity="0",a.style.width="0",a.style.height="0",this.$overlay&&this.$overlay.parentElement&&this.$overlay.parentElement.removeChild(this.$overlay),
+delete this.$overlay,delete this.$codeOutlineHighlight);this.$overlay&&this._updateOverlay()});a.addEventListener("play",this._onPlay);a.addEventListener("loadedmetadata",this._onLoadedMetaData);document.addEventListener("visibilitychange",this._onVisibilityChange);window.addEventListener("resize",this._updateOverlay);this._qrEnginePromise=qr_scanner_min_e.createQrEngine()}static set WORKER_PATH(a){console.warn("Setting QrScanner.WORKER_PATH is not required and not supported anymore. Have a look at the README for new setup instructions.")}static async hasCamera(){try{return!!(await qr_scanner_min_e.listCameras(!1)).length}catch(a){return!1}}static async listCameras(a=
+!1){if(!navigator.mediaDevices)return[];let b=async()=>(await navigator.mediaDevices.enumerateDevices()).filter(d=>"videoinput"===d.kind),c;try{a&&(await b()).every(d=>!d.label)&&(c=await navigator.mediaDevices.getUserMedia({audio:!1,video:!0}))}catch(d){}try{return(await b()).map((d,f)=>({id:d.deviceId,label:d.label||(0===f?"Default Camera":`Camera ${f+1}`)}))}finally{c&&(console.warn("Call listCameras after successfully starting a QR scanner to avoid creating a temporary video stream"),qr_scanner_min_e._stopVideoStream(c))}}async hasFlash(){let a;
+try{if(this.$video.srcObject){if(!(this.$video.srcObject instanceof MediaStream))return!1;a=this.$video.srcObject}else a=(await this._getCameraStream()).stream;return"torch"in a.getVideoTracks()[0].getSettings()}catch(b){return!1}finally{a&&a!==this.$video.srcObject&&(console.warn("Call hasFlash after successfully starting the scanner to avoid creating a temporary video stream"),qr_scanner_min_e._stopVideoStream(a))}}isFlashOn(){return this._flashOn}async toggleFlash(){this._flashOn?await this.turnFlashOff():await this.turnFlashOn()}async turnFlashOn(){if(!this._flashOn&&
+!this._destroyed&&(this._flashOn=!0,this._active&&!this._paused))try{if(!await this.hasFlash())throw"No flash available";await this.$video.srcObject.getVideoTracks()[0].applyConstraints({advanced:[{torch:!0}]})}catch(a){throw this._flashOn=!1,a;}}async turnFlashOff(){this._flashOn&&(this._flashOn=!1,await this._restartVideoStream())}destroy(){this.$video.removeEventListener("loadedmetadata",this._onLoadedMetaData);this.$video.removeEventListener("play",this._onPlay);document.removeEventListener("visibilitychange",
+this._onVisibilityChange);window.removeEventListener("resize",this._updateOverlay);this._destroyed=!0;this._flashOn=!1;this.stop();qr_scanner_min_e._postWorkerMessage(this._qrEnginePromise,"close")}async start(){if(this._destroyed)throw Error("The QR scanner can not be started as it had been destroyed.");if(!this._active||this._paused)if("https:"!==window.location.protocol&&console.warn("The camera stream is only accessible if the page is transferred via https."),this._active=!0,!document.hidden)if(this._paused=
+!1,this.$video.srcObject)await this.$video.play();else try{let {stream:a,facingMode:b}=await this._getCameraStream();!this._active||this._paused?qr_scanner_min_e._stopVideoStream(a):(this._setVideoMirror(b),this.$video.srcObject=a,await this.$video.play(),this._flashOn&&(this._flashOn=!1,this.turnFlashOn().catch(()=>{})))}catch(a){if(!this._paused)throw this._active=!1,a;}}stop(){this.pause();this._active=!1}async pause(a=!1){this._paused=!0;if(!this._active)return!0;this.$video.pause();this.$overlay&&(this.$overlay.style.display=
+"none");let b=()=>{this.$video.srcObject instanceof MediaStream&&(qr_scanner_min_e._stopVideoStream(this.$video.srcObject),this.$video.srcObject=null)};if(a)return b(),!0;await new Promise(c=>setTimeout(c,300));if(!this._paused)return!1;b();return!0}async setCamera(a){a!==this._preferredCamera&&(this._preferredCamera=a,await this._restartVideoStream())}static async scanImage(a,b,c,d,f=!1,h=!1){let m,n=!1;b&&("scanRegion"in b||"qrEngine"in b||"canvas"in b||"disallowCanvasResizing"in b||"alsoTryWithoutScanRegion"in
+b||"returnDetailedScanResult"in b)?(m=b.scanRegion,c=b.qrEngine,d=b.canvas,f=b.disallowCanvasResizing||!1,h=b.alsoTryWithoutScanRegion||!1,n=!0):b||c||d||f||h?console.warn("You're using a deprecated api for scanImage which will be removed in the future."):console.warn("Note that the return type of scanImage will change in the future. To already switch to the new api today, you can pass returnDetailedScanResult: true.");b=!!c;try{let p,k;[c,p]=await Promise.all([c||qr_scanner_min_e.createQrEngine(),qr_scanner_min_e._loadImage(a)]);
+[d,k]=qr_scanner_min_e._drawToCanvas(p,m,d,f);let q;if(c instanceof Worker){let g=c;b||qr_scanner_min_e._postWorkerMessageSync(g,"inversionMode","both");q=await new Promise((l,v)=>{let w,u,r,y=-1;u=t=>{t.data.id===y&&(g.removeEventListener("message",u),g.removeEventListener("error",r),clearTimeout(w),null!==t.data.data?l({data:t.data.data,cornerPoints:qr_scanner_min_e._convertPoints(t.data.cornerPoints,m)}):v(qr_scanner_min_e.NO_QR_CODE_FOUND))};r=t=>{g.removeEventListener("message",u);g.removeEventListener("error",r);clearTimeout(w);v("Scanner error: "+(t?
+t.message||t:"Unknown Error"))};g.addEventListener("message",u);g.addEventListener("error",r);w=setTimeout(()=>r("timeout"),1E4);let x=k.getImageData(0,0,d.width,d.height);y=qr_scanner_min_e._postWorkerMessageSync(g,"decode",x,[x.data.buffer])})}else q=await Promise.race([new Promise((g,l)=>window.setTimeout(()=>l("Scanner error: timeout"),1E4)),(async()=>{try{var [g]=await c.detect(d);if(!g)throw qr_scanner_min_e.NO_QR_CODE_FOUND;return{data:g.rawValue,cornerPoints:qr_scanner_min_e._convertPoints(g.cornerPoints,m)}}catch(l){g=l.message||l;
+if(/not implemented|service unavailable/.test(g))return qr_scanner_min_e._disableBarcodeDetector=!0,qr_scanner_min_e.scanImage(a,{scanRegion:m,canvas:d,disallowCanvasResizing:f,alsoTryWithoutScanRegion:h});throw`Scanner error: ${g}`;}})()]);return n?q:q.data}catch(p){if(!m||!h)throw p;let k=await qr_scanner_min_e.scanImage(a,{qrEngine:c,canvas:d,disallowCanvasResizing:f});return n?k:k.data}finally{b||qr_scanner_min_e._postWorkerMessage(c,"close")}}setGrayscaleWeights(a,b,c,d=!0){qr_scanner_min_e._postWorkerMessage(this._qrEnginePromise,"grayscaleWeights",{red:a,green:b,
+blue:c,useIntegerApproximation:d})}setInversionMode(a){qr_scanner_min_e._postWorkerMessage(this._qrEnginePromise,"inversionMode",a)}static async createQrEngine(a){a&&console.warn("Specifying a worker path is not required and not supported anymore.");return!qr_scanner_min_e._disableBarcodeDetector&&"BarcodeDetector"in window&&BarcodeDetector.getSupportedFormats&&(await BarcodeDetector.getSupportedFormats()).includes("qr_code")?new BarcodeDetector({formats:["qr_code"]}):Promise.resolve(/* import() */).then(__webpack_require__.t.bind(null, "da3b", 7)).then(b=>b.createWorker())}_onPlay(){this._scanRegion=
+this._calculateScanRegion(this.$video);this._updateOverlay();this.$overlay&&(this.$overlay.style.display="");this._scanFrame()}_onLoadedMetaData(){this._scanRegion=this._calculateScanRegion(this.$video);this._updateOverlay()}_onVisibilityChange(){document.hidden?this.pause():this._active&&this.start()}_calculateScanRegion(a){let b=Math.round(2/3*Math.min(a.videoWidth,a.videoHeight));return{x:Math.round((a.videoWidth-b)/2),y:Math.round((a.videoHeight-b)/2),width:b,height:b,downScaledWidth:this._legacyCanvasSize,
+downScaledHeight:this._legacyCanvasSize}}_updateOverlay(){requestAnimationFrame(()=>{if(this.$overlay){var a=this.$video,b=a.videoWidth,c=a.videoHeight,d=a.offsetWidth,f=a.offsetHeight,h=a.offsetLeft,m=a.offsetTop,n=window.getComputedStyle(a),p=n.objectFit,k=b/c,q=d/f;switch(p){case "none":var g=b;var l=c;break;case "fill":g=d;l=f;break;default:("cover"===p?k>q:k<q)?(l=f,g=l*k):(g=d,l=g/k),"scale-down"===p&&(g=Math.min(g,b),l=Math.min(l,c))}var [v,w]=n.objectPosition.split(" ").map((r,y)=>{const x=
+parseFloat(r);return r.endsWith("%")?(y?f-l:d-g)*x/100:x});n=this._scanRegion.width||b;q=this._scanRegion.height||c;p=this._scanRegion.x||0;var u=this._scanRegion.y||0;k=this.$overlay.style;k.width=`${n/b*g}px`;k.height=`${q/c*l}px`;k.top=`${m+w+u/c*l}px`;c=/scaleX\(-1\)/.test(a.style.transform);k.left=`${h+(c?d-v-g:v)+(c?b-p-n:p)/b*g}px`;k.transform=a.style.transform}})}static _convertPoints(a,b){if(!b)return a;let c=b.x||0,d=b.y||0,f=b.width&&b.downScaledWidth?b.width/b.downScaledWidth:1;b=b.height&&
+b.downScaledHeight?b.height/b.downScaledHeight:1;for(let h of a)h.x=h.x*f+c,h.y=h.y*b+d;return a}_scanFrame(){!this._active||this.$video.paused||this.$video.ended||("requestVideoFrameCallback"in this.$video?this.$video.requestVideoFrameCallback.bind(this.$video):requestAnimationFrame)(async()=>{if(!(1>=this.$video.readyState)){var a=Date.now()-this._lastScanTimestamp,b=1E3/this._maxScansPerSecond;a<b&&await new Promise(d=>setTimeout(d,b-a));this._lastScanTimestamp=Date.now();try{var c=await qr_scanner_min_e.scanImage(this.$video,
+{scanRegion:this._scanRegion,qrEngine:this._qrEnginePromise,canvas:this.$canvas})}catch(d){if(!this._active)return;this._onDecodeError(d)}!qr_scanner_min_e._disableBarcodeDetector||await this._qrEnginePromise instanceof Worker||(this._qrEnginePromise=qr_scanner_min_e.createQrEngine());c?(this._onDecode?this._onDecode(c):this._legacyOnDecode&&this._legacyOnDecode(c.data),this.$codeOutlineHighlight&&(clearTimeout(this._codeOutlineHighlightRemovalTimeout),this._codeOutlineHighlightRemovalTimeout=void 0,this.$codeOutlineHighlight.setAttribute("viewBox",
+`${this._scanRegion.x||0} `+`${this._scanRegion.y||0} `+`${this._scanRegion.width||this.$video.videoWidth} `+`${this._scanRegion.height||this.$video.videoHeight}`),this.$codeOutlineHighlight.firstElementChild.setAttribute("points",c.cornerPoints.map(({x:d,y:f})=>`${d},${f}`).join(" ")),this.$codeOutlineHighlight.style.display="")):this.$codeOutlineHighlight&&!this._codeOutlineHighlightRemovalTimeout&&(this._codeOutlineHighlightRemovalTimeout=setTimeout(()=>this.$codeOutlineHighlight.style.display=
+"none",100))}this._scanFrame()})}_onDecodeError(a){a!==qr_scanner_min_e.NO_QR_CODE_FOUND&&console.log(a)}async _getCameraStream(){if(!navigator.mediaDevices)throw"Camera not found.";let a=/^(environment|user)$/.test(this._preferredCamera)?"facingMode":"deviceId",b=[{width:{min:1024}},{width:{min:768}},{}],c=b.map(d=>Object.assign({},d,{[a]:{exact:this._preferredCamera}}));for(let d of[...c,...b])try{let f=await navigator.mediaDevices.getUserMedia({video:d,audio:!1}),h=this._getFacingMode(f)||(d.facingMode?this._preferredCamera:
+"environment"===this._preferredCamera?"user":"environment");return{stream:f,facingMode:h}}catch(f){}throw"Camera not found.";}async _restartVideoStream(){let a=this._paused;await this.pause(!0)&&!a&&this._active&&await this.start()}static _stopVideoStream(a){for(let b of a.getTracks())b.stop(),a.removeTrack(b)}_setVideoMirror(a){this.$video.style.transform="scaleX("+("user"===a?-1:1)+")"}_getFacingMode(a){return(a=a.getVideoTracks()[0])?/rear|back|environment/i.test(a.label)?"environment":/front|user|face/i.test(a.label)?
+"user":null:null}static _drawToCanvas(a,b,c,d=!1){c=c||document.createElement("canvas");let f=b&&b.x?b.x:0,h=b&&b.y?b.y:0,m=b&&b.width?b.width:a.videoWidth||a.width,n=b&&b.height?b.height:a.videoHeight||a.height;d||(d=b&&b.downScaledWidth?b.downScaledWidth:m,b=b&&b.downScaledHeight?b.downScaledHeight:n,c.width!==d&&(c.width=d),c.height!==b&&(c.height=b));b=c.getContext("2d",{alpha:!1});b.imageSmoothingEnabled=!1;b.drawImage(a,f,h,m,n,0,0,c.width,c.height);return[c,b]}static async _loadImage(a){if(a instanceof
+Image)return await qr_scanner_min_e._awaitImageLoad(a),a;if(a instanceof HTMLVideoElement||a instanceof HTMLCanvasElement||a instanceof SVGImageElement||"OffscreenCanvas"in window&&a instanceof OffscreenCanvas||"ImageBitmap"in window&&a instanceof ImageBitmap)return a;if(a instanceof File||a instanceof Blob||a instanceof URL||"string"===typeof a){let b=new Image;b.src=a instanceof File||a instanceof Blob?URL.createObjectURL(a):a.toString();try{return await qr_scanner_min_e._awaitImageLoad(b),b}finally{(a instanceof File||a instanceof
+Blob)&&URL.revokeObjectURL(b.src)}}else throw"Unsupported image type.";}static async _awaitImageLoad(a){a.complete&&0!==a.naturalWidth||await new Promise((b,c)=>{let d=f=>{a.removeEventListener("load",d);a.removeEventListener("error",d);f instanceof ErrorEvent?c("Image load error"):b()};a.addEventListener("load",d);a.addEventListener("error",d)})}static async _postWorkerMessage(a,b,c,d){return qr_scanner_min_e._postWorkerMessageSync(await a,b,c,d)}static _postWorkerMessageSync(a,b,c,d){if(!(a instanceof Worker))return-1;
+let f=qr_scanner_min_e._workerMessageId++;a.postMessage({id:f,type:b,data:c},d);return f}}qr_scanner_min_e.DEFAULT_CANVAS_SIZE=400;qr_scanner_min_e.NO_QR_CODE_FOUND="No QR code found";qr_scanner_min_e._disableBarcodeDetector=!1;qr_scanner_min_e._workerMessageId=0;/* harmony default export */ var qr_scanner_min = (qr_scanner_min_e);
+//# sourceMappingURL=qr-scanner.min.js.map
 
 // CONCATENATED MODULE: ./node_modules/@nimiq/utils/dist/module/BrowserDetection.js
 class BrowserDetection {
@@ -18292,8 +17722,6 @@ var BrowserDetection$1 = BrowserDetection;
 
 
 
-
-
 // TODO could use IntersectionObserver api to start scanner when visible
 var QrScanner_1;
 
@@ -18330,28 +17758,21 @@ function (_Mixins) {
       regeneratorRuntime.mark(function _callee() {
         var _this2 = this;
 
-        var _ref, $video;
-
+        var $video;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
-                return Promise.resolve(/* import() eager */).then(__webpack_require__.t.bind(null, "dd8e", 7));
-
-              case 2:
-                _ref = _context.sent;
-                qr_scanner_QrScanner.WORKER_PATH = _ref.default;
                 this.repositionOverlay = this.repositionOverlay.bind(this);
                 $video = this.$refs.video;
-                this._scanner = new qr_scanner_QrScanner($video, function (result) {
+                this._scanner = new qr_scanner_min($video, function (result) {
                   return _this2._onResult(result);
                 });
                 $video.addEventListener('canplay', function () {
                   return $video.classList.add('ready');
                 });
                 window.addEventListener('resize', this.repositionOverlay);
-                qr_scanner_QrScanner.hasCamera().then(function (hasCamera) {
+                qr_scanner_min.hasCamera().then(function (hasCamera) {
                   return _this2.hasCamera = hasCamera;
                 });
 
@@ -18360,7 +17781,7 @@ function (_Mixins) {
                   this.repositionOverlay();
                 }
 
-              case 11:
+              case 7:
               case "end":
                 return _context.stop();
             }
@@ -18525,8 +17946,8 @@ QrScannervue_type_script_lang_ts_QrScanner = QrScanner_1 = __decorate([Object(ex
 /* harmony default export */ var QrScannervue_type_script_lang_ts_ = (QrScannervue_type_script_lang_ts_QrScanner);
 // CONCATENATED MODULE: ./src/components/QrScanner.vue?vue&type=script&lang=ts&
  /* harmony default export */ var components_QrScannervue_type_script_lang_ts_ = (QrScannervue_type_script_lang_ts_); 
-// EXTERNAL MODULE: ./src/components/QrScanner.vue?vue&type=style&index=0&id=5b05f1b5&scoped=true&lang=css&
-var QrScannervue_type_style_index_0_id_5b05f1b5_scoped_true_lang_css_ = __webpack_require__("7daf");
+// EXTERNAL MODULE: ./src/components/QrScanner.vue?vue&type=style&index=0&id=48a6ec42&scoped=true&lang=css&
+var QrScannervue_type_style_index_0_id_48a6ec42_scoped_true_lang_css_ = __webpack_require__("6938");
 
 // CONCATENATED MODULE: ./src/components/QrScanner.vue
 
@@ -18539,17 +17960,17 @@ var QrScannervue_type_style_index_0_id_5b05f1b5_scoped_true_lang_css_ = __webpac
 
 var QrScanner_component = normalizeComponent(
   components_QrScannervue_type_script_lang_ts_,
-  QrScannervue_type_template_id_5b05f1b5_scoped_true_render,
-  QrScannervue_type_template_id_5b05f1b5_scoped_true_staticRenderFns,
+  QrScannervue_type_template_id_48a6ec42_scoped_true_render,
+  QrScannervue_type_template_id_48a6ec42_scoped_true_staticRenderFns,
   false,
   null,
-  "5b05f1b5",
+  "48a6ec42",
   null
   
 )
 
 /* harmony default export */ var components_QrScanner = (QrScanner_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SelectBar.vue?vue&type=template&id=632b1400&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"101b3dcf-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SelectBar.vue?vue&type=template&id=632b1400&scoped=true&
 var SelectBarvue_type_template_id_632b1400_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"select-bar"},_vm._l((_vm.options),function(option){return _c('div',{key:option.value},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.selectedOption),expression:"selectedOption"}],attrs:{"type":"radio","name":_vm.name,"id":option.value},domProps:{"value":option,"checked":_vm._q(_vm.selectedOption,option)},on:{"change":function($event){_vm.selectedOption=option}}}),_c('label',{staticClass:"nq-label",class:_vm.getColor(option),attrs:{"for":option.value}},[_vm._v(_vm._s(option.text))])])}),0)}
 var SelectBarvue_type_template_id_632b1400_scoped_true_staticRenderFns = []
 
@@ -18655,7 +18076,7 @@ var SelectBar_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_SelectBar = (SelectBar_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SmallPage.vue?vue&type=template&id=1d450cf2&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"101b3dcf-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SmallPage.vue?vue&type=template&id=1d450cf2&scoped=true&
 var SmallPagevue_type_template_id_1d450cf2_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"small-page nq-card"},[_vm._t("default")],2)}
 var SmallPagevue_type_template_id_1d450cf2_scoped_true_staticRenderFns = []
 
@@ -18712,7 +18133,7 @@ var SmallPage_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_SmallPage = (SmallPage_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4161cce9-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Wallet.vue?vue&type=template&id=226e382a&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"101b3dcf-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Wallet.vue?vue&type=template&id=226e382a&scoped=true&
 var Walletvue_type_template_id_226e382a_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"wallet"},[(_vm.isMultiAddress)?_c('AccountRing',{attrs:{"addresses":_vm.addresses}}):_c('Identicon',{attrs:{"address":_vm.addresses[0]}}),_c('div',{staticClass:"wallet-description"},[_c('div',{staticClass:"label"},[_vm._v(_vm._s(_vm.wallet.label))]),_c('div',{staticClass:"amount-container",class:{'nq-orange': _vm.exportMissing}},[(_vm.exportMissing)?_c('AlertTriangleIcon'):_vm._e(),(_vm.wallet.balance !== undefined)?_c('Amount',{attrs:{"amount":_vm.wallet.balance,"decimals":0}}):_vm._e()],1)]),_c('button',{staticClass:"menu-toggle",attrs:{"onclick":"this.focus()"},on:{"click":function($event){$event.stopPropagation();}}},[_c('MenuDotsIcon'),_c('div',{staticClass:"menu nq-blue-bg"},[(_vm.isBip39)?_c('button',{staticClass:"item export",on:{"click":function($event){return _vm.$emit('export-file', _vm.wallet.id)}}},[_vm._v(" "+_vm._s(_vm.$t('Save Login File'))),(_vm.fileMissing)?_c('AlertTriangleIcon',{staticClass:"nq-orange"}):_vm._e()],1):_vm._e(),(_vm.isKeyguard)?_c('button',{staticClass:"item export",on:{"click":function($event){return _vm.$emit('export-words', _vm.wallet.id)}}},[_vm._v(" "+_vm._s(_vm.$t('Create Backup'))),(_vm.wordsMissing)?_c('AlertTriangleIcon',{staticClass:"nq-orange"}):_vm._e()],1):_vm._e(),_c('button',{staticClass:"item",on:{"click":function($event){return _vm.$emit('rename', _vm.wallet.id)}}},[_vm._v(_vm._s(_vm.$t('Rename')))]),(_vm.isKeyguard)?_c('button',{staticClass:"item",on:{"click":function($event){return _vm.$emit('change-password', _vm.wallet.id)}}},[_vm._v(_vm._s(_vm.$t('Change Password')))]):_vm._e(),_c('div',{staticClass:"separator"}),_c('button',{staticClass:"item logout",on:{"click":function($event){return _vm.$emit('logout', _vm.wallet.id)}}},[_c('ArrowRightSmallIcon'),_vm._v(_vm._s(_vm.$t('Logout')))],1)])],1)],1)}
 var Walletvue_type_template_id_226e382a_scoped_true_staticRenderFns = []
 
@@ -18885,8 +18306,8 @@ var Wallet_component = normalizeComponent(
 
 /**
  * Set a specific public path / base path (see https://webpack.js.org/guides/public-path/) from where assets like
- * translation files, identicons or the qr scanner worker should be loaded. By default, this is the path from where
- * the importing script is loaded, derived from the importing script's currentScript src.
+ * translation files or identicons should be loaded. By default, this is the path from where the importing script is
+ * loaded, derived from the importing script's currentScript src.
  *
  * Optionally, you can define a different path for image assets.
  */
@@ -19047,13 +18468,6 @@ module.exports = function (it) {
   return IndexedObject(requireObjectCoercible(it));
 };
 
-
-/***/ }),
-
-/***/ "fd9e":
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
 
 /***/ }),
 
