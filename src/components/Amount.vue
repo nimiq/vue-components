@@ -1,7 +1,7 @@
 <template>
     <span class="amount" :class="{ approx: showApprox && isApprox }">
         {{ formattedAmount }}
-        <span class="currency" :class="currency">{{currency}}</span>
+        <span class="currency" :class="currency">{{ticker}}</span>
     </span>
 </template>
 
@@ -10,10 +10,18 @@ import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import { FormattableNumber } from '@nimiq/utils';
 type BigInteger = import ('big-integer').BigInteger;
 
+export function amountValidator(value: unknown): boolean {
+    return typeof value === 'number' || typeof value === 'bigint'
+        || (value && value.constructor && value.constructor.name.endsWith('Integer'));
+}
+
 @Component
 export default class Amount extends Vue {
     // Amount in smallest unit
-    @Prop({type: [Number, Object]}) public amount!: number | BigInteger;
+    @Prop({
+        required: true,
+        validator: amountValidator,
+    }) public amount!: number | bigint | BigInteger;
     // If set takes precedence over minDecimals and maxDecimals
     @Prop(Number) public decimals?: number;
     @Prop({type: Number, default: 2}) public minDecimals!: number;
@@ -59,6 +67,15 @@ export default class Amount extends Vue {
         return !new FormattableNumber(this.amount).moveDecimalSeparator(-this.currencyDecimals)
             .equals(this.formattedAmount.replace(/\s/g, ''));
     }
+
+    private get ticker() {
+        if (this.currency === 'tnim') return 'tNIM';
+
+        if (this.currency === 'mbtc') return 'mBTC';
+        if (this.currency === 'tbtc') return 'tBTC';
+
+        return this.currency.toUpperCase();
+    }
 }
 </script>
 
@@ -70,9 +87,5 @@ export default class Amount extends Vue {
     .amount.approx::before {
         content: '~ ';
         opacity: 0.5;
-    }
-
-    .currency {
-        text-transform: uppercase;
     }
 </style>

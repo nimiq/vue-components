@@ -1,27 +1,33 @@
 <template>
-    <form class="label-input" @submit.prevent="onBlur">
-        <span class="width-finder width-placeholder" ref="widthPlaceholder">{{placeholder}}</span>
+    <form class="label-input" @submit.prevent="onBlur" :class="{disabled}">
+        <span class="width-finder width-placeholder" ref="widthPlaceholder">{{
+            placeholder || $t('Name your address')
+        }}</span>
         <span class="width-finder width-value" ref="widthValue">{{liveValue}}</span>
         <input type="text" class="nq-input" :class="{'vanishing': vanishing}"
-            :placeholder="placeholder"
+            :placeholder="placeholder || $t('Name your address')"
             :style="{width: `${this.width}px`}"
             v-model="liveValue"
+            :disabled="disabled"
             @input="onInput"
             @blur="onBlur"
+            @paste="$emit('paste', $event)"
             ref="input">
     </form>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
+import { Component, Mixins, Prop, Vue, Watch } from 'vue-property-decorator';
 import { Utf8Tools } from '@nimiq/utils';
+import I18nMixin from '../i18n/I18nMixin';
 
-@Component
-export default class LabelInput extends Vue {
+@Component({ name: 'LabelInput' })
+export default class LabelInput extends Mixins(I18nMixin) {
     @Prop(Number) protected maxBytes?: number;
     @Prop({type: String, default: ''}) private value!: string;
-    @Prop({type: String, default: 'Name your address'}) private placeholder!: string;
+    @Prop({type: String}) private placeholder?: string;
     @Prop({type: Boolean, default: false}) private vanishing!: boolean;
+    @Prop({type: Boolean, default: false}) private disabled!: boolean;
 
     private liveValue: string = '';
     private lastValue: string = '';
@@ -99,6 +105,12 @@ export default class LabelInput extends Vue {
     input {
         padding-right: 0;
         max-width: 100%;
-        transition: width 50ms ease-out;
+        transition:
+            color .2s ease, box-shadow .2s ease, /* Copied from Nimiq Styles */
+            width 50ms ease-out;
+    }
+
+    input:disabled {
+        pointer-events: none; /* Prevent hover effects */
     }
 </style>

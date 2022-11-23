@@ -2,29 +2,43 @@
     <div class="amount-with-fee">
         <AmountInput class="value" v-model="liveAmount" :class="{invalid: !isValid && liveAmount > 0}"  ref="amountInput" />
         <div class="fee-section nq-text-s">
-            <div v-if="!isValid && liveAmount" class="nq-red"><slot name="insufficient-balance-error">Insufficient balance</slot></div>
-            <div v-else-if="value.fee">
-                + <Amount :amount="value.fee" :minDecimals="0" :maxDecimals="5" /> fee
+            <div v-if="!isValid && liveAmount" class="nq-red"><slot name="insufficient-balance-error">{{ $t('Insufficient balance') }}</slot></div>
+            <div v-else>
+                <span v-if="fiatAmount !== null && fiatCurrency" class="fiat">
+                    ~<FiatAmount :amount="fiatAmount" :currency="fiatCurrency" />
+                </span>
+                <span v-if="value.fee" class="fee">
+                    + <Amount :amount="value.fee" :minDecimals="0" :maxDecimals="5" /> {{ $t('fee') }}
+                </span>
             </div>
         </div>
     </div>
 </template>
 
 <script lang="ts">
-import { Component, Emit, Prop, Vue, Watch } from 'vue-property-decorator';
+import { Component, Mixins, Prop, Watch } from 'vue-property-decorator';
+import { FiatApiSupportedFiatCurrency } from '@nimiq/utils';
 import Amount from './Amount.vue';
 import AmountInput from './AmountInput.vue';
+import FiatAmount from './FiatAmount.vue';
+import I18nMixin from '../i18n/I18nMixin';
 
-@Component({components: {
-    Amount,
-    AmountInput,
-}})
-export default class AmountWithFee extends Vue {
+@Component({
+    name: 'AmountWithFee',
+    components: {
+        Amount,
+        AmountInput,
+        FiatAmount,
+    },
+})
+export default class AmountWithFee extends Mixins(I18nMixin) {
     @Prop({
         type: Object,
         default: () => ({amount: 0, fee: 0, isValid: false}),
     }) private value!: {amount: number, fee: number, isValid: boolean};
     @Prop({type: Number, default: 0}) private availableBalance!: number;
+    @Prop(Number) private fiatAmount: number | null;
+    @Prop(String) private fiatCurrency: FiatApiSupportedFiatCurrency | null;
 
     private liveAmount: number = this.value.amount;
 
@@ -81,5 +95,9 @@ export default class AmountWithFee extends Vue {
     .fee-section {
         color: rgba(31, 35, 72, 0.5);
         min-height: 2rem;
+    }
+
+    .fiat {
+        display: inline-flex;
     }
 </style>

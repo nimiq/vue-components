@@ -1,7 +1,51 @@
 module.exports =
 /******/ (function(modules) { // webpackBootstrap
+/******/ 	// install a JSONP callback for chunk loading
+/******/ 	function webpackJsonpCallback(data) {
+/******/ 		var chunkIds = data[0];
+/******/ 		var moreModules = data[1];
+/******/
+/******/
+/******/ 		// add "moreModules" to the modules object,
+/******/ 		// then flag all "chunkIds" as loaded and fire callback
+/******/ 		var moduleId, chunkId, i = 0, resolves = [];
+/******/ 		for(;i < chunkIds.length; i++) {
+/******/ 			chunkId = chunkIds[i];
+/******/ 			if(Object.prototype.hasOwnProperty.call(installedChunks, chunkId) && installedChunks[chunkId]) {
+/******/ 				resolves.push(installedChunks[chunkId][0]);
+/******/ 			}
+/******/ 			installedChunks[chunkId] = 0;
+/******/ 		}
+/******/ 		for(moduleId in moreModules) {
+/******/ 			if(Object.prototype.hasOwnProperty.call(moreModules, moduleId)) {
+/******/ 				modules[moduleId] = moreModules[moduleId];
+/******/ 			}
+/******/ 		}
+/******/ 		if(parentJsonpFunction) parentJsonpFunction(data);
+/******/
+/******/ 		while(resolves.length) {
+/******/ 			resolves.shift()();
+/******/ 		}
+/******/
+/******/ 	};
+/******/
+/******/
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
+/******/
+/******/ 	// object to store loaded and loading chunks
+/******/ 	// undefined = chunk not loaded, null = chunk preloaded/prefetched
+/******/ 	// Promise = chunk loading, 0 = chunk loaded
+/******/ 	var installedChunks = {
+/******/ 		0: 0
+/******/ 	};
+/******/
+/******/
+/******/
+/******/ 	// script path function
+/******/ 	function jsonpScriptSrc(chunkId) {
+/******/ 		return __webpack_require__.p + "NimiqVueComponents.common." + ({"1":"lang-de-AccountList-json","2":"lang-de-AccountSelector-json","3":"lang-de-AmountWithFee-json","4":"lang-de-Copyable-json","5":"lang-de-CopyableField-json","6":"lang-de-LabelInput-json","7":"lang-de-PageHeader-json","8":"lang-de-PaymentInfoLine-json","9":"lang-de-QrScanner-json","10":"lang-de-Timer-json","11":"lang-de-Wallet-json","12":"lang-es-AccountList-json","13":"lang-es-AccountSelector-json","14":"lang-es-AmountWithFee-json","15":"lang-es-Copyable-json","16":"lang-es-CopyableField-json","17":"lang-es-LabelInput-json","18":"lang-es-PageHeader-json","19":"lang-es-PaymentInfoLine-json","20":"lang-es-QrScanner-json","21":"lang-es-Timer-json","22":"lang-es-Wallet-json","23":"lang-fr-AccountList-json","24":"lang-fr-AccountSelector-json","25":"lang-fr-AmountWithFee-json","26":"lang-fr-Copyable-json","27":"lang-fr-CopyableField-json","28":"lang-fr-LabelInput-json","29":"lang-fr-PageHeader-json","30":"lang-fr-PaymentInfoLine-json","31":"lang-fr-QrScanner-json","32":"lang-fr-Timer-json","33":"lang-fr-Wallet-json","34":"lang-nl-AccountList-json","35":"lang-nl-AccountSelector-json","36":"lang-nl-AmountWithFee-json","37":"lang-nl-Copyable-json","38":"lang-nl-CopyableField-json","39":"lang-nl-LabelInput-json","40":"lang-nl-PageHeader-json","41":"lang-nl-PaymentInfoLine-json","42":"lang-nl-QrScanner-json","43":"lang-nl-Timer-json","44":"lang-nl-Wallet-json","45":"lang-ru-AccountList-json","46":"lang-ru-AccountSelector-json","47":"lang-ru-AmountWithFee-json","48":"lang-ru-Copyable-json","49":"lang-ru-CopyableField-json","50":"lang-ru-LabelInput-json","51":"lang-ru-PageHeader-json","52":"lang-ru-PaymentInfoLine-json","53":"lang-ru-QrScanner-json","54":"lang-ru-Timer-json","55":"lang-ru-Wallet-json","56":"lang-uk-AccountList-json","57":"lang-uk-AccountSelector-json","58":"lang-uk-AmountWithFee-json","59":"lang-uk-Copyable-json","60":"lang-uk-CopyableField-json","61":"lang-uk-LabelInput-json","62":"lang-uk-PageHeader-json","63":"lang-uk-PaymentInfoLine-json","64":"lang-uk-QrScanner-json","65":"lang-uk-Timer-json","66":"lang-uk-Wallet-json","67":"lang-zh-AccountList-json","68":"lang-zh-AccountSelector-json","69":"lang-zh-AmountWithFee-json","70":"lang-zh-Copyable-json","71":"lang-zh-CopyableField-json","72":"lang-zh-LabelInput-json","73":"lang-zh-PageHeader-json","74":"lang-zh-PaymentInfoLine-json","75":"lang-zh-QrScanner-json","76":"lang-zh-Timer-json","77":"lang-zh-Wallet-json"}[chunkId]||chunkId) + ".js"
+/******/ 	}
 /******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
@@ -27,6 +71,67 @@ module.exports =
 /******/ 		return module.exports;
 /******/ 	}
 /******/
+/******/ 	// This file contains only the entry chunk.
+/******/ 	// The chunk loading function for additional chunks
+/******/ 	__webpack_require__.e = function requireEnsure(chunkId) {
+/******/ 		var promises = [];
+/******/
+/******/
+/******/ 		// JSONP chunk loading for javascript
+/******/
+/******/ 		var installedChunkData = installedChunks[chunkId];
+/******/ 		if(installedChunkData !== 0) { // 0 means "already installed".
+/******/
+/******/ 			// a Promise means "currently loading".
+/******/ 			if(installedChunkData) {
+/******/ 				promises.push(installedChunkData[2]);
+/******/ 			} else {
+/******/ 				// setup Promise in chunk cache
+/******/ 				var promise = new Promise(function(resolve, reject) {
+/******/ 					installedChunkData = installedChunks[chunkId] = [resolve, reject];
+/******/ 				});
+/******/ 				promises.push(installedChunkData[2] = promise);
+/******/
+/******/ 				// start chunk loading
+/******/ 				var script = document.createElement('script');
+/******/ 				var onScriptComplete;
+/******/
+/******/ 				script.charset = 'utf-8';
+/******/ 				script.timeout = 120;
+/******/ 				if (__webpack_require__.nc) {
+/******/ 					script.setAttribute("nonce", __webpack_require__.nc);
+/******/ 				}
+/******/ 				script.src = jsonpScriptSrc(chunkId);
+/******/
+/******/ 				// create error before stack unwound to get useful stacktrace later
+/******/ 				var error = new Error();
+/******/ 				onScriptComplete = function (event) {
+/******/ 					// avoid mem leaks in IE.
+/******/ 					script.onerror = script.onload = null;
+/******/ 					clearTimeout(timeout);
+/******/ 					var chunk = installedChunks[chunkId];
+/******/ 					if(chunk !== 0) {
+/******/ 						if(chunk) {
+/******/ 							var errorType = event && (event.type === 'load' ? 'missing' : event.type);
+/******/ 							var realSrc = event && event.target && event.target.src;
+/******/ 							error.message = 'Loading chunk ' + chunkId + ' failed.\n(' + errorType + ': ' + realSrc + ')';
+/******/ 							error.name = 'ChunkLoadError';
+/******/ 							error.type = errorType;
+/******/ 							error.request = realSrc;
+/******/ 							chunk[1](error);
+/******/ 						}
+/******/ 						installedChunks[chunkId] = undefined;
+/******/ 					}
+/******/ 				};
+/******/ 				var timeout = setTimeout(function(){
+/******/ 					onScriptComplete({ type: 'timeout', target: script });
+/******/ 				}, 120000);
+/******/ 				script.onerror = script.onload = onScriptComplete;
+/******/ 				document.head.appendChild(script);
+/******/ 			}
+/******/ 		}
+/******/ 		return Promise.all(promises);
+/******/ 	};
 /******/
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = modules;
@@ -80,6 +185,16 @@ module.exports =
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
 /******/
+/******/ 	// on error function for async loading
+/******/ 	__webpack_require__.oe = function(err) { console.error(err); throw err; };
+/******/
+/******/ 	var jsonpArray = (typeof self !== 'undefined' ? self : this)["webpackJsonpNimiqVueComponents"] = (typeof self !== 'undefined' ? self : this)["webpackJsonpNimiqVueComponents"] || [];
+/******/ 	var oldJsonpFunction = jsonpArray.push.bind(jsonpArray);
+/******/ 	jsonpArray.push = webpackJsonpCallback;
+/******/ 	jsonpArray = jsonpArray.slice();
+/******/ 	for(var i = 0; i < jsonpArray.length; i++) webpackJsonpCallback(jsonpArray[i]);
+/******/ 	var parentJsonpFunction = oldJsonpFunction;
+/******/
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(__webpack_require__.s = "fae3");
@@ -106,6 +221,13 @@ module.exports = String(test) === '[object z]';
 /***/ (function(module, exports) {
 
 module.exports = require("vue-property-decorator");
+
+/***/ }),
+
+/***/ "0228":
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
 
 /***/ }),
 
@@ -265,17 +387,6 @@ module.exports = !DESCRIPTORS && !fails(function () {
   }).a != 7;
 });
 
-
-/***/ }),
-
-/***/ "0f15":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Amount_vue_vue_type_style_index_0_id_1bccd635_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("ac7b");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Amount_vue_vue_type_style_index_0_id_1bccd635_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Amount_vue_vue_type_style_index_0_id_1bccd635_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
- /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Amount_vue_vue_type_style_index_0_id_1bccd635_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -483,6 +594,49 @@ module.exports = function (R, S) {
   return regexpExec.call(R, S);
 };
 
+
+
+/***/ }),
+
+/***/ "159b":
+/***/ (function(module, exports, __webpack_require__) {
+
+var global = __webpack_require__("da84");
+var DOMIterables = __webpack_require__("fdbc");
+var forEach = __webpack_require__("17c2");
+var createNonEnumerableProperty = __webpack_require__("9112");
+
+for (var COLLECTION_NAME in DOMIterables) {
+  var Collection = global[COLLECTION_NAME];
+  var CollectionPrototype = Collection && Collection.prototype;
+  // some Chrome versions have non-configurable methods on DOMTokenList
+  if (CollectionPrototype && CollectionPrototype.forEach !== forEach) try {
+    createNonEnumerableProperty(CollectionPrototype, 'forEach', forEach);
+  } catch (error) {
+    CollectionPrototype.forEach = forEach;
+  }
+}
+
+
+/***/ }),
+
+/***/ "17c2":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var $forEach = __webpack_require__("b727").forEach;
+var arrayMethodIsStrict = __webpack_require__("a640");
+var arrayMethodUsesToLength = __webpack_require__("ae40");
+
+var STRICT_METHOD = arrayMethodIsStrict('forEach');
+var USES_TO_LENGTH = arrayMethodUsesToLength('forEach');
+
+// `Array.prototype.forEach` method implementation
+// https://tc39.github.io/ecma262/#sec-array.prototype.foreach
+module.exports = (!STRICT_METHOD || !USES_TO_LENGTH) ? function forEach(callbackfn /* , thisArg */) {
+  return $forEach(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
+} : [].forEach;
 
 
 /***/ }),
@@ -1119,6 +1273,358 @@ module.exports = {};
 
 /***/ }),
 
+/***/ "40ac":
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"./de/AccountList.json": [
+		"db74",
+		1
+	],
+	"./de/AccountSelector.json": [
+		"e3b5",
+		2
+	],
+	"./de/AmountWithFee.json": [
+		"b4df",
+		3
+	],
+	"./de/Copyable.json": [
+		"e4e5",
+		4
+	],
+	"./de/CopyableField.json": [
+		"224c",
+		5
+	],
+	"./de/LabelInput.json": [
+		"57cc",
+		6
+	],
+	"./de/PageHeader.json": [
+		"1acf",
+		7
+	],
+	"./de/PaymentInfoLine.json": [
+		"5bf6",
+		8
+	],
+	"./de/QrScanner.json": [
+		"ed59",
+		9
+	],
+	"./de/Timer.json": [
+		"6e2d",
+		10
+	],
+	"./de/Wallet.json": [
+		"2e5a",
+		11
+	],
+	"./es/AccountList.json": [
+		"3454",
+		12
+	],
+	"./es/AccountSelector.json": [
+		"4154",
+		13
+	],
+	"./es/AmountWithFee.json": [
+		"fb1d",
+		14
+	],
+	"./es/Copyable.json": [
+		"3130",
+		15
+	],
+	"./es/CopyableField.json": [
+		"ac40",
+		16
+	],
+	"./es/LabelInput.json": [
+		"446b",
+		17
+	],
+	"./es/PageHeader.json": [
+		"2e60",
+		18
+	],
+	"./es/PaymentInfoLine.json": [
+		"5f53",
+		19
+	],
+	"./es/QrScanner.json": [
+		"b756",
+		20
+	],
+	"./es/Timer.json": [
+		"5b2d",
+		21
+	],
+	"./es/Wallet.json": [
+		"ca03",
+		22
+	],
+	"./fr/AccountList.json": [
+		"40c8",
+		23
+	],
+	"./fr/AccountSelector.json": [
+		"d939",
+		24
+	],
+	"./fr/AmountWithFee.json": [
+		"615f",
+		25
+	],
+	"./fr/Copyable.json": [
+		"bad1",
+		26
+	],
+	"./fr/CopyableField.json": [
+		"c50a",
+		27
+	],
+	"./fr/LabelInput.json": [
+		"24a7",
+		28
+	],
+	"./fr/PageHeader.json": [
+		"014a",
+		29
+	],
+	"./fr/PaymentInfoLine.json": [
+		"fe91",
+		30
+	],
+	"./fr/QrScanner.json": [
+		"35cb",
+		31
+	],
+	"./fr/Timer.json": [
+		"894c",
+		32
+	],
+	"./fr/Wallet.json": [
+		"ec08",
+		33
+	],
+	"./nl/AccountList.json": [
+		"1644",
+		34
+	],
+	"./nl/AccountSelector.json": [
+		"600b",
+		35
+	],
+	"./nl/AmountWithFee.json": [
+		"0617",
+		36
+	],
+	"./nl/Copyable.json": [
+		"a136",
+		37
+	],
+	"./nl/CopyableField.json": [
+		"4fb8",
+		38
+	],
+	"./nl/LabelInput.json": [
+		"d183",
+		39
+	],
+	"./nl/PageHeader.json": [
+		"652c",
+		40
+	],
+	"./nl/PaymentInfoLine.json": [
+		"a231",
+		41
+	],
+	"./nl/QrScanner.json": [
+		"64dc",
+		42
+	],
+	"./nl/Timer.json": [
+		"84f0",
+		43
+	],
+	"./nl/Wallet.json": [
+		"63f5",
+		44
+	],
+	"./ru/AccountList.json": [
+		"e162",
+		45
+	],
+	"./ru/AccountSelector.json": [
+		"2153",
+		46
+	],
+	"./ru/AmountWithFee.json": [
+		"f212",
+		47
+	],
+	"./ru/Copyable.json": [
+		"d3a8",
+		48
+	],
+	"./ru/CopyableField.json": [
+		"580c",
+		49
+	],
+	"./ru/LabelInput.json": [
+		"ac46",
+		50
+	],
+	"./ru/PageHeader.json": [
+		"0773",
+		51
+	],
+	"./ru/PaymentInfoLine.json": [
+		"81c0",
+		52
+	],
+	"./ru/QrScanner.json": [
+		"b74a",
+		53
+	],
+	"./ru/Timer.json": [
+		"1d1a",
+		54
+	],
+	"./ru/Wallet.json": [
+		"da26",
+		55
+	],
+	"./uk/AccountList.json": [
+		"504a",
+		56
+	],
+	"./uk/AccountSelector.json": [
+		"2efd",
+		57
+	],
+	"./uk/AmountWithFee.json": [
+		"56dc",
+		58
+	],
+	"./uk/Copyable.json": [
+		"c38d",
+		59
+	],
+	"./uk/CopyableField.json": [
+		"f85b",
+		60
+	],
+	"./uk/LabelInput.json": [
+		"2cc2",
+		61
+	],
+	"./uk/PageHeader.json": [
+		"8d98",
+		62
+	],
+	"./uk/PaymentInfoLine.json": [
+		"cfaf",
+		63
+	],
+	"./uk/QrScanner.json": [
+		"8741",
+		64
+	],
+	"./uk/Timer.json": [
+		"f309",
+		65
+	],
+	"./uk/Wallet.json": [
+		"3f7a",
+		66
+	],
+	"./zh/AccountList.json": [
+		"bb4e",
+		67
+	],
+	"./zh/AccountSelector.json": [
+		"4634",
+		68
+	],
+	"./zh/AmountWithFee.json": [
+		"5f88",
+		69
+	],
+	"./zh/Copyable.json": [
+		"6a72",
+		70
+	],
+	"./zh/CopyableField.json": [
+		"afa7",
+		71
+	],
+	"./zh/LabelInput.json": [
+		"c7b6",
+		72
+	],
+	"./zh/PageHeader.json": [
+		"aee6",
+		73
+	],
+	"./zh/PaymentInfoLine.json": [
+		"6daa",
+		74
+	],
+	"./zh/QrScanner.json": [
+		"4e49",
+		75
+	],
+	"./zh/Timer.json": [
+		"813f",
+		76
+	],
+	"./zh/Wallet.json": [
+		"43f7",
+		77
+	]
+};
+function webpackAsyncContext(req) {
+	if(!__webpack_require__.o(map, req)) {
+		return Promise.resolve().then(function() {
+			var e = new Error("Cannot find module '" + req + "'");
+			e.code = 'MODULE_NOT_FOUND';
+			throw e;
+		});
+	}
+
+	var ids = map[req], id = ids[0];
+	return __webpack_require__.e(ids[1]).then(function() {
+		return __webpack_require__.t(id, 3);
+	});
+}
+webpackAsyncContext.keys = function webpackAsyncContextKeys() {
+	return Object.keys(map);
+};
+webpackAsyncContext.id = "40ac";
+module.exports = webpackAsyncContext;
+
+/***/ }),
+
+/***/ "4160":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var $ = __webpack_require__("23e7");
+var forEach = __webpack_require__("17c2");
+
+// `Array.prototype.forEach` method
+// https://tc39.github.io/ecma262/#sec-array.prototype.foreach
+$({ target: 'Array', proto: true, forced: [].forEach != forEach }, {
+  forEach: forEach
+});
+
+
+/***/ }),
+
 /***/ "428f":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1210,10 +1716,55 @@ module.exports = function (it) {
 
 /***/ }),
 
-/***/ "46f5":
+/***/ "466d":
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "qr-scanner-worker.min.js";
+"use strict";
+
+var fixRegExpWellKnownSymbolLogic = __webpack_require__("d784");
+var anObject = __webpack_require__("825a");
+var toLength = __webpack_require__("50c4");
+var requireObjectCoercible = __webpack_require__("1d80");
+var advanceStringIndex = __webpack_require__("8aa5");
+var regExpExec = __webpack_require__("14c3");
+
+// @@match logic
+fixRegExpWellKnownSymbolLogic('match', 1, function (MATCH, nativeMatch, maybeCallNative) {
+  return [
+    // `String.prototype.match` method
+    // https://tc39.github.io/ecma262/#sec-string.prototype.match
+    function match(regexp) {
+      var O = requireObjectCoercible(this);
+      var matcher = regexp == undefined ? undefined : regexp[MATCH];
+      return matcher !== undefined ? matcher.call(regexp, O) : new RegExp(regexp)[MATCH](String(O));
+    },
+    // `RegExp.prototype[@@match]` method
+    // https://tc39.github.io/ecma262/#sec-regexp.prototype-@@match
+    function (regexp) {
+      var res = maybeCallNative(nativeMatch, regexp, this);
+      if (res.done) return res.value;
+
+      var rx = anObject(regexp);
+      var S = String(this);
+
+      if (!rx.global) return regExpExec(rx, S);
+
+      var fullUnicode = rx.unicode;
+      rx.lastIndex = 0;
+      var A = [];
+      var n = 0;
+      var result;
+      while ((result = regExpExec(rx, S)) !== null) {
+        var matchStr = String(result[0]);
+        A[n] = matchStr;
+        if (matchStr === '') rx.lastIndex = advanceStringIndex(S, toLength(rx.lastIndex), fullUnicode);
+        n++;
+      }
+      return n === 0 ? null : A;
+    }
+  ];
+});
+
 
 /***/ }),
 
@@ -1377,6 +1928,49 @@ module.exports = {
   // https://tc39.github.io/ecma262/#sec-array.prototype.indexof
   indexOf: createMethod(false)
 };
+
+
+/***/ }),
+
+/***/ "4de4":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var $ = __webpack_require__("23e7");
+var $filter = __webpack_require__("b727").filter;
+var arrayMethodHasSpeciesSupport = __webpack_require__("1dde");
+var arrayMethodUsesToLength = __webpack_require__("ae40");
+
+var HAS_SPECIES_SUPPORT = arrayMethodHasSpeciesSupport('filter');
+// Edge 14- issue
+var USES_TO_LENGTH = arrayMethodUsesToLength('filter');
+
+// `Array.prototype.filter` method
+// https://tc39.github.io/ecma262/#sec-array.prototype.filter
+// with adding support of @@species
+$({ target: 'Array', proto: true, forced: !HAS_SPECIES_SUPPORT || !USES_TO_LENGTH }, {
+  filter: function filter(callbackfn /* , thisArg */) {
+    return $filter(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
+  }
+});
+
+
+/***/ }),
+
+/***/ "4fad":
+/***/ (function(module, exports, __webpack_require__) {
+
+var $ = __webpack_require__("23e7");
+var $entries = __webpack_require__("6f53").entries;
+
+// `Object.entries` method
+// https://tc39.github.io/ecma262/#sec-object.entries
+$({ target: 'Object', stat: true }, {
+  entries: function entries(O) {
+    return $entries(O);
+  }
+});
 
 
 /***/ }),
@@ -1552,6 +2146,17 @@ fixRegExpWellKnownSymbolLogic('replace', 2, function (REPLACE, nativeReplace, ma
 
 /***/ }),
 
+/***/ "55d1":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AmountInput_vue_vue_type_style_index_0_id_37572fbf_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("8a43");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AmountInput_vue_vue_type_style_index_0_id_37572fbf_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AmountInput_vue_vue_type_style_index_0_id_37572fbf_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+ /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AmountInput_vue_vue_type_style_index_0_id_37572fbf_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
 /***/ "5692":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1646,17 +2251,6 @@ module.exports = function (it) {
 
 /***/ }),
 
-/***/ "5aa5":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_QrScanner_vue_vue_type_style_index_0_id_7e80c7c1_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("d0d1");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_QrScanner_vue_vue_type_style_index_0_id_7e80c7c1_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_QrScanner_vue_vue_type_style_index_0_id_7e80c7c1_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
- /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_QrScanner_vue_vue_type_style_index_0_id_7e80c7c1_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
 /***/ "5c6c":
 /***/ (function(module, exports) {
 
@@ -1684,6 +2278,23 @@ var floor = Math.floor;
 module.exports = function isInteger(it) {
   return !isObject(it) && isFinite(it) && floor(it) === it;
 };
+
+
+/***/ }),
+
+/***/ "6062":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var collection = __webpack_require__("6d61");
+var collectionStrong = __webpack_require__("6566");
+
+// `Set` constructor
+// https://tc39.github.io/ecma262/#sec-set-objects
+module.exports = collection('Set', function (init) {
+  return function Set() { return init(this, arguments.length ? arguments[0] : undefined); };
+}, collectionStrong);
 
 
 /***/ }),
@@ -1748,6 +2359,17 @@ module.exports = !nativeAssign || fails(function () {
 
 /***/ }),
 
+/***/ "63f6":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_71bfa335_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("0228");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_71bfa335_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_71bfa335_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+ /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_71bfa335_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
 /***/ "6547":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1782,6 +2404,200 @@ module.exports = {
 
 /***/ }),
 
+/***/ "6566":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var defineProperty = __webpack_require__("9bf2").f;
+var create = __webpack_require__("7c73");
+var redefineAll = __webpack_require__("e2cc");
+var bind = __webpack_require__("0366");
+var anInstance = __webpack_require__("19aa");
+var iterate = __webpack_require__("2266");
+var defineIterator = __webpack_require__("7dd0");
+var setSpecies = __webpack_require__("2626");
+var DESCRIPTORS = __webpack_require__("83ab");
+var fastKey = __webpack_require__("f183").fastKey;
+var InternalStateModule = __webpack_require__("69f3");
+
+var setInternalState = InternalStateModule.set;
+var internalStateGetterFor = InternalStateModule.getterFor;
+
+module.exports = {
+  getConstructor: function (wrapper, CONSTRUCTOR_NAME, IS_MAP, ADDER) {
+    var C = wrapper(function (that, iterable) {
+      anInstance(that, C, CONSTRUCTOR_NAME);
+      setInternalState(that, {
+        type: CONSTRUCTOR_NAME,
+        index: create(null),
+        first: undefined,
+        last: undefined,
+        size: 0
+      });
+      if (!DESCRIPTORS) that.size = 0;
+      if (iterable != undefined) iterate(iterable, that[ADDER], that, IS_MAP);
+    });
+
+    var getInternalState = internalStateGetterFor(CONSTRUCTOR_NAME);
+
+    var define = function (that, key, value) {
+      var state = getInternalState(that);
+      var entry = getEntry(that, key);
+      var previous, index;
+      // change existing entry
+      if (entry) {
+        entry.value = value;
+      // create new entry
+      } else {
+        state.last = entry = {
+          index: index = fastKey(key, true),
+          key: key,
+          value: value,
+          previous: previous = state.last,
+          next: undefined,
+          removed: false
+        };
+        if (!state.first) state.first = entry;
+        if (previous) previous.next = entry;
+        if (DESCRIPTORS) state.size++;
+        else that.size++;
+        // add to index
+        if (index !== 'F') state.index[index] = entry;
+      } return that;
+    };
+
+    var getEntry = function (that, key) {
+      var state = getInternalState(that);
+      // fast case
+      var index = fastKey(key);
+      var entry;
+      if (index !== 'F') return state.index[index];
+      // frozen object case
+      for (entry = state.first; entry; entry = entry.next) {
+        if (entry.key == key) return entry;
+      }
+    };
+
+    redefineAll(C.prototype, {
+      // 23.1.3.1 Map.prototype.clear()
+      // 23.2.3.2 Set.prototype.clear()
+      clear: function clear() {
+        var that = this;
+        var state = getInternalState(that);
+        var data = state.index;
+        var entry = state.first;
+        while (entry) {
+          entry.removed = true;
+          if (entry.previous) entry.previous = entry.previous.next = undefined;
+          delete data[entry.index];
+          entry = entry.next;
+        }
+        state.first = state.last = undefined;
+        if (DESCRIPTORS) state.size = 0;
+        else that.size = 0;
+      },
+      // 23.1.3.3 Map.prototype.delete(key)
+      // 23.2.3.4 Set.prototype.delete(value)
+      'delete': function (key) {
+        var that = this;
+        var state = getInternalState(that);
+        var entry = getEntry(that, key);
+        if (entry) {
+          var next = entry.next;
+          var prev = entry.previous;
+          delete state.index[entry.index];
+          entry.removed = true;
+          if (prev) prev.next = next;
+          if (next) next.previous = prev;
+          if (state.first == entry) state.first = next;
+          if (state.last == entry) state.last = prev;
+          if (DESCRIPTORS) state.size--;
+          else that.size--;
+        } return !!entry;
+      },
+      // 23.2.3.6 Set.prototype.forEach(callbackfn, thisArg = undefined)
+      // 23.1.3.5 Map.prototype.forEach(callbackfn, thisArg = undefined)
+      forEach: function forEach(callbackfn /* , that = undefined */) {
+        var state = getInternalState(this);
+        var boundFunction = bind(callbackfn, arguments.length > 1 ? arguments[1] : undefined, 3);
+        var entry;
+        while (entry = entry ? entry.next : state.first) {
+          boundFunction(entry.value, entry.key, this);
+          // revert to the last existing entry
+          while (entry && entry.removed) entry = entry.previous;
+        }
+      },
+      // 23.1.3.7 Map.prototype.has(key)
+      // 23.2.3.7 Set.prototype.has(value)
+      has: function has(key) {
+        return !!getEntry(this, key);
+      }
+    });
+
+    redefineAll(C.prototype, IS_MAP ? {
+      // 23.1.3.6 Map.prototype.get(key)
+      get: function get(key) {
+        var entry = getEntry(this, key);
+        return entry && entry.value;
+      },
+      // 23.1.3.9 Map.prototype.set(key, value)
+      set: function set(key, value) {
+        return define(this, key === 0 ? 0 : key, value);
+      }
+    } : {
+      // 23.2.3.1 Set.prototype.add(value)
+      add: function add(value) {
+        return define(this, value = value === 0 ? 0 : value, value);
+      }
+    });
+    if (DESCRIPTORS) defineProperty(C.prototype, 'size', {
+      get: function () {
+        return getInternalState(this).size;
+      }
+    });
+    return C;
+  },
+  setStrong: function (C, CONSTRUCTOR_NAME, IS_MAP) {
+    var ITERATOR_NAME = CONSTRUCTOR_NAME + ' Iterator';
+    var getInternalCollectionState = internalStateGetterFor(CONSTRUCTOR_NAME);
+    var getInternalIteratorState = internalStateGetterFor(ITERATOR_NAME);
+    // add .keys, .values, .entries, [@@iterator]
+    // 23.1.3.4, 23.1.3.8, 23.1.3.11, 23.1.3.12, 23.2.3.5, 23.2.3.8, 23.2.3.10, 23.2.3.11
+    defineIterator(C, CONSTRUCTOR_NAME, function (iterated, kind) {
+      setInternalState(this, {
+        type: ITERATOR_NAME,
+        target: iterated,
+        state: getInternalCollectionState(iterated),
+        kind: kind,
+        last: undefined
+      });
+    }, function () {
+      var state = getInternalIteratorState(this);
+      var kind = state.kind;
+      var entry = state.last;
+      // revert to the last existing entry
+      while (entry && entry.removed) entry = entry.previous;
+      // get next entry
+      if (!state.target || !(state.last = entry = entry ? entry.next : state.state.first)) {
+        // or finish the iteration
+        state.target = undefined;
+        return { value: undefined, done: true };
+      }
+      // return step by kind
+      if (kind == 'keys') return { value: entry.key, done: false };
+      if (kind == 'values') return { value: entry.value, done: false };
+      return { value: [entry.key, entry.value], done: false };
+    }, IS_MAP ? 'entries' : 'values', !IS_MAP, true);
+
+    // add [@@species], 23.1.2.2, 23.2.2.2
+    setSpecies(CONSTRUCTOR_NAME);
+  }
+};
+
+
+/***/ }),
+
 /***/ "65f0":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1806,6 +2622,17 @@ module.exports = function (originalArray, length) {
   } return new (C === undefined ? Array : C)(length === 0 ? 0 : length);
 };
 
+
+/***/ }),
+
+/***/ "6938":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_QrScanner_vue_vue_type_style_index_0_id_48a6ec42_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("edb8");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_QrScanner_vue_vue_type_style_index_0_id_48a6ec42_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_QrScanner_vue_vue_type_style_index_0_id_48a6ec42_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+ /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_QrScanner_vue_vue_type_style_index_0_id_48a6ec42_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -1872,6 +2699,113 @@ module.exports = {
   has: has,
   enforce: enforce,
   getterFor: getterFor
+};
+
+
+/***/ }),
+
+/***/ "6d61":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var $ = __webpack_require__("23e7");
+var global = __webpack_require__("da84");
+var isForced = __webpack_require__("94ca");
+var redefine = __webpack_require__("6eeb");
+var InternalMetadataModule = __webpack_require__("f183");
+var iterate = __webpack_require__("2266");
+var anInstance = __webpack_require__("19aa");
+var isObject = __webpack_require__("861d");
+var fails = __webpack_require__("d039");
+var checkCorrectnessOfIteration = __webpack_require__("1c7e");
+var setToStringTag = __webpack_require__("d44e");
+var inheritIfRequired = __webpack_require__("7156");
+
+module.exports = function (CONSTRUCTOR_NAME, wrapper, common) {
+  var IS_MAP = CONSTRUCTOR_NAME.indexOf('Map') !== -1;
+  var IS_WEAK = CONSTRUCTOR_NAME.indexOf('Weak') !== -1;
+  var ADDER = IS_MAP ? 'set' : 'add';
+  var NativeConstructor = global[CONSTRUCTOR_NAME];
+  var NativePrototype = NativeConstructor && NativeConstructor.prototype;
+  var Constructor = NativeConstructor;
+  var exported = {};
+
+  var fixMethod = function (KEY) {
+    var nativeMethod = NativePrototype[KEY];
+    redefine(NativePrototype, KEY,
+      KEY == 'add' ? function add(value) {
+        nativeMethod.call(this, value === 0 ? 0 : value);
+        return this;
+      } : KEY == 'delete' ? function (key) {
+        return IS_WEAK && !isObject(key) ? false : nativeMethod.call(this, key === 0 ? 0 : key);
+      } : KEY == 'get' ? function get(key) {
+        return IS_WEAK && !isObject(key) ? undefined : nativeMethod.call(this, key === 0 ? 0 : key);
+      } : KEY == 'has' ? function has(key) {
+        return IS_WEAK && !isObject(key) ? false : nativeMethod.call(this, key === 0 ? 0 : key);
+      } : function set(key, value) {
+        nativeMethod.call(this, key === 0 ? 0 : key, value);
+        return this;
+      }
+    );
+  };
+
+  // eslint-disable-next-line max-len
+  if (isForced(CONSTRUCTOR_NAME, typeof NativeConstructor != 'function' || !(IS_WEAK || NativePrototype.forEach && !fails(function () {
+    new NativeConstructor().entries().next();
+  })))) {
+    // create collection constructor
+    Constructor = common.getConstructor(wrapper, CONSTRUCTOR_NAME, IS_MAP, ADDER);
+    InternalMetadataModule.REQUIRED = true;
+  } else if (isForced(CONSTRUCTOR_NAME, true)) {
+    var instance = new Constructor();
+    // early implementations not supports chaining
+    var HASNT_CHAINING = instance[ADDER](IS_WEAK ? {} : -0, 1) != instance;
+    // V8 ~ Chromium 40- weak-collections throws on primitives, but should return false
+    var THROWS_ON_PRIMITIVES = fails(function () { instance.has(1); });
+    // most early implementations doesn't supports iterables, most modern - not close it correctly
+    // eslint-disable-next-line no-new
+    var ACCEPT_ITERABLES = checkCorrectnessOfIteration(function (iterable) { new NativeConstructor(iterable); });
+    // for early implementations -0 and +0 not the same
+    var BUGGY_ZERO = !IS_WEAK && fails(function () {
+      // V8 ~ Chromium 42- fails only with 5+ elements
+      var $instance = new NativeConstructor();
+      var index = 5;
+      while (index--) $instance[ADDER](index, index);
+      return !$instance.has(-0);
+    });
+
+    if (!ACCEPT_ITERABLES) {
+      Constructor = wrapper(function (dummy, iterable) {
+        anInstance(dummy, Constructor, CONSTRUCTOR_NAME);
+        var that = inheritIfRequired(new NativeConstructor(), dummy, Constructor);
+        if (iterable != undefined) iterate(iterable, that[ADDER], that, IS_MAP);
+        return that;
+      });
+      Constructor.prototype = NativePrototype;
+      NativePrototype.constructor = Constructor;
+    }
+
+    if (THROWS_ON_PRIMITIVES || BUGGY_ZERO) {
+      fixMethod('delete');
+      fixMethod('has');
+      IS_MAP && fixMethod('get');
+    }
+
+    if (BUGGY_ZERO || HASNT_CHAINING) fixMethod(ADDER);
+
+    // weak collections should not contains .clear method
+    if (IS_WEAK && NativePrototype.clear) delete NativePrototype.clear;
+  }
+
+  exported[CONSTRUCTOR_NAME] = Constructor;
+  $({ global: true, forced: Constructor != NativeConstructor }, exported);
+
+  setToStringTag(Constructor, CONSTRUCTOR_NAME);
+
+  if (!IS_WEAK) common.setStrong(Constructor, CONSTRUCTOR_NAME, IS_MAP);
+
+  return Constructor;
 };
 
 
@@ -2234,13 +3168,6 @@ module.exports = typeof WeakMap === 'function' && /native code/.test(inspectSour
 
 /***/ }),
 
-/***/ "8105":
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-
 /***/ "81d5":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2356,6 +3283,55 @@ if (typeof store.inspectSource != 'function') {
 }
 
 module.exports = store.inspectSource;
+
+
+/***/ }),
+
+/***/ "8a43":
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "8a79":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var $ = __webpack_require__("23e7");
+var getOwnPropertyDescriptor = __webpack_require__("06cf").f;
+var toLength = __webpack_require__("50c4");
+var notARegExp = __webpack_require__("5a34");
+var requireObjectCoercible = __webpack_require__("1d80");
+var correctIsRegExpLogic = __webpack_require__("ab13");
+var IS_PURE = __webpack_require__("c430");
+
+var nativeEndsWith = ''.endsWith;
+var min = Math.min;
+
+var CORRECT_IS_REGEXP_LOGIC = correctIsRegExpLogic('endsWith');
+// https://github.com/zloirock/core-js/pull/702
+var MDN_POLYFILL_BUG = !IS_PURE && !CORRECT_IS_REGEXP_LOGIC && !!function () {
+  var descriptor = getOwnPropertyDescriptor(String.prototype, 'endsWith');
+  return descriptor && !descriptor.writable;
+}();
+
+// `String.prototype.endsWith` method
+// https://tc39.github.io/ecma262/#sec-string.prototype.endswith
+$({ target: 'String', proto: true, forced: !MDN_POLYFILL_BUG && !CORRECT_IS_REGEXP_LOGIC }, {
+  endsWith: function endsWith(searchString /* , endPosition = @length */) {
+    var that = String(requireObjectCoercible(this));
+    notARegExp(searchString);
+    var endPosition = arguments.length > 1 ? arguments[1] : undefined;
+    var len = toLength(that.length);
+    var end = endPosition === undefined ? len : min(toLength(endPosition), len);
+    var search = String(searchString);
+    return nativeEndsWith
+      ? nativeEndsWith.call(that, search, end)
+      : that.slice(end - search.length, end) === search;
+  }
+});
 
 
 /***/ }),
@@ -3959,13 +4935,6 @@ $({ target: 'RegExp', proto: true, forced: /./.exec !== exec }, {
 
 /***/ }),
 
-/***/ "ac7b":
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-
 /***/ "ad6d":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4086,6 +5055,53 @@ module.exports = TO_STRING_TAG_SUPPORT ? {}.toString : function toString() {
 
 /***/ }),
 
+/***/ "b0c0":
+/***/ (function(module, exports, __webpack_require__) {
+
+var DESCRIPTORS = __webpack_require__("83ab");
+var defineProperty = __webpack_require__("9bf2").f;
+
+var FunctionPrototype = Function.prototype;
+var FunctionPrototypeToString = FunctionPrototype.toString;
+var nameRE = /^\s*function ([^ (]*)/;
+var NAME = 'name';
+
+// Function instances `.name` property
+// https://tc39.github.io/ecma262/#sec-function-instances-name
+if (DESCRIPTORS && !(NAME in FunctionPrototype)) {
+  defineProperty(FunctionPrototype, NAME, {
+    configurable: true,
+    get: function () {
+      try {
+        return FunctionPrototypeToString.call(this).match(nameRE)[1];
+      } catch (error) {
+        return '';
+      }
+    }
+  });
+}
+
+
+/***/ }),
+
+/***/ "b129":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Amount_vue_vue_type_style_index_0_id_26cbc180_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("b434");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Amount_vue_vue_type_style_index_0_id_26cbc180_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Amount_vue_vue_type_style_index_0_id_26cbc180_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+ /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Amount_vue_vue_type_style_index_0_id_26cbc180_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "b434":
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
 /***/ "b575":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4195,6 +5211,27 @@ module.exports = function (name) {
 
 /***/ }),
 
+/***/ "b64b":
+/***/ (function(module, exports, __webpack_require__) {
+
+var $ = __webpack_require__("23e7");
+var toObject = __webpack_require__("7b0b");
+var nativeKeys = __webpack_require__("df75");
+var fails = __webpack_require__("d039");
+
+var FAILS_ON_PRIMITIVES = fails(function () { nativeKeys(1); });
+
+// `Object.keys` method
+// https://tc39.github.io/ecma262/#sec-object.keys
+$({ target: 'Object', stat: true, forced: FAILS_ON_PRIMITIVES }, {
+  keys: function keys(it) {
+    return nativeKeys(toObject(it));
+  }
+});
+
+
+/***/ }),
+
 /***/ "b727":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4267,6 +5304,18 @@ module.exports = {
 
 /***/ }),
 
+/***/ "bb2f":
+/***/ (function(module, exports, __webpack_require__) {
+
+var fails = __webpack_require__("d039");
+
+module.exports = !fails(function () {
+  return Object.isExtensible(Object.preventExtensions({}));
+});
+
+
+/***/ }),
+
 /***/ "c04e":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4285,17 +5334,6 @@ module.exports = function (input, PREFERRED_STRING) {
   throw TypeError("Can't convert object to primitive value");
 };
 
-
-/***/ }),
-
-/***/ "c183":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AmountInput_vue_vue_type_style_index_0_id_144d26be_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("e414");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AmountInput_vue_vue_type_style_index_0_id_144d26be_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AmountInput_vue_vue_type_style_index_0_id_144d26be_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
- /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AmountInput_vue_vue_type_style_index_0_id_144d26be_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -4329,33 +5367,6 @@ var SHARED = '__core-js_shared__';
 var store = global[SHARED] || setGlobal(SHARED, {});
 
 module.exports = store;
-
-
-/***/ }),
-
-/***/ "c8ba":
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || new Function("return this")();
-} catch (e) {
-	// This works if the window reference is available
-	if (typeof window === "object") g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
 
 
 /***/ }),
@@ -4476,17 +5487,6 @@ module.exports = function (it) {
 
 /***/ }),
 
-/***/ "cc62":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_08b1ecd6_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("8105");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_08b1ecd6_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_08b1ecd6_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
- /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_08b1ecd6_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
 /***/ "cca6":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4575,13 +5575,6 @@ module.exports = function (namespace, method) {
     : path[namespace] && path[namespace][method] || global[namespace] && global[namespace][method];
 };
 
-
-/***/ }),
-
-/***/ "d0d1":
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
 
 /***/ }),
 
@@ -4816,10 +5809,43 @@ module.exports = function (KEY, length, exec, sham) {
 
 /***/ }),
 
-/***/ "da84":
+/***/ "d81d":
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global) {var check = function (it) {
+"use strict";
+
+var $ = __webpack_require__("23e7");
+var $map = __webpack_require__("b727").map;
+var arrayMethodHasSpeciesSupport = __webpack_require__("1dde");
+var arrayMethodUsesToLength = __webpack_require__("ae40");
+
+var HAS_SPECIES_SUPPORT = arrayMethodHasSpeciesSupport('map');
+// FF49- issue
+var USES_TO_LENGTH = arrayMethodUsesToLength('map');
+
+// `Array.prototype.map` method
+// https://tc39.github.io/ecma262/#sec-array.prototype.map
+// with adding support of @@species
+$({ target: 'Array', proto: true, forced: !HAS_SPECIES_SUPPORT || !USES_TO_LENGTH }, {
+  map: function map(callbackfn /* , thisArg */) {
+    return $map(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
+  }
+});
+
+
+/***/ }),
+
+/***/ "da3b":
+/***/ (function(module, exports) {
+
+module.exports = Object.assign(import('qr-scanner/qr-scanner-worker.min.js'), { __esModule: true });;
+
+/***/ }),
+
+/***/ "da84":
+/***/ (function(module, exports) {
+
+var check = function (it) {
   return it && it.Math == Math && it;
 };
 
@@ -4833,7 +5859,37 @@ module.exports =
   // eslint-disable-next-line no-new-func
   Function('return this')();
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__("c8ba")))
+
+/***/ }),
+
+/***/ "dbb4":
+/***/ (function(module, exports, __webpack_require__) {
+
+var $ = __webpack_require__("23e7");
+var DESCRIPTORS = __webpack_require__("83ab");
+var ownKeys = __webpack_require__("56ef");
+var toIndexedObject = __webpack_require__("fc6a");
+var getOwnPropertyDescriptorModule = __webpack_require__("06cf");
+var createProperty = __webpack_require__("8418");
+
+// `Object.getOwnPropertyDescriptors` method
+// https://tc39.github.io/ecma262/#sec-object.getownpropertydescriptors
+$({ target: 'Object', stat: true, sham: !DESCRIPTORS }, {
+  getOwnPropertyDescriptors: function getOwnPropertyDescriptors(object) {
+    var O = toIndexedObject(object);
+    var getOwnPropertyDescriptor = getOwnPropertyDescriptorModule.f;
+    var keys = ownKeys(O);
+    var result = {};
+    var index = 0;
+    var key, descriptor;
+    while (keys.length > index) {
+      descriptor = getOwnPropertyDescriptor(O, key = keys[index++]);
+      if (descriptor !== undefined) createProperty(result, key, descriptor);
+    }
+    return result;
+  }
+});
+
 
 /***/ }),
 
@@ -5073,10 +6129,26 @@ module.exports = function (target, src, options) {
 
 /***/ }),
 
-/***/ "e414":
+/***/ "e439":
 /***/ (function(module, exports, __webpack_require__) {
 
-// extracted by mini-css-extract-plugin
+var $ = __webpack_require__("23e7");
+var fails = __webpack_require__("d039");
+var toIndexedObject = __webpack_require__("fc6a");
+var nativeGetOwnPropertyDescriptor = __webpack_require__("06cf").f;
+var DESCRIPTORS = __webpack_require__("83ab");
+
+var FAILS_ON_PRIMITIVES = fails(function () { nativeGetOwnPropertyDescriptor(1); });
+var FORCED = !DESCRIPTORS || FAILS_ON_PRIMITIVES;
+
+// `Object.getOwnPropertyDescriptor` method
+// https://tc39.github.io/ecma262/#sec-object.getownpropertydescriptor
+$({ target: 'Object', stat: true, forced: FORCED, sham: !DESCRIPTORS }, {
+  getOwnPropertyDescriptor: function getOwnPropertyDescriptor(it, key) {
+    return nativeGetOwnPropertyDescriptor(toIndexedObject(it), key);
+  }
+});
+
 
 /***/ }),
 
@@ -5543,6 +6615,13 @@ module.exports = function (it) {
 
 /***/ }),
 
+/***/ "edb8":
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
 /***/ "f069":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5565,6 +6644,74 @@ var PromiseCapability = function (C) {
 module.exports.f = function (C) {
   return new PromiseCapability(C);
 };
+
+
+/***/ }),
+
+/***/ "f183":
+/***/ (function(module, exports, __webpack_require__) {
+
+var hiddenKeys = __webpack_require__("d012");
+var isObject = __webpack_require__("861d");
+var has = __webpack_require__("5135");
+var defineProperty = __webpack_require__("9bf2").f;
+var uid = __webpack_require__("90e3");
+var FREEZING = __webpack_require__("bb2f");
+
+var METADATA = uid('meta');
+var id = 0;
+
+var isExtensible = Object.isExtensible || function () {
+  return true;
+};
+
+var setMetadata = function (it) {
+  defineProperty(it, METADATA, { value: {
+    objectID: 'O' + ++id, // object ID
+    weakData: {}          // weak collections IDs
+  } });
+};
+
+var fastKey = function (it, create) {
+  // return a primitive with prefix
+  if (!isObject(it)) return typeof it == 'symbol' ? it : (typeof it == 'string' ? 'S' : 'P') + it;
+  if (!has(it, METADATA)) {
+    // can't set metadata to uncaught frozen object
+    if (!isExtensible(it)) return 'F';
+    // not necessary to add metadata
+    if (!create) return 'E';
+    // add missing metadata
+    setMetadata(it);
+  // return object ID
+  } return it[METADATA].objectID;
+};
+
+var getWeakData = function (it, create) {
+  if (!has(it, METADATA)) {
+    // can't set metadata to uncaught frozen object
+    if (!isExtensible(it)) return true;
+    // not necessary to add metadata
+    if (!create) return false;
+    // add missing metadata
+    setMetadata(it);
+  // return the store of weak collections IDs
+  } return it[METADATA].weakData;
+};
+
+// add metadata on freeze-family methods calling
+var onFreeze = function (it) {
+  if (FREEZING && meta.REQUIRED && isExtensible(it) && !has(it, METADATA)) setMetadata(it);
+  return it;
+};
+
+var meta = module.exports = {
+  REQUIRED: false,
+  fastKey: fastKey,
+  getWeakData: getWeakData,
+  onFreeze: onFreeze
+};
+
+hiddenKeys[METADATA] = true;
 
 
 /***/ }),
@@ -5683,12 +6830,21 @@ if (typeof window !== 'undefined') {
 // Indicate to webpack that this file can be concatenated
 /* harmony default export */ var setPublicPath = (null);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6e1ebcfe-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Amount.vue?vue&type=template&id=1bccd635&scoped=true&
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"amount",class:{ approx: _vm.showApprox && _vm.isApprox }},[_vm._v(" "+_vm._s(_vm.formattedAmount)+" "),_c('span',{staticClass:"currency",class:_vm.currency},[_vm._v(_vm._s(_vm.currency))])])}
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.concat.js
+var es_array_concat = __webpack_require__("99af");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.ends-with.js
+var es_string_ends_with = __webpack_require__("8a79");
+
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"2540349c-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Amount.vue?vue&type=template&id=26cbc180&scoped=true&
+var Amountvue_type_template_id_26cbc180_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"amount",class:{ approx: _vm.showApprox && _vm.isApprox }},[_vm._v(" "+_vm._s(_vm.formattedAmount)+" "),_c('span',{staticClass:"currency",class:_vm.currency},[_vm._v(_vm._s(_vm.ticker))])])}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Amount.vue?vue&type=template&id=1bccd635&scoped=true&
+// CONCATENATED MODULE: ./src/components/Amount.vue?vue&type=template&id=26cbc180&scoped=true&
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.function.name.js
+var es_function_name = __webpack_require__("b0c0");
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.number.constructor.js
 var es_number_constructor = __webpack_require__("a9e3");
@@ -6135,6 +7291,11 @@ function toNonScientificNumberString(value) {
 
 
 
+
+function amountValidator(value) {
+  return typeof value === 'number' || typeof value === 'bigint' || value && value.constructor && value.constructor.name.endsWith('Integer');
+}
+
 var Amountvue_type_script_lang_ts_Amount =
 /*#__PURE__*/
 function (_Vue) {
@@ -6182,13 +7343,22 @@ function (_Vue) {
     get: function get() {
       return !new FormattableNumber(this.amount).moveDecimalSeparator(-this.currencyDecimals).equals(this.formattedAmount.replace(/\s/g, ''));
     }
+  }, {
+    key: "ticker",
+    get: function get() {
+      if (this.currency === 'tnim') return 'tNIM';
+      if (this.currency === 'mbtc') return 'mBTC';
+      if (this.currency === 'tbtc') return 'tBTC';
+      return this.currency.toUpperCase();
+    }
   }]);
 
   return Amount;
 }(external_vue_property_decorator_["Vue"]);
 
 __decorate([Object(external_vue_property_decorator_["Prop"])({
-  type: [Number, Object]
+  required: true,
+  validator: amountValidator
 })], Amountvue_type_script_lang_ts_Amount.prototype, "amount", void 0);
 
 __decorate([Object(external_vue_property_decorator_["Prop"])(Number)], Amountvue_type_script_lang_ts_Amount.prototype, "decimals", void 0);
@@ -6230,8 +7400,8 @@ Amountvue_type_script_lang_ts_Amount = __decorate([external_vue_property_decorat
 /* harmony default export */ var Amountvue_type_script_lang_ts_ = (Amountvue_type_script_lang_ts_Amount);
 // CONCATENATED MODULE: ./src/components/Amount.vue?vue&type=script&lang=ts&
  /* harmony default export */ var components_Amountvue_type_script_lang_ts_ = (Amountvue_type_script_lang_ts_); 
-// EXTERNAL MODULE: ./src/components/Amount.vue?vue&type=style&index=0&id=1bccd635&scoped=true&lang=css&
-var Amountvue_type_style_index_0_id_1bccd635_scoped_true_lang_css_ = __webpack_require__("0f15");
+// EXTERNAL MODULE: ./src/components/Amount.vue?vue&type=style&index=0&id=26cbc180&scoped=true&lang=css&
+var Amountvue_type_style_index_0_id_26cbc180_scoped_true_lang_css_ = __webpack_require__("b129");
 
 // CONCATENATED MODULE: ./node_modules/vue-loader/lib/runtime/componentNormalizer.js
 /* globals __VUE_SSR_CONTEXT__ */
@@ -6339,25 +7509,22 @@ function normalizeComponent (
 
 var component = normalizeComponent(
   components_Amountvue_type_script_lang_ts_,
-  render,
+  Amountvue_type_template_id_26cbc180_scoped_true_render,
   staticRenderFns,
   false,
   null,
-  "1bccd635",
+  "26cbc180",
   null
   
 )
 
 /* harmony default export */ var components_Amount = (component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6e1ebcfe-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/AmountInput.vue?vue&type=template&id=144d26be&scoped=true&
-var AmountInputvue_type_template_id_144d26be_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"amount-input"},[_c('form',{ref:"fullWidth",staticClass:"label-input",on:{"submit":function($event){$event.preventDefault();}}},[_c('span',{ref:"widthPlaceholder",staticClass:"width-finder width-placeholder"},[_vm._v(_vm._s(_vm.placeholder))]),(_vm.maxFontSize)?_c('div',{staticClass:"full-width",class:{'width-finder': _vm.maxWidth > 0}},[_vm._v("Width")]):_vm._e(),_c('span',{ref:"widthValue",staticClass:"width-finder width-value"},[_vm._v(_vm._s(_vm.formattedValue || ''))]),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.formattedValue),expression:"formattedValue"}],ref:"input",staticClass:"nq-input nq-light-blue vanishing",style:({width: ((this.width) + "px"), fontSize: ((this.fontSize) + "rem")}),attrs:{"type":"text","placeholder":_vm.placeholder},domProps:{"value":(_vm.formattedValue)},on:{"input":function($event){if($event.target.composing){ return; }_vm.formattedValue=$event.target.value}}})]),_c('span',{staticClass:"nim"},[_vm._v("NIM")])])}
-var AmountInputvue_type_template_id_144d26be_scoped_true_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"2540349c-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/AmountInput.vue?vue&type=template&id=37572fbf&scoped=true&
+var AmountInputvue_type_template_id_37572fbf_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"amount-input",class:{'has-value': _vm.valueInLuna > 0, 'focussed': _vm.isFocussed}},[_c('form',{ref:"fullWidth",staticClass:"label-input",on:{"submit":function($event){$event.preventDefault();}}},[_c('span',{ref:"widthPlaceholder",staticClass:"width-finder width-placeholder"},[_vm._v(_vm._s(_vm.placeholder))]),(_vm.maxFontSize)?_c('div',{staticClass:"full-width",class:{'width-finder': _vm.maxWidth > 0}},[_vm._v("Width")]):_vm._e(),_c('span',{ref:"widthValue",staticClass:"width-finder width-value"},[_vm._v(_vm._s(_vm.formattedValue || ''))]),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.formattedValue),expression:"formattedValue"}],ref:"input",staticClass:"nq-input",class:_vm.vanishing,style:({width: ((this.width) + "px"), fontSize: ((this.fontSize) + "rem")}),attrs:{"type":"text","inputmode":"decimal","placeholder":_vm.placeholder},domProps:{"value":(_vm.formattedValue)},on:{"focus":function($event){_vm.isFocussed = true},"blur":function($event){_vm.isFocussed = false},"input":function($event){if($event.target.composing){ return; }_vm.formattedValue=$event.target.value}}})]),_c('span',{staticClass:"nim"},[_vm._v("NIM")])])}
+var AmountInputvue_type_template_id_37572fbf_scoped_true_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/AmountInput.vue?vue&type=template&id=144d26be&scoped=true&
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.concat.js
-var es_array_concat = __webpack_require__("99af");
+// CONCATENATED MODULE: ./src/components/AmountInput.vue?vue&type=template&id=37572fbf&scoped=true&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.regexp.constructor.js
 var es_regexp_constructor = __webpack_require__("4d63");
@@ -6446,6 +7613,7 @@ function (_Vue) {
     _this.fontSize = _this.maxFontSize;
     _this.maxWidth = 0;
     _this.valueInLuna = 0;
+    _this.isFocussed = false;
     return _this;
   }
 
@@ -6485,7 +7653,9 @@ function (_Vue) {
   }, {
     key: "updateValue",
     value: function updateValue(newValue) {
-      this.formattedValue = newValue ? (newValue / 1e5).toString() : '';
+      if (newValue === this.valueInLuna) return;
+      this.lastEmittedValue = newValue || 0;
+      this.formattedValue = newValue ? (newValue / Math.pow(10, this.decimals)).toString() : '';
       this.updateWidth();
     }
   }, {
@@ -6546,12 +7716,13 @@ function (_Vue) {
       }
 
       value = value.replace(/\,/, '.');
-      var regExp = new RegExp(/(\d*)(\.(\d{0,5}))?/g);
+      var regExp = new RegExp("(\\d*)(\\.(\\d{0,".concat(this.decimals, "}))?"), 'g'); // Backslashes are escaped
+
       var regExpResult = regExp.exec(value);
 
       if (regExpResult[1] || regExpResult[2]) {
         this.liveValue = "".concat(regExpResult[1] ? regExpResult[1] : '0').concat(regExpResult[2] ? regExpResult[2] : '');
-        this.valueInLuna = Number("".concat(regExpResult[1]).concat(regExpResult[2] ? regExpResult[3].padEnd(5, '0') : '00000'));
+        this.valueInLuna = Number("".concat(regExpResult[1]).concat((regExpResult[2] ? regExpResult[3] : '').padEnd(this.decimals, '0')));
       }
 
       if (this.lastEmittedValue !== this.valueInLuna) {
@@ -6581,6 +7752,16 @@ __decorate([Object(external_vue_property_decorator_["Prop"])({
   default: '0'
 })], AmountInputvue_type_script_lang_ts_AmountInput.prototype, "placeholder", void 0);
 
+__decorate([Object(external_vue_property_decorator_["Prop"])({
+  type: Boolean,
+  default: false
+})], AmountInputvue_type_script_lang_ts_AmountInput.prototype, "vanishing", void 0);
+
+__decorate([Object(external_vue_property_decorator_["Prop"])({
+  type: Number,
+  default: 5
+})], AmountInputvue_type_script_lang_ts_AmountInput.prototype, "decimals", void 0);
+
 __decorate([Object(external_vue_property_decorator_["Watch"])('value', {
   immediate: true
 })], AmountInputvue_type_script_lang_ts_AmountInput.prototype, "updateValue", null);
@@ -6591,8 +7772,8 @@ AmountInputvue_type_script_lang_ts_AmountInput = __decorate([external_vue_proper
 /* harmony default export */ var AmountInputvue_type_script_lang_ts_ = (AmountInputvue_type_script_lang_ts_AmountInput);
 // CONCATENATED MODULE: ./src/components/AmountInput.vue?vue&type=script&lang=ts&
  /* harmony default export */ var components_AmountInputvue_type_script_lang_ts_ = (AmountInputvue_type_script_lang_ts_); 
-// EXTERNAL MODULE: ./src/components/AmountInput.vue?vue&type=style&index=0&id=144d26be&scoped=true&lang=css&
-var AmountInputvue_type_style_index_0_id_144d26be_scoped_true_lang_css_ = __webpack_require__("c183");
+// EXTERNAL MODULE: ./src/components/AmountInput.vue?vue&type=style&index=0&id=37572fbf&scoped=true&lang=css&
+var AmountInputvue_type_style_index_0_id_37572fbf_scoped_true_lang_css_ = __webpack_require__("55d1");
 
 // CONCATENATED MODULE: ./src/components/AmountInput.vue
 
@@ -6605,22 +7786,22 @@ var AmountInputvue_type_style_index_0_id_144d26be_scoped_true_lang_css_ = __webp
 
 var AmountInput_component = normalizeComponent(
   components_AmountInputvue_type_script_lang_ts_,
-  AmountInputvue_type_template_id_144d26be_scoped_true_render,
-  AmountInputvue_type_template_id_144d26be_scoped_true_staticRenderFns,
+  AmountInputvue_type_template_id_37572fbf_scoped_true_render,
+  AmountInputvue_type_template_id_37572fbf_scoped_true_staticRenderFns,
   false,
   null,
-  "144d26be",
+  "37572fbf",
   null
   
 )
 
 /* harmony default export */ var components_AmountInput = (AmountInput_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6e1ebcfe-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/QrCode.vue?vue&type=template&id=2785d1ea&
-var QrCodevue_type_template_id_2785d1ea_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (!!_vm.data)?_c('canvas'):_vm._e()}
-var QrCodevue_type_template_id_2785d1ea_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"2540349c-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/QrCode.vue?vue&type=template&id=778bc790&
+var QrCodevue_type_template_id_778bc790_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (!!_vm.data)?_c('canvas',{staticClass:"qr-code"}):_vm._e()}
+var QrCodevue_type_template_id_778bc790_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/QrCode.vue?vue&type=template&id=2785d1ea&
+// CONCATENATED MODULE: ./src/components/QrCode.vue?vue&type=template&id=778bc790&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.every.js
 var es_array_every = __webpack_require__("a623");
@@ -6684,10 +7865,10 @@ function _nonIterableRest() {
 function _slicedToArray(arr, i) {
   return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest();
 }
-// CONCATENATED MODULE: ./node_modules/qr-code/qr-code.min.js
+// CONCATENATED MODULE: ./node_modules/qr-creator/dist/qr-creator.es6.min.js
 /*
  jquery-qrcode v0.14.0 - https://larsjung.de/jquery-qrcode/ */
-let G=null;class H{}H.render=function(w,B){G(w,B)};self.QrCode=H;
+let G=null;class H{}H.render=function(w,B){G(w,B)};self.QrCreator=H;
 (function(w){function B(t,c,a,e){var b={},h=w(a,c);h.u(t);h.J();e=e||0;var r=h.h(),d=h.h()+2*e;b.text=t;b.level=c;b.version=a;b.O=d;b.a=function(b,a){b-=e;a-=e;return 0>b||b>=r||0>a||a>=r?!1:h.a(b,a)};return b}function C(t,c,a,e,b,h,r,d,g,x){function u(b,a,f,c,d,r,g){b?(t.lineTo(a+r,f+g),t.arcTo(a,f,c,d,h)):t.lineTo(a,f)}r?t.moveTo(c+h,a):t.moveTo(c,a);u(d,e,a,e,b,-h,0);u(g,e,b,c,b,0,-h);u(x,c,b,c,a,h,0);u(r,c,a,e,a,0,h)}function z(t,c,a,e,b,h,r,d,g,x){function u(b,a,c,d){t.moveTo(b+c,a);t.lineTo(b,
 a);t.lineTo(b,a+d);t.arcTo(b,a,b+c,a,h)}r&&u(c,a,h,h);d&&u(e,a,-h,h);g&&u(e,b,-h,-h);x&&u(c,b,h,-h)}function A(t,c){var a=c.fill;if("string"===typeof a)t.fillStyle=a;else{var e=a.type,b=a.colorStops;a=a.position.map((b)=>Math.round(b*c.size));if("linear-gradient"===e)var h=t.createLinearGradient.apply(t,a);else if("radial-gradient"===e)h=t.createRadialGradient.apply(t,a);else throw Error("Unsupported fill");b.forEach(([b,a])=>{h.addColorStop(b,a)});t.fillStyle=h}}function y(t,c){a:{var a=c.text,e=
 c.v,b=c.N,h=c.K,r=c.P;b=Math.max(1,b||1);for(h=Math.min(40,h||40);b<=h;b+=1)try{var d=B(a,e,b,r);break a}catch(J){}d=void 0}if(!d)return null;a=t.getContext("2d");c.background&&(a.fillStyle=c.background,a.fillRect(c.left,c.top,c.size,c.size));e=d.O;h=c.size/e;a.beginPath();for(r=0;r<e;r+=1)for(b=0;b<e;b+=1){var g=a,x=c.left+b*h,u=c.top+r*h,p=r,q=b,f=d.a,k=x+h,m=u+h,D=p-1,E=p+1,n=q-1,l=q+1,y=Math.floor(Math.min(.5,Math.max(0,c.R))*h),v=f(p,q),I=f(D,n),w=f(D,q);D=f(D,l);var F=f(p,l);l=f(E,l);q=f(E,
@@ -6712,8 +7893,8 @@ d=0;d<a;d+=1)for(var g=0;g<a;g+=1){for(var e=0,t=b.a(d,g),p=-1;1>=p;p+=1)if(!(0>
 [21,73,45,7,74,46],[1,53,23,37,54,24],[19,45,15,26,46,16],[5,145,115,10,146,116],[19,75,47,10,76,48],[15,54,24,25,55,25],[23,45,15,25,46,16],[13,145,115,3,146,116],[2,74,46,29,75,47],[42,54,24,1,55,25],[23,45,15,28,46,16],[17,145,115],[10,74,46,23,75,47],[10,54,24,35,55,25],[19,45,15,35,46,16],[17,145,115,1,146,116],[14,74,46,21,75,47],[29,54,24,19,55,25],[11,45,15,46,46,16],[13,145,115,6,146,116],[14,74,46,23,75,47],[44,54,24,7,55,25],[59,46,16,1,47,17],[12,151,121,7,152,122],[12,75,47,26,76,48],
 [39,54,24,14,55,25],[22,45,15,41,46,16],[6,151,121,14,152,122],[6,75,47,34,76,48],[46,54,24,10,55,25],[2,45,15,64,46,16],[17,152,122,4,153,123],[29,74,46,14,75,47],[49,54,24,10,55,25],[24,45,15,46,46,16],[4,152,122,18,153,123],[13,74,46,32,75,47],[48,54,24,14,55,25],[42,45,15,32,46,16],[20,147,117,4,148,118],[40,75,47,7,76,48],[43,54,24,22,55,25],[10,45,15,67,46,16],[19,148,118,6,149,119],[18,75,47,31,76,48],[34,54,24,34,55,25],[20,45,15,61,46,16]],e={I:function(b,a){var e=c(b,a);if("undefined"==
 typeof e)throw Error("bad rs block @ typeNumber:"+b+"/errorCorrectLevel:"+a);b=e.length/3;a=[];for(var d=0;d<b;d+=1)for(var g=e[3*d],h=e[3*d+1],t=e[3*d+2],p=0;p<g;p+=1){var q=t,f={};f.o=h;f.j=q;a.push(f)}return a}};return e}();return C}());
-/* harmony default export */ var qr_code_min = (QrCode);
-//# sourceMappingURL=qr-code.min.js.map
+/* harmony default export */ var qr_creator_es6_min = (QrCreator);
+//# sourceMappingURL=qr-creator.min.js.map
 
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--13-1!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/QrCode.vue?vue&type=script&lang=ts&
 
@@ -6828,7 +8009,7 @@ function (_Vue) {
 
               case 4:
                 // Make sure the canvas is in the DOM (it depends on !!data)
-                qr_code_min.render({
+                qr_creator_es6_min.render({
                   text: this.data,
                   radius: this.radius,
                   ecLevel: this.errorCorrection,
@@ -6938,8 +8119,8 @@ QrCodevue_type_script_lang_ts_QrCode = __decorate([external_vue_property_decorat
 
 var QrCode_component = normalizeComponent(
   components_QrCodevue_type_script_lang_ts_,
-  QrCodevue_type_template_id_2785d1ea_render,
-  QrCodevue_type_template_id_2785d1ea_staticRenderFns,
+  QrCodevue_type_template_id_778bc790_render,
+  QrCodevue_type_template_id_778bc790_staticRenderFns,
   false,
   null,
   null,
@@ -6948,25 +8129,44 @@ var QrCode_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_QrCode = (QrCode_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6e1ebcfe-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/QrScanner.vue?vue&type=template&id=7e80c7c1&scoped=true&
-var QrScannervue_type_template_id_7e80c7c1_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"qr-scanner nq-blue-bg"},[_c('video',{ref:"video",attrs:{"muted":"","autoplay":"","playsinline":"","width":"600","height":"600"},domProps:{"muted":true}}),_c('div',{ref:"overlay",staticClass:"overlay",class:{ inactive: _vm.cameraAccessFailed }},[_vm._t("default",[_c('svg',{attrs:{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 238 238"}},[_c('path',{attrs:{"fill":"none","stroke-linecap":"round","stroke-linejoin":"round","stroke-width":"4","d":"M31.3 2H10a8 8 0 0 0-8 8v21.3M206.8 2H228a8 8 0 0 1 8 8v21.3m0 175.4V228a8 8 0 0 1-8 8h-21.3m-175.4 0H10a8 8 0 0 1-8-8v-21.3"}})])])],2),_c('button',{staticClass:"nq-button-s inverse cancel-button",on:{"click":_vm._cancel}},[_vm._v("Cancel")]),_c('transition',{attrs:{"name":"fade"}},[(_vm.cameraAccessFailed)?_c('div',{staticClass:"camera-access-failed"},[(!_vm.hasCamera)?_c('div',{staticClass:"camera-access-failed-warning"},[_vm._v(" Your device does not have an accessible camera. ")]):_c('div',[_c('div',{staticClass:"camera-access-failed-warning"},[_vm._v(" Unblock the camera for this website to scan QR codes. ")]),(_vm.isMobileOrTablet)?_c('div',[(_vm.browser === 'chrome')?_c('div',[_c('div',{staticClass:"access-denied-instructions"},[_vm._v(" Click on "),_c('span',{staticClass:"browser-menu-icon"}),_vm._v(" and go to "),_c('br'),_vm._v(" Settings > Site Settings > Camera ")]),_c('div',{staticClass:"browser-menu-arrow"})]):_c('div',{staticClass:"access-denied-instructions"},[_vm._v(" Grant camera access when asked. ")])]):_c('div',{staticClass:"access-denied-instructions"},[(_vm.browser === 'safari')?_c('div',[_vm._v(" Click on "),_c('b',[_vm._v("Safari")]),_vm._v(" and go to "),_c('br'),_vm._v(" Settings for this Website > Camera ")]):_c('div',[_vm._v(" Click on "),(_vm.browser === 'chrome')?_c('span',{staticClass:"camera-icon-chrome"}):(_vm.browser === 'firefox')?_c('span',{staticClass:"camera-icon-firefox"}):_c('span',[_vm._v("the camera icon")]),_vm._v(" in the URL bar. ")])])])]):_vm._e()])],1)}
-var QrScannervue_type_template_id_7e80c7c1_scoped_true_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"2540349c-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/QrScanner.vue?vue&type=template&id=48a6ec42&scoped=true&
+var QrScannervue_type_template_id_48a6ec42_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"qr-scanner nq-blue-bg"},[_c('video',{ref:"video",attrs:{"muted":"","autoplay":"","playsinline":"","width":"600","height":"600"},domProps:{"muted":true}}),_c('div',{ref:"overlay",staticClass:"overlay",class:{ inactive: _vm.cameraAccessFailed }},[_vm._t("default",[_c('svg',{attrs:{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 238 238"}},[_c('path',{attrs:{"fill":"none","stroke-linecap":"round","stroke-linejoin":"round","stroke-width":"4","d":"M31.3 2H10a8 8 0 0 0-8 8v21.3M206.8 2H228a8 8 0 0 1 8 8v21.3m0 175.4V228a8 8 0 0 1-8 8h-21.3m-175.4 0H10a8 8 0 0 1-8-8v-21.3"}})])])],2),_c('button',{staticClass:"nq-button-s inverse cancel-button",on:{"click":_vm._cancel}},[_vm._v(_vm._s(_vm.$t('Cancel')))]),_c('transition',{attrs:{"name":"fade"}},[(_vm.cameraAccessFailed)?_c('div',{staticClass:"camera-access-failed"},[(!_vm.hasCamera)?_c('div',{staticClass:"camera-access-failed-warning"},[_vm._v(" "+_vm._s(_vm.$t('Your device does not have an accessible camera.'))+" ")]):_c('div',[_c('div',{staticClass:"camera-access-failed-warning"},[_vm._v(" "+_vm._s(_vm.$t('Unblock the camera for this website to scan QR codes.'))+" ")]),(_vm.isMobileOrTablet)?_c('div',[(_vm.browser === 'chrome')?_c('div',[_c('I18n',{staticClass:"access-denied-instructions",attrs:{"path":"Click on {icon} and go to\\nSettings > Site Settings > Camera","tag":"div"},scopedSlots:_vm._u([{key:"icon",fn:function(){return [_c('span',{staticClass:"browser-menu-icon"})]},proxy:true}],null,false,1223065533)}),_c('div',{staticClass:"browser-menu-arrow"})],1):_c('div',{staticClass:"access-denied-instructions"},[_vm._v(" "+_vm._s(_vm.$t('Grant camera access when asked.'))+" ")])]):_c('div',{staticClass:"access-denied-instructions"},[(_vm.browser === 'safari')?_c('I18n',{attrs:{"path":"Click on {safari} and go to\\nSettings for this Website > Camera","tag":"div"},scopedSlots:_vm._u([{key:"safari",fn:function(){return [_c('b',[_vm._v("Safari")])]},proxy:true}],null,false,687307496)}):_c('I18n',{attrs:{"path":"Click on {icon} in the URL bar.","tag":"div"},scopedSlots:_vm._u([{key:"icon",fn:function(){return [(_vm.browser === 'chrome')?_c('span',{staticClass:"camera-icon-chrome"}):(_vm.browser === 'firefox')?_c('span',{staticClass:"camera-icon-firefox"}):_c('span',[_vm._v(_vm._s(_vm.$t('the camera icon')))])]},proxy:true}],null,false,2903711098)})],1)])]):_vm._e()])],1)}
+var QrScannervue_type_template_id_48a6ec42_scoped_true_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/QrScanner.vue?vue&type=template&id=7e80c7c1&scoped=true&
+// CONCATENATED MODULE: ./src/components/QrScanner.vue?vue&type=template&id=48a6ec42&scoped=true&
 
 // CONCATENATED MODULE: ./node_modules/qr-scanner/qr-scanner.min.js
-class e{static hasCamera(){return navigator.mediaDevices.enumerateDevices().then((a)=>a.some((a)=>"videoinput"===a.kind)).catch(()=>!1)}constructor(a,c,b=e.DEFAULT_CANVAS_SIZE){this.$video=a;this.$canvas=document.createElement("canvas");this._onDecode=c;this._paused=this._active=!1;this.$canvas.width=b;this.$canvas.height=b;this._sourceRect={x:0,y:0,width:b,height:b};this._onCanPlay=this._onCanPlay.bind(this);this._onPlay=this._onPlay.bind(this);this._onVisibilityChange=this._onVisibilityChange.bind(this);
-this.$video.addEventListener("canplay",this._onCanPlay);this.$video.addEventListener("play",this._onPlay);document.addEventListener("visibilitychange",this._onVisibilityChange);this._qrWorker=new Worker(e.WORKER_PATH)}destroy(){this.$video.removeEventListener("canplay",this._onCanPlay);this.$video.removeEventListener("play",this._onPlay);document.removeEventListener("visibilitychange",this._onVisibilityChange);this.stop();this._qrWorker.postMessage({type:"close"})}start(){if(this._active&&!this._paused)return Promise.resolve();
-"https:"!==window.location.protocol&&console.warn("The camera stream is only accessible if the page is transferred via https.");this._active=!0;this._paused=!1;if(document.hidden)return Promise.resolve();clearTimeout(this._offTimeout);this._offTimeout=null;if(this.$video.srcObject)return this.$video.play(),Promise.resolve();let a="environment";return this._getCameraStream("environment",!0).catch(()=>{a="user";return this._getCameraStream()}).then((c)=>{this.$video.srcObject=c;this._setVideoMirror(a)}).catch((a)=>
-{this._active=!1;throw a;})}stop(){this.pause();this._active=!1}pause(){this._paused=!0;this._active&&(this.$video.pause(),this._offTimeout||(this._offTimeout=setTimeout(()=>{let a=this.$video.srcObject&&this.$video.srcObject.getTracks()[0];a&&(a.stop(),this._offTimeout=this.$video.srcObject=null)},300)))}static scanImage(a,c=null,b=null,d=null,f=!1,g=!1){let h=!1,l=new Promise((l,g)=>{b||(b=new Worker(e.WORKER_PATH),h=!0,b.postMessage({type:"inversionMode",data:"both"}));let n,m,k;m=(a)=>{"qrResult"===
-a.data.type&&(b.removeEventListener("message",m),b.removeEventListener("error",k),clearTimeout(n),null!==a.data.data?l(a.data.data):g("QR code not found."))};k=(a)=>{b.removeEventListener("message",m);b.removeEventListener("error",k);clearTimeout(n);g("Scanner error: "+(a?a.message||a:"Unknown Error"))};b.addEventListener("message",m);b.addEventListener("error",k);n=setTimeout(()=>k("timeout"),3E3);e._loadImage(a).then((a)=>{a=e._getImageData(a,c,d,f);b.postMessage({type:"decode",data:a},[a.data.buffer])}).catch(k)});
-c&&g&&(l=l.catch(()=>e.scanImage(a,null,b,d,f)));return l=l.finally(()=>{h&&b.postMessage({type:"close"})})}setGrayscaleWeights(a,c,b,d=!0){this._qrWorker.postMessage({type:"grayscaleWeights",data:{red:a,green:c,blue:b,useIntegerApproximation:d}})}setInversionMode(a){this._qrWorker.postMessage({type:"inversionMode",data:a})}_onCanPlay(){this._updateSourceRect();this.$video.play()}_onPlay(){this._updateSourceRect();this._scanFrame()}_onVisibilityChange(){document.hidden?this.pause():this._active&&
-this.start()}_updateSourceRect(){let a=Math.round(2/3*Math.min(this.$video.videoWidth,this.$video.videoHeight));this._sourceRect.width=this._sourceRect.height=a;this._sourceRect.x=(this.$video.videoWidth-a)/2;this._sourceRect.y=(this.$video.videoHeight-a)/2}_scanFrame(){if(!this._active||this.$video.paused||this.$video.ended)return!1;requestAnimationFrame(()=>{e.scanImage(this.$video,this._sourceRect,this._qrWorker,this.$canvas,!0).then(this._onDecode,(a)=>{this._active&&"QR code not found."!==a&&
-console.error(a)}).then(()=>this._scanFrame())})}_getCameraStream(a,c=!1){let b=[{width:{min:1024}},{width:{min:768}},{}];a&&(c&&(a={exact:a}),b.forEach((b)=>b.facingMode=a));return this._getMatchingCameraStream(b)}_getMatchingCameraStream(a){return 0===a.length?Promise.reject("Camera not found."):navigator.mediaDevices.getUserMedia({video:a.shift()}).catch(()=>this._getMatchingCameraStream(a))}_setVideoMirror(a){this.$video.style.transform="scaleX("+("user"===a?-1:1)+")"}static _getImageData(a,c=
-null,b=null,d=!1){b=b||document.createElement("canvas");let f=c&&c.x?c.x:0,g=c&&c.y?c.y:0,h=c&&c.width?c.width:a.width||a.videoWidth;c=c&&c.height?c.height:a.height||a.videoHeight;d||b.width===h&&b.height===c||(b.width=h,b.height=c);d=b.getContext("2d",{alpha:!1});d.imageSmoothingEnabled=!1;d.drawImage(a,f,g,h,c,0,0,b.width,b.height);return d.getImageData(0,0,b.width,b.height)}static _loadImage(a){if(a instanceof HTMLCanvasElement||a instanceof HTMLVideoElement||window.ImageBitmap&&a instanceof window.ImageBitmap||
-window.OffscreenCanvas&&a instanceof window.OffscreenCanvas)return Promise.resolve(a);if(a instanceof Image)return e._awaitImageLoad(a).then(()=>a);if(a instanceof File||a instanceof URL||"string"===typeof a){let c=new Image;c.src=a instanceof File?URL.createObjectURL(a):a;return e._awaitImageLoad(c).then(()=>{a instanceof File&&URL.revokeObjectURL(c.src);return c})}return Promise.reject("Unsupported image type.")}static _awaitImageLoad(a){return new Promise((c,b)=>{if(a.complete&&0!==a.naturalWidth)c();
-else{let d,f;d=()=>{a.removeEventListener("load",d);a.removeEventListener("error",f);c()};f=()=>{a.removeEventListener("load",d);a.removeEventListener("error",f);b("Image load error")};a.addEventListener("load",d);a.addEventListener("error",f)}})}}e.DEFAULT_CANVAS_SIZE=400;e.WORKER_PATH="qr-scanner-worker.min.js";/* harmony default export */ var qr_scanner_min = (e);
+class e{constructor(a,b,c,d,f){this._legacyCanvasSize=e.DEFAULT_CANVAS_SIZE;this._preferredCamera="environment";this._maxScansPerSecond=25;this._lastScanTimestamp=-1;this._destroyed=this._flashOn=this._paused=this._active=!1;this.$video=a;this.$canvas=document.createElement("canvas");c&&"object"===typeof c?this._onDecode=b:(c||d||f?console.warn("You're using a deprecated version of the QrScanner constructor which will be removed in the future"):console.warn("Note that the type of the scan result passed to onDecode will change in the future. To already switch to the new api today, you can pass returnDetailedScanResult: true."),
+this._legacyOnDecode=b);b="object"===typeof c?c:{};this._onDecodeError=b.onDecodeError||("function"===typeof c?c:this._onDecodeError);this._calculateScanRegion=b.calculateScanRegion||("function"===typeof d?d:this._calculateScanRegion);this._preferredCamera=b.preferredCamera||f||this._preferredCamera;this._legacyCanvasSize="number"===typeof c?c:"number"===typeof d?d:this._legacyCanvasSize;this._maxScansPerSecond=b.maxScansPerSecond||this._maxScansPerSecond;this._onPlay=this._onPlay.bind(this);this._onLoadedMetaData=
+this._onLoadedMetaData.bind(this);this._onVisibilityChange=this._onVisibilityChange.bind(this);this._updateOverlay=this._updateOverlay.bind(this);a.disablePictureInPicture=!0;a.playsInline=!0;a.muted=!0;let h=!1;a.hidden&&(a.hidden=!1,h=!0);document.body.contains(a)||(document.body.appendChild(a),h=!0);c=a.parentElement;if(b.highlightScanRegion||b.highlightCodeOutline){d=!!b.overlay;this.$overlay=b.overlay||document.createElement("div");f=this.$overlay.style;f.position="absolute";f.display="none";
+f.pointerEvents="none";this.$overlay.classList.add("scan-region-highlight");if(!d&&b.highlightScanRegion){this.$overlay.innerHTML='<svg class="scan-region-highlight-svg" viewBox="0 0 238 238" preserveAspectRatio="none" style="position:absolute;width:100%;height:100%;left:0;top:0;fill:none;stroke:#e9b213;stroke-width:4;stroke-linecap:round;stroke-linejoin:round"><path d="M31 2H10a8 8 0 0 0-8 8v21M207 2h21a8 8 0 0 1 8 8v21m0 176v21a8 8 0 0 1-8 8h-21m-176 0H10a8 8 0 0 1-8-8v-21"/></svg>';try{this.$overlay.firstElementChild.animate({transform:["scale(.98)",
+"scale(1.01)"]},{duration:400,iterations:Infinity,direction:"alternate",easing:"ease-in-out"})}catch(m){}c.insertBefore(this.$overlay,this.$video.nextSibling)}b.highlightCodeOutline&&(this.$overlay.insertAdjacentHTML("beforeend",'<svg class="code-outline-highlight" preserveAspectRatio="none" style="display:none;width:100%;height:100%;fill:none;stroke:#e9b213;stroke-width:5;stroke-dasharray:25;stroke-linecap:round;stroke-linejoin:round"><polygon/></svg>'),this.$codeOutlineHighlight=this.$overlay.lastElementChild)}this._scanRegion=
+this._calculateScanRegion(a);requestAnimationFrame(()=>{let m=window.getComputedStyle(a);"none"===m.display&&(a.style.setProperty("display","block","important"),h=!0);"visible"!==m.visibility&&(a.style.setProperty("visibility","visible","important"),h=!0);h&&(console.warn("QrScanner has overwritten the video hiding style to avoid Safari stopping the playback."),a.style.opacity="0",a.style.width="0",a.style.height="0",this.$overlay&&this.$overlay.parentElement&&this.$overlay.parentElement.removeChild(this.$overlay),
+delete this.$overlay,delete this.$codeOutlineHighlight);this.$overlay&&this._updateOverlay()});a.addEventListener("play",this._onPlay);a.addEventListener("loadedmetadata",this._onLoadedMetaData);document.addEventListener("visibilitychange",this._onVisibilityChange);window.addEventListener("resize",this._updateOverlay);this._qrEnginePromise=e.createQrEngine()}static set WORKER_PATH(a){console.warn("Setting QrScanner.WORKER_PATH is not required and not supported anymore. Have a look at the README for new setup instructions.")}static async hasCamera(){try{return!!(await e.listCameras(!1)).length}catch(a){return!1}}static async listCameras(a=
+!1){if(!navigator.mediaDevices)return[];let b=async()=>(await navigator.mediaDevices.enumerateDevices()).filter(d=>"videoinput"===d.kind),c;try{a&&(await b()).every(d=>!d.label)&&(c=await navigator.mediaDevices.getUserMedia({audio:!1,video:!0}))}catch(d){}try{return(await b()).map((d,f)=>({id:d.deviceId,label:d.label||(0===f?"Default Camera":`Camera ${f+1}`)}))}finally{c&&(console.warn("Call listCameras after successfully starting a QR scanner to avoid creating a temporary video stream"),e._stopVideoStream(c))}}async hasFlash(){let a;
+try{if(this.$video.srcObject){if(!(this.$video.srcObject instanceof MediaStream))return!1;a=this.$video.srcObject}else a=(await this._getCameraStream()).stream;return"torch"in a.getVideoTracks()[0].getSettings()}catch(b){return!1}finally{a&&a!==this.$video.srcObject&&(console.warn("Call hasFlash after successfully starting the scanner to avoid creating a temporary video stream"),e._stopVideoStream(a))}}isFlashOn(){return this._flashOn}async toggleFlash(){this._flashOn?await this.turnFlashOff():await this.turnFlashOn()}async turnFlashOn(){if(!this._flashOn&&
+!this._destroyed&&(this._flashOn=!0,this._active&&!this._paused))try{if(!await this.hasFlash())throw"No flash available";await this.$video.srcObject.getVideoTracks()[0].applyConstraints({advanced:[{torch:!0}]})}catch(a){throw this._flashOn=!1,a;}}async turnFlashOff(){this._flashOn&&(this._flashOn=!1,await this._restartVideoStream())}destroy(){this.$video.removeEventListener("loadedmetadata",this._onLoadedMetaData);this.$video.removeEventListener("play",this._onPlay);document.removeEventListener("visibilitychange",
+this._onVisibilityChange);window.removeEventListener("resize",this._updateOverlay);this._destroyed=!0;this._flashOn=!1;this.stop();e._postWorkerMessage(this._qrEnginePromise,"close")}async start(){if(this._destroyed)throw Error("The QR scanner can not be started as it had been destroyed.");if(!this._active||this._paused)if("https:"!==window.location.protocol&&console.warn("The camera stream is only accessible if the page is transferred via https."),this._active=!0,!document.hidden)if(this._paused=
+!1,this.$video.srcObject)await this.$video.play();else try{let {stream:a,facingMode:b}=await this._getCameraStream();!this._active||this._paused?e._stopVideoStream(a):(this._setVideoMirror(b),this.$video.srcObject=a,await this.$video.play(),this._flashOn&&(this._flashOn=!1,this.turnFlashOn().catch(()=>{})))}catch(a){if(!this._paused)throw this._active=!1,a;}}stop(){this.pause();this._active=!1}async pause(a=!1){this._paused=!0;if(!this._active)return!0;this.$video.pause();this.$overlay&&(this.$overlay.style.display=
+"none");let b=()=>{this.$video.srcObject instanceof MediaStream&&(e._stopVideoStream(this.$video.srcObject),this.$video.srcObject=null)};if(a)return b(),!0;await new Promise(c=>setTimeout(c,300));if(!this._paused)return!1;b();return!0}async setCamera(a){a!==this._preferredCamera&&(this._preferredCamera=a,await this._restartVideoStream())}static async scanImage(a,b,c,d,f=!1,h=!1){let m,n=!1;b&&("scanRegion"in b||"qrEngine"in b||"canvas"in b||"disallowCanvasResizing"in b||"alsoTryWithoutScanRegion"in
+b||"returnDetailedScanResult"in b)?(m=b.scanRegion,c=b.qrEngine,d=b.canvas,f=b.disallowCanvasResizing||!1,h=b.alsoTryWithoutScanRegion||!1,n=!0):b||c||d||f||h?console.warn("You're using a deprecated api for scanImage which will be removed in the future."):console.warn("Note that the return type of scanImage will change in the future. To already switch to the new api today, you can pass returnDetailedScanResult: true.");b=!!c;try{let p,k;[c,p]=await Promise.all([c||e.createQrEngine(),e._loadImage(a)]);
+[d,k]=e._drawToCanvas(p,m,d,f);let q;if(c instanceof Worker){let g=c;b||e._postWorkerMessageSync(g,"inversionMode","both");q=await new Promise((l,v)=>{let w,u,r,y=-1;u=t=>{t.data.id===y&&(g.removeEventListener("message",u),g.removeEventListener("error",r),clearTimeout(w),null!==t.data.data?l({data:t.data.data,cornerPoints:e._convertPoints(t.data.cornerPoints,m)}):v(e.NO_QR_CODE_FOUND))};r=t=>{g.removeEventListener("message",u);g.removeEventListener("error",r);clearTimeout(w);v("Scanner error: "+(t?
+t.message||t:"Unknown Error"))};g.addEventListener("message",u);g.addEventListener("error",r);w=setTimeout(()=>r("timeout"),1E4);let x=k.getImageData(0,0,d.width,d.height);y=e._postWorkerMessageSync(g,"decode",x,[x.data.buffer])})}else q=await Promise.race([new Promise((g,l)=>window.setTimeout(()=>l("Scanner error: timeout"),1E4)),(async()=>{try{var [g]=await c.detect(d);if(!g)throw e.NO_QR_CODE_FOUND;return{data:g.rawValue,cornerPoints:e._convertPoints(g.cornerPoints,m)}}catch(l){g=l.message||l;
+if(/not implemented|service unavailable/.test(g))return e._disableBarcodeDetector=!0,e.scanImage(a,{scanRegion:m,canvas:d,disallowCanvasResizing:f,alsoTryWithoutScanRegion:h});throw`Scanner error: ${g}`;}})()]);return n?q:q.data}catch(p){if(!m||!h)throw p;let k=await e.scanImage(a,{qrEngine:c,canvas:d,disallowCanvasResizing:f});return n?k:k.data}finally{b||e._postWorkerMessage(c,"close")}}setGrayscaleWeights(a,b,c,d=!0){e._postWorkerMessage(this._qrEnginePromise,"grayscaleWeights",{red:a,green:b,
+blue:c,useIntegerApproximation:d})}setInversionMode(a){e._postWorkerMessage(this._qrEnginePromise,"inversionMode",a)}static async createQrEngine(a){a&&console.warn("Specifying a worker path is not required and not supported anymore.");a=()=>Promise.resolve(/* import() */).then(__webpack_require__.t.bind(null, "da3b", 7)).then(c=>c.createWorker());if(!(!e._disableBarcodeDetector&&"BarcodeDetector"in window&&BarcodeDetector.getSupportedFormats&&(await BarcodeDetector.getSupportedFormats()).includes("qr_code")))return a();let b=navigator.userAgentData;
+return b&&b.brands.some(({brand:c})=>/Chromium/i.test(c))&&/mac ?OS/i.test(b.platform)&&await b.getHighEntropyValues(["architecture","platformVersion"]).then(({architecture:c,platformVersion:d})=>/arm/i.test(c||"arm")&&13<=parseInt(d||"13")).catch(()=>!0)?a():new BarcodeDetector({formats:["qr_code"]})}_onPlay(){this._scanRegion=this._calculateScanRegion(this.$video);this._updateOverlay();this.$overlay&&(this.$overlay.style.display="");this._scanFrame()}_onLoadedMetaData(){this._scanRegion=this._calculateScanRegion(this.$video);
+this._updateOverlay()}_onVisibilityChange(){document.hidden?this.pause():this._active&&this.start()}_calculateScanRegion(a){let b=Math.round(2/3*Math.min(a.videoWidth,a.videoHeight));return{x:Math.round((a.videoWidth-b)/2),y:Math.round((a.videoHeight-b)/2),width:b,height:b,downScaledWidth:this._legacyCanvasSize,downScaledHeight:this._legacyCanvasSize}}_updateOverlay(){requestAnimationFrame(()=>{if(this.$overlay){var a=this.$video,b=a.videoWidth,c=a.videoHeight,d=a.offsetWidth,f=a.offsetHeight,h=a.offsetLeft,
+m=a.offsetTop,n=window.getComputedStyle(a),p=n.objectFit,k=b/c,q=d/f;switch(p){case "none":var g=b;var l=c;break;case "fill":g=d;l=f;break;default:("cover"===p?k>q:k<q)?(l=f,g=l*k):(g=d,l=g/k),"scale-down"===p&&(g=Math.min(g,b),l=Math.min(l,c))}var [v,w]=n.objectPosition.split(" ").map((r,y)=>{const x=parseFloat(r);return r.endsWith("%")?(y?f-l:d-g)*x/100:x});n=this._scanRegion.width||b;q=this._scanRegion.height||c;p=this._scanRegion.x||0;var u=this._scanRegion.y||0;k=this.$overlay.style;k.width=
+`${n/b*g}px`;k.height=`${q/c*l}px`;k.top=`${m+w+u/c*l}px`;c=/scaleX\(-1\)/.test(a.style.transform);k.left=`${h+(c?d-v-g:v)+(c?b-p-n:p)/b*g}px`;k.transform=a.style.transform}})}static _convertPoints(a,b){if(!b)return a;let c=b.x||0,d=b.y||0,f=b.width&&b.downScaledWidth?b.width/b.downScaledWidth:1;b=b.height&&b.downScaledHeight?b.height/b.downScaledHeight:1;for(let h of a)h.x=h.x*f+c,h.y=h.y*b+d;return a}_scanFrame(){!this._active||this.$video.paused||this.$video.ended||("requestVideoFrameCallback"in
+this.$video?this.$video.requestVideoFrameCallback.bind(this.$video):requestAnimationFrame)(async()=>{if(!(1>=this.$video.readyState)){var a=Date.now()-this._lastScanTimestamp,b=1E3/this._maxScansPerSecond;a<b&&await new Promise(d=>setTimeout(d,b-a));this._lastScanTimestamp=Date.now();try{var c=await e.scanImage(this.$video,{scanRegion:this._scanRegion,qrEngine:this._qrEnginePromise,canvas:this.$canvas})}catch(d){if(!this._active)return;this._onDecodeError(d)}!e._disableBarcodeDetector||await this._qrEnginePromise instanceof
+Worker||(this._qrEnginePromise=e.createQrEngine());c?(this._onDecode?this._onDecode(c):this._legacyOnDecode&&this._legacyOnDecode(c.data),this.$codeOutlineHighlight&&(clearTimeout(this._codeOutlineHighlightRemovalTimeout),this._codeOutlineHighlightRemovalTimeout=void 0,this.$codeOutlineHighlight.setAttribute("viewBox",`${this._scanRegion.x||0} `+`${this._scanRegion.y||0} `+`${this._scanRegion.width||this.$video.videoWidth} `+`${this._scanRegion.height||this.$video.videoHeight}`),this.$codeOutlineHighlight.firstElementChild.setAttribute("points",
+c.cornerPoints.map(({x:d,y:f})=>`${d},${f}`).join(" ")),this.$codeOutlineHighlight.style.display="")):this.$codeOutlineHighlight&&!this._codeOutlineHighlightRemovalTimeout&&(this._codeOutlineHighlightRemovalTimeout=setTimeout(()=>this.$codeOutlineHighlight.style.display="none",100))}this._scanFrame()})}_onDecodeError(a){a!==e.NO_QR_CODE_FOUND&&console.log(a)}async _getCameraStream(){if(!navigator.mediaDevices)throw"Camera not found.";let a=/^(environment|user)$/.test(this._preferredCamera)?"facingMode":
+"deviceId",b=[{width:{min:1024}},{width:{min:768}},{}],c=b.map(d=>Object.assign({},d,{[a]:{exact:this._preferredCamera}}));for(let d of[...c,...b])try{let f=await navigator.mediaDevices.getUserMedia({video:d,audio:!1}),h=this._getFacingMode(f)||(d.facingMode?this._preferredCamera:"environment"===this._preferredCamera?"user":"environment");return{stream:f,facingMode:h}}catch(f){}throw"Camera not found.";}async _restartVideoStream(){let a=this._paused;await this.pause(!0)&&!a&&this._active&&await this.start()}static _stopVideoStream(a){for(let b of a.getTracks())b.stop(),
+a.removeTrack(b)}_setVideoMirror(a){this.$video.style.transform="scaleX("+("user"===a?-1:1)+")"}_getFacingMode(a){return(a=a.getVideoTracks()[0])?/rear|back|environment/i.test(a.label)?"environment":/front|user|face/i.test(a.label)?"user":null:null}static _drawToCanvas(a,b,c,d=!1){c=c||document.createElement("canvas");let f=b&&b.x?b.x:0,h=b&&b.y?b.y:0,m=b&&b.width?b.width:a.videoWidth||a.width,n=b&&b.height?b.height:a.videoHeight||a.height;d||(d=b&&b.downScaledWidth?b.downScaledWidth:m,b=b&&b.downScaledHeight?
+b.downScaledHeight:n,c.width!==d&&(c.width=d),c.height!==b&&(c.height=b));b=c.getContext("2d",{alpha:!1});b.imageSmoothingEnabled=!1;b.drawImage(a,f,h,m,n,0,0,c.width,c.height);return[c,b]}static async _loadImage(a){if(a instanceof Image)return await e._awaitImageLoad(a),a;if(a instanceof HTMLVideoElement||a instanceof HTMLCanvasElement||a instanceof SVGImageElement||"OffscreenCanvas"in window&&a instanceof OffscreenCanvas||"ImageBitmap"in window&&a instanceof ImageBitmap)return a;if(a instanceof
+File||a instanceof Blob||a instanceof URL||"string"===typeof a){let b=new Image;b.src=a instanceof File||a instanceof Blob?URL.createObjectURL(a):a.toString();try{return await e._awaitImageLoad(b),b}finally{(a instanceof File||a instanceof Blob)&&URL.revokeObjectURL(b.src)}}else throw"Unsupported image type.";}static async _awaitImageLoad(a){a.complete&&0!==a.naturalWidth||await new Promise((b,c)=>{let d=f=>{a.removeEventListener("load",d);a.removeEventListener("error",d);f instanceof ErrorEvent?
+c("Image load error"):b()};a.addEventListener("load",d);a.addEventListener("error",d)})}static async _postWorkerMessage(a,b,c,d){return e._postWorkerMessageSync(await a,b,c,d)}static _postWorkerMessageSync(a,b,c,d){if(!(a instanceof Worker))return-1;let f=e._workerMessageId++;a.postMessage({id:f,type:b,data:c},d);return f}}e.DEFAULT_CANVAS_SIZE=400;e.NO_QR_CODE_FOUND="No QR code found";e._disableBarcodeDetector=!1;e._workerMessageId=0;/* harmony default export */ var qr_scanner_min = (e);
 //# sourceMappingURL=qr-scanner.min.js.map
 
 // CONCATENATED MODULE: ./node_modules/@nimiq/utils/dist/module/BrowserDetection.js
@@ -7176,10 +8376,482 @@ var BrowserDetection$1 = BrowserDetection;
 /* harmony default export */ var module_BrowserDetection = (BrowserDetection$1);
 //# sourceMappingURL=BrowserDetection.js.map
 
-// EXTERNAL MODULE: ./node_modules/file-loader/dist/cjs.js?name=[name].[ext]!./node_modules/qr-scanner/qr-scanner-worker.min.js
-var qr_scanner_worker_min = __webpack_require__("46f5");
-var qr_scanner_worker_min_default = /*#__PURE__*/__webpack_require__.n(qr_scanner_worker_min);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.includes.js
+var es_array_includes = __webpack_require__("caad");
 
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.keys.js
+var es_object_keys = __webpack_require__("b64b");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.set.js
+var es_set = __webpack_require__("6062");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.includes.js
+var es_string_includes = __webpack_require__("2532");
+
+// CONCATENATED MODULE: ./node_modules/@nimiq/utils/dist/module/Cookie-a9f03a9a.js
+/**
+ * Get a Cookie
+ * @param {string} cookieName - The name / key of the Cookie to get.
+ * @returns {string|null} Returns the value of the Cookie, if this one was found. Otherwise return null.
+ */
+function getCookie(cookieName) {
+    const match = document.cookie.match(new RegExp(`(^| )${encodeURIComponent(cookieName)}=([^;]+)`));
+    return match && decodeURIComponent(match[2]);
+}
+/**
+ * Set a Cookie
+ * @param {string} cookieName - Name of the Cookie to set.
+ * @param {string} cookieValue - Value of the Cookie to set.
+ * @param {Object} [options] - The differents options you can set on a cookie.
+ * @param {string} [options.path] - The path of the Cookie.
+ * If not specified, defaults to the current path of the current document location
+ * @param {string} [options.domain] - The domain the Cookie will be available on.
+ * If not specified, this defaults to the host portion of the current document location.
+ * @param {number} [options.maxAge] - The max age of the Cookie in seconds
+ * @param {number} [options.expires] - The expiration date of the Cookie, in GMTString format.
+ * See Date.toUTCString() for help formatting this value.
+ * @param {boolean} [options.secure] - This specify if the Cookie is only to be transmitted over secure protocols.
+ * @param {'lax'|'strict'|'none'} [options.samesite] - This prevents the browser from sending this Cookie along with
+ * cross-site requests.
+ * @returns {string} Returns the just created Cookie with his options
+ */
+function setCookie(cookieName, cookieValue, options) {
+    if (typeof cookieName !== 'string')
+        throw new Error('cookieName must be a string');
+    if (typeof cookieValue !== 'string')
+        throw new Error('cookieValue must be a string');
+    const cookie = [`${encodeURIComponent(cookieName)}=${encodeURIComponent(cookieValue)}`];
+    if (options) {
+        if (typeof options !== 'object')
+            throw new Error('options must be an object');
+        if (options.path && typeof options.path !== 'string') {
+            throw new Error('options.path must be a string');
+        }
+        if (options.domain && typeof options.domain !== 'string') {
+            throw new Error('options.domain must be a string');
+        }
+        if (options.maxAge && typeof options.maxAge !== 'number') {
+            throw new Error('options.maxAge must be a number');
+        }
+        if (options.expires && typeof options.expires !== 'string') {
+            throw new Error('options.expires must be a string');
+        }
+        if (options.samesite && !['lax', 'strict', 'none'].includes(options.samesite)) {
+            throw new Error('options.samesite must be either "lax", "strict" or "none"');
+        }
+        if (options.path)
+            cookie.push(`path=${options.path}`);
+        if (options.secure)
+            cookie.push('secure');
+        if (options.domain)
+            cookie.push(`domain=${options.domain}`);
+        if (options.maxAge)
+            cookie.push(`max-age=${options.maxAge}`);
+        if (options.expires)
+            cookie.push(`expires=${options.expires}`);
+        if (options.samesite)
+            cookie.push(`samesite=${options.samesite}`);
+    }
+    const cookieString = cookie.join(';');
+    document.cookie = cookieString;
+    return cookieString;
+}
+/**
+ * Unset a Cookie (remove it)
+ * @param {string} cookieName - the Name / Key of the Cookie to be unset / removed
+ */
+function unsetCookie(cookieName) {
+    document.cookie = `${encodeURIComponent(cookieName)}=;max-age=0`;
+}
+
+var Cookie = /*#__PURE__*/Object.freeze({
+    getCookie: getCookie,
+    setCookie: setCookie,
+    unsetCookie: unsetCookie
+});
+
+
+//# sourceMappingURL=Cookie-a9f03a9a.js.map
+
+// CONCATENATED MODULE: ./src/i18n/I18nMixin.ts
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var I18nMixin_1;
+
+
+
+/**
+ * i18n mixin for vue-components that provides a similar, but reduced, api as vue-i18n. This is to avoid that users need
+ * to add the entire vue-i18n lib to their app as soon as they want to use a component from this library even if they
+ * don't intend to add internationalization.
+ */
+
+var I18nMixin_I18nMixin = I18nMixin_1 =
+/*#__PURE__*/
+function (_Vue) {
+  _inherits(I18nMixin, _Vue);
+
+  function I18nMixin() {
+    _classCallCheck(this, I18nMixin);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(I18nMixin).apply(this, arguments));
+  }
+
+  _createClass(I18nMixin, [{
+    key: "beforeCreate",
+    value: function beforeCreate() {
+      this.$t = I18nMixin_1.$t.bind(this, this.$options.name);
+      I18nMixin_1.registerComponent(this);
+    }
+  }, {
+    key: "beforeDestroy",
+    value: function beforeDestroy() {
+      I18nMixin_1.unregisterComponent(this);
+    }
+  }], [{
+    key: "setLanguage",
+
+    /**
+     * Set the language to use. This will lazy-load the translation files and rerender the ui once ready.
+     * @param {string} lang - The language to use.
+     */
+    value: function setLanguage(lang) {
+      // If the language is not supported set it to the default one
+      if (!I18nMixin_1.SUPPORTED_LANGUAGES.includes(lang)) {
+        lang = I18nMixin_1.DEFAULT_LANGUAGE;
+      }
+
+      if (lang === I18nMixin_1.lang) return;
+      I18nMixin_1.lang = lang;
+
+      for (var _i = 0, _Object$keys = Object.keys(I18nMixin_1.registeredComponents); _i < _Object$keys.length; _i++) {
+        var componentName = _Object$keys[_i];
+        I18nMixin_1.loadComponentLanguageFile(componentName);
+      }
+    }
+    /**
+     * Detect the language to use. If no language is set fallback to the browser language.
+     * @returns {string} The language code
+     */
+
+  }, {
+    key: "detectLanguage",
+    value: function detectLanguage() {
+      var langCookie = Cookie.getCookie('lang'); // const fallbackLang = window.navigator.language.split('-')[0];
+
+      var fallbackLang = 'en'; // TODO just temporarily, until language switching is enabled in wallet
+
+      var lang = langCookie || fallbackLang; // If the language is not supported set it to the default one
+
+      if (!I18nMixin_1.SUPPORTED_LANGUAGES.includes(lang)) {
+        lang = I18nMixin_1.DEFAULT_LANGUAGE;
+      }
+
+      return lang;
+    }
+  }, {
+    key: "$t",
+    value: function $t(componentName, key, variablesOrLang, variables) {
+      var lang;
+
+      if (typeof variablesOrLang === 'string') {
+        lang = variablesOrLang;
+      } else {
+        lang = I18nMixin_1.lang;
+        variables = variablesOrLang;
+      }
+
+      var componentLang = "".concat(lang, "-").concat(componentName);
+      var message = I18nMixin_1.loadedMessages[componentLang] ? I18nMixin_1.loadedMessages[componentLang][key] || key : key;
+
+      if (_typeof(variables) === 'object' || Array.isArray(variables)) {
+        message = message.replace(/{(\w+?)}/g, function (match, variable) {
+          return variables[variable].toString() || match;
+        });
+      }
+
+      return message;
+    }
+  }, {
+    key: "registerComponent",
+    value: function registerComponent(component) {
+      var componentName = component.$options.name; // Using $options.name instead of constructor.name as class names get mangled in the production build.
+
+      var componentsOfSameType = I18nMixin_1.registeredComponents[componentName];
+
+      if (!componentsOfSameType) {
+        componentsOfSameType = new Set();
+        I18nMixin_1.registeredComponents[componentName] = componentsOfSameType;
+        I18nMixin_1.loadComponentLanguageFile(componentName);
+      }
+
+      componentsOfSameType.add(component);
+    }
+  }, {
+    key: "unregisterComponent",
+    value: function unregisterComponent(component) {
+      var componentName = component.$options.name; // Using $options.name instead of constructor.name as class names get mangled in the production build.
+
+      var componentsOfSameType = I18nMixin_1.registeredComponents[componentName];
+      if (!componentsOfSameType) return;
+
+      if (componentsOfSameType.size === 1) {
+        delete I18nMixin_1.registeredComponents[componentName];
+      } else {
+        componentsOfSameType.delete(component);
+      }
+    }
+    /**
+     * Asynchronously load a translation file.
+     * @param {string} componentName - Name of the component you want to load a translation for
+     */
+
+  }, {
+    key: "loadComponentLanguageFile",
+    value: function () {
+      var _loadComponentLanguageFile = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee(componentName) {
+        var lang, componentLang, messages, componentsToNotify, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, component;
+
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                lang = I18nMixin_1.lang;
+                componentLang = lang + '-' + componentName;
+
+                if (!(!(componentLang in I18nMixin_1.loadedMessages) && lang !== 'en')) {
+                  _context.next = 7;
+                  break;
+                }
+
+                _context.next = 5;
+                return __webpack_require__("40ac")("./".concat(lang, "/").concat(componentName, ".json"));
+
+              case 5:
+                messages = _context.sent;
+                I18nMixin_1.loadedMessages[componentLang] = messages.default || {};
+
+              case 7:
+                componentsToNotify = I18nMixin_1.registeredComponents[componentName] || [];
+                _iteratorNormalCompletion = true;
+                _didIteratorError = false;
+                _iteratorError = undefined;
+                _context.prev = 11;
+
+                for (_iterator = componentsToNotify[Symbol.iterator](); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                  component = _step.value;
+                  // rerender with new language and notify potential event listeners
+                  component.$forceUpdate();
+                  component.$emit(I18nMixin_1.Events.LANGUAGE_READY, lang);
+                }
+
+                _context.next = 19;
+                break;
+
+              case 15:
+                _context.prev = 15;
+                _context.t0 = _context["catch"](11);
+                _didIteratorError = true;
+                _iteratorError = _context.t0;
+
+              case 19:
+                _context.prev = 19;
+                _context.prev = 20;
+
+                if (!_iteratorNormalCompletion && _iterator.return != null) {
+                  _iterator.return();
+                }
+
+              case 22:
+                _context.prev = 22;
+
+                if (!_didIteratorError) {
+                  _context.next = 25;
+                  break;
+                }
+
+                throw _iteratorError;
+
+              case 25:
+                return _context.finish(22);
+
+              case 26:
+                return _context.finish(19);
+
+              case 27:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[11, 15, 19, 27], [20,, 22, 26]]);
+      }));
+
+      function loadComponentLanguageFile(_x) {
+        return _loadComponentLanguageFile.apply(this, arguments);
+      }
+
+      return loadComponentLanguageFile;
+    }()
+  }]);
+
+  return I18nMixin;
+}(external_vue_property_decorator_["Vue"]);
+
+I18nMixin_I18nMixin.DEFAULT_LANGUAGE = 'en';
+I18nMixin_I18nMixin.SUPPORTED_LANGUAGES = [I18nMixin_1.DEFAULT_LANGUAGE, 'de', 'es', 'fr', 'nl', 'ru', 'uk', 'zh'];
+/** Current active language */
+
+I18nMixin_I18nMixin.lang = I18nMixin_1.detectLanguage();
+I18nMixin_I18nMixin.loadedMessages = {};
+I18nMixin_I18nMixin.registeredComponents = {};
+I18nMixin_I18nMixin = I18nMixin_1 = __decorate([external_vue_property_decorator_["Component"]], I18nMixin_I18nMixin);
+
+(function (I18nMixin) {
+  var Events;
+
+  (function (Events) {
+    Events["LANGUAGE_READY"] = "language-ready";
+  })(Events = I18nMixin.Events || (I18nMixin.Events = {}));
+})(I18nMixin_I18nMixin || (I18nMixin_I18nMixin = {})); // Update the language in case it was changed via language cookie.
+
+
+window.addEventListener('focus', function () {
+  return I18nMixin_I18nMixin.setLanguage(I18nMixin_I18nMixin.detectLanguage());
+});
+/* harmony default export */ var i18n_I18nMixin = (I18nMixin_I18nMixin);
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.map.js
+var es_array_map = __webpack_require__("d81d");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.match.js
+var es_string_match = __webpack_require__("466d");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.split.js
+var es_string_split = __webpack_require__("1276");
+
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--13-1!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/i18n/I18n.vue?vue&type=script&lang=ts&
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * Component for slot interpolation, similar to vue-i18n's interpolation component,
+ * see https://kazupon.github.io/vue-i18n/guide/interpolation.html#slots-syntax-usage
+ */
+
+var I18nvue_type_script_lang_ts_I18n =
+/*#__PURE__*/
+function (_Vue) {
+  _inherits(I18n, _Vue);
+
+  function I18n() {
+    _classCallCheck(this, I18n);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(I18n).apply(this, arguments));
+  }
+
+  _createClass(I18n, [{
+    key: "created",
+    value: function created() {
+      this.$forceUpdate = this.$forceUpdate.bind(this);
+      this.$vnode.context.$on(i18n_I18nMixin.Events.LANGUAGE_READY, this.$forceUpdate);
+    }
+  }, {
+    key: "beforeDestroy",
+    value: function beforeDestroy() {
+      this.$vnode.context.$off(i18n_I18nMixin.Events.LANGUAGE_READY, this.$forceUpdate);
+    }
+  }, {
+    key: "render",
+    value: function render(createElement) {
+      var _this = this;
+
+      if (!Object.keys(this.$slots).length) {
+        throw new Error('I18n: the component must contain at least 1 template slot, otherwise simply use the $t function.');
+      }
+
+      var message = i18n_I18nMixin.$t(this.$vnode.context.$vnode.componentOptions.tag, this.path.replace(/\\n/g, '\n'));
+      var children = message.split(/({\w+})/g).map(function (part) {
+        var variableNameMatch = part.match(/^{(\w+)}$/);
+        if (!variableNameMatch) return part; // plain text part or empty part
+
+        return _this.$slots[variableNameMatch[1]] || part;
+      });
+      return createElement(this.tag, {}, children);
+    }
+  }]);
+
+  return I18n;
+}(external_vue_property_decorator_["Vue"]);
+
+__decorate([Object(external_vue_property_decorator_["Prop"])({
+  type: String,
+  required: true
+})], I18nvue_type_script_lang_ts_I18n.prototype, "path", void 0);
+
+__decorate([Object(external_vue_property_decorator_["Prop"])({
+  type: String,
+  default: 'span'
+})], I18nvue_type_script_lang_ts_I18n.prototype, "tag", void 0);
+
+I18nvue_type_script_lang_ts_I18n = __decorate([external_vue_property_decorator_["Component"]], I18nvue_type_script_lang_ts_I18n);
+/* harmony default export */ var I18nvue_type_script_lang_ts_ = (I18nvue_type_script_lang_ts_I18n);
+// CONCATENATED MODULE: ./src/i18n/I18n.vue?vue&type=script&lang=ts&
+ /* harmony default export */ var i18n_I18nvue_type_script_lang_ts_ = (I18nvue_type_script_lang_ts_); 
+// CONCATENATED MODULE: ./src/i18n/I18n.vue
+var I18n_render, I18n_staticRenderFns
+
+
+
+
+/* normalize component */
+
+var I18n_component = normalizeComponent(
+  i18n_I18nvue_type_script_lang_ts_,
+  I18n_render,
+  I18n_staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* harmony default export */ var i18n_I18n = (I18n_component.exports);
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--13-1!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/QrScanner.vue?vue&type=script&lang=ts&
 
 
@@ -7194,15 +8866,14 @@ var QrScanner_1;
 
 
 
- // Declare qr worker as asset using file-loader which copies the file to dist and binds the path to QrScannerWorker
 
 
-qr_scanner_min.WORKER_PATH = qr_scanner_worker_min_default.a;
+
 
 var QrScannervue_type_script_lang_ts_QrScanner = QrScanner_1 =
 /*#__PURE__*/
-function (_Vue) {
-  _inherits(QrScanner, _Vue);
+function (_Mixins) {
+  _inherits(QrScanner, _Mixins);
 
   function QrScanner() {
     var _this;
@@ -7220,27 +8891,49 @@ function (_Vue) {
 
   _createClass(QrScanner, [{
     key: "mounted",
-    value: function mounted() {
-      var _this2 = this;
+    value: function () {
+      var _mounted = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee() {
+        var _this2 = this;
 
-      this.repositionOverlay = this.repositionOverlay.bind(this);
-      var $video = this.$refs.video;
-      this._scanner = new qr_scanner_min($video, function (result) {
-        return _this2._onResult(result);
-      });
-      $video.addEventListener('canplay', function () {
-        return $video.classList.add('ready');
-      });
-      window.addEventListener('resize', this.repositionOverlay);
-      qr_scanner_min.hasCamera().then(function (hasCamera) {
-        return _this2.hasCamera = hasCamera;
-      });
+        var $video;
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                this.repositionOverlay = this.repositionOverlay.bind(this);
+                $video = this.$refs.video;
+                this._scanner = new qr_scanner_min($video, function (result) {
+                  return _this2._onResult(result);
+                });
+                $video.addEventListener('canplay', function () {
+                  return $video.classList.add('ready');
+                });
+                window.addEventListener('resize', this.repositionOverlay);
+                qr_scanner_min.hasCamera().then(function (hasCamera) {
+                  return _this2.hasCamera = hasCamera;
+                });
 
-      if (this._isVisible()) {
-        this.start();
-        this.repositionOverlay();
+                if (this._isVisible()) {
+                  this.start();
+                  this.repositionOverlay();
+                }
+
+              case 7:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function mounted() {
+        return _mounted.apply(this, arguments);
       }
-    }
+
+      return mounted;
+    }()
   }, {
     key: "destroyed",
     value: function destroyed() {
@@ -7255,15 +8948,15 @@ function (_Vue) {
     value: function () {
       var _start = _asyncToGenerator(
       /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee() {
+      regeneratorRuntime.mark(function _callee2() {
         var _this3 = this;
 
-        return regeneratorRuntime.wrap(function _callee$(_context) {
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
-            switch (_context.prev = _context.next) {
+            switch (_context2.prev = _context2.next) {
               case 0:
-                _context.prev = 0;
-                _context.next = 3;
+                _context2.prev = 0;
+                _context2.next = 3;
                 return this._scanner.start();
 
               case 3:
@@ -7274,16 +8967,16 @@ function (_Vue) {
                   this._cameraRetryTimer = null;
                 }
 
-                _context.next = 12;
+                _context2.next = 12;
                 break;
 
               case 7:
-                _context.prev = 7;
-                _context.t0 = _context["catch"](0);
+                _context2.prev = 7;
+                _context2.t0 = _context2["catch"](0);
                 this.cameraAccessFailed = true;
                 this.$emit("error"
                 /* ERROR */
-                , _context.t0);
+                , _context2.t0);
 
                 if (!this._cameraRetryTimer) {
                   this._cameraRetryTimer = window.setInterval(function () {
@@ -7292,14 +8985,14 @@ function (_Vue) {
                 }
 
               case 12:
-                return _context.abrupt("return", !this.cameraAccessFailed);
+                return _context2.abrupt("return", !this.cameraAccessFailed);
 
               case 13:
               case "end":
-                return _context.stop();
+                return _context2.stop();
             }
           }
-        }, _callee, this, [[0, 7]]);
+        }, _callee2, this, [[0, 7]]);
       }));
 
       function start() {
@@ -7374,7 +9067,7 @@ function (_Vue) {
   }]);
 
   return QrScanner;
-}(external_vue_property_decorator_["Vue"]);
+}(Object(external_vue_property_decorator_["Mixins"])(i18n_I18nMixin));
 
 __decorate([Object(external_vue_property_decorator_["Prop"])({
   type: Number,
@@ -7383,12 +9076,17 @@ __decorate([Object(external_vue_property_decorator_["Prop"])({
 
 __decorate([Object(external_vue_property_decorator_["Prop"])(Function)], QrScannervue_type_script_lang_ts_QrScanner.prototype, "validate", void 0);
 
-QrScannervue_type_script_lang_ts_QrScanner = QrScanner_1 = __decorate([external_vue_property_decorator_["Component"]], QrScannervue_type_script_lang_ts_QrScanner);
+QrScannervue_type_script_lang_ts_QrScanner = QrScanner_1 = __decorate([Object(external_vue_property_decorator_["Component"])({
+  name: 'QrScanner',
+  components: {
+    I18n: i18n_I18n
+  }
+})], QrScannervue_type_script_lang_ts_QrScanner);
 /* harmony default export */ var QrScannervue_type_script_lang_ts_ = (QrScannervue_type_script_lang_ts_QrScanner);
 // CONCATENATED MODULE: ./src/components/QrScanner.vue?vue&type=script&lang=ts&
  /* harmony default export */ var components_QrScannervue_type_script_lang_ts_ = (QrScannervue_type_script_lang_ts_); 
-// EXTERNAL MODULE: ./src/components/QrScanner.vue?vue&type=style&index=0&id=7e80c7c1&scoped=true&lang=css&
-var QrScannervue_type_style_index_0_id_7e80c7c1_scoped_true_lang_css_ = __webpack_require__("5aa5");
+// EXTERNAL MODULE: ./src/components/QrScanner.vue?vue&type=style&index=0&id=48a6ec42&scoped=true&lang=css&
+var QrScannervue_type_style_index_0_id_48a6ec42_scoped_true_lang_css_ = __webpack_require__("6938");
 
 // CONCATENATED MODULE: ./src/components/QrScanner.vue
 
@@ -7401,17 +9099,17 @@ var QrScannervue_type_style_index_0_id_7e80c7c1_scoped_true_lang_css_ = __webpac
 
 var QrScanner_component = normalizeComponent(
   components_QrScannervue_type_script_lang_ts_,
-  QrScannervue_type_template_id_7e80c7c1_scoped_true_render,
-  QrScannervue_type_template_id_7e80c7c1_scoped_true_staticRenderFns,
+  QrScannervue_type_template_id_48a6ec42_scoped_true_render,
+  QrScannervue_type_template_id_48a6ec42_scoped_true_staticRenderFns,
   false,
   null,
-  "7e80c7c1",
+  "48a6ec42",
   null
   
 )
 
 /* harmony default export */ var components_QrScanner = (QrScanner_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6e1ebcfe-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SmallPage.vue?vue&type=template&id=1d450cf2&scoped=true&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"2540349c-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SmallPage.vue?vue&type=template&id=1d450cf2&scoped=true&
 var SmallPagevue_type_template_id_1d450cf2_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"small-page nq-card"},[_vm._t("default")],2)}
 var SmallPagevue_type_template_id_1d450cf2_scoped_true_staticRenderFns = []
 
@@ -7468,29 +9166,96 @@ var SmallPage_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_SmallPage = (SmallPage_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6e1ebcfe-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Tooltip.vue?vue&type=template&id=08b1ecd6&scoped=true&
-var Tooltipvue_type_template_id_08b1ecd6_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"tooltip",class:[_vm.verticalPosition, {
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"2540349c-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Tooltip.vue?vue&type=template&id=71bfa335&scoped=true&
+var Tooltipvue_type_template_id_71bfa335_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"tooltip",class:[_vm.verticalPosition, {
         shown: _vm.isShown,
         'transition-position': _vm.transitionPosition,
         'inverse-theme': _vm.theme === _vm.constructor.Themes.INVERSE,
-    }],on:{"mouseenter":function($event){return _vm.mouseOver(true)},"mouseleave":function($event){return _vm.mouseOver(false)}}},[_c('a',{ref:"tooltipTrigger",staticClass:"trigger",attrs:{"href":"javascript:void(0);","tabindex":_vm.disabled ? -1 : 0},on:{"focus":function($event){$event.stopPropagation();return _vm.show()},"blur":function($event){$event.stopPropagation();return _vm.hide()},"click":function($event){return _vm.onClick()}}},[(!_vm.$slots.icon)?_vm._t("trigger",[_c('AlertTriangleIcon',{staticClass:"nq-orange"})]):_vm._e(),(_vm.$slots.icon && !_vm.$slots.trigger)?_vm._t("icon"):_vm._e()],2),_c('transition',{attrs:{"name":"transition-fade"}},[(_vm.isShown)?_c('div',{ref:"tooltipBox",staticClass:"tooltip-box",style:(_vm.styles)},[_vm._t("default")],2):_vm._e()])],1)}
-var Tooltipvue_type_template_id_08b1ecd6_scoped_true_staticRenderFns = []
+    }],on:{"mouseenter":function($event){return _vm.mouseOver(true)},"mouseleave":function($event){return _vm.mouseOver(false)}}},[_c('a',{ref:"tooltipTrigger",staticClass:"trigger",attrs:{"href":"javascript:void(0);","tabindex":_vm.disabled || _vm.noFocus ? -1 : 0},on:{"focus":function($event){$event.stopPropagation();return _vm.show()},"blur":function($event){$event.stopPropagation();return _vm.hide()},"click":function($event){return _vm.onClick()}}},[(!_vm.$slots.icon)?_vm._t("trigger",[_c('AlertTriangleIcon',{staticClass:"nq-orange"})]):_vm._e(),(_vm.$slots.icon && !_vm.$slots.trigger)?_vm._t("icon"):_vm._e()],2),_c('transition',{attrs:{"name":"transition-fade"}},[(_vm.isShown)?_c('div',{ref:"tooltipBox",staticClass:"tooltip-box",style:(_vm.tooltipBoxStyles)},[_vm._t("default")],2):_vm._e()])],1)}
+var Tooltipvue_type_template_id_71bfa335_scoped_true_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Tooltip.vue?vue&type=template&id=08b1ecd6&scoped=true&
+// CONCATENATED MODULE: ./src/components/Tooltip.vue?vue&type=template&id=71bfa335&scoped=true&
 
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.includes.js
-var es_array_includes = __webpack_require__("caad");
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.entries.js
+var es_object_entries = __webpack_require__("4fad");
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.values.js
 var es_object_values = __webpack_require__("07ac");
 
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.includes.js
-var es_string_includes = __webpack_require__("2532");
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.filter.js
+var es_array_filter = __webpack_require__("4de4");
 
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.string.split.js
-var es_string_split = __webpack_require__("1276");
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.for-each.js
+var es_array_for_each = __webpack_require__("4160");
 
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.get-own-property-descriptor.js
+var es_object_get_own_property_descriptor = __webpack_require__("e439");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.get-own-property-descriptors.js
+var es_object_get_own_property_descriptors = __webpack_require__("dbb4");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom-collections.for-each.js
+var web_dom_collections_for_each = __webpack_require__("159b");
+
+// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/defineProperty.js
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js
+
+
+
+
+
+
+
+
+
+function ownKeys(object, enumerableOnly) {
+  var keys = Object.keys(object);
+
+  if (Object.getOwnPropertySymbols) {
+    var symbols = Object.getOwnPropertySymbols(object);
+    if (enumerableOnly) symbols = symbols.filter(function (sym) {
+      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+    });
+    keys.push.apply(keys, symbols);
+  }
+
+  return keys;
+}
+
+function _objectSpread2(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+
+    if (i % 2) {
+      ownKeys(Object(source), true).forEach(function (key) {
+        _defineProperty(target, key, source[key]);
+      });
+    } else if (Object.getOwnPropertyDescriptors) {
+      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+    } else {
+      ownKeys(Object(source)).forEach(function (key) {
+        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+      });
+    }
+  }
+
+  return target;
+}
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.assign.js
 var es_object_assign = __webpack_require__("cca6");
 
@@ -7695,6 +9460,10 @@ var ScanQrCodeIcon = IconBase(scan_qr_code); // export const SettingsIcon = Icon
 
 
 
+
+
+
+
 var Tooltip_1;
 
 
@@ -7848,9 +9617,11 @@ function (_Vue) {
                   return requestAnimationFrame(function () {
                     // avoid potential forced layouting / reflow by taking measurements within a requestAnimationFrame
                     // (see https://gist.github.com/paulirish/5d52fb081b3570c81e3a#appendix)
-                    var containerLeftPad = parseInt(window.getComputedStyle(container.$el, null).getPropertyValue('padding-left'), 10);
-                    var containerRightPad = parseInt(window.getComputedStyle(container.$el, null).getPropertyValue('padding-right'), 10);
-                    _this2.maxWidth = container.$el.offsetWidth - containerLeftPad - containerRightPad;
+                    var leftMargin = _this2.getMargin(Tooltip_1.HorizontalPosition.LEFT);
+
+                    var rightMargin = _this2.getMargin(Tooltip_1.HorizontalPosition.RIGHT);
+
+                    _this2.maxWidth = container.$el.offsetWidth - leftMargin - rightMargin;
                     if (_this2.autoWidth) _this2.width = _this2.maxWidth;
                     resolve();
                   });
@@ -7917,9 +9688,10 @@ function (_Vue) {
       preferredHorizontalPosition = preferredHorizontalPosition || Tooltip_1.HorizontalPosition.RIGHT;
       this.left = preferredHorizontalPosition === Tooltip_1.HorizontalPosition.RIGHT ? Math.round(this.$refs.tooltipTrigger.offsetWidth / 2 - 25) // offset by 25px according to designs
       : Math.round(this.$refs.tooltipTrigger.offsetWidth / 2 - this.width + 25);
+      var container = this.effectiveContainer;
 
-      if (this.effectiveContainer) {
-        if (!this.effectiveContainer.$el) {
+      if (container) {
+        if (!container.$el) {
           // We don't wait here for the container to get mounted, as we expect it to already be mounted when this
           // private method is called and to do measurements immediately in the scroll event listener
           console.warn('Tooltip container does not seem to be mounted yet.');
@@ -7928,11 +9700,13 @@ function (_Vue) {
 
 
         var triggerBoundingRect = this.$refs.tooltipTrigger.getBoundingClientRect();
-        var containerBoundingRect = this.effectiveContainer.$el.getBoundingClientRect();
-        var requiredSpace = this.height + 16; // 16 for arrow, assuming same height on mobile for simplicity
+        var containerBoundingRect = container.$el.getBoundingClientRect();
+        var topMargin = this.getMargin(Tooltip_1.VerticalPosition.TOP);
+        var bottomMargin = this.getMargin(Tooltip_1.VerticalPosition.BOTTOM);
+        var spaceNeeded = this.height + 16; // 16 for arrow, assuming same height on mobile for simplicity
 
-        var fitsTop = triggerBoundingRect.top - containerBoundingRect.top >= requiredSpace;
-        var fitsBottom = containerBoundingRect.bottom - triggerBoundingRect.bottom >= requiredSpace;
+        var fitsTop = triggerBoundingRect.top - containerBoundingRect.top - topMargin >= spaceNeeded;
+        var fitsBottom = containerBoundingRect.bottom - triggerBoundingRect.bottom - bottomMargin >= spaceNeeded;
 
         if (preferredVerticalPosition === Tooltip_1.VerticalPosition.TOP && (fitsTop || !fitsBottom) || preferredVerticalPosition === Tooltip_1.VerticalPosition.BOTTOM && fitsTop && !fitsBottom) {
           this.verticalPosition = Tooltip_1.VerticalPosition.TOP;
@@ -7941,11 +9715,11 @@ function (_Vue) {
         } // constrain horizontal position
 
 
-        var containerLeftPad = parseInt(window.getComputedStyle(this.effectiveContainer.$el, null).getPropertyValue('padding-left'), 10);
-        var containerRightPad = parseInt(window.getComputedStyle(this.effectiveContainer.$el, null).getPropertyValue('padding-right'), 10); // left and right bound of container, expressed in trigger's coordinate system
+        var leftMargin = this.getMargin(Tooltip_1.HorizontalPosition.LEFT);
+        var rightMargin = this.getMargin(Tooltip_1.HorizontalPosition.RIGHT); // left and right bound of container, expressed in trigger's coordinate system
 
-        var leftBound = containerBoundingRect.left + containerLeftPad - triggerBoundingRect.left;
-        var rightBound = containerBoundingRect.right - containerRightPad - triggerBoundingRect.left;
+        var leftBound = containerBoundingRect.left + leftMargin - triggerBoundingRect.left;
+        var rightBound = containerBoundingRect.right - rightMargin - triggerBoundingRect.left;
         this.left = Math.max(leftBound, Math.min(rightBound - this.width, this.left));
       } else {
         this.verticalPosition = preferredVerticalPosition;
@@ -8023,6 +9797,21 @@ function (_Vue) {
       return setContainer;
     }()
   }, {
+    key: "getMargin",
+    value: function getMargin(position) {
+      if (this.margin && this.margin[position] !== undefined) return this.margin[position];
+      var containerEl = this.effectiveContainer && this.effectiveContainer.$el ? this.effectiveContainer.$el : null;
+      if (!containerEl) return 0;
+
+      if ((position === Tooltip_1.VerticalPosition.TOP || position === Tooltip_1.VerticalPosition.BOTTOM) && containerEl.scrollHeight !== containerEl.offsetHeight) {
+        // If container is scrollable, the padding scrolls with the content. Therefore we consider the whole
+        // offsetHeight as valid area for the tooltip and return a margin of 0.
+        return 0;
+      }
+
+      return parseInt(window.getComputedStyle(containerEl, null).getPropertyValue("padding-".concat(position)), 10);
+    }
+  }, {
     key: "mouseOver",
     value: function mouseOver(mouseOverTooltip) {
       var _this4 = this;
@@ -8046,6 +9835,7 @@ function (_Vue) {
       this.toggle(
       /* force */
       true);
+      this.$emit('click');
     }
   }, {
     key: "isShown",
@@ -8062,15 +9852,15 @@ function (_Vue) {
       return this.container || this.reference;
     }
   }, {
-    key: "styles",
+    key: "tooltipBoxStyles",
     get: function get() {
       // note that we let the browser calculate height automatically
-      return {
+      return _objectSpread2({}, this.styles, {
         top: this.top + 'px',
         left: this.left + 'px',
-        width: this.effectiveContainer && this.autoWidth ? this.width + 'px' : undefined,
-        maxWidth: this.effectiveContainer ? this.maxWidth + 'px' : undefined
-      };
+        width: this.effectiveContainer && this.autoWidth ? this.width + 'px' : (this.styles || {}).width,
+        maxWidth: this.effectiveContainer ? this.maxWidth + 'px' : (this.styles || {}).maxWidth
+      });
     }
   }]);
 
@@ -8080,6 +9870,8 @@ function (_Vue) {
 __decorate([Object(external_vue_property_decorator_["Prop"])(Object)], Tooltipvue_type_script_lang_ts_Tooltip.prototype, "container", void 0);
 
 __decorate([Object(external_vue_property_decorator_["Prop"])(Boolean)], Tooltipvue_type_script_lang_ts_Tooltip.prototype, "disabled", void 0);
+
+__decorate([Object(external_vue_property_decorator_["Prop"])(Boolean)], Tooltipvue_type_script_lang_ts_Tooltip.prototype, "noFocus", void 0);
 
 __decorate([Object(external_vue_property_decorator_["Prop"])({
   type: String,
@@ -8097,6 +9889,19 @@ __decorate([Object(external_vue_property_decorator_["Prop"])({
 })], Tooltipvue_type_script_lang_ts_Tooltip.prototype, "preferredPosition", void 0);
 
 __decorate([Object(external_vue_property_decorator_["Prop"])({
+  type: Object,
+  validator: function validator(value) {
+    return _typeof(value) === 'object' && Object.entries(value).every(function (_ref) {
+      var _ref2 = _slicedToArray(_ref, 2),
+          position = _ref2[0],
+          margin = _ref2[1];
+
+      return typeof margin === 'number' && (Object.values(Tooltip_1.VerticalPosition).includes(position) || Object.values(Tooltip_1.HorizontalPosition).includes(position));
+    });
+  }
+})], Tooltipvue_type_script_lang_ts_Tooltip.prototype, "margin", void 0);
+
+__decorate([Object(external_vue_property_decorator_["Prop"])({
   type: Boolean,
   default: false
 })], Tooltipvue_type_script_lang_ts_Tooltip.prototype, "autoWidth", void 0);
@@ -8108,6 +9913,8 @@ __decorate([Object(external_vue_property_decorator_["Prop"])({
     return Object.values(Tooltip_1.Themes).includes(value);
   }
 })], Tooltipvue_type_script_lang_ts_Tooltip.prototype, "theme", void 0);
+
+__decorate([Object(external_vue_property_decorator_["Prop"])(Object)], Tooltipvue_type_script_lang_ts_Tooltip.prototype, "styles", void 0);
 
 __decorate([Object(external_vue_property_decorator_["Prop"])(Object)], Tooltipvue_type_script_lang_ts_Tooltip.prototype, "reference", void 0);
 
@@ -8149,8 +9956,8 @@ Tooltipvue_type_script_lang_ts_Tooltip = Tooltip_1 = __decorate([Object(external
 /* harmony default export */ var Tooltipvue_type_script_lang_ts_ = (Tooltipvue_type_script_lang_ts_Tooltip);
 // CONCATENATED MODULE: ./src/components/Tooltip.vue?vue&type=script&lang=ts&
  /* harmony default export */ var components_Tooltipvue_type_script_lang_ts_ = (Tooltipvue_type_script_lang_ts_); 
-// EXTERNAL MODULE: ./src/components/Tooltip.vue?vue&type=style&index=0&id=08b1ecd6&scoped=true&lang=css&
-var Tooltipvue_type_style_index_0_id_08b1ecd6_scoped_true_lang_css_ = __webpack_require__("cc62");
+// EXTERNAL MODULE: ./src/components/Tooltip.vue?vue&type=style&index=0&id=71bfa335&scoped=true&lang=css&
+var Tooltipvue_type_style_index_0_id_71bfa335_scoped_true_lang_css_ = __webpack_require__("63f6");
 
 // CONCATENATED MODULE: ./src/components/Tooltip.vue
 
@@ -8163,61 +9970,72 @@ var Tooltipvue_type_style_index_0_id_08b1ecd6_scoped_true_lang_css_ = __webpack_
 
 var Tooltip_component = normalizeComponent(
   components_Tooltipvue_type_script_lang_ts_,
-  Tooltipvue_type_template_id_08b1ecd6_scoped_true_render,
-  Tooltipvue_type_template_id_08b1ecd6_scoped_true_staticRenderFns,
+  Tooltipvue_type_template_id_71bfa335_scoped_true_render,
+  Tooltipvue_type_template_id_71bfa335_scoped_true_staticRenderFns,
   false,
   null,
-  "08b1ecd6",
+  "71bfa335",
   null
   
 )
 
 /* harmony default export */ var components_Tooltip = (Tooltip_component.exports);
 // CONCATENATED MODULE: ./src/main.ts
+
+
 // Components
 // export { default as Account } from './components/Account.vue';
 // export { default as AccountDetails } from './components/AccountDetails.vue';
 // export { default as AccountList } from './components/AccountList.vue';
 // export { default as AccountRing } from './components/AccountRing.vue';
 // export { default as AccountSelector } from './components/AccountSelector.vue';
-// export { default as Address } from './components/Address.vue';
 // export { default as AddressDisplay } from './components/AddressDisplay.vue';
 // export { default as AddressInput } from './components/AddressInput.vue';
 
- // export { default as AmountWithDetails } from './components/AmountWithDetails.vue';
-// export { default as AmountWithFee } from './components/AmountWithFee.vue';
+ // export { default as AmountWithFee } from './components/AmountWithFee.vue';
 // export { default as BottomOverlay } from './components/BottomOverlay.vue';
 // export { default as Carousel } from './components/Carousel.vue';
 // export { default as CircleSpinner } from './components/CircleSpinner.vue';
 // export { default as CloseButton } from './components/CloseButton.vue';
-// export { default as Contact } from './components/Contact.vue';
-// export { default as ContactList } from './components/ContactList.vue';
-// export { default as ContactShortcuts } from './components/ContactShortcuts.vue';
 // export { default as Copyable } from './components/Copyable.vue';
 // export { default as CopyableField } from './components/CopyableField.vue';
 // export { default as FiatAmount } from './components/FiatAmount.vue';
 // export { default as Identicon } from './components/Identicon.vue';
 // export { default as LabelInput } from './components/LabelInput.vue';
 // export { default as LoadingSpinner } from './components/LoadingSpinner.vue';
-// export { default as MigrationWelcome } from './components/MigrationWelcome.vue';
-// export { default as NewContact } from './components/NewContact.vue';
 // export { default as PageBody } from './components/PageBody.vue';
 // export { default as PageFooter } from './components/PageFooter.vue';
 // export { default as PageHeader } from './components/PageHeader.vue';
 // export { default as PaymentInfoLine } from './components/PaymentInfoLine.vue';
 
 
- // export { default as SendTx } from './components/SendTx.vue';
-// export { default as SelectBar } from './components/SelectBar.vue';
+ // export { default as SelectBar } from './components/SelectBar.vue';
 
  // export { default as Timer } from './components/Timer.vue';
 
  // export { default as Wallet } from './components/Wallet.vue';
-// export { default as WalletList } from './components/WalletList.vue';
-// export { default as WalletMenu } from './components/WalletMenu.vue';
 // Comment out unused icons in the components/Icons.ts file
 
 
+
+/**
+ * Set a specific public path / base path (see https://webpack.js.org/guides/public-path/) from where assets like
+ * translation files or identicons should be loaded. By default, this is the path from where the importing script is
+ * loaded, derived from the importing script's currentScript src.
+ *
+ * Optionally, you can define a different path for image assets.
+ */
+
+function setAssetPublicPath(path, imageAssetsPath) {
+  // See https://webpack.js.org/guides/public-path/#on-the-fly.
+  // Note that the default for build target "lib" is set via @vue/cli-service/lib/commands/build/setPublicPath.js and
+  // can not be overwritten via publicPath in vue.config.js.
+  __webpack_require__.p = "".concat(path).concat(!path.endsWith('/') ? '/' : '');
+
+  if (typeof imageAssetsPath === 'string') {
+    self.NIMIQ_VUE_COMPONENTS_IMAGE_ASSET_PATH = "".concat(imageAssetsPath).concat(!imageAssetsPath.endsWith('/') ? '/' : '');
+  }
+}
 // CONCATENATED MODULE: ./node_modules/@vue/cli-service/lib/commands/build/entry-lib-no-default.js
 /* concated harmony reexport Amount */__webpack_require__.d(__webpack_exports__, "Amount", function() { return components_Amount; });
 /* concated harmony reexport AmountInput */__webpack_require__.d(__webpack_exports__, "AmountInput", function() { return components_AmountInput; });
@@ -8229,6 +10047,8 @@ var Tooltip_component = normalizeComponent(
 /* concated harmony reexport InfoCircleIcon */__webpack_require__.d(__webpack_exports__, "InfoCircleIcon", function() { return InfoCircleIcon; });
 /* concated harmony reexport InfoCircleSmallIcon */__webpack_require__.d(__webpack_exports__, "InfoCircleSmallIcon", function() { return InfoCircleSmallIcon; });
 /* concated harmony reexport ScanQrCodeIcon */__webpack_require__.d(__webpack_exports__, "ScanQrCodeIcon", function() { return ScanQrCodeIcon; });
+/* concated harmony reexport I18nMixin */__webpack_require__.d(__webpack_exports__, "I18nMixin", function() { return i18n_I18nMixin; });
+/* concated harmony reexport setAssetPublicPath */__webpack_require__.d(__webpack_exports__, "setAssetPublicPath", function() { return setAssetPublicPath; });
 
 
 

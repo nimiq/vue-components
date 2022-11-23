@@ -1,5 +1,5 @@
 <template>
-    <button class="close-button nq-button-s" @click="click">
+    <button class="close-button nq-button-s" @click="click" @mousedown.prevent>
         <CloseIcon/>
     </button>
 </template>
@@ -23,6 +23,10 @@ export default class CloseButton extends Vue {
         padding: 0;
         background: none !important;
         height: 3rem;
+    }
+
+    button::before {
+        border-radius: 50%;
     }
 
     button .nq-icon {

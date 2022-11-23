@@ -9,12 +9,15 @@ export default class AmountInput extends Vue {
     private value?;
     private maxFontSize;
     private placeholder;
+    private vanishing;
+    private decimals;
     private liveValue;
     private lastEmittedValue;
     private width;
     private fontSize;
     private maxWidth;
     private valueInLuna;
+    private isFocussed;
     mounted(): Promise<void>;
     focus(): void;
     private updateValue;

@@ -1,0 +1,205 @@
+# 
+# Translators:
+# Talleyrand, 2020
+# Daniel, 2020
+# Matheo <matheo@nimiq.com>, 2020
+# 
+msgid ""
+msgstr ""
+"Last-Translator: Matheo <matheo@nimiq.com>, 2020\n"
+"Language-Team: French (https://www.transifex.com/nimiq-foundation/teams/110181/fr/)\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: src/components/PaymentInfoLine.vue:77
+msgid "{amount} suggested network fee"
+msgstr "{amount} de frais de réseau suggéré"
+
+#: src/components/AccountSelector.vue:21
+msgid "{type} accounts cannot be used for this operation."
+msgstr "Les comptes {type} ne peuvent pas être utilisés pour cette opération."
+
+#: src/components/QrScanner.vue:11
+msgid "Cancel"
+msgstr "Annuler"
+
+#: src/components/Wallet.vue:24
+msgid "Change Password"
+msgstr "Changer de Mot de passe"
+
+#: src/components/QrScanner.vue:24
+msgid ""
+"Click on {icon} and go to\n"
+"Settings > Site Settings > Camera"
+msgstr ""
+"Cliquez sur {icon} et allez dans\n"
+"Paramètres > Paramètres de site > Appareil photo"
+
+#: src/components/QrScanner.vue:44
+msgid "Click on {icon} in the URL bar."
+msgstr "Cliquez sur {icon} dans la bar d'adresse."
+
+#: src/components/QrScanner.vue:39
+msgid ""
+"Click on {safari} and go to\n"
+"Settings for this Website > Camera"
+msgstr ""
+"Cliquez sur {safari} et rendez-vous dans \n"
+"Paramètres pour ce site > Caméra"
+
+#: src/components/AccountList.vue:43
+msgid "Contracts cannot be used for this operation."
+msgstr "Les Contrats ne peuvent pas être utilisés pour cette opération."
+
+#: src/components/Copyable.vue:5 src/components/CopyableField.vue:20
+msgid "Copied"
+msgstr "Copié"
+
+#: src/components/Wallet.vue:21
+msgid "Create Backup"
+msgstr "Créer une Sauvegarde"
+
+#: src/components/Timer.vue:96
+msgid "day"
+msgstr "jour"
+
+#: src/components/Timer.vue:97
+msgid "days"
+msgstr "jours"
+
+#: src/components/PaymentInfoLine.vue:45
+msgid "Effective rate"
+msgstr "Taux effectif"
+
+#: src/components/AmountWithFee.vue:11
+msgid "fee"
+msgstr "frais"
+
+#: src/components/PageHeader.vue:7
+msgid "Go back"
+msgstr "Retour"
+
+#: src/components/QrScanner.vue:34
+msgid "Grant camera access when asked."
+msgstr "Accordez l'accès à la caméra lorsque cela vous est demandé."
+
+#: src/components/Timer.vue:94
+msgid "hour"
+msgstr "heure"
+
+#: src/components/Timer.vue:95
+msgid "hours"
+msgstr "heures"
+
+#: src/components/AmountWithFee.vue:5
+msgid "Insufficient balance"
+msgstr "Solde insuffisant"
+
+#: src/components/AccountSelector.vue:193
+msgid "Legacy"
+msgstr "Legacy"
+
+#: src/components/AccountSelector.vue:44
+msgid "Login to another account"
+msgstr "Connexion à un autre compte"
+
+#: src/components/Wallet.vue:26
+msgid "Logout"
+msgstr "Déconnexion"
+
+#: src/components/Timer.vue:92
+msgid "minute"
+msgstr "minute"
+
+#: src/components/Timer.vue:93
+msgid "minutes"
+msgstr "minutes"
+
+#: src/components/LabelInput.vue:4 src/components/LabelInput.vue:8
+msgid "Name your address"
+msgstr "Nommez votre adresse"
+
+#: src/components/PaymentInfoLine.vue:88
+msgid "network fee"
+msgstr "frais de réseau"
+
+#: src/components/PaymentInfoLine.vue:60
+msgid "Nimiq provides this service free of charge."
+msgstr "Nimiq fournit ce service gratuitement."
+
+#: src/components/PaymentInfoLine.vue:37
+msgid "Order amount"
+msgstr "Montant de la commande"
+
+#: src/components/Wallet.vue:23
+msgid "Rename"
+msgstr "Renommer"
+
+#: src/components/Wallet.vue:18
+msgid "Save Login File"
+msgstr "Enregistrer le Fichier de Connexion"
+
+#: src/components/Timer.vue:90
+msgid "second"
+msgstr "seconde"
+
+#: src/components/Timer.vue:91
+msgid "seconds"
+msgstr "secondes"
+
+#: src/components/QrScanner.vue:48
+msgid "the camera icon"
+msgstr "l'icône de caméra"
+
+#: src/components/AccountList.vue:44
+msgid "This address cannot be used for this operation."
+msgstr "Cette adresse ne peut pas être utilisée pour cette opération."
+
+#: src/components/Timer.vue:45
+msgid "This offer expires in {timer}."
+msgstr "Cette offre expire dans {timer}."
+
+#: src/components/PaymentInfoLine.vue:63
+msgid "Total"
+msgstr "Total"
+
+#: src/components/QrScanner.vue:20
+msgid "Unblock the camera for this website to scan QR codes."
+msgstr "Débloquez la caméra pour ce site de façon à scanner les QR codes."
+
+#: src/components/PaymentInfoLine.vue:41
+msgid "Vendor crypto discount"
+msgstr "Crypto-remise"
+
+#: src/components/PaymentInfoLine.vue:40
+msgid "Vendor crypto markup"
+msgstr "Crypto-premium"
+
+#: src/components/PaymentInfoLine.vue:281
+msgid ""
+"You are paying approx. {formattedRateDeviation} less than at the current "
+"market rate (coingecko.com)."
+msgstr ""
+"Vous payez environ {formattedRateDeviation} moins que le taux actuel du "
+"marché (coingecko.com)."
+
+#: src/components/PaymentInfoLine.vue:275
+msgid ""
+"You are paying approx. {formattedRateDeviation} more than at the current "
+"market rate (coingecko.com)."
+msgstr ""
+"Vous payez environ {formattedRateDeviation} plus que le taux actuel du "
+"marché (coingecko.com)."
+
+#: src/components/PaymentInfoLine.vue:267
+msgid ""
+"Your actual discount is approx. {formattedRateDeviation} compared to the "
+"current market rate (coingecko.com)."
+msgstr ""
+"Votre remise réelle est d'environ {formattedRateDeviation}  par rapport au "
+"taux actuel du marché (coingecko.com)."
+
+#: src/components/QrScanner.vue:16
+msgid "Your device does not have an accessible camera."
+msgstr "Votre appareil n'a pas de caméra accessible."

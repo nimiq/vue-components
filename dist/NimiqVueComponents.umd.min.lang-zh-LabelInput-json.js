@@ -1,0 +1,1 @@
+(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[72],{c7b6:function(e){e.exports=JSON.parse('{"Name your address":"命名你的地址"}')}}]);

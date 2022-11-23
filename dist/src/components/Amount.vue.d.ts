@@ -1,7 +1,8 @@
 import { Vue } from 'vue-property-decorator';
 declare type BigInteger = import('big-integer').BigInteger;
+export declare function amountValidator(value: unknown): boolean;
 export default class Amount extends Vue {
-    amount: number | BigInteger;
+    amount: number | bigint | BigInteger;
     decimals?: number;
     minDecimals: number;
     maxDecimals: number;
@@ -11,5 +12,6 @@ export default class Amount extends Vue {
     private _validateDecimals;
     private get formattedAmount();
     private get isApprox();
+    private get ticker();
 }
 export {};
