@@ -1,0 +1,1 @@
+(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[55],{"66c7":function(e){e.exports=JSON.parse('{"Change Password":"Mudar Palavra Passe","Create Backup":"Criar Backup","Logout":"Logout","Rename":"Mudar de nome","Save Login File":"Salvar Ficheiro de Login"}')}}]);

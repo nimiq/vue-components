@@ -41,7 +41,7 @@ if (process.argv.includes('build')) {
       // generated NimiqVueComponents.umd.js to see how this plays together.
       // Once the vue-components switch over to webpack 5, this can probably be refactored.
       './qr-scanner-worker.min.js': 'root Object.assign('
-          + 'import(\'/node_modules/qr-scanner/qr-scanner-worker.min.js\'), { __esModule: true });',
+          + 'import(\'qr-scanner/qr-scanner-worker.min.js\'), { __esModule: true });',
     },
     // // Unfortunately, the language file chunks can not be externalized like the qr scanner worker because the imports
     // // are determined dynamically during runtime. The handler below successfully prevents webpack from generating
