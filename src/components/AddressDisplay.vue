@@ -56,7 +56,6 @@ export default class AddressDisplay extends Vue {
     .address-display {
         width: 100%;
         box-sizing: content-box;
-        font-family: 'Fira Mono', monospace;
         color: rgba(31, 35, 72, .5); /* nimiq-blue with .5 opacity */
         display: flex;
         flex-wrap: wrap;
@@ -79,6 +78,7 @@ export default class AddressDisplay extends Vue {
     }
 
     .chunk {
+        font-family: 'Fira Mono', monospace;
         margin: 0.875rem 0;
         line-height: 1.11;
         text-align: center;
