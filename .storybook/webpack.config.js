@@ -1,3 +1,10 @@
+// Fix build for Node version with OpenSSL 3
+const crypto = require('crypto');
+const origCreateHash = crypto.createHash;
+crypto.createHash = (alg, opts) => {
+    return origCreateHash(alg === 'md4' ? 'md5' : alg, opts);
+};
+
 module.exports = (storybookBaseConfig, env, config) => {
     // Save and remove default SVG rule to add a custom one below
     const svgRule = config.module.rules.find(rule => rule.test.toString().includes('svg'));

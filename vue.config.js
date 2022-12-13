@@ -1,5 +1,12 @@
 // Note that this config is used for `build` but not for `storybook` or `build-storybook` scripts
 
+// Fix build for Node version with OpenSSL 3
+const crypto = require('crypto');
+const origCreateHash = crypto.createHash;
+crypto.createHash = (alg, opts) => {
+    return origCreateHash(alg === 'md4' ? 'md5' : alg, opts);
+};
+
 const SourceMapDevToolPlugin = require('webpack').SourceMapDevToolPlugin;
 
 const configureWebpack = {
