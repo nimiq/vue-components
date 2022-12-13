@@ -1,6 +1,6 @@
-((typeof self !== 'undefined' ? self : this)["webpackJsonpNimiqVueComponents"] = (typeof self !== 'undefined' ? self : this)["webpackJsonpNimiqVueComponents"] || []).push([[69],{
+((typeof self !== 'undefined' ? self : this)["webpackJsonpNimiqVueComponents"] = (typeof self !== 'undefined' ? self : this)["webpackJsonpNimiqVueComponents"] || []).push([[80],{
 
-/***/ "56dc":
+/***/ "6853":
 /***/ (function(module) {
 
 module.exports = JSON.parse("{\"fee\":\"комісія\",\"Insufficient balance\":\"Недостатній баланс\"}");

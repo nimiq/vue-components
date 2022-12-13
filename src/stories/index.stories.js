@@ -475,11 +475,12 @@ storiesOf('Components', module)
     .add('AddressDisplay', () => {
         const address = text('address', 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE');
         const copyable = boolean('copyable', false);
+        const format = select('format', ['nimiq', 'ethereum'], 'nimiq');
         return {
-            data: () => ({ address, copyable }),
+            data: () => ({ address, copyable, format }),
             components: {AddressDisplay},
-            template: `<AddressDisplay :address="address" :copyable="copyable"
-                style="margin-top: 7rem; margin-left: 2rem;" />`,
+            template: `<AddressDisplay :address="address" :copyable="copyable" :format="format"
+                style="margin-top: 2rem; margin-left: 2rem;" />`,
         };
     })
     .add('AddressInput', () => {

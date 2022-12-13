@@ -39,6 +39,7 @@
     "@vue/cli-plugin-babel": "~4.2.2",
     "@vue/cli-plugin-typescript": "~4.2.2",
     "@vue/cli-service": "~4.2.2",
+    "@vue/compiler-dom": "^3.2.45",
     "core-js": "^3.6.4",
     "file-loader": "^3.0.1",
     "moment": "^2.29.4",

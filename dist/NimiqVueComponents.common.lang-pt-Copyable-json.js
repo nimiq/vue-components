@@ -1,6 +1,6 @@
-((typeof self !== 'undefined' ? self : this)["webpackJsonpNimiqVueComponents"] = (typeof self !== 'undefined' ? self : this)["webpackJsonpNimiqVueComponents"] || []).push([[48],{
+((typeof self !== 'undefined' ? self : this)["webpackJsonpNimiqVueComponents"] = (typeof self !== 'undefined' ? self : this)["webpackJsonpNimiqVueComponents"] || []).push([[59],{
 
-/***/ "e625":
+/***/ "ad46":
 /***/ (function(module) {
 
 module.exports = JSON.parse("{\"Copied\":\"Copiado\"}");
