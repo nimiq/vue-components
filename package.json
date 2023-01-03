@@ -24,6 +24,7 @@
     "@nimiq/style": "^0.8.2",
     "@nimiq/utils": "^0.8.2",
     "big-integer": "^1.6.44",
+    "ethereumjs-util": "^7.1.5",
     "input-format": "^0.2.8",
     "qr-creator": "^1.0.0",
     "qr-scanner": "^1.4.2",
