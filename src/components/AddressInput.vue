@@ -1,12 +1,12 @@
 <template>
     <div class="address-input" :class="{'is-domain': isDomain}">
         <textarea ref="textarea" spellcheck="false" autocomplete="off"
-            :class="{'will-be-address': willBeAddress}"
+            :class="{'will-be-nim-address': willBeNimAddress}"
             @keydown="_onKeyDown" @input="_onInput" @paste="_onPaste" @cut="_onCut" @copy="_formatClipboard"
             @click="_updateSelection" @select="_updateSelection" @blur="_updateSelection" @focus="_onFocus"
         ></textarea>
 
-        <template v-if="willBeAddress && supportsMixBlendMode">
+        <template v-if="willBeNimAddress && supportsMixBlendMode">
             <template v-for="row in 3">
                 <template v-for="column in 3">
                     <div class="color-overlay" :style="{
@@ -22,14 +22,21 @@
 
         <svg width="210" height="99" viewBox="0 0 210 99" fill="none" xmlns="http://www.w3.org/2000/svg" class="grid">
             <g stroke-width="1.5" stroke-linecap="round">
-                <line x1="67.75" y1="0.75" x2="67.75" y2="22.25"/>
-                <line x1="67.75" y1="37.75" x2="67.75" y2="60.25"/>
-                <line x1="67.75" y1="75.75" x2="67.75" y2="98.25"/>
-                <line x1="0.75" y1="30.25" x2="209.25" y2="30.25"/>
-                <line x1="0.75" y1="68.25" x2="209.25" y2="68.25"/>
-                <line x1="143.75" y1="37.75" x2="143.75" y2="60.25"/>
-                <line x1="143.75" y1="0.75" x2="143.75" y2="22.25"/>
-                <line x1="143.75" y1="75.75" x2="143.75" y2="98.25"/>
+                <g v-if="willBeNimAddress">
+                    <line x1="67.75" y1="0.75" x2="67.75" y2="22.25"/> <!-- 1st vertical line -->
+                    <line x1="143.75" y1="0.75" x2="143.75" y2="22.25"/> <!-- 2nd vertical line -->
+                    <line x1="67.75" y1="37.75" x2="67.75" y2="60.25"/> <!-- 3rd vertical line -->
+                </g>
+
+                <line x1="0.75" y1="30.25" x2="209.25" y2="30.25"/> <!-- 1st horizontal line -->
+
+                <g v-if="willBeNimAddress">
+                    <line x1="143.75" y1="37.75" x2="143.75" y2="60.25"/> <!-- 4th vertical line -->
+                    <line x1="67.75" y1="75.75" x2="67.75" y2="98.25"/> <!-- 5th vertical line -->
+                    <line x1="143.75" y1="75.75" x2="143.75" y2="98.25"/> <!-- 6th vertical line -->
+                </g>
+
+                <line x1="0.75" y1="68.25" x2="209.25" y2="68.25"/> <!-- 2nd horizontal line -->
             </g>
         </svg>
     </div>
@@ -44,15 +51,30 @@ import {
     onKeyDown as inputFormatOnKeyDown,
 } from 'input-format';
 import { Clipboard, ValidationUtils } from '@nimiq/utils';
+import { isValidAddress as isValidEthAddress } from 'ethereumjs-util';
 
 @Component
 export default class AddressInput extends Vue {
-    private static readonly ADDRESS_MAX_LENGTH_WITHOUT_SPACES = 9 * 4;
-    private static readonly ADDRESS_MAX_LENGTH = AddressInput.ADDRESS_MAX_LENGTH_WITHOUT_SPACES + 8;
+    private static readonly NIM_ADDRESS_MAX_LENGTH_WITHOUT_SPACES = 9 * 4;
+    private static readonly NIM_ADDRESS_MAX_LENGTH = AddressInput.NIM_ADDRESS_MAX_LENGTH_WITHOUT_SPACES + 8;
+    private static readonly _NIMIQ_ADDRESS_REGEX = new RegExp('^('
+        + 'N(Q?)' // NQ at the beginning
+        + '|NQ\\d{1,2}' // first two characters after starting NQ must be digits
+        + `|NQ\\d{2}[0-9A-Z]{1,${AddressInput.NIM_ADDRESS_MAX_LENGTH_WITHOUT_SPACES - 4}}` // valid address < max length
+        + `|NQ\\d{2}\\s?([0-9A-Z]{1,4}\\s?){1,${(AddressInput.NIM_ADDRESS_MAX_LENGTH_WITHOUT_SPACES - 4) / 4}}` // check formatted address
+        + ')$', 'i');
+
+    private static readonly ETH_ADDRESS_MAX_LENGTH_WITHOUT_OX = 40;
+    private static readonly ETH_ADDRESS_MAX_LENGTH = AddressInput.ETH_ADDRESS_MAX_LENGTH_WITHOUT_OX + 2;
+    private static readonly _ETH_ADDRESS_REGEX = new RegExp('^('
+        + '0(x?)' // 0x at the beginning
+        + `|0x[0-9a-f]{1,${AddressInput.ETH_ADDRESS_MAX_LENGTH_WITHOUT_OX}}` // valid address < max length
+        + `|0x[0-9a-f]{12}\\n([0-9a-f]{1,14}\\n?){1,2}` // check formatted address
+        + ')$', 'i');
 
     // definiton of the parse method for input-format (https://github.com/catamphetamine/input-format#usage)
     private static _parse(char: string, value: string, allowDomains = false) {
-        if (!allowDomains || AddressInput._willBeAddress(value + char)) {
+        if (AddressInput._willBeNimAddress(value + char)) {
             // Handle I, O, W, Z which are the only characters missing in Nimiq's Base 32 address alphabet
             switch (char.toUpperCase()) {
                 case 'I': char = '1'; break;
@@ -61,18 +83,20 @@ export default class AddressInput extends Vue {
                 case 'W': return; // reject character
             }
 
-            const regex = new RegExp('^('
-                + 'N(Q?)' // NQ at the beginning
-                + '|NQ\\d{1,2}' // first two characters after starting NQ must be digits
-                + `|NQ\\d{2}[0-9A-Z]{1,${AddressInput.ADDRESS_MAX_LENGTH_WITHOUT_SPACES - 4}}` // valid address < max length
-                + ')$', 'i');
-
             // We return the original character without transforming it to uppercase to improve compatibility with some
             // browsers that struggle with undo/redo of manipulated input. The actual transformation to uppercase is then
             // done via CSS and when the value is exported
-            if (regex.test(value + char)) return char;
+            if (AddressInput._NIMIQ_ADDRESS_REGEX.test(value + char)) return char;
             else return; // reject character
-        } else {
+        }
+        else if (AddressInput._willBeEthAddress(value + char)) {
+            // We return the original character without transforming it to uppercase to improve compatibility with some
+            // browsers that struggle with undo/redo of manipulated input. The actual transformation to uppercase is then
+            // done via CSS and when the value is exported
+            if (AddressInput._ETH_ADDRESS_REGEX.test(value + char)) return char;
+            else return; // reject character
+        }
+        else if (allowDomains) {
             // Reject non-URL formats while allowing typing URLs character by character
             /**
              * [-a-z0-9]    Allow hyphens, english letters and numbers
@@ -86,11 +110,11 @@ export default class AddressInput extends Vue {
 
     // definiton of the format method for input-format (https://github.com/catamphetamine/input-format#usage)
     private static _format(value: string, allowDomains = false) {
-        if (!allowDomains || AddressInput._willBeAddress(value)) {
+        if (AddressInput._willBeNimAddress(value)) {
             if (value !== '' && value.toUpperCase() !== 'N') {
                 value = AddressInput._stripWhitespace(value)
                     .replace(/.{4}/g, (match, offset) => `${match}${(offset + 4) % 12 ? ' ' : '\n'}`) // form blocks
-                    .substring(0, AddressInput.ADDRESS_MAX_LENGTH); // discarding the new line after last block
+                    .substring(0, AddressInput.NIM_ADDRESS_MAX_LENGTH); // discarding the new line after last block
 
                 if (value.endsWith(' ')) {
                     // The word spacing set via css is only applied to spaces that are actually between words which is not
@@ -106,6 +130,15 @@ export default class AddressInput extends Vue {
                 template: 'wwww wwww wwww\nwwww wwww wwww\nwwww wwww wwww', // used by input-format to position caret. Using
                 // w as placeholder instead of default x as w is not in our address alphabet.
             };
+        } else if (AddressInput._willBeEthAddress(value)) {
+            value = AddressInput._stripWhitespace(value)
+                .replace(/.{14}/g, (match) => `${match}\n`) // form blocks
+                .substring(0, AddressInput.ETH_ADDRESS_MAX_LENGTH + 2); // discarding the new line after last block
+
+            return {
+                text: value,
+                template: 'wwwwwwwwwwwwww\nwwwwwwwwwwwwww\nwwwwwwwwwwwwww',
+            }
         } else {
             return {
                 text: value,
@@ -118,16 +151,20 @@ export default class AddressInput extends Vue {
     }
 
     private static _exportValue(value: string, allowDomains = false) {
-        if (!allowDomains || AddressInput._willBeAddress(value)) {
+        if (AddressInput._willBeNimAddress(value)) {
             return value.toUpperCase().replace(/\n/g, ' ').replace(/\u200B/g, '');
         } else {
             return value.replace(/\n/g, '').replace(/\u200B/g, '');
         }
     }
 
-    private static _willBeAddress(value: string): boolean {
-        if (value.length < 3) return false;
-        if (value.toUpperCase().startsWith('NQ') && !isNaN(parseInt(value[2], 10))) return true;
+    private static _willBeNimAddress(value: string): boolean {
+        if (AddressInput._NIMIQ_ADDRESS_REGEX.test(value)) return true;
+        return false;
+    }
+
+    private static _willBeEthAddress(value: string): boolean {
+        if (AddressInput._ETH_ADDRESS_REGEX.test(value)) return true;
         return false;
     }
 
@@ -156,14 +193,21 @@ export default class AddressInput extends Vue {
     private selectionEndBlock: number = -1;
     private supportsMixBlendMode: boolean = CSS.supports('mix-blend-mode', 'screen');
 
+    private get willBeNimAddress() {
+        return AddressInput._willBeNimAddress(this.currentValue);
+    }
+
+    private get willBeEthAddress() {
+        return AddressInput._willBeEthAddress(this.currentValue);
+    }
+
     private get willBeAddress() {
-        return !this.allowDomains || AddressInput._willBeAddress(this.currentValue);
+        return this.willBeNimAddress || this.willBeEthAddress;
     }
 
     private get isDomain() {
         return this.currentValue.length >= 3 && !this.willBeAddress;
     }
-
     private mounted() {
         // trigger initial value change. Not using immediate watcher as it already fires before mounted.
         this._onExternalValueChange();
@@ -268,20 +312,26 @@ export default class AddressInput extends Vue {
         this.currentValue = AddressInput._exportValue(this.$refs.textarea.value, this.allowDomains);
         this.$emit('input', this.currentValue); // emit event compatible with v-model
 
-        if (AddressInput._willBeAddress(value)) {
+        if (AddressInput._willBeNimAddress(value)) {
             const isValid = ValidationUtils.isValidAddress(this.currentValue);
             if (isValid) this.$emit('address', this.currentValue);
 
             // if user entered a full address that is not valid give him a visual feedback
-            this.$el.classList.toggle('invalid', this.currentValue.length === AddressInput.ADDRESS_MAX_LENGTH && !isValid);
+            this.$el.classList.toggle('invalid', this.currentValue.length === AddressInput.NIM_ADDRESS_MAX_LENGTH && !isValid);
+        } else if (AddressInput._willBeEthAddress(value)) {
+            const isValid = isValidEthAddress(AddressInput._stripWhitespace(this.currentValue));
+            if (isValid) this.$emit('address', this.currentValue);
+
+            // if user entered a full address that is not valid give him a visual feedback
+            this.$el.classList.toggle('invalid', this.currentValue.length === AddressInput.ETH_ADDRESS_MAX_LENGTH && !isValid);
         }
     }
 
     private _updateSelection() {
         const textarea = this.$refs.textarea;
         const focused = document.activeElement === textarea
-            && (textarea.selectionStart !== AddressInput.ADDRESS_MAX_LENGTH // if all blocks are filled and the caret
-            || textarea.selectionEnd !== AddressInput.ADDRESS_MAX_LENGTH); // is at the end display as if not focused
+            && (textarea.selectionStart !== AddressInput.NIM_ADDRESS_MAX_LENGTH // if all blocks are filled and the caret
+            || textarea.selectionEnd !== AddressInput.NIM_ADDRESS_MAX_LENGTH); // is at the end display as if not focused
         this.selectionStartBlock = focused ? Math.floor(textarea.selectionStart / 5) : -1;
         this.selectionEndBlock = focused ? Math.floor(textarea.selectionEnd / 5) : -1;
     }
@@ -378,7 +428,7 @@ export default class AddressInput extends Vue {
         color: var(--nimiq-light-blue);
     }
 
-    textarea.will-be-address {
+    textarea.will-be-nim-address {
         text-transform: uppercase;
         /* Mask image to make selections visible only within blocks. Using mask image instead clip path to be able to
         click onto the textarea on the invisible areas too */
@@ -402,16 +452,19 @@ export default class AddressInput extends Vue {
     }
 
     @supports (mix-blend-mode: screen) {
-        textarea.will-be-address {
+        textarea.will-be-nim-address,
+        textarea.will-be-eth-address {
             color: black; /* the actual color will be set via mix-blend-mode */
         }
 
-        textarea.will-be-address::selection {
+        textarea.will-be-nim-address::selection,
+        textarea.will-be-eth-address::selection {
             color: white;
             background: #561a51; /* a color that in combination with mix-blend-mode yields a color close to the default */
         }
 
-        textarea.will-be-address::-moz-selection {
+        textarea.will-be-nim-address::-moz-selection,
+        textarea.will-be-eth-address::-moz-selection {
             background: #411d68; /* a color that in combination with mix-blend-mode yields a color close to the default */
         }
 

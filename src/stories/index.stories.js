@@ -484,7 +484,7 @@ storiesOf('Components', module)
         };
     })
     .add('AddressInput', () => {
-        const allowDomains = boolean('Allow Domains', true);
+        const allowDomains = boolean('Allow Domains', false);
         return {
             components: {AddressInput},
             data() {
