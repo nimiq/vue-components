@@ -60,16 +60,14 @@ export default class AddressInput extends Vue {
     private static readonly _NIMIQ_ADDRESS_REGEX = new RegExp('^('
         + 'N(Q?)' // NQ at the beginning
         + '|NQ\\d{1,2}' // first two characters after starting NQ must be digits
-        + `|NQ\\d{2}[0-9A-Z]{1,${AddressInput.NIM_ADDRESS_MAX_LENGTH_WITHOUT_SPACES - 4}}` // valid address < max length
-        + `|NQ\\d{2}\\s?([0-9A-Z]{1,4}\\s?){1,${(AddressInput.NIM_ADDRESS_MAX_LENGTH_WITHOUT_SPACES - 4) / 4}}` // check formatted address
+        + `|NQ\\d{2}[0-9A-Z]{1,${AddressInput.NIM_ADDRESS_MAX_LENGTH_WITHOUT_SPACES - 4}}` // valid address <= max len
         + ')$', 'i');
 
     private static readonly ETH_ADDRESS_MAX_LENGTH_WITHOUT_OX = 40;
     private static readonly ETH_ADDRESS_MAX_LENGTH = AddressInput.ETH_ADDRESS_MAX_LENGTH_WITHOUT_OX + 2;
     private static readonly _ETH_ADDRESS_REGEX = new RegExp('^('
         + '0(x?)' // 0x at the beginning
-        + `|0x[0-9a-f]{1,${AddressInput.ETH_ADDRESS_MAX_LENGTH_WITHOUT_OX}}` // valid address < max length
-        + `|0x[0-9a-f]{12}\\n([0-9a-f]{1,14}\\n?){1,2}` // check formatted address
+        + `|0x[0-9a-f]{1,${AddressInput.ETH_ADDRESS_MAX_LENGTH_WITHOUT_OX}}` // valid address <= max length
         + ')$', 'i');
 
     // definiton of the parse method for input-format (https://github.com/catamphetamine/input-format#usage)
@@ -159,13 +157,11 @@ export default class AddressInput extends Vue {
     }
 
     private static _willBeNimAddress(value: string): boolean {
-        if (AddressInput._NIMIQ_ADDRESS_REGEX.test(value)) return true;
-        return false;
+        return AddressInput._NIMIQ_ADDRESS_REGEX.test(AddressInput._stripWhitespace(value));
     }
 
     private static _willBeEthAddress(value: string): boolean {
-        if (AddressInput._ETH_ADDRESS_REGEX.test(value)) return true;
-        return false;
+        return AddressInput._ETH_ADDRESS_REGEX.test(AddressInput._stripWhitespace(value));
     }
 
     // value that can be bound to via v-model
