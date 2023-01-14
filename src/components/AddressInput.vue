@@ -62,6 +62,11 @@ export default class AddressInput extends Vue {
         + '|NQ\\d{1,2}' // first two characters after starting NQ must be digits
         + `|NQ\\d{2}[0-9A-Z]{1,${AddressInput.NIM_ADDRESS_MAX_LENGTH_WITHOUT_SPACES - 4}}` // valid address <= max len
         + ')$', 'i');
+    private static readonly _NIMIQ_ADDRESS_REPLACED_CHARS = {
+        O: '0',
+        I: '1',
+        Z: '2',
+    };
 
     private static readonly ETH_ADDRESS_MAX_LENGTH_WITHOUT_OX = 40;
     private static readonly ETH_ADDRESS_MAX_LENGTH = AddressInput.ETH_ADDRESS_MAX_LENGTH_WITHOUT_OX + 2;
@@ -72,14 +77,12 @@ export default class AddressInput extends Vue {
 
     // definiton of the parse method for input-format (https://github.com/catamphetamine/input-format#usage)
     private static _parse(char: string, value: string, allowDomains = false) {
-        if (AddressInput._willBeNimAddress(value + char)) {
+        const upperCaseChar = char.toUpperCase();
+        const nimiqAddressReplacedChar = AddressInput._NIMIQ_ADDRESS_REPLACED_CHARS[upperCaseChar];
+        if (AddressInput._willBeNimAddress(value + (nimiqAddressReplacedChar || char))) {
             // Handle I, O, W, Z which are the only characters missing in Nimiq's Base 32 address alphabet
-            switch (char.toUpperCase()) {
-                case 'I': char = '1'; break;
-                case 'O': char = '0'; break;
-                case 'Z': char = '2'; break;
-                case 'W': return; // reject character
-            }
+            if (upperCaseChar === 'W') return; // reject character
+            char = nimiqAddressReplacedChar || char;
 
             // We return the original character without transforming it to uppercase to improve compatibility with some
             // browsers that struggle with undo/redo of manipulated input. The actual transformation to uppercase is then
