@@ -59,7 +59,9 @@ export default class AddressInput extends Vue {
     private static readonly _NIMIQ_ADDRESS_REGEX = new RegExp('^(?:'
         + 'NQ?' // NQ at the beginning
         + '|NQ\\d{1,2}' // first two characters after starting NQ must be digits
-        + `|NQ\\d{2}[0-9A-Z]{1,${AddressInput.NIM_ADDRESS_MAX_LENGTH - 4 - /* spaces */ 8}}` // valid address <= max len
+        // valid address <= max len; excluding invalid address characters I, O, W, Z which are the only characters
+        // missing in Nimiq's base32 address alphabet.
+        + `|NQ\\d{2}[0-9A-HJ-NP-VXY]{1,${AddressInput.NIM_ADDRESS_MAX_LENGTH - 4 - /* spaces */ 8}}`
         + ')$', 'i');
     private static readonly _NIMIQ_ADDRESS_REPLACED_CHARS = {
         O: '0',
@@ -81,29 +83,22 @@ export default class AddressInput extends Vue {
     private static readonly _WHITESPACE_REGEX = /\s|\u200B/g; // normal whitespace, tab, newline or zero-width space
 
     // definiton of the parse method for input-format (https://github.com/catamphetamine/input-format#usage)
+    // The _parse method is called on every change to the textarea's content, on the entire content, one character at a
+    // time. The parsed content is then formatted via _format and written back to the textarea.
     private static _parse(char: string, value: string, allowDomains: boolean) {
-        const upperCaseChar = char.toUpperCase();
-        const nimiqAddressReplacedChar = AddressInput._NIMIQ_ADDRESS_REPLACED_CHARS[upperCaseChar];
-        if (AddressInput._willBeNimAddress(value + (nimiqAddressReplacedChar || char))) {
-            // Handle I, O, W, Z which are the only characters missing in Nimiq's Base 32 address alphabet
-            if (upperCaseChar === 'W') return; // reject character
-            char = nimiqAddressReplacedChar || char;
+        if (AddressInput._WHITESPACE_REGEX.test(char)) return; // skip whitespace as it will be added during formatting
 
+        const nimiqAddressChar = AddressInput._NIMIQ_ADDRESS_REPLACED_CHARS[char.toUpperCase()] || char;
+        if (AddressInput._willBeNimAddress(value + nimiqAddressChar)) {
             // We return the original character without transforming it to uppercase to improve compatibility with some
-            // browsers that struggle with undo/redo of manipulated input. The actual transformation to uppercase is then
-            // done via CSS and when the value is exported
-            if (AddressInput._NIMIQ_ADDRESS_REGEX.test(value + char)) return char;
-            else return; // reject character
+            // browsers that struggle with undo/redo of manipulated input. The actual transformation to uppercase is
+            // then done via CSS and when the value is exported.
+            return nimiqAddressChar;
+        } else if (AddressInput._willBeEthAddress(value + char)
+            || AddressInput._willBeDomain(value + char, allowDomains)) {
+            return char;
         }
-        else if (AddressInput._willBeEthAddress(value + char)) {
-            if (AddressInput._ETH_ADDRESS_REGEX.test(value + char)) return char;
-            else return; // reject character
-        }
-        else if (AddressInput._willBeDomain(value + char, allowDomains)) {
-            // Reject non-URL formats while allowing typing URLs character by character
-            if (AddressInput._DOMAIN_REGEX.test(value + char)) return char;
-            else return; // reject character
-        }
+        // else reject / skip character
     }
 
     // definiton of the format method for input-format (https://github.com/catamphetamine/input-format#usage)
