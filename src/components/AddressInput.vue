@@ -53,6 +53,12 @@ import {
 import { Clipboard, ValidationUtils } from '@nimiq/utils';
 import { isValidAddress as isValidEthAddress } from 'ethereumjs-util';
 
+interface ParserFlags {
+    allowNimAddresses: boolean;
+    allowEthAddresses: boolean;
+    allowDomains: boolean;
+}
+
 @Component
 export default class AddressInput extends Vue {
     private static readonly NIM_ADDRESS_MAX_LENGTH = /* 9 blocks */ 9 * /* 4 chars each */ 4 + /* spaces between */ 8;
@@ -85,25 +91,25 @@ export default class AddressInput extends Vue {
     // definiton of the parse method for input-format (https://github.com/catamphetamine/input-format#usage)
     // The _parse method is called on every change to the textarea's content, on the entire content, one character at a
     // time. The parsed content is then formatted via _format and written back to the textarea.
-    private static _parse(char: string, value: string, allowDomains: boolean) {
+    private static _parse(char: string, value: string, parserFlags: ParserFlags) {
         if (AddressInput._WHITESPACE_REGEX.test(char)) return; // skip whitespace as it will be added during formatting
 
         const nimiqAddressChar = AddressInput._NIMIQ_ADDRESS_REPLACED_CHARS[char.toUpperCase()] || char;
-        if (AddressInput._willBeNimAddress(value + nimiqAddressChar)) {
+        if (AddressInput._willBeNimAddress(value + nimiqAddressChar, parserFlags)) {
             // We return the original character without transforming it to uppercase to improve compatibility with some
             // browsers that struggle with undo/redo of manipulated input. The actual transformation to uppercase is
             // then done via CSS and when the value is exported.
             return nimiqAddressChar;
-        } else if (AddressInput._willBeEthAddress(value + char)
-            || AddressInput._willBeDomain(value + char, allowDomains)) {
+        } else if (AddressInput._willBeEthAddress(value + char, parserFlags)
+            || AddressInput._willBeDomain(value + char, parserFlags)) {
             return char;
         }
         // else reject / skip character
     }
 
     // definiton of the format method for input-format (https://github.com/catamphetamine/input-format#usage)
-    private static _format(value: string) {
-        if (AddressInput._willBeNimAddress(value)) {
+    private static _format(value: string, parserFlags: ParserFlags) {
+        if (AddressInput._willBeNimAddress(value, parserFlags)) {
             value = AddressInput._stripWhitespace(value)
                 .replace(/.{4}/g, (match, offset) => `${match}${(offset + 4) % 12 ? ' ' : '\n'}`) // form blocks
                 .substring(0, AddressInput.NIM_ADDRESS_MAX_LENGTH); // discarding the new line after last block
@@ -121,7 +127,7 @@ export default class AddressInput extends Vue {
                 template: 'wwww wwww wwww\nwwww wwww wwww\nwwww wwww wwww', // used by input-format to position caret. Using
                 // w as placeholder instead of default x as w is not in our address alphabet.
             };
-        } else if (AddressInput._willBeEthAddress(value)) {
+        } else if (AddressInput._willBeEthAddress(value, parserFlags)) {
             value = AddressInput._stripWhitespace(value)
                 .replace(/.{14}/g, (match) => `${match}\n`) // form blocks
                 .substring(0, AddressInput.ETH_ADDRESS_MAX_LENGTH + /* new lines */ 2); // discard new line at end
@@ -141,27 +147,29 @@ export default class AddressInput extends Vue {
         return value.replace(AddressInput._WHITESPACE_REGEX, '');
     }
 
-    private static _exportValue(value: string) {
-        if (AddressInput._willBeNimAddress(value)) {
+    private static _exportValue(value: string, parserFlags: ParserFlags) {
+        if (AddressInput._willBeNimAddress(value, parserFlags)) {
             return value.toUpperCase().replace(/\n/g, ' ').replace(/\u200B/g, '');
         } else {
             return value.replace(/\n/g, '').replace(/\u200B/g, '');
         }
     }
 
-    private static _willBeNimAddress(value: string): boolean {
-        return AddressInput._NIMIQ_ADDRESS_REGEX.test(AddressInput._stripWhitespace(value));
+    private static _willBeNimAddress(value: string, parserFlags: ParserFlags): boolean {
+        return parserFlags.allowNimAddresses
+            && AddressInput._NIMIQ_ADDRESS_REGEX.test(AddressInput._stripWhitespace(value));
     }
 
-    private static _willBeEthAddress(value: string): boolean {
-        return AddressInput._ETH_ADDRESS_REGEX.test(AddressInput._stripWhitespace(value));
+    private static _willBeEthAddress(value: string, parserFlags: ParserFlags): boolean {
+        return parserFlags.allowEthAddresses
+            && AddressInput._ETH_ADDRESS_REGEX.test(AddressInput._stripWhitespace(value));
     }
 
-    private static _willBeDomain(value: string, allowDomain: boolean): boolean {
-        return allowDomain
+    private static _willBeDomain(value: string, parserFlags: ParserFlags): boolean {
+        return parserFlags.allowDomains
             && AddressInput._DOMAIN_REGEX.test(value)
-            && !AddressInput._willBeNimAddress(value)
-            && !AddressInput._willBeEthAddress(value);
+            && !AddressInput._willBeNimAddress(value, parserFlags)
+            && !AddressInput._willBeEthAddress(value, parserFlags);
     }
 
     // value that can be bound to via v-model
@@ -173,6 +181,15 @@ export default class AddressInput extends Vue {
 
     @Prop(Boolean)
     public autofocus?: boolean;
+
+    @Prop({
+        type: Boolean,
+        default: true,
+    })
+    public allowNimAddresses!: boolean;
+
+    @Prop(Boolean)
+    public allowEthAddresses?: boolean;
 
     @Prop(Boolean)
     public allowDomains?: boolean;
@@ -189,12 +206,20 @@ export default class AddressInput extends Vue {
     private selectionEndBlock: number = -1;
     private supportsMixBlendMode: boolean = CSS.supports('mix-blend-mode', 'screen');
 
+    private get parserFlags(): ParserFlags {
+        return {
+            allowNimAddresses: this.allowNimAddresses,
+            allowEthAddresses: !!this.allowEthAddresses,
+            allowDomains: !!this.allowDomains,
+        };
+    }
+
     private get willBeNimAddress() {
-        return AddressInput._willBeNimAddress(this.currentValue);
+        return AddressInput._willBeNimAddress(this.currentValue, this.parserFlags);
     }
 
     private get willBeDomain() {
-        return this.currentValue.length >= 3 && AddressInput._willBeDomain(this.currentValue, this.allowDomains);
+        return this.currentValue.length >= 3 && AddressInput._willBeDomain(this.currentValue, this.parserFlags);
     }
 
     private mounted() {
@@ -220,8 +245,8 @@ export default class AddressInput extends Vue {
         // could also be using format-input's parse and format helpers that preserve caret position but as we're not
         // interested in that, we calculate the formatted value manually
         const parsedValue = this.value.split('').reduce((parsed, char) =>
-            parsed + (AddressInput._parse(char, parsed, this.allowDomains) || ''), '');
-        this.$refs.textarea.value = AddressInput._format(parsedValue).text; // moves the caret to the end
+            parsed + (AddressInput._parse(char, parsed, this.parserFlags) || ''), '');
+        this.$refs.textarea.value = AddressInput._format(parsedValue, this.parserFlags).text; // moves caret to the end
 
         this._afterChange(parsedValue);
     }
@@ -230,8 +255,8 @@ export default class AddressInput extends Vue {
         inputFormatOnKeyDown(
             e,
             this.$refs.textarea,
-            (char: string, value: string) => AddressInput._parse(char, value, this.allowDomains),
-            (value: string) => AddressInput._format(value),
+            (char: string, value: string) => AddressInput._parse(char, value, this.parserFlags),
+            (value: string) => AddressInput._format(value, this.parserFlags),
             this._afterChange,
         );
         setTimeout(() => this._updateSelection(), 10); // for arrow keys in Firefox
@@ -243,8 +268,8 @@ export default class AddressInput extends Vue {
         inputFormatOnChange(
             e,
             textarea,
-            (char: string, value: string) => AddressInput._parse(char, value, this.allowDomains),
-            (value: string) => AddressInput._format(value),
+            (char: string, value: string) => AddressInput._parse(char, value, this.parserFlags),
+            (value: string) => AddressInput._format(value, this.parserFlags),
             this._afterChange,
         );
     }
@@ -257,8 +282,8 @@ export default class AddressInput extends Vue {
         inputFormatOnPaste(
             e,
             this.$refs.textarea,
-            (char: string, value: string) => AddressInput._parse(char, value, this.allowDomains),
-            (value: string) => AddressInput._format(value),
+            (char: string, value: string) => AddressInput._parse(char, value, this.parserFlags),
+            (value: string) => AddressInput._format(value, this.parserFlags),
             this._afterChange,
         );
     }
@@ -267,8 +292,8 @@ export default class AddressInput extends Vue {
         inputFormatOnCut(
             e,
             this.$refs.textarea,
-            (char: string, value: string) => AddressInput._parse(char, value, this.allowDomains),
-            (value: string) => AddressInput._format(value),
+            (char: string, value: string) => AddressInput._parse(char, value, this.parserFlags),
+            (value: string) => AddressInput._format(value, this.parserFlags),
             this._afterChange,
         );
         this._formatClipboard();
@@ -284,7 +309,7 @@ export default class AddressInput extends Vue {
         // preventDefault() which then results in the need to reimplement the behavior for cutting text and has side
         // effects like the change not being added to the undo history. Therefore we let the browser do the default
         // behavior but overwrite the clipboard afterwards.
-        const text = AddressInput._exportValue(document.getSelection()!.toString());
+        const text = AddressInput._exportValue(document.getSelection()!.toString(), this.parserFlags);
         setTimeout(() => Clipboard.copy(text));
     }
 
@@ -298,16 +323,16 @@ export default class AddressInput extends Vue {
             textarea.selectionStart += 1; // this also moves the selectionEnd as they were equal
         }
 
-        this.currentValue = AddressInput._exportValue(this.$refs.textarea.value);
+        this.currentValue = AddressInput._exportValue(this.$refs.textarea.value, this.parserFlags);
         this.$emit('input', this.currentValue); // emit event compatible with v-model
 
-        if (AddressInput._willBeNimAddress(value)) {
+        if (AddressInput._willBeNimAddress(value, this.parserFlags)) {
             const isValid = ValidationUtils.isValidAddress(this.currentValue);
             if (isValid) this.$emit('address', this.currentValue);
 
             // if user entered a full address that is not valid give him a visual feedback
             this.$el.classList.toggle('invalid', this.currentValue.length === AddressInput.NIM_ADDRESS_MAX_LENGTH && !isValid);
-        } else if (AddressInput._willBeEthAddress(value)) {
+        } else if (AddressInput._willBeEthAddress(value, this.parserFlags)) {
             const isValid = isValidEthAddress(AddressInput._stripWhitespace(this.currentValue));
             if (isValid) this.$emit('address', this.currentValue);
 
