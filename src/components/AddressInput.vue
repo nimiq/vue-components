@@ -22,25 +22,23 @@
             </template>
         </template>
 
-        <svg width="210" height="99" viewBox="0 0 210 99" fill="none" xmlns="http://www.w3.org/2000/svg" class="grid">
-            <g stroke-width="1.5" stroke-linecap="round">
-                <g v-if="displayAsNimAddress">
-                    <line x1="67.75" y1="0.75" x2="67.75" y2="22.25"/> <!-- 1st vertical line -->
-                    <line x1="143.75" y1="0.75" x2="143.75" y2="22.25"/> <!-- 2nd vertical line -->
-                    <line x1="67.75" y1="37.75" x2="67.75" y2="60.25"/> <!-- 3rd vertical line -->
-                </g>
-
+        <transition name="transition-fade">
+            <svg v-if="!displayAsDomain" width="210" height="99" viewBox="0 0 210 99" stroke-width="1.5"
+                stroke-linecap="round" fill="none" xmlns="http://www.w3.org/2000/svg" class="grid">
                 <line x1="0.75" y1="30.25" x2="209.25" y2="30.25"/> <!-- 1st horizontal line -->
-
-                <g v-if="displayAsNimAddress">
-                    <line x1="143.75" y1="37.75" x2="143.75" y2="60.25"/> <!-- 4th vertical line -->
-                    <line x1="67.75" y1="75.75" x2="67.75" y2="98.25"/> <!-- 5th vertical line -->
-                    <line x1="143.75" y1="75.75" x2="143.75" y2="98.25"/> <!-- 6th vertical line -->
-                </g>
-
                 <line x1="0.75" y1="68.25" x2="209.25" y2="68.25"/> <!-- 2nd horizontal line -->
-            </g>
-        </svg>
+                <transition name="transition-fade">
+                    <g v-if="displayAsNimAddress">
+                        <line x1="67.75" y1="0.75" x2="67.75" y2="22.25"/> <!-- left vertical line in 1st row -->
+                        <line x1="143.75" y1="0.75" x2="143.75" y2="22.25"/> <!-- right vertical line in 1st row -->
+                        <line x1="67.75" y1="37.75" x2="67.75" y2="60.25"/> <!-- left vertical line in 2nd row -->
+                        <line x1="143.75" y1="37.75" x2="143.75" y2="60.25"/> <!-- right vertical line in 2nd row -->
+                        <line x1="67.75" y1="75.75" x2="67.75" y2="98.25"/> <!-- left vertical line in 3rd row -->
+                        <line x1="143.75" y1="75.75" x2="143.75" y2="98.25"/> <!-- right vertical line in 3rd row -->
+                    </g>
+                </transition>
+            </svg>
+        </transition>
     </div>
 </template>
 
@@ -492,7 +490,14 @@ export default class AddressInput extends Vue {
         opacity: 0.5;
     }
 
-    .display-as-domain .grid {
+    .grid g {
+        transition: opacity .2s ease;
+    }
+
+    .grid.transition-fade-enter,
+    .grid.transition-fade-leave-to,
+    .grid g.transition-fade-enter,
+    .grid g.transition-fade-leave-to {
         opacity: 0 !important;
     }
 </style>
