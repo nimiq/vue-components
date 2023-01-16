@@ -4,6 +4,7 @@
         'display-as-domain': displayAsDomain,
     }">
         <textarea ref="textarea" spellcheck="false" autocomplete="off"
+            :placeholder="allowNimAddresses === allowEthAddresses ? false : allowNimAddresses ? 'NQ' : '0x'"
             @keydown="_onKeyDown" @input="_onInput" @paste="_onPaste" @cut="_onCut" @copy="_formatClipboard"
             @click="_updateSelection" @select="_updateSelection" @blur="_updateSelection" @focus="_onFocus"
         ></textarea>
@@ -476,6 +477,36 @@ export default class AddressInput extends Vue {
             z-index: 1;
             pointer-events: none;
         }
+    }
+
+    ::-webkit-input-placeholder {
+        opacity: .6;
+        transition: color .2s var(--nimiq-ease);
+    }
+    ::-ms-input-placeholder {
+        opacity: .6;
+        transition: color .2s var(--nimiq-ease);
+    }
+    ::-moz-placeholder {
+        opacity: .6;
+        transition: color .2s var(--nimiq-ease);
+    }
+    ::placeholder {
+        opacity: .6;
+        transition: color .2s var(--nimiq-ease);
+    }
+
+    textarea:focus::-webkit-input-placeholder {
+        color: var(--nimiq-light-blue);
+    }
+    textarea:focus::-ms-input-placeholder {
+        color: var(--nimiq-light-blue);
+    }
+    textarea:focus::-moz-placeholder {
+        color: var(--nimiq-light-blue);
+    }
+    textarea:focus::placeholder {
+        color: var(--nimiq-light-blue);
     }
 
     .grid {
