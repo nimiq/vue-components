@@ -1,12 +1,14 @@
 <template>
-    <div class="address-input" :class="{'will-be-domain': willBeDomain}">
+    <div class="address-input" :class="{
+        'display-as-nim-address': displayAsNimAddress,
+        'display-as-domain': displayAsDomain,
+    }">
         <textarea ref="textarea" spellcheck="false" autocomplete="off"
-            :class="{'will-be-nim-address': willBeNimAddress}"
             @keydown="_onKeyDown" @input="_onInput" @paste="_onPaste" @cut="_onCut" @copy="_formatClipboard"
             @click="_updateSelection" @select="_updateSelection" @blur="_updateSelection" @focus="_onFocus"
         ></textarea>
 
-        <template v-if="willBeNimAddress && supportsMixBlendMode">
+        <template v-if="displayAsNimAddress && supportsMixBlendMode">
             <template v-for="row in 3">
                 <template v-for="column in 3">
                     <div class="color-overlay" :style="{
@@ -22,7 +24,7 @@
 
         <svg width="210" height="99" viewBox="0 0 210 99" fill="none" xmlns="http://www.w3.org/2000/svg" class="grid">
             <g stroke-width="1.5" stroke-linecap="round">
-                <g v-if="willBeNimAddress">
+                <g v-if="displayAsNimAddress">
                     <line x1="67.75" y1="0.75" x2="67.75" y2="22.25"/> <!-- 1st vertical line -->
                     <line x1="143.75" y1="0.75" x2="143.75" y2="22.25"/> <!-- 2nd vertical line -->
                     <line x1="67.75" y1="37.75" x2="67.75" y2="60.25"/> <!-- 3rd vertical line -->
@@ -30,7 +32,7 @@
 
                 <line x1="0.75" y1="30.25" x2="209.25" y2="30.25"/> <!-- 1st horizontal line -->
 
-                <g v-if="willBeNimAddress">
+                <g v-if="displayAsNimAddress">
                     <line x1="143.75" y1="37.75" x2="143.75" y2="60.25"/> <!-- 4th vertical line -->
                     <line x1="67.75" y1="75.75" x2="67.75" y2="98.25"/> <!-- 5th vertical line -->
                     <line x1="143.75" y1="75.75" x2="143.75" y2="98.25"/> <!-- 6th vertical line -->
@@ -167,6 +169,7 @@ export default class AddressInput extends Vue {
 
     private static _willBeDomain(value: string, parserFlags: ParserFlags): boolean {
         return parserFlags.allowDomains
+            && value.length // expect at least one char
             && AddressInput._DOMAIN_REGEX.test(value)
             && !AddressInput._willBeNimAddress(value, parserFlags)
             && !AddressInput._willBeEthAddress(value, parserFlags);
@@ -214,12 +217,16 @@ export default class AddressInput extends Vue {
         };
     }
 
-    private get willBeNimAddress() {
-        return AddressInput._willBeNimAddress(this.currentValue, this.parserFlags);
+    private get displayAsNimAddress() {
+        // initlially display as Nim address by default if Nim is the only allowed address type or no Eth is allowed and
+        // no value is set yet.
+        return (this.allowNimAddresses && !this.allowEthAddresses && (!this.allowDomains || !this.currentValue))
+            || AddressInput._willBeNimAddress(this.currentValue, this.parserFlags);
     }
 
-    private get willBeDomain() {
-        return this.currentValue.length >= 3 && AddressInput._willBeDomain(this.currentValue, this.parserFlags);
+    private get displayAsDomain() {
+        return (this.allowDomains && !this.allowNimAddresses && !this.allowEthAddresses)
+            || AddressInput._willBeDomain(this.currentValue, this.parserFlags);
     }
 
     private mounted() {
@@ -376,7 +383,7 @@ export default class AddressInput extends Vue {
         overflow: hidden;
     }
 
-    .address-input.will-be-domain {
+    .address-input.display-as-domain {
         height: calc(var(--block-height) + 2 * var(--block-gap-v));
     }
 
@@ -432,21 +439,45 @@ export default class AddressInput extends Vue {
         transition: color 0.2s ease;
     }
 
-    .will-be-domain textarea {
+    textarea:focus {
+        color: var(--nimiq-light-blue);
+    }
+
+    .display-as-domain textarea {
         height: var(--line-height);
         white-space: nowrap;
         width: calc(100% - 2 * var(--block-gap-h))
     }
 
-    textarea:focus {
-        color: var(--nimiq-light-blue);
-    }
-
-    textarea.will-be-nim-address {
+    .display-as-nim-address textarea {
         text-transform: uppercase;
         /* Mask image to make selections visible only within blocks. Using mask image instead clip path to be able to
         click onto the textarea on the invisible areas too */
         mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 123"><rect x="-1" y="6" width="62" height="28"/><rect x="79" y="6" width="62" height="28"/><rect x="159" y="6" width="62" height="28"/><rect x="-1" y="47" width="62" height="28"/><rect x="79" y="47" width="62" height="28"/><rect x="159" y="47" width="62" height="28"/><rect x="-1" y="88" width="62" height="28"/><rect x="79" y="88" width="62" height="28"/><rect x="159" y="88" width="62" height="28"/></svg>');
+    }
+
+    @supports (mix-blend-mode: screen) {
+        .display-as-nim-address textarea {
+            color: black; /* the actual color will be set via mix-blend-mode */
+        }
+
+        .display-as-nim-address textarea::selection {
+            color: white;
+            background: #561a51; /* a color that in combination with mix-blend-mode yields a color close to the default */
+        }
+
+        .display-as-nim-address textarea::-moz-selection {
+            background: #411d68; /* a color that in combination with mix-blend-mode yields a color close to the default */
+        }
+
+        .color-overlay {
+            position: absolute;
+            width: calc(var(--block-width) - .5rem);
+            height: calc(var(--block-height) - .5rem);
+            mix-blend-mode: screen;
+            z-index: 1;
+            pointer-events: none;
+        }
     }
 
     .grid {
@@ -461,34 +492,7 @@ export default class AddressInput extends Vue {
         opacity: 0.5;
     }
 
-    .will-be-domain .grid {
+    .display-as-domain .grid {
         opacity: 0 !important;
-    }
-
-    @supports (mix-blend-mode: screen) {
-        textarea.will-be-nim-address,
-        textarea.will-be-eth-address {
-            color: black; /* the actual color will be set via mix-blend-mode */
-        }
-
-        textarea.will-be-nim-address::selection,
-        textarea.will-be-eth-address::selection {
-            color: white;
-            background: #561a51; /* a color that in combination with mix-blend-mode yields a color close to the default */
-        }
-
-        textarea.will-be-nim-address::-moz-selection,
-        textarea.will-be-eth-address::-moz-selection {
-            background: #411d68; /* a color that in combination with mix-blend-mode yields a color close to the default */
-        }
-
-        .color-overlay {
-            position: absolute;
-            width: calc(var(--block-width) - .5rem);
-            height: calc(var(--block-height) - .5rem);
-            mix-blend-mode: screen;
-            z-index: 1;
-            pointer-events: none;
-        }
     }
 </style>
