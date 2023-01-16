@@ -75,5 +75,6 @@
     "not ie <= 10"
   ],
   "license": "Apache-2.0",
-  "types": "types/index.d.ts"
+  "types": "types/index.d.ts",
+  "packageManager": "yarn@1.22.19"
 }
