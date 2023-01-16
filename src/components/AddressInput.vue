@@ -52,7 +52,6 @@ import {
     onKeyDown as inputFormatOnKeyDown,
 } from 'input-format';
 import { Clipboard, ValidationUtils } from '@nimiq/utils';
-import { isValidAddress as isValidEthAddress } from 'ethereumjs-util';
 
 interface ParserFlags {
     allowNimAddresses: boolean;
@@ -319,7 +318,7 @@ export default class AddressInput extends Vue {
         setTimeout(() => Clipboard.copy(text));
     }
 
-    private _afterChange(value: string) {
+    private async _afterChange(value: string) {
         // value is the unformatted value (i.e. the concatenation of characters returned by _parse)
         const textarea = this.$refs.textarea;
 
@@ -337,13 +336,21 @@ export default class AddressInput extends Vue {
             if (isValid) this.$emit('address', this.currentValue);
 
             // if user entered a full address that is not valid give him a visual feedback
-            this.$el.classList.toggle('invalid', this.currentValue.length === AddressInput.NIM_ADDRESS_MAX_LENGTH && !isValid);
+            this.$el.classList.toggle(
+                'invalid',
+                this.currentValue.length === AddressInput.NIM_ADDRESS_MAX_LENGTH && !isValid,
+            );
         } else if (AddressInput._willBeEthAddress(value, this.parserFlags)) {
-            const isValid = isValidEthAddress(AddressInput._stripWhitespace(this.currentValue));
+            // External dependency which can be shared with the consuming app and which is lazy loaded only when needed.
+            const ethersjs = await import('ethers');
+            const isValid = ethersjs.utils.isAddress(AddressInput._stripWhitespace(this.currentValue));
             if (isValid) this.$emit('address', this.currentValue);
 
             // if user entered a full address that is not valid give him a visual feedback
-            this.$el.classList.toggle('invalid', this.currentValue.length === AddressInput.ETH_ADDRESS_MAX_LENGTH && !isValid);
+            this.$el.classList.toggle(
+                'invalid',
+                this.currentValue.length === AddressInput.ETH_ADDRESS_MAX_LENGTH && !isValid,
+            );
         }
     }
 
