@@ -12,7 +12,7 @@
     "i18n:push": "tx push --source",
     "i18n:lib": "rimraf src/i18n/?? ; node node_modules/webpack-i18n-tools/tools/convertToJsonLib.js 'src/i18n/!(en).po'",
     "i18n:sync": "yarn i18n:extract && yarn i18n:push && yarn i18n:pull && yarn i18n:lib",
-    "postinstall": "patch-package"
+    "postinstall": "yarn run patch-package"
   },
   "main": "dist/NimiqVueComponents.common.js",
   "module": "dist/NimiqVueComponents.umd.js",
@@ -30,7 +30,8 @@
     "qr-creator": "^1.0.0",
     "qr-scanner": "^1.4.2",
     "vue": "^2.6.11",
-    "vue-property-decorator": "^8.4.0"
+    "vue-property-decorator": "^8.4.0",
+    "patch-package": "^6.5.1"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^4.0.0-alpha.14",
@@ -45,7 +46,6 @@
     "core-js": "^3.6.4",
     "file-loader": "^3.0.1",
     "moment": "^2.29.4",
-    "patch-package": "^6.5.1",
     "postinstall-postinstall": "^2.1.0",
     "rimraf": "^3.0.2",
     "typescript": "~3.7.5",
