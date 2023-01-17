@@ -124,8 +124,9 @@ export default class AddressInput extends Vue {
             }
             return {
                 text: value,
-                template: 'wwww wwww wwww\nwwww wwww wwww\nwwww wwww wwww', // used by input-format to position caret. Using
-                // w as placeholder instead of default x as w is not in our address alphabet.
+                // Used by input-format to position caret. Using w as placeholder instead of default x as w is not in
+                // our address alphabet.
+                template: 'wwww wwww wwww\nwwww wwww wwww\nwwww wwww wwww',
             };
         } else if (AddressInput._willBeEthAddress(value, parserFlags)) {
             value = AddressInput._stripWhitespace(value)
@@ -135,7 +136,7 @@ export default class AddressInput extends Vue {
             return {
                 text: value,
                 template: 'wwwwwwwwwwwwww\nwwwwwwwwwwwwww\nwwwwwwwwwwwwww',
-            }
+            };
         } else {
             return {
                 text: value,
@@ -357,8 +358,9 @@ export default class AddressInput extends Vue {
     private _updateSelection() {
         const textarea = this.$refs.textarea;
         const focused = document.activeElement === textarea
-            && (textarea.selectionStart !== AddressInput.NIM_ADDRESS_MAX_LENGTH // if all blocks are filled and the caret
-            || textarea.selectionEnd !== AddressInput.NIM_ADDRESS_MAX_LENGTH); // is at the end display as if not focused
+            // If all blocks are filled and the caret is at the end display as if not focused.
+            && (textarea.selectionStart !== AddressInput.NIM_ADDRESS_MAX_LENGTH
+            || textarea.selectionEnd !== AddressInput.NIM_ADDRESS_MAX_LENGTH);
         this.selectionStartBlock = focused ? Math.floor(textarea.selectionStart / 5) : -1;
         this.selectionEndBlock = focused ? Math.floor(textarea.selectionEnd / 5) : -1;
     }

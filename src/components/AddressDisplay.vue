@@ -13,17 +13,20 @@ export default class AddressDisplay extends Vue {
     @Prop({
         type: String,
         required: true,
-    }) address: string;
+    })
+    public address: string;
 
     @Prop({
         type: String,
         default: 'nimiq',
-    }) format: string;
+    })
+    public format: string;
 
     @Prop({
         type: Boolean,
         default: false,
-    }) copyable: boolean;
+    })
+    public copyable: boolean;
 
     get chunks(): string[] {
         switch (this.format) {
