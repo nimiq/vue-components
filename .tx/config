@@ -1,10 +1,10 @@
 [main]
 host = https://www.transifex.com
 
-[nimiq-vue-components.en-po]
-file_filter = src/i18n/<lang>.po
-minimum_perc = 0
-source_file = src/i18n/en.po
-source_lang = en
-type = PO
+[o:nimiq-foundation:p:nimiq-vue-components:r:en-po]
+file_filter  = src/i18n/<lang>.po
+source_file  = src/i18n/en.po
+source_lang  = en
+type         = PO
+minimum_perc = 95
 
