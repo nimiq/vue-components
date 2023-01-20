@@ -174,6 +174,40 @@ export default class AddressInput extends Vue {
             && !AddressInput._willBeEthAddress(value, parserFlags);
     }
 
+    // @see https://ethereum.stackexchange.com/questions/1374/how-can-i-check-if-an-ethereum-address-is-valid
+    // & https://github.com/ethereum/go-ethereum/blob/aa9fff3e68b1def0a9a22009c233150bf9ba481f/jsre/ethereum_js.go#L2288
+    private static async _isEthAddress(address: string) {
+        if (!/^(0x)?[0-9a-f]{40}$/i.test(address)) {
+            // check if it has the basic requirements of an address
+            return false;
+        } else if (/^(0x)?[0-9a-f]{40}$/.test(address) || /^(0x)?[0-9A-F]{40}$/.test(address)) {
+            // If it's all small caps or all all caps, return true
+            return true;
+        } else {
+            // Otherwise check each case
+            return await AddressInput._isEthChecksumAddress(address);
+        }
+    }
+
+    // @see https://ethereum.stackexchange.com/questions/1374/how-can-i-check-if-an-ethereum-address-is-valid
+    // & https://github.com/ethereum/go-ethereum/blob/aa9fff3e68b1def0a9a22009c233150bf9ba481f/jsre/ethereum_js.go#L2288
+    private static async _isEthChecksumAddress(address: string) {
+        // External dependency which can be shared with the consuming app and which is lazy loaded only when needed.
+        const { default: sha3 } = await import('crypto-js/sha3');
+
+        // Check each case
+        address = address.replace('0x', '');
+        const addressHash = sha3(address.toLowerCase());
+        for (let i = 0; i < 40; i++ ) {
+            // the nth letter should be uppercase if the nth digit of casemap is 1
+            if ((parseInt(addressHash[i], 16) > 7 && address[i].toUpperCase() !== address[i])
+                || (parseInt(addressHash[i], 16) <= 7 && address[i].toLowerCase() !== address[i])) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     // value that can be bound to via v-model
     @Prop({
         type: String,
@@ -342,9 +376,7 @@ export default class AddressInput extends Vue {
                 this.currentValue.length === AddressInput.NIM_ADDRESS_MAX_LENGTH && !isValid,
             );
         } else if (AddressInput._willBeEthAddress(value, this.parserFlags)) {
-            // External dependency which can be shared with the consuming app and which is lazy loaded only when needed.
-            const ethersjs = await import('ethers');
-            const isValid = ethersjs.utils.isAddress(AddressInput._stripWhitespace(this.currentValue));
+            const isValid = await AddressInput._isEthAddress(AddressInput._stripWhitespace(this.currentValue));
             if (isValid) this.$emit('address', this.currentValue);
 
             // if user entered a full address that is not valid give him a visual feedback
