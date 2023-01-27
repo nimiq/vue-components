@@ -61,6 +61,12 @@ interface ParserFlags {
 
 @Component
 export default class AddressInput extends Vue {
+    private static readonly _ADDRESS_REPLACED_CHARS = {
+        O: '0',
+        I: '1',
+        Z: '2',
+    };
+
     private static readonly NIM_ADDRESS_MAX_LENGTH = /* 9 blocks */ 9 * /* 4 chars each */ 4 + /* spaces between */ 8;
     private static readonly _NIMIQ_ADDRESS_REGEX = new RegExp('^(?:'
         + 'NQ?' // NQ at the beginning
@@ -69,11 +75,6 @@ export default class AddressInput extends Vue {
         // missing in Nimiq's base32 address alphabet.
         + `|NQ\\d{2}[0-9A-HJ-NP-VXY]{1,${AddressInput.NIM_ADDRESS_MAX_LENGTH - 4 - /* spaces */ 8}}`
         + ')$', 'i');
-    private static readonly _NIMIQ_ADDRESS_REPLACED_CHARS = {
-        O: '0',
-        I: '1',
-        Z: '2',
-    };
 
     private static readonly ETH_ADDRESS_MAX_LENGTH = /* "0x" */ 2 + /* ETH addresses are 20 bytes, hex encoded */ 40;
     private static readonly _ETH_ADDRESS_REGEX = new RegExp('^(?:'
@@ -94,14 +95,18 @@ export default class AddressInput extends Vue {
     private static _parse(char: string, value: string, parserFlags: ParserFlags) {
         if (AddressInput._WHITESPACE_REGEX.test(char)) return; // skip whitespace as it will be added during formatting
 
-        const nimiqAddressChar = AddressInput._NIMIQ_ADDRESS_REPLACED_CHARS[char.toUpperCase()] || char;
-        if (AddressInput._willBeNimAddress(value + nimiqAddressChar, parserFlags)) {
+        const addressChar = /* enable char replacement once address prefix NQ or 0x have been typed */ value.length >= 2
+            ? AddressInput._ADDRESS_REPLACED_CHARS[char.toUpperCase()] || char
+            : char;
+        if (AddressInput._willBeNimAddress(value + addressChar, parserFlags)) {
             // We return the original character without transforming it to uppercase to improve compatibility with some
             // browsers that struggle with undo/redo of manipulated input. The actual transformation to uppercase is
             // then done via CSS and when the value is exported.
-            return nimiqAddressChar;
-        } else if (AddressInput._willBeEthAddress(value + char, parserFlags)
-            || AddressInput._willBeDomain(value + char, parserFlags)) {
+            return addressChar;
+        } else if (AddressInput._willBeEthAddress(value + addressChar, parserFlags)) {
+            if (value === '0' && addressChar === 'X') return 'x'; // Convert 0X prefix to more common 0x.
+            return addressChar;
+        } else if (AddressInput._willBeDomain(value + char, parserFlags)) {
             return char;
         }
         // else reject / skip character
