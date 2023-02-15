@@ -409,6 +409,7 @@ export default class AddressInput extends Vue {
         --block-gap-v: 0.75rem;
         --block-gap-h: 1rem;
 
+        contain: size layout paint style;
         width: calc(3 * var(--block-width) + 3 * var(--block-gap-h));
         height: calc(3 * var(--block-height) + 3.5 * var(--block-gap-v));
         position: relative;
@@ -451,6 +452,7 @@ export default class AddressInput extends Vue {
     textarea {
         --line-height: calc(var(--block-height) + var(--block-gap-v));
 
+        contain: size layout paint style;
         position: absolute;
         width: 100%;
         height: calc(3 * var(--line-height));
@@ -509,6 +511,7 @@ export default class AddressInput extends Vue {
         }
 
         .color-overlay {
+            contain: size layout paint style;
             position: absolute;
             width: calc(var(--block-width) - .5rem);
             height: calc(var(--block-height) - .5rem);
@@ -549,6 +552,7 @@ export default class AddressInput extends Vue {
     }
 
     .grid {
+        contain: size layout paint style;
         position: absolute;
         top: calc(var(--font-size) / 24 * 8 + var(--block-gap-v) / 2);
         left: calc(var(--font-size) / 24 * 5 + var(--block-gap-h) / 2);
