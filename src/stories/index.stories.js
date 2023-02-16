@@ -23,6 +23,7 @@ import CopyableField from '../components/CopyableField.vue';
 import FiatAmount from '../components/FiatAmount.vue';
 import Identicon from '../components/Identicon.vue';
 import LabelInput from '../components/LabelInput.vue';
+import LongPressButton from '../components/LongPressButton.vue';
 import Wallet from '../components/Wallet.vue';
 import PaymentInfoLine from '../components/PaymentInfoLine.vue';
 import QrCode from '../components/QrCode.vue';
@@ -178,6 +179,37 @@ storiesOf('Basic', module)
         return {
             components: {LoadingSpinner},
             template: `<div style="color: #0582CA"><LoadingSpinner /></div>`,
+        };
+    })
+    .add('LongPressButton', () => {
+        const color = text('color', 'light-blue');
+        const duration = number('duration', 3000);
+        return {
+            components: { LongPressButton, LoadingSpinner, HexagonIcon: Icons.HexagonIcon },
+            methods: { longPressed: action('longPressed') },
+            data: () => ({ color, duration }),
+            template: `
+                <div>
+                    <LongPressButton :color="color" :duration="duration"
+                        @${LongPressButton.Events.LONG_PRESS}="longPressed">
+                        Hold me tight.
+                    </LongPressButton>
+                    <LongPressButton :color="color" :duration="duration"
+                        @${LongPressButton.Events.LONG_PRESS}="longPressed">
+                        Sometimes it just clicks...
+                        <template #subline>but in this case it doesn't.</template>
+                    </LongPressButton>
+                    <LongPressButton :color="color" :duration="duration"
+                        style="--label-height: 4rem"
+                        @${LongPressButton.Events.LONG_PRESS}="longPressed">
+                        You can also go fancy
+                        <HexagonIcon style="width: 4rem; height: 4rem; vertical-align: middle"/>
+                        <LoadingSpinner style="width: 4rem; height: 4rem; vertical-align: middle"/>
+                        with arbitrary content
+                        <template #subline>(Yay 🎉)</template>
+                    </LongPressButton>
+                </div>
+            `,
         };
     })
     .add('CircleSpinner', () => {

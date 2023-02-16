@@ -95,6 +95,10 @@ msgstr "时"
 msgid "Insufficient balance"
 msgstr "余额不足"
 
+#: src/components/LongPressButton.vue:20
+msgid "Keep pressing…"
+msgstr ""
+
 #: src/components/AccountSelector.vue:193
 msgid "Legacy"
 msgstr "传统"
