@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[80],{1366:function(o){o.exports={"{type} accounts cannot be used for this operation.":"{type}个帐户不适用于此操作",Legacy:"传统","Login to another account":"登录另一个帐户"}}}]);
-//# sourceMappingURL=lang-zh-AccountSelector-json.85e5e087458d7658ad01.bundle.js.map

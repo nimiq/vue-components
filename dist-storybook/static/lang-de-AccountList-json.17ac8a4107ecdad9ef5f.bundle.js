@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[2],{1302:function(e){e.exports={"Contracts cannot be used for this operation.":"Smart-Contracts können für diese Aktion nicht verwendet werden.","This address cannot be used for this operation.":"Diese Adresse kann für diese Aktion nicht verwendet werden."}}}]);
+//# sourceMappingURL=lang-de-AccountList-json.17ac8a4107ecdad9ef5f.bundle.js.map
