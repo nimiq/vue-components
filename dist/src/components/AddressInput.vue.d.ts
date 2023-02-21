@@ -1,8 +1,8 @@
 import { Vue } from 'vue-property-decorator';
 export default class AddressInput extends Vue {
+    private static readonly _ADDRESS_REPLACED_CHARS;
     private static readonly NIM_ADDRESS_MAX_LENGTH;
     private static readonly _NIMIQ_ADDRESS_REGEX;
-    private static readonly _NIMIQ_ADDRESS_REPLACED_CHARS;
     private static readonly ETH_ADDRESS_MAX_LENGTH;
     private static readonly _ETH_ADDRESS_REGEX;
     private static readonly _DOMAIN_REGEX;
@@ -15,7 +15,6 @@ export default class AddressInput extends Vue {
     private static _willBeEthAddress;
     private static _willBeDomain;
     private static _isEthAddress;
-    private static _isEthChecksumAddress;
     value: string;
     autofocus?: boolean;
     allowNimAddresses: boolean;

@@ -1,1 +1,1 @@
-(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[80],{9823:function(e){e.exports=JSON.parse('{"fee":"费用","Insufficient balance":"余额不足"}')}}]);
+(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[87],{9823:function(e){e.exports=JSON.parse('{"fee":"费用","Insufficient balance":"余额不足"}')}}]);

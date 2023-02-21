@@ -36,12 +36,12 @@ if (process.argv.includes('build')) {
       'vue': 'vue',
       'vue-class-component': 'vue-class-component',
       'vue-property-decorator': 'vue-property-decorator',
-      // Mark the lazy loaded qr scanner worker and crypto-js/sha3 as external to avoid Webpack building separate chunks for
+      // Mark the lazy loaded qr scanner worker and js-sha3 as external to avoid Webpack building separate chunks for
       // them, which would need to be copied over to the consuming app manually during the app build step. Instead, we
       // change them to be dynamic imports which will then be handled during the app's build process (as opposed to
       // during the vue-components's build) and result in separate chunks only at that step. Because they are dynamic
-      // imports and webpack 4 doesn't really support external imports as async imports (see documentation
-      // at https://v4.webpack.js.org/configuration/externals/), we do this in a hacky way to play well with webpack's
+      // imports and webpack 4 doesn't really support external imports as async imports (see documentation at
+      // https://v4.webpack.js.org/configuration/externals/), we do this in a hacky way to play well with webpack's
       // import handler __webpack_require__.t by marking the import promise as __esModule.
       // These externals get written to the generated chunk as specified here, e.g. `module.exports = Object.assign(
       // import('qr-scanner/qr-scanner-worker.min.js'), { __esModule: true });` Have a look at the generated
@@ -49,7 +49,7 @@ if (process.argv.includes('build')) {
       // Once the vue-components switch over to webpack 5, this can probably be refactored.
       './qr-scanner-worker.min.js': 'root Object.assign('
           + 'import(\'qr-scanner/qr-scanner-worker.min.js\'), { __esModule: true });',
-      'crypto-js/sha3': 'root Object.assign(import(\'crypto-js/sha3\'), { __esModule: true });',
+      'js-sha3': 'root Object.assign(import(\'js-sha3\'), { __esModule: true });',
     },
     // // Unfortunately, the language file chunks can not be externalized like the qr scanner worker because the imports
     // // are determined dynamically during runtime. The handler below successfully prevents webpack from generating

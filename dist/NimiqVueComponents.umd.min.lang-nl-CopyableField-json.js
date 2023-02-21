@@ -1,1 +1,1 @@
-(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[38],{"922b":function(e){e.exports=JSON.parse('{"Copied":"Gekopieerd"}')}}]);
+(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[41],{"922b":function(e){e.exports=JSON.parse('{"Copied":"Gekopieerd"}')}}]);

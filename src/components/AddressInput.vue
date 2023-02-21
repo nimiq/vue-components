@@ -61,6 +61,12 @@ interface ParserFlags {
 
 @Component
 export default class AddressInput extends Vue {
+    private static readonly _ADDRESS_REPLACED_CHARS = {
+        O: '0',
+        I: '1',
+        Z: '2',
+    };
+
     private static readonly NIM_ADDRESS_MAX_LENGTH = /* 9 blocks */ 9 * /* 4 chars each */ 4 + /* spaces between */ 8;
     private static readonly _NIMIQ_ADDRESS_REGEX = new RegExp('^(?:'
         + 'NQ?' // NQ at the beginning
@@ -69,11 +75,6 @@ export default class AddressInput extends Vue {
         // missing in Nimiq's base32 address alphabet.
         + `|NQ\\d{2}[0-9A-HJ-NP-VXY]{1,${AddressInput.NIM_ADDRESS_MAX_LENGTH - 4 - /* spaces */ 8}}`
         + ')$', 'i');
-    private static readonly _NIMIQ_ADDRESS_REPLACED_CHARS = {
-        O: '0',
-        I: '1',
-        Z: '2',
-    };
 
     private static readonly ETH_ADDRESS_MAX_LENGTH = /* "0x" */ 2 + /* ETH addresses are 20 bytes, hex encoded */ 40;
     private static readonly _ETH_ADDRESS_REGEX = new RegExp('^(?:'
@@ -94,14 +95,18 @@ export default class AddressInput extends Vue {
     private static _parse(char: string, value: string, parserFlags: ParserFlags) {
         if (AddressInput._WHITESPACE_REGEX.test(char)) return; // skip whitespace as it will be added during formatting
 
-        const nimiqAddressChar = AddressInput._NIMIQ_ADDRESS_REPLACED_CHARS[char.toUpperCase()] || char;
-        if (AddressInput._willBeNimAddress(value + nimiqAddressChar, parserFlags)) {
+        const addressChar = /* enable char replacement once address prefix NQ or 0x have been typed */ value.length >= 2
+            ? AddressInput._ADDRESS_REPLACED_CHARS[char.toUpperCase()] || char
+            : char;
+        if (AddressInput._willBeNimAddress(value + addressChar, parserFlags)) {
             // We return the original character without transforming it to uppercase to improve compatibility with some
             // browsers that struggle with undo/redo of manipulated input. The actual transformation to uppercase is
             // then done via CSS and when the value is exported.
-            return nimiqAddressChar;
-        } else if (AddressInput._willBeEthAddress(value + char, parserFlags)
-            || AddressInput._willBeDomain(value + char, parserFlags)) {
+            return addressChar;
+        } else if (AddressInput._willBeEthAddress(value + addressChar, parserFlags)) {
+            if (value === '0' && addressChar === 'X') return 'x'; // Convert 0X prefix to more common 0x.
+            return addressChar;
+        } else if (AddressInput._willBeDomain(value + char, parserFlags)) {
             return char;
         }
         // else reject / skip character
@@ -174,38 +179,30 @@ export default class AddressInput extends Vue {
             && !AddressInput._willBeEthAddress(value, parserFlags);
     }
 
-    // @see https://ethereum.stackexchange.com/questions/1374/how-can-i-check-if-an-ethereum-address-is-valid
-    // & https://github.com/ethereum/go-ethereum/blob/aa9fff3e68b1def0a9a22009c233150bf9ba481f/jsre/ethereum_js.go#L2288
+    // Simplified from @ethersproject/address, which we don't use directly to avoid its unnecessary dependencies.
     private static async _isEthAddress(address: string) {
-        if (!/^(0x)?[0-9a-f]{40}$/i.test(address)) {
-            // check if it has the basic requirements of an address
+        if (!/^0x[0-9a-f]{40}$/i.test(address)) {
+            // Check if it has the basic requirements of an address.
             return false;
-        } else if (/^(0x)?[0-9a-f]{40}$/.test(address) || /^(0x)?[0-9A-F]{40}$/.test(address)) {
-            // If it's all small caps or all all caps, return true
+        } else if (!/[a-f]/.test(address) || !/[A-F]/.test(address)) {
+            // If it's all uppercase or all lowercase (ignoring the x of 0x) there is no encoded checksum to check.
             return true;
         } else {
-            // Otherwise check each case
-            return await AddressInput._isEthChecksumAddress(address);
-        }
-    }
+            // Check checksum encoded in uppercase and lowercase characters.
+            const addressHex = address.replace(/0x/gi, '');
+            const addressHexCharCodes = addressHex.toLowerCase().split('').map((char) => char.charCodeAt(0));
+            // External dependency which can be shared with the consuming app and which is lazy loaded only when needed.
+            const { keccak_256 } = await import('js-sha3');
+            const hashHex = keccak_256(addressHexCharCodes);
 
-    // @see https://ethereum.stackexchange.com/questions/1374/how-can-i-check-if-an-ethereum-address-is-valid
-    // & https://github.com/ethereum/go-ethereum/blob/aa9fff3e68b1def0a9a22009c233150bf9ba481f/jsre/ethereum_js.go#L2288
-    private static async _isEthChecksumAddress(address: string) {
-        // External dependency which can be shared with the consuming app and which is lazy loaded only when needed.
-        const { default: sha3 } = await import('crypto-js/sha3');
-
-        // Check each case
-        address = address.replace('0x', '');
-        const addressHash = sha3(address.toLowerCase());
-        for (let i = 0; i < 40; i++ ) {
-            // the nth letter should be uppercase if the nth digit of casemap is 1
-            if ((parseInt(addressHash[i], 16) > 7 && address[i].toUpperCase() !== address[i])
-                || (parseInt(addressHash[i], 16) <= 7 && address[i].toLowerCase() !== address[i])) {
-                return false;
+            for (let i = 0; i < 40; i++) {
+                // Address hex char at position i should be uppercase if the decimal value of hash hex char at position
+                // i is >= 8, and lowercase otherwise.
+                if ((parseInt(hashHex[i], 16) >= 8 ? addressHex[i].toUpperCase() : addressHex[i].toLowerCase())
+                    !== addressHex[i]) return false;
             }
+            return true;
         }
-        return true;
     }
 
     // value that can be bound to via v-model
@@ -376,13 +373,14 @@ export default class AddressInput extends Vue {
                 this.currentValue.length === AddressInput.NIM_ADDRESS_MAX_LENGTH && !isValid,
             );
         } else if (AddressInput._willBeEthAddress(value, this.parserFlags)) {
-            const isValid = await AddressInput._isEthAddress(AddressInput._stripWhitespace(this.currentValue));
-            if (isValid) this.$emit('address', this.currentValue);
+            const checkedValue = this.currentValue; // make copy because currentValue might change during async request
+            const isValid = await AddressInput._isEthAddress(AddressInput._stripWhitespace(checkedValue));
+            if (isValid) this.$emit('address', checkedValue);
 
             // if user entered a full address that is not valid give him a visual feedback
             this.$el.classList.toggle(
                 'invalid',
-                this.currentValue.length === AddressInput.ETH_ADDRESS_MAX_LENGTH && !isValid,
+                checkedValue.length === AddressInput.ETH_ADDRESS_MAX_LENGTH && !isValid,
             );
         }
     }
@@ -411,6 +409,7 @@ export default class AddressInput extends Vue {
         --block-gap-v: 0.75rem;
         --block-gap-h: 1rem;
 
+        contain: size layout paint style;
         width: calc(3 * var(--block-width) + 3 * var(--block-gap-h));
         height: calc(3 * var(--block-height) + 3.5 * var(--block-gap-v));
         position: relative;
@@ -453,6 +452,7 @@ export default class AddressInput extends Vue {
     textarea {
         --line-height: calc(var(--block-height) + var(--block-gap-v));
 
+        contain: size layout paint style;
         position: absolute;
         width: 100%;
         height: calc(3 * var(--line-height));
@@ -511,6 +511,7 @@ export default class AddressInput extends Vue {
         }
 
         .color-overlay {
+            contain: size layout paint style;
             position: absolute;
             width: calc(var(--block-width) - .5rem);
             height: calc(var(--block-height) - .5rem);
@@ -551,6 +552,7 @@ export default class AddressInput extends Vue {
     }
 
     .grid {
+        contain: size layout paint style;
         position: absolute;
         top: calc(var(--font-size) / 24 * 8 + var(--block-gap-v) / 2);
         left: calc(var(--font-size) / 24 * 5 + var(--block-gap-h) / 2);

@@ -95,6 +95,10 @@ msgstr "годин"
 msgid "Insufficient balance"
 msgstr "Недостатній баланс"
 
+#: src/components/LongPressButton.vue:20
+msgid "Keep pressing…"
+msgstr ""
+
 #: src/components/AccountSelector.vue:193
 msgid "Legacy"
 msgstr "Старий формат"
