@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[63],{1364:function(o){o.exports={"{type} accounts cannot be used for this operation.":"Аккаунты данного типа {type} не могут быть использованы для этой операции.",Legacy:'"старый"',"Login to another account":"Вход в другой аккаунт"}}}]);
+//# sourceMappingURL=lang-ru-AccountSelector-json.712f80a6b329195fa3f7.bundle.js.map

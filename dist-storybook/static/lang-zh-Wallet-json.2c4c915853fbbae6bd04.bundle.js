@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[97],{1397:function(e){e.exports={"Change Password":"更改密码","Create Backup":"创建备份",Logout:"登出",Rename:"重新命名","Save Login File":"储存登录文件"}}}]);
-//# sourceMappingURL=lang-zh-Wallet-json.2c4c915853fbbae6bd04.bundle.js.map
