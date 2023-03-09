@@ -692,13 +692,16 @@ storiesOf('Components', module)
     })
     .add('Copyable', () => ({
         components: { Copyable },
+        methods: {
+            copy: action('copy'),
+        },
         template: `
             <div>
-                <Copyable ref="copyable" style="margin-top: 7rem;">I'm a text you can copy.</Copyable>
-                <Copyable>
+                <Copyable ref="copyable" style="margin-top: 7rem;" @copy="copy">I'm a text you can copy.</Copyable>
+                <Copyable @copy="copy">
                     I'm a copyable text<br>with <b>child nodes</b>.
                 </Copyable>
-                <Copyable text="Surprise!!!">When you click me you get a surprise!</Copyable>
+                <Copyable text="Surprise!!!" @copy="copy">When you click me you get a surprise!</Copyable>
                 <button class="nq-button" style="margin-top: 7rem; margin-left: 1rem" @click="$refs.copyable.copy()">
                     Click me to trigger a copy via code
                 </button>
