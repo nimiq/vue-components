@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[8],{1318:function(n){n.exports={"Keep pressing…":"Halten…"}}}]);
+//# sourceMappingURL=lang-de-LongPressButton-json.caddb9407caa9d0248f7.bundle.js.map

@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[12],{1313:function(e){e.exports={day:"Tag",days:"Tage",hour:"Stunde",hours:"Stunden",minute:"Minute",minutes:"Minuten",second:"Sekunde",seconds:"Sekunden","This offer expires in {timer}.":"Dieses Angebot endet in {timer}."}}}]);
-//# sourceMappingURL=lang-de-Timer-json.7b940c508b634daa42c0.bundle.js.map

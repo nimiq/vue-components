@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[4],{1305:function(n){n.exports={fee:"Gebühr","Insufficient balance":"Dein Guthaben reicht nicht aus."}}}]);
-//# sourceMappingURL=lang-de-AmountWithFee-json.298e562b0a2917a1f7ff.bundle.js.map

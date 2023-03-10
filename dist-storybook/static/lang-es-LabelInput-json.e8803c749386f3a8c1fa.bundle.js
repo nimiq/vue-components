@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[19],{1320:function(e){e.exports={"Name your address":"De nombre a su dirección"}}}]);
-//# sourceMappingURL=lang-es-LabelInput-json.e8803c749386f3a8c1fa.bundle.js.map
