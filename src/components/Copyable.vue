@@ -82,6 +82,7 @@ export default Copyable;
         position: relative;
         padding: 1.5rem;
         cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
         transition: color .3s var(--nimiq-ease);
     }
 
