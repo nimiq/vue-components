@@ -242,10 +242,12 @@ class Tooltip extends Vue {
         // already called as a scroll event listener or manually in update after a reflow.
         // tslint:disable-next-line:prefer-const
         let [preferredVerticalPosition, preferredHorizontalPosition] = this.preferredPosition.split(' ');
-        preferredHorizontalPosition = preferredHorizontalPosition || Tooltip.HorizontalPosition.RIGHT;
+        preferredHorizontalPosition = preferredHorizontalPosition;
         this.left = preferredHorizontalPosition === Tooltip.HorizontalPosition.RIGHT
             ? Math.round(this.$refs.tooltipTrigger.offsetWidth / 2 - 25) // offset by 25px according to designs
-            : Math.round(this.$refs.tooltipTrigger.offsetWidth / 2 - this.width + 25);
+            : preferredHorizontalPosition === Tooltip.HorizontalPosition.LEFT
+                ? Math.round(this.$refs.tooltipTrigger.offsetWidth / 2 - this.width + 25)
+                : Math.round(this.$refs.tooltipTrigger.offsetWidth / 2 - this.width / 2);
 
         const container = this.effectiveContainer;
         if (container) {
