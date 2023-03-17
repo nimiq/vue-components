@@ -256,6 +256,7 @@ storiesOf('Basic', module)
         const theme = select('theme', Object.values(Tooltip.Themes), Tooltip.Themes.NORMAL);
         const styles = object('styles (json)', {});
         const fontSize = number('External font size (rem)', 3);
+        const background = text('background');
         return {
             data() {
                 return {
@@ -269,6 +270,7 @@ storiesOf('Basic', module)
                     fontSize,
                     refsLoaded: false,
                     shown: false,
+                    background,
                 };
             },
             computed: {
@@ -286,7 +288,7 @@ storiesOf('Basic', module)
                             <PageHeader>Test</PageHeader>
                             <PageBody ref="container" style="overflow-y: scroll; background: rgba(127,127,127,.1)">
                                 <div style="height:320px"></div>
-                                <div style="max-width: 100%; display: flex; align-items: center;">
+                                <div style="max-width: 100%; display: flex; align-items: center;padding-right: 1000px;">
                                     <button class="nq-button-s" :class="[theme]" @click="$refs.tooltip.show()">
                                         Show
                                     </button>
@@ -303,6 +305,7 @@ storiesOf('Basic', module)
                                         :disabled="disabled"
                                         :theme="theme"
                                         :styles="styles"
+                                        :background="background"
                                         :style="{ fontSize: fontSize + 'rem' }"
                                         @show="shown = true"
                                         @hide="shown = false">

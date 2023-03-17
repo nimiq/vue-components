@@ -1,10 +1,10 @@
 <template>
     <span class="tooltip"
-        :class="[verticalPosition, {
+        :class="[primaryPosition, {
             shown: isShown,
-            'transition-position': transitionPosition,
             'inverse-theme': theme === constructor.Themes.INVERSE,
         }]"
+        :style="background && `--background: ${background}`"
         @mouseenter="mouseOver(true)"
         @mouseleave="mouseOver(false)"
     >
@@ -47,17 +47,29 @@ class Tooltip extends Vue {
     @Prop(Boolean) public noFocus?: boolean;
 
     /**
-     * Preferred tooltip position as "[vertical] [horizontal]" or "[vertical]".
+     * Preferred tooltip position as "[primary] [secondary]" or "[primary]".
+     * The primary position can be either vertical or horizontal.
+     * The secondary position, which is optional, should be of the opposite type of the primary position (i.e., horizontal if primary is vertical, and vice versa).
+     * If only a single primary position is provided, the tooltip will be centered in the opposite direction.
      */
     @Prop({
         type: String,
         default: 'top right',
         validator: (value: unknown) => {
             if (typeof value !== 'string') return false;
-            const [vertical, horizontal] = value.split(' ');
-            return Object.values(Tooltip.VerticalPosition).includes(vertical as Tooltip.VerticalPosition)
-                && (!horizontal || Object.values(Tooltip.HorizontalPosition)
-                    .includes(horizontal as Tooltip.HorizontalPosition));
+            const [primaryPosition, secondaryPosition] = value.split(' ');
+
+            const isValidPrimaryVertical = Object.values(Tooltip.VerticalPosition)
+                .includes(primaryPosition as Tooltip.VerticalPosition);
+            const isValidPrimaryHorizontal = Object.values(Tooltip.HorizontalPosition)
+                .includes(primaryPosition as Tooltip.HorizontalPosition);
+
+            const isValidSecondaryHorizontal = !secondaryPosition || Object.values(Tooltip.HorizontalPosition)
+                .includes(secondaryPosition as Tooltip.HorizontalPosition);
+            const isValidSecondaryVertical = !secondaryPosition || Object.values(Tooltip.VerticalPosition)
+                .includes(secondaryPosition as Tooltip.VerticalPosition);
+
+            return (isValidPrimaryVertical && isValidSecondaryHorizontal) || (isValidPrimaryHorizontal && isValidSecondaryVertical);
         },
     }) public preferredPosition!: string;
 
@@ -89,6 +101,11 @@ class Tooltip extends Vue {
     public theme!: Tooltip.Themes;
 
     /**
+     * Background of the tooltip as a CSS value. Override the theme property.
+     */
+    @Prop(String) public background?: string;
+
+    /**
      * Styles to apply on the tooltip box without the need to use deep css selectors.
      */
     @Prop(Object) public styles?: Partial<CSSStyleDeclaration>;
@@ -106,9 +123,8 @@ class Tooltip extends Vue {
     });
     public $el: HTMLElement;
 
-    private verticalPosition: Tooltip.VerticalPosition | null = null;
+    private primaryPosition: Tooltip.VerticalPosition | Tooltip.HorizontalPosition | null = null;
     private tooltipToggled: boolean = false;
-    private transitionPosition: boolean = false; // do not transition on show but on position updates while shown
     private mousedOver: boolean = false;
     private mouseOverTimeout: number;
     private lastToggle: number = -1;
@@ -117,6 +133,7 @@ class Tooltip extends Vue {
     private width: number = 0;
     private maxWidth: number = 0;
     private left: number = 0;
+    private right: number = 0;
     private top: number = 0;
 
     public get isShown() {
@@ -136,7 +153,8 @@ class Tooltip extends Vue {
         return {
             ...this.styles,
             top: this.top + 'px',
-            left: this.left + 'px',
+            left: this.left ? this.left + 'px' : undefined,
+            right: this.right ? this.right + 'px' : undefined,
             width: this.effectiveContainer && this.autoWidth ? this.width + 'px' : (this.styles || {}).width,
             maxWidth: this.effectiveContainer ? this.maxWidth + 'px' : (this.styles || {}).maxWidth,
         };
@@ -184,7 +202,6 @@ class Tooltip extends Vue {
     public async update(newWatcherValue?: boolean) {
         // updates dimensions and repositions tooltip
         if (!this.isShown) {
-            this.transitionPosition = false; // when shown next time, render immediately at correct position
             if (newWatcherValue === false) {
                 this.lastToggle = Date.now();
                 this.$emit('hide');
@@ -232,66 +249,156 @@ class Tooltip extends Vue {
         // wait for updated position to be effective and rendered, then enable transitions
         await Vue.nextTick();
         await new Promise((resolve) => requestAnimationFrame(resolve));
-        this.transitionPosition = true;
     }
 
     @Watch('preferredPosition')
     private updatePosition() {
-        if (!this.isShown) return;
-        // Note that in his method we do not need to use requestAnimationFrame to avoid reflows, as the method is
-        // already called as a scroll event listener or manually in update after a reflow.
-        // tslint:disable-next-line:prefer-const
-        let [preferredVerticalPosition, preferredHorizontalPosition] = this.preferredPosition.split(' ');
-        preferredHorizontalPosition = preferredHorizontalPosition;
-        this.left = preferredHorizontalPosition === Tooltip.HorizontalPosition.RIGHT
-            ? Math.round(this.$refs.tooltipTrigger.offsetWidth / 2 - 25) // offset by 25px according to designs
-            : preferredHorizontalPosition === Tooltip.HorizontalPosition.LEFT
-                ? Math.round(this.$refs.tooltipTrigger.offsetWidth / 2 - this.width + 25)
-                : Math.round(this.$refs.tooltipTrigger.offsetWidth / 2 - this.width / 2);
+        // If the tooltip is not shown or the tooltipBox reference is missing, exit the function early
+        if (!this.isShown || !('tooltipBox' in this.$refs && this.$refs.tooltipBox)) return;
 
+        // Destructure the preferred position into primary and secondary positions
+        const [preferredPrimaryPosition, preferredSecondaryPosition] = this.preferredPosition.split(' ');
+
+        // Determine if the primary position is vertical or horizontal
+        const isPrimaryVertical = Object.values(Tooltip.VerticalPosition).includes(preferredPrimaryPosition as any);
+        const isPrimaryHorizontal = Object.values(Tooltip.HorizontalPosition).includes(preferredPrimaryPosition as any);
+
+        // Get the container and trigger bounding rectangles for position calculations
         const container = this.effectiveContainer;
-        if (container) {
-            if (!container.$el) {
-                // We don't wait here for the container to get mounted, as we expect it to already be mounted when this
-                // private method is called and to do measurements immediately in the scroll event listener
-                console.warn('Tooltip container does not seem to be mounted yet.');
-                return;
-            }
-            // position tooltip such that it best fits container element
-            const triggerBoundingRect = this.$refs.tooltipTrigger.getBoundingClientRect();
-            const containerBoundingRect = container.$el.getBoundingClientRect();
-            const topMargin = this.getMargin(Tooltip.VerticalPosition.TOP);
-            const bottomMargin = this.getMargin(Tooltip.VerticalPosition.BOTTOM);
-            const spaceNeeded = this.height + 16; // 16 for arrow, assuming same height on mobile for simplicity
-            const fitsTop = triggerBoundingRect.top - containerBoundingRect.top - topMargin >= spaceNeeded;
-            const fitsBottom = containerBoundingRect.bottom - triggerBoundingRect.bottom - bottomMargin >= spaceNeeded;
-            if ((preferredVerticalPosition === Tooltip.VerticalPosition.TOP && (fitsTop || !fitsBottom))
-                || (preferredVerticalPosition === Tooltip.VerticalPosition.BOTTOM) && (fitsTop && !fitsBottom)) {
-                this.verticalPosition = Tooltip.VerticalPosition.TOP;
-            } else {
-                this.verticalPosition = Tooltip.VerticalPosition.BOTTOM;
-            }
+        const triggerBoundingRect = this.$refs.tooltipTrigger.getBoundingClientRect();
+        const containerBoundingRect = container ? container.$el.getBoundingClientRect() : null;
 
-            // constrain horizontal position
-            const leftMargin = this.getMargin(Tooltip.HorizontalPosition.LEFT);
-            const rightMargin = this.getMargin(Tooltip.HorizontalPosition.RIGHT);
-            // left and right bound of container, expressed in trigger's coordinate system
-            const leftBound = containerBoundingRect.left + leftMargin - triggerBoundingRect.left;
-            const rightBound = containerBoundingRect.right - rightMargin - triggerBoundingRect.left;
-            this.left = Math.max(
-                leftBound,
-                Math.min(
-                    rightBound - this.width,
-                    this.left,
-                ),
-            );
+        // Define a clamp function to keep a value within a specified range
+        const clamp = (value: number, min: number, max: number): number => Math.min(Math.max(value, min), max);
+
+        // Define a function to set the horizontal position of the tooltip
+        const setHorizontalPosition = (primary: Tooltip.HorizontalPosition, secondary: Tooltip.VerticalPosition) => {
+            // Set the left, right, and top properties based on the primary and secondary positions
+            this.left = primary === Tooltip.HorizontalPosition.RIGHT ? this.$refs.tooltipTrigger.offsetWidth : null;
+            this.right = primary === Tooltip.HorizontalPosition.LEFT ? this.$refs.tooltipTrigger.offsetWidth : null;
+
+            // Calculate the clamping range for the top property
+            const topClampMin = containerBoundingRect ? clamp(
+                containerBoundingRect.top - triggerBoundingRect.top + this.getMargin(Tooltip.VerticalPosition.TOP),
+                -this.height + 25,
+                this.$refs.tooltipTrigger.offsetHeight - 25,
+            ) : -this.height + 25;
+
+            const topClampMax = containerBoundingRect ? clamp(
+                containerBoundingRect.top - triggerBoundingRect.top + containerBoundingRect.height - this.height
+                    - this.getMargin(Tooltip.VerticalPosition.BOTTOM),
+                -this.height + 25,
+                this.$refs.tooltipTrigger.offsetHeight - 25,
+            ) : this.$refs.tooltipTrigger.offsetHeight - 25;
+
+            // Set the top property based on the secondary position and clamping range
+            this.top = secondary === Tooltip.VerticalPosition.TOP
+                ? topClampMin
+                : (secondary === Tooltip.VerticalPosition.BOTTOM
+                    ? topClampMax
+                    : clamp(
+                        this.$refs.tooltipTrigger.offsetHeight / 2 - this.height / 2,
+                        topClampMin,
+                        topClampMax,
+                    )
+                );
+            // Set the primary position for the tooltip
+            this.primaryPosition = primary;
+        };
+
+        // Define a function to set the vertical position of the tooltip
+        const setVerticalPosition = (primary: Tooltip.VerticalPosition, secondary: Tooltip.HorizontalPosition) => {
+            // Set the top, left, and primary position properties based on the primary and secondary positions
+            this.top = primary === Tooltip.VerticalPosition.BOTTOM
+                ? this.$refs.tooltipTrigger.offsetHeight
+                : -this.height;
+
+            // Calculate the clamping range for the left property
+            const leftClampMin = containerBoundingRect ? clamp(
+                containerBoundingRect.left - triggerBoundingRect.left + this.getMargin(Tooltip.HorizontalPosition.LEFT),
+                this.$refs.tooltipTrigger.offsetWidth / 2 - this.width + 25,
+                this.$refs.tooltipTrigger.offsetWidth / 2 - 25,
+            ) : this.$refs.tooltipTrigger.offsetWidth / 2 - this.width + 25;
+
+            const leftClampMax = containerBoundingRect ? clamp(
+                containerBoundingRect.left - triggerBoundingRect.left + containerBoundingRect.width - this.width
+                    - this.getMargin(Tooltip.HorizontalPosition.RIGHT),
+                this.$refs.tooltipTrigger.offsetWidth / 2 - this.width + 25,
+                this.$refs.tooltipTrigger.offsetWidth / 2 - 25,
+            ) : this.$refs.tooltipTrigger.offsetWidth / 2 - 25;
+
+            // Set the left property based on the secondary position and clamping range
+            this.left = secondary === Tooltip.HorizontalPosition.LEFT
+                ? leftClampMin
+                : (secondary === Tooltip.HorizontalPosition.RIGHT
+                    ? leftClampMax
+                    : clamp(
+                        this.$refs.tooltipTrigger.offsetWidth / 2 - this.width / 2,
+                        leftClampMin,
+                        leftClampMax,
+                    )
+                );
+
+            // Set the primary position for the tooltip
+            this.primaryPosition = primary;
+        };
+
+        // If the container and containerBoundingRect are available, calculate bounds and fitting conditions
+        if (container && containerBoundingRect) {
+            // Calculate the difference between the trigger and container bounding rectangles
+            const rectDiff = (dir: 'left' | 'right' | 'top' | 'bottom') =>
+                triggerBoundingRect[dir] - containerBoundingRect[dir];
+
+            // Calculate the bounds for each direction
+            const leftBound = rectDiff('left') - this.getMargin(Tooltip.HorizontalPosition.LEFT);
+            const rightBound = rectDiff('right') + this.getMargin(Tooltip.HorizontalPosition.RIGHT);
+            const topBound = rectDiff('top') - this.getMargin(Tooltip.VerticalPosition.TOP);
+            const bottomBound = rectDiff('bottom') + this.getMargin(Tooltip.VerticalPosition.BOTTOM);
+
+            // Calculate the needed height and width for the tooltip, including an additional 16px margin
+            const heightNeeded = this.height + 16;
+            const widthNeeded = this.width + 16;
+
+            // Determine if the tooltip fits in each direction
+            const fitsTop = Math.abs(topBound) >= heightNeeded;
+            const fitsBottom = Math.abs(bottomBound) >= heightNeeded;
+            const fitsLeft = Math.abs(leftBound) >= widthNeeded;
+            const fitsRight = Math.abs(rightBound) >= widthNeeded;
+
+            // Set the tooltip position based on primary and secondary preferences
+            if (isPrimaryVertical) {
+                setVerticalPosition(
+                    (!fitsTop && fitsBottom)
+                        ? Tooltip.VerticalPosition.BOTTOM
+                        : (fitsTop && !fitsBottom)
+                            ? Tooltip.VerticalPosition.TOP
+                            : preferredPrimaryPosition as Tooltip.VerticalPosition,
+                    preferredSecondaryPosition as Tooltip.HorizontalPosition,
+                );
+            } else if (isPrimaryHorizontal) {
+                setHorizontalPosition(
+                    (!fitsLeft && fitsRight)
+                        ? Tooltip.HorizontalPosition.RIGHT
+                        : (fitsLeft && !fitsRight)
+                            ? Tooltip.HorizontalPosition.LEFT
+                            : preferredPrimaryPosition as Tooltip.HorizontalPosition,
+                    preferredSecondaryPosition as Tooltip.VerticalPosition,
+                );
+            }
         } else {
-            this.verticalPosition = preferredVerticalPosition as Tooltip.VerticalPosition;
+            // If no container is provided, set the tooltip position based on primary and secondary preferences
+            if (isPrimaryVertical) {
+                setVerticalPosition(
+                    preferredPrimaryPosition as Tooltip.VerticalPosition,
+                    preferredSecondaryPosition as Tooltip.HorizontalPosition,
+                );
+            } else if (isPrimaryHorizontal) {
+                setHorizontalPosition(
+                    preferredPrimaryPosition as Tooltip.HorizontalPosition,
+                    preferredSecondaryPosition as Tooltip.VerticalPosition,
+                );
+            }
         }
-
-        this.top = this.verticalPosition === Tooltip.VerticalPosition.BOTTOM
-            ? this.$refs.tooltipTrigger.offsetHeight
-            : -this.height;
     }
 
     @Watch('effectiveContainer')
@@ -324,12 +431,6 @@ class Tooltip extends Vue {
             ? this.effectiveContainer.$el as HTMLElement
             : null;
         if (!containerEl) return 0;
-        if ((position === Tooltip.VerticalPosition.TOP || position === Tooltip.VerticalPosition.BOTTOM)
-            && containerEl.scrollHeight !== containerEl.offsetHeight) {
-            // If container is scrollable, the padding scrolls with the content. Therefore we consider the whole
-            // offsetHeight as valid area for the tooltip and return a margin of 0.
-            return 0;
-        }
         return parseInt(window.getComputedStyle(containerEl, null).getPropertyValue(`padding-${position}`), 10);
     }
 
@@ -409,24 +510,33 @@ export default Tooltip;
         z-index: 1000; /* move above tooltip-box's box-shadow */
     }
 
-    .transition-position .trigger::after {
-        transition: top .2s var(--nimiq-ease), left .2s var(--nimiq-ease), transform .2s var(--nimiq-ease),
-            opacity .3s var(--nimiq-ease), .3s visibility;
-    }
-
     .top .trigger::after {
         top: -2rem;
-        background: #250636; /* a color of the nimiq-blue-bg gradient in the lower area */
+        background: var(--background, #250636); /* a color of the nimiq-blue-bg gradient in the lower area */
         transform: scaleY(-1);
     }
 
     .bottom .trigger::after {
         top: 100%;
-        background: #201e45; /* a color of the nimiq-blue-bg gradient in the upper area */
+        background: var(--background, #201e45); /* a color of the nimiq-blue-bg gradient in the upper area */
+    }
+
+    .left .trigger::after {
+        top: 50%;
+        left: -2.25rem;
+        transform: translateY(-50%) rotate(90deg);
+        background: var(--background, #250636); /* a color of the nimiq-blue-bg gradient in the lower area */
+    }
+
+    .right .trigger::after {
+        top: 50%;
+        left: 100%;
+        transform: translateY(-50%) rotate(-90deg);
+        background: var(--background, #201e45); /* a color of the nimiq-blue-bg gradient in the upper area */
     }
 
     .inverse-theme .trigger::after {
-        background: white;
+        background: var(--background, white);
     }
 
     .shown .trigger::after {
@@ -437,7 +547,7 @@ export default Tooltip;
     .tooltip-box {
         position: absolute;
         color: white;
-        background: var(--nimiq-blue-bg);
+        background: var(--background, var(--nimiq-blue-bg));
         padding: 1.5rem;
         border-radius: .5rem;
         font-size: 1.75rem;
@@ -453,10 +563,6 @@ export default Tooltip;
         background: white;
     }
 
-    .transition-position .tooltip-box {
-        transition: opacity .3s var(--nimiq-ease), transform .2s var(--nimiq-ease), top .2s var(--nimiq-ease);
-    }
-
     .tooltip-box.transition-fade-enter,
     .tooltip-box.transition-fade-leave-to {
         opacity: 0;
@@ -468,5 +574,13 @@ export default Tooltip;
 
     .bottom .tooltip-box {
         transform: translateY(2rem);
+    }
+
+    .left .tooltip-box {
+        transform: translateX(-2rem);
+    }
+
+    .right .tooltip-box {
+        transform: translateX(2rem);
     }
 </style>
