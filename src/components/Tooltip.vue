@@ -245,10 +245,6 @@ class Tooltip extends Vue {
         this.width = this.$refs.tooltipBox.offsetWidth;
 
         this.updatePosition();
-
-        // wait for updated position to be effective and rendered, then enable transitions
-        await Vue.nextTick();
-        await new Promise((resolve) => requestAnimationFrame(resolve));
     }
 
     @Watch('preferredPosition')
@@ -263,79 +259,103 @@ class Tooltip extends Vue {
         const isPrimaryVertical = Object.values(Tooltip.VerticalPosition).includes(preferredPrimaryPosition as any);
         const isPrimaryHorizontal = Object.values(Tooltip.HorizontalPosition).includes(preferredPrimaryPosition as any);
 
-        // Get the container and trigger bounding rectangles for position calculations
+        // Get the container and trigger bounding rectangles for position calculations.
+        // Note that in his method we do not need to use requestAnimationFrame to avoid reflows, as the method is
+        // already called as a scroll event listener or manually in update after a reflow.
         const container = this.effectiveContainer;
         const triggerBoundingRect = this.$refs.tooltipTrigger.getBoundingClientRect();
-        const containerBoundingRect = container ? container.$el.getBoundingClientRect() : null;
+        const containerBoundingRect = container && container.$el ? container.$el.getBoundingClientRect() : null;
+        const containerMargins = {
+            [Tooltip.VerticalPosition.TOP]: this.getMargin(Tooltip.VerticalPosition.TOP),
+            [Tooltip.HorizontalPosition.RIGHT]: this.getMargin(Tooltip.HorizontalPosition.RIGHT),
+            [Tooltip.VerticalPosition.BOTTOM]: this.getMargin(Tooltip.VerticalPosition.BOTTOM),
+            [Tooltip.HorizontalPosition.LEFT]: this.getMargin(Tooltip.HorizontalPosition.LEFT),
+        };
 
         // Define a clamp function to keep a value within a specified range
         const clamp = (value: number, min: number, max: number): number => Math.min(Math.max(value, min), max);
 
-        // Define a function to set the horizontal position of the tooltip
-        const setHorizontalPosition = (primary: Tooltip.HorizontalPosition, secondary: Tooltip.VerticalPosition) => {
+        // Function for positioning the tooltip if the primary position is a horizontal position.
+        const setPositionForPrimaryHorizontal = (
+            primary: Tooltip.HorizontalPosition,
+            secondary?: Tooltip.VerticalPosition, // can be undefined in which the box is centered vertically
+        ) => {
             // Set the left, right, and top properties based on the primary and secondary positions
-            this.left = primary === Tooltip.HorizontalPosition.RIGHT ? this.$refs.tooltipTrigger.offsetWidth : null;
-            this.right = primary === Tooltip.HorizontalPosition.LEFT ? this.$refs.tooltipTrigger.offsetWidth : null;
+            this.left = primary === Tooltip.HorizontalPosition.RIGHT ? triggerBoundingRect.width : null;
+            this.right = primary === Tooltip.HorizontalPosition.LEFT ? triggerBoundingRect.width : null;
+
+            const topMostTopPosition = -this.height + triggerBoundingRect.height / 2 + 25;
+            const bottomMostTopPosition = triggerBoundingRect.height / 2 - 25;
 
             // Calculate the clamping range for the top property
-            const topClampMin = containerBoundingRect ? clamp(
-                containerBoundingRect.top - triggerBoundingRect.top + this.getMargin(Tooltip.VerticalPosition.TOP),
-                -this.height + 25,
-                this.$refs.tooltipTrigger.offsetHeight - 25,
-            ) : -this.height + 25;
+            const clampedTopMostTopPosition = containerBoundingRect ? clamp(
+                topMostTopPosition,
+                containerBoundingRect.top + containerMargins[Tooltip.VerticalPosition.TOP]
+                    - triggerBoundingRect.top, // expressed in trigger's coordinate system
+                bottomMostTopPosition,
+            ) : topMostTopPosition;
 
-            const topClampMax = containerBoundingRect ? clamp(
-                containerBoundingRect.top - triggerBoundingRect.top + containerBoundingRect.height - this.height
-                    - this.getMargin(Tooltip.VerticalPosition.BOTTOM),
-                -this.height + 25,
-                this.$refs.tooltipTrigger.offsetHeight - 25,
-            ) : this.$refs.tooltipTrigger.offsetHeight - 25;
+            const clampedBottomMostTopPosition = containerBoundingRect ? clamp(
+                bottomMostTopPosition,
+                topMostTopPosition,
+                containerBoundingRect.top + containerBoundingRect.height
+                    - containerMargins[Tooltip.VerticalPosition.BOTTOM]
+                    - this.height
+                    - triggerBoundingRect.top, // expressed in trigger's coordinate system
+            ) : bottomMostTopPosition;
 
             // Set the top property based on the secondary position and clamping range
             this.top = secondary === Tooltip.VerticalPosition.TOP
-                ? topClampMin
+                ? clampedTopMostTopPosition
                 : (secondary === Tooltip.VerticalPosition.BOTTOM
-                    ? topClampMax
+                    ? clampedBottomMostTopPosition
                     : clamp(
-                        this.$refs.tooltipTrigger.offsetHeight / 2 - this.height / 2,
-                        topClampMin,
-                        topClampMax,
+                        triggerBoundingRect.height / 2 - this.height / 2,
+                        clampedTopMostTopPosition,
+                        clampedBottomMostTopPosition,
                     )
                 );
             // Set the primary position for the tooltip
             this.primaryPosition = primary;
         };
 
-        // Define a function to set the vertical position of the tooltip
-        const setVerticalPosition = (primary: Tooltip.VerticalPosition, secondary: Tooltip.HorizontalPosition) => {
+        // Function for positioning the tooltip if the primary position is a vertical position.
+        const setPositionForPrimaryVertical = (
+            primary: Tooltip.VerticalPosition,
+            secondary?: Tooltip.HorizontalPosition, // can be undefined in which the box is centered horizontally
+        ) => {
             // Set the top, left, and primary position properties based on the primary and secondary positions
-            this.top = primary === Tooltip.VerticalPosition.BOTTOM
-                ? this.$refs.tooltipTrigger.offsetHeight
-                : -this.height;
+            this.top = primary === Tooltip.VerticalPosition.BOTTOM ? triggerBoundingRect.height : -this.height;
+
+            const leftMostLeftPosition = triggerBoundingRect.width / 2 - this.width + 25;
+            const rightMostLeftPosition = triggerBoundingRect.width / 2 - 25;
 
             // Calculate the clamping range for the left property
-            const leftClampMin = containerBoundingRect ? clamp(
-                containerBoundingRect.left - triggerBoundingRect.left + this.getMargin(Tooltip.HorizontalPosition.LEFT),
-                this.$refs.tooltipTrigger.offsetWidth / 2 - this.width + 25,
-                this.$refs.tooltipTrigger.offsetWidth / 2 - 25,
-            ) : this.$refs.tooltipTrigger.offsetWidth / 2 - this.width + 25;
+            const clampedLeftMostLeftPosition = containerBoundingRect ? clamp(
+                leftMostLeftPosition,
+                containerBoundingRect.left + containerMargins[Tooltip.HorizontalPosition.LEFT]
+                    - triggerBoundingRect.left, // expressed in trigger's coordinate system
+                rightMostLeftPosition,
+            ) : leftMostLeftPosition;
 
-            const leftClampMax = containerBoundingRect ? clamp(
-                containerBoundingRect.left - triggerBoundingRect.left + containerBoundingRect.width - this.width
-                    - this.getMargin(Tooltip.HorizontalPosition.RIGHT),
-                this.$refs.tooltipTrigger.offsetWidth / 2 - this.width + 25,
-                this.$refs.tooltipTrigger.offsetWidth / 2 - 25,
-            ) : this.$refs.tooltipTrigger.offsetWidth / 2 - 25;
+            const clampedRightMostLeftPosition = containerBoundingRect ? clamp(
+                rightMostLeftPosition,
+                leftMostLeftPosition,
+                containerBoundingRect.left + containerBoundingRect.width
+                    - containerMargins[Tooltip.HorizontalPosition.RIGHT]
+                    - this.width
+                    - triggerBoundingRect.left, // expressed in trigger's coordinate system
+            ) : rightMostLeftPosition;
 
             // Set the left property based on the secondary position and clamping range
             this.left = secondary === Tooltip.HorizontalPosition.LEFT
-                ? leftClampMin
+                ? clampedLeftMostLeftPosition
                 : (secondary === Tooltip.HorizontalPosition.RIGHT
-                    ? leftClampMax
+                    ? clampedRightMostLeftPosition
                     : clamp(
-                        this.$refs.tooltipTrigger.offsetWidth / 2 - this.width / 2,
-                        leftClampMin,
-                        leftClampMax,
+                        triggerBoundingRect.width / 2 - this.width / 2,
+                        clampedLeftMostLeftPosition,
+                        clampedRightMostLeftPosition,
                     )
                 );
 
@@ -346,56 +366,47 @@ class Tooltip extends Vue {
         // If the container and containerBoundingRect are available, calculate bounds and fitting conditions
         if (container && containerBoundingRect) {
             // Calculate the difference between the trigger and container bounding rectangles
-            const rectDiff = (dir: 'left' | 'right' | 'top' | 'bottom') =>
-                triggerBoundingRect[dir] - containerBoundingRect[dir];
-
-            // Calculate the bounds for each direction
-            const leftBound = rectDiff('left') - this.getMargin(Tooltip.HorizontalPosition.LEFT);
-            const rightBound = rectDiff('right') + this.getMargin(Tooltip.HorizontalPosition.RIGHT);
-            const topBound = rectDiff('top') - this.getMargin(Tooltip.VerticalPosition.TOP);
-            const bottomBound = rectDiff('bottom') + this.getMargin(Tooltip.VerticalPosition.BOTTOM);
-
-            // Calculate the needed height and width for the tooltip, including an additional 16px margin
-            const heightNeeded = this.height + 16;
-            const widthNeeded = this.width + 16;
-
-            // Determine if the tooltip fits in each direction
-            const fitsTop = Math.abs(topBound) >= heightNeeded;
-            const fitsBottom = Math.abs(bottomBound) >= heightNeeded;
-            const fitsLeft = Math.abs(leftBound) >= widthNeeded;
-            const fitsRight = Math.abs(rightBound) >= widthNeeded;
+            const calculateAvailableSpace = (dir: 'left' | 'right' | 'top' | 'bottom') =>
+                Math.abs(triggerBoundingRect[dir] - containerBoundingRect[dir]
+                    + (dir === 'left' || dir === 'top' ? -1 : 1) * containerMargins[dir]);
 
             // Set the tooltip position based on primary and secondary preferences
             if (isPrimaryVertical) {
-                setVerticalPosition(
+                const heightNeeded = this.height + /* for the arrow */ 16;
+                const fitsTop = calculateAvailableSpace(Tooltip.VerticalPosition.TOP) >= heightNeeded;
+                const fitsBottom = calculateAvailableSpace(Tooltip.VerticalPosition.BOTTOM) >= heightNeeded;
+                setPositionForPrimaryVertical(
                     (!fitsTop && fitsBottom)
                         ? Tooltip.VerticalPosition.BOTTOM
                         : (fitsTop && !fitsBottom)
                             ? Tooltip.VerticalPosition.TOP
                             : preferredPrimaryPosition as Tooltip.VerticalPosition,
-                    preferredSecondaryPosition as Tooltip.HorizontalPosition,
+                    preferredSecondaryPosition as Tooltip.HorizontalPosition | undefined,
                 );
             } else if (isPrimaryHorizontal) {
-                setHorizontalPosition(
+                const widthNeeded = this.width + /* for the arrow */ 16;
+                const fitsLeft = calculateAvailableSpace(Tooltip.HorizontalPosition.LEFT) >= widthNeeded;
+                const fitsRight = calculateAvailableSpace(Tooltip.HorizontalPosition.RIGHT) >= widthNeeded;
+                setPositionForPrimaryHorizontal(
                     (!fitsLeft && fitsRight)
                         ? Tooltip.HorizontalPosition.RIGHT
                         : (fitsLeft && !fitsRight)
                             ? Tooltip.HorizontalPosition.LEFT
                             : preferredPrimaryPosition as Tooltip.HorizontalPosition,
-                    preferredSecondaryPosition as Tooltip.VerticalPosition,
+                    preferredSecondaryPosition as Tooltip.VerticalPosition | undefined,
                 );
             }
         } else {
             // If no container is provided, set the tooltip position based on primary and secondary preferences
             if (isPrimaryVertical) {
-                setVerticalPosition(
+                setPositionForPrimaryVertical(
                     preferredPrimaryPosition as Tooltip.VerticalPosition,
-                    preferredSecondaryPosition as Tooltip.HorizontalPosition,
+                    preferredSecondaryPosition as Tooltip.HorizontalPosition | undefined,
                 );
             } else if (isPrimaryHorizontal) {
-                setHorizontalPosition(
+                setPositionForPrimaryHorizontal(
                     preferredPrimaryPosition as Tooltip.HorizontalPosition,
-                    preferredSecondaryPosition as Tooltip.VerticalPosition,
+                    preferredSecondaryPosition as Tooltip.VerticalPosition | undefined,
                 );
             }
         }
@@ -512,27 +523,27 @@ export default Tooltip;
 
     .top .trigger::after {
         top: -2rem;
-        background: var(--background, #250636); /* a color of the nimiq-blue-bg gradient in the lower area */
+        background: var(--background, #22123d); /* a color of the nimiq-blue-bg gradient in the lower area */
         transform: scaleY(-1);
     }
 
     .bottom .trigger::after {
         top: 100%;
-        background: var(--background, #201e45); /* a color of the nimiq-blue-bg gradient in the upper area */
+        background: var(--background, #1f2348); /* a color of the nimiq-blue-bg gradient in the upper area */
     }
 
     .left .trigger::after {
         top: 50%;
         left: -2.25rem;
         transform: translateY(-50%) rotate(90deg);
-        background: var(--background, #250636); /* a color of the nimiq-blue-bg gradient in the lower area */
+        background: var(--background, #22123d); /* a color of the nimiq-blue-bg gradient in the right area */
     }
 
     .right .trigger::after {
         top: 50%;
         left: 100%;
         transform: translateY(-50%) rotate(-90deg);
-        background: var(--background, #201e45); /* a color of the nimiq-blue-bg gradient in the upper area */
+        background: var(--background, #1f2348); /* a color of the nimiq-blue-bg gradient in the left area */
     }
 
     .inverse-theme .trigger::after {
