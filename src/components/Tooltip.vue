@@ -1,6 +1,6 @@
 <template>
     <span class="tooltip"
-        :class="[primaryPosition, {
+        :class="[positionCssClass, {
             shown: isShown,
             'inverse-theme': theme === constructor.Themes.INVERSE,
         }]"
@@ -123,7 +123,6 @@ class Tooltip extends Vue {
     });
     public $el: HTMLElement;
 
-    private primaryPosition: Tooltip.VerticalPosition | Tooltip.HorizontalPosition | null = null;
     private tooltipToggled: boolean = false;
     private mousedOver: boolean = false;
     private mouseOverTimeout: number;
@@ -135,6 +134,7 @@ class Tooltip extends Vue {
     private left: number = 0;
     private right: number = 0;
     private top: number = 0;
+    private positionCssClass: string = '';
 
     public get isShown() {
         return (this.tooltipToggled || this.mousedOver) && !this.disabled;
@@ -315,8 +315,8 @@ class Tooltip extends Vue {
                         clampedBottomMostTopPosition,
                     )
                 );
-            // Set the primary position for the tooltip
-            this.primaryPosition = primary;
+
+            this.positionCssClass = `position-${primary}-${secondary || 'center'}`;
         };
 
         // Function for positioning the tooltip if the primary position is a vertical position.
@@ -359,8 +359,7 @@ class Tooltip extends Vue {
                     )
                 );
 
-            // Set the primary position for the tooltip
-            this.primaryPosition = primary;
+            this.positionCssClass = `position-${primary}-${secondary || 'center'}`;
         };
 
         // If the container and containerBoundingRect are available, calculate bounds and fitting conditions
@@ -521,29 +520,45 @@ export default Tooltip;
         z-index: 1000; /* move above tooltip-box's box-shadow */
     }
 
-    .top .trigger::after {
+    [class*='position-top'] .trigger::after {
         top: -2rem;
-        background: var(--background, #22123d); /* a color of the nimiq-blue-bg gradient in the lower area */
         transform: scaleY(-1);
     }
-
-    .bottom .trigger::after {
+    [class*='position-bottom'] .trigger::after {
         top: 100%;
-        background: var(--background, #1f2348); /* a color of the nimiq-blue-bg gradient in the upper area */
     }
-
-    .left .trigger::after {
+    [class*='position-left'] .trigger::after {
         top: 50%;
         left: -2.25rem;
         transform: translateY(-50%) rotate(90deg);
-        background: var(--background, #22123d); /* a color of the nimiq-blue-bg gradient in the right area */
     }
-
-    .right .trigger::after {
+    [class*='position-right'] .trigger::after {
         top: 50%;
         left: 100%;
         transform: translateY(-50%) rotate(-90deg);
-        background: var(--background, #1f2348); /* a color of the nimiq-blue-bg gradient in the left area */
+    }
+
+    /* Set the arrow color. For the tooltip box's default nimiq-blue-bg background, which is a gradient, set the arrow
+    color depending on the position to a color from the area of nimiq-blue-bg where the arrow touches it. The gradient
+    is a radial gradient which expands from the bottom right of the box which is resembled by the styles below. Note
+    that because we're interested in the color at the touch point, the positions here are effectively reverted, e.g. the
+    arrow is at the bottom right if the tooltip is top left positioned. */
+    .position-top-left .trigger::after,
+    .position-left-top .trigger::after {
+        background: var(--background, #250737);
+    }
+    .position-top-center .trigger::after,
+    .position-left-center .trigger::after {
+        background: var(--background, #23123e);
+    }
+    .position-top-right .trigger::after,
+    .position-left-bottom .trigger::after {
+        background: var(--background, #211e45);
+    }
+    /* At the top and left edge of the tooltip box, the gradient is already fully faded away. */
+    [class*='position-bottom'] .trigger::after,
+    [class*='position-right'] .trigger::after {
+        background: var(--background, var(--nimiq-blue));
     }
 
     .inverse-theme .trigger::after {
@@ -579,19 +594,19 @@ export default Tooltip;
         opacity: 0;
     }
 
-    .top .tooltip-box {
+    [class*='position-top'] .tooltip-box {
         transform: translateY(-2rem);
     }
 
-    .bottom .tooltip-box {
+    [class*='position-bottom'] .tooltip-box {
         transform: translateY(2rem);
     }
 
-    .left .tooltip-box {
+    [class*='position-left'] .tooltip-box {
         transform: translateX(-2rem);
     }
 
-    .right .tooltip-box {
+    [class*='position-right'] .tooltip-box {
         transform: translateX(2rem);
     }
 </style>
