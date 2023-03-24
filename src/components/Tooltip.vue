@@ -485,12 +485,14 @@ export default Tooltip;
 
 <style scoped>
     .tooltip {
+        contain: layout style;
         display: inline-block;
         position: relative;
         line-height: 1;
     }
 
     .trigger {
+        contain: layout style;
         position: relative;
         display: inline-block;
         vertical-align: bottom;
@@ -571,6 +573,7 @@ export default Tooltip;
     }
 
     .tooltip-box {
+        contain: layout paint style;
         position: absolute;
         color: white;
         background: var(--background, var(--nimiq-blue-bg));
