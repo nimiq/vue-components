@@ -1,0 +1,1 @@
+(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[64],{"08ff":function(e){e.exports=JSON.parse('{"Copied":"Скопировано"}')}}]);

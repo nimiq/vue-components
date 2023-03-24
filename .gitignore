@@ -1,6 +1,5 @@
 .DS_Store
 node_modules
-dist
 dist-storybook
 
 # generated json language files

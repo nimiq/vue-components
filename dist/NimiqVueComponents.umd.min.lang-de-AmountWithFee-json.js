@@ -1,0 +1,1 @@
+(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[3],{5068:function(e){e.exports=JSON.parse('{"fee":"Gebühr","Insufficient balance":"Dein Guthaben reicht nicht aus."}')}}]);

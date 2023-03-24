@@ -1,0 +1,1 @@
+(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[56],{"5f2a":function(e){e.exports=JSON.parse('{"Go back":"Voltar"}')}}]);

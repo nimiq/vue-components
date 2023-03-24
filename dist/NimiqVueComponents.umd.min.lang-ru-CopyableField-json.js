@@ -1,0 +1,1 @@
+(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[65],{dfb1:function(e){e.exports=JSON.parse('{"Copied":"Скопировано"}')}}]);

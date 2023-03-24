@@ -1,0 +1,1 @@
+(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[67],{"26f6":function(e){e.exports=JSON.parse('{"Keep pressing…":"Keep pressing…"}')}}]);
