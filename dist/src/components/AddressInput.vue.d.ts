@@ -14,7 +14,9 @@ export default class AddressInput extends Vue {
     private static _willBeNimAddress;
     private static _willBeEthAddress;
     private static _willBeDomain;
-    private static _isEthAddress;
+    private static _isValidEthAddress;
+    private static _addEthAddressChecksumIfMissing;
+    private static _hasEthAddressChecksum;
     value: string;
     autofocus?: boolean;
     allowNimAddresses: boolean;

@@ -1085,6 +1085,13 @@ function format_input_text(input, _parse, _format, operation, on_change) {
 
 /***/ }),
 
+/***/ "112c":
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
 /***/ "11b0":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1702,17 +1709,6 @@ exports.f = DESCRIPTORS ? nativeGetOwnPropertyDescriptor : function getOwnProper
 /* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SelectBar_vue_vue_type_style_index_0_id_632b1400_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SelectBar_vue_vue_type_style_index_0_id_632b1400_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
 /* unused harmony reexport * */
  /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SelectBar_vue_vue_type_style_index_0_id_632b1400_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
-/***/ "211f":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddressInput_vue_vue_type_style_index_0_id_f5bbffae_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("9edd");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddressInput_vue_vue_type_style_index_0_id_f5bbffae_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddressInput_vue_vue_type_style_index_0_id_f5bbffae_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
- /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddressInput_vue_vue_type_style_index_0_id_f5bbffae_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -3577,8 +3573,8 @@ var AddressDisplay_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_AddressDisplay = (AddressDisplay_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"62d63af8-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/AddressInput.vue?vue&type=template&id=f5bbffae&scoped=true&
-var AddressInputvue_type_template_id_f5bbffae_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"address-input",class:{
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"62d63af8-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/AddressInput.vue?vue&type=template&id=bd6dd43a&scoped=true&
+var AddressInputvue_type_template_id_bd6dd43a_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"address-input",class:{
     'display-as-nim-address': _vm.displayAsNimAddress,
     'display-as-domain': _vm.displayAsDomain,
 }},[_c('textarea',{ref:"textarea",attrs:{"spellcheck":"false","autocomplete":"off","placeholder":_vm.allowNimAddresses === _vm.allowEthAddresses ? false : _vm.allowNimAddresses ? 'NQ' : '0x'},on:{"keydown":_vm._onKeyDown,"input":_vm._onInput,"paste":_vm._onPaste,"cut":_vm._onCut,"copy":_vm._formatClipboard,"click":_vm._updateSelection,"select":_vm._updateSelection,"blur":_vm._updateSelection,"focus":_vm._onFocus}}),(_vm.displayAsNimAddress && _vm.supportsMixBlendMode)?[_vm._l((3),function(row){return [_vm._l((3),function(column){return [_c('div',{key:("color-" + row + "-" + column),staticClass:"color-overlay",style:({
@@ -3588,10 +3584,10 @@ var AddressInputvue_type_template_id_f5bbffae_scoped_true_render = function () {
                     top: ("calc(" + (row - 1) + " * (var(--block-height) + var(--block-gap-v)) + var(--block-gap-v) + 0.25rem)"),
                     background: ("var(--nimiq-" + (_vm._isBlockFocused((row - 1) * 3 + (column - 1)) ? 'light-' : '') + "blue)"),
                 })})]})]})]:_vm._e(),_c('transition',{attrs:{"name":"transition-fade"}},[(!_vm.displayAsDomain)?_c('svg',{staticClass:"grid",attrs:{"width":"210","height":"99","viewBox":"0 0 210 99","stroke-width":"1.5","stroke-linecap":"round","fill":"none","xmlns":"http://www.w3.org/2000/svg"}},[_c('line',{attrs:{"x1":"0.75","y1":"30.25","x2":"209.25","y2":"30.25"}}),_vm._v(" "),_c('line',{attrs:{"x1":"0.75","y1":"68.25","x2":"209.25","y2":"68.25"}}),_vm._v(" "),_c('transition',{attrs:{"name":"transition-fade"}},[(_vm.displayAsNimAddress)?_c('g',[_c('line',{attrs:{"x1":"67.75","y1":"0.75","x2":"67.75","y2":"22.25"}}),_vm._v(" "),_c('line',{attrs:{"x1":"143.75","y1":"0.75","x2":"143.75","y2":"22.25"}}),_vm._v(" "),_c('line',{attrs:{"x1":"67.75","y1":"37.75","x2":"67.75","y2":"60.25"}}),_vm._v(" "),_c('line',{attrs:{"x1":"143.75","y1":"37.75","x2":"143.75","y2":"60.25"}}),_vm._v(" "),_c('line',{attrs:{"x1":"67.75","y1":"75.75","x2":"67.75","y2":"98.25"}}),_vm._v(" "),_c('line',{attrs:{"x1":"143.75","y1":"75.75","x2":"143.75","y2":"98.25"}})]):_vm._e()])],1):_vm._e()])],2)}
-var AddressInputvue_type_template_id_f5bbffae_scoped_true_staticRenderFns = []
+var AddressInputvue_type_template_id_bd6dd43a_scoped_true_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/AddressInput.vue?vue&type=template&id=f5bbffae&scoped=true&
+// CONCATENATED MODULE: ./src/components/AddressInput.vue?vue&type=template&id=bd6dd43a&scoped=true&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.map.js
 var es_array_map = __webpack_require__("fd3c");
@@ -3748,19 +3744,59 @@ function (_Vue) {
     }
   }, {
     key: "_onExternalValueChange",
-    value: function _onExternalValueChange() {
-      var _this2 = this;
+    value: function () {
+      var _onExternalValueChange2 = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee() {
+        var _this2 = this;
 
-      if (AddressInput_1._stripWhitespace(this.value) === AddressInput_1._stripWhitespace(this.currentValue)) return; // could also be using format-input's parse and format helpers that preserve caret position but as we're not
-      // interested in that, we calculate the formatted value manually
+        var parsedValue;
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.t0 = AddressInput_1._stripWhitespace(this.currentValue) // Call _exportValue because currentValue is also exported / formatted.
+                ;
+                _context.t1 = AddressInput_1;
+                _context.next = 4;
+                return AddressInput_1._exportValue(this.value, this.parserFlags);
 
-      var parsedValue = this.value.split('').reduce(function (parsed, char) {
-        return parsed + (AddressInput_1._parse(char, parsed, _this2.parserFlags) || '');
-      }, '');
-      this.$refs.textarea.value = AddressInput_1._format(parsedValue, this.parserFlags).text; // moves caret to the end
+              case 4:
+                _context.t2 = _context.sent;
+                _context.t3 = _context.t1._stripWhitespace.call(_context.t1, _context.t2);
 
-      this._afterChange(parsedValue);
-    }
+                if (!(_context.t0 === _context.t3)) {
+                  _context.next = 8;
+                  break;
+                }
+
+                return _context.abrupt("return");
+
+              case 8:
+                // could also be using format-input's parse and format helpers that preserve caret position but as we're not
+                // interested in that, we calculate the formatted value manually
+                parsedValue = this.value.split('').reduce(function (parsed, char) {
+                  return parsed + (AddressInput_1._parse(char, parsed, _this2.parserFlags) || '');
+                }, '');
+                this.$refs.textarea.value = AddressInput_1._format(parsedValue, this.parserFlags).text; // moves caret to the end
+
+                _context.next = 12;
+                return this._afterChange(parsedValue);
+
+              case 12:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function _onExternalValueChange() {
+        return _onExternalValueChange2.apply(this, arguments);
+      }
+
+      return _onExternalValueChange;
+    }()
   }, {
     key: "_onKeyDown",
     value: function _onKeyDown(e) {
@@ -3828,74 +3864,109 @@ function (_Vue) {
     }
   }, {
     key: "_formatClipboard",
-    value: function _formatClipboard() {
-      // While it's possible to set the clipboard data via clipboardEvent.clipboardData.setData this requires calling
-      // preventDefault() which then results in the need to reimplement the behavior for cutting text and has side
-      // effects like the change not being added to the undo history. Therefore we let the browser do the default
-      // behavior but overwrite the clipboard afterwards.
-      var text = AddressInput_1._exportValue(document.getSelection().toString(), this.parserFlags);
+    value: function () {
+      var _formatClipboard2 = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee2() {
+        var text;
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return AddressInput_1._exportValue(document.getSelection().toString(), this.parserFlags);
 
-      setTimeout(function () {
-        return Clipboard.copy(text);
-      });
-    }
+              case 2:
+                text = _context2.sent;
+                setTimeout(function () {
+                  return Clipboard.copy(text);
+                });
+
+              case 4:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function _formatClipboard() {
+        return _formatClipboard2.apply(this, arguments);
+      }
+
+      return _formatClipboard;
+    }()
   }, {
     key: "_afterChange",
     value: function () {
       var _afterChange2 = _asyncToGenerator(
       /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee(value) {
-        var textarea, isValid, checkedValue, _isValid;
+      regeneratorRuntime.mark(function _callee3(value) {
+        var textarea, currentValue, isValid, _isValid;
 
-        return regeneratorRuntime.wrap(function _callee$(_context) {
+        return regeneratorRuntime.wrap(function _callee3$(_context3) {
           while (1) {
-            switch (_context.prev = _context.next) {
+            switch (_context3.prev = _context3.next) {
               case 0:
                 // value is the unformatted value (i.e. the concatenation of characters returned by _parse)
                 textarea = this.$refs.textarea; // if selection is a caret in front of a space or new line move caret behind it
 
                 if (textarea.selectionStart === textarea.selectionEnd && (textarea.value[textarea.selectionStart] === ' ' || textarea.value[textarea.selectionStart] === '\n')) {
                   textarea.selectionStart += 1; // this also moves the selectionEnd as they were equal
-                }
+                } // Use a local variable currentValue in this method instead of this.currentValue because this.currentValue might
+                // potentially change during this async method by a parallel invocation.
 
-                this.currentValue = AddressInput_1._exportValue(this.$refs.textarea.value, this.parserFlags);
-                this.$emit('input', this.currentValue); // emit event compatible with v-model
+
+                _context3.next = 4;
+                return AddressInput_1._exportValue(this.$refs.textarea.value, this.parserFlags);
+
+              case 4:
+                currentValue = _context3.sent;
+                this.currentValue = currentValue;
+                this.$emit('input', currentValue); // emit event compatible with v-model
 
                 if (!AddressInput_1._willBeNimAddress(value, this.parserFlags)) {
-                  _context.next = 10;
+                  _context3.next = 13;
                   break;
                 }
 
-                isValid = ValidationUtils.isValidAddress(this.currentValue);
-                if (isValid) this.$emit('address', this.currentValue); // if user entered a full address that is not valid give him a visual feedback
+                isValid = ValidationUtils.isValidAddress(currentValue);
+                if (isValid) this.$emit('address', currentValue); // if user entered a full address that is not valid give him a visual feedback
 
-                this.$el.classList.toggle('invalid', this.currentValue.length === AddressInput_1.NIM_ADDRESS_MAX_LENGTH && !isValid);
-                _context.next = 17;
+                this.$el.classList.toggle('invalid', currentValue.length === AddressInput_1.NIM_ADDRESS_MAX_LENGTH && !isValid);
+                _context3.next = 19;
                 break;
 
-              case 10:
+              case 13:
                 if (!AddressInput_1._willBeEthAddress(value, this.parserFlags)) {
-                  _context.next = 17;
+                  _context3.next = 19;
                   break;
                 }
 
-                checkedValue = this.currentValue; // make copy because currentValue might change during async request
+                _context3.next = 16;
+                return AddressInput_1._isValidEthAddress(currentValue);
 
-                _context.next = 14;
-                return AddressInput_1._isEthAddress(AddressInput_1._stripWhitespace(checkedValue));
+              case 16:
+                _isValid = _context3.sent;
 
-              case 14:
-                _isValid = _context.sent;
-                if (_isValid) this.$emit('address', checkedValue); // if user entered a full address that is not valid give him a visual feedback
+                if (_isValid) {
+                  this.$emit('address', currentValue); // Write address with potentially added checksum back to the textarea. Note that this places the cursor
+                  // at the end and messes with undo, which is why we don't simply write the text back into the textarea
+                  // after each character. Unfortunately, we can't do the checksum formatting directly in _format because
+                  // it can't be async.
 
-                this.$el.classList.toggle('invalid', checkedValue.length === AddressInput_1.ETH_ADDRESS_MAX_LENGTH && !_isValid);
+                  this.$refs.textarea.value = AddressInput_1._format(currentValue, this.parserFlags).text;
+                } // if user entered a full address that is not valid give him a visual feedback
 
-              case 17:
+
+                this.$el.classList.toggle('invalid', currentValue.length === AddressInput_1.ETH_ADDRESS_MAX_LENGTH && !_isValid);
+
+              case 19:
               case "end":
-                return _context.stop();
+                return _context3.stop();
             }
           }
-        }, _callee, this);
+        }, _callee3, this);
       }));
 
       function _afterChange(_x) {
@@ -4012,13 +4083,50 @@ function (_Vue) {
     }
   }, {
     key: "_exportValue",
-    value: function _exportValue(value, parserFlags) {
-      if (AddressInput_1._willBeNimAddress(value, parserFlags)) {
-        return value.toUpperCase().replace(/\n/g, ' ').replace(/\u200B/g, '');
-      } else {
-        return value.replace(/\n/g, '').replace(/\u200B/g, '');
+    value: function () {
+      var _exportValue2 = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee4(value, parserFlags) {
+        return regeneratorRuntime.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                if (!AddressInput_1._willBeNimAddress(value, parserFlags)) {
+                  _context4.next = 4;
+                  break;
+                }
+
+                return _context4.abrupt("return", value.toUpperCase().replace(/\n/g, ' ').replace(/\u200B/g, ''));
+
+              case 4:
+                if (!AddressInput_1._willBeEthAddress(value, parserFlags)) {
+                  _context4.next = 10;
+                  break;
+                }
+
+                _context4.next = 7;
+                return AddressInput_1._addEthAddressChecksumIfMissing(AddressInput_1._stripWhitespace(value));
+
+              case 7:
+                return _context4.abrupt("return", _context4.sent);
+
+              case 10:
+                return _context4.abrupt("return", value.replace(/\u200B/g, ''));
+
+              case 11:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }));
+
+      function _exportValue(_x2, _x3) {
+        return _exportValue2.apply(this, arguments);
       }
-    }
+
+      return _exportValue;
+    }()
   }, {
     key: "_willBeNimAddress",
     value: function _willBeNimAddress(value, parserFlags) {
@@ -4037,83 +4145,124 @@ function (_Vue) {
     } // Simplified from @ethersproject/address, which we don't use directly to avoid its unnecessary dependencies.
 
   }, {
-    key: "_isEthAddress",
+    key: "_isValidEthAddress",
     value: function () {
-      var _isEthAddress2 = _asyncToGenerator(
+      var _isValidEthAddress2 = _asyncToGenerator(
       /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee2(address) {
-        var addressHex, addressHexCharCodes, _ref, keccak_256, hashHex, i;
-
-        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+      regeneratorRuntime.mark(function _callee5(address) {
+        return regeneratorRuntime.wrap(function _callee5$(_context5) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context5.prev = _context5.next) {
               case 0:
-                if (/^0x[0-9a-f]{40}$/i.test(address)) {
-                  _context2.next = 4;
+                _context5.t0 = address.length === AddressInput_1.ETH_ADDRESS_MAX_LENGTH && AddressInput_1._ETH_ADDRESS_REGEX.test(address);
+
+                if (!_context5.t0) {
+                  _context5.next = 10;
                   break;
                 }
 
-                return _context2.abrupt("return", false);
+                _context5.t1 = !AddressInput_1._hasEthAddressChecksum(address) // Recalculate address checksum and check that it matches.
+                ;
 
-              case 4:
-                if (!(!/[a-f]/.test(address) || !/[A-F]/.test(address))) {
-                  _context2.next = 8;
+                if (_context5.t1) {
+                  _context5.next = 9;
                   break;
                 }
 
-                return _context2.abrupt("return", true);
+                _context5.next = 6;
+                return AddressInput_1._addEthAddressChecksumIfMissing(address.toLowerCase());
 
-              case 8:
-                // Check checksum encoded in uppercase and lowercase characters.
-                addressHex = address.replace(/0x/gi, '');
+              case 6:
+                _context5.t2 = _context5.sent;
+                _context5.t3 = address;
+                _context5.t1 = _context5.t2 === _context5.t3;
+
+              case 9:
+                _context5.t0 = _context5.t1;
+
+              case 10:
+                return _context5.abrupt("return", _context5.t0);
+
+              case 11:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5);
+      }));
+
+      function _isValidEthAddress(_x4) {
+        return _isValidEthAddress2.apply(this, arguments);
+      }
+
+      return _isValidEthAddress;
+    }() // Add checksum to an Ethereum address, if it does not include a checksum yet. Existing checksums (regardless of
+    // validity) and inputs that are not ethereum addresses are preserved. Simplified from @ethersproject/address, which
+    // we don't use directly to avoid its unnecessary dependencies.
+
+  }, {
+    key: "_addEthAddressChecksumIfMissing",
+    value: function () {
+      var _addEthAddressChecksumIfMissing2 = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee6(address) {
+        var addressHex, addressHexCharCodes, _ref, keccak_256, hashHex, result, i;
+
+        return regeneratorRuntime.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                if (!(address.length !== AddressInput_1.ETH_ADDRESS_MAX_LENGTH || !AddressInput_1._ETH_ADDRESS_REGEX.test(address) || AddressInput_1._hasEthAddressChecksum(address))) {
+                  _context6.next = 2;
+                  break;
+                }
+
+                return _context6.abrupt("return", address);
+
+              case 2:
+                // Encode checksum as uppercase and lowercase characters.
+                addressHex = address.replace(/^0x/i, '');
                 addressHexCharCodes = addressHex.toLowerCase().split('').map(function (char) {
                   return char.charCodeAt(0);
                 }); // External dependency which can be shared with the consuming app and which is lazy loaded only when needed.
 
-                _context2.next = 12;
+                _context6.next = 6;
                 return Promise.resolve(/* import() */).then(__webpack_require__.t.bind(null, "5e83", 7));
 
-              case 12:
-                _ref = _context2.sent;
+              case 6:
+                _ref = _context6.sent;
                 keccak_256 = _ref.keccak_256;
                 hashHex = keccak_256(addressHexCharCodes);
-                i = 0;
+                result = '0x';
 
-              case 16:
-                if (!(i < 40)) {
-                  _context2.next = 22;
-                  break;
+                for (i = 0; i < 40; i++) {
+                  // Address hex char at position i should be uppercase if the decimal value of hash hex char at position
+                  // i is >= 8, and lowercase otherwise.
+                  result += parseInt(hashHex[i], 16) >= 8 ? addressHex[i].toUpperCase() : addressHex[i].toLowerCase();
                 }
 
-                if (!((parseInt(hashHex[i], 16) >= 8 ? addressHex[i].toUpperCase() : addressHex[i].toLowerCase()) !== addressHex[i])) {
-                  _context2.next = 19;
-                  break;
-                }
+                return _context6.abrupt("return", result);
 
-                return _context2.abrupt("return", false);
-
-              case 19:
-                i++;
-                _context2.next = 16;
-                break;
-
-              case 22:
-                return _context2.abrupt("return", true);
-
-              case 23:
+              case 12:
               case "end":
-                return _context2.stop();
+                return _context6.stop();
             }
           }
-        }, _callee2);
+        }, _callee6);
       }));
 
-      function _isEthAddress(_x2) {
-        return _isEthAddress2.apply(this, arguments);
+      function _addEthAddressChecksumIfMissing(_x5) {
+        return _addEthAddressChecksumIfMissing2.apply(this, arguments);
       }
 
-      return _isEthAddress;
+      return _addEthAddressChecksumIfMissing;
     }()
+  }, {
+    key: "_hasEthAddressChecksum",
+    value: function _hasEthAddressChecksum(address) {
+      // If it has uppercase and lowercase chars (ignoring the x of 0x) there is a checksum encoded.
+      return /[a-f]/.test(address) && /[A-F]/.test(address);
+    }
   }]);
 
   return AddressInput;
@@ -4171,8 +4320,8 @@ AddressInputvue_type_script_lang_ts_AddressInput = AddressInput_1 = __decorate([
 /* harmony default export */ var AddressInputvue_type_script_lang_ts_ = (AddressInputvue_type_script_lang_ts_AddressInput);
 // CONCATENATED MODULE: ./src/components/AddressInput.vue?vue&type=script&lang=ts&
  /* harmony default export */ var components_AddressInputvue_type_script_lang_ts_ = (AddressInputvue_type_script_lang_ts_); 
-// EXTERNAL MODULE: ./src/components/AddressInput.vue?vue&type=style&index=0&id=f5bbffae&scoped=true&lang=css&
-var AddressInputvue_type_style_index_0_id_f5bbffae_scoped_true_lang_css_ = __webpack_require__("211f");
+// EXTERNAL MODULE: ./src/components/AddressInput.vue?vue&type=style&index=0&id=bd6dd43a&scoped=true&lang=css&
+var AddressInputvue_type_style_index_0_id_bd6dd43a_scoped_true_lang_css_ = __webpack_require__("538a");
 
 // CONCATENATED MODULE: ./src/components/AddressInput.vue
 
@@ -4185,11 +4334,11 @@ var AddressInputvue_type_style_index_0_id_f5bbffae_scoped_true_lang_css_ = __web
 
 var AddressInput_component = normalizeComponent(
   components_AddressInputvue_type_script_lang_ts_,
-  AddressInputvue_type_template_id_f5bbffae_scoped_true_render,
-  AddressInputvue_type_template_id_f5bbffae_scoped_true_staticRenderFns,
+  AddressInputvue_type_template_id_bd6dd43a_scoped_true_render,
+  AddressInputvue_type_template_id_bd6dd43a_scoped_true_staticRenderFns,
   false,
   null,
-  "f5bbffae",
+  "bd6dd43a",
   null
   
 )
@@ -8460,16 +8609,15 @@ var Tweenable$1 = Tweenable;
 /* harmony default export */ var module_Tweenable = (Tweenable$1);
 //# sourceMappingURL=Tweenable.js.map
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"62d63af8-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Tooltip.vue?vue&type=template&id=db955f8c&scoped=true&
-var Tooltipvue_type_template_id_db955f8c_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"tooltip",class:[_vm.verticalPosition, {
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"62d63af8-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Tooltip.vue?vue&type=template&id=9a8a8218&scoped=true&
+var Tooltipvue_type_template_id_9a8a8218_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"tooltip",class:[_vm.positionCssClass, {
         shown: _vm.isShown,
-        'transition-position': _vm.transitionPosition,
         'inverse-theme': _vm.theme === _vm.constructor.Themes.INVERSE,
-    }],on:{"mouseenter":function($event){return _vm.mouseOver(true)},"mouseleave":function($event){return _vm.mouseOver(false)}}},[_c('a',{ref:"tooltipTrigger",staticClass:"trigger",attrs:{"href":"javascript:void(0);","tabindex":_vm.disabled || _vm.noFocus ? -1 : 0},on:{"focus":function($event){$event.stopPropagation();return _vm.show()},"blur":function($event){$event.stopPropagation();return _vm.hide()},"click":function($event){return _vm.onClick()}}},[(!_vm.$slots.icon)?_vm._t("trigger",[_c('AlertTriangleIcon',{staticClass:"nq-orange"})]):_vm._e(),(_vm.$slots.icon && !_vm.$slots.trigger)?_vm._t("icon"):_vm._e()],2),_c('transition',{attrs:{"name":"transition-fade"}},[(_vm.isShown)?_c('div',{ref:"tooltipBox",staticClass:"tooltip-box",style:(_vm.tooltipBoxStyles)},[_vm._t("default")],2):_vm._e()])],1)}
-var Tooltipvue_type_template_id_db955f8c_scoped_true_staticRenderFns = []
+    }],style:(_vm.background && ("--background: " + _vm.background)),on:{"mouseenter":function($event){return _vm.mouseOver(true)},"mouseleave":function($event){return _vm.mouseOver(false)}}},[_c('a',{ref:"tooltipTrigger",staticClass:"trigger",attrs:{"href":"javascript:void(0);","tabindex":_vm.disabled || _vm.noFocus ? -1 : 0},on:{"focus":function($event){$event.stopPropagation();return _vm.show()},"blur":function($event){$event.stopPropagation();return _vm.hide()},"click":function($event){return _vm.onClick()}}},[(!_vm.$slots.icon)?_vm._t("trigger",[_c('AlertTriangleIcon',{staticClass:"nq-orange"})]):_vm._e(),(_vm.$slots.icon && !_vm.$slots.trigger)?_vm._t("icon"):_vm._e()],2),_c('transition',{attrs:{"name":"transition-fade"}},[(_vm.isShown)?_c('div',{ref:"tooltipBox",staticClass:"tooltip-box",style:(_vm.tooltipBoxStyles)},[_vm._t("default")],2):_vm._e()])],1)}
+var Tooltipvue_type_template_id_9a8a8218_scoped_true_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/Tooltip.vue?vue&type=template&id=db955f8c&scoped=true&
+// CONCATENATED MODULE: ./src/components/Tooltip.vue?vue&type=template&id=9a8a8218&scoped=true&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.entries.js
 var es_object_entries = __webpack_require__("0829");
@@ -8567,6 +8715,8 @@ function _objectSpread2(target) {
 
 
 
+
+
 var Tooltip_1;
 
 
@@ -8583,17 +8733,16 @@ function (_Vue) {
     _classCallCheck(this, Tooltip);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Tooltip).apply(this, arguments));
-    _this.verticalPosition = null;
     _this.tooltipToggled = false;
-    _this.transitionPosition = false; // do not transition on show but on position updates while shown
-
     _this.mousedOver = false;
     _this.lastToggle = -1;
     _this.height = 0;
     _this.width = 0;
     _this.maxWidth = 0;
     _this.left = 0;
+    _this.right = 0;
     _this.top = 0;
+    _this.positionCssClass = '';
     return _this;
   }
 
@@ -8658,11 +8807,9 @@ function (_Vue) {
             switch (_context.prev = _context.next) {
               case 0:
                 if (this.isShown) {
-                  _context.next = 6;
+                  _context.next = 5;
                   break;
                 }
-
-                this.transitionPosition = false; // when shown next time, render immediately at correct position
 
                 if (newWatcherValue === false) {
                   this.lastToggle = Date.now();
@@ -8671,51 +8818,51 @@ function (_Vue) {
 
                 return _context.abrupt("return");
 
-              case 6:
+              case 5:
                 if (newWatcherValue === true) {
                   this.lastToggle = Date.now();
                   this.$emit('show');
                 }
 
-              case 7:
+              case 6:
                 if (this.$el) {
-                  _context.next = 10;
+                  _context.next = 9;
                   break;
                 }
 
-                _context.next = 10;
+                _context.next = 9;
                 return new Promise(function (resolve) {
                   return _this2.$once('hook:mounted', resolve);
                 });
 
-              case 10:
+              case 9:
                 container = this.effectiveContainer;
 
                 if (!container) {
-                  _context.next = 19;
+                  _context.next = 18;
                   break;
                 }
 
                 if (!(!container.$el && container instanceof external_vue_property_decorator_["Vue"])) {
-                  _context.next = 17;
+                  _context.next = 16;
                   break;
                 }
 
-                _context.next = 15;
+                _context.next = 14;
                 return new Promise(function (resolve) {
                   return container.$once('hook:mounted', resolve);
                 });
 
-              case 15:
+              case 14:
                 if (!(container !== this.effectiveContainer)) {
-                  _context.next = 17;
+                  _context.next = 16;
                   break;
                 }
 
                 return _context.abrupt("return");
 
-              case 17:
-                _context.next = 19;
+              case 16:
+                _context.next = 18;
                 return new Promise(function (resolve) {
                   return requestAnimationFrame(function () {
                     // avoid potential forced layouting / reflow by taking measurements within a requestAnimationFrame
@@ -8730,39 +8877,27 @@ function (_Vue) {
                   });
                 });
 
-              case 19:
-                _context.next = 21;
+              case 18:
+                _context.next = 20;
                 return external_vue_property_decorator_["Vue"].nextTick();
 
-              case 21:
+              case 20:
                 if (!(!this.isShown || !('tooltipBox' in this.$refs && this.$refs.tooltipBox))) {
-                  _context.next = 23;
+                  _context.next = 22;
                   break;
                 }
 
                 return _context.abrupt("return");
 
-              case 23:
+              case 22:
                 // not visible anymore?
                 // here we need the quick reflow to avoid that the visible tooltip gets rendered at the wrong position,
                 // potentially causing scroll bars
                 this.height = this.$refs.tooltipBox.offsetHeight;
                 this.width = this.$refs.tooltipBox.offsetWidth;
-                this.updatePosition(); // wait for updated position to be effective and rendered, then enable transitions
+                this.updatePosition();
 
-                _context.next = 28;
-                return external_vue_property_decorator_["Vue"].nextTick();
-
-              case 28:
-                _context.next = 30;
-                return new Promise(function (resolve) {
-                  return requestAnimationFrame(resolve);
-                });
-
-              case 30:
-                this.transitionPosition = true;
-
-              case 31:
+              case 25:
               case "end":
                 return _context.stop();
             }
@@ -8779,56 +8914,94 @@ function (_Vue) {
   }, {
     key: "updatePosition",
     value: function updatePosition() {
-      if (!this.isShown) return; // Note that in his method we do not need to use requestAnimationFrame to avoid reflows, as the method is
-      // already called as a scroll event listener or manually in update after a reflow.
-      // tslint:disable-next-line:prefer-const
+      var _containerMargins,
+          _this3 = this;
+
+      // If the tooltip is not shown or the tooltipBox reference is missing, exit the function early
+      if (!this.isShown || !('tooltipBox' in this.$refs && this.$refs.tooltipBox)) return; // Destructure the preferred position into primary and secondary positions
 
       var _this$preferredPositi = this.preferredPosition.split(' '),
           _this$preferredPositi2 = _slicedToArray(_this$preferredPositi, 2),
-          preferredVerticalPosition = _this$preferredPositi2[0],
-          preferredHorizontalPosition = _this$preferredPositi2[1];
+          preferredPrimaryPosition = _this$preferredPositi2[0],
+          preferredSecondaryPosition = _this$preferredPositi2[1]; // Determine if the primary position is vertical or horizontal
 
-      preferredHorizontalPosition = preferredHorizontalPosition;
-      this.left = preferredHorizontalPosition === Tooltip_1.HorizontalPosition.RIGHT ? Math.round(this.$refs.tooltipTrigger.offsetWidth / 2 - 25) // offset by 25px according to designs
-      : preferredHorizontalPosition === Tooltip_1.HorizontalPosition.LEFT ? Math.round(this.$refs.tooltipTrigger.offsetWidth / 2 - this.width + 25) : Math.round(this.$refs.tooltipTrigger.offsetWidth / 2 - this.width / 2);
+
+      var isPrimaryVertical = Object.values(Tooltip_1.VerticalPosition).includes(preferredPrimaryPosition);
+      var isPrimaryHorizontal = Object.values(Tooltip_1.HorizontalPosition).includes(preferredPrimaryPosition); // Get the container and trigger bounding rectangles for position calculations.
+      // Note that in his method we do not need to use requestAnimationFrame to avoid reflows, as the method is
+      // already called as a scroll event listener or manually in update after a reflow.
+
       var container = this.effectiveContainer;
+      var triggerBoundingRect = this.$refs.tooltipTrigger.getBoundingClientRect();
+      var containerBoundingRect = container && container.$el ? container.$el.getBoundingClientRect() : null;
+      var containerMargins = (_containerMargins = {}, _defineProperty(_containerMargins, Tooltip_1.VerticalPosition.TOP, this.getMargin(Tooltip_1.VerticalPosition.TOP)), _defineProperty(_containerMargins, Tooltip_1.HorizontalPosition.RIGHT, this.getMargin(Tooltip_1.HorizontalPosition.RIGHT)), _defineProperty(_containerMargins, Tooltip_1.VerticalPosition.BOTTOM, this.getMargin(Tooltip_1.VerticalPosition.BOTTOM)), _defineProperty(_containerMargins, Tooltip_1.HorizontalPosition.LEFT, this.getMargin(Tooltip_1.HorizontalPosition.LEFT)), _containerMargins); // Define a clamp function to keep a value within a specified range
 
-      if (container) {
-        if (!container.$el) {
-          // We don't wait here for the container to get mounted, as we expect it to already be mounted when this
-          // private method is called and to do measurements immediately in the scroll event listener
-          console.warn('Tooltip container does not seem to be mounted yet.');
-          return;
-        } // position tooltip such that it best fits container element
-
-
-        var triggerBoundingRect = this.$refs.tooltipTrigger.getBoundingClientRect();
-        var containerBoundingRect = container.$el.getBoundingClientRect();
-        var topMargin = this.getMargin(Tooltip_1.VerticalPosition.TOP);
-        var bottomMargin = this.getMargin(Tooltip_1.VerticalPosition.BOTTOM);
-        var spaceNeeded = this.height + 16; // 16 for arrow, assuming same height on mobile for simplicity
-
-        var fitsTop = triggerBoundingRect.top - containerBoundingRect.top - topMargin >= spaceNeeded;
-        var fitsBottom = containerBoundingRect.bottom - triggerBoundingRect.bottom - bottomMargin >= spaceNeeded;
-
-        if (preferredVerticalPosition === Tooltip_1.VerticalPosition.TOP && (fitsTop || !fitsBottom) || preferredVerticalPosition === Tooltip_1.VerticalPosition.BOTTOM && fitsTop && !fitsBottom) {
-          this.verticalPosition = Tooltip_1.VerticalPosition.TOP;
-        } else {
-          this.verticalPosition = Tooltip_1.VerticalPosition.BOTTOM;
-        } // constrain horizontal position
+      var clamp = function clamp(value, min, max) {
+        return Math.min(Math.max(value, min), max);
+      }; // Function for positioning the tooltip if the primary position is a horizontal position.
 
 
-        var leftMargin = this.getMargin(Tooltip_1.HorizontalPosition.LEFT);
-        var rightMargin = this.getMargin(Tooltip_1.HorizontalPosition.RIGHT); // left and right bound of container, expressed in trigger's coordinate system
+      var setPositionForPrimaryHorizontal = function setPositionForPrimaryHorizontal(primary, secondary) {
+        // Set the left, right, and top properties based on the primary and secondary positions
+        _this3.left = primary === Tooltip_1.HorizontalPosition.RIGHT ? triggerBoundingRect.width : null;
+        _this3.right = primary === Tooltip_1.HorizontalPosition.LEFT ? triggerBoundingRect.width : null;
+        var topMostTopPosition = -_this3.height + triggerBoundingRect.height / 2 + 25;
+        var bottomMostTopPosition = triggerBoundingRect.height / 2 - 25; // Calculate the clamping range for the top property
 
-        var leftBound = containerBoundingRect.left + leftMargin - triggerBoundingRect.left;
-        var rightBound = containerBoundingRect.right - rightMargin - triggerBoundingRect.left;
-        this.left = Math.max(leftBound, Math.min(rightBound - this.width, this.left));
+        var clampedTopMostTopPosition = containerBoundingRect ? clamp(topMostTopPosition, containerBoundingRect.top + containerMargins[Tooltip_1.VerticalPosition.TOP] - triggerBoundingRect.top, // expressed in trigger's coordinate system
+        bottomMostTopPosition) : topMostTopPosition;
+        var clampedBottomMostTopPosition = containerBoundingRect ? clamp(bottomMostTopPosition, topMostTopPosition, containerBoundingRect.top + containerBoundingRect.height - containerMargins[Tooltip_1.VerticalPosition.BOTTOM] - _this3.height - triggerBoundingRect.top) : bottomMostTopPosition; // Set the top property based on the secondary position and clamping range
+
+        _this3.top = secondary === Tooltip_1.VerticalPosition.TOP ? clampedTopMostTopPosition : secondary === Tooltip_1.VerticalPosition.BOTTOM ? clampedBottomMostTopPosition : clamp(triggerBoundingRect.height / 2 - _this3.height / 2, clampedTopMostTopPosition, clampedBottomMostTopPosition);
+        _this3.positionCssClass = "position-".concat(primary, "-").concat(secondary || 'center');
+      }; // Function for positioning the tooltip if the primary position is a vertical position.
+
+
+      var setPositionForPrimaryVertical = function setPositionForPrimaryVertical(primary, secondary) {
+        // Set the top, left, and primary position properties based on the primary and secondary positions
+        _this3.top = primary === Tooltip_1.VerticalPosition.BOTTOM ? triggerBoundingRect.height : -_this3.height;
+        var leftMostLeftPosition = triggerBoundingRect.width / 2 - _this3.width + 25;
+        var rightMostLeftPosition = triggerBoundingRect.width / 2 - 25; // Calculate the clamping range for the left property
+
+        var clampedLeftMostLeftPosition = containerBoundingRect ? clamp(leftMostLeftPosition, containerBoundingRect.left + containerMargins[Tooltip_1.HorizontalPosition.LEFT] - triggerBoundingRect.left, // expressed in trigger's coordinate system
+        rightMostLeftPosition) : leftMostLeftPosition;
+        var clampedRightMostLeftPosition = containerBoundingRect ? clamp(rightMostLeftPosition, leftMostLeftPosition, containerBoundingRect.left + containerBoundingRect.width - containerMargins[Tooltip_1.HorizontalPosition.RIGHT] - _this3.width - triggerBoundingRect.left) : rightMostLeftPosition; // Set the left property based on the secondary position and clamping range
+
+        _this3.left = secondary === Tooltip_1.HorizontalPosition.LEFT ? clampedLeftMostLeftPosition : secondary === Tooltip_1.HorizontalPosition.RIGHT ? clampedRightMostLeftPosition : clamp(triggerBoundingRect.width / 2 - _this3.width / 2, clampedLeftMostLeftPosition, clampedRightMostLeftPosition);
+        _this3.positionCssClass = "position-".concat(primary, "-").concat(secondary || 'center');
+      }; // If the container and containerBoundingRect are available, calculate bounds and fitting conditions
+
+
+      if (container && containerBoundingRect) {
+        // Calculate the difference between the trigger and container bounding rectangles
+        var calculateAvailableSpace = function calculateAvailableSpace(dir) {
+          return Math.abs(triggerBoundingRect[dir] - containerBoundingRect[dir] + (dir === 'left' || dir === 'top' ? -1 : 1) * containerMargins[dir]);
+        }; // Set the tooltip position based on primary and secondary preferences
+
+
+        if (isPrimaryVertical) {
+          var heightNeeded = this.height +
+          /* for the arrow */
+          16;
+          var fitsTop = calculateAvailableSpace(Tooltip_1.VerticalPosition.TOP) >= heightNeeded;
+          var fitsBottom = calculateAvailableSpace(Tooltip_1.VerticalPosition.BOTTOM) >= heightNeeded;
+          setPositionForPrimaryVertical(!fitsTop && fitsBottom ? Tooltip_1.VerticalPosition.BOTTOM : fitsTop && !fitsBottom ? Tooltip_1.VerticalPosition.TOP : preferredPrimaryPosition, preferredSecondaryPosition);
+        } else if (isPrimaryHorizontal) {
+          var widthNeeded = this.width +
+          /* for the arrow */
+          16;
+          var fitsLeft = calculateAvailableSpace(Tooltip_1.HorizontalPosition.LEFT) >= widthNeeded;
+          var fitsRight = calculateAvailableSpace(Tooltip_1.HorizontalPosition.RIGHT) >= widthNeeded;
+          setPositionForPrimaryHorizontal(!fitsLeft && fitsRight ? Tooltip_1.HorizontalPosition.RIGHT : fitsLeft && !fitsRight ? Tooltip_1.HorizontalPosition.LEFT : preferredPrimaryPosition, preferredSecondaryPosition);
+        }
       } else {
-        this.verticalPosition = preferredVerticalPosition;
+        // If no container is provided, set the tooltip position based on primary and secondary preferences
+        if (isPrimaryVertical) {
+          setPositionForPrimaryVertical(preferredPrimaryPosition, preferredSecondaryPosition);
+        } else if (isPrimaryHorizontal) {
+          setPositionForPrimaryHorizontal(preferredPrimaryPosition, preferredSecondaryPosition);
+        }
       }
-
-      this.top = this.verticalPosition === Tooltip_1.VerticalPosition.BOTTOM ? this.$refs.tooltipTrigger.offsetHeight : -this.height;
     }
   }, {
     key: "setContainer",
@@ -8836,7 +9009,7 @@ function (_Vue) {
       var _setContainer = _asyncToGenerator(
       /*#__PURE__*/
       regeneratorRuntime.mark(function _callee2(newContainer, oldContainer) {
-        var _this3 = this;
+        var _this4 = this;
 
         return regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
@@ -8874,7 +9047,7 @@ function (_Vue) {
                 return new Promise(function (resolve) {
                   return requestAnimationFrame(function () {
                     if (newContainer.$el.scrollHeight !== newContainer.$el.offsetHeight) {
-                      newContainer.$el.addEventListener('scroll', _this3.updatePosition);
+                      newContainer.$el.addEventListener('scroll', _this4.updatePosition);
                     }
 
                     resolve();
@@ -8905,24 +9078,17 @@ function (_Vue) {
       if (this.margin && this.margin[position] !== undefined) return this.margin[position];
       var containerEl = this.effectiveContainer && this.effectiveContainer.$el ? this.effectiveContainer.$el : null;
       if (!containerEl) return 0;
-
-      if ((position === Tooltip_1.VerticalPosition.TOP || position === Tooltip_1.VerticalPosition.BOTTOM) && containerEl.scrollHeight !== containerEl.offsetHeight) {
-        // If container is scrollable, the padding scrolls with the content. Therefore we consider the whole
-        // offsetHeight as valid area for the tooltip and return a margin of 0.
-        return 0;
-      }
-
       return parseInt(window.getComputedStyle(containerEl, null).getPropertyValue("padding-".concat(position)), 10);
     }
   }, {
     key: "mouseOver",
     value: function mouseOver(mouseOverTooltip) {
-      var _this4 = this;
+      var _this5 = this;
 
       if (!mouseOverTooltip) {
         // mouseleave
         this.mouseOverTimeout = window.setTimeout(function () {
-          return _this4.mousedOver = false;
+          return _this5.mousedOver = false;
         }, 100);
       } else {
         // mouseenter
@@ -8960,7 +9126,8 @@ function (_Vue) {
       // note that we let the browser calculate height automatically
       return _objectSpread2({}, this.styles, {
         top: this.top + 'px',
-        left: this.left + 'px',
+        left: this.left ? this.left + 'px' : undefined,
+        right: this.right ? this.right + 'px' : undefined,
         width: this.effectiveContainer && this.autoWidth ? this.width + 'px' : (this.styles || {}).width,
         maxWidth: this.effectiveContainer ? this.maxWidth + 'px' : (this.styles || {}).maxWidth
       });
@@ -8984,10 +9151,14 @@ __decorate([Object(external_vue_property_decorator_["Prop"])({
 
     var _value$split = value.split(' '),
         _value$split2 = _slicedToArray(_value$split, 2),
-        vertical = _value$split2[0],
-        horizontal = _value$split2[1];
+        primaryPosition = _value$split2[0],
+        secondaryPosition = _value$split2[1];
 
-    return Object.values(Tooltip_1.VerticalPosition).includes(vertical) && (!horizontal || Object.values(Tooltip_1.HorizontalPosition).includes(horizontal));
+    var isValidPrimaryVertical = Object.values(Tooltip_1.VerticalPosition).includes(primaryPosition);
+    var isValidPrimaryHorizontal = Object.values(Tooltip_1.HorizontalPosition).includes(primaryPosition);
+    var isValidSecondaryHorizontal = !secondaryPosition || Object.values(Tooltip_1.HorizontalPosition).includes(secondaryPosition);
+    var isValidSecondaryVertical = !secondaryPosition || Object.values(Tooltip_1.VerticalPosition).includes(secondaryPosition);
+    return isValidPrimaryVertical && isValidSecondaryHorizontal || isValidPrimaryHorizontal && isValidSecondaryVertical;
   }
 })], Tooltipvue_type_script_lang_ts_Tooltip.prototype, "preferredPosition", void 0);
 
@@ -9016,6 +9187,8 @@ __decorate([Object(external_vue_property_decorator_["Prop"])({
     return Object.values(Tooltip_1.Themes).includes(value);
   }
 })], Tooltipvue_type_script_lang_ts_Tooltip.prototype, "theme", void 0);
+
+__decorate([Object(external_vue_property_decorator_["Prop"])(String)], Tooltipvue_type_script_lang_ts_Tooltip.prototype, "background", void 0);
 
 __decorate([Object(external_vue_property_decorator_["Prop"])(Object)], Tooltipvue_type_script_lang_ts_Tooltip.prototype, "styles", void 0);
 
@@ -9059,8 +9232,8 @@ Tooltipvue_type_script_lang_ts_Tooltip = Tooltip_1 = __decorate([Object(external
 /* harmony default export */ var Tooltipvue_type_script_lang_ts_ = (Tooltipvue_type_script_lang_ts_Tooltip);
 // CONCATENATED MODULE: ./src/components/Tooltip.vue?vue&type=script&lang=ts&
  /* harmony default export */ var components_Tooltipvue_type_script_lang_ts_ = (Tooltipvue_type_script_lang_ts_); 
-// EXTERNAL MODULE: ./src/components/Tooltip.vue?vue&type=style&index=0&id=db955f8c&scoped=true&lang=css&
-var Tooltipvue_type_style_index_0_id_db955f8c_scoped_true_lang_css_ = __webpack_require__("bf3c");
+// EXTERNAL MODULE: ./src/components/Tooltip.vue?vue&type=style&index=0&id=9a8a8218&scoped=true&lang=css&
+var Tooltipvue_type_style_index_0_id_9a8a8218_scoped_true_lang_css_ = __webpack_require__("78be");
 
 // CONCATENATED MODULE: ./src/components/Tooltip.vue
 
@@ -9073,11 +9246,11 @@ var Tooltipvue_type_style_index_0_id_db955f8c_scoped_true_lang_css_ = __webpack_
 
 var Tooltip_component = normalizeComponent(
   components_Tooltipvue_type_script_lang_ts_,
-  Tooltipvue_type_template_id_db955f8c_scoped_true_render,
-  Tooltipvue_type_template_id_db955f8c_scoped_true_staticRenderFns,
+  Tooltipvue_type_template_id_9a8a8218_scoped_true_render,
+  Tooltipvue_type_template_id_9a8a8218_scoped_true_staticRenderFns,
   false,
   null,
-  "db955f8c",
+  "9a8a8218",
   null
   
 )
@@ -10938,6 +11111,17 @@ module.exports = function (it) {
 
 /***/ }),
 
+/***/ "538a":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddressInput_vue_vue_type_style_index_0_id_bd6dd43a_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("9636");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddressInput_vue_vue_type_style_index_0_id_bd6dd43a_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddressInput_vue_vue_type_style_index_0_id_bd6dd43a_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+ /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddressInput_vue_vue_type_style_index_0_id_bd6dd43a_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
 /***/ "569b":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11660,13 +11844,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__6969__;
 
 /***/ }),
 
-/***/ "69c0":
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-
 /***/ "6aa6":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -12059,6 +12236,17 @@ module.exports = function (CONSTRUCTOR_NAME, wrapper, common) {
   return Constructor;
 };
 
+
+/***/ }),
+
+/***/ "78be":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_9a8a8218_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("112c");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_9a8a8218_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_9a8a8218_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+ /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_9a8a8218_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -12996,6 +13184,13 @@ $({ target: 'String', proto: true, forced: !MDN_POLYFILL_BUG && !CORRECT_IS_REGE
 
 /***/ }),
 
+/***/ "9636":
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
 /***/ "970c":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -13238,13 +13433,6 @@ module.exports = store;
 /* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PageHeader_vue_vue_type_style_index_0_id_53c0243a_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PageHeader_vue_vue_type_style_index_0_id_53c0243a_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
 /* unused harmony reexport * */
  /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PageHeader_vue_vue_type_style_index_0_id_53c0243a_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
-/***/ "9edd":
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
 
 /***/ }),
 
@@ -13890,17 +14078,6 @@ if (!TO_STRING_TAG_SUPPORT) {
   redefine(Object.prototype, 'toString', toString, { unsafe: true });
 }
 
-
-/***/ }),
-
-/***/ "bf3c":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_db955f8c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("69c0");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_db955f8c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_db955f8c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
- /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tooltip_vue_vue_type_style_index_0_id_db955f8c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
