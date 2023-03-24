@@ -536,11 +536,15 @@ storiesOf('Components', module)
             methods: {
                 input: action('input'),
                 paste: action('paste'),
+                onAddressChange(address) {
+                    this.lastValidAddress = address;
+                    action('address')(address);
+                },
             },
             template: `<div>
                 <AddressInput v-model="address" :allowNimAddresses="allowNimAddresses"
                     :allowEthAddresses="allowEthAddresses" :allowDomains="allowDomains" @input="input"
-                    @address="lastValidAddress = $event" @paste="paste" />
+                    @paste="paste" @address="onAddressChange" />
                 <div>Current address: {{ address }}</div>
                 <div>valid?: {{ address === lastValidAddress }}</div>
             </div>`,

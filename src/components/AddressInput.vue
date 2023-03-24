@@ -153,11 +153,15 @@ export default class AddressInput extends Vue {
         return value.replace(AddressInput._WHITESPACE_REGEX, '');
     }
 
-    private static _exportValue(value: string, parserFlags: ParserFlags) {
+    private static async _exportValue(value: string, parserFlags: ParserFlags) {
         if (AddressInput._willBeNimAddress(value, parserFlags)) {
             return value.toUpperCase().replace(/\n/g, ' ').replace(/\u200B/g, '');
+        } else if (AddressInput._willBeEthAddress(value, parserFlags)) {
+            // Add checksum for unformatted addresses.
+            return await AddressInput._addEthAddressChecksumIfMissing(AddressInput._stripWhitespace(value));
         } else {
-            return value.replace(/\n/g, '').replace(/\u200B/g, '');
+            // For domains only strip formatting character.
+            return value.replace(/\u200B/g, '');
         }
     }
 
@@ -180,29 +184,43 @@ export default class AddressInput extends Vue {
     }
 
     // Simplified from @ethersproject/address, which we don't use directly to avoid its unnecessary dependencies.
-    private static async _isEthAddress(address: string) {
-        if (!/^0x[0-9a-f]{40}$/i.test(address)) {
-            // Check if it has the basic requirements of an address.
-            return false;
-        } else if (!/[a-f]/.test(address) || !/[A-F]/.test(address)) {
-            // If it's all uppercase or all lowercase (ignoring the x of 0x) there is no encoded checksum to check.
-            return true;
-        } else {
-            // Check checksum encoded in uppercase and lowercase characters.
-            const addressHex = address.replace(/0x/gi, '');
-            const addressHexCharCodes = addressHex.toLowerCase().split('').map((char) => char.charCodeAt(0));
-            // External dependency which can be shared with the consuming app and which is lazy loaded only when needed.
-            const { keccak_256 } = await import('js-sha3');
-            const hashHex = keccak_256(addressHexCharCodes);
+    private static async _isValidEthAddress(address: string): Promise<boolean> {
+        return address.length === AddressInput.ETH_ADDRESS_MAX_LENGTH
+            && AddressInput._ETH_ADDRESS_REGEX.test(address)
+            && (
+                !AddressInput._hasEthAddressChecksum(address)
+                // Recalculate address checksum and check that it matches.
+                || await AddressInput._addEthAddressChecksumIfMissing(address.toLowerCase()) === address
+            );
+    }
 
-            for (let i = 0; i < 40; i++) {
-                // Address hex char at position i should be uppercase if the decimal value of hash hex char at position
-                // i is >= 8, and lowercase otherwise.
-                if ((parseInt(hashHex[i], 16) >= 8 ? addressHex[i].toUpperCase() : addressHex[i].toLowerCase())
-                    !== addressHex[i]) return false;
-            }
-            return true;
+    // Add checksum to an Ethereum address, if it does not include a checksum yet. Existing checksums (regardless of
+    // validity) and inputs that are not ethereum addresses are preserved. Simplified from @ethersproject/address, which
+    // we don't use directly to avoid its unnecessary dependencies.
+    private static async _addEthAddressChecksumIfMissing(address: string): Promise<string> {
+        if (address.length !== AddressInput.ETH_ADDRESS_MAX_LENGTH
+            || !AddressInput._ETH_ADDRESS_REGEX.test(address)
+            || AddressInput._hasEthAddressChecksum(address)) return address;
+
+        // Encode checksum as uppercase and lowercase characters.
+        const addressHex = address.replace(/^0x/i, '');
+        const addressHexCharCodes = addressHex.toLowerCase().split('').map((char) => char.charCodeAt(0));
+        // External dependency which can be shared with the consuming app and which is lazy loaded only when needed.
+        const { keccak_256 } = await import('js-sha3');
+        const hashHex = keccak_256(addressHexCharCodes);
+
+        let result = '0x';
+        for (let i = 0; i < 40; i++) {
+            // Address hex char at position i should be uppercase if the decimal value of hash hex char at position
+            // i is >= 8, and lowercase otherwise.
+            result += parseInt(hashHex[i], 16) >= 8 ? addressHex[i].toUpperCase() : addressHex[i].toLowerCase();
         }
+        return result;
+    }
+
+    private static _hasEthAddressChecksum(address: string): boolean {
+        // If it has uppercase and lowercase chars (ignoring the x of 0x) there is a checksum encoded.
+        return /[a-f]/.test(address) && /[A-F]/.test(address);
     }
 
     // value that can be bound to via v-model
@@ -276,8 +294,13 @@ export default class AddressInput extends Vue {
     }
 
     @Watch('value')
-    private _onExternalValueChange() {
-        if (AddressInput._stripWhitespace(this.value) === AddressInput._stripWhitespace(this.currentValue)) return;
+    private async _onExternalValueChange() {
+        // Note that external changes also happen if the parent component binds a v-model that feeds the values emitted
+        // via the 'input' event back to the value prop. However, the following check will result in an early return in
+        // these cases to avoid unnecessary processing.
+        if (AddressInput._stripWhitespace(this.currentValue)
+            // Call _exportValue because currentValue is also exported / formatted.
+            === AddressInput._stripWhitespace(await AddressInput._exportValue(this.value, this.parserFlags))) return;
 
         // could also be using format-input's parse and format helpers that preserve caret position but as we're not
         // interested in that, we calculate the formatted value manually
@@ -285,7 +308,7 @@ export default class AddressInput extends Vue {
             parsed + (AddressInput._parse(char, parsed, this.parserFlags) || ''), '');
         this.$refs.textarea.value = AddressInput._format(parsedValue, this.parserFlags).text; // moves caret to the end
 
-        this._afterChange(parsedValue);
+        await this._afterChange(parsedValue);
     }
 
     private _onKeyDown(e: KeyboardEvent) {
@@ -341,12 +364,12 @@ export default class AddressInput extends Vue {
         setTimeout(() => this._updateSelection());
     }
 
-    private _formatClipboard() {
+    private async _formatClipboard() {
         // While it's possible to set the clipboard data via clipboardEvent.clipboardData.setData this requires calling
         // preventDefault() which then results in the need to reimplement the behavior for cutting text and has side
         // effects like the change not being added to the undo history. Therefore we let the browser do the default
         // behavior but overwrite the clipboard afterwards.
-        const text = AddressInput._exportValue(document.getSelection()!.toString(), this.parserFlags);
+        const text = await AddressInput._exportValue(document.getSelection()!.toString(), this.parserFlags);
         setTimeout(() => Clipboard.copy(text));
     }
 
@@ -360,27 +383,36 @@ export default class AddressInput extends Vue {
             textarea.selectionStart += 1; // this also moves the selectionEnd as they were equal
         }
 
-        this.currentValue = AddressInput._exportValue(this.$refs.textarea.value, this.parserFlags);
-        this.$emit('input', this.currentValue); // emit event compatible with v-model
+        // Use a local variable currentValue in this method instead of this.currentValue because this.currentValue might
+        // potentially change during this async method by a parallel invocation.
+        const currentValue = await AddressInput._exportValue(this.$refs.textarea.value, this.parserFlags);
+        this.currentValue = currentValue;
+        this.$emit('input', currentValue); // emit event compatible with v-model
 
         if (AddressInput._willBeNimAddress(value, this.parserFlags)) {
-            const isValid = ValidationUtils.isValidAddress(this.currentValue);
-            if (isValid) this.$emit('address', this.currentValue);
+            const isValid = ValidationUtils.isValidAddress(currentValue);
+            if (isValid) this.$emit('address', currentValue);
 
             // if user entered a full address that is not valid give him a visual feedback
             this.$el.classList.toggle(
                 'invalid',
-                this.currentValue.length === AddressInput.NIM_ADDRESS_MAX_LENGTH && !isValid,
+                currentValue.length === AddressInput.NIM_ADDRESS_MAX_LENGTH && !isValid,
             );
         } else if (AddressInput._willBeEthAddress(value, this.parserFlags)) {
-            const checkedValue = this.currentValue; // make copy because currentValue might change during async request
-            const isValid = await AddressInput._isEthAddress(AddressInput._stripWhitespace(checkedValue));
-            if (isValid) this.$emit('address', checkedValue);
+            const isValid = await AddressInput._isValidEthAddress(currentValue);
+            if (isValid) {
+                this.$emit('address', currentValue);
+                // Write address with potentially added checksum back to the textarea. Note that this places the cursor
+                // at the end and messes with undo, which is why we don't simply write the text back into the textarea
+                // after each character. Unfortunately, we can't do the checksum formatting directly in _format because
+                // it can't be async.
+                this.$refs.textarea.value = AddressInput._format(currentValue, this.parserFlags).text;
+            }
 
             // if user entered a full address that is not valid give him a visual feedback
             this.$el.classList.toggle(
                 'invalid',
-                checkedValue.length === AddressInput.ETH_ADDRESS_MAX_LENGTH && !isValid,
+                currentValue.length === AddressInput.ETH_ADDRESS_MAX_LENGTH && !isValid,
             );
         }
     }
