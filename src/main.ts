@@ -28,6 +28,7 @@ export { default as PaymentInfoLine } from './components/PaymentInfoLine.vue';
 export { default as QrCode } from './components/QrCode.vue';
 export { default as QrScanner } from './components/QrScanner.vue';
 export { default as SelectBar } from './components/SelectBar.vue';
+export { default as SliderToggle } from './components/SliderToggle.vue';
 export { default as SmallPage } from './components/SmallPage.vue';
 export { default as Timer } from './components/Timer.vue';
 export { default as Tooltip } from './components/Tooltip.vue';
