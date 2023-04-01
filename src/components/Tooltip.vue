@@ -485,14 +485,14 @@ export default Tooltip;
 
 <style scoped>
     .tooltip {
-        contain: layout style;
+        /* contain: layout style; */
         display: inline-block;
         position: relative;
         line-height: 1;
     }
 
     .trigger {
-        contain: layout style;
+        /* contain: layout style; */
         position: relative;
         display: inline-block;
         vertical-align: bottom;
