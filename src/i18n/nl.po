@@ -96,6 +96,10 @@ msgstr "uren"
 msgid "Insufficient balance"
 msgstr "Onvoldoende salso"
 
+#: src/components/LongPressButton.vue:20
+msgid "Keep pressing…"
+msgstr ""
+
 #: src/components/AccountSelector.vue:193
 msgid "Legacy"
 msgstr "Legacy"

@@ -1,6 +1,6 @@
-((typeof self !== 'undefined' ? self : this)["webpackJsonpNimiqVueComponents"] = (typeof self !== 'undefined' ? self : this)["webpackJsonpNimiqVueComponents"] || []).push([[65],{
+((typeof self !== 'undefined' ? self : this)["webpackJsonpNimiqVueComponents"] = (typeof self !== 'undefined' ? self : this)["webpackJsonpNimiqVueComponents"] || []).push([[83],{
 
-/***/ "f309":
+/***/ "3760":
 /***/ (function(module) {
 
 module.exports = JSON.parse("{\"day\":\"день\",\"days\":\"днів\",\"hour\":\"година\",\"hours\":\"годин\",\"minute\":\"хвилина\",\"minutes\":\"хвилин\",\"second\":\"секунда\",\"seconds\":\"секунд\",\"This offer expires in {timer}.\":\"Термін дії цієї пропозиції закінчується через {timer}.\"}");

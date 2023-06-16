@@ -1,6 +1,6 @@
-((typeof self !== 'undefined' ? self : this)["webpackJsonpNimiqVueComponents"] = (typeof self !== 'undefined' ? self : this)["webpackJsonpNimiqVueComponents"] || []).push([[64],{
+((typeof self !== 'undefined' ? self : this)["webpackJsonpNimiqVueComponents"] = (typeof self !== 'undefined' ? self : this)["webpackJsonpNimiqVueComponents"] || []).push([[82],{
 
-/***/ "8741":
+/***/ "04a8":
 /***/ (function(module) {
 
 module.exports = JSON.parse("{\"Cancel\":\"Скасувати\",\"Click on {icon} and go to\\nSettings > Site Settings > Camera\":\"Натисніть на {icon} і перейдіть до\\nНалаштування > Налаштування сайту > Камера\",\"Click on {icon} in the URL bar.\":\"Натисніть на {icon} у рядку URL.\",\"Click on {safari} and go to\\nSettings for this Website > Camera\":\"Натисніть на {safari} і перейдіть до\\nНалаштування для цього веб-сайту > Камера\",\"Grant camera access when asked.\":\"Надайте доступ до камери, коли попросять.\",\"the camera icon\":\"значок камери\",\"Unblock the camera for this website to scan QR codes.\":\"Розблокуйте камеру для цього веб-сайту, щоб сканувати QR-коди.\",\"Your device does not have an accessible camera.\":\"Ваш пристрій не має доступної камери.\"}");

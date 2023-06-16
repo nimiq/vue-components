@@ -23,6 +23,7 @@ import CopyableField from '../components/CopyableField.vue';
 import FiatAmount from '../components/FiatAmount.vue';
 import Identicon from '../components/Identicon.vue';
 import LabelInput from '../components/LabelInput.vue';
+import LongPressButton from '../components/LongPressButton.vue';
 import Wallet from '../components/Wallet.vue';
 import PaymentInfoLine from '../components/PaymentInfoLine.vue';
 import QrCode from '../components/QrCode.vue';
@@ -180,6 +181,37 @@ storiesOf('Basic', module)
             template: `<div style="color: #0582CA"><LoadingSpinner /></div>`,
         };
     })
+    .add('LongPressButton', () => {
+        const color = text('color', 'light-blue');
+        const duration = number('duration', 3000);
+        return {
+            components: { LongPressButton, LoadingSpinner, HexagonIcon: Icons.HexagonIcon },
+            methods: { longPressed: action('longPressed') },
+            data: () => ({ color, duration }),
+            template: `
+                <div>
+                    <LongPressButton :color="color" :duration="duration"
+                        @${LongPressButton.Events.LONG_PRESS}="longPressed">
+                        Hold me tight.
+                    </LongPressButton>
+                    <LongPressButton :color="color" :duration="duration"
+                        @${LongPressButton.Events.LONG_PRESS}="longPressed">
+                        Sometimes it just clicks...
+                        <template #subline>but in this case it doesn't.</template>
+                    </LongPressButton>
+                    <LongPressButton :color="color" :duration="duration"
+                        style="--label-height: 4rem"
+                        @${LongPressButton.Events.LONG_PRESS}="longPressed">
+                        You can also go fancy
+                        <HexagonIcon style="width: 4rem; height: 4rem; vertical-align: middle"/>
+                        <LoadingSpinner style="width: 4rem; height: 4rem; vertical-align: middle"/>
+                        with arbitrary content
+                        <template #subline>(Yay 🎉)</template>
+                    </LongPressButton>
+                </div>
+            `,
+        };
+    })
     .add('CircleSpinner', () => {
         return {
             components: { CircleSpinner },
@@ -224,6 +256,7 @@ storiesOf('Basic', module)
         const theme = select('theme', Object.values(Tooltip.Themes), Tooltip.Themes.NORMAL);
         const styles = object('styles (json)', {});
         const fontSize = number('External font size (rem)', 3);
+        const background = text('background');
         return {
             data() {
                 return {
@@ -237,6 +270,7 @@ storiesOf('Basic', module)
                     fontSize,
                     refsLoaded: false,
                     shown: false,
+                    background,
                 };
             },
             computed: {
@@ -254,7 +288,7 @@ storiesOf('Basic', module)
                             <PageHeader>Test</PageHeader>
                             <PageBody ref="container" style="overflow-y: scroll; background: rgba(127,127,127,.1)">
                                 <div style="height:320px"></div>
-                                <div style="max-width: 100%; display: flex; align-items: center;">
+                                <div style="max-width: 100%; display: flex; align-items: center;padding-right: 1000px;">
                                     <button class="nq-button-s" :class="[theme]" @click="$refs.tooltip.show()">
                                         Show
                                     </button>
@@ -271,6 +305,7 @@ storiesOf('Basic', module)
                                         :disabled="disabled"
                                         :theme="theme"
                                         :styles="styles"
+                                        :background="background"
                                         :style="{ fontSize: fontSize + 'rem' }"
                                         @show="shown = true"
                                         @hide="shown = false">
@@ -475,30 +510,41 @@ storiesOf('Components', module)
     .add('AddressDisplay', () => {
         const address = text('address', 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE');
         const copyable = boolean('copyable', false);
+        const format = select('format', ['nimiq', 'ethereum'], 'nimiq');
         return {
-            data: () => ({ address, copyable }),
+            data: () => ({ address, copyable, format }),
             components: {AddressDisplay},
-            template: `<AddressDisplay :address="address" :copyable="copyable"
-                style="margin-top: 7rem; margin-left: 2rem;" />`,
+            template: `<AddressDisplay :address="address" :copyable="copyable" :format="format"
+                style="margin-top: 2rem; margin-left: 2rem;" />`,
         };
     })
     .add('AddressInput', () => {
-        const allowDomains = boolean('Allow Domains', true);
+        const allowNimAddresses = boolean('Allow Nim Addresses', true);
+        const allowEthAddresses = boolean('Allow Eth Addresses', false);
+        const allowDomains = boolean('Allow Domains', false);
         return {
             components: {AddressInput},
             data() {
                 return {
                     address: '',
                     lastValidAddress: null,
+                    allowNimAddresses,
+                    allowEthAddresses,
                     allowDomains,
                 };
             },
             methods: {
                 input: action('input'),
                 paste: action('paste'),
+                onAddressChange(address) {
+                    this.lastValidAddress = address;
+                    action('address')(address);
+                },
             },
             template: `<div>
-                <AddressInput v-model="address" :allowDomains="allowDomains" @input="input" @address="lastValidAddress = $event" @paste="paste" />
+                <AddressInput v-model="address" :allowNimAddresses="allowNimAddresses"
+                    :allowEthAddresses="allowEthAddresses" :allowDomains="allowDomains" @input="input"
+                    @paste="paste" @address="onAddressChange" />
                 <div>Current address: {{ address }}</div>
                 <div>valid?: {{ address === lastValidAddress }}</div>
             </div>`,
@@ -653,13 +699,16 @@ storiesOf('Components', module)
     })
     .add('Copyable', () => ({
         components: { Copyable },
+        methods: {
+            copy: action('copy'),
+        },
         template: `
             <div>
-                <Copyable ref="copyable" style="margin-top: 7rem;">I'm a text you can copy.</Copyable>
-                <Copyable>
+                <Copyable ref="copyable" style="margin-top: 7rem;" @copy="copy">I'm a text you can copy.</Copyable>
+                <Copyable @copy="copy">
                     I'm a copyable text<br>with <b>child nodes</b>.
                 </Copyable>
-                <Copyable text="Surprise!!!">When you click me you get a surprise!</Copyable>
+                <Copyable text="Surprise!!!" @copy="copy">When you click me you get a surprise!</Copyable>
                 <button class="nq-button" style="margin-top: 7rem; margin-left: 1rem" @click="$refs.copyable.copy()">
                     Click me to trigger a copy via code
                 </button>

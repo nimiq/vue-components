@@ -19,6 +19,7 @@ export { default as FiatAmount } from './components/FiatAmount.vue';
 // export { default as Identicon } from './components/Identicon.vue';
 // export { default as LabelInput } from './components/LabelInput.vue';
 export { default as LoadingSpinner } from './components/LoadingSpinner.vue';
+// export { default as LongPressButton } from './components/LongPressButton.vue';
 // export { default as PageBody } from './components/PageBody.vue';
 // export { default as PageFooter } from './components/PageFooter.vue';
 // export { default as PageHeader } from './components/PageHeader.vue';
@@ -44,8 +45,8 @@ declare global {
 
 /**
  * Set a specific public path / base path (see https://webpack.js.org/guides/public-path/) from where assets like
- * translation files, identicons or the qr scanner worker should be loaded. By default, this is the path from where
- * the importing script is loaded, derived from the importing script's currentScript src.
+ * translation files or identicons should be loaded. By default, this is the path from where the importing script is
+ * loaded, derived from the importing script's currentScript src.
  *
  * Optionally, you can define a different path for image assets.
  */

@@ -9,7 +9,10 @@ declare class Tooltip extends Vue {
     disabled?: boolean;
     noFocus?: boolean;
     /**
-     * Preferred tooltip position as "[vertical] [horizontal]" or "[vertical]".
+     * Preferred tooltip position as "[primary] [secondary]" or "[primary]".
+     * The primary position can be either vertical or horizontal.
+     * The secondary position, which is optional, should be of the opposite type of the primary position (i.e., horizontal if primary is vertical, and vice versa).
+     * If only a single primary position is provided, the tooltip will be centered in the opposite direction.
      */
     preferredPosition: string;
     /**
@@ -22,6 +25,10 @@ declare class Tooltip extends Vue {
      */
     autoWidth: boolean;
     theme: Tooltip.Themes;
+    /**
+     * Background of the tooltip as a CSS value. Override the theme property.
+     */
+    background?: string;
     /**
      * Styles to apply on the tooltip box without the need to use deep css selectors.
      */
@@ -36,9 +43,7 @@ declare class Tooltip extends Vue {
         tooltipBox: HTMLDivElement;
     });
     $el: HTMLElement;
-    private verticalPosition;
     private tooltipToggled;
-    private transitionPosition;
     private mousedOver;
     private mouseOverTimeout;
     private lastToggle;
@@ -46,7 +51,9 @@ declare class Tooltip extends Vue {
     private width;
     private maxWidth;
     private left;
+    private right;
     private top;
+    private positionCssClass;
     get isShown(): boolean;
     private get effectiveContainer();
     private get tooltipBoxStyles();
