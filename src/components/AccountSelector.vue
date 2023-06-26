@@ -6,6 +6,11 @@
                     <div class="nq-label">
                         {{ wallet.label }}
                         <span v-if="highlightBitcoinAccounts && wallet.btcXPub" class="btc-pill">BTC</span>
+                        <span
+                            v-if="highlightUsdcAccounts && wallet.polygonAddresses && wallet.polygonAddresses.length"
+                            class="usdc-pill">
+                            USDC
+                        </span>
                     </div>
                     <Tooltip
                         v-if="_isAccountDisabled(wallet)"
@@ -77,6 +82,11 @@ export interface WalletInfo {
     type: number;
     keyMissing: boolean;
     btcXPub?: string;
+    polygonAddresses?: Array<{
+        path: string;
+        address: string;
+        balance?: number;
+    }>;
 }
 
 @Component({
@@ -126,6 +136,7 @@ export default class AccountSelector extends Mixins(I18nMixin) {
     @Prop(Boolean) private disableBip39Accounts?: boolean;
     @Prop(Boolean) private disableLedgerAccounts?: boolean;
     @Prop(Boolean) private highlightBitcoinAccounts?: boolean;
+    @Prop(Boolean) private highlightUsdcAccounts?: boolean;
     @Prop({type: Boolean, default: true}) private allowLogin!: boolean;
 
     private shownTooltip: Tooltip | null = null;
@@ -263,7 +274,8 @@ export default class AccountSelector extends Mixins(I18nMixin) {
         background: rgba(31, 35, 72, 0.1);
     }
 
-    .btc-pill {
+    .btc-pill,
+    .usdc-pill {
         background: #F7931A; /* Bitcoin orange */
         color: white;
         font-weight: bold;
@@ -271,6 +283,10 @@ export default class AccountSelector extends Mixins(I18nMixin) {
         padding: 0.25rem 0.75rem;
         border-radius: 2rem;
         margin-left: 0.25rem;
+    }
+
+    .usdc-pill {
+        background: #2775CA; /* USDC blue */
     }
 
     .footer {
