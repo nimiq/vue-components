@@ -1,1 +1,1 @@
-(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[69],{"56dc":function(e){e.exports=JSON.parse('{"fee":"комісія","Insufficient balance":"Недостатній баланс"}')}}]);
+(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[86],{6853:function(e){e.exports=JSON.parse('{"fee":"комісія","Insufficient balance":"Недостатній баланс"}')}}]);

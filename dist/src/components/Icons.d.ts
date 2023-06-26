@@ -1,6 +1,7 @@
 /**
  * Comment out any unused icons here
  */
+export declare const AlertCircleIcon: any;
 export declare const AlertTriangleIcon: any;
 export declare const ArrowLeftSmallIcon: any;
 export declare const ArrowLeftIcon: any;

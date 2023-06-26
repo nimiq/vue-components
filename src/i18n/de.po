@@ -1,11 +1,11 @@
-# 
+#
 # Translators:
 # Sven <sven@nimiq.com>, 2020
 # Sebastian Langer <basti@b-compu.de>, 2020
 # Daniel, 2020
 # Redexe <timo.niehoff@yahoo.de>, 2020
 # Huriye <huriyegoek@gmx.de>, 2021
-# 
+#
 msgid ""
 msgstr ""
 "Last-Translator: Huriye <huriyegoek@gmx.de>, 2021\n"
@@ -97,6 +97,10 @@ msgstr "Stunden"
 #: src/components/AmountWithFee.vue:5
 msgid "Insufficient balance"
 msgstr "Dein Guthaben reicht nicht aus."
+
+#: src/components/LongPressButton.vue:20
+msgid "Keep pressing…"
+msgstr "Halten…"
 
 #: src/components/AccountSelector.vue:193
 msgid "Legacy"
