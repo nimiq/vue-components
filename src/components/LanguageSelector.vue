@@ -8,19 +8,21 @@
             _hideList(50)
         ">
         <div class="trigger" :class="{ 'has-arrow': languages.length > 1 }">{{ selectedLanguage }}</div>
-        <div v-if="isListShown && languages.length > 1" class="list">
-            <div v-for="language of languages"
-                ref="list-entries"
-                tabindex="0"
-                class="list-entry"
-                :key="language"
-                @mouseenter="$event.target.focus()"
-                @click="selectedLanguage = language; _hideList()"
-                @keydown.space.enter="selectedLanguage = language; _hideList()"
-            >
-                <span class="list-entry-label has-arrow">{{ language }}</span>
+        <transition name="transition-fade">
+            <div v-if="isListShown && languages.length > 1" class="list">
+                <div v-for="language of languages"
+                    ref="list-entries"
+                    tabindex="0"
+                    class="list-entry"
+                    :key="language"
+                    @mouseenter="$event.target.focus()"
+                    @click="selectedLanguage = language; _hideList()"
+                    @keydown.space.enter="selectedLanguage = language; _hideList()"
+                >
+                    <span class="list-entry-label has-arrow">{{ language }}</span>
+                </div>
             </div>
-        </div>
+        </transition>
     </div>
 </template>
 
@@ -176,5 +178,15 @@ export default class LanguageSelector extends Vue {
     .list-entry:focus-within .list-entry-label,
     .list-entry:focus-within .list-entry-label.has-arrow::after {
         opacity: 1;
+    }
+
+    .transition-fade-enter-active,
+    .transition-fade-leave-active {
+        transition: opacity .3s var(--nimiq-ease);
+    }
+
+    .transition-fade-enter,
+    .transition-fade-leave-to {
+        opacity: 0 !important;
     }
 </style>
