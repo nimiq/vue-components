@@ -17,7 +17,10 @@
                     :key="language"
                     @mouseenter="$event.target.focus()"
                     @click="selectedLanguage = language; _hideList()"
-                    @keydown.space.enter="selectedLanguage = language; _hideList()"
+                    @keydown.space.enter.prevent="selectedLanguage = language; _hideList()"
+                    @keydown.down.prevent="_moveListFocus(+1)"
+                    @keydown.up.prevent="_moveListFocus(-1)"
+                    @keydown.left.esc.prevent="_hideList"
                 >
                     <span class="list-entry-label has-arrow">{{ language }}</span>
                 </div>
@@ -72,17 +75,30 @@ export default class LanguageSelector extends Vue {
         clearTimeout(this.closeTimeout);
         if (this.isListShown) return;
         this.isListShown = true;
-        // Focus entry for the currently selected language.
         await Vue.nextTick();
-        if (!this.$refs['list-entries']) return;
-        const selectedLanguageListEntry = this.$refs['list-entries'][this.languages.indexOf(this.selectedLanguage)];
-        if (!selectedLanguageListEntry) return;
-        selectedLanguageListEntry.focus();
+        this._focusListEntry(this.selectedLanguage);
     }
 
     private _hideList(delay = 0) {
         clearTimeout(this.closeTimeout);
         this.closeTimeout = window.setTimeout(() => this.isListShown = false, delay);
+    }
+
+    private _moveListFocus(offset: number) {
+        const listEntries = this.$refs['list-entries'];
+        if (!listEntries) return;
+        const currentIndex = listEntries.indexOf(document.activeElement as HTMLDivElement);
+        if (currentIndex === -1) return;
+        const newIndex = (this.languages.length + currentIndex + offset) % this.languages.length;
+        this._focusListEntry(this.languages[newIndex]);
+    }
+
+    private _focusListEntry(language: string) {
+        const listEntries = this.$refs['list-entries'];
+        if (!listEntries) return;
+        const listEntry = listEntries[this.languages.indexOf(language)];
+        if (!listEntry) return;
+        listEntry.focus();
     }
 }
 </script>
