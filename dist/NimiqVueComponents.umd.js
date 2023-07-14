@@ -3002,6 +3002,35 @@ var es_object_assign = __webpack_require__("7fd5");
         }
       });
     
+// CONCATENATED MODULE: ./node_modules/@nimiq/style/src/icons/info-circle-small.svg
+
+      /* harmony default export */ var info_circle_small = ({
+        functional: true,
+        render(_h, _vm) {
+          const { _c, _v, data, children = [] } = _vm;
+
+          const {
+            class: classNames,
+            staticClass,
+            style,
+            staticStyle,
+            attrs = {},
+            ...rest
+          } = data;
+
+          return _c(
+            'svg',
+            {
+              class: [classNames,staticClass],
+              style: [style,staticStyle],
+              attrs: Object.assign({"width":"16","height":"16","viewBox":"0 0 16 16","xmlns":"http://www.w3.org/2000/svg"}, attrs),
+              ...rest,
+            },
+            children.concat([_c('line',{attrs:{"x1":"8","y1":"7.83301","x2":"8","y2":"11.333","stroke":"currentColor","fill":"none","stroke-linecap":"round","stroke-width":"1.5"}}),_c('circle',{attrs:{"cx":"8","cy":"4.75","r":"0.5","fill":"currentColor","stroke":"currentColor","stroke-width":"1"}}),_c('circle',{attrs:{"cx":"8","cy":"8","r":"7.25","stroke":"currentColor","stroke-width":"1.5","fill":"none"}})])
+          )
+        }
+      });
+    
 // CONCATENATED MODULE: ./node_modules/@nimiq/style/src/icons/questionmark.svg
 
       /* harmony default export */ var questionmark = ({
@@ -3103,8 +3132,8 @@ var IconBase = function IconBase(component) {
 // import Gear from '@nimiq/style/src/icons/gear.svg';
 // import Hexagon from '@nimiq/style/src/icons/hexagon.svg';
 // import InfoCircle from '@nimiq/style/src/icons/info-circle.svg';
-// import InfoCircleSmall from '@nimiq/style/src/icons/info-circle-small.svg';
-// import Keys from '@nimiq/style/src/icons/keys.svg';
+
+ // import Keys from '@nimiq/style/src/icons/keys.svg';
 // import Ledger from '@nimiq/style/src/icons/ledger.svg';
 // import LockLocked from '@nimiq/style/src/icons/lock-locked.svg';
 // import LockUnlocked from '@nimiq/style/src/icons/lock-unlocked.svg';
@@ -3147,8 +3176,8 @@ var CrossIcon = IconBase(cross); // export const DownloadIcon = IconBase(Downloa
 // export const GearIcon = IconBase(Gear);
 // export const HexagonIcon = IconBase(Hexagon);
 // export const InfoCircleIcon = IconBase(InfoCircle);
-// export const InfoCircleSmallIcon = IconBase(InfoCircleSmall);
-// export const KeysIcon = IconBase(Keys);
+
+var InfoCircleSmallIcon = IconBase(info_circle_small); // export const KeysIcon = IconBase(Keys);
 // export const LedgerIcon = IconBase(Ledger);
 // export const LockLockedIcon = IconBase(LockLocked);
 // export const LockUnlockedIcon = IconBase(LockUnlocked);
@@ -6545,6 +6574,7 @@ function setAssetPublicPath(path, imageAssetsPath) {
 /* concated harmony reexport ArrowRightSmallIcon */__webpack_require__.d(__webpack_exports__, "ArrowRightSmallIcon", function() { return ArrowRightSmallIcon; });
 /* concated harmony reexport CloseIcon */__webpack_require__.d(__webpack_exports__, "CloseIcon", function() { return CloseIcon; });
 /* concated harmony reexport CrossIcon */__webpack_require__.d(__webpack_exports__, "CrossIcon", function() { return CrossIcon; });
+/* concated harmony reexport InfoCircleSmallIcon */__webpack_require__.d(__webpack_exports__, "InfoCircleSmallIcon", function() { return InfoCircleSmallIcon; });
 /* concated harmony reexport QuestionmarkIcon */__webpack_require__.d(__webpack_exports__, "QuestionmarkIcon", function() { return QuestionmarkIcon; });
 /* concated harmony reexport StopwatchIcon */__webpack_require__.d(__webpack_exports__, "StopwatchIcon", function() { return StopwatchIcon; });
 /* concated harmony reexport I18nMixin */__webpack_require__.d(__webpack_exports__, "I18nMixin", function() { return i18n_I18nMixin; });
