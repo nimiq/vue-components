@@ -4,6 +4,7 @@ export { default as CloseButton } from './components/CloseButton.vue';
 export { default as Copyable } from './components/Copyable.vue';
 export { default as CopyableField } from './components/CopyableField.vue';
 export { default as FiatAmount } from './components/FiatAmount.vue';
+export { default as LanguageSelector } from './components/LanguageSelector.vue';
 export { default as LoadingSpinner } from './components/LoadingSpinner.vue';
 export { default as QrCode } from './components/QrCode.vue';
 export { default as Timer } from './components/Timer.vue';
