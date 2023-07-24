@@ -1,0 +1,1 @@
+(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[31],{"72f7":function(e){e.exports=JSON.parse('{"Keep pressing…":"Patuloy ang pagpindot..."}')}}]);

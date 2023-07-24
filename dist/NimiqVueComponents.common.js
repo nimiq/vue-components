@@ -44,7 +44,7 @@ module.exports =
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "NimiqVueComponents.common." + ({"1":"lang-de-AccountList-json","2":"lang-de-AccountSelector-json","3":"lang-de-AmountWithFee-json","4":"lang-de-Copyable-json","5":"lang-de-CopyableField-json","6":"lang-de-LabelInput-json","7":"lang-de-LongPressButton-json","8":"lang-de-PageHeader-json","9":"lang-de-PaymentInfoLine-json","10":"lang-de-QrScanner-json","11":"lang-de-Timer-json","12":"lang-de-Wallet-json","13":"lang-es-AccountList-json","14":"lang-es-AccountSelector-json","15":"lang-es-AmountWithFee-json","16":"lang-es-Copyable-json","17":"lang-es-CopyableField-json","18":"lang-es-LabelInput-json","19":"lang-es-LongPressButton-json","20":"lang-es-PageHeader-json","21":"lang-es-PaymentInfoLine-json","22":"lang-es-QrScanner-json","23":"lang-es-Timer-json","24":"lang-es-Wallet-json","25":"lang-fr-AccountList-json","26":"lang-fr-AccountSelector-json","27":"lang-fr-AmountWithFee-json","28":"lang-fr-Copyable-json","29":"lang-fr-CopyableField-json","30":"lang-fr-LabelInput-json","31":"lang-fr-LongPressButton-json","32":"lang-fr-PageHeader-json","33":"lang-fr-PaymentInfoLine-json","34":"lang-fr-QrScanner-json","35":"lang-fr-Timer-json","36":"lang-fr-Wallet-json","37":"lang-nl-AccountList-json","38":"lang-nl-AccountSelector-json","39":"lang-nl-AmountWithFee-json","40":"lang-nl-Copyable-json","41":"lang-nl-CopyableField-json","42":"lang-nl-LabelInput-json","43":"lang-nl-LongPressButton-json","44":"lang-nl-PageHeader-json","45":"lang-nl-PaymentInfoLine-json","46":"lang-nl-QrScanner-json","47":"lang-nl-Timer-json","48":"lang-nl-Wallet-json","49":"lang-pt-AccountList-json","50":"lang-pt-AccountSelector-json","51":"lang-pt-AmountWithFee-json","52":"lang-pt-Copyable-json","53":"lang-pt-CopyableField-json","54":"lang-pt-LabelInput-json","55":"lang-pt-LongPressButton-json","56":"lang-pt-PageHeader-json","57":"lang-pt-PaymentInfoLine-json","58":"lang-pt-QrScanner-json","59":"lang-pt-Timer-json","60":"lang-pt-Wallet-json","61":"lang-ru-AccountList-json","62":"lang-ru-AccountSelector-json","63":"lang-ru-AmountWithFee-json","64":"lang-ru-Copyable-json","65":"lang-ru-CopyableField-json","66":"lang-ru-LabelInput-json","67":"lang-ru-LongPressButton-json","68":"lang-ru-PageHeader-json","69":"lang-ru-PaymentInfoLine-json","70":"lang-ru-QrScanner-json","71":"lang-ru-Timer-json","72":"lang-ru-Wallet-json","73":"lang-uk-AccountList-json","74":"lang-uk-AccountSelector-json","75":"lang-uk-AmountWithFee-json","76":"lang-uk-Copyable-json","77":"lang-uk-CopyableField-json","78":"lang-uk-LabelInput-json","79":"lang-uk-LongPressButton-json","80":"lang-uk-PageHeader-json","81":"lang-uk-PaymentInfoLine-json","82":"lang-uk-QrScanner-json","83":"lang-uk-Timer-json","84":"lang-uk-Wallet-json","85":"lang-zh-AccountList-json","86":"lang-zh-AccountSelector-json","87":"lang-zh-AmountWithFee-json","88":"lang-zh-Copyable-json","89":"lang-zh-CopyableField-json","90":"lang-zh-LabelInput-json","91":"lang-zh-LongPressButton-json","92":"lang-zh-PageHeader-json","93":"lang-zh-PaymentInfoLine-json","94":"lang-zh-QrScanner-json","95":"lang-zh-Timer-json","96":"lang-zh-Wallet-json"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "NimiqVueComponents.common." + ({"1":"lang-de-AccountList-json","2":"lang-de-AccountSelector-json","3":"lang-de-AmountWithFee-json","4":"lang-de-Copyable-json","5":"lang-de-CopyableField-json","6":"lang-de-LabelInput-json","7":"lang-de-LongPressButton-json","8":"lang-de-PageHeader-json","9":"lang-de-PaymentInfoLine-json","10":"lang-de-QrScanner-json","11":"lang-de-Timer-json","12":"lang-de-Wallet-json","13":"lang-es-AccountList-json","14":"lang-es-AccountSelector-json","15":"lang-es-AmountWithFee-json","16":"lang-es-Copyable-json","17":"lang-es-CopyableField-json","18":"lang-es-LabelInput-json","19":"lang-es-LongPressButton-json","20":"lang-es-PageHeader-json","21":"lang-es-PaymentInfoLine-json","22":"lang-es-QrScanner-json","23":"lang-es-Timer-json","24":"lang-es-Wallet-json","25":"lang-fil-AccountList-json","26":"lang-fil-AccountSelector-json","27":"lang-fil-AmountWithFee-json","28":"lang-fil-Copyable-json","29":"lang-fil-CopyableField-json","30":"lang-fil-LabelInput-json","31":"lang-fil-LongPressButton-json","32":"lang-fil-PageHeader-json","33":"lang-fil-PaymentInfoLine-json","34":"lang-fil-QrScanner-json","35":"lang-fil-Timer-json","36":"lang-fil-Wallet-json","37":"lang-fr-AccountList-json","38":"lang-fr-AccountSelector-json","39":"lang-fr-AmountWithFee-json","40":"lang-fr-Copyable-json","41":"lang-fr-CopyableField-json","42":"lang-fr-LabelInput-json","43":"lang-fr-LongPressButton-json","44":"lang-fr-PageHeader-json","45":"lang-fr-PaymentInfoLine-json","46":"lang-fr-QrScanner-json","47":"lang-fr-Timer-json","48":"lang-fr-Wallet-json","49":"lang-nl-AccountList-json","50":"lang-nl-AccountSelector-json","51":"lang-nl-AmountWithFee-json","52":"lang-nl-Copyable-json","53":"lang-nl-CopyableField-json","54":"lang-nl-LabelInput-json","55":"lang-nl-LongPressButton-json","56":"lang-nl-PageHeader-json","57":"lang-nl-PaymentInfoLine-json","58":"lang-nl-QrScanner-json","59":"lang-nl-Timer-json","60":"lang-nl-Wallet-json","61":"lang-pt-AccountList-json","62":"lang-pt-AccountSelector-json","63":"lang-pt-AmountWithFee-json","64":"lang-pt-Copyable-json","65":"lang-pt-CopyableField-json","66":"lang-pt-LabelInput-json","67":"lang-pt-LongPressButton-json","68":"lang-pt-PageHeader-json","69":"lang-pt-PaymentInfoLine-json","70":"lang-pt-QrScanner-json","71":"lang-pt-Timer-json","72":"lang-pt-Wallet-json","73":"lang-ru-AccountList-json","74":"lang-ru-AccountSelector-json","75":"lang-ru-AmountWithFee-json","76":"lang-ru-Copyable-json","77":"lang-ru-CopyableField-json","78":"lang-ru-LabelInput-json","79":"lang-ru-LongPressButton-json","80":"lang-ru-PageHeader-json","81":"lang-ru-PaymentInfoLine-json","82":"lang-ru-QrScanner-json","83":"lang-ru-Timer-json","84":"lang-ru-Wallet-json","85":"lang-uk-AccountList-json","86":"lang-uk-AccountSelector-json","87":"lang-uk-AmountWithFee-json","88":"lang-uk-Copyable-json","89":"lang-uk-CopyableField-json","90":"lang-uk-LabelInput-json","91":"lang-uk-LongPressButton-json","92":"lang-uk-PageHeader-json","93":"lang-uk-PaymentInfoLine-json","94":"lang-uk-QrScanner-json","95":"lang-uk-Timer-json","96":"lang-uk-Wallet-json","97":"lang-zh-AccountList-json","98":"lang-zh-AccountSelector-json","99":"lang-zh-AmountWithFee-json","100":"lang-zh-Copyable-json","101":"lang-zh-CopyableField-json","102":"lang-zh-LabelInput-json","103":"lang-zh-LongPressButton-json","104":"lang-zh-PageHeader-json","105":"lang-zh-PaymentInfoLine-json","106":"lang-zh-QrScanner-json","107":"lang-zh-Timer-json","108":"lang-zh-Wallet-json"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -1081,293 +1081,341 @@ var map = {
 		"6743",
 		24
 	],
+	"./fil/AccountList.json": [
+		"885d",
+		25
+	],
+	"./fil/AccountSelector.json": [
+		"01f3",
+		26
+	],
+	"./fil/AmountWithFee.json": [
+		"b49a",
+		27
+	],
+	"./fil/Copyable.json": [
+		"cf69",
+		28
+	],
+	"./fil/CopyableField.json": [
+		"274a",
+		29
+	],
+	"./fil/LabelInput.json": [
+		"ac1a",
+		30
+	],
+	"./fil/LongPressButton.json": [
+		"72f7",
+		31
+	],
+	"./fil/PageHeader.json": [
+		"20d9",
+		32
+	],
+	"./fil/PaymentInfoLine.json": [
+		"1625",
+		33
+	],
+	"./fil/QrScanner.json": [
+		"818c",
+		34
+	],
+	"./fil/Timer.json": [
+		"7baa",
+		35
+	],
+	"./fil/Wallet.json": [
+		"e7d6",
+		36
+	],
 	"./fr/AccountList.json": [
 		"4d97",
-		25
+		37
 	],
 	"./fr/AccountSelector.json": [
 		"36a8",
-		26
+		38
 	],
 	"./fr/AmountWithFee.json": [
 		"5afc",
-		27
+		39
 	],
 	"./fr/Copyable.json": [
 		"ff70",
-		28
+		40
 	],
 	"./fr/CopyableField.json": [
 		"58da",
-		29
+		41
 	],
 	"./fr/LabelInput.json": [
 		"b93f",
-		30
+		42
 	],
 	"./fr/LongPressButton.json": [
 		"626f",
-		31
+		43
 	],
 	"./fr/PageHeader.json": [
 		"9ab1",
-		32
+		44
 	],
 	"./fr/PaymentInfoLine.json": [
 		"45fb",
-		33
+		45
 	],
 	"./fr/QrScanner.json": [
 		"cc58",
-		34
+		46
 	],
 	"./fr/Timer.json": [
 		"d34b",
-		35
+		47
 	],
 	"./fr/Wallet.json": [
 		"9907",
-		36
+		48
 	],
 	"./nl/AccountList.json": [
 		"0844",
-		37
+		49
 	],
 	"./nl/AccountSelector.json": [
 		"6cb2",
-		38
+		50
 	],
 	"./nl/AmountWithFee.json": [
 		"ec31",
-		39
+		51
 	],
 	"./nl/Copyable.json": [
 		"3b22",
-		40
+		52
 	],
 	"./nl/CopyableField.json": [
 		"922b",
-		41
+		53
 	],
 	"./nl/LabelInput.json": [
 		"ce5e",
-		42
+		54
 	],
 	"./nl/LongPressButton.json": [
 		"4af0",
-		43
+		55
 	],
 	"./nl/PageHeader.json": [
 		"b191",
-		44
+		56
 	],
 	"./nl/PaymentInfoLine.json": [
 		"52b5",
-		45
+		57
 	],
 	"./nl/QrScanner.json": [
 		"2bd2",
-		46
+		58
 	],
 	"./nl/Timer.json": [
 		"f691",
-		47
+		59
 	],
 	"./nl/Wallet.json": [
 		"23d7",
-		48
+		60
 	],
 	"./pt/AccountList.json": [
 		"7dd2",
-		49
+		61
 	],
 	"./pt/AccountSelector.json": [
 		"7615",
-		50
+		62
 	],
 	"./pt/AmountWithFee.json": [
 		"a5e1",
-		51
+		63
 	],
 	"./pt/Copyable.json": [
 		"ad46",
-		52
+		64
 	],
 	"./pt/CopyableField.json": [
 		"a890",
-		53
+		65
 	],
 	"./pt/LabelInput.json": [
 		"7892",
-		54
+		66
 	],
 	"./pt/LongPressButton.json": [
 		"dca0",
-		55
+		67
 	],
 	"./pt/PageHeader.json": [
 		"5f2a",
-		56
+		68
 	],
 	"./pt/PaymentInfoLine.json": [
 		"8830",
-		57
+		69
 	],
 	"./pt/QrScanner.json": [
 		"85a1",
-		58
+		70
 	],
 	"./pt/Timer.json": [
 		"757c",
-		59
+		71
 	],
 	"./pt/Wallet.json": [
 		"6d10",
-		60
+		72
 	],
 	"./ru/AccountList.json": [
 		"267d",
-		61
+		73
 	],
 	"./ru/AccountSelector.json": [
 		"6148",
-		62
+		74
 	],
 	"./ru/AmountWithFee.json": [
 		"d56c",
-		63
+		75
 	],
 	"./ru/Copyable.json": [
 		"08ff",
-		64
+		76
 	],
 	"./ru/CopyableField.json": [
 		"dfb1",
-		65
+		77
 	],
 	"./ru/LabelInput.json": [
 		"64d7",
-		66
+		78
 	],
 	"./ru/LongPressButton.json": [
 		"26f6",
-		67
+		79
 	],
 	"./ru/PageHeader.json": [
 		"6212",
-		68
+		80
 	],
 	"./ru/PaymentInfoLine.json": [
 		"21ab",
-		69
+		81
 	],
 	"./ru/QrScanner.json": [
 		"089a",
-		70
+		82
 	],
 	"./ru/Timer.json": [
 		"171c",
-		71
+		83
 	],
 	"./ru/Wallet.json": [
 		"ebbc",
-		72
+		84
 	],
 	"./uk/AccountList.json": [
 		"61b1",
-		73
+		85
 	],
 	"./uk/AccountSelector.json": [
 		"f611",
-		74
+		86
 	],
 	"./uk/AmountWithFee.json": [
 		"6853",
-		75
+		87
 	],
 	"./uk/Copyable.json": [
 		"a658",
-		76
+		88
 	],
 	"./uk/CopyableField.json": [
 		"ae3c",
-		77
+		89
 	],
 	"./uk/LabelInput.json": [
 		"03a3",
-		78
+		90
 	],
 	"./uk/LongPressButton.json": [
 		"d943",
-		79
+		91
 	],
 	"./uk/PageHeader.json": [
 		"f990",
-		80
+		92
 	],
 	"./uk/PaymentInfoLine.json": [
 		"2872",
-		81
+		93
 	],
 	"./uk/QrScanner.json": [
 		"04a8",
-		82
+		94
 	],
 	"./uk/Timer.json": [
 		"3760",
-		83
+		95
 	],
 	"./uk/Wallet.json": [
 		"10e0",
-		84
+		96
 	],
 	"./zh/AccountList.json": [
 		"1494",
-		85
+		97
 	],
 	"./zh/AccountSelector.json": [
 		"1018",
-		86
+		98
 	],
 	"./zh/AmountWithFee.json": [
 		"9823",
-		87
+		99
 	],
 	"./zh/Copyable.json": [
 		"67ae",
-		88
+		100
 	],
 	"./zh/CopyableField.json": [
 		"51e1",
-		89
+		101
 	],
 	"./zh/LabelInput.json": [
 		"38af",
-		90
+		102
 	],
 	"./zh/LongPressButton.json": [
 		"1142",
-		91
+		103
 	],
 	"./zh/PageHeader.json": [
 		"e4cb",
-		92
+		104
 	],
 	"./zh/PaymentInfoLine.json": [
 		"3355",
-		93
+		105
 	],
 	"./zh/QrScanner.json": [
 		"f55d",
-		94
+		106
 	],
 	"./zh/Timer.json": [
 		"29ae",
-		95
+		107
 	],
 	"./zh/Wallet.json": [
 		"87ed",
-		96
+		108
 	]
 };
 function webpackAsyncContext(req) {
@@ -2877,35 +2925,6 @@ var es_object_assign = __webpack_require__("7fd5");
         }
       });
     
-// CONCATENATED MODULE: ./node_modules/@nimiq/style/src/icons/arrow-left-small.svg
-
-      /* harmony default export */ var arrow_left_small = ({
-        functional: true,
-        render(_h, _vm) {
-          const { _c, _v, data, children = [] } = _vm;
-
-          const {
-            class: classNames,
-            staticClass,
-            style,
-            staticStyle,
-            attrs = {},
-            ...rest
-          } = data;
-
-          return _c(
-            'svg',
-            {
-              class: [classNames,staticClass],
-              style: [style,staticStyle],
-              attrs: Object.assign({"width":"11","height":"9","viewBox":"0 0 11 9","xmlns":"http://www.w3.org/2000/svg"}, attrs),
-              ...rest,
-            },
-            children.concat([_c('path',{attrs:{"d":"M4.25,7.75.75,4.25,4.25.75","stroke-width":"1.5","stroke-linecap":"round","stroke-linejoin":"round","stroke":"currentColor","fill":"none"}}),_c('line',{attrs:{"x1":"1","y1":"4.25","x2":"10.25","y2":"4.25","stroke-width":"1.5","stroke-linecap":"round","stroke-linejoin":"round","stroke":"currentColor","fill":"none"}})])
-          )
-        }
-      });
-    
 // CONCATENATED MODULE: ./node_modules/@nimiq/style/src/icons/arrow-right-small.svg
 
       /* harmony default export */ var arrow_right_small = ({
@@ -3103,8 +3122,8 @@ var IconBase = function IconBase(component) {
 
 
 
-
- // import ArrowLeft from '@nimiq/style/src/icons/arrow-left.svg';
+ // import ArrowLeftSmall from '@nimiq/style/src/icons/arrow-left-small.svg';
+// import ArrowLeft from '@nimiq/style/src/icons/arrow-left.svg';
 
  // import ArrowRight from '@nimiq/style/src/icons/arrow-right.svg';
 // import CaretRightSmall from '@nimiq/style/src/icons/caret-right-small.svg';
@@ -3147,8 +3166,8 @@ var IconBase = function IconBase(component) {
 // tslint:disable:variable-name
 
 var AlertCircleIcon = IconBase(alert_circle);
-var AlertTriangleIcon = IconBase(alert_triangle);
-var ArrowLeftSmallIcon = IconBase(arrow_left_small); // export const ArrowLeftIcon = IconBase(ArrowLeft);
+var AlertTriangleIcon = IconBase(alert_triangle); // export const ArrowLeftSmallIcon = IconBase(ArrowLeftSmall);
+// export const ArrowLeftIcon = IconBase(ArrowLeft);
 
 var ArrowRightSmallIcon = IconBase(arrow_right_small); // export const ArrowRightIcon = IconBase(ArrowRight);
 // export const CaretRightSmallIcon = IconBase(CaretRightSmall);
@@ -6561,7 +6580,6 @@ function setAssetPublicPath(path, imageAssetsPath) {
 /* concated harmony reexport Tooltip */__webpack_require__.d(__webpack_exports__, "Tooltip", function() { return components_Tooltip; });
 /* concated harmony reexport AlertCircleIcon */__webpack_require__.d(__webpack_exports__, "AlertCircleIcon", function() { return AlertCircleIcon; });
 /* concated harmony reexport AlertTriangleIcon */__webpack_require__.d(__webpack_exports__, "AlertTriangleIcon", function() { return AlertTriangleIcon; });
-/* concated harmony reexport ArrowLeftSmallIcon */__webpack_require__.d(__webpack_exports__, "ArrowLeftSmallIcon", function() { return ArrowLeftSmallIcon; });
 /* concated harmony reexport ArrowRightSmallIcon */__webpack_require__.d(__webpack_exports__, "ArrowRightSmallIcon", function() { return ArrowRightSmallIcon; });
 /* concated harmony reexport CloseIcon */__webpack_require__.d(__webpack_exports__, "CloseIcon", function() { return CloseIcon; });
 /* concated harmony reexport CrossIcon */__webpack_require__.d(__webpack_exports__, "CrossIcon", function() { return CrossIcon; });

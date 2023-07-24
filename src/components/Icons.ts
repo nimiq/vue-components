@@ -15,7 +15,7 @@ const IconBase = (component: VueConstructor) => ({
  */
 import AlertCircle from '@nimiq/style/src/icons/alert-circle.svg';
 import AlertTriangle from '@nimiq/style/src/icons/alert-triangle.svg';
-import ArrowLeftSmall from '@nimiq/style/src/icons/arrow-left-small.svg';
+// import ArrowLeftSmall from '@nimiq/style/src/icons/arrow-left-small.svg';
 // import ArrowLeft from '@nimiq/style/src/icons/arrow-left.svg';
 import ArrowRightSmall from '@nimiq/style/src/icons/arrow-right-small.svg';
 // import ArrowRight from '@nimiq/style/src/icons/arrow-right.svg';
@@ -59,7 +59,7 @@ import Stopwatch from '@nimiq/style/src/icons/stopwatch.svg';
 // tslint:disable:variable-name
 export const AlertCircleIcon = IconBase(AlertCircle);
 export const AlertTriangleIcon = IconBase(AlertTriangle);
-export const ArrowLeftSmallIcon = IconBase(ArrowLeftSmall);
+// export const ArrowLeftSmallIcon = IconBase(ArrowLeftSmall);
 // export const ArrowLeftIcon = IconBase(ArrowLeft);
 export const ArrowRightSmallIcon = IconBase(ArrowRightSmall);
 // export const ArrowRightIcon = IconBase(ArrowRight);
