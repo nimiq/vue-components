@@ -82,6 +82,18 @@ export default class LabelInput extends Mixins(I18nMixin) {
 
         this.width = (this.liveValue.length ? valueWidth : placeholderWidth) + fontSize / 3;
     }
+
+    @Watch('maxBytes')
+    private updateMaxBytes(newMaxBytes?: number) {
+        // Truncate value when maxBytes gets changed.
+        if (!newMaxBytes) return;
+        const { result: truncatedValue, didTruncate } = Utf8Tools.truncateToUtf8ByteLength(this.liveValue, newMaxBytes);
+        if (!didTruncate) return;
+        this.liveValue = truncatedValue;
+        this.lastValue = this.liveValue;
+        this.lastEmittedValue = this.lastValue;
+        this.$emit('changed', this.liveValue);
+    }
 }
 </script>
 
