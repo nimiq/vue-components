@@ -12,7 +12,7 @@ import Iqons from '@nimiq/iqons/dist/iqons.min.js';
 @Component
 export default class Identicon extends Vue {
     public static formatAddress(str: string) {
-        return str.replace(/[\+ ]/g, '').toUpperCase().match(/.{4}/g)!.join(' ');
+        return ValidationUtils.normalizeAddress(str);
     }
 
     public static isUserFriendlyAddress(str: string) {

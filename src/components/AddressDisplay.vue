@@ -6,6 +6,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
+import { ValidationUtils } from '@nimiq/utils';
 import Copyable from './Copyable.vue';
 
 @Component({ components: {Copyable} })
@@ -32,7 +33,7 @@ export default class AddressDisplay extends Vue {
         switch (this.format) {
             case 'nimiq':
                 if (!this.address) return new Array(9).fill('-');
-                return this.address.replace(/[+ ]/g, '').match(/.{4}/g)!;
+                return ValidationUtils.normalizeAddress(this.address).split(' ');
             case 'ethereum':
                 if (!this.address) return new Array(3).fill('-');
                 return this.address.replace(/[+ ]/g, '').match(/.{14}/g)!;
