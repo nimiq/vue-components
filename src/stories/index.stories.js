@@ -147,34 +147,28 @@ storiesOf('Basic', module)
     .add('LabelInput', () => {
         const disabled = boolean('Disabled', false);
         const value = text('Value', '');
+        const placeholder = text('Placeholder', '');
+        const maxBytes = number('Max Bytes (0: disabled)', 0);
+        const vanishing = boolean('Vanishing', false);
         return {
             components: {LabelInput},
             data() {
                 return {
-                    value,
                     disabled,
+                    value,
+                    placeholder,
+                    maxBytes,
+                    vanishing,
                 };
             },
             methods: {
                 changed: action('changed'),
                 input: action('input'),
+                paste: action('paste'),
             },
-            template: `<LabelInput @changed="changed" @input="input" v-model="value" :disabled="disabled"/>`,
-        };
-    })
-    .add('LabelInput (restricted to 63 bytes)', () => {
-        return {
-            components: {LabelInput},
-            methods: {
-                changed: action('changed'),
-                input: action('input'),
-            },
-            data() {
-                return {
-                    value: "Standard Address"
-                };
-            },
-            template: `<LabelInput :value="value" :maxBytes="63" @changed="changed" @input="input"/>`,
+            template: `<LabelInput v-model="value"
+                :disabled="disabled" :placeholder="placeholder" :maxBytes="maxBytes" :vanishing="vanishing"
+                @changed="changed" @input="input" @paste="paste"/>`,
         };
     })
     .add('LoadingSpinner', () => {
