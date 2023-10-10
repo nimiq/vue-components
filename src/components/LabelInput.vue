@@ -39,14 +39,13 @@ export default class LabelInput extends Mixins(I18nMixin) {
     }
 
     private onInput() {
-        if (this.maxBytes) {
-            const lengthInBytes = Utf8Tools.stringToUtf8ByteArray(this.liveValue!).byteLength;
-            if (lengthInBytes > this.maxBytes) {
-                this.liveValue = this.lastValue;
-                return;
-            }
-            this.lastValue = this.liveValue;
+        if (this.maxBytes && Utf8Tools.stringToUtf8ByteArray(this.liveValue!).byteLength > this.maxBytes) {
+            // Keep previous value rather than truncating new value, which makes it slightly more obvious for the user
+            // that the change was not applied, for example if an invalid value was pasted.
+            this.liveValue = this.lastValue;
+            return;
         }
+        this.lastValue = this.liveValue;
         this.$emit('input', this.liveValue);
     }
 
@@ -59,6 +58,7 @@ export default class LabelInput extends Mixins(I18nMixin) {
 
     @Watch('value', {immediate: true})
     private updateValue(newValue: string) {
+        if (this.maxBytes && Utf8Tools.stringToUtf8ByteArray(newValue).byteLength > this.maxBytes) return; // keep last
         this.liveValue = newValue;
         this.lastValue = this.liveValue;
         this.lastEmittedValue = this.lastValue;
