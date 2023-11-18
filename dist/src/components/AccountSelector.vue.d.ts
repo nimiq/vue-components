@@ -20,6 +20,11 @@ export interface WalletInfo {
     type: number;
     keyMissing: boolean;
     btcXPub?: string;
+    polygonAddresses?: Array<{
+        path: string;
+        address: string;
+        balance?: number;
+    }>;
 }
 declare const AccountSelector_base: import("vue-class-component/lib/declarations").VueClass<I18nMixin>;
 export default class AccountSelector extends AccountSelector_base {
@@ -32,6 +37,7 @@ export default class AccountSelector extends AccountSelector_base {
     private disableBip39Accounts?;
     private disableLedgerAccounts?;
     private highlightBitcoinAccounts?;
+    private highlightUsdcAccounts?;
     private allowLogin;
     private shownTooltip;
     private hideTooltipTimeout;

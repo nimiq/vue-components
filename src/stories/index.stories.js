@@ -1,6 +1,6 @@
 import {storiesOf} from '@storybook/vue';
 import {action} from '@storybook/addon-actions';
-import {boolean, number, text, object, select, withKnobs} from '@storybook/addon-knobs';
+import {array, boolean, number, text, object, select, withKnobs} from '@storybook/addon-knobs';
 
 import '@nimiq/style/nimiq-style.min.css';
 
@@ -23,6 +23,7 @@ import CopyableField from '../components/CopyableField.vue';
 import FiatAmount from '../components/FiatAmount.vue';
 import Identicon from '../components/Identicon.vue';
 import LabelInput from '../components/LabelInput.vue';
+import LanguageSelector from '../components/LanguageSelector.vue';
 import LongPressButton from '../components/LongPressButton.vue';
 import Wallet from '../components/Wallet.vue';
 import PaymentInfoLine from '../components/PaymentInfoLine.vue';
@@ -736,6 +737,20 @@ storiesOf('Components', module)
                 />
             `,
         };
+    })
+    .add('LanguageSelector', () => {
+        const languages = array('languages', ['en', 'de', 'es', 'ja']);
+        return {
+            components: {LanguageSelector},
+            methods: { languageSelected: action('language-selected') },
+            data: () => ({ languages, selectedLanguage: 'de' }),
+            template: `
+                <div style="padding-top: 15rem; padding-left: 4rem">
+                    <LanguageSelector :languages="languages" v-model="selectedLanguage"/>
+                    <input v-model="selectedLanguage" style="margin-top: 4rem" />
+                </div>
+            `,
+        }
     })
     .add('Wallet (deprecated)', () => {
         const label = text('label', 'Main Wallet');

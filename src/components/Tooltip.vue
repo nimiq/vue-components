@@ -180,10 +180,12 @@ class Tooltip extends Vue {
     }
 
     public show() {
+        if (this.disabled) return;
         this.tooltipToggled = true;
     }
 
     public hide(force: boolean = false) {
+        if (this.disabled) return;
         this.tooltipToggled = false;
         this.$refs.tooltipTrigger.blur();
         if (!force) return;
