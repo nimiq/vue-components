@@ -180,10 +180,12 @@ class Tooltip extends Vue {
     }
 
     public show() {
+        if (this.disabled) return;
         this.tooltipToggled = true;
     }
 
     public hide(force: boolean = false) {
+        if (this.disabled) return;
         this.tooltipToggled = false;
         this.$refs.tooltipTrigger.blur();
         if (!force) return;
@@ -485,14 +487,14 @@ export default Tooltip;
 
 <style scoped>
     .tooltip {
-        contain: layout style;
+        /* contain: layout style; */
         display: inline-block;
         position: relative;
         line-height: 1;
     }
 
     .trigger {
-        contain: layout style;
+        /* contain: layout style; */
         position: relative;
         display: inline-block;
         vertical-align: bottom;
