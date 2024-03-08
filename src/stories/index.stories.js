@@ -30,6 +30,7 @@ import PaymentInfoLine from '../components/PaymentInfoLine.vue';
 import QrCode from '../components/QrCode.vue';
 import QrScanner from '../components/QrScanner.vue';
 import SelectBar from '../components/SelectBar.vue';
+import SliderToggle from '../components/SliderToggle.vue';
 import SmallPage from '../components/SmallPage.vue';
 import Timer from '../components/Timer.vue';
 import Tooltip from '../components/Tooltip.vue';
@@ -905,17 +906,17 @@ storiesOf('Components', module)
         return {
             components: {SmallPage, PageHeader, PageBody, PageFooter},
             template: windowTemplate(`
-<small-page>
-    <page-header :backArrow="true">
-        Page header
-        <p slot="more" class="nq-notice info">I am an informative notice!</p>
-    </page-header>
-    <page-body>
-        <p>Some text in the page body.</p>
-    </page-body>
-    <page-footer>Page footer</page-footer>
-</small-page>
-`),
+                <small-page>
+                    <page-header :backArrow="true">
+                        Page header
+                        <p slot="more" class="nq-notice info">I am an informative notice!</p>
+                    </page-header>
+                    <page-body>
+                        <p>Some text in the page body.</p>
+                    </page-body>
+                    <page-footer>Page footer</page-footer>
+                </small-page>
+                `),
         };
     })
     .add('Timer', () => ({
@@ -959,7 +960,40 @@ storiesOf('Components', module)
                 this.timerEnded = false;
             },
         },
-    }));
+    }))
+    .add('SliderToggle', () => {
+        const name = text('name', 'name');
+        const type = select('type', { currency: 'currency', default: 'default' }, 'default');
+        const loading = boolean('loading', false);
+
+        const value = type === 'currency' ? text('value', 'nim') : text('value', 'trustscore');
+        const radios = type === 'currency'
+            ? [
+                { label: 'NIM', value: 'nim' },
+                { label: 'BTC', value: 'btc' },
+                { label: 'ETH', value: 'eth' },
+            ] : [
+                { label: 'TrustScore', value: 'trustscore' },
+                { label: 'PayoutTime', value: 'payouttime' },
+                { label: 'Reward', value: 'reward' },
+                { label: 'Reward', value: 'reward' },
+            ];
+
+        return {
+            components: { SliderToggle, ...Icons },
+            data() {
+                return { radios, name, value, type, loading };
+            },
+            template: `
+                <SliderToggle :name="name" :value="value" :type="type" :loading="loading">
+                    <template v-for="radio in radios" v-slot:[radio.value]>
+                        <span>{{ radio.label }}</span>
+                    </template>
+                </SliderToggle>
+            `,
+        };
+    })
+;
 
 storiesOf('Pages', module)
     .addDecorator(withKnobs)

@@ -44,7 +44,7 @@ module.exports =
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "NimiqVueComponents.common." + ({"1":"lang-de-AccountList-json","2":"lang-de-AccountSelector-json","3":"lang-de-AmountWithFee-json","4":"lang-de-Copyable-json","5":"lang-de-CopyableField-json","6":"lang-de-LabelInput-json","7":"lang-de-LongPressButton-json","8":"lang-de-PageHeader-json","9":"lang-de-PaymentInfoLine-json","10":"lang-de-QrScanner-json","11":"lang-de-Timer-json","12":"lang-de-Wallet-json","13":"lang-es-AccountList-json","14":"lang-es-AccountSelector-json","15":"lang-es-AmountWithFee-json","16":"lang-es-Copyable-json","17":"lang-es-CopyableField-json","18":"lang-es-LabelInput-json","19":"lang-es-LongPressButton-json","20":"lang-es-PageHeader-json","21":"lang-es-PaymentInfoLine-json","22":"lang-es-QrScanner-json","23":"lang-es-Timer-json","24":"lang-es-Wallet-json","25":"lang-fil-AccountList-json","26":"lang-fil-AccountSelector-json","27":"lang-fil-AmountWithFee-json","28":"lang-fil-Copyable-json","29":"lang-fil-CopyableField-json","30":"lang-fil-LabelInput-json","31":"lang-fil-PageHeader-json","32":"lang-fil-PaymentInfoLine-json","33":"lang-fil-QrScanner-json","34":"lang-fil-Timer-json","35":"lang-fil-Wallet-json","36":"lang-fr-AccountList-json","37":"lang-fr-AccountSelector-json","38":"lang-fr-AmountWithFee-json","39":"lang-fr-Copyable-json","40":"lang-fr-CopyableField-json","41":"lang-fr-LabelInput-json","42":"lang-fr-LongPressButton-json","43":"lang-fr-PageHeader-json","44":"lang-fr-PaymentInfoLine-json","45":"lang-fr-QrScanner-json","46":"lang-fr-Timer-json","47":"lang-fr-Wallet-json","48":"lang-nl-AccountList-json","49":"lang-nl-AccountSelector-json","50":"lang-nl-AmountWithFee-json","51":"lang-nl-Copyable-json","52":"lang-nl-CopyableField-json","53":"lang-nl-LabelInput-json","54":"lang-nl-LongPressButton-json","55":"lang-nl-PageHeader-json","56":"lang-nl-PaymentInfoLine-json","57":"lang-nl-QrScanner-json","58":"lang-nl-Timer-json","59":"lang-nl-Wallet-json","60":"lang-pt-AccountList-json","61":"lang-pt-AccountSelector-json","62":"lang-pt-AmountWithFee-json","63":"lang-pt-Copyable-json","64":"lang-pt-CopyableField-json","65":"lang-pt-LabelInput-json","66":"lang-pt-LongPressButton-json","67":"lang-pt-PageHeader-json","68":"lang-pt-PaymentInfoLine-json","69":"lang-pt-QrScanner-json","70":"lang-pt-Timer-json","71":"lang-pt-Wallet-json","72":"lang-ru-AccountList-json","73":"lang-ru-AccountSelector-json","74":"lang-ru-AmountWithFee-json","75":"lang-ru-Copyable-json","76":"lang-ru-CopyableField-json","77":"lang-ru-LabelInput-json","78":"lang-ru-LongPressButton-json","79":"lang-ru-PageHeader-json","80":"lang-ru-PaymentInfoLine-json","81":"lang-ru-QrScanner-json","82":"lang-ru-Timer-json","83":"lang-ru-Wallet-json","84":"lang-uk-AccountList-json","85":"lang-uk-AccountSelector-json","86":"lang-uk-AmountWithFee-json","87":"lang-uk-Copyable-json","88":"lang-uk-CopyableField-json","89":"lang-uk-LabelInput-json","90":"lang-uk-LongPressButton-json","91":"lang-uk-PageHeader-json","92":"lang-uk-PaymentInfoLine-json","93":"lang-uk-QrScanner-json","94":"lang-uk-Timer-json","95":"lang-uk-Wallet-json","96":"lang-zh-AccountList-json","97":"lang-zh-AccountSelector-json","98":"lang-zh-AmountWithFee-json","99":"lang-zh-Copyable-json","100":"lang-zh-CopyableField-json","101":"lang-zh-LabelInput-json","102":"lang-zh-LongPressButton-json","103":"lang-zh-PageHeader-json","104":"lang-zh-PaymentInfoLine-json","105":"lang-zh-QrScanner-json","106":"lang-zh-Timer-json","107":"lang-zh-Wallet-json"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "NimiqVueComponents.common." + ({"1":"lang-de-AccountList-json","2":"lang-de-AccountSelector-json","3":"lang-de-AmountWithFee-json","4":"lang-de-Copyable-json","5":"lang-de-CopyableField-json","6":"lang-de-LabelInput-json","7":"lang-de-LongPressButton-json","8":"lang-de-PageHeader-json","9":"lang-de-PaymentInfoLine-json","10":"lang-de-QrScanner-json","11":"lang-de-Timer-json","12":"lang-de-Wallet-json","13":"lang-es-AccountList-json","14":"lang-es-AccountSelector-json","15":"lang-es-AmountWithFee-json","16":"lang-es-Copyable-json","17":"lang-es-CopyableField-json","18":"lang-es-LabelInput-json","19":"lang-es-LongPressButton-json","20":"lang-es-PageHeader-json","21":"lang-es-PaymentInfoLine-json","22":"lang-es-QrScanner-json","23":"lang-es-Timer-json","24":"lang-es-Wallet-json","25":"lang-fr-AccountList-json","26":"lang-fr-AccountSelector-json","27":"lang-fr-AmountWithFee-json","28":"lang-fr-Copyable-json","29":"lang-fr-CopyableField-json","30":"lang-fr-LabelInput-json","31":"lang-fr-LongPressButton-json","32":"lang-fr-PageHeader-json","33":"lang-fr-PaymentInfoLine-json","34":"lang-fr-QrScanner-json","35":"lang-fr-Timer-json","36":"lang-fr-Wallet-json","37":"lang-nl-AccountList-json","38":"lang-nl-AccountSelector-json","39":"lang-nl-AmountWithFee-json","40":"lang-nl-Copyable-json","41":"lang-nl-CopyableField-json","42":"lang-nl-LabelInput-json","43":"lang-nl-LongPressButton-json","44":"lang-nl-PageHeader-json","45":"lang-nl-PaymentInfoLine-json","46":"lang-nl-QrScanner-json","47":"lang-nl-Timer-json","48":"lang-nl-Wallet-json","49":"lang-pt-AccountList-json","50":"lang-pt-AccountSelector-json","51":"lang-pt-AmountWithFee-json","52":"lang-pt-Copyable-json","53":"lang-pt-CopyableField-json","54":"lang-pt-LabelInput-json","55":"lang-pt-LongPressButton-json","56":"lang-pt-PageHeader-json","57":"lang-pt-PaymentInfoLine-json","58":"lang-pt-QrScanner-json","59":"lang-pt-Timer-json","60":"lang-pt-Wallet-json","61":"lang-ru-AccountList-json","62":"lang-ru-AccountSelector-json","63":"lang-ru-AmountWithFee-json","64":"lang-ru-Copyable-json","65":"lang-ru-CopyableField-json","66":"lang-ru-LabelInput-json","67":"lang-ru-LongPressButton-json","68":"lang-ru-PageHeader-json","69":"lang-ru-PaymentInfoLine-json","70":"lang-ru-QrScanner-json","71":"lang-ru-Timer-json","72":"lang-ru-Wallet-json","73":"lang-uk-AccountList-json","74":"lang-uk-AccountSelector-json","75":"lang-uk-AmountWithFee-json","76":"lang-uk-Copyable-json","77":"lang-uk-CopyableField-json","78":"lang-uk-LabelInput-json","79":"lang-uk-LongPressButton-json","80":"lang-uk-PageHeader-json","81":"lang-uk-PaymentInfoLine-json","82":"lang-uk-QrScanner-json","83":"lang-uk-Timer-json","84":"lang-uk-Wallet-json","85":"lang-zh-AccountList-json","86":"lang-zh-AccountSelector-json","87":"lang-zh-AmountWithFee-json","88":"lang-zh-Copyable-json","89":"lang-zh-CopyableField-json","90":"lang-zh-LabelInput-json","91":"lang-zh-LongPressButton-json","92":"lang-zh-PageHeader-json","93":"lang-zh-PaymentInfoLine-json","94":"lang-zh-QrScanner-json","95":"lang-zh-Timer-json","96":"lang-zh-Wallet-json"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -1115,6 +1115,30 @@ module.exports = {};
 
 /***/ }),
 
+/***/ "12be":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var $ = __webpack_require__("8bdb");
+var $some = __webpack_require__("4d16").some;
+var arrayMethodIsStrict = __webpack_require__("2b04");
+var arrayMethodUsesToLength = __webpack_require__("6b86");
+
+var STRICT_METHOD = arrayMethodIsStrict('some');
+var USES_TO_LENGTH = arrayMethodUsesToLength('some');
+
+// `Array.prototype.some` method
+// https://tc39.github.io/ecma262/#sec-array.prototype.some
+$({ target: 'Array', proto: true, forced: !STRICT_METHOD || !USES_TO_LENGTH }, {
+  some: function some(callbackfn /* , thisArg */) {
+    return $some(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
+  }
+});
+
+
+/***/ }),
+
 /***/ "1445":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1303,337 +1327,293 @@ var map = {
 		"6743",
 		24
 	],
-	"./fil/AccountList.json": [
-		"885d",
-		25
-	],
-	"./fil/AccountSelector.json": [
-		"01f3",
-		26
-	],
-	"./fil/AmountWithFee.json": [
-		"b49a",
-		27
-	],
-	"./fil/Copyable.json": [
-		"cf69",
-		28
-	],
-	"./fil/CopyableField.json": [
-		"274a",
-		29
-	],
-	"./fil/LabelInput.json": [
-		"ac1a",
-		30
-	],
-	"./fil/PageHeader.json": [
-		"20d9",
-		31
-	],
-	"./fil/PaymentInfoLine.json": [
-		"1625",
-		32
-	],
-	"./fil/QrScanner.json": [
-		"818c",
-		33
-	],
-	"./fil/Timer.json": [
-		"7baa",
-		34
-	],
-	"./fil/Wallet.json": [
-		"e7d6",
-		35
-	],
 	"./fr/AccountList.json": [
 		"4d97",
-		36
+		25
 	],
 	"./fr/AccountSelector.json": [
 		"36a8",
-		37
+		26
 	],
 	"./fr/AmountWithFee.json": [
 		"5afc",
-		38
+		27
 	],
 	"./fr/Copyable.json": [
 		"ff70",
-		39
+		28
 	],
 	"./fr/CopyableField.json": [
 		"58da",
-		40
+		29
 	],
 	"./fr/LabelInput.json": [
 		"b93f",
-		41
+		30
 	],
 	"./fr/LongPressButton.json": [
 		"626f",
-		42
+		31
 	],
 	"./fr/PageHeader.json": [
 		"9ab1",
-		43
+		32
 	],
 	"./fr/PaymentInfoLine.json": [
 		"45fb",
-		44
+		33
 	],
 	"./fr/QrScanner.json": [
 		"cc58",
-		45
+		34
 	],
 	"./fr/Timer.json": [
 		"d34b",
-		46
+		35
 	],
 	"./fr/Wallet.json": [
 		"9907",
-		47
+		36
 	],
 	"./nl/AccountList.json": [
 		"0844",
-		48
+		37
 	],
 	"./nl/AccountSelector.json": [
 		"6cb2",
-		49
+		38
 	],
 	"./nl/AmountWithFee.json": [
 		"ec31",
-		50
+		39
 	],
 	"./nl/Copyable.json": [
 		"3b22",
-		51
+		40
 	],
 	"./nl/CopyableField.json": [
 		"922b",
-		52
+		41
 	],
 	"./nl/LabelInput.json": [
 		"ce5e",
-		53
+		42
 	],
 	"./nl/LongPressButton.json": [
 		"4af0",
-		54
+		43
 	],
 	"./nl/PageHeader.json": [
 		"b191",
-		55
+		44
 	],
 	"./nl/PaymentInfoLine.json": [
 		"52b5",
-		56
+		45
 	],
 	"./nl/QrScanner.json": [
 		"2bd2",
-		57
+		46
 	],
 	"./nl/Timer.json": [
 		"f691",
-		58
+		47
 	],
 	"./nl/Wallet.json": [
 		"23d7",
-		59
+		48
 	],
 	"./pt/AccountList.json": [
 		"7dd2",
-		60
+		49
 	],
 	"./pt/AccountSelector.json": [
 		"7615",
-		61
+		50
 	],
 	"./pt/AmountWithFee.json": [
 		"a5e1",
-		62
+		51
 	],
 	"./pt/Copyable.json": [
 		"ad46",
-		63
+		52
 	],
 	"./pt/CopyableField.json": [
 		"a890",
-		64
+		53
 	],
 	"./pt/LabelInput.json": [
 		"7892",
-		65
+		54
 	],
 	"./pt/LongPressButton.json": [
 		"dca0",
-		66
+		55
 	],
 	"./pt/PageHeader.json": [
 		"5f2a",
-		67
+		56
 	],
 	"./pt/PaymentInfoLine.json": [
 		"8830",
-		68
+		57
 	],
 	"./pt/QrScanner.json": [
 		"85a1",
-		69
+		58
 	],
 	"./pt/Timer.json": [
 		"757c",
-		70
+		59
 	],
 	"./pt/Wallet.json": [
 		"6d10",
-		71
+		60
 	],
 	"./ru/AccountList.json": [
 		"267d",
-		72
+		61
 	],
 	"./ru/AccountSelector.json": [
 		"6148",
-		73
+		62
 	],
 	"./ru/AmountWithFee.json": [
 		"d56c",
-		74
+		63
 	],
 	"./ru/Copyable.json": [
 		"08ff",
-		75
+		64
 	],
 	"./ru/CopyableField.json": [
 		"dfb1",
-		76
+		65
 	],
 	"./ru/LabelInput.json": [
 		"64d7",
-		77
+		66
 	],
 	"./ru/LongPressButton.json": [
 		"26f6",
-		78
+		67
 	],
 	"./ru/PageHeader.json": [
 		"6212",
-		79
+		68
 	],
 	"./ru/PaymentInfoLine.json": [
 		"21ab",
-		80
+		69
 	],
 	"./ru/QrScanner.json": [
 		"089a",
-		81
+		70
 	],
 	"./ru/Timer.json": [
 		"171c",
-		82
+		71
 	],
 	"./ru/Wallet.json": [
 		"ebbc",
-		83
+		72
 	],
 	"./uk/AccountList.json": [
 		"61b1",
-		84
+		73
 	],
 	"./uk/AccountSelector.json": [
 		"f611",
-		85
+		74
 	],
 	"./uk/AmountWithFee.json": [
 		"6853",
-		86
+		75
 	],
 	"./uk/Copyable.json": [
 		"a658",
-		87
+		76
 	],
 	"./uk/CopyableField.json": [
 		"ae3c",
-		88
+		77
 	],
 	"./uk/LabelInput.json": [
 		"03a3",
-		89
+		78
 	],
 	"./uk/LongPressButton.json": [
 		"d943",
-		90
+		79
 	],
 	"./uk/PageHeader.json": [
 		"f990",
-		91
+		80
 	],
 	"./uk/PaymentInfoLine.json": [
 		"2872",
-		92
+		81
 	],
 	"./uk/QrScanner.json": [
 		"04a8",
-		93
+		82
 	],
 	"./uk/Timer.json": [
 		"3760",
-		94
+		83
 	],
 	"./uk/Wallet.json": [
 		"10e0",
-		95
+		84
 	],
 	"./zh/AccountList.json": [
 		"1494",
-		96
+		85
 	],
 	"./zh/AccountSelector.json": [
 		"1018",
-		97
+		86
 	],
 	"./zh/AmountWithFee.json": [
 		"9823",
-		98
+		87
 	],
 	"./zh/Copyable.json": [
 		"67ae",
-		99
+		88
 	],
 	"./zh/CopyableField.json": [
 		"51e1",
-		100
+		89
 	],
 	"./zh/LabelInput.json": [
 		"38af",
-		101
+		90
 	],
 	"./zh/LongPressButton.json": [
 		"1142",
-		102
+		91
 	],
 	"./zh/PageHeader.json": [
 		"e4cb",
-		103
+		92
 	],
 	"./zh/PaymentInfoLine.json": [
 		"3355",
-		104
+		93
 	],
 	"./zh/QrScanner.json": [
 		"f55d",
-		105
+		94
 	],
 	"./zh/Timer.json": [
 		"29ae",
-		106
+		95
 	],
 	"./zh/Wallet.json": [
 		"87ed",
-		107
+		96
 	]
 };
 function webpackAsyncContext(req) {
@@ -2432,6 +2412,32 @@ module.exports = getBuiltIn('document', 'documentElement');
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+var Icons_namespaceObject = {};
+__webpack_require__.r(Icons_namespaceObject);
+__webpack_require__.d(Icons_namespaceObject, "AlertCircleIcon", function() { return AlertCircleIcon; });
+__webpack_require__.d(Icons_namespaceObject, "AlertTriangleIcon", function() { return AlertTriangleIcon; });
+__webpack_require__.d(Icons_namespaceObject, "ArrowLeftIcon", function() { return ArrowLeftIcon; });
+__webpack_require__.d(Icons_namespaceObject, "ArrowRightSmallIcon", function() { return ArrowRightSmallIcon; });
+__webpack_require__.d(Icons_namespaceObject, "ArrowRightIcon", function() { return ArrowRightIcon; });
+__webpack_require__.d(Icons_namespaceObject, "CaretRightSmallIcon", function() { return CaretRightSmallIcon; });
+__webpack_require__.d(Icons_namespaceObject, "CashlinkSmallIcon", function() { return CashlinkSmallIcon; });
+__webpack_require__.d(Icons_namespaceObject, "CashlinkXSmallIcon", function() { return CashlinkXSmallIcon; });
+__webpack_require__.d(Icons_namespaceObject, "CheckmarkIcon", function() { return CheckmarkIcon; });
+__webpack_require__.d(Icons_namespaceObject, "CloseIcon", function() { return CloseIcon; });
+__webpack_require__.d(Icons_namespaceObject, "ContactsIcon", function() { return ContactsIcon; });
+__webpack_require__.d(Icons_namespaceObject, "CrossIcon", function() { return CrossIcon; });
+__webpack_require__.d(Icons_namespaceObject, "FaceNeutralIcon", function() { return FaceNeutralIcon; });
+__webpack_require__.d(Icons_namespaceObject, "FaceSadIcon", function() { return FaceSadIcon; });
+__webpack_require__.d(Icons_namespaceObject, "GearIcon", function() { return GearIcon; });
+__webpack_require__.d(Icons_namespaceObject, "HexagonIcon", function() { return HexagonIcon; });
+__webpack_require__.d(Icons_namespaceObject, "InfoCircleIcon", function() { return InfoCircleIcon; });
+__webpack_require__.d(Icons_namespaceObject, "InfoCircleSmallIcon", function() { return InfoCircleSmallIcon; });
+__webpack_require__.d(Icons_namespaceObject, "LockLockedIcon", function() { return LockLockedIcon; });
+__webpack_require__.d(Icons_namespaceObject, "MenuDotsIcon", function() { return MenuDotsIcon; });
+__webpack_require__.d(Icons_namespaceObject, "QrCodeIcon", function() { return QrCodeIcon; });
+__webpack_require__.d(Icons_namespaceObject, "ScanQrCodeIcon", function() { return ScanQrCodeIcon; });
+__webpack_require__.d(Icons_namespaceObject, "StopwatchIcon", function() { return StopwatchIcon; });
+__webpack_require__.d(Icons_namespaceObject, "TransferIcon", function() { return TransferIcon; });
 
 // CONCATENATED MODULE: ./node_modules/@vue/cli-service/lib/commands/build/setPublicPath.js
 // This file is imported into lib/wc client bundles.
@@ -8528,6 +8534,362 @@ var SelectBar_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_SelectBar = (SelectBar_component.exports);
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"f4e21a70-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SliderToggle.vue?vue&type=template&id=76344cc8&scoped=true&
+var SliderTogglevue_type_template_id_76344cc8_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"slider-toggle",class:[("type-" + _vm.type), { 'no-transition': _vm.noTransitions, loading: _vm.loading }]},[(_vm.loading)?_c('label',[_c('LoadingSpinner'),_vm._v("Loading ")],1):[_c('div',{ref:"activeBox$",staticClass:"active-box",style:({
+                '--center': ((_vm.activeBoxStyles.center) + "px"),
+                '--width': ((_vm.activeBoxStyles.width) + "px"),
+            })}),_vm._l((Object.keys(_vm.$slots)),function(slot,index){return _c('label',{key:index,ref:"labels$",refInFor:true,class:{ active: _vm.localValue === slot }},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.localValue),expression:"localValue"}],attrs:{"type":"radio","name":_vm.name},domProps:{"value":slot,"checked":_vm._q(_vm.localValue,slot)},on:{"change":function($event){_vm.localValue=slot}}}),_vm._t(slot)],2)})]],2)}
+var SliderTogglevue_type_template_id_76344cc8_scoped_true_staticRenderFns = []
+
+
+// CONCATENATED MODULE: ./src/components/SliderToggle.vue?vue&type=template&id=76344cc8&scoped=true&
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.some.js
+var es_array_some = __webpack_require__("12be");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.filter.js
+var es_array_filter = __webpack_require__("8f71");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.for-each.js
+var es_array_for_each = __webpack_require__("ec41");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.get-own-property-descriptor.js
+var es_object_get_own_property_descriptor = __webpack_require__("9a2c");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.get-own-property-descriptors.js
+var es_object_get_own_property_descriptors = __webpack_require__("a644");
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom-collections.for-each.js
+var web_dom_collections_for_each = __webpack_require__("2797");
+
+// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/defineProperty.js
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js
+
+
+
+
+
+
+
+
+
+function ownKeys(object, enumerableOnly) {
+  var keys = Object.keys(object);
+
+  if (Object.getOwnPropertySymbols) {
+    var symbols = Object.getOwnPropertySymbols(object);
+    if (enumerableOnly) symbols = symbols.filter(function (sym) {
+      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+    });
+    keys.push.apply(keys, symbols);
+  }
+
+  return keys;
+}
+
+function _objectSpread2(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+
+    if (i % 2) {
+      ownKeys(Object(source), true).forEach(function (key) {
+        _defineProperty(target, key, source[key]);
+      });
+    } else if (Object.getOwnPropertyDescriptors) {
+      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+    } else {
+      ownKeys(Object(source)).forEach(function (key) {
+        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+      });
+    }
+  }
+
+  return target;
+}
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--13-1!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SliderToggle.vue?vue&type=script&lang=ts&
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var SliderToggleType;
+
+(function (SliderToggleType) {
+  SliderToggleType["CURRENCY"] = "currency";
+  SliderToggleType["DEFAULT"] = "default";
+})(SliderToggleType || (SliderToggleType = {}));
+
+var SliderTogglevue_type_script_lang_ts_SliderToggle =
+/*#__PURE__*/
+function (_Vue) {
+  _inherits(SliderToggle, _Vue);
+
+  function SliderToggle() {
+    var _this;
+
+    _classCallCheck(this, SliderToggle);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(SliderToggle).apply(this, arguments));
+    _this.localValue = null; // Initialized in created
+
+    _this.activeBoxStyles = {
+      center: 0,
+      width: 0
+    };
+    _this.isUpdatingActiveBoxPosition = false;
+    _this.noTransitions = true;
+    return _this;
+  }
+
+  _createClass(SliderToggle, [{
+    key: "created",
+    value: function created() {
+      this.localValue = this.value;
+      this.updateActiveBoxPosition = this.updateActiveBoxPosition.bind(this);
+      window.addEventListener('resize', this.updateActiveBoxPosition);
+    }
+  }, {
+    key: "mounted",
+    value: function () {
+      var _mounted = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee() {
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return this.updateActiveBoxPosition();
+
+              case 2:
+                _context.next = 4;
+                return this.$nextTick();
+
+              case 4:
+                _context.next = 6;
+                return new Promise(function (resolve) {
+                  window.requestAnimationFrame(resolve);
+                });
+
+              case 6:
+                this.noTransitions = false;
+
+              case 7:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function mounted() {
+        return _mounted.apply(this, arguments);
+      }
+
+      return mounted;
+    }()
+  }, {
+    key: "destroyed",
+    value: function destroyed() {
+      window.removeEventListener('resize', this.updateActiveBoxPosition);
+    }
+  }, {
+    key: "onRadiosChange",
+    value: function onRadiosChange(radios) {
+      var _this2 = this;
+
+      if (!radios.some(function (_ref) {
+        var value = _ref.value;
+        return _this2.localValue === value;
+      })) {
+        // New radios do not include current localValue
+        // localValue update will also trigger updateActiveBoxPosition
+        this.localValue = radios[0].value;
+      } else {
+        this.updateActiveBoxPosition();
+      }
+    }
+  }, {
+    key: "onValueChange",
+    value: function onValueChange(value) {
+      this.localValue = value;
+    }
+  }, {
+    key: "onLocalValueChange",
+    value: function onLocalValueChange(value) {
+      this.updateActiveBoxPosition();
+      this.$emit('input', value);
+    }
+  }, {
+    key: "updateActiveBoxPosition",
+    value: function () {
+      var _updateActiveBoxPosition = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee2() {
+        var label, labelRect, containerRect, labelCenter;
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                if (!this.isUpdatingActiveBoxPosition) {
+                  _context2.next = 2;
+                  break;
+                }
+
+                return _context2.abrupt("return");
+
+              case 2:
+                this.isUpdatingActiveBoxPosition = true;
+                _context2.prev = 3;
+                _context2.next = 6;
+                return this.$nextTick();
+
+              case 6:
+                _context2.next = 8;
+                return new Promise(function (resolve) {
+                  window.requestAnimationFrame(resolve);
+                });
+
+              case 8:
+                if (!(!this.$refs.labels$ || !this.$refs.activeBox$)) {
+                  _context2.next = 10;
+                  break;
+                }
+
+                return _context2.abrupt("return");
+
+              case 10:
+                label = this.$refs.labels$.find(function (_ref2) {
+                  var className = _ref2.className;
+                  return className === 'active';
+                }) || this.$refs.labels$[0];
+
+                if (label) {
+                  _context2.next = 13;
+                  break;
+                }
+
+                return _context2.abrupt("return");
+
+              case 13:
+                labelRect = label.getBoundingClientRect();
+                containerRect = this.$el.getBoundingClientRect();
+                labelCenter = labelRect.left - containerRect.left + labelRect.width / 2;
+                this.activeBoxStyles.center = labelCenter;
+                this.activeBoxStyles.width = labelRect.width;
+
+              case 18:
+                _context2.prev = 18;
+                this.isUpdatingActiveBoxPosition = false;
+                return _context2.finish(18);
+
+              case 21:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this, [[3,, 18, 21]]);
+      }));
+
+      function updateActiveBoxPosition() {
+        return _updateActiveBoxPosition.apply(this, arguments);
+      }
+
+      return updateActiveBoxPosition;
+    }()
+  }]);
+
+  return SliderToggle;
+}(external_vue_property_decorator_["Vue"]);
+
+__decorate([Object(external_vue_property_decorator_["Prop"])({
+  type: String,
+  required: true
+})], SliderTogglevue_type_script_lang_ts_SliderToggle.prototype, "name", void 0);
+
+__decorate([Object(external_vue_property_decorator_["Prop"])({
+  type: String,
+  default: '',
+  required: true
+})], SliderTogglevue_type_script_lang_ts_SliderToggle.prototype, "value", void 0);
+
+__decorate([Object(external_vue_property_decorator_["Prop"])({
+  type: String,
+  default: SliderToggleType.DEFAULT
+})], SliderTogglevue_type_script_lang_ts_SliderToggle.prototype, "type", void 0);
+
+__decorate([Object(external_vue_property_decorator_["Prop"])({
+  type: Boolean,
+  default: false
+})], SliderTogglevue_type_script_lang_ts_SliderToggle.prototype, "loading", void 0);
+
+__decorate([Object(external_vue_property_decorator_["Watch"])('radios')], SliderTogglevue_type_script_lang_ts_SliderToggle.prototype, "onRadiosChange", null);
+
+__decorate([Object(external_vue_property_decorator_["Watch"])('value')], SliderTogglevue_type_script_lang_ts_SliderToggle.prototype, "onValueChange", null);
+
+__decorate([Object(external_vue_property_decorator_["Watch"])('localValue')], SliderTogglevue_type_script_lang_ts_SliderToggle.prototype, "onLocalValueChange", null);
+
+__decorate([Object(external_vue_property_decorator_["Watch"])('type') // watch for style changes associated with type changes
+, Object(external_vue_property_decorator_["Watch"])('loading') // watch for UI changes when component gets enabled
+], SliderTogglevue_type_script_lang_ts_SliderToggle.prototype, "updateActiveBoxPosition", null);
+
+SliderTogglevue_type_script_lang_ts_SliderToggle = __decorate([Object(external_vue_property_decorator_["Component"])({
+  components: _objectSpread2({}, Icons_namespaceObject, {
+    LoadingSpinner: components_LoadingSpinner
+  })
+})], SliderTogglevue_type_script_lang_ts_SliderToggle);
+/* harmony default export */ var SliderTogglevue_type_script_lang_ts_ = (SliderTogglevue_type_script_lang_ts_SliderToggle);
+// CONCATENATED MODULE: ./src/components/SliderToggle.vue?vue&type=script&lang=ts&
+ /* harmony default export */ var components_SliderTogglevue_type_script_lang_ts_ = (SliderTogglevue_type_script_lang_ts_); 
+// EXTERNAL MODULE: ./src/components/SliderToggle.vue?vue&type=style&index=0&id=76344cc8&scoped=true&lang=css&
+var SliderTogglevue_type_style_index_0_id_76344cc8_scoped_true_lang_css_ = __webpack_require__("e1b7");
+
+// CONCATENATED MODULE: ./src/components/SliderToggle.vue
+
+
+
+
+
+
+/* normalize component */
+
+var SliderToggle_component = normalizeComponent(
+  components_SliderTogglevue_type_script_lang_ts_,
+  SliderTogglevue_type_template_id_76344cc8_scoped_true_render,
+  SliderTogglevue_type_template_id_76344cc8_scoped_true_staticRenderFns,
+  false,
+  null,
+  "76344cc8",
+  null
+  
+)
+
+/* harmony default export */ var components_SliderToggle = (SliderToggle_component.exports);
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"f4e21a70-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SmallPage.vue?vue&type=template&id=1d450cf2&scoped=true&
 var SmallPagevue_type_template_id_1d450cf2_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"small-page nq-card"},[_vm._t("default")],2)}
 var SmallPagevue_type_template_id_1d450cf2_scoped_true_staticRenderFns = []
@@ -8660,79 +9022,6 @@ var Tooltipvue_type_template_id_3f788b6c_scoped_true_staticRenderFns = []
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.entries.js
 var es_object_entries = __webpack_require__("0829");
 
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.filter.js
-var es_array_filter = __webpack_require__("8f71");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.for-each.js
-var es_array_for_each = __webpack_require__("ec41");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.get-own-property-descriptor.js
-var es_object_get_own_property_descriptor = __webpack_require__("9a2c");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.get-own-property-descriptors.js
-var es_object_get_own_property_descriptors = __webpack_require__("a644");
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom-collections.for-each.js
-var web_dom_collections_for_each = __webpack_require__("2797");
-
-// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/defineProperty.js
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/objectSpread2.js
-
-
-
-
-
-
-
-
-
-function ownKeys(object, enumerableOnly) {
-  var keys = Object.keys(object);
-
-  if (Object.getOwnPropertySymbols) {
-    var symbols = Object.getOwnPropertySymbols(object);
-    if (enumerableOnly) symbols = symbols.filter(function (sym) {
-      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-    });
-    keys.push.apply(keys, symbols);
-  }
-
-  return keys;
-}
-
-function _objectSpread2(target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i] != null ? arguments[i] : {};
-
-    if (i % 2) {
-      ownKeys(Object(source), true).forEach(function (key) {
-        _defineProperty(target, key, source[key]);
-      });
-    } else if (Object.getOwnPropertyDescriptors) {
-      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
-    } else {
-      ownKeys(Object(source)).forEach(function (key) {
-        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
-      });
-    }
-  }
-
-  return target;
-}
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--13-1!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Tooltip.vue?vue&type=script&lang=ts&
 
 
@@ -9789,6 +10078,7 @@ var Timer_component = normalizeComponent(
 
 
 
+
  // export { default as Wallet } from './components/Wallet.vue';
 // Comment out unused icons in the components/Icons.ts file
 
@@ -9832,6 +10122,7 @@ function setAssetPublicPath(path, imageAssetsPath) {
 /* concated harmony reexport QrCode */__webpack_require__.d(__webpack_exports__, "QrCode", function() { return components_QrCode; });
 /* concated harmony reexport QrScanner */__webpack_require__.d(__webpack_exports__, "QrScanner", function() { return components_QrScanner; });
 /* concated harmony reexport SelectBar */__webpack_require__.d(__webpack_exports__, "SelectBar", function() { return components_SelectBar; });
+/* concated harmony reexport SliderToggle */__webpack_require__.d(__webpack_exports__, "SliderToggle", function() { return components_SliderToggle; });
 /* concated harmony reexport SmallPage */__webpack_require__.d(__webpack_exports__, "SmallPage", function() { return components_SmallPage; });
 /* concated harmony reexport Timer */__webpack_require__.d(__webpack_exports__, "Timer", function() { return components_Timer; });
 /* concated harmony reexport Tooltip */__webpack_require__.d(__webpack_exports__, "Tooltip", function() { return components_Tooltip; });
@@ -12393,6 +12684,13 @@ function parse(text, caret_position, parse_character) {
 
 /***/ }),
 
+/***/ "7b85":
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
 /***/ "7cd0":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -14880,6 +15178,17 @@ fixRegExpWellKnownSymbolLogic('split', 2, function (SPLIT, nativeSplit, maybeCal
   ];
 }, !SUPPORTS_Y);
 
+
+/***/ }),
+
+/***/ "e1b7":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SliderToggle_vue_vue_type_style_index_0_id_76344cc8_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("7b85");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SliderToggle_vue_vue_type_style_index_0_id_76344cc8_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SliderToggle_vue_vue_type_style_index_0_id_76344cc8_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+ /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_6_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SliderToggle_vue_vue_type_style_index_0_id_76344cc8_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
