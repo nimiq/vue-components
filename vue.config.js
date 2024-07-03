@@ -94,4 +94,12 @@ const chainWebpack = config => {
         .end();
 }
 
-module.exports = { configureWebpack, chainWebpack };
+module.exports = {
+  configureWebpack,
+  chainWebpack,
+  // Add dependencies here which should be transpiled by babel-loader via @vue/cli-plugin-babel. This is needed as our
+  // Webpack version is too old to process some modern js syntax in the listed dependencies. Should be kept in sync with
+  // transpileDependencies in storybook's webpack.config.js.
+  // When changing to Webpack 5, some or all can probably be removed.
+  transpileDependencies: [],
+};
