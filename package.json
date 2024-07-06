@@ -7,6 +7,7 @@
     "lint": "vue-cli-service lint",
     "storybook": "yarn i18n:extract && yarn i18n:lib && start-storybook -p 6006 -c .storybook -s .",
     "build-storybook": "build-storybook -c .storybook -o dist-storybook",
+    "update-browserslist": "yarn update-browserslist-db",
     "i18n:extract": "node ./node_modules/webpack-i18n-tools/index.js ./src/i18n/en.po",
     "i18n:pull": "tx pull --force --all",
     "i18n:push": "tx push --source",
