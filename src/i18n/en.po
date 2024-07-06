@@ -168,16 +168,16 @@ msgstr ""
 msgid "Vendor crypto markup"
 msgstr ""
 
-#: src/components/PaymentInfoLine.vue:281
-msgid "You are paying approx. {formattedRateDeviation} less than at the current market rate (coingecko.com)."
+#: src/components/PaymentInfoLine.vue:297
+msgid "You are paying approx. {formattedRateDeviation} less than at the current market rate ({provider})."
 msgstr ""
 
-#: src/components/PaymentInfoLine.vue:275
-msgid "You are paying approx. {formattedRateDeviation} more than at the current market rate (coingecko.com)."
+#: src/components/PaymentInfoLine.vue:291
+msgid "You are paying approx. {formattedRateDeviation} more than at the current market rate ({provider})."
 msgstr ""
 
-#: src/components/PaymentInfoLine.vue:267
-msgid "Your actual discount is approx. {formattedRateDeviation} compared to the current market rate (coingecko.com)."
+#: src/components/PaymentInfoLine.vue:283
+msgid "Your actual discount is approx. {formattedRateDeviation} compared to the current market rate ({provider})."
 msgstr ""
 
 #: src/components/QrScanner.vue:16

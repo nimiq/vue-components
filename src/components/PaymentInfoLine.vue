@@ -113,7 +113,7 @@
 type BigInteger = import ('big-integer').BigInteger;
 
 import { Component, Mixins, Prop, Watch } from 'vue-property-decorator';
-import { FiatApiSupportedFiatCurrency, FiatApiSupportedCryptoCurrency, getExchangeRates } from '@nimiq/utils';
+import { FiatCurrency, CryptoCurrency, Provider as FiatApiProvider, getExchangeRates } from '@nimiq/utils';
 import Account from './Account.vue';
 import Timer from './Timer.vue';
 import Amount, { amountValidator } from './Amount.vue';
@@ -133,6 +133,12 @@ interface FiatAmountInfo {
     amount: number; // in the base unit, e.g. Euro
     currency: string;
 }
+
+// As Record, such that ts will warn us if the url for a provider is missing.
+const FIAT_API_PROVIDER_URLS: Record<FiatApiProvider, string> = {
+    [FiatApiProvider.CoinGecko]: 'coingecko.com',
+    [FiatApiProvider.CryptoCompare]: 'cryptocompare.com',
+};
 
 function cryptoAmountInfoValidator(value: any) {
     return 'amount' in value && 'currency' in value && 'decimals' in value
@@ -166,6 +172,12 @@ class PaymentInfoLine extends Mixins(I18nMixin) {
 
     @Prop({type: Object, required: true, validator: cryptoAmountInfoValidator}) public cryptoAmount!: CryptoAmountInfo;
     @Prop({type: Object, validator: fiatAmountInfoValidator}) public fiatAmount?: FiatAmountInfo;
+    @Prop({
+        type: String,
+        validator: (value: any) => Object.values(FiatApiProvider).includes(value),
+        default: FiatApiProvider.CoinGecko,
+    })
+    public fiatApiProvider!: FiatApiProvider;
     // Note that vendorMarkup and networkFee have no effect if fiatAmount is not set, as the tooltip in which they
     // appear is only visible when fiatAmount is set. As the fiatAmount was only introduced in the v2 checkout request
     // in the Hub, the tooltip and vendorMarkup and networkFee are thus never visible for v1 checkout requests. This
@@ -262,26 +274,30 @@ class PaymentInfoLine extends Mixins(I18nMixin) {
             || (Math.abs(this.rateDeviation) < PaymentInfoLine.RATE_DEVIATION_THRESHOLD && !this.isBadRate)) {
             return null;
         }
+        const translationVariables = {
+            formattedRateDeviation: this.formattedRateDeviation,
+            provider: FIAT_API_PROVIDER_URLS[this.fiatApiProvider],
+        };
         if (this.rateDeviation < 0 && this.isBadRate) {
             // False discount
             return this.$t(
                 'Your actual discount is approx. {formattedRateDeviation} compared '
-                + 'to the current market rate (coingecko.com).',
-                { formattedRateDeviation: this.formattedRateDeviation },
+                + 'to the current market rate ({provider}).',
+                translationVariables,
             );
         }
 
         if (this.rateDeviation > 0) {
             return this.$t(
                 'You are paying approx. {formattedRateDeviation} more '
-                + 'than at the current market rate (coingecko.com).',
-                { formattedRateDeviation: this.formattedRateDeviation },
+                + 'than at the current market rate ({provider}).',
+                translationVariables,
             );
         } else {
             return this.$t(
                 'You are paying approx. {formattedRateDeviation} less '
-                + 'than at the current market rate (coingecko.com).',
-                { formattedRateDeviation: this.formattedRateDeviation },
+                + 'than at the current market rate ({provider}).',
+                translationVariables,
             );
         }
 
@@ -291,20 +307,18 @@ class PaymentInfoLine extends Mixins(I18nMixin) {
     @Watch('fiatAmount.currency')
     private async updateReferenceRate() {
         window.clearTimeout(this.referenceRateUpdateTimeout);
-        const cryptoCurrency = this.cryptoAmount.currency.toLowerCase() as FiatApiSupportedCryptoCurrency;
-        const fiatCurrency = this.fiatAmount
-            ? this.fiatAmount.currency.toLowerCase() as FiatApiSupportedFiatCurrency
-            : null;
+        const cryptoCurrency = this.cryptoAmount.currency.toLowerCase() as CryptoCurrency;
+        const fiatCurrency = this.fiatAmount?.currency.toLowerCase() as FiatCurrency | undefined;
         if (!this.fiatAmount
-            || !Object.values(FiatApiSupportedFiatCurrency).includes(fiatCurrency)
-            || !Object.values(FiatApiSupportedCryptoCurrency).includes(cryptoCurrency)
+            || !Object.values(FiatCurrency).includes(fiatCurrency)
+            || !Object.values(CryptoCurrency).includes(cryptoCurrency)
         ) {
             this.referenceRate = null;
             return;
         }
 
         const { [cryptoCurrency]: { [fiatCurrency]: referenceRate }} =
-            await getExchangeRates([cryptoCurrency], [fiatCurrency]);
+            await getExchangeRates([cryptoCurrency], [fiatCurrency], this.fiatApiProvider);
         this.referenceRate = referenceRate || null;
 
         this.referenceRateUpdateTimeout = window.setTimeout(

@@ -23,7 +23,7 @@
   "dependencies": {
     "@nimiq/iqons": "^1.6.0",
     "@nimiq/style": "^0.8.5",
-    "@nimiq/utils": "^0.9.3",
+    "@nimiq/utils": "^0.11.1",
     "big-integer": "^1.6.44",
     "input-format": "^0.2.8",
     "js-sha3": "^0.8.0",

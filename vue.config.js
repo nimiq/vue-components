@@ -101,5 +101,5 @@ module.exports = {
   // Webpack version is too old to process some modern js syntax in the listed dependencies. Should be kept in sync with
   // transpileDependencies in storybook's webpack.config.js.
   // When changing to Webpack 5, some or all can probably be removed.
-  transpileDependencies: [],
+  transpileDependencies: ['@nimiq/utils'],
 };

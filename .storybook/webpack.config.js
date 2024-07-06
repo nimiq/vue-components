@@ -9,7 +9,7 @@ crypto.createHash = (alg, opts) => {
 
 // Process source files and specified dependencies by babel to be able to use more modern js syntax than supported by
 // our Webpack version. Should be kept in sync with transpileDependencies in vue.config.js
-const transpileDependencies = [];
+const transpileDependencies = ['@nimiq/utils'];
 const babel = {
     loader: require.resolve('babel-loader'),
     // By default, options from babel.config.js are used. If you're encountering issues with some syntax not being
