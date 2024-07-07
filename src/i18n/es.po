@@ -1,12 +1,12 @@
 # 
 # Translators:
 # Ricardo Barquero Carranza <richy@nimiq.com>, 2020
-# Daniel, 2020
+# Daniel, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Daniel, 2020\n"
-"Language-Team: Spanish (https://www.transifex.com/nimiq-foundation/teams/110181/es/)\n"
+"Last-Translator: Daniel, 2024\n"
+"Language-Team: Spanish (https://app.transifex.com/nimiq-foundation/teams/110181/es/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: es\n"
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
@@ -15,7 +15,7 @@ msgstr ""
 msgid "{amount} suggested network fee"
 msgstr "{amount} cuota de red sugerida"
 
-#: src/components/AccountSelector.vue:21
+#: src/components/AccountSelector.vue:24
 msgid "{type} accounts cannot be used for this operation."
 msgstr "cuentas tipo {type} no se pueden utilizar para esta operación."
 
@@ -97,13 +97,13 @@ msgstr "Balance insuficiente"
 
 #: src/components/LongPressButton.vue:20
 msgid "Keep pressing…"
-msgstr ""
+msgstr "Mantenga presionado…"
 
-#: src/components/AccountSelector.vue:193
+#: src/components/AccountSelector.vue:202
 msgid "Legacy"
 msgstr "Versión Antigua"
 
-#: src/components/AccountSelector.vue:44
+#: src/components/AccountSelector.vue:47
 msgid "Login to another account"
 msgstr "Inicie sesión con otra cuenta"
 
@@ -179,29 +179,29 @@ msgstr "Descuento en criptomonedas del vendedor"
 msgid "Vendor crypto markup"
 msgstr "Margen en criptomonedas del vendedor"
 
-#: src/components/PaymentInfoLine.vue:281
+#: src/components/PaymentInfoLine.vue:291
 msgid ""
 "You are paying approx. {formattedRateDeviation} less than at the current "
-"market rate (coingecko.com)."
+"market rate ({provider})."
 msgstr ""
 "Esta pagando approx. {formattedRateDeviation} menos que la taza actual de "
-"mercado (coingecko.com)."
+"mercado ({provider})."
 
-#: src/components/PaymentInfoLine.vue:275
+#: src/components/PaymentInfoLine.vue:285
 msgid ""
 "You are paying approx. {formattedRateDeviation} more than at the current "
-"market rate (coingecko.com)."
+"market rate ({provider})."
 msgstr ""
 "Esta pagando approx. {formattedRateDeviation} más que la taza actual de "
-"mercado (coingecko.com)."
+"mercado ({provider})."
 
-#: src/components/PaymentInfoLine.vue:267
+#: src/components/PaymentInfoLine.vue:277
 msgid ""
 "Your actual discount is approx. {formattedRateDeviation} compared to the "
-"current market rate (coingecko.com)."
+"current market rate ({provider})."
 msgstr ""
 "Su descuento es approx. {formattedRateDeviation} comparado a la taza del "
-"mercado actual (coingecko.com)."
+"mercado actual ({provider})."
 
 #: src/components/QrScanner.vue:16
 msgid "Your device does not have an accessible camera."

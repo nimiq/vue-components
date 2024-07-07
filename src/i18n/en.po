@@ -6,7 +6,7 @@ msgstr ""
 msgid "{amount} suggested network fee"
 msgstr ""
 
-#: src/components/AccountSelector.vue:21
+#: src/components/AccountSelector.vue:24
 msgid "{type} accounts cannot be used for this operation."
 msgstr ""
 
@@ -87,11 +87,11 @@ msgstr ""
 msgid "Keep pressing…"
 msgstr ""
 
-#: src/components/AccountSelector.vue:193
+#: src/components/AccountSelector.vue:202
 msgid "Legacy"
 msgstr ""
 
-#: src/components/AccountSelector.vue:44
+#: src/components/AccountSelector.vue:47
 msgid "Login to another account"
 msgstr ""
 
