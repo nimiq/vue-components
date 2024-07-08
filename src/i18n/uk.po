@@ -2,11 +2,12 @@
 # Translators:
 # Oleksandr Turchyn <oleksandr.turchyn@outlook.com>, 2020
 # Petro M <petro.matsyburka@outlook.com>, 2020
+# Daniel, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Petro M <petro.matsyburka@outlook.com>, 2020\n"
-"Language-Team: Ukrainian (https://www.transifex.com/nimiq-foundation/teams/110181/uk/)\n"
+"Last-Translator: Daniel, 2024\n"
+"Language-Team: Ukrainian (https://app.transifex.com/nimiq-foundation/teams/110181/uk/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: uk\n"
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
@@ -15,7 +16,7 @@ msgstr ""
 msgid "{amount} suggested network fee"
 msgstr "{amount} комісія запропонована мережею"
 
-#: src/components/AccountSelector.vue:21
+#: src/components/AccountSelector.vue:24
 msgid "{type} accounts cannot be used for this operation."
 msgstr "{type} рахунок не може бути використаний для цієї операції."
 
@@ -95,11 +96,15 @@ msgstr "годин"
 msgid "Insufficient balance"
 msgstr "Недостатній баланс"
 
-#: src/components/AccountSelector.vue:193
+#: src/components/LongPressButton.vue:20
+msgid "Keep pressing…"
+msgstr "Продовжуйте натискати…"
+
+#: src/components/AccountSelector.vue:202
 msgid "Legacy"
 msgstr "Старий формат"
 
-#: src/components/AccountSelector.vue:44
+#: src/components/AccountSelector.vue:47
 msgid "Login to another account"
 msgstr "Увійти на інший рахунок"
 
@@ -175,29 +180,29 @@ msgstr "Знижка постачальника"
 msgid "Vendor crypto markup"
 msgstr "Націнка постачальника"
 
-#: src/components/PaymentInfoLine.vue:281
+#: src/components/PaymentInfoLine.vue:291
 msgid ""
 "You are paying approx. {formattedRateDeviation} less than at the current "
-"market rate (coingecko.com)."
+"market rate ({provider})."
 msgstr ""
 "Ви платите приблизно на {formattedRateDeviation} менше, ніж за поточним "
-"ринковим курсом  (coingecko.com)."
+"ринковим курсом  ({provider})."
 
-#: src/components/PaymentInfoLine.vue:275
+#: src/components/PaymentInfoLine.vue:285
 msgid ""
 "You are paying approx. {formattedRateDeviation} more than at the current "
-"market rate (coingecko.com)."
+"market rate ({provider})."
 msgstr ""
 "Ви платите приблизно на {formattedRateDeviation} більше, ніж за поточним "
-"ринковим курсом (coingecko.com)."
+"ринковим курсом ({provider})."
 
-#: src/components/PaymentInfoLine.vue:267
+#: src/components/PaymentInfoLine.vue:277
 msgid ""
 "Your actual discount is approx. {formattedRateDeviation} compared to the "
-"current market rate (coingecko.com)."
+"current market rate ({provider})."
 msgstr ""
 "Ваша фактична знижка становить приблизно {formattedRateDeviation}, якщо "
-"порівняти з поточним ринковим курсом (coingecko.com)."
+"порівняти з поточним ринковим курсом ({provider})."
 
 #: src/components/QrScanner.vue:16
 msgid "Your device does not have an accessible camera."

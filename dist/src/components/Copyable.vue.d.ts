@@ -11,8 +11,8 @@ declare const Copyable_base: import("vue-class-component/lib/declarations").VueC
  *
  * **text** {string} [optional] - A specific text to be copied to the clipboard on click
  */
-export default class Copyable extends Copyable_base {
-    private static readonly DISPLAY_TIME;
+declare class Copyable extends Copyable_base {
+    static readonly DISPLAY_TIME = 800;
     text?: string;
     private copied;
     private _copiedResetTimeout;
@@ -22,4 +22,9 @@ export default class Copyable extends Copyable_base {
     mounted(): void;
     beforeDestroy(): void;
 }
-export {};
+declare namespace Copyable {
+    enum Events {
+        COPY = "copy"
+    }
+}
+export default Copyable;

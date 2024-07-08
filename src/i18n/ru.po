@@ -2,11 +2,13 @@
 # Translators:
 # Vad <vjuruss@gmail.com>, 2020
 # Пётр Павлович, 2020
+# Alexander Ivanov <saiv46.dev+transifex@gmail.com>, 2023
+# Daniel, 2024
 # 
 msgid ""
 msgstr ""
-"Last-Translator: Пётр Павлович, 2020\n"
-"Language-Team: Russian (https://www.transifex.com/nimiq-foundation/teams/110181/ru/)\n"
+"Last-Translator: Daniel, 2024\n"
+"Language-Team: Russian (https://app.transifex.com/nimiq-foundation/teams/110181/ru/)\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: ru\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
@@ -15,14 +17,13 @@ msgstr ""
 msgid "{amount} suggested network fee"
 msgstr "{amount} предлагаемая комиссия сети"
 
-#: src/components/AccountSelector.vue:21
+#: src/components/AccountSelector.vue:24
 msgid "{type} accounts cannot be used for this operation."
-msgstr ""
-"Аккаунты данного типа {type} не могут быть использованы для этой операции."
+msgstr "Аккаунты типа {type} не могут быть использованы для этой операции."
 
 #: src/components/QrScanner.vue:11
 msgid "Cancel"
-msgstr "Отменить"
+msgstr "Отмена"
 
 #: src/components/Wallet.vue:24
 msgid "Change Password"
@@ -70,7 +71,7 @@ msgstr "дней"
 
 #: src/components/PaymentInfoLine.vue:45
 msgid "Effective rate"
-msgstr "Курс конвертации"
+msgstr "Настоящий курс"
 
 #: src/components/AmountWithFee.vue:11
 msgid "fee"
@@ -96,11 +97,15 @@ msgstr "часов"
 msgid "Insufficient balance"
 msgstr "Недостаточный баланс"
 
-#: src/components/AccountSelector.vue:193
+#: src/components/LongPressButton.vue:20
+msgid "Keep pressing…"
+msgstr "Продолжайте нажимать…"
+
+#: src/components/AccountSelector.vue:202
 msgid "Legacy"
 msgstr "\"старый\""
 
-#: src/components/AccountSelector.vue:44
+#: src/components/AccountSelector.vue:47
 msgid "Login to another account"
 msgstr "Вход в другой аккаунт"
 
@@ -174,31 +179,31 @@ msgstr "Скидка вендора криптовалюты"
 
 #: src/components/PaymentInfoLine.vue:40
 msgid "Vendor crypto markup"
-msgstr "Маркап вендора криптовалюты"
+msgstr "Наценка вендора криптовалюты"
 
-#: src/components/PaymentInfoLine.vue:281
+#: src/components/PaymentInfoLine.vue:291
 msgid ""
 "You are paying approx. {formattedRateDeviation} less than at the current "
-"market rate (coingecko.com)."
+"market rate ({provider})."
 msgstr ""
-"Вы платите приблизительно на {formattedRateDeviation}  меньше, чем по "
-"текущему рыночному курсу (coingecko.com)."
+"Вы платите примерно на {formattedRateDeviation} меньше чем по рыночному "
+"курсу ({provider})."
 
-#: src/components/PaymentInfoLine.vue:275
+#: src/components/PaymentInfoLine.vue:285
 msgid ""
 "You are paying approx. {formattedRateDeviation} more than at the current "
-"market rate (coingecko.com)."
+"market rate ({provider})."
 msgstr ""
-"Вы платите приблизительно нв {formattedRateDeviation}  больше, чем по "
-"текущему рыночному курсу (coingecko.com)."
+"Вы платите примерно на {formattedRateDeviation} больше чем по рыночному "
+"курсу ({provider})."
 
-#: src/components/PaymentInfoLine.vue:267
+#: src/components/PaymentInfoLine.vue:277
 msgid ""
 "Your actual discount is approx. {formattedRateDeviation} compared to the "
-"current market rate (coingecko.com)."
+"current market rate ({provider})."
 msgstr ""
 "Ваш фактический дисконт составляет приблизительно {formattedRateDeviation} "
-"по сравнению с текущим рыночным курсом (coingecko.com)."
+"по сравнению с рыночным курсом ({provider})."
 
 #: src/components/QrScanner.vue:16
 msgid "Your device does not have an accessible camera."

@@ -1,6 +1,6 @@
 import {storiesOf} from '@storybook/vue';
 import {action} from '@storybook/addon-actions';
-import {boolean, number, text, object, select, withKnobs} from '@storybook/addon-knobs';
+import {array, boolean, number, text, object, select, withKnobs} from '@storybook/addon-knobs';
 
 import '@nimiq/style/nimiq-style.min.css';
 
@@ -23,11 +23,14 @@ import CopyableField from '../components/CopyableField.vue';
 import FiatAmount from '../components/FiatAmount.vue';
 import Identicon from '../components/Identicon.vue';
 import LabelInput from '../components/LabelInput.vue';
+import LanguageSelector from '../components/LanguageSelector.vue';
+import LongPressButton from '../components/LongPressButton.vue';
 import Wallet from '../components/Wallet.vue';
 import PaymentInfoLine from '../components/PaymentInfoLine.vue';
 import QrCode from '../components/QrCode.vue';
 import QrScanner from '../components/QrScanner.vue';
 import SelectBar from '../components/SelectBar.vue';
+import SliderToggle from '../components/SliderToggle.vue';
 import SmallPage from '../components/SmallPage.vue';
 import Timer from '../components/Timer.vue';
 import Tooltip from '../components/Tooltip.vue';
@@ -144,40 +147,65 @@ storiesOf('Basic', module)
     .add('LabelInput', () => {
         const disabled = boolean('Disabled', false);
         const value = text('Value', '');
+        const placeholder = text('Placeholder', '');
+        const maxBytes = number('Max Bytes (0: disabled)', 0);
+        const vanishing = boolean('Vanishing', false);
         return {
             components: {LabelInput},
             data() {
                 return {
-                    value,
                     disabled,
+                    value,
+                    placeholder,
+                    maxBytes,
+                    vanishing,
                 };
             },
             methods: {
                 changed: action('changed'),
                 input: action('input'),
+                paste: action('paste'),
             },
-            template: `<LabelInput @changed="changed" @input="input" v-model="value" :disabled="disabled"/>`,
-        };
-    })
-    .add('LabelInput (restricted to 63 bytes)', () => {
-        return {
-            components: {LabelInput},
-            methods: {
-                changed: action('changed'),
-                input: action('input'),
-            },
-            data() {
-                return {
-                    value: "Standard Address"
-                };
-            },
-            template: `<LabelInput :value="value" :maxBytes="63" @changed="changed" @input="input"/>`,
+            template: `<LabelInput v-model="value"
+                :disabled="disabled" :placeholder="placeholder" :maxBytes="maxBytes" :vanishing="vanishing"
+                @changed="changed" @input="input" @paste="paste"/>`,
         };
     })
     .add('LoadingSpinner', () => {
         return {
             components: {LoadingSpinner},
             template: `<div style="color: #0582CA"><LoadingSpinner /></div>`,
+        };
+    })
+    .add('LongPressButton', () => {
+        const color = text('color', 'light-blue');
+        const duration = number('duration', 3000);
+        return {
+            components: { LongPressButton, LoadingSpinner, HexagonIcon: Icons.HexagonIcon },
+            methods: { longPressed: action('longPressed') },
+            data: () => ({ color, duration }),
+            template: `
+                <div>
+                    <LongPressButton :color="color" :duration="duration"
+                        @${LongPressButton.Events.LONG_PRESS}="longPressed">
+                        Hold me tight.
+                    </LongPressButton>
+                    <LongPressButton :color="color" :duration="duration"
+                        @${LongPressButton.Events.LONG_PRESS}="longPressed">
+                        Sometimes it just clicks...
+                        <template #subline>but in this case it doesn't.</template>
+                    </LongPressButton>
+                    <LongPressButton :color="color" :duration="duration"
+                        style="--label-height: 4rem"
+                        @${LongPressButton.Events.LONG_PRESS}="longPressed">
+                        You can also go fancy
+                        <HexagonIcon style="width: 4rem; height: 4rem; vertical-align: middle"/>
+                        <LoadingSpinner style="width: 4rem; height: 4rem; vertical-align: middle"/>
+                        with arbitrary content
+                        <template #subline>(Yay 🎉)</template>
+                    </LongPressButton>
+                </div>
+            `,
         };
     })
     .add('CircleSpinner', () => {
@@ -224,6 +252,7 @@ storiesOf('Basic', module)
         const theme = select('theme', Object.values(Tooltip.Themes), Tooltip.Themes.NORMAL);
         const styles = object('styles (json)', {});
         const fontSize = number('External font size (rem)', 3);
+        const background = text('background');
         return {
             data() {
                 return {
@@ -237,6 +266,7 @@ storiesOf('Basic', module)
                     fontSize,
                     refsLoaded: false,
                     shown: false,
+                    background,
                 };
             },
             computed: {
@@ -254,7 +284,7 @@ storiesOf('Basic', module)
                             <PageHeader>Test</PageHeader>
                             <PageBody ref="container" style="overflow-y: scroll; background: rgba(127,127,127,.1)">
                                 <div style="height:320px"></div>
-                                <div style="max-width: 100%; display: flex; align-items: center;">
+                                <div style="max-width: 100%; display: flex; align-items: center;padding-right: 1000px;">
                                     <button class="nq-button-s" :class="[theme]" @click="$refs.tooltip.show()">
                                         Show
                                     </button>
@@ -271,6 +301,7 @@ storiesOf('Basic', module)
                                         :disabled="disabled"
                                         :theme="theme"
                                         :styles="styles"
+                                        :background="background"
                                         :style="{ fontSize: fontSize + 'rem' }"
                                         @show="shown = true"
                                         @hide="shown = false">
@@ -475,30 +506,41 @@ storiesOf('Components', module)
     .add('AddressDisplay', () => {
         const address = text('address', 'NQ12 3ASK LDJF ALKS DJFA KLSD FJAK LSDJ FDRE');
         const copyable = boolean('copyable', false);
+        const format = select('format', ['nimiq', 'ethereum'], 'nimiq');
         return {
-            data: () => ({ address, copyable }),
+            data: () => ({ address, copyable, format }),
             components: {AddressDisplay},
-            template: `<AddressDisplay :address="address" :copyable="copyable"
-                style="margin-top: 7rem; margin-left: 2rem;" />`,
+            template: `<AddressDisplay :address="address" :copyable="copyable" :format="format"
+                style="margin-top: 2rem; margin-left: 2rem;" />`,
         };
     })
     .add('AddressInput', () => {
-        const allowDomains = boolean('Allow Domains', true);
+        const allowNimAddresses = boolean('Allow Nim Addresses', true);
+        const allowEthAddresses = boolean('Allow Eth Addresses', false);
+        const allowDomains = boolean('Allow Domains', false);
         return {
             components: {AddressInput},
             data() {
                 return {
                     address: '',
                     lastValidAddress: null,
+                    allowNimAddresses,
+                    allowEthAddresses,
                     allowDomains,
                 };
             },
             methods: {
                 input: action('input'),
                 paste: action('paste'),
+                onAddressChange(address) {
+                    this.lastValidAddress = address;
+                    action('address')(address);
+                },
             },
             template: `<div>
-                <AddressInput v-model="address" :allowDomains="allowDomains" @input="input" @address="lastValidAddress = $event" @paste="paste" />
+                <AddressInput v-model="address" :allowNimAddresses="allowNimAddresses"
+                    :allowEthAddresses="allowEthAddresses" :allowDomains="allowDomains" @input="input"
+                    @paste="paste" @address="onAddressChange" />
                 <div>Current address: {{ address }}</div>
                 <div>valid?: {{ address === lastValidAddress }}</div>
             </div>`,
@@ -653,13 +695,16 @@ storiesOf('Components', module)
     })
     .add('Copyable', () => ({
         components: { Copyable },
+        methods: {
+            copy: action('copy'),
+        },
         template: `
             <div>
-                <Copyable ref="copyable" style="margin-top: 7rem;">I'm a text you can copy.</Copyable>
-                <Copyable>
+                <Copyable ref="copyable" style="margin-top: 7rem;" @copy="copy">I'm a text you can copy.</Copyable>
+                <Copyable @copy="copy">
                     I'm a copyable text<br>with <b>child nodes</b>.
                 </Copyable>
-                <Copyable text="Surprise!!!">When you click me you get a surprise!</Copyable>
+                <Copyable text="Surprise!!!" @copy="copy">When you click me you get a surprise!</Copyable>
                 <button class="nq-button" style="margin-top: 7rem; margin-left: 1rem" @click="$refs.copyable.copy()">
                     Click me to trigger a copy via code
                 </button>
@@ -686,6 +731,20 @@ storiesOf('Components', module)
                 />
             `,
         };
+    })
+    .add('LanguageSelector', () => {
+        const languages = array('languages', ['en', 'de', 'es', 'ja']);
+        return {
+            components: {LanguageSelector},
+            methods: { languageSelected: action('language-selected') },
+            data: () => ({ languages, selectedLanguage: 'de' }),
+            template: `
+                <div style="padding-top: 15rem; padding-left: 4rem">
+                    <LanguageSelector :languages="languages" v-model="selectedLanguage"/>
+                    <input v-model="selectedLanguage" style="margin-top: 4rem" />
+                </div>
+            `,
+        }
     })
     .add('Wallet (deprecated)', () => {
         const label = text('label', 'Main Wallet');
@@ -841,17 +900,17 @@ storiesOf('Components', module)
         return {
             components: {SmallPage, PageHeader, PageBody, PageFooter},
             template: windowTemplate(`
-<small-page>
-    <page-header :backArrow="true">
-        Page header
-        <p slot="more" class="nq-notice info">I am an informative notice!</p>
-    </page-header>
-    <page-body>
-        <p>Some text in the page body.</p>
-    </page-body>
-    <page-footer>Page footer</page-footer>
-</small-page>
-`),
+                <small-page>
+                    <page-header :backArrow="true">
+                        Page header
+                        <p slot="more" class="nq-notice info">I am an informative notice!</p>
+                    </page-header>
+                    <page-body>
+                        <p>Some text in the page body.</p>
+                    </page-body>
+                    <page-footer>Page footer</page-footer>
+                </small-page>
+                `),
         };
     })
     .add('Timer', () => ({
@@ -895,7 +954,40 @@ storiesOf('Components', module)
                 this.timerEnded = false;
             },
         },
-    }));
+    }))
+    .add('SliderToggle', () => {
+        const name = text('name', 'name');
+        const type = select('type', { currency: 'currency', default: 'default' }, 'default');
+        const loading = boolean('loading', false);
+
+        const value = type === 'currency' ? text('value', 'nim') : text('value', 'trustscore');
+        const radios = type === 'currency'
+            ? [
+                { label: 'NIM', value: 'nim' },
+                { label: 'BTC', value: 'btc' },
+                { label: 'ETH', value: 'eth' },
+            ] : [
+                { label: 'TrustScore', value: 'trustscore' },
+                { label: 'PayoutTime', value: 'payouttime' },
+                { label: 'Reward', value: 'reward' },
+                { label: 'Reward', value: 'reward' },
+            ];
+
+        return {
+            components: { SliderToggle, ...Icons },
+            data() {
+                return { radios, name, value, type, loading };
+            },
+            template: `
+                <SliderToggle :name="name" :value="value" :type="type" :loading="loading">
+                    <template v-for="radio in radios" v-slot:[radio.value]>
+                        <span>{{ radio.label }}</span>
+                    </template>
+                </SliderToggle>
+            `,
+        };
+    })
+;
 
 storiesOf('Pages', module)
     .addDecorator(withKnobs)

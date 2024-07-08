@@ -7,10 +7,11 @@
     "lint": "vue-cli-service lint",
     "storybook": "yarn i18n:extract && yarn i18n:lib && start-storybook -p 6006 -c .storybook -s .",
     "build-storybook": "build-storybook -c .storybook -o dist-storybook",
+    "update-browserslist": "yarn update-browserslist-db",
     "i18n:extract": "node ./node_modules/webpack-i18n-tools/index.js ./src/i18n/en.po",
-    "i18n:pull": "tx pull --all --parallel --no-interactive --force --minimum-perc 95",
+    "i18n:pull": "tx pull --force --all",
     "i18n:push": "tx push --source",
-    "i18n:lib": "rimraf src/i18n/?? && node node_modules/webpack-i18n-tools/tools/convertToJsonLib.js 'src/i18n/!(en).po'",
+    "i18n:lib": "rimraf src/i18n/?? ; node node_modules/webpack-i18n-tools/tools/convertToJsonLib.js 'src/i18n/!(en).po'",
     "i18n:sync": "yarn i18n:extract && yarn i18n:push && yarn i18n:pull && yarn i18n:lib"
   },
   "main": "dist/NimiqVueComponents.common.js",
@@ -21,10 +22,11 @@
   ],
   "dependencies": {
     "@nimiq/iqons": "^1.6.0",
-    "@nimiq/style": "^0.8.2",
-    "@nimiq/utils": "^0.8.2",
+    "@nimiq/style": "^0.8.5",
+    "@nimiq/utils": "^0.11.1",
     "big-integer": "^1.6.44",
     "input-format": "^0.2.8",
+    "js-sha3": "^0.8.0",
     "qr-creator": "^1.0.0",
     "qr-scanner": "^1.4.2",
     "vue": "^2.6.11",
@@ -36,10 +38,11 @@
     "@storybook/addon-links": "^4.0.0-alpha.14",
     "@storybook/addon-viewport": "^4.0.0-alpha.14",
     "@storybook/vue": "^4.0.0-alpha.14",
-    "@vue/cli-plugin-babel": "~4.2.2",
-    "@vue/cli-plugin-typescript": "~4.2.2",
-    "@vue/cli-service": "~4.2.2",
-    "core-js": "^3.6.4",
+    "@vue/cli-plugin-babel": "~4.5.19",
+    "@vue/cli-plugin-typescript": "~4.5.19",
+    "@vue/cli-service": "~4.5.19",
+    "@vue/compiler-dom": "^3.2.45",
+    "core-js": "^3.37.1",
     "file-loader": "^3.0.1",
     "moment": "^2.29.4",
     "rimraf": "^3.0.2",
@@ -74,5 +77,6 @@
     "not ie <= 10"
   ],
   "license": "Apache-2.0",
-  "types": "types/index.d.ts"
+  "types": "types/index.d.ts",
+  "packageManager": "yarn@1.22.19"
 }

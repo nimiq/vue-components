@@ -74,6 +74,8 @@ export default class Amount extends Vue {
         if (this.currency === 'mbtc') return 'mBTC';
         if (this.currency === 'tbtc') return 'tBTC';
 
+        if (this.currency === 'usdc.e') return 'USDC.e';
+
         return this.currency.toUpperCase();
     }
 }

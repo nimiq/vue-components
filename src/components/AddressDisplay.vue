@@ -1,11 +1,12 @@
 <template>
-    <component :is="copyable ? 'Copyable' : 'div'" :text="chunks.join(' ').toUpperCase()" class="address-display">
-        <span v-for="(chunk, index) in chunks" class="chunk" :key="chunk + index">{{ chunk }}<span class="space">&nbsp;</span></span>
+    <component :is="copyable ? 'Copyable' : 'div'" :text="text" class="address-display" :class="`format-${format}`">
+        <span v-for="(chunk, index) in chunks" class="chunk" :key="chunk + index">{{ chunk }}<span v-if="chunkTrailingSpaces" class="space">&nbsp;</span></span>
     </component>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
+import { ValidationUtils } from '@nimiq/utils';
 import Copyable from './Copyable.vue';
 
 @Component({ components: {Copyable} })
@@ -13,16 +14,44 @@ export default class AddressDisplay extends Vue {
     @Prop({
         type: String,
         required: true,
-    }) private address!: string;
+    })
+    public address: string;
+
+    @Prop({
+        type: String,
+        default: 'nimiq',
+    })
+    public format: string;
 
     @Prop({
         type: Boolean,
         default: false,
-    }) private copyable!: boolean;
+    })
+    public copyable: boolean;
 
-    private get chunks(): string[] {
-        if (!this.address) return new Array(9).fill('-');
-        return this.address.replace(/[+ ]/g, '').match(/.{4}/g)!;
+    get chunks(): string[] {
+        switch (this.format) {
+            case 'nimiq':
+                if (!this.address) return new Array(9).fill('-');
+                return ValidationUtils.normalizeAddress(this.address).split(' ');
+            case 'ethereum':
+                if (!this.address) return new Array(3).fill('-');
+                return this.address.replace(/[+ ]/g, '').match(/.{14}/g)!;
+            default:
+                return [this.address];
+        }
+    }
+
+    get text(): string {
+        switch (this.format) {
+            case 'nimiq': return this.chunks.join(' ').toUpperCase();
+            case 'ethereum': return this.chunks.join('');
+            default: return this.address;
+        }
+    }
+
+    get chunkTrailingSpaces(): boolean {
+        return this.format === 'nimiq';
     }
 }
 </script>
@@ -30,14 +59,20 @@ export default class AddressDisplay extends Vue {
 <style scoped>
     .address-display {
         width: 100%;
-        max-width: 28.25rem;
         box-sizing: content-box;
-        font-family: 'Fira Mono', monospace;
         color: rgba(31, 35, 72, .5); /* nimiq-blue with .5 opacity */
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
         font-size: 3rem;
+    }
+
+    .format-nimiq {
+        max-width: 28.25rem;
+    }
+
+    .format-ethereum {
+        max-width: 27rem;
     }
 
     .address-display.copyable:hover,
@@ -47,12 +82,20 @@ export default class AddressDisplay extends Vue {
     }
 
     .chunk {
+        font-family: 'Fira Mono', monospace;
         margin: 0.875rem 0;
         line-height: 1.11;
-        width: 33%;
         text-align: center;
         box-sizing: border-box;
+    }
+
+    .format-nimiq .chunk {
+        width: 33%;
         text-transform: uppercase;
+    }
+
+    .format-ethereum .chunk {
+        width: 100%;
     }
 
     .space {

@@ -1,1 +1,1 @@
-(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[39],{d183:function(e){e.exports=JSON.parse('{"Name your address":"Geef adres een naam"}')}}]);
+(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[54],{ce5e:function(e){e.exports=JSON.parse('{"Name your address":"Geef adres een naam"}')}}]);

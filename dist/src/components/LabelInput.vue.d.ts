@@ -15,5 +15,6 @@ export default class LabelInput extends LabelInput_base {
     private onBlur;
     private updateValue;
     private updateWidth;
+    private updateMaxBytes;
 }
 export {};

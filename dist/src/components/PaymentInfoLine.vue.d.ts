@@ -1,4 +1,5 @@
 declare type BigInteger = import('big-integer').BigInteger;
+import { Provider as FiatApiProvider } from '@nimiq/utils';
 import I18nMixin from '../i18n/I18nMixin';
 interface CryptoAmountInfo {
     amount: number | bigint | BigInteger;
@@ -15,6 +16,7 @@ declare class PaymentInfoLine extends PaymentInfoLine_base {
     private static readonly RATE_DEVIATION_THRESHOLD;
     cryptoAmount: CryptoAmountInfo;
     fiatAmount?: FiatAmountInfo;
+    fiatApiProvider: FiatApiProvider;
     vendorMarkup?: number;
     networkFee?: number | bigint | BigInteger;
     origin: string;

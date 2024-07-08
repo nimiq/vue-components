@@ -1,6 +1,6 @@
-((typeof self !== 'undefined' ? self : this)["webpackJsonpNimiqVueComponents"] = (typeof self !== 'undefined' ? self : this)["webpackJsonpNimiqVueComponents"] || []).push([[60],{
+((typeof self !== 'undefined' ? self : this)["webpackJsonpNimiqVueComponents"] = (typeof self !== 'undefined' ? self : this)["webpackJsonpNimiqVueComponents"] || []).push([[89],{
 
-/***/ "f85b":
+/***/ "ae3c":
 /***/ (function(module) {
 
 module.exports = JSON.parse("{\"Copied\":\"Скопійовано\"}");
