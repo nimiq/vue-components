@@ -1,1 +1,1 @@
-(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[63],{ad46:function(e){e.exports=JSON.parse('{"Copied":"Copiado"}')}}]);
+(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[64],{ad46:function(e){e.exports=JSON.parse('{"Copied":"Copiado"}')}}]);

@@ -1,1 +1,1 @@
-(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[54],{"4af0":function(e){e.exports=JSON.parse('{"Keep pressing…":"Keep pressing…"}')}}]);
+(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[55],{"4af0":function(e){e.exports=JSON.parse('{"Keep pressing…":"Ingedrukt houden…"}')}}]);

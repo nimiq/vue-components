@@ -11,7 +11,8 @@ declare class Tooltip extends Vue {
     /**
      * Preferred tooltip position as "[primary] [secondary]" or "[primary]".
      * The primary position can be either vertical or horizontal.
-     * The secondary position, which is optional, should be of the opposite type of the primary position (i.e., horizontal if primary is vertical, and vice versa).
+     * The secondary position, which is optional, should be of the opposite type of the primary position (i.e.,
+     * horizontal if primary is vertical, and vice versa).
      * If only a single primary position is provided, the tooltip will be centered in the opposite direction.
      */
     preferredPosition: string;

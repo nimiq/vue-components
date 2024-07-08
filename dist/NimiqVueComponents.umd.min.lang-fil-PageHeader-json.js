@@ -1,1 +1,1 @@
-(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[31],{"20d9":function(e){e.exports=JSON.parse('{"Go back":"Bumalik"}')}}]);
+(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[32],{"20d9":function(e){e.exports=JSON.parse('{"Go back":"Bumalik"}')}}]);

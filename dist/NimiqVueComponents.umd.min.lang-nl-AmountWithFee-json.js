@@ -1,1 +1,1 @@
-(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[50],{ec31:function(e){e.exports=JSON.parse('{"fee":"transactiekosten","Insufficient balance":"Onvoldoende salso"}')}}]);
+(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[51],{ec31:function(e){e.exports=JSON.parse('{"fee":"transactiekosten","Insufficient balance":"Onvoldoende salso"}')}}]);

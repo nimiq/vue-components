@@ -39,14 +39,13 @@ export default class LabelInput extends Mixins(I18nMixin) {
     }
 
     private onInput() {
-        if (this.maxBytes) {
-            const lengthInBytes = Utf8Tools.stringToUtf8ByteArray(this.liveValue!).byteLength;
-            if (lengthInBytes > this.maxBytes) {
-                this.liveValue = this.lastValue;
-                return;
-            }
-            this.lastValue = this.liveValue;
+        if (this.maxBytes && Utf8Tools.stringToUtf8ByteArray(this.liveValue!).byteLength > this.maxBytes) {
+            // Keep previous value rather than truncating new value, which makes it slightly more obvious for the user
+            // that the change was not applied, for example if an invalid value was pasted.
+            this.liveValue = this.lastValue;
+            return;
         }
+        this.lastValue = this.liveValue;
         this.$emit('input', this.liveValue);
     }
 
@@ -59,6 +58,7 @@ export default class LabelInput extends Mixins(I18nMixin) {
 
     @Watch('value', {immediate: true})
     private updateValue(newValue: string) {
+        if (this.maxBytes && Utf8Tools.stringToUtf8ByteArray(newValue).byteLength > this.maxBytes) return; // keep last
         this.liveValue = newValue;
         this.lastValue = this.liveValue;
         this.lastEmittedValue = this.lastValue;
@@ -81,6 +81,18 @@ export default class LabelInput extends Mixins(I18nMixin) {
             .getPropertyValue('font-size'));
 
         this.width = (this.liveValue.length ? valueWidth : placeholderWidth) + fontSize / 3;
+    }
+
+    @Watch('maxBytes')
+    private updateMaxBytes(newMaxBytes?: number) {
+        // Truncate value when maxBytes gets changed.
+        if (!newMaxBytes) return;
+        const { result: truncatedValue, didTruncate } = Utf8Tools.truncateToUtf8ByteLength(this.liveValue, newMaxBytes);
+        if (!didTruncate) return;
+        this.liveValue = truncatedValue;
+        this.lastValue = this.liveValue;
+        this.lastEmittedValue = this.lastValue;
+        this.$emit('changed', this.liveValue);
     }
 }
 </script>

@@ -1,6 +1,6 @@
 import {storiesOf} from '@storybook/vue';
 import {action} from '@storybook/addon-actions';
-import {boolean, number, text, object, select, withKnobs} from '@storybook/addon-knobs';
+import {array, boolean, number, text, object, select, withKnobs} from '@storybook/addon-knobs';
 
 import '@nimiq/style/nimiq-style.min.css';
 
@@ -23,12 +23,14 @@ import CopyableField from '../components/CopyableField.vue';
 import FiatAmount from '../components/FiatAmount.vue';
 import Identicon from '../components/Identicon.vue';
 import LabelInput from '../components/LabelInput.vue';
+import LanguageSelector from '../components/LanguageSelector.vue';
 import LongPressButton from '../components/LongPressButton.vue';
 import Wallet from '../components/Wallet.vue';
 import PaymentInfoLine from '../components/PaymentInfoLine.vue';
 import QrCode from '../components/QrCode.vue';
 import QrScanner from '../components/QrScanner.vue';
 import SelectBar from '../components/SelectBar.vue';
+import SliderToggle from '../components/SliderToggle.vue';
 import SmallPage from '../components/SmallPage.vue';
 import Timer from '../components/Timer.vue';
 import Tooltip from '../components/Tooltip.vue';
@@ -145,34 +147,28 @@ storiesOf('Basic', module)
     .add('LabelInput', () => {
         const disabled = boolean('Disabled', false);
         const value = text('Value', '');
+        const placeholder = text('Placeholder', '');
+        const maxBytes = number('Max Bytes (0: disabled)', 0);
+        const vanishing = boolean('Vanishing', false);
         return {
             components: {LabelInput},
             data() {
                 return {
-                    value,
                     disabled,
+                    value,
+                    placeholder,
+                    maxBytes,
+                    vanishing,
                 };
             },
             methods: {
                 changed: action('changed'),
                 input: action('input'),
+                paste: action('paste'),
             },
-            template: `<LabelInput @changed="changed" @input="input" v-model="value" :disabled="disabled"/>`,
-        };
-    })
-    .add('LabelInput (restricted to 63 bytes)', () => {
-        return {
-            components: {LabelInput},
-            methods: {
-                changed: action('changed'),
-                input: action('input'),
-            },
-            data() {
-                return {
-                    value: "Standard Address"
-                };
-            },
-            template: `<LabelInput :value="value" :maxBytes="63" @changed="changed" @input="input"/>`,
+            template: `<LabelInput v-model="value"
+                :disabled="disabled" :placeholder="placeholder" :maxBytes="maxBytes" :vanishing="vanishing"
+                @changed="changed" @input="input" @paste="paste"/>`,
         };
     })
     .add('LoadingSpinner', () => {
@@ -736,6 +732,20 @@ storiesOf('Components', module)
             `,
         };
     })
+    .add('LanguageSelector', () => {
+        const languages = array('languages', ['en', 'de', 'es', 'ja']);
+        return {
+            components: {LanguageSelector},
+            methods: { languageSelected: action('language-selected') },
+            data: () => ({ languages, selectedLanguage: 'de' }),
+            template: `
+                <div style="padding-top: 15rem; padding-left: 4rem">
+                    <LanguageSelector :languages="languages" v-model="selectedLanguage"/>
+                    <input v-model="selectedLanguage" style="margin-top: 4rem" />
+                </div>
+            `,
+        }
+    })
     .add('Wallet (deprecated)', () => {
         const label = text('label', 'Main Wallet');
         const id = text('id', '47ee824fc910');
@@ -890,17 +900,17 @@ storiesOf('Components', module)
         return {
             components: {SmallPage, PageHeader, PageBody, PageFooter},
             template: windowTemplate(`
-<small-page>
-    <page-header :backArrow="true">
-        Page header
-        <p slot="more" class="nq-notice info">I am an informative notice!</p>
-    </page-header>
-    <page-body>
-        <p>Some text in the page body.</p>
-    </page-body>
-    <page-footer>Page footer</page-footer>
-</small-page>
-`),
+                <small-page>
+                    <page-header :backArrow="true">
+                        Page header
+                        <p slot="more" class="nq-notice info">I am an informative notice!</p>
+                    </page-header>
+                    <page-body>
+                        <p>Some text in the page body.</p>
+                    </page-body>
+                    <page-footer>Page footer</page-footer>
+                </small-page>
+                `),
         };
     })
     .add('Timer', () => ({
@@ -944,7 +954,40 @@ storiesOf('Components', module)
                 this.timerEnded = false;
             },
         },
-    }));
+    }))
+    .add('SliderToggle', () => {
+        const name = text('name', 'name');
+        const type = select('type', { currency: 'currency', default: 'default' }, 'default');
+        const loading = boolean('loading', false);
+
+        const value = type === 'currency' ? text('value', 'nim') : text('value', 'trustscore');
+        const radios = type === 'currency'
+            ? [
+                { label: 'NIM', value: 'nim' },
+                { label: 'BTC', value: 'btc' },
+                { label: 'ETH', value: 'eth' },
+            ] : [
+                { label: 'TrustScore', value: 'trustscore' },
+                { label: 'PayoutTime', value: 'payouttime' },
+                { label: 'Reward', value: 'reward' },
+                { label: 'Reward', value: 'reward' },
+            ];
+
+        return {
+            components: { SliderToggle, ...Icons },
+            data() {
+                return { radios, name, value, type, loading };
+            },
+            template: `
+                <SliderToggle :name="name" :value="value" :type="type" :loading="loading">
+                    <template v-for="radio in radios" v-slot:[radio.value]>
+                        <span>{{ radio.label }}</span>
+                    </template>
+                </SliderToggle>
+            `,
+        };
+    })
+;
 
 storiesOf('Pages', module)
     .addDecorator(withKnobs)

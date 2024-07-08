@@ -3,7 +3,7 @@
 /***/ "420c":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"Keep pressing…\":\"Keep pressing…\"}");
+module.exports = JSON.parse("{\"Keep pressing…\":\"Mantenga presionado…\"}");
 
 /***/ })
 

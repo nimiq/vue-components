@@ -1,9 +1,9 @@
-((typeof self !== 'undefined' ? self : this)["webpackJsonpNimiqVueComponents"] = (typeof self !== 'undefined' ? self : this)["webpackJsonpNimiqVueComponents"] || []).push([[73],{
+((typeof self !== 'undefined' ? self : this)["webpackJsonpNimiqVueComponents"] = (typeof self !== 'undefined' ? self : this)["webpackJsonpNimiqVueComponents"] || []).push([[74],{
 
 /***/ "6148":
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"{type} accounts cannot be used for this operation.\":\"Аккаунты данного типа {type} не могут быть использованы для этой операции.\",\"Legacy\":\"\\\"старый\\\"\",\"Login to another account\":\"Вход в другой аккаунт\"}");
+module.exports = JSON.parse("{\"{type} accounts cannot be used for this operation.\":\"Аккаунты типа {type} не могут быть использованы для этой операции.\",\"Legacy\":\"\\\"старый\\\"\",\"Login to another account\":\"Вход в другой аккаунт\"}");
 
 /***/ })
 

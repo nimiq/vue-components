@@ -17,7 +17,7 @@
 
 <script lang="ts">
 import { Component, Mixins, Prop, Watch } from 'vue-property-decorator';
-import { FiatApiSupportedFiatCurrency } from '@nimiq/utils';
+import { FiatCurrency } from '@nimiq/utils';
 import Amount from './Amount.vue';
 import AmountInput from './AmountInput.vue';
 import FiatAmount from './FiatAmount.vue';
@@ -38,7 +38,7 @@ export default class AmountWithFee extends Mixins(I18nMixin) {
     }) private value!: {amount: number, fee: number, isValid: boolean};
     @Prop({type: Number, default: 0}) private availableBalance!: number;
     @Prop(Number) private fiatAmount: number | null;
-    @Prop(String) private fiatCurrency: FiatApiSupportedFiatCurrency | null;
+    @Prop(String) private fiatCurrency: FiatCurrency | null;
 
     private liveAmount: number = this.value.amount;
 
