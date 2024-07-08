@@ -693,13 +693,6 @@ module.exports = function (METHOD_NAME) {
 
 /***/ }),
 
-/***/ "096c":
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-
 /***/ "0a17":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3613,13 +3606,6 @@ module.exports = {
 
 /***/ }),
 
-/***/ "2d67":
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-
 /***/ "30b2":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3834,36 +3820,6 @@ defineWellKnownSymbol('asyncIterator');
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-var Icons_namespaceObject = {};
-__webpack_require__.r(Icons_namespaceObject);
-__webpack_require__.d(Icons_namespaceObject, "AlertCircleIcon", function() { return AlertCircleIcon; });
-__webpack_require__.d(Icons_namespaceObject, "AlertTriangleIcon", function() { return AlertTriangleIcon; });
-__webpack_require__.d(Icons_namespaceObject, "ArrowLeftSmallIcon", function() { return ArrowLeftSmallIcon; });
-__webpack_require__.d(Icons_namespaceObject, "ArrowLeftIcon", function() { return ArrowLeftIcon; });
-__webpack_require__.d(Icons_namespaceObject, "ArrowRightSmallIcon", function() { return ArrowRightSmallIcon; });
-__webpack_require__.d(Icons_namespaceObject, "ArrowRightIcon", function() { return ArrowRightIcon; });
-__webpack_require__.d(Icons_namespaceObject, "CaretRightSmallIcon", function() { return CaretRightSmallIcon; });
-__webpack_require__.d(Icons_namespaceObject, "CashlinkIcon", function() { return CashlinkIcon; });
-__webpack_require__.d(Icons_namespaceObject, "CheckmarkIcon", function() { return CheckmarkIcon; });
-__webpack_require__.d(Icons_namespaceObject, "CheckmarkSmallIcon", function() { return CheckmarkSmallIcon; });
-__webpack_require__.d(Icons_namespaceObject, "CloseIcon", function() { return CloseIcon; });
-__webpack_require__.d(Icons_namespaceObject, "ContactsIcon", function() { return ContactsIcon; });
-__webpack_require__.d(Icons_namespaceObject, "DownloadIcon", function() { return DownloadIcon; });
-__webpack_require__.d(Icons_namespaceObject, "FaceNeutralIcon", function() { return FaceNeutralIcon; });
-__webpack_require__.d(Icons_namespaceObject, "FaceSadIcon", function() { return FaceSadIcon; });
-__webpack_require__.d(Icons_namespaceObject, "GearIcon", function() { return GearIcon; });
-__webpack_require__.d(Icons_namespaceObject, "HexagonIcon", function() { return HexagonIcon; });
-__webpack_require__.d(Icons_namespaceObject, "InfoCircleIcon", function() { return InfoCircleIcon; });
-__webpack_require__.d(Icons_namespaceObject, "LedgerIcon", function() { return LedgerIcon; });
-__webpack_require__.d(Icons_namespaceObject, "LoginIcon", function() { return LoginIcon; });
-__webpack_require__.d(Icons_namespaceObject, "MenuDotsIcon", function() { return MenuDotsIcon; });
-__webpack_require__.d(Icons_namespaceObject, "PlusCircleIcon", function() { return PlusCircleIcon; });
-__webpack_require__.d(Icons_namespaceObject, "QrCodeIcon", function() { return QrCodeIcon; });
-__webpack_require__.d(Icons_namespaceObject, "ScanQrCodeIcon", function() { return ScanQrCodeIcon; });
-__webpack_require__.d(Icons_namespaceObject, "SettingsIcon", function() { return SettingsIcon; });
-__webpack_require__.d(Icons_namespaceObject, "StopwatchIcon", function() { return StopwatchIcon; });
-__webpack_require__.d(Icons_namespaceObject, "TransferIcon", function() { return TransferIcon; });
-__webpack_require__.d(Icons_namespaceObject, "UnderPaymentIcon", function() { return UnderPaymentIcon; });
 
 // CONCATENATED MODULE: ./node_modules/@vue/cli-service/lib/commands/build/setPublicPath.js
 // This file is imported into lib/wc client bundles.
@@ -6687,35 +6643,6 @@ var CloseButtonvue_type_template_id_f70dd1ae_scoped_true_staticRenderFns = []
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.assign.js
 var es_object_assign = __webpack_require__("7fd5");
 
-// CONCATENATED MODULE: ./node_modules/@nimiq/style/src/icons/alert-circle.svg
-
-      /* harmony default export */ var alert_circle = ({
-        functional: true,
-        render(_h, _vm) {
-          const { _c, _v, data, children = [] } = _vm;
-
-          const {
-            class: classNames,
-            staticClass,
-            style,
-            staticStyle,
-            attrs = {},
-            ...rest
-          } = data;
-
-          return _c(
-            'svg',
-            {
-              class: [classNames,staticClass],
-              style: [style,staticStyle],
-              attrs: Object.assign({"xmlns":"http://www.w3.org/2000/svg","width":"16","height":"16","viewBox":"0 0 16 16"}, attrs),
-              ...rest,
-            },
-            children.concat([_c('path',{attrs:{"fill":"currentColor","fill-rule":"evenodd","d":"M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-9.14 2.71a1 1 0 0 1 1-1h.29a1 1 0 0 1 1 1v.3a1 1 0 0 1-1 1h-.3a1 1 0 0 1-1-1v-.3zm1-6.71a1 1 0 0 0-1 1v2.57a1 1 0 0 0 1 1h.29a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1h-.3z"}})])
-          )
-        }
-      });
-    
 // CONCATENATED MODULE: ./node_modules/@nimiq/style/src/icons/alert-triangle.svg
 
       /* harmony default export */ var alert_triangle = ({
@@ -7006,35 +6933,6 @@ var es_object_assign = __webpack_require__("7fd5");
         }
       });
     
-// CONCATENATED MODULE: ./node_modules/@nimiq/style/src/icons/contacts.svg
-
-      /* harmony default export */ var contacts = ({
-        functional: true,
-        render(_h, _vm) {
-          const { _c, _v, data, children = [] } = _vm;
-
-          const {
-            class: classNames,
-            staticClass,
-            style,
-            staticStyle,
-            attrs = {},
-            ...rest
-          } = data;
-
-          return _c(
-            'svg',
-            {
-              class: [classNames,staticClass],
-              style: [style,staticStyle],
-              attrs: Object.assign({"width":"40","height":"49","viewBox":"0 0 40 49","xmlns":"http://www.w3.org/2000/svg"}, attrs),
-              ...rest,
-            },
-            children.concat([_c('path',{attrs:{"fill-rule":"evenodd","clip-rule":"evenodd","d":"M35.73 7.25c0 .48.34.9.82 1a4.08 4.08 0 0 1 3.26 4v32.67A4.08 4.08 0 0 1 35.73 49H6.13A6.13 6.13 0 0 1 0 42.87V6.13A6.13 6.13 0 0 1 6.13 0h25.52a4.08 4.08 0 0 1 4.08 4.08v3.17zm-5.1 31.88A10.23 10.23 0 0 0 20.4 29.6c-5.21 0-9.6 3.9-10.19 9.08a1.02 1.02 0 0 0 1.02 1.13h18.75a.64.64 0 0 0 .64-.68zm-16.38-17.7a6.15 6.15 0 1 1 12.3-.04 6.15 6.15 0 0 1-12.3.05zM6.12 4.09a2.04 2.04 0 0 0 0 4.09h25.01c.29 0 .51-.23.51-.51V4.59a.51.51 0 0 0-.5-.5H6.11z","fill":"currentColor"}})])
-          )
-        }
-      });
-    
 // CONCATENATED MODULE: ./node_modules/@nimiq/style/src/icons/download.svg
 
       /* harmony default export */ var download = ({
@@ -7122,93 +7020,6 @@ var es_object_assign = __webpack_require__("7fd5");
         }
       });
     
-// CONCATENATED MODULE: ./node_modules/@nimiq/style/src/icons/gear.svg
-
-      /* harmony default export */ var gear = ({
-        functional: true,
-        render(_h, _vm) {
-          const { _c, _v, data, children = [] } = _vm;
-
-          const {
-            class: classNames,
-            staticClass,
-            style,
-            staticStyle,
-            attrs = {},
-            ...rest
-          } = data;
-
-          return _c(
-            'svg',
-            {
-              class: [classNames,staticClass],
-              style: [style,staticStyle],
-              attrs: Object.assign({"width":"25","height":"24","viewBox":"0 0 25 24","xmlns":"http://www.w3.org/2000/svg"}, attrs),
-              ...rest,
-            },
-            children.concat([_c('path',{attrs:{"d":"M21.66 9.31l1.26.45a2.37 2.37 0 0 1 0 4.48l-1.27.45a1.37 1.37 0 0 0-.77 1.88l.57 1.22a2.38 2.38 0 0 1-3.16 3.16l-1.22-.57a1.37 1.37 0 0 0-1.88.78l-.45 1.26a2.38 2.38 0 0 1-4.48 0l-.45-1.26a1.37 1.37 0 0 0-1.88-.78l-1.22.57a2.38 2.38 0 0 1-3.16-3.16l.57-1.22a1.37 1.37 0 0 0-.78-1.88l-1.26-.45a2.38 2.38 0 0 1 0-4.48l1.26-.45a1.38 1.38 0 0 0 .78-1.88l-.57-1.21A2.38 2.38 0 0 1 6.7 3.04l1.22.58a1.38 1.38 0 0 0 1.88-.78l.45-1.27a2.38 2.38 0 0 1 4.48 0l.45 1.27a1.37 1.37 0 0 0 1.88.78l1.22-.58a2.38 2.38 0 0 1 3.16 3.17l-.57 1.2a1.37 1.37 0 0 0 .78 1.9zm-13.6 4.53a4.93 4.93 0 0 0 6.28 2.6 4.81 4.81 0 0 0 2.6-6.28 4.87 4.87 0 0 0-6.28-2.6 4.81 4.81 0 0 0-2.6 6.28z","fill":"currentColor"}})])
-          )
-        }
-      });
-    
-// CONCATENATED MODULE: ./node_modules/@nimiq/style/src/icons/hexagon.svg
-
-      /* harmony default export */ var hexagon = ({
-        functional: true,
-        render(_h, _vm) {
-          const { _c, _v, data, children = [] } = _vm;
-
-          const {
-            class: classNames,
-            staticClass,
-            style,
-            staticStyle,
-            attrs = {},
-            ...rest
-          } = data;
-
-          return _c(
-            'svg',
-            {
-              class: [classNames,staticClass],
-              style: [style,staticStyle],
-              attrs: Object.assign({"width":"58","height":"49","viewBox":"0 0 27 24","xmlns":"http://www.w3.org/2000/svg"}, attrs),
-              ...rest,
-            },
-            children.concat([_c('path',{attrs:{"d":"M26.6991 10.875L21.0741 1.125C20.6691 0.4275 19.9266 0 19.1241 0H7.87414C7.07164 0 6.32914 0.4275 5.92789 1.125L0.302891 10.875C-0.0983594 11.5725 -0.0983594 12.4275 0.302891 13.125L5.92789 22.875C6.32914 23.5725 7.07164 24 7.87414 24H19.1241C19.9266 24 20.6691 23.5725 21.0704 22.875L26.6954 13.125C27.1004 12.4275 27.1004 11.5725 26.6991 10.875Z","fill":"currentColor"}})])
-          )
-        }
-      });
-    
-// CONCATENATED MODULE: ./node_modules/@nimiq/style/src/icons/info-circle.svg
-
-      /* harmony default export */ var info_circle = ({
-        functional: true,
-        render(_h, _vm) {
-          const { _c, _v, data, children = [] } = _vm;
-
-          const {
-            class: classNames,
-            staticClass,
-            style,
-            staticStyle,
-            attrs = {},
-            ...rest
-          } = data;
-
-          return _c(
-            'svg',
-            {
-              class: [classNames,staticClass],
-              style: [style,staticStyle],
-              attrs: Object.assign({"width":"16","height":"16","viewBox":"0 0 16 16","xmlns":"http://www.w3.org/2000/svg"}, attrs),
-              ...rest,
-            },
-            children.concat([_c('line',{attrs:{"x1":"8","y1":"7.83301","x2":"8","y2":"11.333","stroke":"currentColor","fill":"none","stroke-linecap":"round"}}),_c('circle',{attrs:{"cx":"8","cy":"4.75","r":"0.5","fill":"currentColor","stroke":"currentColor","stroke-width":"0.5"}}),_c('circle',{attrs:{"cx":"8","cy":"8","r":"7.5","stroke":"currentColor","fill":"none"}})])
-          )
-        }
-      });
-    
 // CONCATENATED MODULE: ./node_modules/@nimiq/style/src/icons/ledger.svg
 
       /* harmony default export */ var ledger = ({
@@ -7263,35 +7074,6 @@ var es_object_assign = __webpack_require__("7fd5");
               ...rest,
             },
             children.concat([_c('path',{attrs:{"d":"M26.95 0A27.05 27.05 0 0 0 .21 22.32a1.12 1.12 0 0 0 1.13 1.3h18.72c.62 0 1.12-.5 1.12-1.12v-8.1a2.25 2.25 0 0 1 3.66-1.76l15.75 12.6a2.25 2.25 0 0 1 0 3.52l-15.75 12.6a2.25 2.25 0 0 1-3.66-1.76v-8.1c0-.62-.5-1.12-1.12-1.12H1.35a1.14 1.14 0 0 0-1.13 1.3 27 27 0 0 0 53.55-5.78A27.25 27.25 0 0 0 26.95 0z","fill":"currentColor"}})])
-          )
-        }
-      });
-    
-// CONCATENATED MODULE: ./node_modules/@nimiq/style/src/icons/menu-dots.svg
-
-      /* harmony default export */ var menu_dots = ({
-        functional: true,
-        render(_h, _vm) {
-          const { _c, _v, data, children = [] } = _vm;
-
-          const {
-            class: classNames,
-            staticClass,
-            style,
-            staticStyle,
-            attrs = {},
-            ...rest
-          } = data;
-
-          return _c(
-            'svg',
-            {
-              class: [classNames,staticClass],
-              style: [style,staticStyle],
-              attrs: Object.assign({"width":"7","height":"30","viewBox":"0 0 7 30","xmlns":"http://www.w3.org/2000/svg"}, attrs),
-              ...rest,
-            },
-            children.concat([_c('g',{attrs:{"fill":"currentColor"}},[_c('circle',{attrs:{"cx":"3.5","cy":"3","r":"3"}}),_c('circle',{attrs:{"cx":"3.5","cy":"15","r":"3"}}),_c('circle',{attrs:{"cx":"3.5","cy":"27","r":"3"}})])])
           )
         }
       });
@@ -7517,7 +7299,7 @@ var IconBase = function IconBase(component) {
  * SVG files in an /icons/ directory are automatically loaded as Vue components
  * via the vue-svg-loader.
  */
-
+// import AlertCircle from '@nimiq/style/src/icons/alert-circle.svg';
 
 
 
@@ -7530,22 +7312,22 @@ var IconBase = function IconBase(component) {
 
 
 
-
+// import Contacts from '@nimiq/style/src/icons/contacts.svg';
 // import Copy from '@nimiq/style/src/icons/copy.svg';
 // import Cross from '@nimiq/style/src/icons/cross.svg';
 
 
 
-
-
-
+// import Gear from '@nimiq/style/src/icons/gear.svg';
+// import Hexagon from '@nimiq/style/src/icons/hexagon.svg';
+// import InfoCircle from '@nimiq/style/src/icons/info-circle.svg';
 // import InfoCircleSmall from '@nimiq/style/src/icons/info-circle-small.svg';
 // import Keys from '@nimiq/style/src/icons/keys.svg';
 
 // import LockLocked from '@nimiq/style/src/icons/lock-locked.svg';
 // import LockUnlocked from '@nimiq/style/src/icons/lock-unlocked.svg';
 
-
+// import MenuDots from '@nimiq/style/src/icons/menu-dots.svg';
 
 
 // import Questionmark from '@nimiq/style/src/icons/questionmark.svg';
@@ -7560,7 +7342,7 @@ var IconBase = function IconBase(component) {
  * Comment out any unused icons here
  */
 // tslint:disable:variable-name
-var AlertCircleIcon = IconBase(alert_circle);
+// export const AlertCircleIcon = IconBase(AlertCircle);
 var AlertTriangleIcon = IconBase(alert_triangle);
 var ArrowLeftSmallIcon = IconBase(arrow_left_small);
 var ArrowLeftIcon = IconBase(arrow_left);
@@ -7573,22 +7355,22 @@ var CashlinkIcon = IconBase(cashlink);
 var CheckmarkIcon = IconBase(checkmark);
 var CheckmarkSmallIcon = IconBase(checkmark_small);
 var CloseIcon = IconBase(icons_close);
-var ContactsIcon = IconBase(contacts);
+// export const ContactsIcon = IconBase(Contacts);
 // export const CopyIcon = IconBase(Copy);
 // export const CrossIcon = IconBase(Cross);
 var DownloadIcon = IconBase(download);
 var FaceNeutralIcon = IconBase(face_neutral);
 var FaceSadIcon = IconBase(face_sad);
-var GearIcon = IconBase(gear);
-var HexagonIcon = IconBase(hexagon);
-var InfoCircleIcon = IconBase(info_circle);
+// export const GearIcon = IconBase(Gear);
+// export const HexagonIcon = IconBase(Hexagon);
+// export const InfoCircleIcon = IconBase(InfoCircle);
 // export const InfoCircleSmallIcon = IconBase(InfoCircleSmall);
 // export const KeysIcon = IconBase(Keys);
 var LedgerIcon = IconBase(ledger);
 // export const LockLockedIcon = IconBase(LockLocked);
 // export const LockUnlockedIcon = IconBase(LockUnlocked);
 var LoginIcon = IconBase(login);
-var MenuDotsIcon = IconBase(menu_dots);
+// export const MenuDotsIcon = IconBase(MenuDots);
 var PlusCircleIcon = IconBase(plus_circle);
 var QrCodeIcon = IconBase(qr_code);
 // export const QuestionmarkIcon = IconBase(Questionmark);
@@ -9365,6 +9147,13 @@ var AddressInput_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_AddressInput = (AddressInput_component.exports);
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6f718cbb-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--1-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/AmountWithFee.vue?vue&type=template&id=641a2a87&scoped=true
+var AmountWithFeevue_type_template_id_641a2a87_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"amount-with-fee"},[_c('AmountInput',{ref:"amountInput",staticClass:"value",class:{invalid: !_vm.isValid && _vm.liveAmount > 0},model:{value:(_vm.liveAmount),callback:function ($$v) {_vm.liveAmount=$$v},expression:"liveAmount"}}),_c('div',{staticClass:"fee-section nq-text-s"},[(!_vm.isValid && _vm.liveAmount)?_c('div',{staticClass:"nq-red"},[_vm._t("insufficient-balance-error",[_vm._v(_vm._s(_vm.$t('Insufficient balance')))])],2):_c('div',[(_vm.fiatAmount !== null && _vm.fiatCurrency)?_c('span',{staticClass:"fiat"},[_vm._v(" ~"),_c('FiatAmount',{attrs:{"amount":_vm.fiatAmount,"currency":_vm.fiatCurrency}})],1):_vm._e(),(_vm.value.fee)?_c('span',{staticClass:"fee"},[_vm._v(" + "),_c('Amount',{attrs:{"amount":_vm.value.fee,"minDecimals":0,"maxDecimals":5}}),_vm._v(" "+_vm._s(_vm.$t('fee'))+" ")],1):_vm._e()])])],1)}
+var AmountWithFeevue_type_template_id_641a2a87_scoped_true_staticRenderFns = []
+
+
+// CONCATENATED MODULE: ./src/components/AmountWithFee.vue?vue&type=template&id=641a2a87&scoped=true
+
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6f718cbb-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--1-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/AmountInput.vue?vue&type=template&id=37572fbf&scoped=true
 var AmountInputvue_type_template_id_37572fbf_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"amount-input",class:{'has-value': _vm.valueInLuna > 0, 'focussed': _vm.isFocussed}},[_c('form',{ref:"fullWidth",staticClass:"label-input",on:{"submit":function($event){$event.preventDefault();}}},[_c('span',{ref:"widthPlaceholder",staticClass:"width-finder width-placeholder"},[_vm._v(_vm._s(_vm.placeholder))]),(_vm.maxFontSize)?_c('div',{staticClass:"full-width",class:{'width-finder': _vm.maxWidth > 0}},[_vm._v("Width")]):_vm._e(),_c('span',{ref:"widthValue",staticClass:"width-finder width-value"},[_vm._v(_vm._s(_vm.formattedValue || ''))]),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.formattedValue),expression:"formattedValue"}],ref:"input",staticClass:"nq-input",class:_vm.vanishing,style:({width: ((this.width) + "px"), fontSize: ((this.fontSize) + "rem")}),attrs:{"type":"text","inputmode":"decimal","placeholder":_vm.placeholder},domProps:{"value":(_vm.formattedValue)},on:{"focus":function($event){_vm.isFocussed = true},"blur":function($event){_vm.isFocussed = false},"input":function($event){if($event.target.composing){ return; }_vm.formattedValue=$event.target.value}}})]),_c('span',{staticClass:"nim"},[_vm._v("NIM")])])}
 var AmountInputvue_type_template_id_37572fbf_scoped_true_staticRenderFns = []
@@ -9553,13 +9342,6 @@ var AmountInput_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_AmountInput = (AmountInput_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6f718cbb-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--1-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/AmountWithFee.vue?vue&type=template&id=641a2a87&scoped=true
-var AmountWithFeevue_type_template_id_641a2a87_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"amount-with-fee"},[_c('AmountInput',{ref:"amountInput",staticClass:"value",class:{invalid: !_vm.isValid && _vm.liveAmount > 0},model:{value:(_vm.liveAmount),callback:function ($$v) {_vm.liveAmount=$$v},expression:"liveAmount"}}),_c('div',{staticClass:"fee-section nq-text-s"},[(!_vm.isValid && _vm.liveAmount)?_c('div',{staticClass:"nq-red"},[_vm._t("insufficient-balance-error",[_vm._v(_vm._s(_vm.$t('Insufficient balance')))])],2):_c('div',[(_vm.fiatAmount !== null && _vm.fiatCurrency)?_c('span',{staticClass:"fiat"},[_vm._v(" ~"),_c('FiatAmount',{attrs:{"amount":_vm.fiatAmount,"currency":_vm.fiatCurrency}})],1):_vm._e(),(_vm.value.fee)?_c('span',{staticClass:"fee"},[_vm._v(" + "),_c('Amount',{attrs:{"amount":_vm.value.fee,"minDecimals":0,"maxDecimals":5}}),_vm._v(" "+_vm._s(_vm.$t('fee'))+" ")],1):_vm._e()])])],1)}
-var AmountWithFeevue_type_template_id_641a2a87_scoped_true_staticRenderFns = []
-
-
-// CONCATENATED MODULE: ./src/components/AmountWithFee.vue?vue&type=template&id=641a2a87&scoped=true
-
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6f718cbb-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--1-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/FiatAmount.vue?vue&type=template&id=4e1e2a40
 var FiatAmountvue_type_template_id_4e1e2a40_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"fiat-amount"},[_vm._v(" "+_vm._s(_vm._currencyString)+" ")])}
 var FiatAmountvue_type_template_id_4e1e2a40_staticRenderFns = []
@@ -10987,160 +10769,6 @@ var CopyableField_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_CopyableField = (CopyableField_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6f718cbb-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--1-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/LanguageSelector.vue?vue&type=template&id=45954d8c&scoped=true
-var LanguageSelectorvue_type_template_id_45954d8c_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"language-selector",attrs:{"tabindex":!_vm.isListShown && _vm.languages.length > 1 ? 0 : false},on:{"!focus":function($event){return _vm._showList($event)},"!blur":function($event){// Do not hide the list immediately to wait whether the next focused element is also a language list entry,
-        // because blurs also occur when moving between the list entries.
-        _vm._hideList(50)}}},[_c('div',{staticClass:"trigger",class:{ 'has-arrow': _vm.languages.length > 1 }},[_vm._v(_vm._s(_vm.selectedLanguage))]),_c('transition',{attrs:{"name":"transition-fade"}},[(_vm.isListShown && _vm.languages.length > 1)?_c('div',{staticClass:"list"},_vm._l((_vm.languages),function(language){return _c('div',{key:language,ref:"list-entries",refInFor:true,staticClass:"list-entry",attrs:{"tabindex":"0"},on:{"mouseenter":function($event){return $event.target.focus()},"click":function($event){_vm.selectedLanguage = language; _vm._hideList()},"keydown":[function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"space",32,$event.key,[" ","Spacebar"])&&_vm._k($event.keyCode,"enter",13,$event.key,"Enter")){ return null; }$event.preventDefault();_vm.selectedLanguage = language; _vm._hideList()},function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"down",40,$event.key,["Down","ArrowDown"])){ return null; }$event.preventDefault();return _vm._moveListFocus(+1)},function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"up",38,$event.key,["Up","ArrowUp"])){ return null; }$event.preventDefault();return _vm._moveListFocus(-1)},function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"left",37,$event.key,["Left","ArrowLeft"])&&_vm._k($event.keyCode,"esc",27,$event.key,["Esc","Escape"])){ return null; }if('button' in $event && $event.button !== 0){ return null; }$event.preventDefault();return _vm._hideList($event)}]}},[_c('span',{staticClass:"list-entry-label has-arrow"},[_vm._v(_vm._s(language))])])}),0):_vm._e()])],1)}
-var LanguageSelectorvue_type_template_id_45954d8c_scoped_true_staticRenderFns = []
-
-
-// CONCATENATED MODULE: ./src/components/LanguageSelector.vue?vue&type=template&id=45954d8c&scoped=true
-
-// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--14-1!./node_modules/cache-loader/dist/cjs.js??ref--1-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/LanguageSelector.vue?vue&type=script&lang=ts
-
-
-
-
-
-
-
-
-
-
-
-var LanguageSelectorvue_type_script_lang_ts_LanguageSelector = /*#__PURE__*/function (_Vue) {
-  function LanguageSelector() {
-    var _this;
-    _classCallCheck(this, LanguageSelector);
-    _this = _callSuper(this, LanguageSelector, arguments);
-    _this.selectedLanguage = _this.languages[0];
-    _this.isListShown = false;
-    _this.closeTimeout = -1;
-    return _this;
-  }
-  _inherits(LanguageSelector, _Vue);
-  return _createClass(LanguageSelector, [{
-    key: "_onLanguagesChange",
-    value: function _onLanguagesChange(languages) {
-      if (languages.includes(this.selectedLanguage)) return;
-      this.selectedLanguage = languages[0];
-    }
-  }, {
-    key: "_onExternalValueChange",
-    value: function _onExternalValueChange(value) {
-      if (!this.languages.includes(value)) return;
-      this.selectedLanguage = value;
-    }
-  }, {
-    key: "_onValueChange",
-    value: function _onValueChange(value) {
-      // Emit event compatible with v-model.
-      this.$emit('input', value);
-    }
-  }, {
-    key: "_showList",
-    value: function () {
-      var _showList2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-        return _regeneratorRuntime().wrap(function _callee$(_context) {
-          while (1) switch (_context.prev = _context.next) {
-            case 0:
-              clearTimeout(this.closeTimeout);
-              if (!this.isListShown) {
-                _context.next = 3;
-                break;
-              }
-              return _context.abrupt("return");
-            case 3:
-              this.isListShown = true;
-              _context.next = 6;
-              return external_vue_property_decorator_["Vue"].nextTick();
-            case 6:
-              this._focusListEntry(this.selectedLanguage);
-            case 7:
-            case "end":
-              return _context.stop();
-          }
-        }, _callee, this);
-      }));
-      function _showList() {
-        return _showList2.apply(this, arguments);
-      }
-      return _showList;
-    }()
-  }, {
-    key: "_hideList",
-    value: function _hideList() {
-      var _this2 = this;
-      var delay = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-      clearTimeout(this.closeTimeout);
-      this.closeTimeout = window.setTimeout(function () {
-        return _this2.isListShown = false;
-      }, delay);
-    }
-  }, {
-    key: "_moveListFocus",
-    value: function _moveListFocus(offset) {
-      var listEntries = this.$refs['list-entries'];
-      if (!listEntries) return;
-      var currentIndex = listEntries.indexOf(document.activeElement);
-      if (currentIndex === -1) return;
-      var newIndex = (this.languages.length + currentIndex + offset) % this.languages.length;
-      this._focusListEntry(this.languages[newIndex]);
-    }
-  }, {
-    key: "_focusListEntry",
-    value: function _focusListEntry(language) {
-      var listEntries = this.$refs['list-entries'];
-      if (!listEntries) return;
-      var listEntry = listEntries[this.languages.indexOf(language)];
-      if (!listEntry) return;
-      listEntry.focus();
-    }
-  }]);
-}(external_vue_property_decorator_["Vue"]);
-__decorate([Object(external_vue_property_decorator_["Prop"])({
-  type: Array,
-  required: true,
-  validator: function validator(entries) {
-    return Array.isArray(entries) && entries.length > 0 && !entries.some(function (entry) {
-      return typeof entry !== 'string';
-    });
-  }
-})], LanguageSelectorvue_type_script_lang_ts_LanguageSelector.prototype, "languages", void 0);
-__decorate([Object(external_vue_property_decorator_["Prop"])(String)], LanguageSelectorvue_type_script_lang_ts_LanguageSelector.prototype, "value", void 0);
-__decorate([Object(external_vue_property_decorator_["Watch"])('languages')], LanguageSelectorvue_type_script_lang_ts_LanguageSelector.prototype, "_onLanguagesChange", null);
-__decorate([Object(external_vue_property_decorator_["Watch"])('value', {
-  immediate: true
-})], LanguageSelectorvue_type_script_lang_ts_LanguageSelector.prototype, "_onExternalValueChange", null);
-__decorate([Object(external_vue_property_decorator_["Watch"])('selectedLanguage')], LanguageSelectorvue_type_script_lang_ts_LanguageSelector.prototype, "_onValueChange", null);
-LanguageSelectorvue_type_script_lang_ts_LanguageSelector = __decorate([external_vue_property_decorator_["Component"]], LanguageSelectorvue_type_script_lang_ts_LanguageSelector);
-/* harmony default export */ var LanguageSelectorvue_type_script_lang_ts = (LanguageSelectorvue_type_script_lang_ts_LanguageSelector);
-// CONCATENATED MODULE: ./src/components/LanguageSelector.vue?vue&type=script&lang=ts
- /* harmony default export */ var components_LanguageSelectorvue_type_script_lang_ts = (LanguageSelectorvue_type_script_lang_ts); 
-// EXTERNAL MODULE: ./src/components/LanguageSelector.vue?vue&type=style&index=0&id=45954d8c&prod&scoped=true&lang=css
-var LanguageSelectorvue_type_style_index_0_id_45954d8c_prod_scoped_true_lang_css = __webpack_require__("f35a");
-
-// CONCATENATED MODULE: ./src/components/LanguageSelector.vue
-
-
-
-
-
-
-/* normalize component */
-
-var LanguageSelector_component = normalizeComponent(
-  components_LanguageSelectorvue_type_script_lang_ts,
-  LanguageSelectorvue_type_template_id_45954d8c_scoped_true_render,
-  LanguageSelectorvue_type_template_id_45954d8c_scoped_true_staticRenderFns,
-  false,
-  null,
-  "45954d8c",
-  null
-  
-)
-
-/* harmony default export */ var components_LanguageSelector = (LanguageSelector_component.exports);
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6f718cbb-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--1-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/LoadingSpinner.vue?vue&type=template&id=4da3784e&scoped=true
 var LoadingSpinnervue_type_template_id_4da3784e_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('svg',{staticClass:"loading-spinner",attrs:{"height":"48","width":"54","viewBox":"0 0 54 48","color":"inherit"}},[_c('path',{attrs:{"id":"big-hex","d":"M51.9,21.9L41.3,3.6c-0.8-1.3-2.2-2.1-3.7-2.1H16.4c-1.5,0-2.9,0.8-3.7,2.1L2.1,21.9c-0.8,1.3-0.8,2.9,0,4.2 l10.6,18.3c0.8,1.3,2.2,2.1,3.7,2.1h21.3c1.5,0,2.9-0.8,3.7-2.1l10.6-18.3C52.7,24.8,52.7,23.2,51.9,21.9z","stroke":"currentColor","stroke-width":"3","fill":"none","stroke-linecap":"round","opacity":"0.4","stroke-dasharray":"92.5 60"}}),_c('path',{attrs:{"id":"small-hex","d":"M51.9,21.9L41.3,3.6c-0.8-1.3-2.2-2.1-3.7-2.1H16.4c-1.5,0-2.9,0.8-3.7,2.1L2.1,21.9c-0.8,1.3-0.8,2.9,0,4.2 l10.6,18.3c0.8,1.3,2.2,2.1,3.7,2.1h21.3c1.5,0,2.9-0.8,3.7-2.1l10.6-18.3C52.7,24.8,52.7,23.2,51.9,21.9z","stroke":"currentColor","stroke-width":"3","fill":"none","stroke-linecap":"round","stroke-dasharray":"47.5 105"}})])}
 var LoadingSpinnervue_type_template_id_4da3784e_scoped_true_staticRenderFns = []
@@ -11191,121 +10819,6 @@ var LoadingSpinner_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_LoadingSpinner = (LoadingSpinner_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6f718cbb-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--1-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/LongPressButton.vue?vue&type=template&id=069edc42&scoped=true
-var LongPressButtonvue_type_template_id_069edc42_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('button',{staticClass:"long-press-button nq-button",class:_vm.color,on:{"mousedown":function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"left",37,$event.key,["Left","ArrowLeft"])){ return null; }if('button' in $event && $event.button !== 0){ return null; }$event.preventDefault();_vm.isPressed = true; /* also prevent focus. mouseup is registered on document */},"touchstart":function($event){$event.preventDefault();_vm.isPressed = true; /* also prevent context menu on long press */},"keydown":function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"enter",13,$event.key,"Enter")&&_vm._k($event.keyCode,"space",32,$event.key,[" ","Spacebar"])){ return null; }$event.preventDefault();_vm.isPressed = true; /* also prevent triggering clicks */},"touchend":function($event){_vm.isPressed = false},"keyup":function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"enter",13,$event.key,"Enter")&&_vm._k($event.keyCode,"space",32,$event.key,[" ","Spacebar"])){ return null; }_vm.isPressed = false},"blur":function($event){_vm.isPressed = false /* if focus moves away, release the button */},"click":function($event){$event.preventDefault();$event.stopPropagation();$event.stopImmediatePropagation(); /* don't trigger handlers */},"submit":function($event){$event.preventDefault();$event.stopPropagation();$event.stopImmediatePropagation(); /* don't trigger handlers and default behavior */}}},[_c('span',{staticClass:"mix-blend-mode-mask"},[_c('transition',{attrs:{"name":"transition-indicator"}},[(_vm.isPressed)?_c('div',{staticClass:"indicator",style:(("--transition-time: " + _vm.duration + "ms"))}):_vm._e()]),_c('label',{class:{show: !_vm.showKeepPressingPrompt, center: _vm.isPressed && _vm.$slots.subline}},[_vm._t("default")],2),_c('label',{class:{show: _vm.showKeepPressingPrompt, center: _vm.isPressed && _vm.$slots.subline}},[_vm._v(_vm._s(_vm.$t('Keep pressing\u2026')))]),(_vm.$slots.subline)?_c('span',{staticClass:"subline",class:{show: !_vm.isPressed}},[_vm._t("subline")],2):_vm._e()],1)])}
-var LongPressButtonvue_type_template_id_069edc42_scoped_true_staticRenderFns = []
-
-
-// CONCATENATED MODULE: ./src/components/LongPressButton.vue?vue&type=template&id=069edc42&scoped=true
-
-// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--14-1!./node_modules/cache-loader/dist/cjs.js??ref--1-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/LongPressButton.vue?vue&type=script&lang=ts
-
-
-
-
-
-var LongPressButton_1;
-
-
-
-var LongPressButtonvue_type_script_lang_ts_LongPressButton = LongPressButton_1 = /*#__PURE__*/function (_Mixins) {
-  function LongPressButton() {
-    var _this;
-    _classCallCheck(this, LongPressButton);
-    _this = _callSuper(this, LongPressButton, arguments);
-    _this.isPressed = false;
-    _this.showKeepPressingPrompt = false;
-    _this.keepPressingTimeout = -1;
-    _this.longPressTimeout = -1;
-    return _this;
-  }
-  // Register mouseup on document instead of on the button to detect it even if the mouse moved away. For touchend
-  // and keyup, listening on the button suffices.
-  _inherits(LongPressButton, _Mixins);
-  return _createClass(LongPressButton, [{
-    key: "created",
-    value: function created() {
-      this._onMouseup = this._onMouseup.bind(this);
-    }
-  }, {
-    key: "mounted",
-    value: function mounted() {
-      document.addEventListener('mouseup', this._onMouseup);
-    }
-  }, {
-    key: "destroyed",
-    value: function destroyed() {
-      document.removeEventListener('mouseup', this._onMouseup);
-    }
-  }, {
-    key: "_onMouseup",
-    value: function _onMouseup() {
-      this.isPressed = false;
-    }
-  }, {
-    key: "_onButtonPressOrRelease",
-    value: function _onButtonPressOrRelease(isPressed) {
-      var _this2 = this;
-      if (isPressed) {
-        this.keepPressingTimeout = window.setTimeout(function () {
-          return _this2.showKeepPressingPrompt = true;
-        }, this.duration * .4);
-        this.longPressTimeout = window.setTimeout(function () {
-          return _this2.$emit(LongPressButton_1.Events.LONG_PRESS);
-        }, this.duration);
-      } else {
-        clearTimeout(this.keepPressingTimeout);
-        clearTimeout(this.longPressTimeout);
-        this.showKeepPressingPrompt = false;
-      }
-    }
-  }]);
-}(Object(external_vue_property_decorator_["Mixins"])(i18n_I18nMixin));
-__decorate([Object(external_vue_property_decorator_["Prop"])({
-  type: Number,
-  default: 3000 /* ms */
-})], LongPressButtonvue_type_script_lang_ts_LongPressButton.prototype, "duration", void 0);
-__decorate([Object(external_vue_property_decorator_["Prop"])({
-  type: String,
-  default: 'light-blue'
-})], LongPressButtonvue_type_script_lang_ts_LongPressButton.prototype, "color", void 0);
-__decorate([Object(external_vue_property_decorator_["Watch"])('isPressed')], LongPressButtonvue_type_script_lang_ts_LongPressButton.prototype, "_onButtonPressOrRelease", null);
-LongPressButtonvue_type_script_lang_ts_LongPressButton = LongPressButton_1 = __decorate([Object(external_vue_property_decorator_["Component"])({
-  name: 'LongPressButton'
-})], LongPressButtonvue_type_script_lang_ts_LongPressButton);
-(function (LongPressButton) {
-  var Events;
-  (function (Events) {
-    Events["LONG_PRESS"] = "long-press";
-  })(Events = LongPressButton.Events || (LongPressButton.Events = {}));
-})(LongPressButtonvue_type_script_lang_ts_LongPressButton || (LongPressButtonvue_type_script_lang_ts_LongPressButton = {}));
-/* harmony default export */ var LongPressButtonvue_type_script_lang_ts = (LongPressButtonvue_type_script_lang_ts_LongPressButton);
-// CONCATENATED MODULE: ./src/components/LongPressButton.vue?vue&type=script&lang=ts
- /* harmony default export */ var components_LongPressButtonvue_type_script_lang_ts = (LongPressButtonvue_type_script_lang_ts); 
-// EXTERNAL MODULE: ./src/components/LongPressButton.vue?vue&type=style&index=0&id=069edc42&prod&scoped=true&lang=css
-var LongPressButtonvue_type_style_index_0_id_069edc42_prod_scoped_true_lang_css = __webpack_require__("94c3");
-
-// CONCATENATED MODULE: ./src/components/LongPressButton.vue
-
-
-
-
-
-
-/* normalize component */
-
-var LongPressButton_component = normalizeComponent(
-  components_LongPressButtonvue_type_script_lang_ts,
-  LongPressButtonvue_type_template_id_069edc42_scoped_true_render,
-  LongPressButtonvue_type_template_id_069edc42_scoped_true_staticRenderFns,
-  false,
-  null,
-  "069edc42",
-  null
-  
-)
-
-/* harmony default export */ var components_LongPressButton = (LongPressButton_component.exports);
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6f718cbb-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--1-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/PageBody.vue?vue&type=template&id=0b286594&scoped=true
 var PageBodyvue_type_template_id_0b286594_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"page-body nq-card-body"},[_vm._t("default")],2)}
 var PageBodyvue_type_template_id_0b286594_scoped_true_staticRenderFns = []
@@ -13768,502 +13281,6 @@ var QrCode_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_QrCode = (QrCode_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6f718cbb-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--1-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/QrScanner.vue?vue&type=template&id=48a6ec42&scoped=true
-var QrScannervue_type_template_id_48a6ec42_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"qr-scanner nq-blue-bg"},[_c('video',{ref:"video",attrs:{"muted":"","autoplay":"","playsinline":"","width":"600","height":"600"},domProps:{"muted":true}}),_c('div',{ref:"overlay",staticClass:"overlay",class:{ inactive: _vm.cameraAccessFailed }},[_vm._t("default",[_c('svg',{attrs:{"xmlns":"http://www.w3.org/2000/svg","viewBox":"0 0 238 238"}},[_c('path',{attrs:{"fill":"none","stroke-linecap":"round","stroke-linejoin":"round","stroke-width":"4","d":"M31.3 2H10a8 8 0 0 0-8 8v21.3M206.8 2H228a8 8 0 0 1 8 8v21.3m0 175.4V228a8 8 0 0 1-8 8h-21.3m-175.4 0H10a8 8 0 0 1-8-8v-21.3"}})])])],2),_c('button',{staticClass:"nq-button-s inverse cancel-button",on:{"click":_vm._cancel}},[_vm._v(_vm._s(_vm.$t('Cancel')))]),_c('transition',{attrs:{"name":"fade"}},[(_vm.cameraAccessFailed)?_c('div',{staticClass:"camera-access-failed"},[(!_vm.hasCamera)?_c('div',{staticClass:"camera-access-failed-warning"},[_vm._v(" "+_vm._s(_vm.$t('Your device does not have an accessible camera.'))+" ")]):_c('div',[_c('div',{staticClass:"camera-access-failed-warning"},[_vm._v(" "+_vm._s(_vm.$t('Unblock the camera for this website to scan QR codes.'))+" ")]),(_vm.isMobileOrTablet)?_c('div',[(_vm.browser === 'chrome')?_c('div',[_c('I18n',{staticClass:"access-denied-instructions",attrs:{"path":"Click on {icon} and go to\\nSettings > Site Settings > Camera","tag":"div"},scopedSlots:_vm._u([{key:"icon",fn:function(){return [_c('span',{staticClass:"browser-menu-icon"})]},proxy:true}],null,false,1223065533)}),_c('div',{staticClass:"browser-menu-arrow"})],1):_c('div',{staticClass:"access-denied-instructions"},[_vm._v(" "+_vm._s(_vm.$t('Grant camera access when asked.'))+" ")])]):_c('div',{staticClass:"access-denied-instructions"},[(_vm.browser === 'safari')?_c('I18n',{attrs:{"path":"Click on {safari} and go to\\nSettings for this Website > Camera","tag":"div"},scopedSlots:_vm._u([{key:"safari",fn:function(){return [_c('b',[_vm._v("Safari")])]},proxy:true}],null,false,687307496)}):_c('I18n',{attrs:{"path":"Click on {icon} in the URL bar.","tag":"div"},scopedSlots:_vm._u([{key:"icon",fn:function(){return [(_vm.browser === 'chrome')?_c('span',{staticClass:"camera-icon-chrome"}):(_vm.browser === 'firefox')?_c('span',{staticClass:"camera-icon-firefox"}):_c('span',[_vm._v(_vm._s(_vm.$t('the camera icon')))])]},proxy:true}],null,false,2903711098)})],1)])]):_vm._e()])],1)}
-var QrScannervue_type_template_id_48a6ec42_scoped_true_staticRenderFns = []
-
-
-// CONCATENATED MODULE: ./src/components/QrScanner.vue?vue&type=template&id=48a6ec42&scoped=true
-
-// CONCATENATED MODULE: ./node_modules/qr-scanner/qr-scanner.min.js
-class qr_scanner_min_e{constructor(a,b,c,d,f){this._legacyCanvasSize=qr_scanner_min_e.DEFAULT_CANVAS_SIZE;this._preferredCamera="environment";this._maxScansPerSecond=25;this._lastScanTimestamp=-1;this._destroyed=this._flashOn=this._paused=this._active=!1;this.$video=a;this.$canvas=document.createElement("canvas");c&&"object"===typeof c?this._onDecode=b:(c||d||f?console.warn("You're using a deprecated version of the QrScanner constructor which will be removed in the future"):console.warn("Note that the type of the scan result passed to onDecode will change in the future. To already switch to the new api today, you can pass returnDetailedScanResult: true."),
-this._legacyOnDecode=b);b="object"===typeof c?c:{};this._onDecodeError=b.onDecodeError||("function"===typeof c?c:this._onDecodeError);this._calculateScanRegion=b.calculateScanRegion||("function"===typeof d?d:this._calculateScanRegion);this._preferredCamera=b.preferredCamera||f||this._preferredCamera;this._legacyCanvasSize="number"===typeof c?c:"number"===typeof d?d:this._legacyCanvasSize;this._maxScansPerSecond=b.maxScansPerSecond||this._maxScansPerSecond;this._onPlay=this._onPlay.bind(this);this._onLoadedMetaData=
-this._onLoadedMetaData.bind(this);this._onVisibilityChange=this._onVisibilityChange.bind(this);this._updateOverlay=this._updateOverlay.bind(this);a.disablePictureInPicture=!0;a.playsInline=!0;a.muted=!0;let h=!1;a.hidden&&(a.hidden=!1,h=!0);document.body.contains(a)||(document.body.appendChild(a),h=!0);c=a.parentElement;if(b.highlightScanRegion||b.highlightCodeOutline){d=!!b.overlay;this.$overlay=b.overlay||document.createElement("div");f=this.$overlay.style;f.position="absolute";f.display="none";
-f.pointerEvents="none";this.$overlay.classList.add("scan-region-highlight");if(!d&&b.highlightScanRegion){this.$overlay.innerHTML='<svg class="scan-region-highlight-svg" viewBox="0 0 238 238" preserveAspectRatio="none" style="position:absolute;width:100%;height:100%;left:0;top:0;fill:none;stroke:#e9b213;stroke-width:4;stroke-linecap:round;stroke-linejoin:round"><path d="M31 2H10a8 8 0 0 0-8 8v21M207 2h21a8 8 0 0 1 8 8v21m0 176v21a8 8 0 0 1-8 8h-21m-176 0H10a8 8 0 0 1-8-8v-21"/></svg>';try{this.$overlay.firstElementChild.animate({transform:["scale(.98)",
-"scale(1.01)"]},{duration:400,iterations:Infinity,direction:"alternate",easing:"ease-in-out"})}catch(m){}c.insertBefore(this.$overlay,this.$video.nextSibling)}b.highlightCodeOutline&&(this.$overlay.insertAdjacentHTML("beforeend",'<svg class="code-outline-highlight" preserveAspectRatio="none" style="display:none;width:100%;height:100%;fill:none;stroke:#e9b213;stroke-width:5;stroke-dasharray:25;stroke-linecap:round;stroke-linejoin:round"><polygon/></svg>'),this.$codeOutlineHighlight=this.$overlay.lastElementChild)}this._scanRegion=
-this._calculateScanRegion(a);requestAnimationFrame(()=>{let m=window.getComputedStyle(a);"none"===m.display&&(a.style.setProperty("display","block","important"),h=!0);"visible"!==m.visibility&&(a.style.setProperty("visibility","visible","important"),h=!0);h&&(console.warn("QrScanner has overwritten the video hiding style to avoid Safari stopping the playback."),a.style.opacity="0",a.style.width="0",a.style.height="0",this.$overlay&&this.$overlay.parentElement&&this.$overlay.parentElement.removeChild(this.$overlay),
-delete this.$overlay,delete this.$codeOutlineHighlight);this.$overlay&&this._updateOverlay()});a.addEventListener("play",this._onPlay);a.addEventListener("loadedmetadata",this._onLoadedMetaData);document.addEventListener("visibilitychange",this._onVisibilityChange);window.addEventListener("resize",this._updateOverlay);this._qrEnginePromise=qr_scanner_min_e.createQrEngine()}static set WORKER_PATH(a){console.warn("Setting QrScanner.WORKER_PATH is not required and not supported anymore. Have a look at the README for new setup instructions.")}static async hasCamera(){try{return!!(await qr_scanner_min_e.listCameras(!1)).length}catch(a){return!1}}static async listCameras(a=
-!1){if(!navigator.mediaDevices)return[];let b=async()=>(await navigator.mediaDevices.enumerateDevices()).filter(d=>"videoinput"===d.kind),c;try{a&&(await b()).every(d=>!d.label)&&(c=await navigator.mediaDevices.getUserMedia({audio:!1,video:!0}))}catch(d){}try{return(await b()).map((d,f)=>({id:d.deviceId,label:d.label||(0===f?"Default Camera":`Camera ${f+1}`)}))}finally{c&&(console.warn("Call listCameras after successfully starting a QR scanner to avoid creating a temporary video stream"),qr_scanner_min_e._stopVideoStream(c))}}async hasFlash(){let a;
-try{if(this.$video.srcObject){if(!(this.$video.srcObject instanceof MediaStream))return!1;a=this.$video.srcObject}else a=(await this._getCameraStream()).stream;return"torch"in a.getVideoTracks()[0].getSettings()}catch(b){return!1}finally{a&&a!==this.$video.srcObject&&(console.warn("Call hasFlash after successfully starting the scanner to avoid creating a temporary video stream"),qr_scanner_min_e._stopVideoStream(a))}}isFlashOn(){return this._flashOn}async toggleFlash(){this._flashOn?await this.turnFlashOff():await this.turnFlashOn()}async turnFlashOn(){if(!this._flashOn&&
-!this._destroyed&&(this._flashOn=!0,this._active&&!this._paused))try{if(!await this.hasFlash())throw"No flash available";await this.$video.srcObject.getVideoTracks()[0].applyConstraints({advanced:[{torch:!0}]})}catch(a){throw this._flashOn=!1,a;}}async turnFlashOff(){this._flashOn&&(this._flashOn=!1,await this._restartVideoStream())}destroy(){this.$video.removeEventListener("loadedmetadata",this._onLoadedMetaData);this.$video.removeEventListener("play",this._onPlay);document.removeEventListener("visibilitychange",
-this._onVisibilityChange);window.removeEventListener("resize",this._updateOverlay);this._destroyed=!0;this._flashOn=!1;this.stop();qr_scanner_min_e._postWorkerMessage(this._qrEnginePromise,"close")}async start(){if(this._destroyed)throw Error("The QR scanner can not be started as it had been destroyed.");if(!this._active||this._paused)if("https:"!==window.location.protocol&&console.warn("The camera stream is only accessible if the page is transferred via https."),this._active=!0,!document.hidden)if(this._paused=
-!1,this.$video.srcObject)await this.$video.play();else try{let {stream:a,facingMode:b}=await this._getCameraStream();!this._active||this._paused?qr_scanner_min_e._stopVideoStream(a):(this._setVideoMirror(b),this.$video.srcObject=a,await this.$video.play(),this._flashOn&&(this._flashOn=!1,this.turnFlashOn().catch(()=>{})))}catch(a){if(!this._paused)throw this._active=!1,a;}}stop(){this.pause();this._active=!1}async pause(a=!1){this._paused=!0;if(!this._active)return!0;this.$video.pause();this.$overlay&&(this.$overlay.style.display=
-"none");let b=()=>{this.$video.srcObject instanceof MediaStream&&(qr_scanner_min_e._stopVideoStream(this.$video.srcObject),this.$video.srcObject=null)};if(a)return b(),!0;await new Promise(c=>setTimeout(c,300));if(!this._paused)return!1;b();return!0}async setCamera(a){a!==this._preferredCamera&&(this._preferredCamera=a,await this._restartVideoStream())}static async scanImage(a,b,c,d,f=!1,h=!1){let m,n=!1;b&&("scanRegion"in b||"qrEngine"in b||"canvas"in b||"disallowCanvasResizing"in b||"alsoTryWithoutScanRegion"in
-b||"returnDetailedScanResult"in b)?(m=b.scanRegion,c=b.qrEngine,d=b.canvas,f=b.disallowCanvasResizing||!1,h=b.alsoTryWithoutScanRegion||!1,n=!0):b||c||d||f||h?console.warn("You're using a deprecated api for scanImage which will be removed in the future."):console.warn("Note that the return type of scanImage will change in the future. To already switch to the new api today, you can pass returnDetailedScanResult: true.");b=!!c;try{let p,k;[c,p]=await Promise.all([c||qr_scanner_min_e.createQrEngine(),qr_scanner_min_e._loadImage(a)]);
-[d,k]=qr_scanner_min_e._drawToCanvas(p,m,d,f);let q;if(c instanceof Worker){let g=c;b||qr_scanner_min_e._postWorkerMessageSync(g,"inversionMode","both");q=await new Promise((l,v)=>{let w,u,r,y=-1;u=t=>{t.data.id===y&&(g.removeEventListener("message",u),g.removeEventListener("error",r),clearTimeout(w),null!==t.data.data?l({data:t.data.data,cornerPoints:qr_scanner_min_e._convertPoints(t.data.cornerPoints,m)}):v(qr_scanner_min_e.NO_QR_CODE_FOUND))};r=t=>{g.removeEventListener("message",u);g.removeEventListener("error",r);clearTimeout(w);v("Scanner error: "+(t?
-t.message||t:"Unknown Error"))};g.addEventListener("message",u);g.addEventListener("error",r);w=setTimeout(()=>r("timeout"),1E4);let x=k.getImageData(0,0,d.width,d.height);y=qr_scanner_min_e._postWorkerMessageSync(g,"decode",x,[x.data.buffer])})}else q=await Promise.race([new Promise((g,l)=>window.setTimeout(()=>l("Scanner error: timeout"),1E4)),(async()=>{try{var [g]=await c.detect(d);if(!g)throw qr_scanner_min_e.NO_QR_CODE_FOUND;return{data:g.rawValue,cornerPoints:qr_scanner_min_e._convertPoints(g.cornerPoints,m)}}catch(l){g=l.message||l;
-if(/not implemented|service unavailable/.test(g))return qr_scanner_min_e._disableBarcodeDetector=!0,qr_scanner_min_e.scanImage(a,{scanRegion:m,canvas:d,disallowCanvasResizing:f,alsoTryWithoutScanRegion:h});throw`Scanner error: ${g}`;}})()]);return n?q:q.data}catch(p){if(!m||!h)throw p;let k=await qr_scanner_min_e.scanImage(a,{qrEngine:c,canvas:d,disallowCanvasResizing:f});return n?k:k.data}finally{b||qr_scanner_min_e._postWorkerMessage(c,"close")}}setGrayscaleWeights(a,b,c,d=!0){qr_scanner_min_e._postWorkerMessage(this._qrEnginePromise,"grayscaleWeights",{red:a,green:b,
-blue:c,useIntegerApproximation:d})}setInversionMode(a){qr_scanner_min_e._postWorkerMessage(this._qrEnginePromise,"inversionMode",a)}static async createQrEngine(a){a&&console.warn("Specifying a worker path is not required and not supported anymore.");a=()=>Promise.resolve(/* import() */).then(__webpack_require__.t.bind(null, "92fe", 7)).then(c=>c.createWorker());if(!(!qr_scanner_min_e._disableBarcodeDetector&&"BarcodeDetector"in window&&BarcodeDetector.getSupportedFormats&&(await BarcodeDetector.getSupportedFormats()).includes("qr_code")))return a();let b=navigator.userAgentData;
-return b&&b.brands.some(({brand:c})=>/Chromium/i.test(c))&&/mac ?OS/i.test(b.platform)&&await b.getHighEntropyValues(["architecture","platformVersion"]).then(({architecture:c,platformVersion:d})=>/arm/i.test(c||"arm")&&13<=parseInt(d||"13")).catch(()=>!0)?a():new BarcodeDetector({formats:["qr_code"]})}_onPlay(){this._scanRegion=this._calculateScanRegion(this.$video);this._updateOverlay();this.$overlay&&(this.$overlay.style.display="");this._scanFrame()}_onLoadedMetaData(){this._scanRegion=this._calculateScanRegion(this.$video);
-this._updateOverlay()}_onVisibilityChange(){document.hidden?this.pause():this._active&&this.start()}_calculateScanRegion(a){let b=Math.round(2/3*Math.min(a.videoWidth,a.videoHeight));return{x:Math.round((a.videoWidth-b)/2),y:Math.round((a.videoHeight-b)/2),width:b,height:b,downScaledWidth:this._legacyCanvasSize,downScaledHeight:this._legacyCanvasSize}}_updateOverlay(){requestAnimationFrame(()=>{if(this.$overlay){var a=this.$video,b=a.videoWidth,c=a.videoHeight,d=a.offsetWidth,f=a.offsetHeight,h=a.offsetLeft,
-m=a.offsetTop,n=window.getComputedStyle(a),p=n.objectFit,k=b/c,q=d/f;switch(p){case "none":var g=b;var l=c;break;case "fill":g=d;l=f;break;default:("cover"===p?k>q:k<q)?(l=f,g=l*k):(g=d,l=g/k),"scale-down"===p&&(g=Math.min(g,b),l=Math.min(l,c))}var [v,w]=n.objectPosition.split(" ").map((r,y)=>{const x=parseFloat(r);return r.endsWith("%")?(y?f-l:d-g)*x/100:x});n=this._scanRegion.width||b;q=this._scanRegion.height||c;p=this._scanRegion.x||0;var u=this._scanRegion.y||0;k=this.$overlay.style;k.width=
-`${n/b*g}px`;k.height=`${q/c*l}px`;k.top=`${m+w+u/c*l}px`;c=/scaleX\(-1\)/.test(a.style.transform);k.left=`${h+(c?d-v-g:v)+(c?b-p-n:p)/b*g}px`;k.transform=a.style.transform}})}static _convertPoints(a,b){if(!b)return a;let c=b.x||0,d=b.y||0,f=b.width&&b.downScaledWidth?b.width/b.downScaledWidth:1;b=b.height&&b.downScaledHeight?b.height/b.downScaledHeight:1;for(let h of a)h.x=h.x*f+c,h.y=h.y*b+d;return a}_scanFrame(){!this._active||this.$video.paused||this.$video.ended||("requestVideoFrameCallback"in
-this.$video?this.$video.requestVideoFrameCallback.bind(this.$video):requestAnimationFrame)(async()=>{if(!(1>=this.$video.readyState)){var a=Date.now()-this._lastScanTimestamp,b=1E3/this._maxScansPerSecond;a<b&&await new Promise(d=>setTimeout(d,b-a));this._lastScanTimestamp=Date.now();try{var c=await qr_scanner_min_e.scanImage(this.$video,{scanRegion:this._scanRegion,qrEngine:this._qrEnginePromise,canvas:this.$canvas})}catch(d){if(!this._active)return;this._onDecodeError(d)}!qr_scanner_min_e._disableBarcodeDetector||await this._qrEnginePromise instanceof
-Worker||(this._qrEnginePromise=qr_scanner_min_e.createQrEngine());c?(this._onDecode?this._onDecode(c):this._legacyOnDecode&&this._legacyOnDecode(c.data),this.$codeOutlineHighlight&&(clearTimeout(this._codeOutlineHighlightRemovalTimeout),this._codeOutlineHighlightRemovalTimeout=void 0,this.$codeOutlineHighlight.setAttribute("viewBox",`${this._scanRegion.x||0} `+`${this._scanRegion.y||0} `+`${this._scanRegion.width||this.$video.videoWidth} `+`${this._scanRegion.height||this.$video.videoHeight}`),this.$codeOutlineHighlight.firstElementChild.setAttribute("points",
-c.cornerPoints.map(({x:d,y:f})=>`${d},${f}`).join(" ")),this.$codeOutlineHighlight.style.display="")):this.$codeOutlineHighlight&&!this._codeOutlineHighlightRemovalTimeout&&(this._codeOutlineHighlightRemovalTimeout=setTimeout(()=>this.$codeOutlineHighlight.style.display="none",100))}this._scanFrame()})}_onDecodeError(a){a!==qr_scanner_min_e.NO_QR_CODE_FOUND&&console.log(a)}async _getCameraStream(){if(!navigator.mediaDevices)throw"Camera not found.";let a=/^(environment|user)$/.test(this._preferredCamera)?"facingMode":
-"deviceId",b=[{width:{min:1024}},{width:{min:768}},{}],c=b.map(d=>Object.assign({},d,{[a]:{exact:this._preferredCamera}}));for(let d of[...c,...b])try{let f=await navigator.mediaDevices.getUserMedia({video:d,audio:!1}),h=this._getFacingMode(f)||(d.facingMode?this._preferredCamera:"environment"===this._preferredCamera?"user":"environment");return{stream:f,facingMode:h}}catch(f){}throw"Camera not found.";}async _restartVideoStream(){let a=this._paused;await this.pause(!0)&&!a&&this._active&&await this.start()}static _stopVideoStream(a){for(let b of a.getTracks())b.stop(),
-a.removeTrack(b)}_setVideoMirror(a){this.$video.style.transform="scaleX("+("user"===a?-1:1)+")"}_getFacingMode(a){return(a=a.getVideoTracks()[0])?/rear|back|environment/i.test(a.label)?"environment":/front|user|face/i.test(a.label)?"user":null:null}static _drawToCanvas(a,b,c,d=!1){c=c||document.createElement("canvas");let f=b&&b.x?b.x:0,h=b&&b.y?b.y:0,m=b&&b.width?b.width:a.videoWidth||a.width,n=b&&b.height?b.height:a.videoHeight||a.height;d||(d=b&&b.downScaledWidth?b.downScaledWidth:m,b=b&&b.downScaledHeight?
-b.downScaledHeight:n,c.width!==d&&(c.width=d),c.height!==b&&(c.height=b));b=c.getContext("2d",{alpha:!1});b.imageSmoothingEnabled=!1;b.drawImage(a,f,h,m,n,0,0,c.width,c.height);return[c,b]}static async _loadImage(a){if(a instanceof Image)return await qr_scanner_min_e._awaitImageLoad(a),a;if(a instanceof HTMLVideoElement||a instanceof HTMLCanvasElement||a instanceof SVGImageElement||"OffscreenCanvas"in window&&a instanceof OffscreenCanvas||"ImageBitmap"in window&&a instanceof ImageBitmap)return a;if(a instanceof
-File||a instanceof Blob||a instanceof URL||"string"===typeof a){let b=new Image;b.src=a instanceof File||a instanceof Blob?URL.createObjectURL(a):a.toString();try{return await qr_scanner_min_e._awaitImageLoad(b),b}finally{(a instanceof File||a instanceof Blob)&&URL.revokeObjectURL(b.src)}}else throw"Unsupported image type.";}static async _awaitImageLoad(a){a.complete&&0!==a.naturalWidth||await new Promise((b,c)=>{let d=f=>{a.removeEventListener("load",d);a.removeEventListener("error",d);f instanceof ErrorEvent?
-c("Image load error"):b()};a.addEventListener("load",d);a.addEventListener("error",d)})}static async _postWorkerMessage(a,b,c,d){return qr_scanner_min_e._postWorkerMessageSync(await a,b,c,d)}static _postWorkerMessageSync(a,b,c,d){if(!(a instanceof Worker))return-1;let f=qr_scanner_min_e._workerMessageId++;a.postMessage({id:f,type:b,data:c},d);return f}}qr_scanner_min_e.DEFAULT_CANVAS_SIZE=400;qr_scanner_min_e.NO_QR_CODE_FOUND="No QR code found";qr_scanner_min_e._disableBarcodeDetector=!1;qr_scanner_min_e._workerMessageId=0;/* harmony default export */ var qr_scanner_min = (qr_scanner_min_e);
-//# sourceMappingURL=qr-scanner.min.js.map
-
-// CONCATENATED MODULE: ./node_modules/@nimiq/utils/dist/module/BrowserDetection.js
-
-
-
-
-
-
-
-
-
-
-
-var BrowserDetection_BrowserDetection = /*#__PURE__*/function () {
-  function BrowserDetection() {
-    _classCallCheck(this, BrowserDetection);
-  }
-  return _createClass(BrowserDetection, null, [{
-    key: "getBrowserInfo",
-    value: function getBrowserInfo() {
-      return {
-        browser: BrowserDetection.detectBrowser(),
-        version: BrowserDetection.detectVersion(),
-        isMobile: BrowserDetection.isMobile()
-      };
-    }
-    /* eslint-disable max-len */
-    // Also includes tablets.
-    // Inspired by:
-    // - https://stackoverflow.com/a/13819253
-    // - https://developer.mozilla.org/en-US/docs/Web/HTTP/Browser_detection_using_the_user_agent#Mobile_Tablet_or_Desktop
-    // - http://detectmobilebrowsers.com/about (tablets)
-    /* eslint-enable max-len */
-  }, {
-    key: "isMobile",
-    value: function isMobile() {
-      return /i?Phone|iP(ad|od)|Android|BlackBerry|Opera Mini|WPDesktop|Mobi(le)?|Silk/i.test(navigator.userAgent);
-    }
-    /* eslint-disable max-len */
-    // Browser tests inspired by:
-    // - https://developer.mozilla.org/en-US/docs/Web/HTTP/Browser_detection_using_the_user_agent#Browser_Name
-    // - https://stackoverflow.com/a/26358856 (order is important)
-    // Note that also this approach is very interesting: https://stackoverflow.com/a/40246491
-    //
-    // The following page is a great overview of example user agent strings:
-    // http://www.useragentstring.com/pages/useragentstring.php?name=All
-    // Example user agents:
-    // - Edge: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML like Gecko) Chrome/51.0.2704.79 Safari/537.36 Edge/14.14931
-    // - Opera: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.73 Safari/537.36 OPR/34.0.2036.42
-    // - Firefox: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:64.0) Gecko/20100101 Firefox/64.0
-    // - Chrome: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36
-    // - Safari: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.75.14 (KHTML, like Gecko) Version/7.0.3 Safari/7046A194A
-    // - Safari iPhone: Mozilla/5.0 (iPhone; CPU iPhone OS 11_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/11.0 Mobile/15E148 Safari/604.1
-    // - Safari iPad: Mozilla/5.0 (iPad; CPU OS 11_2_2 like Mac OS X) AppleWebKit/604.4.7 (KHTML, like Gecko) Version/11.0 Mobile/15C202 Safari/604.1
-    // - Brave: is indistinguishable from Chrome user agents
-    /* eslint-enable max-len */
-  }, {
-    key: "detectBrowser",
-    value: function detectBrowser() {
-      if (BrowserDetection._detectedBrowser) {
-        return BrowserDetection._detectedBrowser;
-      }
-      // note that the order is important as many browsers include the names of others in the ua.
-      var ua = navigator.userAgent;
-      if (/Edge\//i.test(ua)) {
-        BrowserDetection._detectedBrowser = BrowserDetection.Browser.EDGE;
-      } else if (/(Opera|OPR)\//i.test(ua)) {
-        BrowserDetection._detectedBrowser = BrowserDetection.Browser.OPERA;
-      } else if (/Firefox\//i.test(ua)) {
-        BrowserDetection._detectedBrowser = BrowserDetection.Browser.FIREFOX;
-      } else if (/Chrome\//i.test(ua)) {
-        // Note that Brave is indistinguishable from Chrome by user agent. The additional check is taken from
-        // https://stackoverflow.com/a/53799770. Unfortunately this distinction is not possible on mobile.
-        BrowserDetection._detectedBrowser = navigator.plugins.length === 0 && navigator.mimeTypes.length === 0 && !BrowserDetection.isMobile() ? BrowserDetection.Browser.BRAVE : BrowserDetection.Browser.CHROME;
-      } else if (/^((?!chrome|android).)*safari/i.test(ua)) {
-        // see https://stackoverflow.com/a/23522755
-        // Note that Chrome iOS is also detected as Safari, see comments in stack overflow
-        BrowserDetection._detectedBrowser = BrowserDetection.Browser.SAFARI;
-      } else {
-        BrowserDetection._detectedBrowser = BrowserDetection.Browser.UNKNOWN;
-      }
-      return BrowserDetection._detectedBrowser;
-    }
-  }, {
-    key: "detectVersion",
-    value: function detectVersion() {
-      if (typeof BrowserDetection._detectedVersion !== 'undefined') {
-        return BrowserDetection._detectedVersion;
-      }
-      var regex;
-      switch (BrowserDetection.detectBrowser()) {
-        case BrowserDetection.Browser.EDGE:
-          regex = /Edge\/(\S+)/i;
-          break;
-        case BrowserDetection.Browser.OPERA:
-          regex = /(Opera|OPR)\/(\S+)/i;
-          break;
-        case BrowserDetection.Browser.FIREFOX:
-          regex = /Firefox\/(\S+)/i;
-          break;
-        case BrowserDetection.Browser.CHROME:
-          regex = /Chrome\/(\S+)/i;
-          break;
-        case BrowserDetection.Browser.SAFARI:
-          regex = /(iP(hone|ad|od).*?OS |Version\/)(\S+)/i;
-          break;
-        case BrowserDetection.Browser.BRAVE: // can't tell version for Brave
-        default:
-          BrowserDetection._detectedVersion = null;
-          return null;
-      }
-      var match = navigator.userAgent.match(regex);
-      if (!match) {
-        BrowserDetection._detectedVersion = null;
-        return null;
-      }
-      var versionString = match[match.length - 1].replace(/_/g, '.'); // replace _ in iOS version
-      var versionParts = versionString.split('.');
-      var parsedVersionParts = [];
-      for (var i = 0; i < 4; ++i) {
-        parsedVersionParts.push(parseInt(versionParts[i], 10) || 0);
-      }
-      var major = parsedVersionParts[0],
-        minor = parsedVersionParts[1],
-        build = parsedVersionParts[2],
-        patch = parsedVersionParts[3];
-      BrowserDetection._detectedVersion = {
-        versionString: versionString,
-        major: major,
-        minor: minor,
-        build: build,
-        patch: patch
-      };
-      return BrowserDetection._detectedVersion;
-    }
-  }, {
-    key: "isChrome",
-    value: function isChrome() {
-      return BrowserDetection.detectBrowser() === BrowserDetection.Browser.CHROME;
-    }
-  }, {
-    key: "isFirefox",
-    value: function isFirefox() {
-      return BrowserDetection.detectBrowser() === BrowserDetection.Browser.FIREFOX;
-    }
-  }, {
-    key: "isOpera",
-    value: function isOpera() {
-      return BrowserDetection.detectBrowser() === BrowserDetection.Browser.OPERA;
-    }
-  }, {
-    key: "isEdge",
-    value: function isEdge() {
-      return BrowserDetection.detectBrowser() === BrowserDetection.Browser.EDGE;
-    }
-  }, {
-    key: "isSafari",
-    value: function isSafari() {
-      return BrowserDetection.detectBrowser() === BrowserDetection.Browser.SAFARI;
-    }
-  }, {
-    key: "isBrave",
-    value: function isBrave() {
-      return BrowserDetection.detectBrowser() === BrowserDetection.Browser.BRAVE;
-    }
-  }, {
-    key: "isIOS",
-    value: function isIOS() {
-      return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-    }
-  }, {
-    key: "isBadIOS",
-    value: function isBadIOS() {
-      var browserInfo = BrowserDetection.getBrowserInfo();
-      // Check for iOS < 11 or 11.2 which has the WASM bug
-      return browserInfo.browser === BrowserDetection.Browser.SAFARI && browserInfo.isMobile && browserInfo.version
-      // eslint-disable-next-line no-mixed-operators
-      && (browserInfo.version.major < 11 || browserInfo.version.major === 11 && browserInfo.version.minor === 2);
-    }
-    /**
-     * Detect if the browser is running in Private Browsing mode
-     *
-     * @returns {Promise}
-     */
-  }, {
-    key: "isPrivateMode",
-    value: function isPrivateMode() {
-      return new Promise(function (resolve) {
-        var on = function on() {
-          return resolve(true);
-        }; // is in private mode
-        var off = function off() {
-          return resolve(false);
-        }; // not private mode
-        // using browser detection by feature detection here, also see https://stackoverflow.com/a/9851769
-        // These seem to be partly outdated though. Might want to consider using user agent based detection.
-        var isSafari = function isSafari() {
-          return /Constructor/.test(window.HTMLElement) || window.safari && window.safari.pushNotification && window.safari.pushNotification.toString() === '[object SafariRemoteNotification]';
-        };
-        // Chrome & Opera
-        if (window.webkitRequestFileSystem) {
-          window.webkitRequestFileSystem(0, 0, off, on);
-          return;
-        }
-        // Firefox
-        if (document.documentElement && 'MozAppearance' in document.documentElement.style) {
-          // @ts-ignore
-          var db = indexedDB.open(null);
-          db.onerror = on;
-          db.onsuccess = off;
-          return;
-        }
-        // Safari
-        if (isSafari()) {
-          try {
-            window.openDatabase(null, null, null, null);
-          } catch (_) {
-            on();
-            return;
-          }
-        }
-        // IE10+ & Edge
-        if (!window.indexedDB && (window.PointerEvent || window.MSPointerEvent)) {
-          on();
-          return;
-        }
-        // others
-        off();
-      });
-    }
-  }]);
-}();
-_defineProperty(BrowserDetection_BrowserDetection, "_detectedBrowser", void 0);
-_defineProperty(BrowserDetection_BrowserDetection, "_detectedVersion", void 0);
-(function (BrowserDetection) {
-  (function (Browser) {
-    Browser["CHROME"] = "chrome";
-    Browser["FIREFOX"] = "firefox";
-    Browser["OPERA"] = "opera";
-    Browser["EDGE"] = "edge";
-    Browser["SAFARI"] = "safari";
-    Browser["BRAVE"] = "brave";
-    Browser["UNKNOWN"] = "unknown";
-  })(BrowserDetection.Browser || (BrowserDetection.Browser = {}));
-})(BrowserDetection_BrowserDetection || (BrowserDetection_BrowserDetection = {}));
-var BrowserDetection$1 = BrowserDetection_BrowserDetection;
-
-// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--14-1!./node_modules/cache-loader/dist/cjs.js??ref--1-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/QrScanner.vue?vue&type=script&lang=ts
-
-
-
-
-
-
-
-// TODO could use IntersectionObserver api to start scanner when visible
-var QrScanner_1;
-
-
-
-
-
-
-var QrScannervue_type_script_lang_ts_QrScanner = QrScanner_1 = /*#__PURE__*/function (_Mixins) {
-  function QrScanner() {
-    var _this;
-    _classCallCheck(this, QrScanner);
-    _this = _callSuper(this, QrScanner, arguments);
-    _this.cameraAccessFailed = false;
-    _this.hasCamera = true;
-    _this.isMobileOrTablet = BrowserDetection$1.isMobile();
-    _this.browser = BrowserDetection$1.detectBrowser();
-    _this._lastResultTime = 0;
-    return _this;
-  }
-  _inherits(QrScanner, _Mixins);
-  return _createClass(QrScanner, [{
-    key: "mounted",
-    value: function () {
-      var _mounted = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-        var _this2 = this;
-        var $video;
-        return _regeneratorRuntime().wrap(function _callee$(_context) {
-          while (1) switch (_context.prev = _context.next) {
-            case 0:
-              this.repositionOverlay = this.repositionOverlay.bind(this);
-              $video = this.$refs.video;
-              this._scanner = new qr_scanner_min($video, function (result) {
-                return _this2._onResult(result);
-              });
-              $video.addEventListener('canplay', function () {
-                return $video.classList.add('ready');
-              });
-              window.addEventListener('resize', this.repositionOverlay);
-              qr_scanner_min.hasCamera().then(function (hasCamera) {
-                return _this2.hasCamera = hasCamera;
-              });
-              if (this._isVisible()) {
-                this.start();
-                this.repositionOverlay();
-              }
-            case 7:
-            case "end":
-              return _context.stop();
-          }
-        }, _callee, this);
-      }));
-      function mounted() {
-        return _mounted.apply(this, arguments);
-      }
-      return mounted;
-    }()
-  }, {
-    key: "destroyed",
-    value: function destroyed() {
-      this.stop();
-      this._scanner.destroy();
-      window.removeEventListener('resize', this.repositionOverlay);
-    }
-  }, {
-    key: "start",
-    value: function () {
-      var _start = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
-        var _this3 = this;
-        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-          while (1) switch (_context2.prev = _context2.next) {
-            case 0:
-              _context2.prev = 0;
-              _context2.next = 3;
-              return this._scanner.start();
-            case 3:
-              this.cameraAccessFailed = false;
-              if (this._cameraRetryTimer) {
-                window.clearInterval(this._cameraRetryTimer);
-                this._cameraRetryTimer = null;
-              }
-              _context2.next = 12;
-              break;
-            case 7:
-              _context2.prev = 7;
-              _context2.t0 = _context2["catch"](0);
-              this.cameraAccessFailed = true;
-              this.$emit("error" /* ERROR */, _context2.t0);
-              if (!this._cameraRetryTimer) {
-                this._cameraRetryTimer = window.setInterval(function () {
-                  return _this3.start();
-                }, 3000);
-              }
-            case 12:
-              return _context2.abrupt("return", !this.cameraAccessFailed);
-            case 13:
-            case "end":
-              return _context2.stop();
-          }
-        }, _callee2, this, [[0, 7]]);
-      }));
-      function start() {
-        return _start.apply(this, arguments);
-      }
-      return start;
-    }()
-  }, {
-    key: "stop",
-    value: function stop() {
-      this._scanner.stop();
-      if (this._cameraRetryTimer) {
-        window.clearInterval(this._cameraRetryTimer);
-        this._cameraRetryTimer = null;
-      }
-    }
-  }, {
-    key: "setGrayscaleWeights",
-    value: function setGrayscaleWeights(red, green, blue) {
-      this._scanner.setGrayscaleWeights(red, green, blue);
-    }
-  }, {
-    key: "setInversionMode",
-    value: function setInversionMode(inversionMode) {
-      this._scanner.setInversionMode(inversionMode);
-    }
-  }, {
-    key: "repositionOverlay",
-    value: function repositionOverlay() {
-      var _this4 = this;
-      requestAnimationFrame(function () {
-        var scannerHeight = _this4.$el.offsetHeight;
-        var scannerWidth = _this4.$el.offsetWidth;
-        var smallerDimension = Math.min(scannerHeight, scannerWidth);
-        if (smallerDimension === 0) return; // component not visible or destroyed
-        var overlaySize = Math.ceil(2 / 3 * smallerDimension);
-        // not always the accurate size of the sourceRect for QR detection in QrScannerLib (e.g. if video is
-        // landscape and screen portrait) but looks nicer in the UI.
-        var $qrOverlay = _this4.$refs.overlay;
-        $qrOverlay.style.width = overlaySize + 'px';
-        $qrOverlay.style.height = overlaySize + 'px';
-        $qrOverlay.style.top = (scannerHeight - overlaySize) / 2 + 'px';
-        $qrOverlay.style.left = (scannerWidth - overlaySize) / 2 + 'px';
-      });
-    }
-  }, {
-    key: "_isVisible",
-    value: function _isVisible() {
-      return this.$el.offsetWidth > 0;
-    }
-  }, {
-    key: "_cancel",
-    value: function _cancel() {
-      this.$emit("cancel" /* CANCEL */);
-    }
-  }, {
-    key: "_onResult",
-    value: function _onResult(result) {
-      if (result === this._lastResult && Date.now() - this._lastResultTime < this.reportFrequency || this.validate && !this.validate(result)) return;
-      this._lastResult = result;
-      this._lastResultTime = Date.now();
-      this.$emit("result" /* RESULT */, result);
-    }
-  }]);
-}(Object(external_vue_property_decorator_["Mixins"])(i18n_I18nMixin));
-__decorate([Object(external_vue_property_decorator_["Prop"])({
-  type: Number,
-  default: 7000
-})], QrScannervue_type_script_lang_ts_QrScanner.prototype, "reportFrequency", void 0);
-__decorate([Object(external_vue_property_decorator_["Prop"])(Function)], QrScannervue_type_script_lang_ts_QrScanner.prototype, "validate", void 0);
-QrScannervue_type_script_lang_ts_QrScanner = QrScanner_1 = __decorate([Object(external_vue_property_decorator_["Component"])({
-  name: 'QrScanner',
-  components: {
-    I18n: i18n_I18n
-  }
-})], QrScannervue_type_script_lang_ts_QrScanner);
-/* harmony default export */ var QrScannervue_type_script_lang_ts = (QrScannervue_type_script_lang_ts_QrScanner);
-// CONCATENATED MODULE: ./src/components/QrScanner.vue?vue&type=script&lang=ts
- /* harmony default export */ var components_QrScannervue_type_script_lang_ts = (QrScannervue_type_script_lang_ts); 
-// EXTERNAL MODULE: ./src/components/QrScanner.vue?vue&type=style&index=0&id=48a6ec42&prod&scoped=true&lang=css
-var QrScannervue_type_style_index_0_id_48a6ec42_prod_scoped_true_lang_css = __webpack_require__("f8b7");
-
-// CONCATENATED MODULE: ./src/components/QrScanner.vue
-
-
-
-
-
-
-/* normalize component */
-
-var QrScanner_component = normalizeComponent(
-  components_QrScannervue_type_script_lang_ts,
-  QrScannervue_type_template_id_48a6ec42_scoped_true_render,
-  QrScannervue_type_template_id_48a6ec42_scoped_true_staticRenderFns,
-  false,
-  null,
-  "48a6ec42",
-  null
-  
-)
-
-/* harmony default export */ var components_QrScanner = (QrScanner_component.exports);
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6f718cbb-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--1-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SelectBar.vue?vue&type=template&id=632b1400&scoped=true
 var SelectBarvue_type_template_id_632b1400_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"select-bar"},_vm._l((_vm.options),function(option){return _c('div',{key:option.value},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.selectedOption),expression:"selectedOption"}],attrs:{"type":"radio","name":_vm.name,"id":option.value},domProps:{"value":option,"checked":_vm._q(_vm.selectedOption,option)},on:{"change":function($event){_vm.selectedOption=option}}}),_c('label',{staticClass:"nq-label",class:_vm.getColor(option),attrs:{"for":option.value}},[_vm._v(_vm._s(option.text))])])}),0)}
 var SelectBarvue_type_template_id_632b1400_scoped_true_staticRenderFns = []
@@ -14356,236 +13373,6 @@ var SelectBar_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_SelectBar = (SelectBar_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6f718cbb-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--1-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SliderToggle.vue?vue&type=template&id=76344cc8&scoped=true
-var SliderTogglevue_type_template_id_76344cc8_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"slider-toggle",class:[("type-" + _vm.type), { 'no-transition': _vm.noTransitions, loading: _vm.loading }]},[(_vm.loading)?_c('label',[_c('LoadingSpinner'),_vm._v("Loading ")],1):[_c('div',{ref:"activeBox$",staticClass:"active-box",style:({
-                '--center': ((_vm.activeBoxStyles.center) + "px"),
-                '--width': ((_vm.activeBoxStyles.width) + "px"),
-            })}),_vm._l((Object.keys(_vm.$slots)),function(slot,index){return _c('label',{key:index,ref:"labels$",refInFor:true,class:{ active: _vm.localValue === slot }},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.localValue),expression:"localValue"}],attrs:{"type":"radio","name":_vm.name},domProps:{"value":slot,"checked":_vm._q(_vm.localValue,slot)},on:{"change":function($event){_vm.localValue=slot}}}),_vm._t(slot)],2)})]],2)}
-var SliderTogglevue_type_template_id_76344cc8_scoped_true_staticRenderFns = []
-
-
-// CONCATENATED MODULE: ./src/components/SliderToggle.vue?vue&type=template&id=76344cc8&scoped=true
-
-// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--14-1!./node_modules/cache-loader/dist/cjs.js??ref--1-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SliderToggle.vue?vue&type=script&lang=ts
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var SliderToggleType;
-(function (SliderToggleType) {
-  SliderToggleType["CURRENCY"] = "currency";
-  SliderToggleType["DEFAULT"] = "default";
-})(SliderToggleType || (SliderToggleType = {}));
-var SliderTogglevue_type_script_lang_ts_SliderToggle = /*#__PURE__*/function (_Vue) {
-  function SliderToggle() {
-    var _this;
-    _classCallCheck(this, SliderToggle);
-    _this = _callSuper(this, SliderToggle, arguments);
-    _this.localValue = null; // Initialized in created
-    _this.activeBoxStyles = {
-      center: 0,
-      width: 0
-    };
-    _this.isUpdatingActiveBoxPosition = false;
-    _this.noTransitions = true;
-    return _this;
-  }
-  _inherits(SliderToggle, _Vue);
-  return _createClass(SliderToggle, [{
-    key: "created",
-    value: function created() {
-      this.localValue = this.value;
-      this.updateActiveBoxPosition = this.updateActiveBoxPosition.bind(this);
-      window.addEventListener('resize', this.updateActiveBoxPosition);
-    }
-  }, {
-    key: "mounted",
-    value: function () {
-      var _mounted = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-        return _regeneratorRuntime().wrap(function _callee$(_context) {
-          while (1) switch (_context.prev = _context.next) {
-            case 0:
-              _context.next = 2;
-              return this.updateActiveBoxPosition();
-            case 2:
-              _context.next = 4;
-              return this.$nextTick();
-            case 4:
-              _context.next = 6;
-              return new Promise(function (resolve) {
-                window.requestAnimationFrame(resolve);
-              });
-            case 6:
-              this.noTransitions = false;
-            case 7:
-            case "end":
-              return _context.stop();
-          }
-        }, _callee, this);
-      }));
-      function mounted() {
-        return _mounted.apply(this, arguments);
-      }
-      return mounted;
-    }()
-  }, {
-    key: "destroyed",
-    value: function destroyed() {
-      window.removeEventListener('resize', this.updateActiveBoxPosition);
-    }
-  }, {
-    key: "onRadiosChange",
-    value: function onRadiosChange(radios) {
-      var _this2 = this;
-      if (!radios.some(function (_ref) {
-        var value = _ref.value;
-        return _this2.localValue === value;
-      })) {
-        // New radios do not include current localValue
-        // localValue update will also trigger updateActiveBoxPosition
-        this.localValue = radios[0].value;
-      } else {
-        this.updateActiveBoxPosition();
-      }
-    }
-  }, {
-    key: "onValueChange",
-    value: function onValueChange(value) {
-      this.localValue = value;
-    }
-  }, {
-    key: "onLocalValueChange",
-    value: function onLocalValueChange(value) {
-      this.updateActiveBoxPosition();
-      this.$emit('input', value);
-    }
-  }, {
-    key: "updateActiveBoxPosition",
-    value: function () {
-      var _updateActiveBoxPosition = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
-        var label, labelRect, containerRect, labelCenter;
-        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-          while (1) switch (_context2.prev = _context2.next) {
-            case 0:
-              if (!this.isUpdatingActiveBoxPosition) {
-                _context2.next = 2;
-                break;
-              }
-              return _context2.abrupt("return");
-            case 2:
-              this.isUpdatingActiveBoxPosition = true;
-              _context2.prev = 3;
-              _context2.next = 6;
-              return this.$nextTick();
-            case 6:
-              _context2.next = 8;
-              return new Promise(function (resolve) {
-                window.requestAnimationFrame(resolve);
-              });
-            case 8:
-              if (!(!this.$refs.labels$ || !this.$refs.activeBox$)) {
-                _context2.next = 10;
-                break;
-              }
-              return _context2.abrupt("return");
-            case 10:
-              label = this.$refs.labels$.find(function (_ref2) {
-                var className = _ref2.className;
-                return className === 'active';
-              }) || this.$refs.labels$[0];
-              if (label) {
-                _context2.next = 13;
-                break;
-              }
-              return _context2.abrupt("return");
-            case 13:
-              labelRect = label.getBoundingClientRect();
-              containerRect = this.$el.getBoundingClientRect();
-              labelCenter = labelRect.left - containerRect.left + labelRect.width / 2;
-              this.activeBoxStyles.center = labelCenter;
-              this.activeBoxStyles.width = labelRect.width;
-            case 18:
-              _context2.prev = 18;
-              this.isUpdatingActiveBoxPosition = false;
-              return _context2.finish(18);
-            case 21:
-            case "end":
-              return _context2.stop();
-          }
-        }, _callee2, this, [[3,, 18, 21]]);
-      }));
-      function updateActiveBoxPosition() {
-        return _updateActiveBoxPosition.apply(this, arguments);
-      }
-      return updateActiveBoxPosition;
-    }()
-  }]);
-}(external_vue_property_decorator_["Vue"]);
-__decorate([Object(external_vue_property_decorator_["Prop"])({
-  type: String,
-  required: true
-})], SliderTogglevue_type_script_lang_ts_SliderToggle.prototype, "name", void 0);
-__decorate([Object(external_vue_property_decorator_["Prop"])({
-  type: String,
-  default: '',
-  required: true
-})], SliderTogglevue_type_script_lang_ts_SliderToggle.prototype, "value", void 0);
-__decorate([Object(external_vue_property_decorator_["Prop"])({
-  type: String,
-  default: SliderToggleType.DEFAULT
-})], SliderTogglevue_type_script_lang_ts_SliderToggle.prototype, "type", void 0);
-__decorate([Object(external_vue_property_decorator_["Prop"])({
-  type: Boolean,
-  default: false
-})], SliderTogglevue_type_script_lang_ts_SliderToggle.prototype, "loading", void 0);
-__decorate([Object(external_vue_property_decorator_["Watch"])('radios')], SliderTogglevue_type_script_lang_ts_SliderToggle.prototype, "onRadiosChange", null);
-__decorate([Object(external_vue_property_decorator_["Watch"])('value')], SliderTogglevue_type_script_lang_ts_SliderToggle.prototype, "onValueChange", null);
-__decorate([Object(external_vue_property_decorator_["Watch"])('localValue')], SliderTogglevue_type_script_lang_ts_SliderToggle.prototype, "onLocalValueChange", null);
-__decorate([Object(external_vue_property_decorator_["Watch"])('type') // watch for style changes associated with type changes
-, Object(external_vue_property_decorator_["Watch"])('loading') // watch for UI changes when component gets enabled
-], SliderTogglevue_type_script_lang_ts_SliderToggle.prototype, "updateActiveBoxPosition", null);
-SliderTogglevue_type_script_lang_ts_SliderToggle = __decorate([Object(external_vue_property_decorator_["Component"])({
-  components: _objectSpread2(_objectSpread2({}, Icons_namespaceObject), {}, {
-    LoadingSpinner: components_LoadingSpinner
-  })
-})], SliderTogglevue_type_script_lang_ts_SliderToggle);
-/* harmony default export */ var SliderTogglevue_type_script_lang_ts = (SliderTogglevue_type_script_lang_ts_SliderToggle);
-// CONCATENATED MODULE: ./src/components/SliderToggle.vue?vue&type=script&lang=ts
- /* harmony default export */ var components_SliderTogglevue_type_script_lang_ts = (SliderTogglevue_type_script_lang_ts); 
-// EXTERNAL MODULE: ./src/components/SliderToggle.vue?vue&type=style&index=0&id=76344cc8&prod&scoped=true&lang=css
-var SliderTogglevue_type_style_index_0_id_76344cc8_prod_scoped_true_lang_css = __webpack_require__("9c4f");
-
-// CONCATENATED MODULE: ./src/components/SliderToggle.vue
-
-
-
-
-
-
-/* normalize component */
-
-var SliderToggle_component = normalizeComponent(
-  components_SliderTogglevue_type_script_lang_ts,
-  SliderTogglevue_type_template_id_76344cc8_scoped_true_render,
-  SliderTogglevue_type_template_id_76344cc8_scoped_true_staticRenderFns,
-  false,
-  null,
-  "76344cc8",
-  null
-  
-)
-
-/* harmony default export */ var components_SliderToggle = (SliderToggle_component.exports);
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6f718cbb-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--1-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/SmallPage.vue?vue&type=template&id=1d450cf2&scoped=true
 var SmallPagevue_type_template_id_1d450cf2_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"small-page nq-card"},[_vm._t("default")],2)}
 var SmallPagevue_type_template_id_1d450cf2_scoped_true_staticRenderFns = []
@@ -14636,135 +13423,11 @@ var SmallPage_component = normalizeComponent(
 )
 
 /* harmony default export */ var components_SmallPage = (SmallPage_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6f718cbb-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--1-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Wallet.vue?vue&type=template&id=226e382a&scoped=true
-var Walletvue_type_template_id_226e382a_scoped_true_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"wallet"},[(_vm.isMultiAddress)?_c('AccountRing',{attrs:{"addresses":_vm.addresses}}):_c('Identicon',{attrs:{"address":_vm.addresses[0]}}),_c('div',{staticClass:"wallet-description"},[_c('div',{staticClass:"label"},[_vm._v(_vm._s(_vm.wallet.label))]),_c('div',{staticClass:"amount-container",class:{'nq-orange': _vm.exportMissing}},[(_vm.exportMissing)?_c('AlertTriangleIcon'):_vm._e(),(_vm.wallet.balance !== undefined)?_c('Amount',{attrs:{"amount":_vm.wallet.balance,"decimals":0}}):_vm._e()],1)]),_c('button',{staticClass:"menu-toggle",attrs:{"onclick":"this.focus()"},on:{"click":function($event){$event.stopPropagation();}}},[_c('MenuDotsIcon'),_c('div',{staticClass:"menu nq-blue-bg"},[(_vm.isBip39)?_c('button',{staticClass:"item export",on:{"click":function($event){return _vm.$emit('export-file', _vm.wallet.id)}}},[_vm._v(" "+_vm._s(_vm.$t('Save Login File'))),(_vm.fileMissing)?_c('AlertTriangleIcon',{staticClass:"nq-orange"}):_vm._e()],1):_vm._e(),(_vm.isKeyguard)?_c('button',{staticClass:"item export",on:{"click":function($event){return _vm.$emit('export-words', _vm.wallet.id)}}},[_vm._v(" "+_vm._s(_vm.$t('Create Backup'))),(_vm.wordsMissing)?_c('AlertTriangleIcon',{staticClass:"nq-orange"}):_vm._e()],1):_vm._e(),_c('button',{staticClass:"item",on:{"click":function($event){return _vm.$emit('rename', _vm.wallet.id)}}},[_vm._v(_vm._s(_vm.$t('Rename')))]),(_vm.isKeyguard)?_c('button',{staticClass:"item",on:{"click":function($event){return _vm.$emit('change-password', _vm.wallet.id)}}},[_vm._v(_vm._s(_vm.$t('Change Password')))]):_vm._e(),_c('div',{staticClass:"separator"}),_c('button',{staticClass:"item logout",on:{"click":function($event){return _vm.$emit('logout', _vm.wallet.id)}}},[_c('ArrowRightSmallIcon'),_vm._v(_vm._s(_vm.$t('Logout')))],1)])],1)],1)}
-var Walletvue_type_template_id_226e382a_scoped_true_staticRenderFns = []
-
-
-// CONCATENATED MODULE: ./src/components/Wallet.vue?vue&type=template&id=226e382a&scoped=true
-
-// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/ts-loader??ref--14-1!./node_modules/cache-loader/dist/cjs.js??ref--1-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/Wallet.vue?vue&type=script&lang=ts
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/** @deprecated */
-var Walletvue_type_script_lang_ts_Wallet = /*#__PURE__*/function (_Mixins) {
-  function Wallet() {
-    _classCallCheck(this, Wallet);
-    return _callSuper(this, Wallet, arguments);
-  }
-  _inherits(Wallet, _Mixins);
-  return _createClass(Wallet, [{
-    key: "addresses",
-    get: function get() {
-      return this.wallet.accounts.reduce(function (addresses, account) {
-        return addresses.concat(account.address);
-      }, []);
-    }
-  }, {
-    key: "isLegacy",
-    get: function get() {
-      return this.wallet.type === 1 /* LEGACY */;
-    }
-  }, {
-    key: "isBip39",
-    get: function get() {
-      return this.wallet.type === 2 /* BIP39 */;
-    }
-  }, {
-    key: "isLedger",
-    get: function get() {
-      return this.wallet.type === 3 /* LEDGER */;
-    }
-  }, {
-    key: "isKeyguard",
-    get: function get() {
-      return this.isLegacy || this.isBip39;
-    }
-  }, {
-    key: "isMultiAddress",
-    get: function get() {
-      return this.isBip39 || this.isLedger;
-    }
-  }, {
-    key: "fileMissing",
-    get: function get() {
-      return this.isBip39 && !this.wallet.fileExported;
-    }
-  }, {
-    key: "wordsMissing",
-    get: function get() {
-      return (this.isBip39 || this.isLegacy) && !this.wallet.wordsExported;
-    }
-  }, {
-    key: "exportMissing",
-    get: function get() {
-      return this.fileMissing || this.wordsMissing;
-    }
-  }]);
-}(Object(external_vue_property_decorator_["Mixins"])(i18n_I18nMixin));
-__decorate([Object(external_vue_property_decorator_["Prop"])(Object)], Walletvue_type_script_lang_ts_Wallet.prototype, "wallet", void 0);
-Walletvue_type_script_lang_ts_Wallet = __decorate([Object(external_vue_property_decorator_["Component"])({
-  name: 'Wallet',
-  components: {
-    AccountRing: components_AccountRing,
-    Amount: components_Amount,
-    Identicon: components_Identicon,
-    AlertTriangleIcon: AlertTriangleIcon,
-    MenuDotsIcon: MenuDotsIcon,
-    ArrowRightSmallIcon: ArrowRightSmallIcon
-  }
-})], Walletvue_type_script_lang_ts_Wallet);
-/* harmony default export */ var Walletvue_type_script_lang_ts = (Walletvue_type_script_lang_ts_Wallet);
-// CONCATENATED MODULE: ./src/components/Wallet.vue?vue&type=script&lang=ts
- /* harmony default export */ var components_Walletvue_type_script_lang_ts = (Walletvue_type_script_lang_ts); 
-// EXTERNAL MODULE: ./src/components/Wallet.vue?vue&type=style&index=0&id=226e382a&prod&scoped=true&lang=css
-var Walletvue_type_style_index_0_id_226e382a_prod_scoped_true_lang_css = __webpack_require__("6e49");
-
-// CONCATENATED MODULE: ./src/components/Wallet.vue
-
-
-
-
-
-
-/* normalize component */
-
-var Wallet_component = normalizeComponent(
-  components_Walletvue_type_script_lang_ts,
-  Walletvue_type_template_id_226e382a_scoped_true_render,
-  Walletvue_type_template_id_226e382a_scoped_true_staticRenderFns,
-  false,
-  null,
-  "226e382a",
-  null
-  
-)
-
-/* harmony default export */ var components_Wallet = (Wallet_component.exports);
 // CONCATENATED MODULE: ./src/main.ts
 
 
 
 // Components
-
-
-
-
-
-
-
 
 
 
@@ -14820,7 +13483,6 @@ function setAssetPublicPath(path, imageAssetsPath) {
 /* concated harmony reexport AddressDisplay */__webpack_require__.d(__webpack_exports__, "AddressDisplay", function() { return components_AddressDisplay; });
 /* concated harmony reexport AddressInput */__webpack_require__.d(__webpack_exports__, "AddressInput", function() { return components_AddressInput; });
 /* concated harmony reexport Amount */__webpack_require__.d(__webpack_exports__, "Amount", function() { return components_Amount; });
-/* concated harmony reexport AmountInput */__webpack_require__.d(__webpack_exports__, "AmountInput", function() { return components_AmountInput; });
 /* concated harmony reexport AmountWithFee */__webpack_require__.d(__webpack_exports__, "AmountWithFee", function() { return components_AmountWithFee; });
 /* concated harmony reexport BottomOverlay */__webpack_require__.d(__webpack_exports__, "BottomOverlay", function() { return components_BottomOverlay; });
 /* concated harmony reexport Carousel */__webpack_require__.d(__webpack_exports__, "Carousel", function() { return components_Carousel; });
@@ -14831,22 +13493,15 @@ function setAssetPublicPath(path, imageAssetsPath) {
 /* concated harmony reexport FiatAmount */__webpack_require__.d(__webpack_exports__, "FiatAmount", function() { return components_FiatAmount; });
 /* concated harmony reexport Identicon */__webpack_require__.d(__webpack_exports__, "Identicon", function() { return components_Identicon; });
 /* concated harmony reexport LabelInput */__webpack_require__.d(__webpack_exports__, "LabelInput", function() { return components_LabelInput; });
-/* concated harmony reexport LanguageSelector */__webpack_require__.d(__webpack_exports__, "LanguageSelector", function() { return components_LanguageSelector; });
 /* concated harmony reexport LoadingSpinner */__webpack_require__.d(__webpack_exports__, "LoadingSpinner", function() { return components_LoadingSpinner; });
-/* concated harmony reexport LongPressButton */__webpack_require__.d(__webpack_exports__, "LongPressButton", function() { return components_LongPressButton; });
 /* concated harmony reexport PageBody */__webpack_require__.d(__webpack_exports__, "PageBody", function() { return components_PageBody; });
 /* concated harmony reexport PageFooter */__webpack_require__.d(__webpack_exports__, "PageFooter", function() { return components_PageFooter; });
 /* concated harmony reexport PageHeader */__webpack_require__.d(__webpack_exports__, "PageHeader", function() { return components_PageHeader; });
 /* concated harmony reexport PaymentInfoLine */__webpack_require__.d(__webpack_exports__, "PaymentInfoLine", function() { return components_PaymentInfoLine; });
 /* concated harmony reexport QrCode */__webpack_require__.d(__webpack_exports__, "QrCode", function() { return components_QrCode; });
-/* concated harmony reexport QrScanner */__webpack_require__.d(__webpack_exports__, "QrScanner", function() { return components_QrScanner; });
 /* concated harmony reexport SelectBar */__webpack_require__.d(__webpack_exports__, "SelectBar", function() { return components_SelectBar; });
-/* concated harmony reexport SliderToggle */__webpack_require__.d(__webpack_exports__, "SliderToggle", function() { return components_SliderToggle; });
 /* concated harmony reexport SmallPage */__webpack_require__.d(__webpack_exports__, "SmallPage", function() { return components_SmallPage; });
-/* concated harmony reexport Timer */__webpack_require__.d(__webpack_exports__, "Timer", function() { return components_Timer; });
 /* concated harmony reexport Tooltip */__webpack_require__.d(__webpack_exports__, "Tooltip", function() { return components_Tooltip; });
-/* concated harmony reexport Wallet */__webpack_require__.d(__webpack_exports__, "Wallet", function() { return components_Wallet; });
-/* concated harmony reexport AlertCircleIcon */__webpack_require__.d(__webpack_exports__, "AlertCircleIcon", function() { return AlertCircleIcon; });
 /* concated harmony reexport AlertTriangleIcon */__webpack_require__.d(__webpack_exports__, "AlertTriangleIcon", function() { return AlertTriangleIcon; });
 /* concated harmony reexport ArrowLeftSmallIcon */__webpack_require__.d(__webpack_exports__, "ArrowLeftSmallIcon", function() { return ArrowLeftSmallIcon; });
 /* concated harmony reexport ArrowLeftIcon */__webpack_require__.d(__webpack_exports__, "ArrowLeftIcon", function() { return ArrowLeftIcon; });
@@ -14857,16 +13512,11 @@ function setAssetPublicPath(path, imageAssetsPath) {
 /* concated harmony reexport CheckmarkIcon */__webpack_require__.d(__webpack_exports__, "CheckmarkIcon", function() { return CheckmarkIcon; });
 /* concated harmony reexport CheckmarkSmallIcon */__webpack_require__.d(__webpack_exports__, "CheckmarkSmallIcon", function() { return CheckmarkSmallIcon; });
 /* concated harmony reexport CloseIcon */__webpack_require__.d(__webpack_exports__, "CloseIcon", function() { return CloseIcon; });
-/* concated harmony reexport ContactsIcon */__webpack_require__.d(__webpack_exports__, "ContactsIcon", function() { return ContactsIcon; });
 /* concated harmony reexport DownloadIcon */__webpack_require__.d(__webpack_exports__, "DownloadIcon", function() { return DownloadIcon; });
 /* concated harmony reexport FaceNeutralIcon */__webpack_require__.d(__webpack_exports__, "FaceNeutralIcon", function() { return FaceNeutralIcon; });
 /* concated harmony reexport FaceSadIcon */__webpack_require__.d(__webpack_exports__, "FaceSadIcon", function() { return FaceSadIcon; });
-/* concated harmony reexport GearIcon */__webpack_require__.d(__webpack_exports__, "GearIcon", function() { return GearIcon; });
-/* concated harmony reexport HexagonIcon */__webpack_require__.d(__webpack_exports__, "HexagonIcon", function() { return HexagonIcon; });
-/* concated harmony reexport InfoCircleIcon */__webpack_require__.d(__webpack_exports__, "InfoCircleIcon", function() { return InfoCircleIcon; });
 /* concated harmony reexport LedgerIcon */__webpack_require__.d(__webpack_exports__, "LedgerIcon", function() { return LedgerIcon; });
 /* concated harmony reexport LoginIcon */__webpack_require__.d(__webpack_exports__, "LoginIcon", function() { return LoginIcon; });
-/* concated harmony reexport MenuDotsIcon */__webpack_require__.d(__webpack_exports__, "MenuDotsIcon", function() { return MenuDotsIcon; });
 /* concated harmony reexport PlusCircleIcon */__webpack_require__.d(__webpack_exports__, "PlusCircleIcon", function() { return PlusCircleIcon; });
 /* concated harmony reexport QrCodeIcon */__webpack_require__.d(__webpack_exports__, "QrCodeIcon", function() { return QrCodeIcon; });
 /* concated harmony reexport ScanQrCodeIcon */__webpack_require__.d(__webpack_exports__, "ScanQrCodeIcon", function() { return ScanQrCodeIcon; });
@@ -17464,13 +16114,6 @@ module.exports = global.Promise;
 
 /***/ }),
 
-/***/ "6a02":
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-
 /***/ "6a2b":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -17972,17 +16615,6 @@ if (!IS_PURE && DESCRIPTORS && values.name !== 'values') try {
 
 /***/ }),
 
-/***/ "6e49":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_7_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_7_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_1_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Wallet_vue_vue_type_style_index_0_id_226e382a_prod_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("dce3");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_7_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_7_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_1_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Wallet_vue_vue_type_style_index_0_id_226e382a_prod_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_7_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_7_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_1_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Wallet_vue_vue_type_style_index_0_id_226e382a_prod_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
-
-
-/***/ }),
-
 /***/ "7054":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18230,13 +16862,6 @@ module.exports = function (set) {
   return result;
 };
 
-
-/***/ }),
-
-/***/ "763f":
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
 
 /***/ }),
 
@@ -20213,13 +18838,6 @@ $({ target: 'Object', stat: true, forced: FAILS_ON_PRIMITIVES, sham: !CORRECT_PR
 
 /***/ }),
 
-/***/ "92fe":
-/***/ (function(module, exports) {
-
-module.exports = Object.assign(import('qr-scanner/qr-scanner-worker.min.js'), { __esModule: true });;
-
-/***/ }),
-
 /***/ "9327":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -20284,17 +18902,6 @@ module.exports = function (O, C, index, value) {
   for (; k < len; k++) A[k] = k === actualIndex ? value : O[k];
   return A;
 };
-
-
-/***/ }),
-
-/***/ "94c3":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_7_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_7_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_1_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LongPressButton_vue_vue_type_style_index_0_id_069edc42_prod_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("6a02");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_7_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_7_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_1_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LongPressButton_vue_vue_type_style_index_0_id_069edc42_prod_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_7_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_7_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_1_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LongPressButton_vue_vue_type_style_index_0_id_069edc42_prod_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
 
 
 /***/ }),
@@ -20666,17 +19273,6 @@ if (DESCRIPTORS && MISSED_STICKY) {
     }
   });
 }
-
-
-/***/ }),
-
-/***/ "9c4f":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_7_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_7_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_1_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SliderToggle_vue_vue_type_style_index_0_id_76344cc8_prod_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("096c");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_7_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_7_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_1_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SliderToggle_vue_vue_type_style_index_0_id_76344cc8_prod_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_7_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_7_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_1_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SliderToggle_vue_vue_type_style_index_0_id_76344cc8_prod_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
 
 
 /***/ }),
@@ -23667,13 +22263,6 @@ module.exports = function ($this, dummy, Wrapper) {
 
 /***/ }),
 
-/***/ "dce3":
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-
 /***/ "ddd3":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -25124,17 +23713,6 @@ module.exports = function repeat(count) {
 
 /***/ }),
 
-/***/ "f35a":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_7_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_7_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_1_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LanguageSelector_vue_vue_type_style_index_0_id_45954d8c_prod_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("2d67");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_7_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_7_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_1_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LanguageSelector_vue_vue_type_style_index_0_id_45954d8c_prod_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_7_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_7_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_1_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LanguageSelector_vue_vue_type_style_index_0_id_45954d8c_prod_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
-
-
-/***/ }),
-
 /***/ "f3f2":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -25675,17 +24253,6 @@ var setMethodAcceptSetLike = __webpack_require__("45bf");
 $({ target: 'Set', proto: true, real: true, forced: !setMethodAcceptSetLike('isSubsetOf') }, {
   isSubsetOf: isSubsetOf
 });
-
-
-/***/ }),
-
-/***/ "f8b7":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_7_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_7_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_1_0_node_modules_vue_loader_lib_index_js_vue_loader_options_QrScanner_vue_vue_type_style_index_0_id_48a6ec42_prod_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("763f");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_7_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_7_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_1_0_node_modules_vue_loader_lib_index_js_vue_loader_options_QrScanner_vue_vue_type_style_index_0_id_48a6ec42_prod_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_7_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_7_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_1_0_node_modules_vue_loader_lib_index_js_vue_loader_options_QrScanner_vue_vue_type_style_index_0_id_48a6ec42_prod_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
 
 
 /***/ }),
