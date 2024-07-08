@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[95],{1743:function(e){e.exports=JSON.parse('{"Change Password":"Змінити пароль","Create Backup":"Створити резервну копію","Logout":"Вийти","Rename":"Перейменувати","Save Login File":"Зберегти файл-ключ"}')}}]);
+//# sourceMappingURL=lang-uk-Wallet-json.4d28c86b38f81f65d81d.bundle.js.map

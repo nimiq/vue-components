@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[27],{1675:function(p){p.exports=JSON.parse('{"Copied":"Nakopya"}')}}]);
+//# sourceMappingURL=lang-fil-Copyable-json.23913c4a087693786c13.bundle.js.map

@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[35],{1683:function(a){a.exports=JSON.parse('{"Change Password":"Palitan ang password","Create Backup":"Gumawa ng Backup","Logout":"Logout","Rename":"Pangalanan ng iba","Save Login File":"Save Login File"}')}}]);
+//# sourceMappingURL=lang-fil-Wallet-json.fe328e8a430e2d9dbd6c.bundle.js.map

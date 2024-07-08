@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[42],{1690:function(p){p.exports=JSON.parse('{"Keep pressing…":"Continuez à appuyer…"}')}}]);
+//# sourceMappingURL=lang-fr-LongPressButton-json.37f03f0ead4e77e5b473.bundle.js.map

@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[75],{1723:function(p){p.exports=JSON.parse('{"Copied":"Скопировано"}')}}]);
+//# sourceMappingURL=lang-ru-Copyable-json.033ade42c1cb2d10f9eb.bundle.js.map

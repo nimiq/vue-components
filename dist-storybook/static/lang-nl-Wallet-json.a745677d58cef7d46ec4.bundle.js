@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[49],{1359:function(e){e.exports={"Change Password":"Wachtwoord wijzigen","Create Backup":"Maak een back-up",Logout:"Uitloggen",Rename:"Hernoemen","Save Login File":"Login File opslaan"}}}]);
-//# sourceMappingURL=lang-nl-Wallet-json.a745677d58cef7d46ec4.bundle.js.map

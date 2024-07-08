@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[37],{1685:function(e){e.exports=JSON.parse('{"{type} accounts cannot be used for this operation.":"Les comptes {type} ne peuvent pas être utilisés pour cette opération.","Legacy":"Legacy","Login to another account":"Connexion à un autre compte"}')}}]);
+//# sourceMappingURL=lang-fr-AccountSelector-json.c8e1511f87b94227f340.bundle.js.map

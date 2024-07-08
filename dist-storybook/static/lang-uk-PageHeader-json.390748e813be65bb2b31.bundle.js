@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[91],{1739:function(o){o.exports=JSON.parse('{"Go back":"Назад"}')}}]);
+//# sourceMappingURL=lang-uk-PageHeader-json.390748e813be65bb2b31.bundle.js.map

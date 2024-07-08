@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[26],{1674:function(n){n.exports=JSON.parse('{"fee":"fee","Insufficient balance":"Hindi sapat ang balanse"}')}}]);
+//# sourceMappingURL=lang-fil-AmountWithFee-json.6c202a211af1cdbb817d.bundle.js.map

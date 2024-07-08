@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[58],{1706:function(e){e.exports=JSON.parse('{"day":"dag","days":"dagen","hour":"uur","hours":"uren","minute":"minuut","minutes":"minuten","second":"seconde","seconds":"seconden","This offer expires in {timer}.":"Deze aanbieding vervalt over {timer}."}')}}]);
+//# sourceMappingURL=lang-nl-Timer-json.064135b5888a56e7b920.bundle.js.map

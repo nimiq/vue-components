@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[23],{1671:function(a){a.exports=JSON.parse('{"Change Password":"Cambiar Contraseña","Create Backup":"Crear un respaldo","Logout":"Cerrar sesión","Rename":"Renombrar","Save Login File":"Guardar Archivo de Sesión"}')}}]);
+//# sourceMappingURL=lang-es-Wallet-json.e1569b97431096dcdcd1.bundle.js.map
