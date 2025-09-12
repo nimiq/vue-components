@@ -179,23 +179,36 @@ storiesOf('Basic', module)
     })
     .add('LongPressButton', () => {
         const color = text('color', 'light-blue');
+        const inverse = boolean('invert colors', false);
         const duration = number('duration', 3000);
         return {
             components: { LongPressButton, LoadingSpinner, HexagonIcon: Icons.HexagonIcon },
             methods: { longPressed: action('longPressed') },
-            data: () => ({ color, duration }),
+            data: () => ({
+                color,
+                inverse,
+                duration,
+            }),
+            computed: {
+                backgroundColor() {
+                    return this.inverse ? `nq-${this.color}-bg` : '';
+                },
+                buttonColor() {
+                    return this.inverse ? 'inverse' : this.color;
+                },
+            },
             template: `
-                <div>
-                    <LongPressButton :color="color" :duration="duration"
+                <div :class="backgroundColor" style="padding: 2rem">
+                    <LongPressButton :color="buttonColor" :duration="duration"
                         @${LongPressButton.Events.LONG_PRESS}="longPressed">
                         Hold me tight.
                     </LongPressButton>
-                    <LongPressButton :color="color" :duration="duration"
+                    <LongPressButton :color="buttonColor" :duration="duration"
                         @${LongPressButton.Events.LONG_PRESS}="longPressed">
                         Sometimes it just clicks...
                         <template #subline>but in this case it doesn't.</template>
                     </LongPressButton>
-                    <LongPressButton :color="color" :duration="duration"
+                    <LongPressButton :color="buttonColor" :duration="duration"
                         style="--label-height: 4rem"
                         @${LongPressButton.Events.LONG_PRESS}="longPressed">
                         You can also go fancy
