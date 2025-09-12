@@ -181,6 +181,7 @@ storiesOf('Basic', module)
         const color = text('color', 'light-blue');
         const inverse = boolean('invert colors', false);
         const duration = number('duration', 3000);
+        const disabled = boolean('disabled', false);
         return {
             components: { LongPressButton, LoadingSpinner, HexagonIcon: Icons.HexagonIcon },
             methods: { longPressed: action('longPressed') },
@@ -188,6 +189,7 @@ storiesOf('Basic', module)
                 color,
                 inverse,
                 duration,
+                disabled,
             }),
             computed: {
                 backgroundColor() {
@@ -199,16 +201,16 @@ storiesOf('Basic', module)
             },
             template: `
                 <div :class="backgroundColor" style="padding: 2rem">
-                    <LongPressButton :color="buttonColor" :duration="duration"
+                    <LongPressButton :color="buttonColor" :duration="duration" :disabled="disabled"
                         @${LongPressButton.Events.LONG_PRESS}="longPressed">
                         Hold me tight.
                     </LongPressButton>
-                    <LongPressButton :color="buttonColor" :duration="duration"
+                    <LongPressButton :color="buttonColor" :duration="duration" :disabled="disabled"
                         @${LongPressButton.Events.LONG_PRESS}="longPressed">
                         Sometimes it just clicks...
                         <template #subline>but in this case it doesn't.</template>
                     </LongPressButton>
-                    <LongPressButton :color="buttonColor" :duration="duration"
+                    <LongPressButton :color="buttonColor" :duration="duration" :disabled="disabled"
                         style="--label-height: 4rem"
                         @${LongPressButton.Events.LONG_PRESS}="longPressed">
                         You can also go fancy
