@@ -1,6 +1,13 @@
 <template>
     <div class="amount-with-fee">
-        <AmountInput class="value" v-model="liveAmount" :class="{invalid: !isValid && liveAmount > 0}"  ref="amountInput" />
+        <AmountInput
+            class="value"
+            v-model="liveAmount"
+            :class="{invalid: !isValid && liveAmount > 0}"
+            :currency="currency"
+            :decimals="currencyDecimals"
+            ref="amountInput"
+        />
         <div class="fee-section nq-text-s">
             <div v-if="!isValid && liveAmount" class="nq-red"><slot name="insufficient-balance-error">{{ $t('Insufficient balance') }}</slot></div>
             <div v-else>
@@ -8,7 +15,7 @@
                     ~<FiatAmount :amount="fiatAmount" :currency="fiatCurrency" />
                 </span>
                 <span v-if="value.fee" class="fee">
-                    + <Amount :amount="value.fee" :minDecimals="0" :maxDecimals="5" /> {{ $t('fee') }}
+                    + <Amount :amount="value.fee" :minDecimals="0" :maxDecimals="currencyDecimals" :currency="currency" :currencyDecimals="currencyDecimals" /> {{ $t('fee') }}
                 </span>
             </div>
         </div>
@@ -39,6 +46,8 @@ export default class AmountWithFee extends Mixins(I18nMixin) {
     @Prop({type: Number, default: 0}) private availableBalance!: number;
     @Prop(Number) private fiatAmount: number | null;
     @Prop(String) private fiatCurrency: FiatCurrency | null;
+    @Prop({type: String, default: 'nim'}) private currency!: string;
+    @Prop({type: Number, default: 5}) private currencyDecimals!: number;
 
     private liveAmount: number = this.value.amount;
 

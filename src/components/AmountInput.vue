@@ -11,7 +11,7 @@
                 @focus="isFocussed = true" @blur="isFocussed = false"
                 ref="input">
         </form>
-        <span class="nim">NIM</span>
+        <span class="nim" :class="currency">{{ticker}}</span>
     </div>
 </template>
 
@@ -32,6 +32,7 @@ export default class AmountInput extends Vue {
     @Prop({type: String, default: '0'}) private placeholder!: string;
     @Prop({type: Boolean, default: false}) private vanishing!: boolean;
     @Prop({type: Number, default: 5}) private decimals!: number;
+    @Prop({type: String, default: 'nim'}) private currency!: string;
 
     private liveValue: string = '';
     private lastEmittedValue = 0;
@@ -102,6 +103,14 @@ export default class AmountInput extends Vue {
 
         // Trigger a valueChange for the getter.
         this.$forceUpdate();
+    }
+
+    private get ticker() {
+        if (this.currency === 'tnim') return 'tNIM';
+        if (this.currency === 'mbtc') return 'mBTC';
+        if (this.currency === 'tbtc') return 'tBTC';
+        if (this.currency === 'usdc.e') return 'USDC.e';
+        return this.currency.toUpperCase();
     }
 }
 </script>

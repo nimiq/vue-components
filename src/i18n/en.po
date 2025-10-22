@@ -59,7 +59,7 @@ msgstr ""
 msgid "Effective rate"
 msgstr ""
 
-#: src/components/AmountWithFee.vue:11
+#: src/components/AmountWithFee.vue:18
 msgid "fee"
 msgstr ""
 
@@ -79,7 +79,7 @@ msgstr ""
 msgid "hours"
 msgstr ""
 
-#: src/components/AmountWithFee.vue:5
+#: src/components/AmountWithFee.vue:12
 msgid "Insufficient balance"
 msgstr ""
 
