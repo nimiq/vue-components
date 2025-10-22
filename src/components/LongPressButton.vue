@@ -33,6 +33,11 @@ class LongPressButton extends Mixins(I18nMixin) {
     @Prop({ type: Number, default: 3000 /* ms */ })
     public duration!: number;
 
+    /**
+     * Specify a supported Nimiq button color, see https://github.com/nimiq/nimiq-style/blob/master/src/buttons.css, or
+     * 'inverse' for displaying the button on a colored background. For the inverse mode to work correctly, the button
+     * must be on the same rendering layer / stacking context as the background.
+     */
     @Prop({ type: String, default: 'light-blue' })
     public color!: string;
 
@@ -90,6 +95,29 @@ export default LongPressButton;
 
         contain: layout style; /* not paint because focus outline overflows */
         padding: 0; /* make the .mix-blend-mode-mask cover the whole button to be able to add paint containment on it */
+    }
+
+    /* Inverse styles for rendering the button over a colored background. Basically inverts the mix-blend-mode-mask and
+    renders the parts, which are usually colorful in non-inverted mode, in white over the colored background */
+    .long-press-button.inverse {
+        color: white;
+        background: black;
+        filter: invert(1);
+        mix-blend-mode: screen;
+    }
+    .long-press-button.inverse::before {
+        /* adapt hover effect for color inversion */
+        background: #111111;
+    }
+    .long-press-button.inverse::after {
+        /* adapt focus outline for color inversion */
+        border-color: rgba(0, 0, 0, .4);
+    }
+    .long-press-button.inverse[disabled],
+    .long-press-button.inverse[disabled]:active,
+    .long-press-button.inverse[disabled]:hover {
+        /* adapt disabled styles for color inversion */
+        background: rgba(0, 0, 0, .4);
     }
 
     .mix-blend-mode-mask {
