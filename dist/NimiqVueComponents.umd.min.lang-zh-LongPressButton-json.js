@@ -1,1 +1,1 @@
-(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[103],{1142:function(e){e.exports=JSON.parse('{"Keep pressing…":"请持续点击。。。"}')}}]);
+(("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]=("undefined"!==typeof self?self:this)["webpackJsonpNimiqVueComponents"]||[]).push([[91],{1142:function(e){e.exports=JSON.parse('{"Keep pressing…":"请持续点击。。。"}')}}]);

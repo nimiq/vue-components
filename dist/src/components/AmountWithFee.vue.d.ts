@@ -5,6 +5,8 @@ export default class AmountWithFee extends AmountWithFee_base {
     private availableBalance;
     private fiatAmount;
     private fiatCurrency;
+    private currency;
+    private currencyDecimals;
     private liveAmount;
     mounted(): void;
     private watchAvailableAmountChange;

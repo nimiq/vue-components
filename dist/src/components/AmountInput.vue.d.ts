@@ -11,6 +11,7 @@ export default class AmountInput extends Vue {
     private placeholder;
     private vanishing;
     private decimals;
+    private currency;
     private liveValue;
     private lastEmittedValue;
     private width;
@@ -24,4 +25,5 @@ export default class AmountInput extends Vue {
     private updateWidth;
     get formattedValue(): string;
     set formattedValue(value: string);
+    private get ticker();
 }
